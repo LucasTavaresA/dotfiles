@@ -1,0 +1,11 @@
+[Default Applications]
+x-scheme-handler/tg=userapp-Telegram Desktop-EJM1D1.desktop
+image/jpeg=sxiv.desktop
+audio/mp4=deadbeef.desktop
+audio/x-opus+ogg=deadbeef.desktop
+
+[Added Associations]
+x-scheme-handler/tg=userapp-Telegram Desktop-ZOVYC1.desktop;userapp-Telegram Desktop-EJM1D1.desktop;
+image/jpeg=sxiv.desktop;
+audio/mp4=deadbeef.desktop;
+audio/x-opus+ogg=deadbeef.desktop;

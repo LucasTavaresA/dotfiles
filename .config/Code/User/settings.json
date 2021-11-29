@@ -1,0 +1,64 @@
+{
+    "workbench.editor.decorations.colors": true,
+    "workbench.preferredHighContrastColorTheme": "Default Dark+",
+    "workbench.preferredLightColorTheme": "Default Dark+",
+    "editor.smoothScrolling": true,
+    "window.autoDetectHighContrast": false,
+    "update.mode": "start",
+    "update.enableWindowsBackgroundUpdates": false,
+    "workbench.startupEditor": "newUntitledFile",
+    "explorer.confirmDelete": false,
+    "liveServer.settings.donotVerifyTags": true,
+    "workbench.iconTheme": "vscode-icons",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "cSpell.language": "pt-BR,pt,en",
+    "cSpell.userWords": [
+        "aspnet",
+        "ASPNETCORE",
+        "blazor",
+        "blazorpage"
+    ],
+    "mssql.connections": [
+        {
+            "server": "{{put-server-name-here}}",
+            "database": "{{put-database-name-here}}",
+            "user": "{{put-username-here}}",
+            "password": "{{put-password-here}}"
+        }
+    ],
+    "liveServer.settings.donotShowInfoMsg": true,
+    "cSpell.enableFiletypes": [
+        "!aspnetcorerazor"
+    ],
+    "terminal.explorerKind": "external",
+    "terminal.external.linuxExec": "alacritty -e",
+    "terminal.integrated.profiles.linux": {
+        "bash": {
+            "path": "bash",
+            "icon": "terminal-bash"
+        },
+        "zsh": {
+            "path": "zsh"
+        },
+        "fish": {
+            "path": "fish"
+        },
+        "tmux": {
+            "path": "tmux",
+            "icon": "terminal-tmux"
+        },
+        "pwsh": {
+            "path": "pwsh",
+            "icon": "terminal-powershell"
+        },
+        "Alacritty": {
+            "path": "/usr/local/bin/alacritty"
+        }
+    },
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "vsicons.dontShowNewVersionMessage": true,
+    "editor.minimap.enabled": false,
+    "workbench.colorTheme": "GitHub Dark Default",
+    "workbench.statusBar.visible": false
+}
