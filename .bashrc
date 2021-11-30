@@ -9,6 +9,8 @@ export HISTCONTROL=ignoredups
 export EDITOR="nvim"
 # Torna geany o editor com interface gráfica
 export VISUAL="geany"
+# Torna firefox o navegador padrão
+export BROWSER="firefox"
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -20,8 +22,17 @@ alias la='lsd -A'
 alias lla='lsd -lA'
 alias ..='cd ..'
 alias g='geany'
-alias gitlog='git log --oneline'
 alias v='nvim'
+alias bh='less $HOME/.bash_history'
+alias gi='git init'
+alias gc='git clone'
+alias gs='git status'
+alias gd='git diff'
+alias gl='git log --oneline'
+alias ga='git add'
+alias gcm='git commit -m'
+alias gp='git push'
+alias gr='git restore'
 
 # Ignora case-sensitivity quando completa commandos com tab
 if [ ! -a ~/.inputrc ]; then echo '$include /etc/inputrc' > ~/.inputrc; fi

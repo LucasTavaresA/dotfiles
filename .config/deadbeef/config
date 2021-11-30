@@ -11,10 +11,10 @@ gtkui.color.bar_foreground 65535 65535 65535
 gtkui.color.tabstrip_playing_text 46202 52962 65535
 gtkui.color.tabstrip_selected_text 16566 35686 65535
 gtkui.color.tabstrip_text 65535 65535 65535
-gtkui.columns.playlist [{"title":"♫","id":"1","format":"%playstatus%","sort_format":"","size":"54","align":"0","color_override":"0","color":"#ff000000"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"980","align":"0","color_override":"0","color":"#fffcfcfc"},{"title":"N°","id":"0","format":"","sort_format":"","size":"80","align":"0","color_override":"0","color":"#ffeeeeee"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"136","align":"0","color_override":"0","color":"#ff000000"}]
+gtkui.columns.playlist [{"title":"♫","id":"1","format":"%playstatus%","sort_format":"","size":"54","align":"0","color_override":"0","color":"#ff000000"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"977","align":"0","color_override":"0","color":"#fffcfcfc"},{"title":"N°","id":"0","format":"","sort_format":"","size":"80","align":"0","color_override":"0","color":"#ffeeeeee"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"136","align":"0","color_override":"0","color":"#ff000000"}]
 gtkui.hide_remove_from_disk 1
 gtkui.hide_tray_icon 0
-gtkui.layout.0.6.2 vbox expand="0 1" fill="1 1" homogeneous=0 {hbox expand="0 1 0" fill="1 1 1" homogeneous=0 {playtb {} seekbar {} volumebar {} } tabbed_playlist hideheaders=0 width=1347 {} } 
+gtkui.layout.0.6.2 vbox expand="0 1" fill="1 1" homogeneous=0 {hbox expand="0 1 0" fill="1 1 1" homogeneous=0 {playtb {} seekbar {} volumebar {} } tabbed_playlist hideheaders=0 width=1326 {} } 
 gtkui.mmb_delete_playlist 0
 gtkui.move_to_trash 1
 gtkui.override_bar_colors 1
@@ -22,7 +22,7 @@ gtkui.override_tabstrip_colors 0
 gtkui.start_hidden 0
 gtkui.statusbar.visible 1
 gtkui.statusbar_seltime 1
-gtkui.tabscroll 305
+gtkui.tabscroll 308
 gtkui.tabstrip_embolden_selected 0
 gtkui.titlebar_playing_tf %title%
 gtkui.titlebar_stopped_tf DeaDBeeF-%_deadbeef_version%
@@ -63,10 +63,10 @@ logwindow.geometry.h 198
 logwindow.geometry.w 398
 logwindow.geometry.x 91
 logwindow.geometry.y 58
-mainwin.geometry.h 694
-mainwin.geometry.w 1329
-mainwin.geometry.x 14
-mainwin.geometry.y 36
+mainwin.geometry.h 597
+mainwin.geometry.w 1326
+mainwin.geometry.x 16
+mainwin.geometry.y 84
 mp3.id3v1_encoding iso8859-1
 mp3.id3v2_version 3
 mp3.write_id3v1 1
@@ -133,9 +133,9 @@ prefwin.geometry.w 836
 prefwin.geometry.x 261
 prefwin.geometry.y 104
 resume.paused 0
-resume.playlist 16
-resume.position 0.0464399
-resume.track 7
+resume.playlist -1
+resume.position -1.000000
+resume.track -1
 streamer.samplerate 44100
 streamer.samplerate_mult_44 44100
 streamer.samplerate_mult_48 48000
