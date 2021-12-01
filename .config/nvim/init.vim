@@ -4,6 +4,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'itchyny/lightline.vim'
 Plug 'fcpg/vim-fahrenheit'
 Plug 'ap/vim-css-color'
+Plug 'farmergreg/vim-lastplace'
+Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 
@@ -23,4 +25,5 @@ let g:lightline = {
 	      \ 'colorscheme': 'fahrenheit',
       \ }
 set background=dark
+set whichwrap+=<,>,h,l,[,]
 
