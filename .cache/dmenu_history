@@ -1,5 +1,3 @@
-36	slstatus
-29	st
 27	gimp
 20	telegram-desktop
 17	transmission-gtk
@@ -9,7 +7,4 @@
 5	discord
 5	picom
 4	megasync
-2	alacritty
-2	fluxgui
-1	geany
-1	lxappearance
+3	fluxgui
