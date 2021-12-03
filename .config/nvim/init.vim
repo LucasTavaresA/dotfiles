@@ -27,3 +27,6 @@ let g:lightline = {
 set background=dark
 set whichwrap+=<,>,h,l,[,]
 
+hi Normal guibg=NONE ctermbg=NONE
+hi EndOfBuffer guibg=NONE ctermbg=NONE
+hi Normal guibg=NONE ctermbg=NONE

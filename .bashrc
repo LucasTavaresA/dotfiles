@@ -33,6 +33,7 @@ alias ga='git add'
 alias gcm='git commit -m'
 alias gp='git push'
 alias gr='git restore'
+alias locate='locate -Ai'
 
 # Ignora case-sensitivity quando completa commandos com tab
 if [ ! -a ~/.inputrc ]; then echo '$include /etc/inputrc' > ~/.inputrc; fi

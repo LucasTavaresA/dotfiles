@@ -1,9 +1,0 @@
-[Common]
-ShadowSize=ShadowNone
-
-[Style]
-TabBarDrawCenteredTabs=true
-
-[Windeco]
-ButtonSize=ButtonSmall
-DrawBorderOnMaximizedWindows=true
