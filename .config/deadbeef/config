@@ -11,10 +11,11 @@ gtkui.color.bar_foreground 65535 65535 65535
 gtkui.color.tabstrip_playing_text 46202 52962 65535
 gtkui.color.tabstrip_selected_text 16566 35686 65535
 gtkui.color.tabstrip_text 65535 65535 65535
-gtkui.columns.playlist [{"title":"♫","id":"1","format":"%playstatus%","sort_format":"","size":"39","align":"0","color_override":"0","color":"#ff000000"},{"title":"Custom","id":"9","format":"%filename%","sort_format":"","size":"919","align":"0","color_override":"0","color":"#ffeeeeec"},{"title":"N°","id":"0","format":"","sort_format":"","size":"81","align":"0","color_override":"0","color":"#ffeeeeee"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"104","align":"0","color_override":"0","color":"#ff000000"}]
+gtkui.columns.playlist [{"title":"♫","id":"1","format":"%playstatus%","sort_format":"","size":"38","align":"0","color_override":"0","color":"#ff000000"},{"title":"Custom","id":"9","format":"%filename%","sort_format":"","size":"924","align":"0","color_override":"0","color":"#ffeeeeec"},{"title":"N°","id":"0","format":"","sort_format":"","size":"82","align":"0","color_override":"0","color":"#ffeeeeee"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"105","align":"0","color_override":"0","color":"#ff000000"}]
+gtkui.eq.visible 0
 gtkui.hide_remove_from_disk 1
 gtkui.hide_tray_icon 0
-gtkui.layout.0.6.2 vbox expand="0 1" fill="1 1" homogeneous=0 {hbox expand="0 1 0" fill="1 1 1" homogeneous=0 {playtb {} seekbar {} volumebar {} } tabbed_playlist hideheaders=0 width=1327 {} } 
+gtkui.layout.0.6.2 hsplitter locked=0 ratio=0.103008 pos=0 size2=0 {pltbrowser {} vsplitter locked=0 ratio=0.000000 pos=0 size2=0 {hsplitter locked=0 ratio=0.963774 pos=0 size2=0 {hsplitter locked=0 ratio=0.125336 pos=0 size2=0 {playtb {} seekbar {} } volumebar {} } playlist hideheaders=0 width=1186 {} } } 
 gtkui.mmb_delete_playlist 0
 gtkui.move_to_trash 1
 gtkui.override_bar_colors 1
@@ -22,7 +23,7 @@ gtkui.override_tabstrip_colors 0
 gtkui.start_hidden 0
 gtkui.statusbar.visible 1
 gtkui.statusbar_seltime 1
-gtkui.tabscroll 295
+gtkui.tabscroll 459
 gtkui.tabstrip_embolden_selected 0
 gtkui.titlebar_playing_tf %title%
 gtkui.titlebar_stopped_tf DeaDBeeF-%_deadbeef_version%
@@ -65,7 +66,7 @@ logwindow.geometry.x 91
 logwindow.geometry.y 58
 mainwin.geometry.h 651
 mainwin.geometry.w 1330
-mainwin.geometry.x -2664
+mainwin.geometry.x 14
 mainwin.geometry.y 57
 mp3.id3v1_encoding iso8859-1
 mp3.id3v2_version 3
@@ -75,68 +76,71 @@ network.proxy.port 8080
 output_plugin pulseaudio
 playback.loop 1
 playback.volume 0.0000000
-playlist.current 16
-playlist.cursor.0 0
-playlist.cursor.1 0
-playlist.cursor.10 8
-playlist.cursor.11 68
-playlist.cursor.12 53
-playlist.cursor.13 4
+playlist.current 17
+playlist.cursor.0 17
+playlist.cursor.1 4
+playlist.cursor.10 0
+playlist.cursor.11 22
+playlist.cursor.12 9
+playlist.cursor.13 37
 playlist.cursor.14 11
-playlist.cursor.15 1
-playlist.cursor.16 0
-playlist.cursor.2 9
-playlist.cursor.3 49
-playlist.cursor.4 7
-playlist.cursor.5 37
-playlist.cursor.6 17
-playlist.cursor.7 22
-playlist.cursor.8 20
-playlist.cursor.9 22
+playlist.cursor.15 6
+playlist.cursor.16 49
+playlist.cursor.17 0
+playlist.cursor.2 7
+playlist.cursor.3 0
+playlist.cursor.4 22
+playlist.cursor.5 20
+playlist.cursor.6 53
+playlist.cursor.7 1
+playlist.cursor.8 8
+playlist.cursor.9 68
 playlist.pin.groups 0
-playlist.scroll.0 281
+playlist.scroll.0 0
 playlist.scroll.1 0
-playlist.scroll.10 -1
-playlist.scroll.11 1148
-playlist.scroll.12 1364
-playlist.scroll.13 0
+playlist.scroll.10 281
+playlist.scroll.11 1
+playlist.scroll.12 0
+playlist.scroll.13 458
 playlist.scroll.14 -11
-playlist.scroll.15 -1
-playlist.scroll.16 0
+playlist.scroll.15 -6
+playlist.scroll.16 593
+playlist.scroll.17 0
 playlist.scroll.2 0
-playlist.scroll.3 593
-playlist.scroll.4 0
-playlist.scroll.5 458
-playlist.scroll.6 0
-playlist.scroll.7 243
-playlist.scroll.8 0
-playlist.scroll.9 1
+playlist.scroll.3 0
+playlist.scroll.4 243
+playlist.scroll.5 0
+playlist.scroll.6 1364
+playlist.scroll.7 -1
+playlist.scroll.8 -1
+playlist.scroll.9 1148
 playlist.scroll.cursorfollowplayback 1
-playlist.tab.00000 monxx
-playlist.tab.00001 barely alive
-playlist.tab.00002 oliver tree
-playlist.tab.00003 the brig
-playlist.tab.00004 aoi teshima
-playlist.tab.00005 omar varela
-playlist.tab.00006 ace aura
-playlist.tab.00007 chime
-playlist.tab.00008 dirt monkey
-playlist.tab.00009 nanomake
-playlist.tab.00010 fox stevenson
-playlist.tab.00011 kotori
-playlist.tab.00012 eh!de
-playlist.tab.00013 akg
+playlist.tab.00000 ace aura
+playlist.tab.00001 akg
+playlist.tab.00002 aoi teshima
+playlist.tab.00003 barely alive
+playlist.tab.00004 chime
+playlist.tab.00005 dirt monkey
+playlist.tab.00006 eh!de
+playlist.tab.00007 evilwave
+playlist.tab.00008 fox stevenson
+playlist.tab.00009 kotori
+playlist.tab.00010 monxx
+playlist.tab.00011 nanomake
+playlist.tab.00012 oliver tree
+playlist.tab.00013 omar varela
 playlist.tab.00014 oolacile
-playlist.tab.00015 evilwave
-playlist.tab.00016 soltan
+playlist.tab.00015 soltan
+playlist.tab.00016 the brig
+playlist.tab.00017 Default
 prefwin.geometry.h 557
 prefwin.geometry.w 836
 prefwin.geometry.x 261
 prefwin.geometry.y 104
 resume.paused 0
-resume.playlist 16
-resume.position 0.0464399
-resume.track 3
+resume.playlist 17
+resume.position 0.0000000
+resume.track 0
 streamer.samplerate 44100
 streamer.samplerate_mult_44 44100
 streamer.samplerate_mult_48 48000
