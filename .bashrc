@@ -2,17 +2,8 @@
 # ~/.bashrc
 #
 
-### EXPORTS
-# Ignora comandos duplicados no bash_history
-export HISTCONTROL=ignoredups
-# Torna o vim o editor no terminal
-export EDITOR="nvim"
-# Torna geany o editor com interface gráfica
-export VISUAL="geany"
-# Torna firefox o navegador padrão
-export BROWSER="firefox"
-
-# If not running interactively, don't do anything
+# Se não executando bash interativamente
+# Não executa o resto do bashrc
 [[ $- != *i* ]] && return
 
 # Aliases
@@ -35,6 +26,7 @@ alias gp='git push'
 alias gr='git restore'
 alias locate='locate -Ai'
 alias lf='~/lfrun'
+alias cat='bat'
 
 # Ignora case-sensitivity quando completa commandos com tab
 if [ ! -a ~/.inputrc ]; then echo '$include /etc/inputrc' > ~/.inputrc; fi

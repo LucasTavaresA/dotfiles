@@ -11,7 +11,7 @@ gtkui.color.bar_foreground 65535 65535 65535
 gtkui.color.tabstrip_playing_text 46202 52962 65535
 gtkui.color.tabstrip_selected_text 16566 35686 65535
 gtkui.color.tabstrip_text 65535 65535 65535
-gtkui.columns.playlist [{"title":"♫","id":"1","format":"%playstatus%","sort_format":"","size":"38","align":"0","color_override":"0","color":"#ff000000"},{"title":"Custom","id":"9","format":"%filename%","sort_format":"","size":"924","align":"0","color_override":"0","color":"#ffeeeeec"},{"title":"N°","id":"0","format":"","sort_format":"","size":"82","align":"0","color_override":"0","color":"#ffeeeeee"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"105","align":"0","color_override":"0","color":"#ff000000"}]
+gtkui.columns.playlist [{"title":"♫","id":"1","format":"%playstatus%","sort_format":"","size":"39","align":"0","color_override":"0","color":"#ff000000"},{"title":"Custom","id":"9","format":"%filename%","sort_format":"","size":"943","align":"0","color_override":"0","color":"#ffeeeeec"},{"title":"N°","id":"0","format":"","sort_format":"","size":"84","align":"0","color_override":"0","color":"#ffeeeeee"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"107","align":"0","color_override":"0","color":"#ff000000"}]
 gtkui.eq.visible 0
 gtkui.hide_remove_from_disk 1
 gtkui.hide_tray_icon 0
@@ -64,10 +64,10 @@ logwindow.geometry.h 198
 logwindow.geometry.w 398
 logwindow.geometry.x 91
 logwindow.geometry.y 58
-mainwin.geometry.h 651
-mainwin.geometry.w 1330
-mainwin.geometry.x 14
-mainwin.geometry.y 57
+mainwin.geometry.h 630
+mainwin.geometry.w 1357
+mainwin.geometry.x 0
+mainwin.geometry.y 101
 mp3.id3v1_encoding iso8859-1
 mp3.id3v2_version 3
 mp3.write_id3v1 1
@@ -76,71 +76,74 @@ network.proxy.port 8080
 output_plugin pulseaudio
 playback.loop 1
 playback.volume 0.0000000
-playlist.current 17
+playlist.current 18
 playlist.cursor.0 17
-playlist.cursor.1 4
-playlist.cursor.10 0
-playlist.cursor.11 22
-playlist.cursor.12 9
-playlist.cursor.13 37
-playlist.cursor.14 11
-playlist.cursor.15 6
-playlist.cursor.16 49
-playlist.cursor.17 0
-playlist.cursor.2 7
+playlist.cursor.1 7
+playlist.cursor.10 68
+playlist.cursor.11 36
+playlist.cursor.12 22
+playlist.cursor.13 9
+playlist.cursor.14 37
+playlist.cursor.15 11
+playlist.cursor.16 6
+playlist.cursor.17 49
+playlist.cursor.18 0
+playlist.cursor.2 4
 playlist.cursor.3 0
 playlist.cursor.4 22
 playlist.cursor.5 20
 playlist.cursor.6 53
 playlist.cursor.7 1
 playlist.cursor.8 8
-playlist.cursor.9 68
+playlist.cursor.9 0
 playlist.pin.groups 0
 playlist.scroll.0 0
 playlist.scroll.1 0
-playlist.scroll.10 281
-playlist.scroll.11 1
-playlist.scroll.12 0
-playlist.scroll.13 458
-playlist.scroll.14 -11
-playlist.scroll.15 -6
-playlist.scroll.16 593
-playlist.scroll.17 0
+playlist.scroll.10 1148
+playlist.scroll.11 603
+playlist.scroll.12 1
+playlist.scroll.13 0
+playlist.scroll.14 458
+playlist.scroll.15 -11
+playlist.scroll.16 -6
+playlist.scroll.17 593
+playlist.scroll.18 0
 playlist.scroll.2 0
 playlist.scroll.3 0
 playlist.scroll.4 243
 playlist.scroll.5 0
 playlist.scroll.6 1364
-playlist.scroll.7 -1
-playlist.scroll.8 -1
-playlist.scroll.9 1148
+playlist.scroll.7 0
+playlist.scroll.8 0
+playlist.scroll.9 0
 playlist.scroll.cursorfollowplayback 1
 playlist.tab.00000 ace aura
-playlist.tab.00001 akg
-playlist.tab.00002 aoi teshima
+playlist.tab.00001 aoi teshima
+playlist.tab.00002 akg
 playlist.tab.00003 barely alive
 playlist.tab.00004 chime
 playlist.tab.00005 dirt monkey
 playlist.tab.00006 eh!de
 playlist.tab.00007 evilwave
 playlist.tab.00008 fox stevenson
-playlist.tab.00009 kotori
-playlist.tab.00010 monxx
-playlist.tab.00011 nanomake
-playlist.tab.00012 oliver tree
-playlist.tab.00013 omar varela
-playlist.tab.00014 oolacile
-playlist.tab.00015 soltan
-playlist.tab.00016 the brig
-playlist.tab.00017 Default
+playlist.tab.00009 getter
+playlist.tab.00010 kotori
+playlist.tab.00011 monxx
+playlist.tab.00012 nanomake
+playlist.tab.00013 oliver tree
+playlist.tab.00014 omar varela
+playlist.tab.00015 oolacile
+playlist.tab.00016 soltan
+playlist.tab.00017 the brig
+playlist.tab.00018 must die
 prefwin.geometry.h 557
 prefwin.geometry.w 836
 prefwin.geometry.x 261
 prefwin.geometry.y 104
 resume.paused 0
-resume.playlist 17
-resume.position 0.0000000
-resume.track 0
+resume.playlist 18
+resume.position 0.0426667
+resume.track 4
 streamer.samplerate 44100
 streamer.samplerate_mult_44 44100
 streamer.samplerate_mult_48 48000

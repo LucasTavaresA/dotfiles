@@ -9,6 +9,9 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'ptzz/lf.vim'
 Plug 'voldikss/vim-floaterm'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'OmniSharp/omnisharp-vim'
+Plug 'dense-analysis/ale'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
@@ -73,6 +76,15 @@ set whichwrap+=<,>,h,l,[,]
 hi Normal guibg=NONE ctermbg=NONE
 hi EndOfBuffer guibg=NONE ctermbg=NONE
 hi Normal guibg=NONE ctermbg=NONE
+hi GitGutterAdd    guifg=#009900 ctermfg=2
+hi GitGutterChange guifg=#FFFF00 ctermfg=3
+hi GitGutterDelete guifg=#FF0000 ctermfg=1
 
 let g:lf_map_keys = 0
 map f :Lf<CR>
+
+let g:ale_linters = {
+\ 'cs': ['OmniSharp']
+\}
+
+let g:gitgutter_highlight_linenrs = 1
