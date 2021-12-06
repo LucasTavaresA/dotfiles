@@ -25,7 +25,7 @@ alias gcm='git commit -m'
 alias gp='git push'
 alias gr='git restore'
 alias locate='locate -Ai'
-alias lf='~/lfrun'
+alias r='ranger'
 alias cat='bat'
 
 # Ignora case-sensitivity quando completa commandos com tab

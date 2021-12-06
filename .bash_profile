@@ -13,6 +13,8 @@ export EDITOR="nvim"
 export VISUAL="geany"
 # Torna firefox o navegador padrão
 export BROWSER="firefox"
+# Torna o less o pager
+export PAGER='less'
 
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
 	  exec startx

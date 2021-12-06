@@ -7,12 +7,11 @@ Plug 'tomasiser/vim-code-dark'
 Plug 'ap/vim-css-color'
 Plug 'farmergreg/vim-lastplace'
 Plug 'jiangmiao/auto-pairs'
-Plug 'ptzz/lf.vim'
-Plug 'voldikss/vim-floaterm'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'dense-analysis/ale'
 Plug 'airblade/vim-gitgutter'
+Plug 'kevinhwang91/rnvimr'
 
 call plug#end()
 
@@ -82,7 +81,7 @@ hi GitGutterChange guifg=#FFFF00 ctermfg=3
 hi GitGutterDelete guifg=#FF0000 ctermfg=1
 
 let g:lf_map_keys = 0
-map f :Lf<CR>
+map f :RnvimrToggle<CR>
 
 let g:ale_linters = {
 \ 'cs': ['OmniSharp']
