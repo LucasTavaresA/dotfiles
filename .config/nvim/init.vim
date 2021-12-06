@@ -2,7 +2,8 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'itchyny/lightline.vim'
-Plug 'fcpg/vim-fahrenheit'
+Plug 'projekt0n/github-nvim-theme'
+Plug 'tomasiser/vim-code-dark'
 Plug 'ap/vim-css-color'
 Plug 'farmergreg/vim-lastplace'
 Plug 'jiangmiao/auto-pairs'
@@ -18,7 +19,7 @@ call plug#end()
 set mouse=a
 set number
 
-colorscheme fahrenheit
+colorscheme github_dark_default
 
 set showtabline=2
 set laststatus=2
@@ -58,7 +59,7 @@ autocmd InsertLeave * set nocul
 set noshowmode
 
 let g:lightline = {
-	\ 'colorscheme': 'fahrenheit',
+	\ 'colorscheme': 'codedark',
         \ 'active': {
         \   'left': [ [ 'mode', 'paste' ],
         \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
@@ -76,7 +77,7 @@ set whichwrap+=<,>,h,l,[,]
 hi Normal guibg=NONE ctermbg=NONE
 hi EndOfBuffer guibg=NONE ctermbg=NONE
 hi Normal guibg=NONE ctermbg=NONE
-hi GitGutterAdd    guifg=#009900 ctermfg=2
+hi GitGutterAdd    guifg=#008000 ctermfg=2
 hi GitGutterChange guifg=#FFFF00 ctermfg=3
 hi GitGutterDelete guifg=#FF0000 ctermfg=1
 

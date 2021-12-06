@@ -1,20 +1,12 @@
-# Coloca espaços entre os prompts
-add_newline = true
-
 format = """$fill
 $line_break
-$username$directory$cmd_duration$dotnet$packege$jobs$time 
+$username$directory$cmd_duration$git_branch$dotnet$packege$jobs$time 
 $character"""
 
 # Ativa o relógio
 [time]
 disabled = false
 
-[character]
-# Quebra a linha após $time
-format = """[>](bold #00FF00)"""
-
-# Desabilita a quebra de linha antes do ">"
 [line_break]
 disabled = true
 
@@ -22,18 +14,6 @@ disabled = true
 style = "bold #0099FF"
 truncation_length = 4
 truncate_to_repo = false
-
-[git_status]
-disabled = true
-
-[git_commit]
-disabled = true
-
-[git_branch]
-disabled = true
-
-[git_state]
-disabled = true
 
 [fill]
 symbol = "🬋"
