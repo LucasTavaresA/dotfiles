@@ -1,3 +1,3 @@
 #!/bin/bash
 
-pacman -Qqet > ./especial/pkglist.txt &
+pacman -Qqet > $HOME/especial/pkglist.txt &

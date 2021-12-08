@@ -1,13 +1,25 @@
-[Default Applications]
-x-scheme-handler/tg=userapp-Telegram Desktop-EJM1D1.desktop
-image/jpeg=sxiv.desktop
-audio/mp4=deadbeef.desktop
-audio/x-opus+ogg=deadbeef.desktop
-image/png=sxiv.desktop
-
 [Added Associations]
-x-scheme-handler/tg=userapp-Telegram Desktop-ZOVYC1.desktop;userapp-Telegram Desktop-EJM1D1.desktop;
-image/jpeg=sxiv.desktop;
 audio/mp4=deadbeef.desktop;
 audio/x-opus+ogg=deadbeef.desktop;
+image/jpeg=sxiv.desktop;
 image/png=sxiv.desktop;
+x-scheme-handler/tg=userapp-Telegram Desktop-EJM1D1.desktop;
+
+[Default Applications]
+application/javascript=nvim.desktop;
+application/json=nvim.desktop;
+application/ld+json=nvim.desktop;
+application/msword=libreoffice-writer.desktop;
+application/pdf=firefox.desktop;
+application/vnd.ms-excel=libreoffice-calc.desktop;
+application/vnd.ms-powerpoint=libreoffice-impress.desktop;
+application/x-bittorrent=transmission-gtk.desktop;
+audio/*=deadbeef.desktop;
+audio/mp4=deadbeef.desktop;
+audio/x-opus+ogg=deadbeef.desktop;
+image/*=sxiv.desktop;
+image/jpeg=sxiv.desktop;
+image/png=sxiv.desktop;
+text/*=nvim.desktop;
+video/*=mpv.desktop;
+x-scheme-handler/tg=userapp-Telegram Desktop-EJM1D1.desktop;

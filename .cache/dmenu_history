@@ -1,9 +1,11 @@
-1004	dmenu_run_history
-1001	clipmenu -g 2
-999	galculator
+1028	clipmenu
+1014	killmenu
+1013	dmenu_run_history
+104	dmenu_sudo
+40	galculator
 30	gimp
 25	telegram-desktop
 11	code
+6	discord
 6	mpv
-5	discord
-1	transmission-gtk
+5	transmission-gtk

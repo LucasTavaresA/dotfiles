@@ -32,7 +32,7 @@ if ! [[ -f "$cache_file" ]]; then
 fi
 
 # Blacklist of non-dmenu launchers
-launcher_args=(-l "${CM_HISTLENGTH}")
+launcher_args=(-l "${CM_HISTLENGTH}" -g 1)
 if [[ "$CM_LAUNCHER" == fzf ]]; then
     launcher_args=()
 fi

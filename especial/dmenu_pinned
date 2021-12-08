@@ -3,10 +3,10 @@
 cachedir=${XDG_CACHE_HOME:-"$HOME/.cache"}
 if [ -d "$cachedir" ]; then
 	cache=/dev/null
-	historyfile=$cachedir/dmenu_history
+	historyfile=/home/lucas/.cache/dmenu_history
 else			# if no xdg dir, fall back to dotfiles in ~
 	cache=/dev/null
-	historyfile=$HOME/.dmenu_history
+	historyfile=/home/lucas/.dmenu_history
 fi
 
 IFS=:
@@ -23,7 +23,7 @@ awk -v histfile=$historyfile '
 			x[$0]=1
 		}
 	} !x[$0]++ ' "$cache" \
-	| dmenu "$@" \
+	| dmenu -g 4 "$@" \
 	| awk -v histfile=$historyfile '
 		BEGIN {
 			FS=OFS="\t"

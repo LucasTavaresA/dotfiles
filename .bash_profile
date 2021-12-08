@@ -5,15 +5,17 @@
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
 ### EXPORTS
+# Terminal
+export TERMINAL='st'
 # Ignora comandos duplicados no bash_history
 export HISTCONTROL=ignoredups
-# Torna o vim o editor no terminal
+# Editor no terminal
 export EDITOR="nvim"
-# Torna geany o editor com interface gráfica
+# Editor com interface gráfica
 export VISUAL="geany"
-# Torna firefox o navegador padrão
+# Navegador padrão
 export BROWSER="firefox"
-# Torna o less o pager
+# Pager
 export PAGER='less'
 
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then

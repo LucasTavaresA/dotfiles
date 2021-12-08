@@ -8,6 +8,7 @@ slstatus &
 lxsession &
 dunst &
 nitrogen --restore &
+clipmenud &
 
 xautolock -detectsleep -time 30 -locker "slock" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING SCREEN IN 30 SECONDS'" &
 setxkbmap -option caps:escape # muda a função da tecla caps lock para esc
