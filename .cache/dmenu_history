@@ -1,7 +1,5 @@
-1028	clipmenu
-1014	killmenu
-1013	dmenu_run_history
-104	dmenu_sudo
+1032	st -e ranger
+512	dmenu_menus
 40	galculator
 30	gimp
 25	telegram-desktop
