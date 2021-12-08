@@ -11,7 +11,7 @@ gtkui.color.bar_foreground 65535 65535 65535
 gtkui.color.tabstrip_playing_text 46202 52962 65535
 gtkui.color.tabstrip_selected_text 16566 35686 65535
 gtkui.color.tabstrip_text 65535 65535 65535
-gtkui.columns.playlist [{"title":"♫","id":"1","format":"%playstatus%","sort_format":"","size":"39","align":"0","color_override":"0","color":"#ff000000"},{"title":"Custom","id":"9","format":"%filename%","sort_format":"","size":"973","align":"0","color_override":"0","color":"#ffeeeeec"},{"title":"N°","id":"0","format":"","sort_format":"","size":"87","align":"0","color_override":"0","color":"#ffeeeeee"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"110","align":"0","color_override":"0","color":"#ff000000"}]
+gtkui.columns.playlist [{"title":"♫","id":"1","format":"%playstatus%","sort_format":"","size":"39","align":"0","color_override":"0","color":"#ff000000"},{"title":"Custom","id":"9","format":"%filename%","sort_format":"","size":"985","align":"0","color_override":"0","color":"#ffeeeeec"},{"title":"N°","id":"0","format":"","sort_format":"","size":"88","align":"0","color_override":"0","color":"#ffeeeeee"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"111","align":"0","color_override":"0","color":"#ff000000"}]
 gtkui.eq.visible 0
 gtkui.hide_remove_from_disk 1
 gtkui.hide_tray_icon 0
@@ -66,8 +66,8 @@ logwindow.geometry.x 91
 logwindow.geometry.y 58
 mainwin.geometry.h 630
 mainwin.geometry.w 1357
-mainwin.geometry.x 486
-mainwin.geometry.y 50
+mainwin.geometry.x -2718
+mainwin.geometry.y 68
 mp3.id3v1_encoding iso8859-1
 mp3.id3v2_version 3
 mp3.write_id3v1 1
@@ -76,7 +76,7 @@ network.proxy.port 8080
 output_plugin pulseaudio
 playback.loop 1
 playback.volume 0.0000000
-playlist.current 19
+playlist.current 20
 playlist.cursor.0 17
 playlist.cursor.1 7
 playlist.cursor.10 68
@@ -86,10 +86,11 @@ playlist.cursor.13 22
 playlist.cursor.14 9
 playlist.cursor.15 37
 playlist.cursor.16 11
-playlist.cursor.17 6
-playlist.cursor.18 49
-playlist.cursor.19 0
+playlist.cursor.17 25
+playlist.cursor.18 6
+playlist.cursor.19 49
 playlist.cursor.2 4
+playlist.cursor.20 0
 playlist.cursor.3 0
 playlist.cursor.4 22
 playlist.cursor.5 20
@@ -107,10 +108,11 @@ playlist.scroll.13 1
 playlist.scroll.14 0
 playlist.scroll.15 458
 playlist.scroll.16 -11
-playlist.scroll.17 -6
-playlist.scroll.18 593
-playlist.scroll.19 0
+playlist.scroll.17 250
+playlist.scroll.18 0
+playlist.scroll.19 593
 playlist.scroll.2 0
+playlist.scroll.20 0
 playlist.scroll.3 0
 playlist.scroll.4 243
 playlist.scroll.5 0
@@ -136,17 +138,18 @@ playlist.tab.00013 nanomake
 playlist.tab.00014 oliver tree
 playlist.tab.00015 omar varela
 playlist.tab.00016 oolacile
-playlist.tab.00017 soltan
-playlist.tab.00018 the brig
-playlist.tab.00019 Default
+playlist.tab.00017 skrillex
+playlist.tab.00018 soltan
+playlist.tab.00019 the brig
+playlist.tab.00020 spag heddy
 prefwin.geometry.h 557
 prefwin.geometry.w 836
 prefwin.geometry.x 261
 prefwin.geometry.y 104
 resume.paused 0
-resume.playlist -1
-resume.position -1.000000
-resume.track -1
+resume.playlist 20
+resume.position 0.0464399
+resume.track 10
 streamer.samplerate 44100
 streamer.samplerate_mult_44 44100
 streamer.samplerate_mult_48 48000
