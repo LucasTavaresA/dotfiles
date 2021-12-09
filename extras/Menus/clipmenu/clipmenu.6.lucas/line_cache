@@ -115,3 +115,5 @@
 1639062661752095974 Git Bare Repository - A Better Way To Manage Dotfiles - YouT
 1639065085847396150 i
 1639065413046264785 export PATH=/home/dave/work:$PATH
+1639067411247734015 sudo chown -R username:group directory
+1639067516411821439 extras/bin/tmenu

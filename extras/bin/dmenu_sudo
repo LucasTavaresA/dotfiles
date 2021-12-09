@@ -1,13 +1,6 @@
 #!/bin/sh
 
-#cachedir=${XDG_CACHE_HOME:-"$HOME/.cache"}
-#if [ -d "$cachedir" ]; then
-#	cache=/dev/null
-historyfile=/home/lucas/extra/Menus/dmenu_sudo
-#else			# if no xdg dir, fall back to dotfiles in ~
-#	cache=/dev/null
-#	historyfile=/home/lucas/.dmenu_sudo
-#fi
+historyfile=/home/lucas/extras/Menus/dmenu_sudo
 
 IFS=:
 if stest -dqr -n "$cache" $PATH; then

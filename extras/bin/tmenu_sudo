@@ -18,7 +18,7 @@
 ####################################################################################################
 # VARIABLES 
 ####################################################################################################
-MENU_CONFIG_PATH=$HOME/extras/Menus/tmenu.yaml
+MENU_CONFIG_PATH=$HOME/extras/Menus/tmenu_sudo.yaml
 TYAML_COMMAND="tyaml $MENU_CONFIG_PATH"
 menu_prompt=$($TYAML_COMMAND -k)
 current_path=$menu_prompt
