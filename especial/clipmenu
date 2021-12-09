@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 : "${CM_LAUNCHER=dmenu}"
-: "${CM_HISTLENGTH=8}"
+: "${CM_HISTLENGTH=37}"
 
 shopt -s nullglob
 
