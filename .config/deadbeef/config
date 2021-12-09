@@ -146,9 +146,9 @@ prefwin.geometry.h 557
 prefwin.geometry.w 836
 prefwin.geometry.x 261
 prefwin.geometry.y 104
-resume.paused 1
+resume.paused 0
 resume.playlist 20
-resume.position 2.9721303
+resume.position 0.0000000
 resume.track 56
 streamer.samplerate 44100
 streamer.samplerate_mult_44 44100
