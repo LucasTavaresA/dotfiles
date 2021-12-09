@@ -8,3 +8,20 @@
 1639008000309464064 rvalds was right
 1639008003819294959 Linus Torvalds was right
 1639008004593717372 Linus Torvalds was right
+1639009474428952354 /usr/share/applications/lxsession-default-apps.desktop (2 lines)
+1639009476234537491 usr/lib/lxsession/lxsession-xsettings (2 lines)
+1639009479114689473 /usr/lib/lxsession/lxsession-xsettings
+1639009487078812668 /usr/lib/lxsession/lxsession-xsettings
+1639009487101615192 lxsession-xdg-autostart
+1639009487409588453 /usr/bin/lxsession-xdg-autostart (2 lines)
+1639009488119194324 lxsession-xdg-autostart
+1639009669016978034 /home/lucas/.config/lxsession (2 lines)
+1639009672962372460 lxsession-xdg-autostart
+1639009672980630068 /home/lucas/.config/lxsession
+1639009739736076132 /usr/share/applications/lxsession-default-apps.desktop
+1639010125558156682 set hidden_filter ^\.|\.(?:pyc|pyo|bak|swp)$|^lost\+found$|^__(py)?cache__$
+1639010524972898078 set hidden_filter ^\.|\.(?:pyc|pyo|bak|swp)$|^lost\+found$|^__(py)?cache__$
+1639022385093270612 sr/local/bin/k
+1639022387423464948 /usr/local/bin/
+1639022657764381495 find /usr/local/bin/dmenu_run_history /usr/local/bin/dmenu_sudo /usr/local/bin/killmenu /usr/local/bin/dmenu_emoji /usr/local/bin/clipmenu
+1639022950374236005 😍

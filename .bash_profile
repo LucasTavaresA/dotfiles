@@ -17,8 +17,6 @@ export VISUAL="geany"
 export BROWSER="firefox"
 # Pager
 export PAGER='less'
-# Subs file
-export SUBS_FILE='$HOME/especial/subs.txt'
 
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
 	  exec startx

@@ -11,7 +11,8 @@ export CM_DIR="$HOME/.cache/clipmenu"
 clipmenud &
 
 # Outros
-#lxsession &
+fluxgui &
+nm-applet &
 slstatus &
 dunst &
 nitrogen --restore &
