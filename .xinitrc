@@ -16,6 +16,7 @@ nm-applet &
 slstatus &
 dunst &
 nitrogen --restore &
+xbanish &
 
 # Protetor de tela
 xautolock -detectsleep -time 30 -locker "slock" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'BLOQUEANDO A TELA 30 SEGUNDOS'" &

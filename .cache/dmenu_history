@@ -1,5 +1,5 @@
 1033	st -e ranger
-553	dmenu_menus
+563	dmenu_menus
 40	galculator
 30	gimp
 25	telegram-desktop
@@ -7,4 +7,4 @@
 6	discord
 6	mpv
 5	transmission-gtk
-4	onboard
+1	tmenu

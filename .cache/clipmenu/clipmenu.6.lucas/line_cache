@@ -25,3 +25,57 @@
 1639022387423464948 /usr/local/bin/
 1639022657764381495 find /usr/local/bin/dmenu_run_history /usr/local/bin/dmenu_sudo /usr/local/bin/killmenu /usr/local/bin/dmenu_emoji /usr/local/bin/clipmenu
 1639022950374236005 😍
+1639027677127398995 git@github.com:Calebe94/tinytools.git
+1639028104025178649 tmenu
+1639028104361057632 /usr/local/bin/tmenu (2 lines)
+1639028106134837856 /usr/local/bin/tmenu
+1639028195803482923 Menu: (16 lines)
+1639028895954431208 ❯ sudo nvim /usr/local/bin/tmenu (2 lines)
+1639028896378379688 Menu: (16 lines)
+1639028896402096326 i
+1639029765373362641 /
+1639029775437330688 fee
+1639030173029371792 git@github.com:jcs/xbanish.git
+1639032631951133608 #!/bin/sh (3 lines)
+1639034377661828469 package-system
+1639034696976476503 pfetch
+1639034832853046221 https://github.com/nvim-lua/popup.nvim
+1639035897663641269 cache
+1639036192840823999 Plugin 'Yggdroot/indentLine'
+1639036282239255210 let g:indentLine_enabled = 0 (2 lines)
+1639036759994350908 let g:indentLine_color_gui = '#A4E57E'
+1639036802096135503 let g:indentLine_char = 'c' (2 lines)
+1639036830223865371 │
+1639037116359577405 Plug 'mattn/emmet-vim'
+1639037550929950698 Plug 'junegunn/goyo.vim'
+1639037995665589731 'bilalq/lite-dfm'
+1639038023250838426 nnoremap <Leader>z :LiteDFMToggle<CR> (2 lines)
+1639038342853961876 nnoremap <Leader>z :LiteDFMToggle<CR>i<Esc>`^ (2 lines)
+1639038416815693169 litedfm.vim
+1639038417102932107 /home/lucas/.vim/plugged/lite-dfm/plugin/litedfm.vim (2 lines)
+1639038420409893820 /home/lucas/.vim/plugged/lite-dfm/plugin/litedfm.vim (2 lines)
+1639038422129457001 /home/lucas/.vim/plugged/lite-dfm/plugin/litedfm.vim
+1639040299131158483 imrc
+1639040483629612043 /home/lucas/.vim/plugged/lite-dfm/plugin/litedfm.vim
+1639040483653151849 autocmd VimEnter * NERDTree | wincmd p
+1639041079310691417 ?
+1639041081555663333 autocmd VimEnter * NERDTree | wincmd p
+1639041081577690364 a)
+1639041089280023240 ?
+1639041571771354004 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+1639041797112889883 set noshowmode (2 lines)
+1639042116565293189  vim
+1639042117782454922 whichwrap
+1639042139964156051 hortmess+=c
+1639042456994392729 autocompletar
+1639042669490713353 insert enter vim
+1639042690266768310 autocompletar
+1639042690284562023 sertenter * 
+1639042858409372607 (0
+1639042860245242257 autocmd setcul
+1639043213485758822 s
+1639043612850607239 let g:Hexokinase_highlighters = [ 'virtual' ]
+1639043836078459461 git@github.com:RRethy/vim-hexokinase.git
+1639044149764486060 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+1639044504104196184 Plug 'norcalli/nvim-colorizer.lua'
+1639046064987139528 /usr/local/bin/

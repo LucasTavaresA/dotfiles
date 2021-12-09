@@ -1,9 +1,12 @@
 [Added Associations]
+x-scheme-handler/tg=userapp-Telegram Desktop-EJM1D1.desktop;
+x-scheme-handler/magnet=transmission-gtk.desktop;
+application/x.bittorrent=transmission-gtk.desktop;
 audio/mp4=deadbeef.desktop;
 audio/x-opus+ogg=deadbeef.desktop;
 image/jpeg=sxiv.desktop;
 image/png=sxiv.desktop;
-x-scheme-handler/tg=userapp-Telegram Desktop-EJM1D1.desktop;
+inode/directory=ranger.desktop;
 
 [Default Applications]
 application/javascript=nvim.desktop;
@@ -16,6 +19,13 @@ application/vnd.ms-powerpoint=libreoffice-impress.desktop;
 application/x-bittorrent=transmission-gtk.desktop;
 audio/*=deadbeef.desktop;
 image/*=sxiv.desktop;
+inode/directory=ranger.desktop;
 text/*=nvim.desktop;
+text/markdown=geany.desktop;
 video/*=mpv.desktop;
 x-scheme-handler/tg=userapp-Telegram Desktop-EJM1D1.desktop;
+x-scheme-handler/http=firefox.desktop;
+x-scheme-handler/https=firefox.desktop;
+x-scheme-handler/ftp=firefox.desktop;
+x-scheme-handler/magnet=transmission-gtk.desktop;
+application/x.bittorrent=transmission-gtk.desktop;
