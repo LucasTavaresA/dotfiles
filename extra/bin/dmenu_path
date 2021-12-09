@@ -1,0 +1,12 @@
+#!/bin/sh
+
+cache="$HOME/extra/Menus/dmenu_run"
+
+[ ! -e "$cachedir" ] && mkdir -p "$cachedir"
+
+IFS=:
+if stest -dqr -n "$cache" $PATH; then
+	stest -flx $PATH | sort -u | tee "$cache"
+else
+	cat "$cache"
+fi

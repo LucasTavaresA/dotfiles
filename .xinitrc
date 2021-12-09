@@ -7,7 +7,7 @@ source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
 
 # Clipmenu
 systemctl --user import-environment DISPLAY
-export CM_DIR="$HOME/.cache/clipmenu"
+export CM_DIR="$HOME/extra/Menus/clipmenu"
 clipmenud &
 
 # Outros
