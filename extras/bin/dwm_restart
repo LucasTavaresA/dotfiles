@@ -1,0 +1,2 @@
+#!/bin/sh
+kill -HUP "$(pgrep -u "$USER" "\bdwm$")"

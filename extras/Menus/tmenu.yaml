@@ -1,19 +1,29 @@
 Menu:
-  ranger: st ranger
   run:
     run: dmenu_run
-    sudo_run: tmenu_sudo
+    sudo:
+      ranger: st -e sudo ranger
+      geany: st -e sudo geany
+      killmenu: st -e sudo killmenu
     geany: geany
-    calculator: galculator
     gimp: gimp
-    code: code
+    calculator: galculator
     telegram: telegram-desktop
-    discord: discord
+    fluxgui: fluxgui
     mpv: mpv
     transmission: transmission-gtk
-    fluxgui: fluxgui
-  print: print_menu
+    code: code
+    discord: discord
+  ranger: st ranger
   clipboard: clipmenu
-  emojis: dmenu_emoji
   kill: killmenu
-  shutdown: tmenu_shutdown
+  print: print_menu
+  emojis: dmenu_emoji
+  systema:
+    Bloquear: slock
+    dwm:
+      Sair: dwm_quit 
+      Reiniciar: dwm_restart
+    Desligar: systemctl poweroff
+    Reiniciar: systemctl reboot
+
