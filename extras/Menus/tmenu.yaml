@@ -12,4 +12,5 @@ Menu:
   discord: discord
   mpv: mpv
   transmission: transmission-gtk
+  fluxgui: fluxgui
   emojis: dmenu_emoji

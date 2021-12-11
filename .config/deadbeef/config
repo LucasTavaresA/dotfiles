@@ -66,7 +66,7 @@ logwindow.geometry.x 91
 logwindow.geometry.y 58
 mainwin.geometry.h 630
 mainwin.geometry.w 1357
-mainwin.geometry.x 0
+mainwin.geometry.x -2718
 mainwin.geometry.y 68
 mp3.id3v1_encoding iso8859-1
 mp3.id3v2_version 3
@@ -147,9 +147,9 @@ prefwin.geometry.w 836
 prefwin.geometry.x 261
 prefwin.geometry.y 104
 resume.paused 0
-resume.playlist 20
-resume.position 0.0000000
-resume.track 56
+resume.playlist -1
+resume.position -1.000000
+resume.track -1
 streamer.samplerate 44100
 streamer.samplerate_mult_44 44100
 streamer.samplerate_mult_48 48000

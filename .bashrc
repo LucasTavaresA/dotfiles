@@ -17,6 +17,12 @@ alias ..='cd ..'
 alias g='geany'
 alias v='nvim'
 alias bh='less $HOME/.bash_history'
+alias locate='locate -Ai'
+alias r='ranger'
+alias cat='bat'
+alias u='sudo updatedb'
+alias ch='chmod +x'
+# Git aliases
 alias gi='git init'
 alias gc='git clone'
 alias gs='git status'
@@ -26,9 +32,6 @@ alias ga='git add'
 alias gcm='git commit -m'
 alias gp='git push'
 alias gr='git restore'
-alias locate='locate -Ai'
-alias r='ranger'
-alias cat='bat'
 
 # Ignora case-sensitivity quando completa commandos com tab
 if [ ! -a ~/.inputrc ]; then echo '$include /etc/inputrc' > ~/.inputrc; fi
