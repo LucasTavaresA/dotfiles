@@ -24,6 +24,7 @@ set hidden
 set cmdheight=1
 autocmd InsertEnter * set cul
 autocmd InsertLeave * set nocul
+set clipboard=unnamedplus
 
 " Aparencia : github_dark_default
 colorscheme github_dark_default

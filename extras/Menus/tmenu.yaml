@@ -1,16 +1,19 @@
 Menu:
-  cancel: null
   ranger: st ranger
-  run: dmenu_run
-  sudo_run: tmenu_sudo
-  kill: killmenu
+  run:
+    run: dmenu_run
+    sudo_run: tmenu_sudo
+    geany: geany
+    calculator: galculator
+    gimp: gimp
+    code: code
+    telegram: telegram-desktop
+    discord: discord
+    mpv: mpv
+    transmission: transmission-gtk
+    fluxgui: fluxgui
+  print: print_menu
   clipboard: clipmenu
-  calculator: galculator
-  gimp: gimp
-  code: code
-  telegram: telegram-desktop
-  discord: discord
-  mpv: mpv
-  transmission: transmission-gtk
-  fluxgui: fluxgui
   emojis: dmenu_emoji
+  kill: killmenu
+  shutdown: tmenu_shutdown

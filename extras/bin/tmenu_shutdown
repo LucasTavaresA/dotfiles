@@ -3,7 +3,7 @@
 ####################################################################################################
 # VARIABLES 
 ####################################################################################################
-MENU_CONFIG_PATH=$HOME/extras/Menus/tmenu_sudo.yaml
+MENU_CONFIG_PATH=$HOME/extras/Menus/tmenu_shutdown.yaml
 TYAML_COMMAND="tyaml $MENU_CONFIG_PATH"
 menu_prompt=$($TYAML_COMMAND -k)
 current_path=$menu_prompt
@@ -24,14 +24,14 @@ check_sub_item()
     command=$($TYAML_COMMAND -v $current_path)
     [ "${command[@]}" != "null" ] && eval "${command[@]}" &
   else
-    menu_prompt="st -e $selected_tag"
+    menu_prompt="$selected_tag"
     display_items
   fi
 }
 
 display_items()
 {
-  tag_selected=$($TYAML_COMMAND -k $current_path | dmenu -c)
+  tag_selected=$($TYAML_COMMAND -k $current_path | dmenu -c -p $current_path)
   [ -z $tag_selected ] || check_sub_item $tag_selected
 }
 

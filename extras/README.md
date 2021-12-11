@@ -2,12 +2,16 @@
 
 ### Scripts
 
-**A maioria dos scripts foram modificados ao meu gosto**
+**Todos os scripts foram modificados ao meu gosto**
 
-- Dmenu com opções personalizadas [tmenu](https://github.com/Calebe94/tinytools/tree/master/tmenu)
+**pasta bin contem os executáveis**
 
-- Gerenciador de clipboard usando dmenu [clipmenu](https://github.com/cdown/clipmenu)
+**pasta Menu contem os menus customizados**
 
-- Fechar processos usando dmenu [killmenu](https://github.com/MaryHal/dmenu-suite/blob/master/scripts/killmenu)
+- Dmenu com opções personalizadas ([tmenu](https://github.com/Calebe94/tinytools/tree/master/tmenu))
 
-- Seleciona e copia emojis de uma lista usando dmenu [Dmenu-emoji](https://github.com/porras/dmenu-emoji)
+- Gerenciador de clipboard usando dmenu ([clipmenu](https://github.com/cdown/clipmenu))
+
+- Fechar processos usando dmenu ([killmenu](https://github.com/MaryHal/dmenu-suite/blob/master/scripts/killmenu))
+
+- Seleciona e copia emojis de uma lista usando dmenu ([dmenuunicode](https://github.com/LukeSmithxyz/voidrice/blob/master/.local/bin/dmenuunicode))

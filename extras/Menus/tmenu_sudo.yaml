@@ -1,5 +1,4 @@
 Sudo_run:
-  cancel: null
   ranger: st -e sudo ranger
   geany: st -e sudo geany
   kill: st -e sudo killmenu

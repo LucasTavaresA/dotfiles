@@ -31,7 +31,7 @@ check_sub_item()
 
 display_items()
 {
-  tag_selected=$($TYAML_COMMAND -k $current_path | dmenu -p $menu_prompt -i)
+  tag_selected=$($TYAML_COMMAND -k $current_path | dmenu -z 100 -c)
   [ -z $tag_selected ] || check_sub_item $tag_selected
 }
 

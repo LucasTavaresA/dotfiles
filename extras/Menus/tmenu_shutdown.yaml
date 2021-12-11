@@ -1,0 +1,6 @@
+systema:
+  Bloquear: slock
+  Sair: kill -TERM "$(pgrep -u "$USER" "\bdwm$")"
+  Reiniciar_dwm: kill -HUP "$(pgrep -u "$USER" "\bdwm$")"
+  Reiniciar: systemctl reboot
+  Desligar: systemctl poweroff

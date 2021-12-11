@@ -1,0 +1,10 @@
+#!/bin/sh
+
+case "$(printf "uma area selecionada\\njanela atual\\ntela cheia\\numa area selecionada (copiar)\\njanela atual (copiar)\\ntela cheia (copiar)" | dmenu -l 6 -c -p "Area do print?")" in
+	"uma area selecionada") maim -s pic-selected-"$(date '+%y%m%d-%H%M-%S').png" ;;
+	"janela atual") maim -i "$(xdotool getactivewindow)" pic-window-"$(date '+%y%m%d-%H%M-%S').png" ;;
+	"tela cheia") maim pic-full-"$(date '+%y%m%d-%H%M-%S').png" ;;
+	"uma area selecionada (copiar)") maim -s | xclip -selection clipboard -t image/png ;;
+	"janela atual (copiar)") maim -i "$(xdotool getactivewindow)" | xclip -selection clipboard -t image/png ;;
+	"tela cheia (copiar)") maim | xclip -selection clipboard -t image/png ;;
+esac

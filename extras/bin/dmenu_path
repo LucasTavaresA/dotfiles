@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cache="$HOME/extra/Menus/dmenu_run"
+cache="$HOME/extras/Menus/dmenu_run"
 
 [ ! -e "$cachedir" ] && mkdir -p "$cachedir"
 

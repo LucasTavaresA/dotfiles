@@ -18,7 +18,7 @@ function menu
     # Combine the rest of our arguments.
     local items=$(join $'\n' "$@")
 
-    dmenu -i -l 37 -g 1 -p "${prompt}" <<< "${items}" | tail -1
+    dmenu -l 35 -z 1358 -p "${prompt}" <<< "${items}" | tail -1
 }
 
 function confirm
