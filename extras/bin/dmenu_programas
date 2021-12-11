@@ -1,0 +1,15 @@
+#!/bin/sh
+
+case "$(printf "Programas\\nSudo\\nGeany\\nGimp\\nCalculadora\\nTelegram\\nFluxgui\\nMpv\\nTransmission\\nCode\\nDiscord" | dmenu -l 35 -c -p "Abrir")" in
+	"Programas") dmenu_run ;;
+	"Sudo") dmenu_sudo ;;
+	"Geany") geany ;;
+	"Gimp") gimp ;;
+	"Calculadora") galculator ;;
+	"Telegram") telegram-desktop ;;
+	"Fluxgui") fluxgui ;;
+	"Mpv") mpv ;;
+	"Transmission") transmission-gtk ;;
+	"Code") code ;;
+	"Discord") discord ;;
+esac

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+case "$(printf "Programas\\nRanger\\nClipboard\\nKill\\nPrintscreen\\nEmojis\\nSystema" | dmenu -l 35 -c -z 300)" in
+	"Programas") dmenu_programas ;;
+	"Ranger") st ranger ;;
+	"Clipboard") dmenu_clip ;;
+	"Kill") dmenu_kill ;;
+	"Printscreen") dmenu_print ;;
+	"Emojis") dmenu_emoji ;;
+	"Systema") dmenu_sys ;;
+esac

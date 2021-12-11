@@ -428,9 +428,16 @@ display-coords
 djpeg
 dmcs
 dmenu
+dmenu_clip
 dmenu_emoji
+dmenu_kill
+dmenu_menu
 dmenu_path
+dmenu_print
+dmenu_programas
 dmenu_run
+dmenu_sudo
+dmenu_sys
 dmesg
 dmeventd
 dmevent_tool
@@ -465,8 +472,6 @@ dvcont
 dvipdf
 dwebp
 dwm
-dwm_quit
-dwm_restart
 dwp
 e2freefrag
 e2fsck
@@ -1121,7 +1126,6 @@ keytool
 keytool.debuginfo
 kill
 killall
-killmenu
 kinit
 klist
 kmod
@@ -2115,7 +2119,6 @@ prezip-bin
 printafm
 printenv
 printf
-print_menu
 prlimit
 profile2mat.pl
 protoc
@@ -2656,9 +2659,6 @@ timeout
 tipc
 tjbench
 tload
-tmenu
-tmenu_shutdown
-tmenu_sudo
 toast
 toe
 top

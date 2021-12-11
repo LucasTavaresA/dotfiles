@@ -8,10 +8,10 @@
 
 **pasta Menu contem os menus customizados**
 
-- Dmenu com opções personalizadas ([tmenu](https://github.com/Calebe94/tinytools/tree/master/tmenu))
+- Varias formas de captura de tela usando dmenu e maim ([dmenu_print](https://github.com/LukeSmithxyz/voidrice/blob/master/.local/bin/maimpick))
 
-- Gerenciador de clipboard usando dmenu ([clipmenu](https://github.com/cdown/clipmenu))
+- Clipboard usando dmenu ([dmenu_clip](https://github.com/cdown/clipmenu))
 
-- Fechar processos usando dmenu ([killmenu](https://github.com/MaryHal/dmenu-suite/blob/master/scripts/killmenu))
+- Fechar processos usando dmenu ([dmenu_kill](https://github.com/MaryHal/dmenu-suite/blob/master/scripts/killmenu))
 
-- Seleciona e copia emojis de uma lista usando dmenu ([dmenuunicode](https://github.com/LukeSmithxyz/voidrice/blob/master/.local/bin/dmenuunicode))
+- Seleciona e copia emojis de uma lista usando dmenu ([dmenu_emoji](https://github.com/LukeSmithxyz/voidrice/blob/master/.local/bin/dmenuunicode))

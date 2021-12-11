@@ -4,11 +4,9 @@
 .cache/
 .cargo/
 .config/GIMP/
-.config/autostart/
 .config/dconf/
 .config/discord/
 .config/galculator/
-.config/gtkfilechooser.ini
 .config/nitrogen/
 .config/pulse/
 .gitconfig
