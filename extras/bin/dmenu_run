@@ -1,2 +1,2 @@
 #!/bin/sh
-dmenu_path | dmenu -l 35 -z 100 -c "$@" -p "run" | /bin/sh
+dmenu_path | dmenu -l 35 -z 100 -c "$@" -p "Abrir" | /bin/sh

@@ -1,27 +1,27 @@
 Menu:
-  run:
-    run: dmenu_run
-    sudo:
-      ranger: st -e sudo ranger
-      geany: st -e sudo geany
-      killmenu: st -e sudo killmenu
-    geany: geany
-    gimp: gimp
-    calculator: galculator
-    telegram: telegram-desktop
-    fluxgui: fluxgui
-    mpv: mpv
-    transmission: transmission-gtk
-    code: code
-    discord: discord
-  ranger: st ranger
-  clipboard: clipmenu
-  kill: killmenu
-  print: print_menu
-  emojis: dmenu_emoji
-  systema:
+  Abrir:
+    Programas: dmenu_run
+    Sudo:
+      Ranger: st -e sudo ranger
+      Geany: st -e sudo geany
+      Kill: st -e sudo killmenu
+    Geany: geany
+    Gimp: gimp
+    Calculadora: galculator
+    Telegram: telegram-desktop
+    Fluxgui: fluxgui
+    Mpv: mpv
+    Transmission: transmission-gtk
+    Code: code
+    Discord: discord
+  Ranger: st ranger
+  Clipboard: clipmenu
+  Kill: killmenu
+  Printscreen: print_menu
+  Emojis: dmenu_emoji
+  Systema:
     Bloquear: slock
-    dwm:
+    DWM:
       Sair: dwm_quit 
       Reiniciar: dwm_restart
     Desligar: systemctl poweroff

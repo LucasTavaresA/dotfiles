@@ -465,6 +465,8 @@ dvcont
 dvipdf
 dwebp
 dwm
+dwm_quit
+dwm_restart
 dwp
 e2freefrag
 e2fsck
