@@ -17,11 +17,13 @@ export VISUAL="geany"
 export BROWSER="firefox"
 # Pager
 export PAGER='less'
-# Diretorio de binarias do dmenu
-# Facilita lidar com os dotfiles de dentro da $HOME
+# Diretorio de scripts do dmenu
 export PATH=/home/lucas/dmenu/menus:$PATH
+# Aumenta o amanho limite do .bash_history
 export HISTSIZE=5000
 export HISTFILESIZE=5000
+# Usa o seahorse como autenticador GUI
+export SUDO_ASKPASS="/usr/lib/seahorse/ssh-askpass"
 
 # Inicia o servidor xorg com .xinitrc do usuario
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then

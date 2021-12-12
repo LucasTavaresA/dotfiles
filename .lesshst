@@ -5,3 +5,8 @@
 "font
 "-k
 "term
+"g
+"-A
+"exe
+"export
+"SUDO
