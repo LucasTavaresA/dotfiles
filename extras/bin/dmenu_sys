@@ -1,9 +1,0 @@
-#!/bin/sh
-
-case "$(printf " Bloquear\\n Sair do DWM\\nﰇ Reiniciar o DWM\\nﰇ Reiniciar\\n襤 Desligar" | dmenu -l 35 -c -p "Opções")" in
-	" Bloquear") slock ;;
-	" Sair do DWM") kill -TERM "$(pgrep -u "$USER" "\bdwm$")" ;;
-	"ﰇ Reiniciar o DWM") kill -HUP "$(pgrep -u "$USER" "\bdwm$")" ;;
-	"ﰇ Reiniciar") systemctl reboot ;;
-	"襤 Desligar") systemctl poweroff ;;
-esac

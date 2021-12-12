@@ -19,7 +19,7 @@ export BROWSER="firefox"
 export PAGER='less'
 # Diretorio de binarias do dmenu
 # Facilita lidar com os dotfiles de dentro da $HOME
-export PATH=/home/lucas/extras/bin:$PATH
+export PATH=/home/lucas/dmenu/menus:$PATH
 export HISTSIZE=5000
 export HISTFILESIZE=5000
 
