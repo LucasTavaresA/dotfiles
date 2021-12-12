@@ -1,11 +1,11 @@
 #!/bin/sh
 
-case "$(printf "Programas\\nRanger\\nClipboard\\nKill\\nPrintscreen\\nEmojis\\nSystema" | dmenu -l 35 -c -z 300)" in
-	"Programas") dmenu_programas ;;
-	"Ranger") st ranger ;;
-	"Clipboard") dmenu_clip ;;
-	"Kill") dmenu_kill ;;
-	"Printscreen") dmenu_print ;;
-	"Emojis") dmenu_emoji ;;
-	"Systema") dmenu_sys ;;
+case "$(printf " Programas\\nﱮ Ranger\\n Clipboard\\n💀 Kill\\n Printscreen\\n😂 Emojis\\n襤 Energia" | dmenu -l 35 -c -z 300)" in
+	" Programas") dmenu_programas ;;
+	"ﱮ Ranger") st ranger ;;
+	" Clipboard") dmenu_clip ;;
+	"💀 Kill") dmenu_kill ;;
+	" Printscreen") dmenu_print ;;
+	"😂 Emojis") dmenu_emoji ;;
+	"襤 Energia") dmenu_sys ;;
 esac
