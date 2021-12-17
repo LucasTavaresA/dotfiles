@@ -32,6 +32,12 @@ alias ga='git add'
 alias gcm='git commit -m'
 alias gp='git push'
 alias gr='git restore'
+alias ps='sudo pacman -S'
+alias pss='sudo pacman -Ss'
+alias pqs='sudo pacman -Qs'
+alias prns='sudo pacman -Rns'
+alias expac="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n 100"
+alias n='neofetch'
 
 # Ignora case-sensitivity quando completa commandos com tab
 if [ ! -a ~/.inputrc ]; then echo '$include /etc/inputrc' > ~/.inputrc; fi

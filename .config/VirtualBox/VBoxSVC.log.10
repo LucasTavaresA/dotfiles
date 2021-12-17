@@ -1,0 +1,38 @@
+00:00:00.008871 main     VirtualBox XPCOM Server 6.1.30 r148432 linux.amd64 (Dec 10 2021 19:46:42) release log
+00:00:00.008874 main     Log opened 2021-12-14T10:57:40.029441000Z
+00:00:00.008875 main     Build Type: release
+00:00:00.008878 main     OS Product: Linux
+00:00:00.008880 main     OS Release: 5.15.7-arch1-1
+00:00:00.008882 main     OS Version: #1 SMP PREEMPT Wed, 08 Dec 2021 14:33:16 +0000
+00:00:00.008911 main     DMI Product Name: Pegatron
+00:00:00.008931 main     DMI Product Version: 
+00:00:00.008940 main     Firmware type: BIOS
+00:00:00.008986 main     Host RAM: 5934MB (5.7GB) total, 5657MB (5.5GB) available
+00:00:00.008990 main     Executable: /usr/lib/virtualbox/VBoxSVC
+00:00:00.008990 main     Process ID: 34947
+00:00:00.008991 main     Package type: LINUX_64BITS_GENERIC (OSE)
+00:00:00.011529 main     IPC socket path: /tmp/.vbox-lucas-ipc/ipcd
+00:00:00.136131 nspr-2   VirtualBox: object creation starts
+00:00:00.136259 nspr-2   Home directory: '/home/lucas/.config/VirtualBox'
+00:00:00.151285 nspr-2   Loading settings file "/home/lucas/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
+00:00:00.182332 nspr-2   HostDnsMonitor: initializing
+00:00:00.182587 nspr-2   NAT: resolv.conf: nameserver 10.0.0.2
+00:00:00.182612 nspr-2   HostDnsMonitor: updating information
+00:00:00.182646 nspr-2   HostDnsMonitor: old information
+00:00:00.182656 nspr-2     no server entries
+00:00:00.182665 nspr-2     no domain set
+00:00:00.182673 nspr-2     no search string entries
+00:00:00.182681 nspr-2   HostDnsMonitor: new information
+00:00:00.182689 nspr-2     server 1: 10.0.0.2
+00:00:00.182698 nspr-2     domain: WLAN_AP
+00:00:00.182707 nspr-2     search string 1: WLAN_AP
+00:00:00.257625 nspr-2   VD: VDInit finished with VINF_SUCCESS
+00:00:00.297312 nspr-2   Loading settings file "/home/lucas/VirtualBox VMs/manjaro/manjaro.vbox" with version "1.16-linux"
+00:00:00.299251 nspr-2   VirtualBox: object created
+00:00:05.335984 main     VirtualBox: object deletion starts
+00:00:05.336046 main     ERROR [COM]: aRC=VBOX_E_OBJECT_IN_USE (0x80bb000c) aIID={ad47ad09-787b-44ab-b343-a082a3f2dfb1} aComponent={MediumWrap} aText={Medium '/home/lucas/VirtualBox VMs/manjaro/manjaro.vdi' cannot be closed because it is still attached to 1 virtual machines}, preserve=false aResultDetail=0
+00:00:05.336481 main     HostDnsMonitor: shutting down ...
+00:00:05.348335 main     HostDnsMonitor: shut down
+00:00:05.800066 Watcher  ERROR [COM]: aRC=E_ACCESSDENIED (0x80070005) aIID={d0a0163f-e254-4e5b-a1f2-011cf991c38d} aComponent={VirtualBoxWrap} aText={The object is not ready}, preserve=false aResultDetail=0
+00:00:10.348436 main     {00007f3e200167c0} HostPowerServiceLinux::~HostPowerServiceLinux: RTThreadWait() for 5000 ms failed with VERR_TIMEOUT
+00:00:10.349080 main     VirtualBox: object deleted
