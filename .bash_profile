@@ -2,6 +2,9 @@
 # ~/.bash_profile
 #
 # Executa o bashrc
+
+export SHELL='dash'
+
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
 ### EXPORTS

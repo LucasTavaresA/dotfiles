@@ -8,6 +8,8 @@
 # Faça seus exports no .bash_profile
 [[ $- != *i* ]] && return
 
+export SHELL='bash'
+
 # Aliases
 alias ls='lsd --group-dirs first'
 alias l='lsd -l --group-dirs first'
