@@ -23,6 +23,8 @@ export INPUTRC="$HOME/.config/readline/inputrc"
 export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc"
 # Go
 export GOPATH="$HOME/.config/go"
+# Starship
+export STARSHIP_CONFIG="$HOME/.config/starship/config.toml"
 
 # Executa o bashrc
 [[ -f $HOME/.bashrc ]] && . $HOME/.bashrc
