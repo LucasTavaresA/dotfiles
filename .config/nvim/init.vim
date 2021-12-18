@@ -1,5 +1,6 @@
 " Vim-plug
-call plug#begin('~/.vim/plugged')
+
+call plug#begin('~/.config/nvim/plugged')
 
 Plug 'projekt0n/github-nvim-theme'
 Plug 'farmergreg/vim-lastplace'

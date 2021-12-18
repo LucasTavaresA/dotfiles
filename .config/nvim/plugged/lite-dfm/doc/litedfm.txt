@@ -1,0 +1,66 @@
+*litedfm.txt*  A lightweight distraction-free-mode for Vim
+
+Author: Bilal Quadri <http://bilalquadri.com/>
+License: MIT
+
+INTRODUCTION                                    *lite-dfm*
+
+This is inspired by Sublime Text's distraction free mode.
+
+
+COMMANDS                                        *lite-dfm-commands*
+
+:LiteDFM              Enters distraction free mode.
+
+:LiteDFMClose         Leaves distraction free mode.
+
+:LiteDFMToggle        Toggles distraction free mode.
+
+CUSTOMIZING                                     *lite-dfm-customizing*
+You can manually specify the color to be used for hiding UI elements. There
+are two global variables that can be used to override the one that is normally
+detected. One is for CLI Vim, while the other is for gui Vim. You can set
+these in your vimrc like so:
+
+    let g:lite_dfm_normal_bg_cterm = 234
+    let g:lite_dfm_normal_bg_gui = '#abcabc'
+
+If you are using a value of none for your background color, this is the only
+way you will be able to make this plugin properly hide your UI elements.
+
+You can also specify exactly how many columns from the left you want to
+offset for DFM. Any integer between 1 and 22 (inclusive) is a valid value.
+This value default to 22 if not specified.
+
+    let g:lite_dfm_left_offset = 12
+
+If you prefer to keep the ruler active when LiteDFM is on, you can do so like
+this:
+
+    let g:lite_dfm_keep_ruler = 1
+
+KNOWN ISSUES                                    *lite-dfm-issues*
+
+No known issues at this time.
+
+ABOUT                                           *lite-dfm-about*
+
+The current implementation does the following upon entering
+distraction-free-mode:
+
+    Hide the statusbar
+    Hide the ruler
+    Hide GitGutter if it is enabled
+    For each window, change the width of the line number and fold columns to:
+      Unless the window is Gundo, NERDTree, or Tagbar:
+        Enable line numbering
+        Match the specified offset (default: 22)
+    Change the fg and bg colors for LineNr to the same as Normal bg
+    Change the fg and bg colors for NonText to the same as Normal bg
+    Change the fg and bg colors for FoldColumn to the same as Normal bg
+    If user is in GUI:
+      Hide menu and scrollbar chrome, then go fullscreen
+    Revert to original settings upon closing distraction-free-mode
+
+
+vim:tw=78:et:ft=help:norl:

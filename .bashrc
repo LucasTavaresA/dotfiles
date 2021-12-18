@@ -8,7 +8,8 @@
 # Faça seus exports no .bash_profile
 [[ $- != *i* ]] && return
 
-export SHELL='bash'
+# Shell intertivo
+export SHELL="bash"
 
 # Aliases
 alias ls='lsd --group-dirs first'
@@ -42,8 +43,8 @@ alias expac="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n 100"
 alias n='neofetch'
 
 # Ignora case-sensitivity quando completa commandos com tab
-if [ ! -a ~/.inputrc ]; then echo '$include /etc/inputrc' > ~/.inputrc; fi
-echo 'set completion-ignore-case On' >> ~/.inputrc
+if [ ! -a $HOME/.config/readline/inputrc ]; then echo '$include /etc/inputrc' > $HOME/.config/readline/inputrc; fi
+echo 'set completion-ignore-case On' >> $HOME/.config/readline/inputrc
 
 ### Facilita extrair arquivos
 # Exemplo: ex <arquivo>

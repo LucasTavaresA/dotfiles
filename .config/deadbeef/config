@@ -115,7 +115,7 @@ playlist.scroll.17 248
 playlist.scroll.18 0
 playlist.scroll.19 1123
 playlist.scroll.2 0
-playlist.scroll.20 -20
+playlist.scroll.20 249
 playlist.scroll.21 -49
 playlist.scroll.22 548
 playlist.scroll.23 0
@@ -156,7 +156,7 @@ prefwin.geometry.x 261
 prefwin.geometry.y 104
 resume.paused 0
 resume.playlist 20
-resume.position 127.24553
+resume.position 1.7182761
 resume.track 20
 streamer.samplerate 44100
 streamer.samplerate_mult_44 44100
