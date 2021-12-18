@@ -17,6 +17,7 @@
 .mozilla/
 .pki/
 .ssh/
+.config/Code*
 suckless/
 VirtualBox VMs/
 Downloads/
