@@ -13,6 +13,8 @@ Plug 'kevinhwang91/rnvimr'
 Plug 'Yggdroot/indentLine'
 Plug 'bilalq/lite-dfm'
 Plug 'norcalli/nvim-colorizer.lua'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 
 call plug#end()
 
@@ -26,6 +28,7 @@ set cmdheight=1
 autocmd InsertEnter * set cul
 autocmd InsertLeave * set nocul
 set clipboard=unnamedplus
+set spell spelllang=pt
 
 " Aparencia : github_dark_default
 colorscheme github_dark_default
@@ -80,7 +83,7 @@ let g:indentLine_color_gui = '#FFFFFF'
 let g:indentLine_char = '│'
 
 " Modo foco : LiteDFM
-map z :LiteDFMToggle<CR>
+map E :LiteDFMToggle<CR>
 autocmd VimEnter * LiteDFMToggle
 
 " Explorador de arquivos : Ranger

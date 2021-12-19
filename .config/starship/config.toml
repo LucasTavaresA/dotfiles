@@ -1,11 +1,7 @@
 format = """$fill
 $line_break
-$username$directory$cmd_duration$git_branch$dotnet$packege$jobs$time 
+$username$directory$cmd_duration$dotnet$packege$jobs
 $character"""
-
-# Ativa o relógio
-[time]
-disabled = false
 
 [line_break]
 disabled = true
