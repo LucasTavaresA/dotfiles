@@ -13,11 +13,15 @@
 .config/galculator/
 .config/nitrogen/
 .config/pulse/
+.config/qutebrowser/bookmarks
+.config/qutebrowser/quickmarks
 .gitconfig
 .mozilla/
 .pki/
 .ssh/
 .config/Code*
+.vscode*
 suckless/
 VirtualBox VMs/
 Downloads/
+favoritos

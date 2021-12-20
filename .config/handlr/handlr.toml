@@ -1,2 +1,2 @@
 enable_selector = true
-selector = "dmenu -i -p 'Open With: '"
+selector = "dmenu -p 'Abrir com: '"

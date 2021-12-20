@@ -35,9 +35,11 @@ alias ga='git add'
 alias gcm='git commit -m'
 alias gp='git push'
 alias gr='git restore'
+# Pacman
 alias ps='sudo pacman -S'
-alias pss='sudo pacman -Ss'
-alias pqs='sudo pacman -Qs'
+alias psi='pacman -Si'
+alias pss='pacman -Ss'
+alias pqs='pacman -Qs'
 alias prns='sudo pacman -Rns'
 alias expac="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n 100"
 alias n='neofetch'

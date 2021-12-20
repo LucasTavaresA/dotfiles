@@ -15,6 +15,8 @@ Plug 'bilalq/lite-dfm'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'junegunn/vim-emoji'
 
 call plug#end()
 
@@ -29,6 +31,7 @@ autocmd InsertEnter * set cul
 autocmd InsertLeave * set nocul
 set clipboard=unnamedplus
 set spell spelllang=pt
+set nowrap
 
 " Aparencia : github_dark_default
 colorscheme github_dark_default
