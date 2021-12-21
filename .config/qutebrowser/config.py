@@ -13,7 +13,7 @@
 # CONFIGURAÇÕES PADRÃO
 
 # Change the argument to True to still load settings configured via autoconfig.yml
-config.load_autoconfig(False)
+config.load_autoconfig(True)
 
 # Valid values:
 #   - all: Accept all cookies.
@@ -101,6 +101,7 @@ c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
                     ,  'gl': 'https://gitlab.com/search?search={}'
                     ,  'gm': 'https://www.google.com.br/maps/search/{}'
                     ,  'gf': 'https://greasyfork.org/en/scripts?q={}'
+                    ,  'md': 'https://mangadex.org/titles?page=1&q={}&order=relevance.desc'
                     }
 
 # ATALHOS
@@ -113,9 +114,7 @@ config.bind('zx', 'config-cycle statusbar.show always never;; config-cycle tabs.
 config.bind('zm', 'hint links spawn st -e youtube-dl -x {hint-url}')
 
 # ALIASES
-
-# procurar na pagina
-c.aliases = {'s': 'search'}
+#c.aliases = {'o': 'open'}
 
 # diretório de downloads
 c.downloads.location.directory = '~/Downloads'
@@ -126,6 +125,8 @@ c.url.default_page = 'https://www.google.com/'
 c.url.start_pages = 'https://www.google.com/'
 
 # CORES
+
+config.set('colors.webpage.preferred_color_scheme', 'dark')
 
 # Cor do texto da barra de compleção
 c.colors.completion.fg = '#ffffff'

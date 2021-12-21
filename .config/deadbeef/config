@@ -93,7 +93,7 @@ playlist.cursor.2 4
 playlist.cursor.20 25
 playlist.cursor.21 49
 playlist.cursor.22 41
-playlist.cursor.23 62
+playlist.cursor.23 279
 playlist.cursor.24 0
 playlist.cursor.3 0
 playlist.cursor.4 22
@@ -119,7 +119,7 @@ playlist.scroll.2 0
 playlist.scroll.20 -20
 playlist.scroll.21 -49
 playlist.scroll.22 548
-playlist.scroll.23 1516
+playlist.scroll.23 6724
 playlist.scroll.24 0
 playlist.scroll.3 0
 playlist.scroll.4 243
@@ -153,14 +153,15 @@ playlist.tab.00020 teminite
 playlist.tab.00021 the brig
 playlist.tab.00022 virtual riot
 playlist.tab.00023 trap
+playlist.tab.00024 Default
 prefwin.geometry.h 597
 prefwin.geometry.w 836
 prefwin.geometry.x 33
 prefwin.geometry.y 0
 resume.paused 0
 resume.playlist 23
-resume.position 128.57914
-resume.track 103
+resume.position 0.0000000
+resume.track 310
 streamer.samplerate 44100
 streamer.samplerate_mult_44 44100
 streamer.samplerate_mult_48 48000
