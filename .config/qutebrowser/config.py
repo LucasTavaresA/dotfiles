@@ -12,9 +12,6 @@
 
 # CONFIGURAÇÕES PADRÃO
 
-# Change the argument to True to still load settings configured via autoconfig.yml
-config.load_autoconfig(True)
-
 # Valid values:
 #   - all: Accept all cookies.
 #   - no-3rdparty: Accept cookies from the same origin only. This is known to break some sites, such as GMail.
@@ -55,6 +52,20 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 
 # MINHAS CONFIGURAÇÕES
 
+# Carregar o autoconfig.yml
+config.load_autoconfig(True)
+
+# Salva a sessão automaticamente
+c.auto_save.session = True
+
+# Adblock
+c.content.blocking.adblock.lists = ['https://easylist.to/easylist/easylist.txt', 'https://easylist.to/easylist/easyprivacy.txt', 'https://easylist-downloads.adblockplus.org/easylistdutch.txt', 'https://easylist-downloads.adblockplus.org/abp-filters-anti-cv.txt', 'https://www.i-dont-care-about-cookies.eu/abp/', 'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt']
+
+# Usa o ranger para mandar arquivos
+config.set("fileselect.handler", "external")
+config.set("fileselect.single_file.command", ['st', '-c', 'ranger,ranger', '-e', 'ranger', '--choosefile', '{}'])
+config.set("fileselect.multiple_files.command", ['st', '-c', 'ranger,ranger', '-e', 'ranger', '--choosefiles', '{}'])
+
 # Permitir notificações.
 # Valid values:
 #   - true
@@ -70,7 +81,7 @@ config.set('content.notifications.enabled', True, 'https://www.facebook.com')
 # `{column}`: Column in which the caret is found in the text. *
 # `{line0}`: Same as `{line}`, but starting from index 0. * `{column0}`:
 # Same as `{column}`, but starting from index 0.
-c.editor.command = ['nvim', '-f', '{file}', '-c', 'normal {line}G{column0}l']
+c.editor.command = ['nvim', '{file}']
 
 # Search engines which can be used via the address bar.  Maps a search
 # engine name (such as `DEFAULT`, or `ddg`) to a URL with a `{}`
@@ -102,6 +113,9 @@ c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
                     ,  'gm': 'https://www.google.com.br/maps/search/{}'
                     ,  'gf': 'https://greasyfork.org/en/scripts?q={}'
                     ,  'md': 'https://mangadex.org/titles?page=1&q={}&order=relevance.desc'
+                    ,  're': 'https://www.reddit.com/r/{}' 
+                    ,  'ub': 'https://www.urbandictionary.com/define.php?term={}'
+                    ,  'md': 'https://mangadex.org/titles?page=1&q={}&order=relevance.desc'
                     }
 
 # ATALHOS
@@ -112,9 +126,11 @@ config.bind('zz', 'hint links spawn mpv {hint-url}')
 config.bind('zx', 'config-cycle statusbar.show always never;; config-cycle tabs.show always never')
 # Baixar como áudio
 config.bind('zm', 'hint links spawn st -e youtube-dl -x {hint-url}')
+# Abre no firefox
+config.bind('zf', 'hint links spawn firefox {url}')
 
 # ALIASES
-#c.aliases = {'o': 'open'}
+c.aliases = {'q': 'quit', 'w': 'session-save', 'wq': 'quit --save'}
 
 # diretório de downloads
 c.downloads.location.directory = '~/Downloads'

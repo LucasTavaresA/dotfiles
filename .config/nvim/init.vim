@@ -19,6 +19,7 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'junegunn/vim-emoji'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'baskerville/vim-sxhkdrc'
 
 call plug#end()
 

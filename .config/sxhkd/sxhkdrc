@@ -1,0 +1,85 @@
+## SYSTEMA
+# Reinicia o sxhkd
+super + r
+	pkill -USR1 -x sxhkd
+
+# Bloqueia a tela
+super + shift + q
+    slock
+
+# Menus
+Menu
+    dmenu_menu
+# Menu do systema
+super + q
+    dmenu_sys
+# Menu navegador
+shift + Menu
+    dmenu_navegador
+
+## JANELAS
+
+# Fecha janela
+super + backslash
+	bspc node -c
+# Troca janela selecionada pela maior janela
+super + Return
+	bspc node -s biggest.window
+# Troca entre layout monocle e tiled
+super + Escape
+	bspc desktop -l next
+# Alterna entre janelas no desktop atual
+super + Tab
+	bspc node -f next.local.!hidden.window
+# alterna entre ou muda janela para um desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+# Preseleciona uma direção
+super + ctrl + {Left,Down,Up,Right}
+	bspc node -p {west,south,north,east}
+# Cancela seleção
+super + space
+	bspc node -p cancel
+# Expande nodo em uma direção
+super + {Left,Down,Up,Right}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+# Contrai um nodo em uma direção
+super + alt + {Left,Down,Up,Right}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+# Alterna entre janela flutuante
+super + t
+    bspc node focused -t \~floating
+# Alterna tela cheia
+super + f
+	bspc node --state \~fullscreen
+
+## SOM
+
+# Deadbeef
+super + a
+    deadbeef
+
+# ir para Anterior/Proxima musica
+super + shift + comma
+    deadbeef --prev
+super + shift + period
+    deadbeef --next
+
+# Abaixar/Aumentar a o volume
+super + comma
+    amixer -q set Master 10%-
+super + period
+    amixer -q set Master 10%+
+
+## PROGRAMAS
+
+# St
+super + shift + Return
+	st
+
+# Picom
+super + p
+    picom
+super + shift + p
+    killall picom
+

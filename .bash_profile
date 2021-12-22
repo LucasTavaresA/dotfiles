@@ -37,7 +37,7 @@ export HISTCONTROL=ignoredups
 # Editor no terminal
 export EDITOR="nvim"
 # Editor com interface gráfica
-export VISUAL="geany"
+export VISUAL="nvim"
 # Navegador padrão
 export BROWSER="firefox"
 # Pager
