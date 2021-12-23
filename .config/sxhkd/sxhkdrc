@@ -79,6 +79,10 @@ super + period
 super + shift + Return
 	st
 
+# st_scratchpad
+ctrl + Menu
+    st_scratchpad
+
 # Picom
 super + p
     picom

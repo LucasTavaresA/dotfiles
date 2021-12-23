@@ -53,3 +53,12 @@ bspc rule -a notification state=floating rectangle=480x270+1358+768 sticky=off l
 bspc rule -a VirtualBox Manager state=fullscreen
 bspc rule -a VirtualBox Machine state=fullscreen
 bspc rule -a :Zathura state=tiled
+# Scratchpad
+scratchpad_xy="1200x600"
+display_xy=$(xdpyinfo | grep -i dimensions | awk '{ print $2 }')
+half_display=$(echo $display_xy | tr 'x' ' ' | cut -f1 -d' ' | xargs -I _ echo _/2 | bc)
+half_scratchpad=$(echo $scratchpad_xy | tr 'x' ' ' | cut -f1 -d' ' | xargs -I _ echo _/2 | bc)
+offset=$(echo ${half_display}-${half_scratchpad} | bc)
+
+# rectangle=WidthxHeight+Xoffset+Yoffset
+bspc rule -a st_scratchpad sticky=on state=floating rectangle=${scratchpad_xy}+${offset}+0

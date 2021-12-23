@@ -1,11 +1,8 @@
-.Xauthority
-.bash_history
 .bash_logout
 .cache/
 .local/
 .config/GIMP/
 .config/git/config
-.config/go
 .config/npm/
 .config/Code/
 .config/dconf/
@@ -25,3 +22,4 @@ suckless/
 VirtualBox VMs/
 Downloads/
 favoritos
+pacman-Rns

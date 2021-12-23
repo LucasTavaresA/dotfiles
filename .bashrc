@@ -12,7 +12,7 @@
 export SHELL="bash"
 
 # Aliases
-alias ls='lsd --group-dirs first'
+# Ls
 alias l='lsd -l --group-dirs first'
 alias la='lsd -A --group-dirs first'
 alias lla='lsd -lA --group-dirs first'
@@ -43,12 +43,17 @@ alias pss='pacman -Ss'
 alias psyu='sudo pacman -Syu'
 alias pqs='pacman -Qs'
 alias prns='sudo pacman -Rns'
-alias expac="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n 100"
+alias pclean='pacman -Qtdq > $HOME/pacman-Rns && sudo pacman -Rns $(pacman -Qtdq)'
+alias expac="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
 alias n='neofetch'
 
-# Ignora case-sensitivity quando completa commandos com tab
+# Ignora case-sensitivity quando completa comandos com tab
 if [ ! -a $HOME/.config/readline/inputrc ]; then echo '$include /etc/inputrc' > $HOME/.config/readline/inputrc; fi
 echo 'set completion-ignore-case On' >> $HOME/.config/readline/inputrc
+# Corrige automaticamente erros ao usar o cd
+shopt -s cdspell
+# Salva comandos de múltiplas linhas como uma linha única
+shopt -s cmdhist
 
 ### Facilita extrair arquivos
 # Exemplo: ex <arquivo>

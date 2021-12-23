@@ -19,6 +19,9 @@ xbanish &
 # Protetor de tela
 xautolock -detectsleep -time 30 -locker "slock" -notify 30 -notifier "notify-send Slock -u critical -t 1800000 'BLOQUEANDO A TELA 30 SEGUNDOS'" &
 
+# Mouse
+xsetroot -cursor_name left_ptr
+
 # Teclado
 setxkbmap -option caps:escape # muda a função da tecla caps lock para esc
 xset r rate 300 50 # acelera repetição de teclas quando seguradas

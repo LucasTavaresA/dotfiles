@@ -1,11 +1,37 @@
 #
 # ~/.bash_profile
 #
-# Shell do systema
+# Shell do sistema
 export SHELL="dash"
 
+### EXPORTS
+
 # Muda o local padrão de alguns dotfiles limpando a $HOME ou ~
+# Define diretórios com o padrão xdg
 export HOME="/home/lucas"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+# bat como um manpager
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# Terminal
+export TERMINAL='st'
+# Editor no terminal
+export EDITOR="nvim"
+# Editor com interface gráfica
+export VISUAL="nvim"
+# Navegador padrão
+export BROWSER="firefox"
+# Pager
+export PAGER='less'
+# Faz o qt usar o thema do gtk2
+export QT_QPA_PLATFORMTHEME="gtk2"
+# Less
+export LESSHISTFILE="-"
+# Wget
+export WGETRC="$HOME/.config/wget/wgetrc"
+# XAuthority
+export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 # Cargo
 export CARGO_HOME="$HOME/.local/share/cargo"
 # Neovim omnisharp
@@ -21,36 +47,33 @@ export INPUTRC="$HOME/.config/readline/inputrc"
 # Gtk 2
 export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc"
 # Go
-export GOPATH="$HOME/.config/go"
+export GOPATH="$HOME/.local/share/go"
 # Starship
 export STARSHIP_CONFIG="$HOME/.config/starship/config.toml"
+# Android sdk
+export ANDROID_SDK_HOME="$HOME/.config/android"
+# Wine
+export WINEPREFIX="$HOME/.local/share/wineprefixes/default"
+
+# Bash
+# Muda o local do .bash_history
+export HISTFILE="$HOME/.local/share/history"
+# Aumenta o tamanho limite do historico
+export HISTSIZE=5000
+export HISTFILESIZE=5000
+# Ignora e deleta comandos duplicados no bash_history
+export HISTCONTROL=ignoredups:erasedups
+
+# Adiciona diretório de scripts do dmenu ao path
+export PATH=$HOME/suckless/dmenu/menus:$PATH
+export PATH=$HOME/bin:$PATH
+# Usa o seahorse como autenticador GUI
+export SUDO_ASKPASS="/usr/lib/seahorse/ssh-askpass"
 
 # Executa o bashrc
 [[ -f $HOME/.bashrc ]] && . $HOME/.bashrc
 
-### EXPORTS
-# Terminal
-export TERMINAL='st'
-# Ignora comandos duplicados no bash_history
-export HISTCONTROL=ignoredups
-# Editor no terminal
-export EDITOR="nvim"
-# Editor com interface gráfica
-export VISUAL="nvim"
-# Navegador padrão
-export BROWSER="firefox"
-# Pager
-export PAGER='less'
-# Diretorio de scripts do dmenu
-export PATH=/home/lucas/suckless/dmenu/menus:$PATH
-# Aumenta o amanho limite do .bash_history
-export HISTFILE="$HOME/.bash_history"
-export HISTSIZE=5000
-export HISTFILESIZE=5000
-# Usa o seahorse como autenticador GUI
-export SUDO_ASKPASS="/usr/lib/seahorse/ssh-askpass"
-
-# Inicia o servidor xorg com .xinitrc do usuario
+# Inicia o servidor xorg com .xinitrc do usuário
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
 	  exec startx "$HOME/.config/x11/xinitrc"
 fi
