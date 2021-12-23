@@ -1,7 +1,11 @@
 format = """$fill
 $line_break
-$username$directory$cmd_duration$dotnet$packege$jobs
+$username$directory$cmd_duration$dotnet$package$jobs$time
 $character"""
+
+# Ativa o relógio
+[time]
+disabled = false
 
 [line_break]
 disabled = true
@@ -12,6 +16,6 @@ truncation_length = 4
 truncate_to_repo = false
 
 [fill]
-symbol = "🬋"
-style = "bold #444444"
+symbol = "."
+style = "bold #ffffff"
 

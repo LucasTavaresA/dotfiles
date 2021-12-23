@@ -58,6 +58,9 @@ config.load_autoconfig(True)
 # Salva a sessão automaticamente
 c.auto_save.session = True
 
+config.set("statusbar.show", "never")
+config.set("tabs.show", "never")
+
 # Adblock
 c.content.blocking.adblock.lists = ['https://easylist.to/easylist/easylist.txt', 'https://easylist.to/easylist/easyprivacy.txt', 'https://easylist-downloads.adblockplus.org/easylistdutch.txt', 'https://easylist-downloads.adblockplus.org/abp-filters-anti-cv.txt', 'https://www.i-dont-care-about-cookies.eu/abp/', 'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt']
 

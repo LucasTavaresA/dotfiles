@@ -57,6 +57,8 @@ super + f
 
 # Deadbeef
 super + a
+    dmenu_deadbeef
+super + shift + a
     deadbeef
 
 # ir para Anterior/Proxima musica

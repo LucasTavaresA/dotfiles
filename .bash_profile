@@ -4,8 +4,7 @@
 # Shell do systema
 export SHELL="dash"
 
-# Muda o local padrão de alguns dotfiles
-# limpando a $HOME ~/
+# Muda o local padrão de alguns dotfiles limpando a $HOME ou ~
 export HOME="/home/lucas"
 # Cargo
 export CARGO_HOME="$HOME/.local/share/cargo"
