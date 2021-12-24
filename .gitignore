@@ -12,6 +12,7 @@
 .config/pulse/
 .config/qutebrowser/bookmarks
 .config/qutebrowser/quickmarks
+.config/VirtualBox/
 .gitconfig
 .mozilla/
 .pki/
@@ -21,5 +22,10 @@
 suckless/
 VirtualBox VMs/
 Downloads/
+cursos/
+roms/
+documentos/
+projetos/
+img vid/
 favoritos
 pacman-Rns

@@ -43,7 +43,6 @@ alias pss='pacman -Ss'
 alias psyu='sudo pacman -Syu'
 alias pqs='pacman -Qs'
 alias prns='sudo pacman -Rns'
-alias pclean='pacman -Qtdq > $HOME/pacman-Rns && sudo pacman -Rns $(pacman -Qtdq)'
 alias expac="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
 alias n='neofetch'
 

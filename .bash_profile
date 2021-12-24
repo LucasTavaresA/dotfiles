@@ -71,7 +71,9 @@ export PATH=$HOME/bin:$PATH
 export SUDO_ASKPASS="/usr/lib/seahorse/ssh-askpass"
 
 # Executa o bashrc
-[[ -f $HOME/.bashrc ]] && . $HOME/.bashrc
+# Adicione "source /local/do/bashrc" 
+# no final do /etc/bash.bashrc
+[[ -f "$HOME/.config/bash/bashrc" ]] && . "$HOME/.config/bash/bashrc"
 
 # Inicia o servidor xorg com .xinitrc do usuário
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
