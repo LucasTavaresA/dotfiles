@@ -2,7 +2,10 @@
 # Não executa o resto do bashrc
 [[ $- != *i* ]] && return
 
-export SHELL="zsh"
+HISTFILE=~/.local/share/history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt SHARE_HISTORY
 
 # Carrega cores
 autoload -U colors && colors
@@ -11,31 +14,13 @@ autoload -U colors && colors
 setopt interactive_comments
 
 # Completar comandos
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
-autoload -Uz compinit && compinit
-
-# modo vi
-bindkey -v
-export KEYTIMEOUT=1
-# Muda o formato do cursor para modos diferentes.
-function zle-keymap-select () {
-    case $KEYMAP in
-        vicmd) echo -ne '\e[1 q';;      
-        viins|main) echo -ne '\e[5 q';;
-    esac
-}
-zle -N zle-keymap-select
-zle-line-init() {
-    zle -K viins
-    echo -ne "\e[5 q"
-}
-zle -N zle-line-init
-echo -ne '\e[5 q' # Usa o cursor | ao iniciar.
-preexec() { echo -ne '\e[5 q' ;} # Usa o cursor Z para cada prompt iniciado.
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)		# Incluir arquivos ocultos.
 
 # ZSH EXPORTS
-# Shell interativo
-export SHELL="zsh"
 # Não adiciona esses itens ao histórico
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 
@@ -117,3 +102,5 @@ eval "$(starship init zsh)"
 
 # Carrega os indicações de sintaxe; deve ser o ultimo comando.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-expand-all/zsh-expand-all.zsh
+source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.zsh

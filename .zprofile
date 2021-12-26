@@ -1,5 +1,5 @@
 #
-# ~/.bash_profile
+# ~/.zprofile
 #
 ### EXPORTS
 
@@ -13,7 +13,8 @@ export XDG_CACHE_HOME="$HOME/.cache"
 # Bat como um manpager
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # Terminal
-export TERMINAL='st'
+export TERMINAL="st"
+export TERM="xterm-256color"
 # Editor no terminal
 export EDITOR="nvim"
 # Editor com interface gráfica
@@ -72,10 +73,8 @@ export PATH=$HOME/bin:$PATH
 # Usa o seahorse como autenticador GUI
 export SUDO_ASKPASS="/usr/lib/seahorse/ssh-askpass"
 
-# Executa o bashrc
-# Adicione "source /local/do/bashrc" 
-# no final do /etc/bash.bashrc
-#[[ -f "$HOME/.config/bash/bashrc" ]] && . "$HOME/.config/bash/bashrc"
+# Executa o zshrc
+[[ -f "$HOME/.config/zsh/.zshrc" ]] && . "$HOME/.config/zsh/.zshrc"
 
 # Inicia o servidor xorg com .xinitrc do usuário
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
