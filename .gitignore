@@ -1,31 +1,28 @@
-.bash_logout
 .cache/
-.local/
-.config/GIMP/
-.config/git/config
-.config/npm/
-.config/Code/
+.config/Code*
 .config/dconf/
 .config/discord/
 .config/galculator/
+.config/GIMP/
+.config/git/config
 .config/nitrogen/
+.config/npm/
 .config/pulse/
 .config/qutebrowser/bookmarks
 .config/qutebrowser/quickmarks
 .config/VirtualBox/
-.gitconfig
+.local/
 .mozilla/
 .pki/
 .ssh/
-.config/Code*
 .vscode*
+cursos/
+documentos/
+Downloads/
+img vid/
+mnt/
+musicas/
+projetos/
+roms/
 suckless/
 VirtualBox VMs/
-Downloads/
-cursos/
-roms/
-documentos/
-projetos/
-img vid/
-favoritos
-pacman-Rns

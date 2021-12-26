@@ -34,7 +34,6 @@ autocmd InsertEnter * set cul
 autocmd InsertLeave * set nocul
 set clipboard=unnamedplus
 set spell spelllang=pt
-set nowrap
 
 " Aparencia : github_dark_default
 colorscheme github_dark_default
@@ -85,7 +84,7 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
-let g:indentLine_color_gui = '#FFFFFF'
+let g:indentLine_color_gui = '#777777'
 let g:indentLine_char = '│'
 
 " Modo foco : LiteDFM

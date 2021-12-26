@@ -1,9 +1,6 @@
 #
 # ~/.bash_profile
 #
-# Shell do sistema
-export SHELL="dash"
-
 ### EXPORTS
 
 # Muda o local padrão de alguns dotfiles limpando a $HOME ou ~
@@ -12,7 +9,8 @@ export HOME="/home/lucas"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
-# bat como um manpager
+
+# Bat como um manpager
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # Terminal
 export TERMINAL='st'
@@ -55,25 +53,29 @@ export ANDROID_SDK_HOME="$HOME/.config/android"
 # Wine
 export WINEPREFIX="$HOME/.local/share/wineprefixes/default"
 
-# Bash
-# Muda o local do .bash_history
+# Shell
+export SHELL="zsh"
+# Muda o local do zshrc
+export ZDOTDIR="$HOME/.config/zsh"
+# Muda o local do histórico
 export HISTFILE="$HOME/.local/share/history"
-# Aumenta o tamanho limite do historico
-export HISTSIZE=5000
-export HISTFILESIZE=5000
-# Ignora e deleta comandos duplicados no bash_history
+# Aumenta o tamanho limite do histórico
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+# Ignora e deleta comandos duplicados no histórico
 export HISTCONTROL=ignoredups:erasedups
 
 # Adiciona diretório de scripts do dmenu ao path
 export PATH=$HOME/suckless/dmenu/menus:$PATH
 export PATH=$HOME/bin:$PATH
+
 # Usa o seahorse como autenticador GUI
 export SUDO_ASKPASS="/usr/lib/seahorse/ssh-askpass"
 
 # Executa o bashrc
 # Adicione "source /local/do/bashrc" 
 # no final do /etc/bash.bashrc
-[[ -f "$HOME/.config/bash/bashrc" ]] && . "$HOME/.config/bash/bashrc"
+#[[ -f "$HOME/.config/bash/bashrc" ]] && . "$HOME/.config/bash/bashrc"
 
 # Inicia o servidor xorg com .xinitrc do usuário
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then

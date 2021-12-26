@@ -4,27 +4,30 @@
 
 # Se não executando bash interativamente
 # Não executa o resto do bashrc
-# Impede que o systema não intencionalmente use aliases causando erros
+# Impede que o sistema não intencionalmente use aliases causando erros
 # Faça seus exports no .bash_profile
 [[ $- != *i* ]] && return
 
-# Shell intertivo
+# Shell interativo
 export SHELL="bash"
 
 # Aliases
-# Ls
+# Arquivos e Diretórios
+alias rm="rm -ri"
 alias l='lsd -l --group-dirs first'
 alias la='lsd -A --group-dirs first'
 alias lla='lsd -lA --group-dirs first'
 alias ..='cd ..'
-alias g='geany'
-alias v='nvim'
-alias bh='dmenu_bashhistory'
 alias lo='locate -Ai'
-alias r='ranger'
-alias cat='bat'
 alias u='sudo updatedb'
 alias ch='chmod +x'
+# Programas
+alias n='neofetch'
+alias g='geany'
+alias v='nvim'
+alias r='ranger'
+alias cat='bat'
+alias mocp='mocp -M "$XDG_CONFIG_HOME"/moc -O MOCDir="$XDG_CONFIG_HOME"/moc'
 # Git aliases
 alias gi='git init'
 alias gc='git clone'
@@ -44,7 +47,6 @@ alias psyu='sudo pacman -Syu'
 alias pqs='pacman -Qs'
 alias prns='sudo pacman -Rns'
 alias expac="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
-alias n='neofetch'
 
 # Ignora case-sensitivity quando completa comandos com tab
 if [ ! -a $HOME/.config/readline/inputrc ]; then echo '$include /etc/inputrc' > $HOME/.config/readline/inputrc; fi

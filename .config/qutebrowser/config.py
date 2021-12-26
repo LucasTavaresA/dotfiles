@@ -131,6 +131,8 @@ config.bind('zx', 'config-cycle statusbar.show always never;; config-cycle tabs.
 config.bind('zm', 'hint links spawn st -e youtube-dl -x {hint-url}')
 # Abre no firefox
 config.bind('zf', 'hint links spawn firefox {url}')
+# Thema escuro
+config.bind('zd', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/styles/dark.css ""')
 
 # ALIASES
 c.aliases = {'q': 'quit', 'w': 'session-save', 'wq': 'quit --save'}
