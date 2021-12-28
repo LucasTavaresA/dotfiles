@@ -25,6 +25,7 @@ xsetroot -cursor_name left_ptr
 # Teclado
 setxkbmap -option caps:escape # muda a função da tecla caps lock para esc
 xset r rate 300 50 # acelera repetição de teclas
+
 sxhkd &
 
 exec bspwm

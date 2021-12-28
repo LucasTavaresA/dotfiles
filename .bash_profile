@@ -1,6 +1,3 @@
-#
-# ~/.zprofile
-#
 ### EXPORTS
 
 # Muda o local padrão de alguns dotfiles limpando a $HOME ou ~
@@ -9,6 +6,7 @@ export HOME="/home/lucas"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_RUNTIME_DIR="/run/user/$UID"
 
 # Bat como um manpager
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
@@ -74,7 +72,7 @@ export PATH=$HOME/bin:$PATH
 export SUDO_ASKPASS="/usr/lib/seahorse/ssh-askpass"
 
 # Executa o zshrc
-[[ -f "$HOME/.config/zsh/.zshrc" ]] && . "$HOME/.config/zsh/.zshrc"
+[[ -f "$HOME/.config/bash/.bashrc" ]] && . "$HOME/.config/bash/.bashrc"
 
 # Inicia o servidor xorg com .xinitrc do usuário
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then

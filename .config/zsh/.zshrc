@@ -2,6 +2,11 @@
 # Não executa o resto do bashrc
 [[ $- != *i* ]] && return
 
+# ZSH EXPORTS
+export SHELL="zsh"
+# Não adiciona esses itens ao histórico
+export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
+
 HISTFILE=~/.local/share/history
 HISTSIZE=10000
 SAVEHIST=10000
@@ -14,15 +19,12 @@ autoload -U colors && colors
 setopt interactive_comments
 
 # Completar comandos
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)		# Incluir arquivos ocultos.
-
-# ZSH EXPORTS
-# Não adiciona esses itens ao histórico
-export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 
 # Facilita extrair arquivos
 # Exemplo: ex (arquivo).zip

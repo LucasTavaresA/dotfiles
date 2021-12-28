@@ -116,19 +116,23 @@ c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
                     ,  'gm': 'https://www.google.com.br/maps/search/{}'
                     ,  'gf': 'https://greasyfork.org/en/scripts?q={}'
                     ,  'md': 'https://mangadex.org/titles?page=1&q={}&order=relevance.desc'
-                    ,  're': 'https://www.reddit.com/r/{}' 
-                    ,  'ub': 'https://www.urbandictionary.com/define.php?term={}'
-                    ,  'md': 'https://mangadex.org/titles?page=1&q={}&order=relevance.desc'
+                    ,  'r': 'https://www.reddit.com/r/{}' 
+                    ,  'ud': 'https://www.urbandictionary.com/define.php?term={}'
+                    ,  'al': 'https://anilist.co/search/anime?search={}&sort=SEARCH_MATCH'
+                    ,  'alm': 'https://anilist.co/search/manga?search={}&sort=SEARCH_MATCH'
+                    ,  'b': 'https://brainly.com.br/app/ask?q={}'
                     }
 
 # ATALHOS
 
+# Troca entre abas
+config.bind('<Ctrl-Tab>', 'tab-next')
 # Atalho para assistir link com mpv
 config.bind('zz', 'hint links spawn mpv {hint-url}')
 # Esconder a barra de abas e barra de status
 config.bind('zx', 'config-cycle statusbar.show always never;; config-cycle tabs.show always never')
 # Baixar como áudio
-config.bind('zm', 'hint links spawn st -e youtube-dl -x {hint-url}')
+config.bind('zm', 'hint links spawn st -e yt-dlp -x {hint-url}')
 # Abre no firefox
 config.bind('zf', 'hint links spawn firefox {url}')
 # Thema escuro

@@ -50,6 +50,7 @@ bspc rule -a toolbar state=floating rectangle=480x270+1358+768 sticky=off layer=
 bspc rule -a error state=floating rectangle=480x270+1358+768 sticky=off layer=above center=true
 bspc rule -a MPlayer state=floating rectangle=480x270+1358+768 sticky=off layer=above center=true
 bspc rule -a notification state=floating rectangle=480x270+1358+768 sticky=off layer=above center=true
+bspc rule -a pulsemixer state=floating rectangle=700x500 center=true
 bspc rule -a VirtualBox Manager state=fullscreen
 bspc rule -a VirtualBox Machine state=fullscreen
 bspc rule -a :Zathura state=tiled
