@@ -2,6 +2,7 @@
 
 # Muda o local padrão de alguns dotfiles limpando a $HOME ou ~
 # Define diretórios com o padrão xdg
+UID="$(id -u)"
 export HOME="/home/lucas"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -53,7 +54,7 @@ export ANDROID_SDK_HOME="$HOME/.config/android"
 export WINEPREFIX="$HOME/.local/share/wineprefixes/default"
 
 # Shell
-export SHELL="zsh"
+export SHELL="dash"
 # Muda o local do zshrc
 export ZDOTDIR="$HOME/.config/zsh"
 # Muda o local do histórico
@@ -72,7 +73,7 @@ export PATH=$HOME/bin:$PATH
 export SUDO_ASKPASS="/usr/lib/seahorse/ssh-askpass"
 
 # Executa o zshrc
-[[ -f "$HOME/.config/bash/.bashrc" ]] && . "$HOME/.config/bash/.bashrc"
+# [ -f "$HOME/.config/bash/.bashrc" ] && . "$HOME/.config/bash/.bashrc"
 
 # Inicia o servidor xorg com .xinitrc do usuário
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then

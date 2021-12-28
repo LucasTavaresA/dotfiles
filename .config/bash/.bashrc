@@ -3,6 +3,7 @@
 [[ $- != *i* ]] && return
 
 # Aliases
+alias clip='xclip -selection clipboard'
 # Arquivos e Diretórios
 alias rm="rm -ri"
 alias l='lsd -l --group-dirs first'

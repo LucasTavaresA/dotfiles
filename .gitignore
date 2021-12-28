@@ -10,6 +10,7 @@
 .config/pulse/
 .config/qutebrowser/bookmarks
 .config/qutebrowser/quickmarks
+.config/transmission/
 .config/VirtualBox/
 .local/
 .mozilla/
