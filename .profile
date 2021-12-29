@@ -72,7 +72,7 @@ export PATH=$HOME/bin:$PATH
 # Usa o seahorse como autenticador GUI
 export SUDO_ASKPASS="/usr/lib/seahorse/ssh-askpass"
 
-# Executa o zshrc
+# Executa o bashrc
 # [ -f "$HOME/.config/bash/.bashrc" ] && . "$HOME/.config/bash/.bashrc"
 
 # Inicia o servidor xorg com .xinitrc do usuário

@@ -65,7 +65,7 @@ IFS=$SAVEIFS
 # Aliases
 alias clip='xclip -selection clipboard'
 # Arquivos e Diretórios
-alias rm="rm -ri"
+alias RM="rm -rf"
 alias l='lsd -l --group-dirs first'
 alias la='lsd -A --group-dirs first'
 alias lla='lsd -lA --group-dirs first'
