@@ -1,64 +1,64 @@
-## SYSTEMA
-# Reinicia o sxhkd
-super + r
-	pkill -USR1 -x sxhkd
-
-# Bloqueia a tela
-super + shift + q
-    slock
-
-# Menus
-Menu
-    dmenu_menu
-# Menu do systema
-super + q
-    dmenu_sys
-# Menu navegador
-shift + Menu
-    dmenu_navegador
-
 ## JANELAS
 
 # Fecha janela
 super + backslash
 	bspc node -c
+
 # Troca janela selecionada pela maior janela
 super + Return
 	bspc node -s biggest.window
+
 # Troca entre layout monocle e tiled
 super + Escape
 	bspc desktop -l next
+
 # Alterna entre janelas no desktop atual
 super + Tab
 	bspc node -f next.local.!hidden.window
+
 # alterna entre ou muda janela para um desktop
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
+
 # Preseleciona uma direção
 super + ctrl + {Left,Down,Up,Right}
 	bspc node -p {west,south,north,east}
+
 # Cancela seleção
 super + space
 	bspc node -p cancel
+
 # Expande nodo em uma direção
 super + {Left,Down,Up,Right}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
 # Contrai um nodo em uma direção
 super + alt + {Left,Down,Up,Right}
 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
 # Alterna entre janela flutuante
 super + t
-    bspc node focused -t \~floating
+    bspc node -t \~floating
+
 # Alterna tela cheia
 super + f
-	bspc node --state \~fullscreen
+	bspc node -t \~fullscreen
+
+## SYSTEMA
+
+# Menus
+Menu;Menu
+    dmenu_menu
+# Menu do systema
+Menu;Escape
+    dmenu_sys
 
 ## SOM
 
 # Deadbeef
 super + a
     dmenu_deadbeef
-super + shift + a
+Menu;d
     deadbeef
 
 # ir para Anterior/Proxima musica
@@ -80,12 +80,50 @@ super + shift + Return
 	st
 
 # st_scratchpad
-ctrl + Menu
+shift + Menu
     st_scratchpad
 
+# qutebrowser
+Menu;Q
+    qutebrowser
+
+# Ranger
+Menu;R
+    st -e ranger
+
+# Gimp
+Menu;G
+    gimp
+
+# Galculator
+Menu;C
+    galculator
+
+# Telegram
+Menu;t
+    telegram-desktop
+
+# Fluxgui
+Menu;f
+    fluxgui
+Menu;F
+    killall fluxgui
+
+# Transmission
+Menu;T
+    transmission-gtk
+
+# Discord
+Menu;D
+    discord
+
+# dmenu_kill
+Menu;K
+    dmenu_kill
+
 # Picom
-super + p
+Menu;p
     picom
-super + shift + p
+Menu;P
     killall picom
 

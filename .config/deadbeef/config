@@ -13,12 +13,12 @@ gtkui.color.bar_foreground 65535 65535 65535
 gtkui.color.tabstrip_playing_text 46202 52962 65535
 gtkui.color.tabstrip_selected_text 16566 35686 65535
 gtkui.color.tabstrip_text 65535 65535 65535
-gtkui.columns.playlist [{"title":"♫","id":"1","format":"%playstatus%","sort_format":"","size":"19","align":"0","color_override":"0","color":"#ff000000"},{"title":"Custom","id":"9","format":"%filename%","sort_format":"","size":"546","align":"0","color_override":"0","color":"#ffeeeeec"},{"title":"N°","id":"0","format":"","sort_format":"","size":"49","align":"0","color_override":"0","color":"#ffeeeeee"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"60","align":"0","color_override":"0","color":"#ff000000"}]
+gtkui.columns.playlist [{"title":"♫","id":"1","format":"%playstatus%","sort_format":"","size":"20","align":"0","color_override":"0","color":"#ff000000"},{"title":"Custom","id":"9","format":"%filename%","sort_format":"","size":"581","align":"0","color_override":"0","color":"#ffeeeeec"},{"title":"N°","id":"0","format":"","sort_format":"","size":"53","align":"0","color_override":"0","color":"#ffeeeeee"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"64","align":"0","color_override":"0","color":"#ff000000"}]
 gtkui.columns.search [{"title":"Artist / Album","id":"-1","format":"$if(%artist%,%artist%,Unknown Artist)[ - %album%]","sort_format":"","size":"151","align":"0","color_override":"0","color":"#ff000000"},{"title":"Track No","id":"-1","format":"%tracknumber%","sort_format":"","size":"50","align":"1","color_override":"0","color":"#ff000000"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"151","align":"0","color_override":"0","color":"#ff000000"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"50","align":"0","color_override":"0","color":"#ff000000"}]
 gtkui.eq.visible 0
 gtkui.hide_remove_from_disk 1
 gtkui.hide_tray_icon 0
-gtkui.layout.0.6.2 hsplitter locked=0 ratio=0.103008 pos=0 size2=0 {pltbrowser {} vsplitter locked=0 ratio=0.000000 pos=0 size2=0 {hsplitter locked=0 ratio=0.963774 pos=0 size2=0 {hsplitter locked=0 ratio=0.125336 pos=0 size2=0 {playtb {} seekbar {} } volumebar {} } playlist hideheaders=0 width=1211 {} } } 
+gtkui.layout.0.6.2 hsplitter locked=0 ratio=0.103008 pos=0 size2=0 {pltbrowser {} vsplitter locked=0 ratio=0.000000 pos=0 size2=0 {hsplitter locked=0 ratio=0.963774 pos=0 size2=0 {hsplitter locked=0 ratio=0.125336 pos=0 size2=0 {playtb {} seekbar {} } volumebar {} } playlist hideheaders=0 width=591 {} } } 
 gtkui.mmb_delete_playlist 0
 gtkui.move_to_trash 1
 gtkui.override_bar_colors 1
@@ -72,8 +72,8 @@ logwindow.geometry.x 311
 logwindow.geometry.y 250
 mainwin.geometry.h 600
 mainwin.geometry.w 1200
-mainwin.geometry.x 601
-mainwin.geometry.y 16
+mainwin.geometry.x 79
+mainwin.geometry.y 83
 mp3.id3v1_encoding iso8859-1
 mp3.id3v2_version 3
 mp3.write_id3v1 1
@@ -104,7 +104,7 @@ playlist.cursor.2 4
 playlist.cursor.20 3
 playlist.cursor.21 49
 playlist.cursor.22 7
-playlist.cursor.23 470
+playlist.cursor.23 566
 playlist.cursor.24 0
 playlist.cursor.3 0
 playlist.cursor.4 22
@@ -130,7 +130,7 @@ playlist.scroll.2 0
 playlist.scroll.20 0
 playlist.scroll.21 0
 playlist.scroll.22 -7
-playlist.scroll.23 -470
+playlist.scroll.23 13908
 playlist.scroll.24 0
 playlist.scroll.3 0
 playlist.scroll.4 243
@@ -163,15 +163,15 @@ playlist.tab.00019 spag heddy
 playlist.tab.00020 teminite
 playlist.tab.00021 the brig
 playlist.tab.00022 virtual riot
-playlist.tab.00023 tabby tech deck dudes
+playlist.tab.00023 iroto
 prefwin.geometry.h 600
 prefwin.geometry.w 1200
 prefwin.geometry.x 144
 prefwin.geometry.y 78
 resume.paused 0
 resume.playlist 23
-resume.position 0.0000000
-resume.track 470
+resume.position 0.0464399
+resume.track 587
 searchwin.geometry.h 600
 searchwin.geometry.w 1200
 searchwin.geometry.x 79

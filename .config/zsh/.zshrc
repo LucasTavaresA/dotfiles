@@ -64,6 +64,9 @@ IFS=$SAVEIFS
 
 # Aliases
 alias clip='xclip -selection clipboard'
+alias sudo="doas"
+alias yt='yt-dlp'
+alias yta='yt-dlp -x --audio-format mp3'
 # Arquivos e Diretórios
 alias RM="rm -rf"
 alias l='lsd -l --group-dirs first'
@@ -78,7 +81,6 @@ alias n='neofetch'
 alias g='geany'
 alias v='nvim'
 alias r='ranger'
-alias cat='bat'
 alias mocp='mocp -M "$XDG_CONFIG_HOME"/moc -O MOCDir="$XDG_CONFIG_HOME"/moc'
 # Git aliases
 alias gi='git init'
@@ -98,7 +100,7 @@ alias pss='pacman -Ss'
 alias psyu='sudo pacman -Syu'
 alias pqs='pacman -Qs'
 alias prns='sudo pacman -Rns'
-alias expac="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
+alias ex="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
 
 # Prompt do starship
 eval "$(starship init zsh)"
