@@ -1,5 +1,3 @@
-## JANELAS
-
 # Fecha janela
 super + backslash
 	bspc node -c
@@ -16,7 +14,7 @@ super + Escape
 super + Tab
 	bspc node -f next.local.!hidden.window
 
-# alterna entre ou muda janela para um desktop
+# Alterna entre ou muda janela para um desktop
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
@@ -44,42 +42,43 @@ super + t
 super + f
 	bspc node -t \~fullscreen
 
-## SYSTEMA
-
 # Menus
 Menu;Menu
     dmenu_menu
+
 # Menu do systema
 Menu;Escape
     dmenu_sys
 
-## SOM
-
-# Deadbeef
+# Dmenu_deadbeef
 super + a
     dmenu_deadbeef
+
+# Deadbeef
 Menu;d
     deadbeef
 
-# ir para Anterior/Proxima musica
+# Musica anterior 
 super + shift + comma
     deadbeef --prev
+
+# Proxima musica 
 super + shift + period
     deadbeef --next
 
-# Abaixar/Aumentar a o volume
+# Abaixar o volume
 super + comma
     amixer -q set Master 10%-
+
+# Aumentar o volume
 super + period
     amixer -q set Master 10%+
-
-## PROGRAMAS
 
 # St
 super + shift + Return
 	st
 
-# st_scratchpad
+# St_scratchpad
 shift + Menu
     st_scratchpad
 
@@ -106,6 +105,8 @@ Menu;t
 # Fluxgui
 Menu;f
     fluxgui
+
+# Fecha fluxgui
 Menu;F
     killall fluxgui
 
@@ -117,13 +118,15 @@ Menu;T
 Menu;D
     discord
 
-# dmenu_kill
+# Kill
 Menu;K
     dmenu_kill
 
 # Picom
 Menu;p
     picom
+
+# Fecha o picom
 Menu;P
     killall picom
 

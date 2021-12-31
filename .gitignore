@@ -8,6 +8,7 @@
 .config/nitrogen/
 .config/npm/
 .config/pulse/
+.config/qutebrowser/autoconfig.yml
 .config/qutebrowser/bookmarks
 .config/qutebrowser/quickmarks
 .config/transmission/
