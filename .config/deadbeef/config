@@ -13,7 +13,7 @@ gtkui.color.bar_foreground 65535 65535 65535
 gtkui.color.tabstrip_playing_text 46202 52962 65535
 gtkui.color.tabstrip_selected_text 16566 35686 65535
 gtkui.color.tabstrip_text 65535 65535 65535
-gtkui.columns.playlist [{"title":"♫","id":"1","format":"%playstatus%","sort_format":"","size":"20","align":"0","color_override":"0","color":"#ff000000"},{"title":"Custom","id":"9","format":"%filename%","sort_format":"","size":"581","align":"0","color_override":"0","color":"#ffeeeeec"},{"title":"N°","id":"0","format":"","sort_format":"","size":"53","align":"0","color_override":"0","color":"#ffeeeeee"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"64","align":"0","color_override":"0","color":"#ff000000"}]
+gtkui.columns.playlist [{"title":"♫","id":"1","format":"%playstatus%","sort_format":"","size":"20","align":"0","color_override":"0","color":"#ff000000"},{"title":"Custom","id":"9","format":"%filename%","sort_format":"","size":"588","align":"0","color_override":"0","color":"#ffeeeeec"},{"title":"N°","id":"0","format":"","sort_format":"","size":"54","align":"0","color_override":"0","color":"#ffeeeeee"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"65","align":"0","color_override":"0","color":"#ff000000"}]
 gtkui.columns.search [{"title":"Artist / Album","id":"-1","format":"$if(%artist%,%artist%,Unknown Artist)[ - %album%]","sort_format":"","size":"151","align":"0","color_override":"0","color":"#ff000000"},{"title":"Track No","id":"-1","format":"%tracknumber%","sort_format":"","size":"50","align":"1","color_override":"0","color":"#ff000000"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"151","align":"0","color_override":"0","color":"#ff000000"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"50","align":"0","color_override":"0","color":"#ff000000"}]
 gtkui.eq.visible 0
 gtkui.hide_remove_from_disk 1
@@ -104,7 +104,7 @@ playlist.cursor.2 4
 playlist.cursor.20 3
 playlist.cursor.21 49
 playlist.cursor.22 7
-playlist.cursor.23 566
+playlist.cursor.23 1
 playlist.cursor.24 0
 playlist.cursor.3 0
 playlist.cursor.4 22
@@ -130,7 +130,7 @@ playlist.scroll.2 0
 playlist.scroll.20 0
 playlist.scroll.21 0
 playlist.scroll.22 -7
-playlist.scroll.23 13908
+playlist.scroll.23 3642
 playlist.scroll.24 0
 playlist.scroll.3 0
 playlist.scroll.4 243
@@ -163,15 +163,15 @@ playlist.tab.00019 spag heddy
 playlist.tab.00020 teminite
 playlist.tab.00021 the brig
 playlist.tab.00022 virtual riot
-playlist.tab.00023 iroto
+playlist.tab.00023 miss me
 prefwin.geometry.h 600
 prefwin.geometry.w 1200
 prefwin.geometry.x 144
 prefwin.geometry.y 78
 resume.paused 0
-resume.playlist 23
-resume.position 0.0464399
-resume.track 587
+resume.playlist -1
+resume.position -1.000000
+resume.track -1
 searchwin.geometry.h 600
 searchwin.geometry.w 1200
 searchwin.geometry.x 79

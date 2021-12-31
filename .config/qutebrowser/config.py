@@ -58,8 +58,30 @@ config.load_autoconfig(True)
 # Salva a sessão automaticamente
 c.auto_save.session = True
 
+# Inicia com a barra escondida
 config.set("statusbar.show", "never")
 config.set("tabs.show", "never")
+
+# Abre a pagina inicial caso fechada única aba aberta
+config.set("tabs.last_close", "startpage")
+
+# Formatação dos títulos das abas
+config.set("tabs.title.format", "{perc}{audio}{private}{current_title}")
+
+# Videos não tocam automaticamente
+config.set("content.autoplay", False)
+
+# Formatação de horários
+config.set('completion.timestamp_format', '%A %d/%m/%Y - %H:%M')
+
+# Indicadores usando numeros
+config.set('hints.mode', 'number')
+
+# Corretor ortográfico
+config.set('spellcheck.languages', ["pt-BR", "en-US"])
+
+# Conteudo da barra de status
+config.set('statusbar.widgets', ["keypress", "url", "progress"])
 
 # Adblock
 c.content.blocking.adblock.lists = ['https://easylist.to/easylist/easylist.txt', 'https://easylist.to/easylist/easyprivacy.txt', 'https://easylist-downloads.adblockplus.org/easylistdutch.txt', 'https://easylist-downloads.adblockplus.org/abp-filters-anti-cv.txt', 'https://www.i-dont-care-about-cookies.eu/abp/', 'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt']
@@ -74,9 +96,9 @@ config.set("fileselect.multiple_files.command", ['st', '-c', 'ranger,ranger', '-
 #   - true
 #   - false
 #   - ask
-config.set('content.notifications.enabled', True, 'https://www.youtube.com')
-config.set('content.notifications.enabled', True, 'https://twitter.com')
-config.set('content.notifications.enabled', True, 'https://www.facebook.com')
+config.set('content.notifications.enabled', True, 'https://www.youtube.com/*')
+config.set('content.notifications.enabled', True, 'https://twitter.com/*')
+config.set('content.notifications.enabled', True, 'https://facebook.com/*')
 
 # Editor (and arguments) to use for the `edit-*` commands. The following
 # placeholders are defined:  * `{file}`: Filename of the file to be
@@ -84,7 +106,7 @@ config.set('content.notifications.enabled', True, 'https://www.facebook.com')
 # `{column}`: Column in which the caret is found in the text. *
 # `{line0}`: Same as `{line}`, but starting from index 0. * `{column0}`:
 # Same as `{column}`, but starting from index 0.
-c.editor.command = ['nvim', '{file}']
+c.editor.command = ['st', '-e', 'nvim', '{file}']
 
 # Search engines which can be used via the address bar.  Maps a search
 # engine name (such as `DEFAULT`, or `ddg`) to a URL with a `{}`
@@ -127,16 +149,28 @@ c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
 
 # Troca entre abas
 config.bind('<Ctrl-Tab>', 'tab-next')
+config.bind('<Alt-Left>', 'back')
+config.bind('<Alt-Right>', 'forward')
+config.bind('<Ctrl-a>', 'back')
+config.bind('<Ctrl-d>', 'forward')
 # Atalho para assistir link com mpv
 config.bind('zz', 'hint links spawn mpv {hint-url}')
-# Esconder a barra de abas e barra de status
+# Ativa/Desativa a barra de abas e barra de status
 config.bind('zx', 'config-cycle statusbar.show always never;; config-cycle tabs.show always never')
+# Baixar como vídeo
+config.bind('zv', 'hint links spawn st -e yt-dlp {hint-url}')
 # Baixar como áudio
-config.bind('zm', 'hint links spawn st -e yt-dlp -x {hint-url}')
+config.bind('za', 'hint links spawn st -e yt-dlp -x {hint-url}')
+# Baixar imagem selecionada
+config.bind('zi', 'hint images download')
 # Abre no firefox
 config.bind('zf', 'hint links spawn firefox {url}')
-# Thema escuro
+# Ativa/Desativa tema escuro
 config.bind('zd', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/styles/dark.css ""')
+# Ativa/Desativa javascript para um site
+config.bind('zJ', 'config-cycle -p -u *://*.{url:host}/* content.javascript.enabled ;; reload')
+# Ativa/Desativa adblocking para um site
+config.bind('zb', 'config-cycle -p -u *://*.{url:host}/* content.blocking.enabled ;; reload')
 
 # ALIASES
 c.aliases = {'q': 'quit', 'w': 'session-save', 'wq': 'quit --save'}
@@ -151,8 +185,8 @@ c.url.start_pages = 'https://www.google.com/'
 
 # CORES
 
+# Pedir modo escuro aos sites que o suportam
 config.set('colors.webpage.preferred_color_scheme', 'dark')
-
 # Cor do texto da barra de compleção
 c.colors.completion.fg = '#ffffff'
 # Cor de fundo da barra de compleção.
@@ -180,8 +214,12 @@ c.colors.completion.scrollbar.fg = '#ffffff'
 c.colors.downloads.bar.bg = '#000000'
 # Cor de fundo de downloads com erro
 c.colors.downloads.error.bg = '#ff0000'
-# Cor da fonte na barra de compleção
+# Cor da fonte de indicadores de links
 c.colors.hints.fg = '#ffffff'
+# Cor de fundo de indicadores de links
+c.colors.hints.bg = '#000000'
+# Borda de indicadores de links
+config.set('hints.border', '1px solid #ffffff')
 # Cor da fonte em partes procuradas
 c.colors.hints.match.fg = '#ffff00'
 # Cor de fundo de informações importantes

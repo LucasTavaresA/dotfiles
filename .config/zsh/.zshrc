@@ -6,7 +6,6 @@
 export SHELL="zsh"
 # Não adiciona esses itens ao histórico
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
-
 HISTFILE=~/.local/share/history
 HISTSIZE=10000
 SAVEHIST=10000
@@ -100,7 +99,7 @@ alias pss='pacman -Ss'
 alias psyu='sudo pacman -Syu'
 alias pqs='pacman -Qs'
 alias prns='sudo pacman -Rns'
-alias ex="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
+alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
 
 # Prompt do starship
 eval "$(starship init zsh)"
