@@ -50,21 +50,21 @@ Menu;Menu
 Menu;Escape
     dmenu_sys
 
-# Dmenu_deadbeef
+# Dmenu_musica
 super + a
-    dmenu_deadbeef
+    dmenu_musica
 
-# Deadbeef
-Menu;d
-    deadbeef
+# Ncmpcpp
+Menu;M
+    st -c ncmpcpp -e ncmpcpp
 
 # Musica anterior 
 super + shift + comma
-    deadbeef --prev
+    st -e mpc prev && notify-send "$(mpc current)"
 
-# Proxima musica 
+# Proxima musica
 super + shift + period
-    deadbeef --next
+    st -e mpc next && notify-send "$(mpc current)"
 
 # Abaixar o volume
 super + comma

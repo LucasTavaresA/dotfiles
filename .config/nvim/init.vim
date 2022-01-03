@@ -103,8 +103,5 @@ vnoremap <Up> gk
 map E :LiteDFMToggle<CR>
 autocmd VimEnter * LiteDFMToggle
 
-" Previa de cores : nvim colorizer
-autocmd VimEnter * ColorizerToggle
-
 " Comentar linhas
 map C :norm gcc<CR>j

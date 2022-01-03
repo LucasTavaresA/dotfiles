@@ -1,10 +1,13 @@
 .cache/
 .config/Code*
 .config/dconf/
+.config/deadbeef/
 .config/discord/
 .config/galculator/
 .config/GIMP/
 .config/git/config
+.config/mpd/
+.config/ncmpcpp/error.log
 .config/nitrogen/
 .config/npm/
 .config/pulse/

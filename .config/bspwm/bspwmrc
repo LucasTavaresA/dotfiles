@@ -33,7 +33,7 @@ bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 bspc rule -a mpv state=fullscreen
 bspc rule -a guvcview state=floating rectangle=480x270+0+0 sticky=on layer=above
-bspc rule -a Deadbeef state=floating rectangle=1200x600+0+0 sticky=on layer=above center=true
+bspc rule -a ncmpcpp state=floating rectangle=1200x600+0+0 sticky=on layer=above center=true
 bspc rule -a xev state=floating rectangle=480x270+0+0 sticky=on layer=above center=true
 bspc rule -a Gcr-prompter state=floating rectangle=480x270+0+0 sticky=on layer=above center=true
 bspc rule -a Transmission-gtk state=floating rectangle=1000x700+0+0 sticky=on layer=above center=true
