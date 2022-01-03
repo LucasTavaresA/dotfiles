@@ -58,13 +58,17 @@ super + a
 Menu;M
     st -c ncmpcpp -e ncmpcpp
 
+# Pausa musica
+super + shift + a
+    mpc toggle
+
 # Musica anterior 
 super + shift + comma
-    st -e mpc prev && notify-send "$(mpc current)"
+    mpc prev && notify-send "$(mpc current)"
 
 # Proxima musica
 super + shift + period
-    st -e mpc next && notify-send "$(mpc current)"
+    mpc next && notify-send "$(mpc current)"
 
 # Abaixar o volume
 super + comma

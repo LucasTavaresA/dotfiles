@@ -20,7 +20,6 @@ progressbar_color = white
 progressbar_elapsed_color = white:b
 statusbar_color = white
 statusbar_time_color = white:b
-execute_on_song_change = "notify-send "$(mpc current)""
 cyclic_scrolling = yes
 mouse_support = no
 song_list_format = {$8%f$9}$R{$3%l$9}
