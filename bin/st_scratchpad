@@ -1,9 +1,12 @@
 #!/bin/sh
 
-id=$(xdotool search --class st_scratchpad)
-
-if [ ! -f /tmp/hide_scratch ]; then
-        touch /tmp/hide_scratch && xdo hide $id
-elif [ -f /tmp/hide_scratch ]; then
-        rm /tmp/hide_scratch && xdo show $id
+id=$(xdotool search --class st)
+if [ -z "$id" ]; then
+    st
+else
+    if [ ! -f /tmp/hide_scratch ]; then
+            touch /tmp/hide_scratch && xdo hide $id
+    elif [ -f /tmp/hide_scratch ]; then
+            rm /tmp/hide_scratch && xdo show $id
+    fi
 fi
