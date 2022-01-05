@@ -10,8 +10,12 @@ super + Return
 super + Escape
 	bspc desktop -l next
 
-# Alterna entre janelas no desktop atual
-super + Tab
+# Troca o foco para a janela anterior
+super + Left
+	bspc node -f prev.local.!hidden.window
+
+# Troca o foco para a proxima janela
+super + Right
 	bspc node -f next.local.!hidden.window
 
 # Alterna entre ou muda janela para um desktop
@@ -27,7 +31,7 @@ super + space
 	bspc node -p cancel
 
 # Expande nodo em uma direção
-super + {Left,Down,Up,Right}
+super + shift + {Left,Down,Up,Right}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
 # Contrai um nodo em uma direção
@@ -80,7 +84,7 @@ super + period
 
 # St
 super + shift + Return
-	st
+	st -c st_scratchpad
 
 # St_scratchpad
 shift + Menu

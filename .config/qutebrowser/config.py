@@ -52,6 +52,9 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 
 # MINHAS CONFIGURAÇÕES
 
+# Javascript desativado por padrão
+config.set('content.javascript.enabled', False)
+
 # Carregar o autoconfig.yml
 config.load_autoconfig(True)
 
@@ -70,7 +73,6 @@ config.set("tabs.tabs_are_windows", True)
 
 # Barra de status aparece quando muda de modo
 config.set("statusbar.show", "in-mode")
-#config.set("", "")
 
 # Formatação dos títulos das abas
 config.set("tabs.title.format", "{perc}{audio}{private}{current_title}")
@@ -163,9 +165,13 @@ config.bind('<Alt-d>', 'forward')
 # Atalho para assistir link com mpv
 config.bind('zp', 'hint links spawn mpv {hint-url}')
 # Ativa/Desativa a barra de abas e barra de status
-config.bind('zx', 'config-cycle statusbar.show always never;; config-cycle tabs.show always never')
+config.bind('zx', 'config-cycle statusbar.show always in-mode;; config-cycle tabs.show always switching')
 # Baixar imagem selecionada
 config.bind('zi', 'hint images download')
+# Baixar como video
+config.bind('zv', 'hint links spawn st -c st_download -e yt {hint-url}')
+# Baixar como audio
+config.bind('za', 'hint links spawn st -c st_download -e yta {hint-url}')
 # Abre no firefox
 config.bind('zf', 'hint links spawn firefox {url}')
 # Ativa/Desativa tema escuro

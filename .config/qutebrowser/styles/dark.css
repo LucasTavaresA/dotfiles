@@ -1749,7 +1749,7 @@ body{background-color:#000000 !important;color: #fff !important; background-imag
 .playbackSoundBadge__titleLink, .playbackSoundBadge__titleLink:visited{filter: invert(100%) !important;}
 a.playbackSoundBadge__lightLink:hover, a.playbackSoundBadge__lightLink:focus{filter: invert(100%) !important;}
 .g-tabs-link, .g-tabs-link:visited{color: #ffffff !important}
-.g-tabs-link.active{color: #f50 !important}
+.g-tabs-link.active{color: #00f !important}
 .sc-button-small.sc-button-icon:not(.sc-button-stretch-icon), .sc-button-small.sc-button-responsive:not(.sc-button-stretch-icon){background-color: #000 !important}
 .sound__soundActions{background-color: transparent !important}
 .soundActions{background-color: transparent !important}
@@ -1757,8 +1757,8 @@ a.playbackSoundBadge__lightLink:hover, a.playbackSoundBadge__lightLink:focus{fil
 .soundBadge .soundTitle__username{filter: invert(100%) !important;}
 a.sc-link-dark{filter: invert(100%) !important;}
 .soundContext__line .sc-ministats{color: #fff !important}
-.sc-border-light-right{border-right: 1px solid #F85402 !important}
-.sc-border-light-bottom{border-bottom: 1px solid #F85402 !important}
+.sc-border-light-right{border-right: 1px solid #ffffff !important}
+.sc-border-light-bottom{border-bottom: 1px solid #fff !important}
 .playControls__inner, .playControls__bg{border-top: unset !important}
 .playbackSoundBadge__showQueue{filter: invert(100%) !important;}
 .sc-button{color: #fff !important; border: 0px solid #fff !important}
@@ -1824,7 +1824,7 @@ textarea, select, input{background: #000 !important}
 .uploadLoggedOut__testimonialListItemQuote{color: #000000 !important}
 .uploadLoggedOut__toolsText{color: #fff !important}
 .productsMiniTable{color: #000000 !important}
-.listenLogin{background-color: #000000 !important;border: 1px solid #f50 !important}
+.listenLogin{background-color: #000000 !important;border: 1px solid #fff !important}
 .g-scrollable-v .g-scrollable-inner{background-color: #000000 !important}
 .chartTrack.m-playing, .chartTrack:hover{background: #000000 !important}
 .sc-button-small.sc-button-like:before{filter: invert(100%) !important;}
@@ -1832,14 +1832,14 @@ textarea, select, input{background: #000 !important}
 .sc-button-small.sc-button-selected.sc-button-more:before, .sc-button-small.sc-button-active.sc-button-more:before{filter: invert(0%) !important;}
 .linkMenu{background-color: #000000 !important}
 .sidebarInfoBox__body{background-color: #000000 !important}
-.sc-text{color: #f50 !important}
+.sc-text{color: #fff bold !important}
 .sc-button-small.sc-button-selected.sc-button-like:before, .sc-button-small.sc-button-selected.sc-button-like.sc-button-lightfg:before, .sc-button-small.sc-button-selected.sc-button-like.sc-button-visual:before{filter: invert(0%) !important;}
 .sc-button-small.sc-button-selected.sc-button-repost:before, .sc-button-small.sc-button-selected.sc-button-repost.sc-button-lightfg:before, .sc-button-small.sc-button-selected.sc-button-repost.sc-button-visual:before{filter: invert(0%) !important;}
 .soundBadge__additional{background: unset !important}
 .searchTitle{background-color: #000000 !important}
 .g-nav-item>.g-nav-link{color: #fff !important}
 .uploadMain__chooserContainer{background-color: #000000 !important}
-.sc-border-light{border: 1px solid #f50 !important}
+.sc-border-light{border: 1px solid #fff !important}
 .uploadMain__foot{background-color: unset !important}
 .sc-background-white{background-color: unset !important}
 .sc-background-light{background-color: unset !important}
@@ -1847,9 +1847,9 @@ textarea, select, input{background: #000 !important}
 .dateSelectStats__datepicker{background: #000000 !important}
 .sc-button-small.sc-button-edit:before{filter: invert(100%) !important;}
 .sc-button-medium.sc-button-addtoset:before{filter: invert(100%) !important;}
-.conversation__actions{background: #000000 !important;box-shadow: 0 1px 0 #F85402 !important;}
+.conversation__actions{background: #000000 !important;box-shadow: 0 1px 0 #ff0 !important;}
 .inboxItem:hover, .inboxItem:focus, .inboxItem.unread, .inboxItem.active{background-color: #000000 !important;}
-.inbox__item:before{background-color: #F85402 !important;}
+.inbox__item:before{background-color: #00f !important;}
 .g-type-marketing-header{color: black !important;}
 .g-type-marketing-info{color: black !important;}
 .playControls__castControl>button{filter: invert(100%) !important;}
@@ -1869,7 +1869,7 @@ textarea, select, input{background: #000 !important}
 .activeUpload.m-hq-upload-note .activeUpload__hqNote{background-color: #0002 !important;}
 .activeUpload__form{background-color: transparent !important;}
 .suggestedTags{background-color: black !important;}
-.suggestedTags__listItem.selected{background-color: #ff7000 !important;}
+.suggestedTags__listItem.selected{background-color: #00f !important;}
 .tagInput__wrapper{background-color: transparent !important;}
 .sc-button-dropdown:focus:not(.sc-button-disabled):not(:disabled){box-shadow: 0 0 0 4px #000000 !important;}
 .g-upsell-container{background: transparent !important;}
