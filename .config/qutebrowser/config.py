@@ -60,10 +60,17 @@ c.auto_save.session = True
 
 # Inicia com a barra escondida
 config.set("statusbar.show", "never")
-config.set("tabs.show", "never")
+config.set("tabs.show", "switching")
 
 # Abre a pagina inicial caso fechada única aba aberta
-config.set("tabs.last_close", "startpage")
+config.set("tabs.last_close", "ignore")
+
+# Todas as abas abrem em novas janelas
+config.set("tabs.tabs_are_windows", True)
+
+# Barra de status aparece quando muda de modo
+config.set("statusbar.show", "in-mode")
+#config.set("", "")
 
 # Formatação dos títulos das abas
 config.set("tabs.title.format", "{perc}{audio}{private}{current_title}")
@@ -146,21 +153,17 @@ c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
                     }
 
 # ATALHOS
-
+config.unbind('M')
 # Troca entre abas
 config.bind('<Ctrl-Tab>', 'tab-next')
 config.bind('<Alt-Left>', 'back')
 config.bind('<Alt-Right>', 'forward')
-config.bind('<Ctrl-a>', 'back')
-config.bind('<Ctrl-d>', 'forward')
+config.bind('<Alt-a>', 'back')
+config.bind('<Alt-d>', 'forward')
 # Atalho para assistir link com mpv
-config.bind('zz', 'hint links spawn mpv {hint-url}')
+config.bind('zp', 'hint links spawn mpv {hint-url}')
 # Ativa/Desativa a barra de abas e barra de status
 config.bind('zx', 'config-cycle statusbar.show always never;; config-cycle tabs.show always never')
-# Baixar como vídeo
-config.bind('zv', 'hint links spawn st -e yt-dlp {hint-url}')
-# Baixar como áudio
-config.bind('za', 'hint links spawn st -e yt-dlp -x {hint-url}')
 # Baixar imagem selecionada
 config.bind('zi', 'hint images download')
 # Abre no firefox
@@ -168,9 +171,23 @@ config.bind('zf', 'hint links spawn firefox {url}')
 # Ativa/Desativa tema escuro
 config.bind('zd', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/styles/dark.css ""')
 # Ativa/Desativa javascript para um site
-config.bind('zJ', 'config-cycle -p -u *://*.{url:host}/* content.javascript.enabled ;; reload')
+config.bind('zj', 'config-cycle -p -u *://*.{url:host}/* content.javascript.enabled ;; reload')
 # Ativa/Desativa adblocking para um site
 config.bind('zb', 'config-cycle -p -u *://*.{url:host}/* content.blocking.enabled ;; reload')
+# Traduz a pagina
+config.bind('ztp', 'spawn --userscript translate')
+# Traduz o texto selecionado
+config.bind('zts', 'spawn --userscript translate --text')
+# Modo leitura
+config.bind('zl', 'spawn --userscript readability')
+
+# Copia trechos de codigo
+config.bind('zc', 'hint code userscript code_select.py')
+c.hints.selectors["code"] = [
+    # Selects all code tags whose direct parent is not a pre tag
+    ":not(pre) > code",
+    "pre"
+]
 
 # ALIASES
 c.aliases = {'q': 'quit', 'w': 'session-save', 'wq': 'quit --save'}
@@ -219,11 +236,11 @@ c.colors.hints.fg = '#ffffff'
 # Cor de fundo de indicadores de links
 c.colors.hints.bg = '#000000'
 # Borda de indicadores de links
-config.set('hints.border', '1px solid #ffffff')
+config.set('hints.border', 'none')#'1px solid #ffffff')
 # Cor da fonte em partes procuradas
 c.colors.hints.match.fg = '#ffff00'
 # Cor de fundo de informações importantes
-c.colors.messages.info.bg = '#ffff00'
+c.colors.messages.info.bg = '#444444'
 # Cor de fundo da barra de status
 c.colors.statusbar.normal.bg = '#000000'
 # Cor do texto da barra de status quando inserindo texto

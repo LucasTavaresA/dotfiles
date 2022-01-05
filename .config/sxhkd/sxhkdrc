@@ -103,19 +103,15 @@ Menu;C
     galculator
 
 # Telegram
-Menu;t
+Menu;T
     telegram-desktop
 
-# Fluxgui
-Menu;f
-    fluxgui
-
-# Fecha fluxgui
+# Abre/Fecha fluxgui
 Menu;F
-    killall fluxgui
+    killall fluxgui || fluxgui
 
 # Transmission
-Menu;T
+Menu;super + t
     transmission-gtk
 
 # Discord
@@ -126,11 +122,7 @@ Menu;D
 Menu;K
     dmenu_kill
 
-# Picom
-Menu;p
-    picom
-
-# Fecha o picom
+# Abre/Fecha o picom
 Menu;P
-    killall picom
+    killall picom || picom
 

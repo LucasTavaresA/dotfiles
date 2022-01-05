@@ -1,11 +1,34 @@
+strong {
+    color: #00aa00
+}
+.site-header {
+    background-color: #000000
+}
+.sidebar .widget {
+    background-color: #000000
+}
+.dropdown-caret {
+    border-right-color: transparent !important;
+    border-bottom-color: transparent !important;
+    border-left-color: transparent !important;
+}
+.header {
+    color: #fff !important;
+}
 * {
   border-color: #ffffff !important;
 }
 a {
-  color: #0080ff !important;
+  color: #0099ff !important;
+}
+a h3 {
+  color: #0099ff !important;
+}
+a:visited h3 {
+    color: #0040ff !important;
 }
 a:visited {
-  color: #0050ff !important;
+  color: #0040ff !important;
 }
 body {
   background-color: #000000 !important;
@@ -16,7 +39,7 @@ html {
 }
 input,
 textarea {
-  background-color: #000000 !important;
+  background-color: #404040 !important;
   color: #ffffff !important;
 }
 blockquote,
@@ -296,7 +319,7 @@ a.filter-item:hover,
   border-color: #000000 !important;
 }
 .pl-c {
-  color: #404040 !important;
+  color: #707070 !important;
 }
 .pl-c1 {
   color: #00f !important;
@@ -621,19 +644,17 @@ qul.branches-list * {
   background-color: #333 !important;
 }
 .btn {
-  background-image: linear-gradient(to bottom, #000000, #000000) !important;
-  border-color: #000000 !important;
-  color: #0040ff !important;
+  background-color: #333 !important;
+  border-color: #333 !important;
+  color: #ffffff !important;
 }
 .btn:hover {
   background-color: #404040 !important;
 }
 .btn-primary,
 .issues-listing .btn-primary {
-  background-color: #008000 !important;
-  background-image: linear-gradient(#008000, #004000) !important;
-  color: #000 !important;
-  filter: opacity(62.5%);
+  background-color: #333333 !important;
+  color: #fff !important;
 }
 .entry-title a {
   color: #00f !important;
@@ -1141,7 +1162,7 @@ DIV.CommentBox P.CommentTitle {
   background-color: #000000 !important;
 }
 body * {
-  border-color: #333 !important;
+  border-color: #fff !important;
 }
 #content {
   background-color: #000000 !important;

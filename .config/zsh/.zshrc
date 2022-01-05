@@ -65,9 +65,8 @@ IFS=$SAVEIFS
 alias clip='xclip -selection clipboard'
 alias sudo="doas"
 alias yt='yt-dlp'
-alias yta='yt-dlp -x --audio-format mp3'
+alias yta='yt-dlp -k -x --audio-format mp3'
 # Arquivos e Diretórios
-alias RM="rm -rf"
 alias l='lsd -l --group-dirs first'
 alias la='lsd -A --group-dirs first'
 alias lla='lsd -lA --group-dirs first'
@@ -80,7 +79,6 @@ alias n='neofetch'
 alias g='geany'
 alias v='nvim'
 alias r='ranger'
-alias mocp='mocp -M "$XDG_CONFIG_HOME"/moc -O MOCDir="$XDG_CONFIG_HOME"/moc'
 # Git aliases
 alias gi='git init'
 alias gc='git clone'
