@@ -16,6 +16,7 @@
 .config/qutebrowser/quickmarks
 .config/transmission/
 .config/VirtualBox/
+.config/nvim/plugged/
 .local/
 .mozilla/
 .pki/

@@ -1,8 +1,9 @@
 #!/bin/sh
 
 id=$(xdotool search --class st)
+
 if [ -z "$id" ]; then
-    st
+        st
 else
     if [ ! -f /tmp/hide_scratch ]; then
             touch /tmp/hide_scratch && xdo hide $id

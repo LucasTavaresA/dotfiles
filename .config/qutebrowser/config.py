@@ -162,6 +162,8 @@ config.bind('<Alt-Left>', 'back')
 config.bind('<Alt-Right>', 'forward')
 config.bind('<Alt-a>', 'back')
 config.bind('<Alt-d>', 'forward')
+# Reabre janelas fechadas
+config.bind('u', 'undo --window')
 # Atalho para assistir link com mpv
 config.bind('zp', 'hint links spawn mpv {hint-url}')
 # Ativa/Desativa a barra de abas e barra de status

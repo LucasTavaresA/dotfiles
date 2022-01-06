@@ -15,6 +15,7 @@ alias ..='cd ..'
 alias lo='locate -Ai'
 alias u='sudo updatedb'
 alias ch='chmod +x'
+alias rm='rm -rf'
 # Programas
 alias n='neofetch'
 alias g='geany'

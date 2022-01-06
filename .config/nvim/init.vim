@@ -1,18 +1,18 @@
-" Vim-plug
-
+""""" Vim-plug
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'projekt0n/github-nvim-theme'
 Plug 'farmergreg/vim-lastplace'
-Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 Plug 'Yggdroot/indentLine'
 Plug 'bilalq/lite-dfm'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'terryma/vim-expand-region'
 
-" Indicação de sintaxe
+""""" Indicação de sintaxe
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " C#
 " Plug 'OmniSharp/omnisharp-vim'
@@ -27,14 +27,15 @@ Plug 'baskerville/vim-sxhkdrc'
 
 call plug#end()
 
-" Miscelânea
-set whichwrap+=<,>,h,l,[,]
+""""" Configurações gerais
 set hidden
+" Da a volta entre linhas
+set whichwrap+=<,>,h,l,[,]
 " Indica linha selecionada no modo normal
 set cursorline
 " Ativa uso do mouse
 set mouse=a
-" Ativa numero de linhas
+" Ativa indicador numérico de linhas
 set number
 " Define quando a barra superior aparece
 set showtabline=0
@@ -48,17 +49,19 @@ set clipboard=unnamedplus
 set spell spelllang=pt
 " Junta os números e marcadores em uma única coluna
 set signcolumn=number
+" Atualiza o neovim mais rapido
+set updatetime=100
 
-" Aparência : github_dark_default
+""""" Aparência : github_dark_default
 colorscheme github_dark_default
 set background=dark
 " Transparência
 hi Normal guibg=NONE ctermbg=NONE
 hi EndOfBuffer guibg=NONE ctermbg=NONE
 hi Normal guibg=NONE ctermbg=NONE
-hi CursorLine guibg=#303030
+hi CursorLine guibg=#222222
 
-" AutoCompletação : COC
+""""" AutoCompleção : COC
 set shortmess+=c
 " Usa tab para compleção
 inoremap <silent><expr> <TAB>
@@ -75,14 +78,7 @@ endfunction
 " \ 'cs': ['OmniSharp']
 " \}
 
-" Indicador git : GitGutter
-hi GitGutterAdd    guifg=#008000 ctermfg=2
-hi GitGutterChange guifg=#FFFF00 ctermfg=3
-hi GitGutterDelete guifg=#FF0000 ctermfg=1
-let g:lf_map_keys = 0
-let g:gitgutter_highlight_linenrs = 1
-
-" Indicador indentação : IndentLine
+""""" Indicador indentação : IndentLine
 let g:indentLine_enabled = 1
 set expandtab
 set shiftwidth=4
@@ -91,6 +87,7 @@ set tabstop=4
 let g:indentLine_color_gui = '#777777'
 let g:indentLine_char = '│'
 
+""""" TECLAS
 " Troca entre partes da mesma linha usando setas
 nnoremap <Down> gj
 nnoremap <Up> gk
@@ -98,10 +95,13 @@ inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
 vnoremap <Down> gj
 vnoremap <Up> gk
-
 " Modo foco : LiteDFM
-map E :LiteDFMToggle<CR>
+map zx :LiteDFMToggle<CR>
 autocmd VimEnter * LiteDFMToggle
-
 " Comentar linhas
 map C :norm gcc<CR>j
+" ColorizerToggle
+map cc :ColorizerToggle<CR>
+" Expand-region
+map z<Up> <Plug>(expand_region_expand)
+map z<Down> <Plug>(expand_region_shrink)

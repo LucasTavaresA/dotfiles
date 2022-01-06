@@ -15,12 +15,16 @@ super + Left
 	bspc node -f prev.local.!hidden.window
 
 # Troca o foco para a proxima janela
-super + Right
+super + {Right,Tab}
 	bspc node -f next.local.!hidden.window
 
 # Alterna entre ou muda janela para um desktop
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
+
+# Move janela para o espaço preselecionado
+super + ctrl + Return
+    bspc node -n last.!automatic
 
 # Preseleciona uma direção
 super + ctrl + {Left,Down,Up,Right}
@@ -30,13 +34,16 @@ super + ctrl + {Left,Down,Up,Right}
 super + space
 	bspc node -p cancel
 
-# Expande nodo em uma direção
-super + shift + {Left,Down,Up,Right}
-	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
-
-# Contrai um nodo em uma direção
+# Expande/contrai as janelas
 super + alt + {Left,Down,Up,Right}
-	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+    {bspc node @parent/second -z left -20 0; \
+    bspc node @parent/first -z right -20 0, \
+    bspc node @parent/second -z top 0 +20; \
+    bspc node @parent/first -z bottom 0 +20, \
+    bspc node @parent/first -z bottom 0 -20; \
+    bspc node @parent/second -z top 0 -20, \
+    bspc node @parent/first -z right +20 0; \
+    bspc node @parent/second -z left +20 0}
 
 # Alterna entre janela flutuante
 super + t
@@ -45,6 +52,10 @@ super + t
 # Alterna tela cheia
 super + f
 	bspc node -t \~fullscreen
+
+# Ajusta proporção da janela selecionada
+shift + Tab
+    ajustar_tamanho.sh
 
 # Menus
 Menu;Menu
@@ -84,7 +95,7 @@ super + period
 
 # St
 super + shift + Return
-	st -c st_scratchpad
+	st
 
 # St_scratchpad
 shift + Menu
@@ -130,3 +141,6 @@ Menu;K
 Menu;P
     killall picom || picom
 
+# Teclas do sxhkd
+Menu;slash
+    sxhkd_atalhos
