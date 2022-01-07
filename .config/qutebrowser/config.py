@@ -51,6 +51,10 @@ config.set('content.javascript.enabled', True, 'chrome://*/*')
 config.set('content.javascript.enabled', True, 'qute://*/*')
 
 # MINHAS CONFIGURAÇÕES
+config.set('scrolling.bar', 'always')
+
+# Fullscreen limitado a janela do navegador
+config.set('content.fullscreen.window', True)
 
 # Javascript desativado por padrão
 config.set('content.javascript.enabled', False)
@@ -61,40 +65,67 @@ config.load_autoconfig(True)
 # Salva a sessão automaticamente
 c.auto_save.session = True
 
-# Inicia com a barra escondida
-config.set("statusbar.show", "never")
+# Abre novas abas de fundo
+config.set('new_instance_open_target', 'tab-bg')
+
+# Barra escondida
+config.set("statusbar.show", "in-mode")
 config.set("tabs.show", "switching")
 
 # Abre a pagina inicial caso fechada única aba aberta
-config.set("tabs.last_close", "ignore")
+config.set("tabs.last_close", "startpage")
 
-# Todas as abas abrem em novas janelas
-config.set("tabs.tabs_are_windows", True)
+# Confirma antes de sair
+config.set('confirm_quit', ["multiple-tabs"])
 
-# Barra de status aparece quando muda de modo
-config.set("statusbar.show", "in-mode")
+# Muda ordem do menu de compleção
+config.set("completion.open_categories", ["quickmarks", "searchengines", "bookmarks", "history", "filesystem"])
 
 # Formatação dos títulos das abas
-config.set("tabs.title.format", "{perc}{audio}{private}{current_title}")
+config.set("tabs.title.format", "{perc}{private}{current_title}")
 
-# Videos não tocam automaticamente
+# Vídeos não tocam automaticamente
 config.set("content.autoplay", False)
 
 # Formatação de horários
 config.set('completion.timestamp_format', '%A %d/%m/%Y - %H:%M')
 
-# Indicadores usando numeros
-config.set('hints.mode', 'number')
-
 # Corretor ortográfico
 config.set('spellcheck.languages', ["pt-BR", "en-US"])
 
-# Conteudo da barra de status
+# Conteúdo da barra de status
 config.set('statusbar.widgets', ["keypress", "url", "progress"])
 
-# Adblock
-c.content.blocking.adblock.lists = ['https://easylist.to/easylist/easylist.txt', 'https://easylist.to/easylist/easyprivacy.txt', 'https://easylist-downloads.adblockplus.org/easylistdutch.txt', 'https://easylist-downloads.adblockplus.org/abp-filters-anti-cv.txt', 'https://www.i-dont-care-about-cookies.eu/abp/', 'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt']
+# Posição da barra de status
+config.set('statusbar.position', 'top')
 
+# Tamanho da barra de compleção
+config.set('completion.height', '100%')
+
+# Adblock
+config.set('content.blocking.method', 'both')
+c.content.blocking.adblock.lists = [
+        'https://easylist.to/easylist/easylist.txt', 
+        'https://easylist.to/easylist/easyprivacy.txt', 
+        'https://easylist-downloads.adblockplus.org/easylistdutch.txt', 
+        'https://easylist-downloads.adblockplus.org/abp-filters-anti-cv.txt', 
+        'https://www.i-dont-care-about-cookies.eu/abp/', 
+        'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt',
+        "https://easylist.to/easylist/fanboy-social.txt",
+        "https://secure.fanboy.co.nz/fanboy-annoyance.txt",
+        "https://pgl.yoyo.org/adservers/serverlist.php?showintro=0;hostformat=hosts",
+        "https://github.com/uBlockOrigin/uAssets/raw/master/filters/legacy.txt",
+        "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt",
+        "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2020.txt",
+        "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2021.txt",
+        "https://github.com/uBlockOrigin/uAssets/raw/master/filters/badware.txt",
+        "https://github.com/uBlockOrigin/uAssets/raw/master/filters/privacy.txt",
+        "https://github.com/uBlockOrigin/uAssets/raw/master/filters/badlists.txt",
+        "https://github.com/uBlockOrigin/uAssets/raw/master/filters/annoyances.txt",
+        "https://github.com/uBlockOrigin/uAssets/raw/master/filters/resource-abuse.txt",
+        "https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt"
+        ]
+  
 # Usa o ranger para mandar arquivos
 config.set("fileselect.handler", "external")
 config.set("fileselect.single_file.command", ['st', '-c', 'ranger,ranger', '-e', 'ranger', '--choosefile', '{}'])
@@ -156,18 +187,18 @@ c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
 
 # ATALHOS
 config.unbind('M')
-# Troca entre abas
+config.unbind('<Shift-H>')
+config.unbind('<Shift-L>')
+
 config.bind('<Ctrl-Tab>', 'tab-next')
-config.bind('<Alt-Left>', 'back')
-config.bind('<Alt-Right>', 'forward')
-config.bind('<Alt-a>', 'back')
-config.bind('<Alt-d>', 'forward')
-# Reabre janelas fechadas
-config.bind('u', 'undo --window')
+config.bind('<Ctrl-Left>', 'tab-prev')
+config.bind('<Ctrl-Right>', 'tab-next')
+config.bind('<Ctrl-a>', 'back')
+config.bind('<Ctrl-d>', 'forward')
+config.bind('u', 'undo')
+config.bind('zx', 'config-cycle statusbar.show always in-mode;; config-cycle tabs.show always switching')
 # Atalho para assistir link com mpv
 config.bind('zp', 'hint links spawn mpv {hint-url}')
-# Ativa/Desativa a barra de abas e barra de status
-config.bind('zx', 'config-cycle statusbar.show always in-mode;; config-cycle tabs.show always switching')
 # Baixar imagem selecionada
 config.bind('zi', 'hint images download')
 # Baixar como video
@@ -188,17 +219,15 @@ config.bind('ztp', 'spawn --userscript translate')
 config.bind('zts', 'spawn --userscript translate --text')
 # Modo leitura
 config.bind('zl', 'spawn --userscript readability')
-
+# Copia links
+config.bind('zc', 'hint links yank')
 # Copia trechos de codigo
-config.bind('zc', 'hint code userscript code_select.py')
+config.bind('zC', 'hint code userscript code_select.py')
 c.hints.selectors["code"] = [
     # Selects all code tags whose direct parent is not a pre tag
     ":not(pre) > code",
     "pre"
 ]
-
-# ALIASES
-c.aliases = {'q': 'quit', 'w': 'session-save', 'wq': 'quit --save'}
 
 # diretório de downloads
 c.downloads.location.directory = '~/Downloads'
@@ -228,37 +257,37 @@ c.colors.completion.category.border.bottom = '#ffffff'
 # Cor de texto selecionado na barra de seleção
 c.colors.completion.item.selected.fg = '#ffffff'
 # Cor de fundo de texto selecionado na barra de compleção
-c.colors.completion.item.selected.bg = '#444444'
+c.colors.completion.item.selected.bg = '#555555'
 # Cor do texto procurado quando selecionado na barra de compleção
 c.colors.completion.item.selected.match.fg = '#ffff00'
 # Cor de texto procurado na aba de compleção.
 c.colors.completion.match.fg = '#ffff00'
 # Cor da barra de scroll na aba de compleção
-c.colors.completion.scrollbar.fg = '#ffffff'
+c.colors.completion.scrollbar.fg = '#555555'
 # Cor de fundo da barra de download
 c.colors.downloads.bar.bg = '#000000'
 # Cor de fundo de downloads com erro
 c.colors.downloads.error.bg = '#ff0000'
 # Cor da fonte de indicadores de links
-c.colors.hints.fg = '#ffffff'
+c.colors.hints.fg = '#000000'
 # Cor de fundo de indicadores de links
-c.colors.hints.bg = '#000000'
+c.colors.hints.bg = '#ffffff'
 # Borda de indicadores de links
-config.set('hints.border', 'none')#'1px solid #ffffff')
+config.set('hints.border', 'none')
 # Cor da fonte em partes procuradas
-c.colors.hints.match.fg = '#ffff00'
+c.colors.hints.match.fg = '#555555'
 # Cor de fundo de informações importantes
-c.colors.messages.info.bg = '#444444'
+c.colors.messages.info.bg = '#222222'
 # Cor de fundo da barra de status
 c.colors.statusbar.normal.bg = '#000000'
 # Cor do texto da barra de status quando inserindo texto
 c.colors.statusbar.insert.fg = '#ffffff'
 # Cor da barra de status quando inserindo texto
-c.colors.statusbar.insert.bg = '#444444'
+c.colors.statusbar.insert.bg = '#000000'
 # Cor da barra de status no modo passthrough
-c.colors.statusbar.passthrough.bg = '#444444'
+c.colors.statusbar.passthrough.bg = '#000000'
 # Cor de fundo da barra de status quando digitando comandos
-c.colors.statusbar.command.bg = '#222222'
+c.colors.statusbar.command.bg = '#000000'
 # Cor do texto da barra de status quando em alerta
 c.colors.statusbar.url.warn.fg = '#ffff00'
 # Cor de fundo da barra de abas abertas
@@ -275,9 +304,9 @@ c.colors.tabs.pinned.even.bg = '#000000'
 # Cor de fundo de abas fixadas selecionadas
 c.colors.tabs.pinned.selected.odd.bg = '#555555'
 c.colors.tabs.pinned.selected.even.bg = '#555555'
-# Cor da borda superior do texto selecionado na barra de compleção
-c.colors.completion.item.selected.border.bottom = '#444444'
-c.colors.completion.item.selected.border.top = '#444444'
+# Cor da borda do texto selecionado na barra de compleção
+c.colors.completion.item.selected.border.bottom = '#555555'
+c.colors.completion.item.selected.border.top = '#555555'
 
 # FONTES
 

@@ -29,6 +29,9 @@ call plug#end()
 
 """"" Configurações gerais
 set hidden
+set lazyredraw
+" Desabilita swapfile
+set noswapfile
 " Da a volta entre linhas
 set whichwrap+=<,>,h,l,[,]
 " Indica linha selecionada no modo normal

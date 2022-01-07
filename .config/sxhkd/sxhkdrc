@@ -70,7 +70,7 @@ super + a
     dmenu_musica
 
 # Ncmpcpp
-Menu;M
+super + shift + a
     st -c ncmpcpp -e ncmpcpp
 
 # Pausa musica
@@ -79,11 +79,11 @@ super + shift + a
 
 # Musica anterior 
 super + shift + comma
-    mpc prev && notify-send "$(mpc current)"
+    mpc prev && notify-send Tocando "$(mpc current)"
 
 # Proxima musica
 super + shift + period
-    mpc next && notify-send "$(mpc current)"
+    mpc next && notify-send Tocando "$(mpc current)"
 
 # Abaixar o volume
 super + comma
@@ -102,19 +102,19 @@ shift + Menu
     st_scratchpad
 
 # qutebrowser
-Menu;Q
+Menu;q
     qutebrowser
 
 # Ranger
-Menu;R
+Menu;r
     st -e ranger
 
 # Gimp
-Menu;G
+Menu;g
     gimp
 
 # Galculator
-Menu;C
+Menu;c
     galculator
 
 # Telegram
@@ -122,23 +122,23 @@ Menu;T
     telegram-desktop
 
 # Abre/Fecha fluxgui
-Menu;F
+Menu;f
     killall fluxgui || fluxgui
 
 # Transmission
-Menu;super + t
+Menu;t
     transmission-gtk
 
 # Discord
-Menu;D
+Menu;d
     discord
 
 # Kill
-Menu;K
+Menu;k
     dmenu_kill
 
 # Abre/Fecha o picom
-Menu;P
+Menu;p
     killall picom || picom
 
 # Teclas do sxhkd

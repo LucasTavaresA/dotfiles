@@ -15,6 +15,9 @@ strong {
 .header {
     color: #fff !important;
 }
+ul > li > * {
+    color: #555 !important;
+}
 * {
   border-color: #ffffff !important;
 }
@@ -25,10 +28,10 @@ a h3 {
   color: #0099ff !important;
 }
 a:visited h3 {
-    color: #0040ff !important;
+    color: #0030ff !important;
 }
 a:visited {
-  color: #0040ff !important;
+  color: #0030ff !important;
 }
 body {
   background-color: #000000 !important;
@@ -1254,9 +1257,10 @@ h6 {
   color: #0040ff !important;
 }
 code {
-  background-color: #333 !important;
-  border-color: #333 !important;
-  color: #0040ff !important;
+  background-color: #222 !important;
+  border-color: #222 !important;
+  color: #fff !important;
+  font-weight: 600 !important;
 }
 div.thumbinner {
   background-color: #000000 !important;
@@ -1470,7 +1474,7 @@ a {
   color: #0080ff !important;
 }
 a:visited {
-  color: #0050ff !important;
+  color: #0030ff !important;
 }
 body {
   background-color: #000000 !important;
