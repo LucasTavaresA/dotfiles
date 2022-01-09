@@ -1,63 +1,40 @@
-# Fecha janela
-super + backslash
-	bspc node -c
+# Troca o foco entre as janelas
+super + {Tab,Left,Right}
+	dwmc focusstack {+,-,+}1
 
-# Troca janela selecionada pela maior janela
-super + Return
-	bspc node -s biggest.window
+# Muda o tamanho da janela
+super + shift + {Left,Right}
+	dwmc setmfact {-,+}0.05
 
-# Troca entre layout monocle e tiled
-super + Escape
-	bspc desktop -l next
-
-# Troca o foco para a janela anterior
-super + Left
-	bspc node -f prev.local.!hidden.window
-
-# Troca o foco para a proxima janela
-super + {Right,Tab}
-	bspc node -f next.local.!hidden.window
-
-# Alterna entre ou muda janela para um desktop
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
-
-# Move janela para o espaço preselecionado
-super + ctrl + Return
-    bspc node -n last.!automatic
-
-# Preseleciona uma direção
-super + ctrl + {Left,Down,Up,Right}
-	bspc node -p {west,south,north,east}
-
-# Cancela seleção
-super + space
-	bspc node -p cancel
-
-# Expande/contrai as janelas
-super + alt + {Left,Down,Up,Right}
-    {bspc node @parent/second -z left -20 0; \
-    bspc node @parent/first -z right -20 0, \
-    bspc node @parent/second -z top 0 +20; \
-    bspc node @parent/first -z bottom 0 +20, \
-    bspc node @parent/first -z bottom 0 -20; \
-    bspc node @parent/second -z top 0 -20, \
-    bspc node @parent/first -z right +20 0; \
-    bspc node @parent/second -z left +20 0}
+# Muda o tamanho da janela
+super + shift + {Down,Up}
+	dwmc setcfact {-,+}0.20
 
 # Alterna entre janela flutuante
 super + t
-    bspc node -t \~floating
+	dwmc togglefloating
 
-# Alterna tela cheia
-super + f
-	bspc node -t \~fullscreen
+# Fecha uma janela
+super + shift + backslash
+	dwmc killclient
 
-# Ajusta proporção da janela selecionada
-shift + Tab
-    ajustar_tamanho.sh
+# Controla as tags
+super + {_,ctrl +}{_,shift +} {1-9}
+	dwmc {_,toggle}{viewex,tagex} {0-8}
 
-# Menus
+# Ativa/Desativa o scratchpad do st
+super + backslash
+    dwmc togglescratch 0
+
+# Troca janela mestre pela selecionada
+super + Return
+    dwmc zoom
+
+# Troca entre layouts
+super + Escape
+    dwmc layoutscroll +1
+
+# Dmenu
 Menu;Menu
     dmenu_menu
 
@@ -65,7 +42,7 @@ Menu;Menu
 Menu;Escape
     dmenu_sys
 
-# Dmenu_musica
+# Menu musica
 super + a
     dmenu_musica
 
@@ -74,7 +51,7 @@ super + shift + a
     st -c ncmpcpp -e ncmpcpp
 
 # Pausa musica
-super + shift + a
+super + space
     mpc toggle
 
 # Musica anterior 
@@ -95,19 +72,11 @@ super + period
 
 # St
 super + shift + Return
-	st
+    st
 
-# St_scratchpad
-shift + Menu
-    st_scratchpad
-
-# qutebrowser
+# Qutebrowser
 Menu;q
     qutebrowser
-
-# Ranger
-Menu;r
-    st -e ranger
 
 # Gimp
 Menu;g

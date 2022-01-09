@@ -6,7 +6,7 @@
 alias clip='xclip -selection clipboard'
 alias sudo='doas'
 alias yt='yt-dlp'
-alias yta='yt-dlp -k -x --audio-format mp3'
+alias yta='yt-dlp -x --audio-format mp3'
 # Arquivos e Diretórios
 alias l='lsd -l --group-dirs first'
 alias la='lsd -A --group-dirs first'

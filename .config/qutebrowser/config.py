@@ -53,9 +53,6 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 # MINHAS CONFIGURAÇÕES
 config.set('scrolling.bar', 'always')
 
-# Fullscreen limitado a janela do navegador
-config.set('content.fullscreen.window', True)
-
 # Javascript desativado por padrão
 config.set('content.javascript.enabled', False)
 

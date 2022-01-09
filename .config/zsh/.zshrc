@@ -17,6 +17,11 @@ autoload -U colors && colors
 # Ativa comentários na mesma linha de um comando
 setopt interactive_comments
 
+# Sai do modo vim
+bindkey -e
+# Deleta caracteres usado delete
+bindkey "^[[3~" delete-char
+
 # Completar comandos
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 autoload -U compinit
@@ -65,7 +70,7 @@ IFS=$SAVEIFS
 alias clip='xclip -selection clipboard'
 alias sudo="doas"
 alias yt='yt-dlp'
-alias yta='yt-dlp -k -x --audio-format mp3'
+alias yta='yt-dlp -x --audio-format mp3'
 # Arquivos e Diretórios
 alias l='lsd -l --group-dirs first'
 alias la='lsd -A --group-dirs first'
@@ -106,4 +111,3 @@ eval "$(starship init zsh)"
 # Carrega os indicações de sintaxe; deve ser o ultimo comando.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-expand-all/zsh-expand-all.zsh
-source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.zsh

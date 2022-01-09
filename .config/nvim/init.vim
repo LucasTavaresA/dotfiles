@@ -54,6 +54,9 @@ set spell spelllang=pt
 set signcolumn=number
 " Atualiza o neovim mais rapido
 set updatetime=100
+" Procura ignorando maiusculas
+set ignorecase
+set smartcase
 
 """"" Aparência : github_dark_default
 colorscheme github_dark_default
@@ -63,6 +66,7 @@ hi Normal guibg=NONE ctermbg=NONE
 hi EndOfBuffer guibg=NONE ctermbg=NONE
 hi Normal guibg=NONE ctermbg=NONE
 hi CursorLine guibg=#222222
+highlight Search guibg=#222222 guifg=#ffff00
 
 """"" AutoCompleção : COC
 set shortmess+=c

@@ -25,10 +25,10 @@ a {
   color: #0099ff !important;
 }
 a h3 {
-  color: #0099ff !important;
+  color: #ffffff !important;
 }
 a:visited h3 {
-    color: #0030ff !important;
+    color: #ffffff !important;
 }
 a:visited {
   color: #0030ff !important;
@@ -1247,14 +1247,9 @@ th.navbox-group,
 .navbox-even {
   background-color: #000000 !important;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  border-color: #333 !important;
-  color: #0040ff !important;
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff !important;
+  font-weight: 600 !important;
 }
 code {
   background-color: #222 !important;
@@ -1265,9 +1260,6 @@ code {
 div.thumbinner {
   background-color: #000000 !important;
   border-color: #333 !important;
-}
-img {
-  filter: opacity(75%);
 }
 img.thumbimage {
   border-color: #333 !important;
