@@ -1,0 +1,6 @@
+#!/bin/sh
+# Manda uma notificação com o nome completo do arquivo
+
+musica=$(mpc current -f %file%)
+tocando="${musica##*/}"
+notify-send Tocando "$tocando"

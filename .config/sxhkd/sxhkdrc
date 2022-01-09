@@ -34,21 +34,13 @@ super + Return
 super + Escape
     dwmc layoutscroll +1
 
-# Dmenu
-Menu;Menu
-    dmenu_menu
-
-# Menu do systema
-Menu;Escape
-    dmenu_sys
-
-# Menu musica
-super + a
-    dmenu_musica
-
 # Ncmpcpp
-super + shift + a
+super + a
     st -c ncmpcpp -e ncmpcpp
+
+# Pulsemixer
+super + shift + a
+    st -c pulsemixer -e pulsemixer
 
 # Pausa musica
 super + space
@@ -56,11 +48,11 @@ super + space
 
 # Musica anterior 
 super + shift + comma
-    mpc prev && notify-send Tocando "$(mpc current)"
+    mpc prev && tocando
 
 # Proxima musica
 super + shift + period
-    mpc next && notify-send Tocando "$(mpc current)"
+    mpc next && tocando
 
 # Abaixar o volume
 super + comma
@@ -72,7 +64,15 @@ super + period
 
 # St
 super + shift + Return
-    st
+    st -c stscratchpad
+
+# Menu
+Menu;Menu
+    dmenu_menu
+
+# Menu do systema
+Menu;Escape
+    dmenu_sys
 
 # Qutebrowser
 Menu;q
@@ -110,6 +110,6 @@ Menu;k
 Menu;p
     killall picom || picom
 
-# Teclas do sxhkd
+# Le o arquivo de configuração do sxhkd e gera uma lista de teclas
 Menu;slash
     sxhkd_atalhos

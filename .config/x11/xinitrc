@@ -18,6 +18,7 @@ export CM_DIR="$HOME/suckless/dmenu/menus/listas/clipmenu"
 clipmenud &
 
 # Outros
+mpd &
 nm-applet &
 dunst &
 nitrogen --restore &
