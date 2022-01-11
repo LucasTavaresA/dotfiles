@@ -1,3 +1,3 @@
 #!/bin/bash
 # Le o arquivo de configuração do sxhkd e gera uma lista de teclas
-cat .config/sxhkd/sxhkdrc | awk '/^[a-z,A-Z]/ && last {print $0,"\t",last} {last=""} /^#/{last=$0}' | column -t -s $'\t' | dmenu -l 35 -h 20
+cat .config/sxhkd/sxhkdrc | awk '/^[a-z,A-Z]/ && last {print $0,"\t",last} {last=""} /^#/{last=$0}' | column -t -s $'\t' | dmenu -l 32 -g 2 -h 20

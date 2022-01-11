@@ -11,6 +11,8 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'terryma/vim-expand-region'
+" Modo leitura
+" Plug 'junegunn/goyo.vim'
 
 """"" Indicação de sintaxe
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -47,16 +49,31 @@ set cmdheight=1
 " Copiar usando vim
 autocmd InsertEnter * set cul
 autocmd InsertLeave * set nocul
-set clipboard=unnamedplus
+set clipboard+=unnamedplus
 " Idioma para correção ortográfica
 set spell spelllang=pt
 " Junta os números e marcadores em uma única coluna
 set signcolumn=number
-" Atualiza o neovim mais rapido
+" Atualiza o neovim mais rápido
 set updatetime=100
-" Procura ignorando maiusculas
+" Procura ignorando maiúsculas
 set ignorecase
 set smartcase
+" Desativa comentar automaticamente a próxima linha
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+" Habilita a compleção de comandos
+set wildmode=longest,list,full
+" Divide a tela do lado e para baixo
+set splitbelow splitright
+" Inicia no modo foco : LiteDFM
+autocmd VimEnter * LiteDFMToggle
+
+" Automaticamente deleta todos os espaços em branco e novas linhas no salvamento do arquivo e reseta a posição do cursor
+autocmd BufWritePre * let currPos = getpos(".")
+autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritePre * %s/\n\+\%$//e
+autocmd BufWritePre *.[ch] %s/\%$/\r/e
+autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
 
 """"" Aparência : github_dark_default
 colorscheme github_dark_default
@@ -68,9 +85,9 @@ hi Normal guibg=NONE ctermbg=NONE
 hi CursorLine guibg=#222222
 highlight Search guibg=#222222 guifg=#ffff00
 
-""""" AutoCompleção : COC
+""""" Auto compleção : COC
 set shortmess+=c
-" Usa tab para compleção
+" Usa tab para completar
 inoremap <silent><expr> <TAB>
      \ pumvisible() ? "\<C-n>" :
      \ <SID>check_back_space() ? "\<TAB>" :
@@ -80,7 +97,7 @@ function! s:check_back_space() abort
  let col = col('.') - 1
  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-" AutoCompletação csharp : Omnisharp, Ale
+" Auto completar csharp : Omnisharp, Ale
 " let g:ale_linters = {
 " \ 'cs': ['OmniSharp']
 " \}
@@ -95,6 +112,7 @@ let g:indentLine_color_gui = '#777777'
 let g:indentLine_char = '│'
 
 """"" TECLAS
+let mapleader ="z"
 " Troca entre partes da mesma linha usando setas
 nnoremap <Down> gj
 nnoremap <Up> gk
@@ -102,13 +120,29 @@ inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
 vnoremap <Down> gj
 vnoremap <Up> gk
-" Modo foco : LiteDFM
-map zx :LiteDFMToggle<CR>
-autocmd VimEnter * LiteDFMToggle
 " Comentar linhas
 map C :norm gcc<CR>j
-" ColorizerToggle
-map cc :ColorizerToggle<CR>
-" Expand-region
-map z<Up> <Plug>(expand_region_expand)
-map z<Down> <Plug>(expand_region_shrink)
+" Copiar na linha abaixo
+map P :norm o<CR>p
+" Ativa/Desativa o corretor ortográfico
+map <leader>s :setlocal spell! spelllang=pt<CR>
+" Navega entre as divisórias
+map <A-Left> <C-w>h
+map <A-Down> <C-w>j
+map <A-Up> <C-w>k
+map <A-Right> <C-w>l
+" Sai salvando o buffer
+map qq :wq<CR>
+" Sai sem salvar
+map qQ :q!<CR>
+
+""" Atalhos de plugins
+" Modo foco : LiteDFM
+map <leader>x :LiteDFMToggle<CR>
+" Expande região selecionada : Vim-Expand-Region
+map <leader><Up> <Plug>(expand_region_expand)
+map <leader><Down> <Plug>(expand_region_shrink)
+" Ativa/Desativa o colorizer : Nvim-Colorizer.lua
+map <leader>C :ColorizerToggle<CR>
+" Modo leitura : Goyo
+" map G :Goyo \| set bg=light \| set linebreak<CR>

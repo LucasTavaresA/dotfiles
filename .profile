@@ -19,7 +19,7 @@ export EDITOR="nvim"
 # Editor com interface gráfica
 export VISUAL="nvim"
 # Navegador padrão
-export BROWSER="firefox"
+export BROWSER="qutebrowser"
 # Pager
 export PAGER='less'
 # Faz o qt usar o thema do gtk2
@@ -65,12 +65,14 @@ export HISTFILESIZE=10000
 # Ignora e deleta comandos duplicados no histórico
 export HISTCONTROL=ignoredups:erasedups
 
-# Adiciona diretório de scripts do dmenu ao path
+# Adiciona diretório de scripts ao path
 export PATH=$HOME/suckless/dmenu/menus:$PATH
 export PATH=$HOME/bin:$PATH
 
 # Usa o seahorse como autenticador GUI
 export SUDO_ASKPASS="/usr/lib/seahorse/ssh-askpass"
+# Usa o doas como askpass
+export DOAS_ASKPASS="$HOME/suckless/dmenu/menus/dmenu_pass"
 
 # Executa o bashrc
 # [ -f "$HOME/.config/bash/.bashrc" ] && . "$HOME/.config/bash/.bashrc"

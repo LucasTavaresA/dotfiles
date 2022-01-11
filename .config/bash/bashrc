@@ -18,7 +18,6 @@ alias ch='chmod +x'
 alias rm='rm -rf'
 # Programas
 alias n='neofetch'
-alias g='geany'
 alias v='nvim'
 alias r='ranger'
 # Git aliases

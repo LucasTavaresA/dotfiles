@@ -51,7 +51,18 @@ config.set('content.javascript.enabled', True, 'chrome://*/*')
 config.set('content.javascript.enabled', True, 'qute://*/*')
 
 # MINHAS CONFIGURAÇÕES
-config.set('scrolling.bar', 'always')
+
+# Mostra a barra de scroll quando procurando uma palavra
+config.set('scrolling.bar', 'when-searching')
+
+# Encolhe janela de compleção dependendo das opções
+config.set('completion.shrink', True)
+
+# Diminuiu javascript lento nos sites
+config.set('content.prefers_reduced_motion', True)
+
+# Vê pdfs no browser usando o pdfjs
+config.set('content.pdfjs', True)
 
 # Javascript desativado por padrão
 config.set('content.javascript.enabled', False)
@@ -70,7 +81,7 @@ config.set("statusbar.show", "in-mode")
 config.set("tabs.show", "switching")
 
 # Abre a pagina inicial caso fechada única aba aberta
-config.set("tabs.last_close", "startpage")
+config.set("tabs.last_close", "ignore")
 
 # Confirma antes de sair
 config.set('confirm_quit', ["multiple-tabs"])
@@ -102,11 +113,11 @@ config.set('completion.height', '100%')
 # Adblock
 config.set('content.blocking.method', 'both')
 c.content.blocking.adblock.lists = [
-        'https://easylist.to/easylist/easylist.txt', 
-        'https://easylist.to/easylist/easyprivacy.txt', 
-        'https://easylist-downloads.adblockplus.org/easylistdutch.txt', 
-        'https://easylist-downloads.adblockplus.org/abp-filters-anti-cv.txt', 
-        'https://www.i-dont-care-about-cookies.eu/abp/', 
+        'https://easylist.to/easylist/easylist.txt',
+        'https://easylist.to/easylist/easyprivacy.txt',
+        'https://easylist-downloads.adblockplus.org/easylistdutch.txt',
+        'https://easylist-downloads.adblockplus.org/abp-filters-anti-cv.txt',
+        'https://www.i-dont-care-about-cookies.eu/abp/',
         'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt',
         "https://easylist.to/easylist/fanboy-social.txt",
         "https://secure.fanboy.co.nz/fanboy-annoyance.txt",
@@ -122,11 +133,12 @@ c.content.blocking.adblock.lists = [
         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/resource-abuse.txt",
         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt"
         ]
-  
+
 # Usa o ranger para mandar arquivos
 config.set("fileselect.handler", "external")
 config.set("fileselect.single_file.command", ['st', '-c', 'ranger,ranger', '-e', 'ranger', '--choosefile', '{}'])
 config.set("fileselect.multiple_files.command", ['st', '-c', 'ranger,ranger', '-e', 'ranger', '--choosefiles', '{}'])
+config.set("fileselect.folder.command", ['st', '-c', 'ranger,ranger', '-e', 'ranger', '--choosedir', '{}'])
 
 # Permitir notificações.
 # Valid values:
@@ -175,7 +187,7 @@ c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
                     ,  'gm': 'https://www.google.com.br/maps/search/{}'
                     ,  'gf': 'https://greasyfork.org/en/scripts?q={}'
                     ,  'md': 'https://mangadex.org/titles?page=1&q={}&order=relevance.desc'
-                    ,  'r': 'https://www.reddit.com/r/{}' 
+                    ,  'r': 'https://www.reddit.com/r/{}'
                     ,  'ud': 'https://www.urbandictionary.com/define.php?term={}'
                     ,  'al': 'https://anilist.co/search/anime?search={}&sort=SEARCH_MATCH'
                     ,  'alm': 'https://anilist.co/search/manga?search={}&sort=SEARCH_MATCH'
@@ -266,13 +278,14 @@ c.colors.downloads.bar.bg = '#000000'
 # Cor de fundo de downloads com erro
 c.colors.downloads.error.bg = '#ff0000'
 # Cor da fonte de indicadores de links
-c.colors.hints.fg = '#000000'
+c.colors.hints.fg = '#ffffff'
 # Cor de fundo de indicadores de links
-c.colors.hints.bg = '#ffffff'
+c.colors.hints.bg = '#000000'
 # Borda de indicadores de links
-config.set('hints.border', 'none')
+config.set('hints.border', '1px solid #ffffff')
+config.set('hints.radius', 0)
 # Cor da fonte em partes procuradas
-c.colors.hints.match.fg = '#555555'
+c.colors.hints.match.fg = '#ffff00'
 # Cor de fundo de informações importantes
 c.colors.messages.info.bg = '#222222'
 # Cor de fundo da barra de status
@@ -319,4 +332,3 @@ c.fonts.debug_console = '14px "monospace"'
 c.fonts.prompts = 'default_size "monospace"'
 # Fonte usada na barra de status.
 c.fonts.statusbar = '14px "monospace"'
-

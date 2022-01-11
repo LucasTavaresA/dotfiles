@@ -82,7 +82,6 @@ alias ch='chmod +x'
 alias rm='rm -rf'
 # Programas
 alias n='neofetch'
-alias g='geany'
 alias v='nvim'
 alias r='ranger'
 # Git aliases
@@ -109,5 +108,5 @@ alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
 eval "$(starship init zsh)"
 
 # Carrega os indicações de sintaxe; deve ser o ultimo comando.
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-expand-all/zsh-expand-all.zsh
+source $HOME/.config/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source $HOME/.config/zsh/plugins/expand-all.zsh

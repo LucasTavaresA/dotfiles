@@ -24,6 +24,7 @@ dunst &
 nitrogen --restore &
 xbanish &
 fluxgui &
+slstatus &
 sxhkd &
 
 # Protetor de tela

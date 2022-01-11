@@ -1,32 +1,36 @@
-# Troca o foco entre as janelas
-super + {Tab,Left,Right}
+# Muda entre as janelas
+super + {Tab, Left, Right}
 	dwmc focusstack {+,-,+}1
 
 # Muda o tamanho da janela
-super + shift + {Left,Right}
+super + shift + {Left, Right}
 	dwmc setmfact {-,+}0.05
 
 # Muda o tamanho da janela
-super + shift + {Down,Up}
+super + shift + {Down, Up}
 	dwmc setcfact {-,+}0.20
 
-# Alterna entre janela flutuante
-super + t
-	dwmc togglefloating
+# Controla as tags
+super + {_, shift +} {1-9}
+	dwmc {viewex,tagex} {0-8}
+
+# Modo Monocle/Grid
+super + {f, g}
+    dwmc {setmonocle 0,setgrid 0}
 
 # Fecha uma janela
 super + shift + backslash
 	dwmc killclient
 
-# Controla as tags
-super + {_,ctrl +}{_,shift +} {1-9}
-	dwmc {_,toggle}{viewex,tagex} {0-8}
+# Alterna janela flutuante
+super + t
+	dwmc togglefloating
 
-# Ativa/Desativa o scratchpad do st
-super + backslash
-    dwmc togglescratch 0
+# Ativa/Desativa a barra
+super + shift + space
+	dwmc togglebar
 
-# Troca janela mestre pela selecionada
+# Troca pela janela mestre
 super + Return
     dwmc zoom
 
@@ -34,82 +38,118 @@ super + Return
 super + Escape
     dwmc layoutscroll +1
 
-# Ncmpcpp
-super + a
-    st -c ncmpcpp -e ncmpcpp
+# Scratchpad do st
+super + backslash
+    dwmc togglescratch 0
 
-# Pulsemixer
-super + shift + a
-    st -c pulsemixer -e pulsemixer
+# Ncmpcpp/Pulsemixer
+super + {_, shift} + a
+    st -c {'ncmpcpp\,ncmpcpp' -e ncmpcpp,'pulsemixer\,pulsemixer' -e pulsemixer}
 
-# Pausa musica
+# Pausa/Toca musica
 super + space
     mpc toggle
 
-# Musica anterior 
-super + shift + comma
-    mpc prev && tocando
+# Anterior/Proxima musica
+super + shift + {comma, period}
+    mpc {prev,next}  && tocando
 
-# Proxima musica
-super + shift + period
-    mpc next && tocando
-
-# Abaixar o volume
-super + comma
-    amixer -q set Master 10%-
-
-# Aumentar o volume
-super + period
-    amixer -q set Master 10%+
+# Abaixar/Aumentar o volume
+super + {comma, period}
+    amixer -q set Master 10%{-,+}
 
 # St
 super + shift + Return
-    st -c stscratchpad
+    st
+
+# St como um scratchpad
+Menu;Return
+    st -c 'stscratchpad,stscratchpad'
 
 # Menu
 Menu;Menu
-    dmenu_menu
+    dmenu_run
 
-# Menu do systema
+# Menu energia
 Menu;Escape
     dmenu_sys
 
-# Qutebrowser
-Menu;q
-    qutebrowser
+# Editar no nvim
+Menu;e
+    dmenu_edit
+
+# Montar/Desmontar
+Menu;m
+    dmenu_mont
+
+# Emojis
+Menu;E
+    dmenu_emoji
+
+# Atalhos do sxhkd
+Menu;slash
+    sxhkd_atalhos
+
+# SH History
+Menu;H
+    dmenu_shhistory
+
+# Picom Fluxgui
+Menu;{p, f}
+    {killall picom || picom, killall fluxgui || fluxgui}
+
+# Clipboard
+Menu;c
+    dmenu_clip
+
+# Corretor
+Menu;C
+    dmenu_corretor
+
+# Ranger
+Menu;r
+    st -e ranger
+
+# Htop
+Menu;h
+    st -e htop
 
 # Gimp
 Menu;g
     gimp
 
-# Galculator
-Menu;c
-    galculator
+# Transmission
+Menu;t;t
+    transmission-gtk
 
 # Telegram
-Menu;T
+Menu;t;T
     telegram-desktop
 
-# Abre/Fecha fluxgui
-Menu;f
-    killall fluxgui || fluxgui
+# Tradutor
+Menu;T
+    dmenu_tradutor
 
-# Transmission
-Menu;t
-    transmission-gtk
+# Menu virtualbox
+Menu;v
+    dmenu_virtualbox
 
 # Discord
 Menu;d
     discord
 
-# Kill
-Menu;k
-    dmenu_kill
+# Qutebrowser
+Menu;q;q
+    qutebrowser
 
-# Abre/Fecha o picom
-Menu;p
-    killall picom || picom
+# Favoritos
+Menu;q;f
+    dmenu_favoritos
 
-# Le o arquivo de configuração do sxhkd e gera uma lista de teclas
-Menu;slash
-    sxhkd_atalhos
+# Importante
+Menu;q;i
+    dmenu_favoritos importante
+
+# Tira print
+Print
+    dmenu_print

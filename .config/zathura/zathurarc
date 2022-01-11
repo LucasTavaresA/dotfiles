@@ -6,4 +6,4 @@ set selection-clipboard clipboard
 map D toggle_page_mode
 map R reload
 map r rotate
-map i recolor
+map zd recolor
