@@ -27,7 +27,7 @@ super + t
 	dwmc togglefloating
 
 # Ativa/Desativa a barra
-super + shift + space
+alt + space
 	dwmc togglebar
 
 # Troca pela janela mestre
@@ -78,13 +78,13 @@ Menu;Escape
 Menu;e
     dmenu_edit
 
-# Montar/Desmontar
-Menu;m
-    dmenu_mont
-
 # Emojis
 Menu;E
     dmenu_emoji
+
+# Montar/Desmontar
+Menu;m
+    dmenu_mont
 
 # Atalhos do sxhkd
 Menu;slash
@@ -94,9 +94,12 @@ Menu;slash
 Menu;H
     dmenu_shhistory
 
-# Picom Fluxgui
-Menu;{p, f}
-    {killall picom || picom, killall fluxgui || fluxgui}
+# Picom
+Menu;p
+    killall picom || picom
+# Fluxgui
+Menu;f
+    killall fluxgui || fluxgui
 
 # Clipboard
 Menu;c

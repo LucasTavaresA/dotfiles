@@ -2,11 +2,11 @@
 x-scheme-handler/tg=userapp-Telegram Desktop-EJM1D1.desktop;
 x-scheme-handler/magnet=transmission-gtk.desktop;
 application/x.bittorrent=transmission-gtk.desktop;
-audio/mp4=deadbeef.desktop;
-audio/x-opus+ogg=deadbeef.desktop;
+audio/mp4=mpv.desktop;
+audio/x-opus+ogg=mpv.desktop;
 image/jpeg=sxiv.desktop;
 image/png=sxiv.desktop;
-inode/directory=ranger.desktop;
+inode/directory=lf.desktop;
 
 [Default Applications]
 application/javascript=nvim.desktop;
@@ -17,15 +17,15 @@ application/pdf=firefox.desktop;
 application/vnd.ms-excel=libreoffice-calc.desktop;
 application/vnd.ms-powerpoint=libreoffice-impress.desktop;
 application/x-bittorrent=transmission-gtk.desktop;
-audio/*=deadbeef.desktop;
+audio/*=mpv.desktop;
 image/*=sxiv.desktop;
-inode/directory=ranger.desktop;
+inode/directory=lf.desktop;
 text/*=nvim.desktop;
 text/markdown=geany.desktop;
 video/*=mpv.desktop;
 x-scheme-handler/tg=userapp-Telegram Desktop-EJM1D1.desktop;
-x-scheme-handler/http=firefox.desktop;
-x-scheme-handler/https=firefox.desktop;
-x-scheme-handler/ftp=firefox.desktop;
+x-scheme-handler/http=org.qutebrowser.qutebrowser.desktop;
+x-scheme-handler/https=org.qutebrowser.qutebrowser.desktop;
+x-scheme-handler/ftp=org.qutebrowser.qutebrowser.desktop;
 x-scheme-handler/magnet=transmission-gtk.desktop;
 application/x.bittorrent=transmission-gtk.desktop;

@@ -17,6 +17,7 @@
 .config/transmission/
 .config/VirtualBox/
 .config/nvim/plugged/
+.config/zsh/.zcompdump
 .local/
 .mozilla/
 .pki/
