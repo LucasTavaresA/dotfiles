@@ -72,10 +72,10 @@ export PATH="$HOME/code/dmenuscripts:$PATH"
 export PATH="$HOME/code/scripts:$PATH"
 
 # Usa o dmenu como autenticador GUI
-export SSH_ASKPASS="$HOME/code/scripts/doas_askpass"
-export GIT_ASKPASS="$HOME/code/scripts/doas_askpass"
-export SUDO_ASKPASS="$HOME/code/scripts/doas_askpass"
-export DOAS_ASKPASS="$HOME/code/scripts/doas_askpass"
+export SSH_ASKPASS="dmenu -fn Monospace-18 -c -cw 500 -P -p 🔑Senha:"
+export GIT_ASKPASS="dmenu -fn Monospace-18 -c -cw 500 -P -p 🔑Senha:"
+export SUDO_ASKPASS="dmenu -fn Monospace-18 -c -cw 500 -P -p 🔑Senha:"
+export DOAS_ASKPASS="dmenu -fn Monospace-18 -c -cw 500 -P -p 🔑Senha:"
 
 # Localização para datas
 export LC_TIME="pt_BR.UTF-8"

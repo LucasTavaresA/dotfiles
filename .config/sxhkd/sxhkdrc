@@ -27,7 +27,7 @@ super + t
 	dwmc togglefloating
 
 # Ativa/Desativa a barra
-alt + space
+super + space
 	dwmc togglebar
 
 # Troca pela janela mestre
@@ -43,11 +43,11 @@ super + backslash
     dwmc togglescratch 0
 
 # Ncmpcpp/Pulsemixer
-super + {_, shift} + a
+alt + {_,shift} + a
     st -g 100x30 -c {'ncmpcpp\,ncmpcpp' -e ncmpcpp,'pulsemixer\,pulsemixer' -e pulsemixer}
 
 # Pausa/Toca musica
-super + space
+super + a
     mpc toggle
 
 # Anterior/Proxima musica

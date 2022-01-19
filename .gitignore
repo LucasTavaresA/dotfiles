@@ -1,6 +1,7 @@
 .cache/
 .config/dconf/
 .config/discord/
+.config/emacs/
 .config/galculator/
 .config/GIMP/
 .config/git/config

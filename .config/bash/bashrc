@@ -19,6 +19,7 @@ alias rm='rm -rf'
 # Programas
 alias n='neofetch'
 alias v='nvim'
+alias e='emacs'
 # Git aliases
 alias gi='git init'
 alias gc='git clone'
