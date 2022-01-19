@@ -44,7 +44,7 @@ super + backslash
 
 # Ncmpcpp/Pulsemixer
 super + {_, shift} + a
-    st -c {'ncmpcpp\,ncmpcpp' -e ncmpcpp,'pulsemixer\,pulsemixer' -e pulsemixer}
+    st -g 100x30 -c {'ncmpcpp\,ncmpcpp' -e ncmpcpp,'pulsemixer\,pulsemixer' -e pulsemixer}
 
 # Pausa/Toca musica
 super + space
@@ -52,7 +52,7 @@ super + space
 
 # Anterior/Proxima musica
 super + shift + {comma, period}
-    mpc {prev,next}  && tocando
+    mpc {prev,next} && tocando
 
 # Abaixar/Aumentar o volume
 super + {comma, period}
@@ -95,10 +95,10 @@ Menu;H
     dmenu_shhistory
 
 # Picom
-Menu;p
+Menu;P
     killall picom || picom
 # Fluxgui
-Menu;f
+Menu;F
     killall fluxgui || fluxgui
 
 # Clipboard
@@ -109,10 +109,6 @@ Menu;c
 Menu;C
     dmenu_corretor
 
-# Ranger
-Menu;r
-    st -e ranger
-
 # Htop
 Menu;h
     st -e htop
@@ -121,17 +117,13 @@ Menu;h
 Menu;g
     gimp
 
-# Transmission
-Menu;t;t
-    transmission-gtk
-
-# Telegram
-Menu;t;T
-    telegram-desktop
-
 # Tradutor
-Menu;T
+Menu;t
     dmenu_tradutor
+
+# Transmission
+Menu;T
+    transmission-gtk
 
 # Menu virtualbox
 Menu;v
@@ -142,15 +134,15 @@ Menu;d
     discord
 
 # Qutebrowser
-Menu;q;q
+Menu;q
     qutebrowser
 
 # Favoritos
-Menu;q;f
+Menu;f
     dmenu_favoritos
 
 # Importante
-Menu;q;i
+Menu;i
     dmenu_favoritos importante
 
 # Tira print

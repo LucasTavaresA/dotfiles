@@ -1,6 +1,0 @@
-#!/bin/sh
-# Manda o nome do arquivo sendo tocando no mpd
-
-musica=$(mpc current -f %file%)
-nome="${musica##*/}"
-notify-send Tocando "$nome"

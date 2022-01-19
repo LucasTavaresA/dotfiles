@@ -40,8 +40,6 @@ set whichwrap+=<,>,h,l,[,]
 set cursorline
 " Ativa uso do mouse
 set mouse=a
-" Ativa indicador numérico de linhas
-set number
 " Define quando a barra superior aparece
 set showtabline=0
 " Diminui tamanho da barra inferior
@@ -143,6 +141,6 @@ map <leader>x :LiteDFMToggle<CR>
 map <leader><Up> <Plug>(expand_region_expand)
 map <leader><Down> <Plug>(expand_region_shrink)
 " Ativa/Desativa o colorizer : Nvim-Colorizer.lua
-map <leader>C :ColorizerToggle<CR>
+map cc :ColorizerToggle<CR>
 " Modo leitura : Goyo
 " map G :Goyo \| set bg=light \| set linebreak<CR>

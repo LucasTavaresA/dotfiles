@@ -3,6 +3,10 @@ format = """$fill
 $directory$username$cmd_duration$dotnet$package$jobs
 $character"""
 
+[character]
+success_symbol = "[====>](bold green)"
+error_symbol = "[xxx=>](bold red)"
+
 # Ativa o relógio
 [time]
 disabled = false
@@ -18,4 +22,3 @@ truncate_to_repo = false
 [fill]
 symbol = "."
 style = "bold #ffffff"
-

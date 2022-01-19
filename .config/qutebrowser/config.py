@@ -52,6 +52,9 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 
 # MINHAS CONFIGURAÇÕES
 
+# Tela cheia limitada a janela do navegador
+config.set('content.fullscreen.window', True)
+
 # Mostra a barra de scroll quando procurando uma palavra
 config.set('scrolling.bar', 'when-searching')
 
@@ -178,7 +181,7 @@ c.editor.command = ['st', '-e', 'nvim', '{file}']
 c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
                     ,  'yt': 'https://www.youtube.com/results?search_query={}'
                     ,  'gh': 'https://github.com/search?q={}'
-                    ,  'gt': 'https://translate.google.com/?sl=auto&tl=en&text={}'
+                    ,  't': 'https://translate.google.com/?sl=auto&tl=en&text={}'
                     ,  'sc': 'https://soundcloud.com/search?q={}'
                     ,  'aw': 'https://wiki.archlinux.org/index.php?search={}'
                     ,  'se': 'https://stackexchange.com/search?q={}'
@@ -192,6 +195,9 @@ c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
                     ,  'al': 'https://anilist.co/search/anime?search={}&sort=SEARCH_MATCH'
                     ,  'alm': 'https://anilist.co/search/manga?search={}&sort=SEARCH_MATCH'
                     ,  'b': 'https://brainly.com.br/app/ask?q={}'
+                    ,  'tw': 'https://twitter.com/search?q={}'
+                    ,  'gt': 'https://trends.google.com.br/trends/explore?q={}'
+                    ,  'wm': 'https://web.archive.org/web/*/{}'
                     }
 
 # ATALHOS
@@ -293,7 +299,7 @@ c.colors.statusbar.normal.bg = '#000000'
 # Cor do texto da barra de status quando inserindo texto
 c.colors.statusbar.insert.fg = '#ffffff'
 # Cor da barra de status quando inserindo texto
-c.colors.statusbar.insert.bg = '#000000'
+c.colors.statusbar.insert.bg = '#008800'
 # Cor da barra de status no modo passthrough
 c.colors.statusbar.passthrough.bg = '#000000'
 # Cor de fundo da barra de status quando digitando comandos

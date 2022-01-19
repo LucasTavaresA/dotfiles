@@ -44,6 +44,8 @@ export TERMINFO="$HOME/.local/share/terminfo"
 export INPUTRC="$HOME/.config/readline/inputrc"
 # Gtk 2
 export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc"
+# W3m
+export W3M_DIR="$HOME/.config/w3m"
 # Go
 export GOPATH="$HOME/.local/share/go"
 # Starship
@@ -66,16 +68,17 @@ export HISTFILESIZE=10000
 export HISTCONTROL=ignoredups:erasedups
 
 # Adiciona diretório de scripts ao path
-export PATH=$HOME/suckless/dmenu/menus:$PATH
-export PATH=$HOME/bin:$PATH
+export PATH="$HOME/code/dmenuscripts:$PATH"
+export PATH="$HOME/code/scripts:$PATH"
 
-# Usa o seahorse como autenticador GUI
-export SUDO_ASKPASS="/usr/lib/seahorse/ssh-askpass"
-# Usa o doas como askpass
-export DOAS_ASKPASS="$HOME/suckless/dmenu/menus/dmenu_pass"
+# Usa o dmenu como autenticador GUI
+export SSH_ASKPASS="$HOME/code/scripts/doas_askpass"
+export GIT_ASKPASS="$HOME/code/scripts/doas_askpass"
+export SUDO_ASKPASS="$HOME/code/scripts/doas_askpass"
+export DOAS_ASKPASS="$HOME/code/scripts/doas_askpass"
 
-# Executa o bashrc
-# [ -f "$HOME/.config/bash/.bashrc" ] && . "$HOME/.config/bash/.bashrc"
+# Localização para datas
+export LC_TIME="pt_BR.UTF-8"
 
 # Inicia o servidor xorg com .xinitrc do usuário
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then

@@ -1,5 +1,6 @@
-strong {
-    color: #00aa00
+ strong {
+    color: #ffffff;
+    font-weight: 900;
 }
 .site-header {
     background-color: #000000
@@ -18,6 +19,55 @@ strong {
 ul > li > * {
     color: #555 !important;
 }
+.markdown-body .highlight pre, .markdown-body pre {
+    border: 1px solid #ffffff !important;
+    border-radius: 0 !important;
+}
+.wy-nav-content-wrap {
+    background: #000000 !important;
+}
+.wy-nav-content {
+    background: #000000 !important;
+}
+.wy-menu-vertical li.on a, .wy-menu-vertical li.current>a {
+    color: #ffffff !important;
+    background: #000000 !important;
+}
+.wy-menu-vertical li.current {
+    color: #ffffff !important;
+    background: #000000 !important;
+}
+table, tr, {
+    border-style: 1px solid #ffffff !important;
+    border: 1px solid #ffffff !important
+}
+tbody {
+    color: #ffffff;
+    background: #000000 !important;
+}
+[class*=archwiki] {
+    background-color: #000000 !important;
+}
+#main {
+    background: #000000 !important;
+    background-color: #000000 !important;
+}
+article {
+    color: #ffffff !important;
+}
+div.example, pre.example {
+    background: #000000 !important;
+    background-color: #000000 !important;
+}
+div.content {
+    background-color: #000000 !important;
+}
+.iY .Bu {
+    background: #000000 !important;
+}
+h5, h6, dt {
+    color: #656565 !important;
+}
 * {
   border-color: #ffffff !important;
 }
@@ -34,6 +84,7 @@ a:visited {
   color: #0030ff !important;
 }
 body {
+  background: #000000 !important;
   background-color: #000000 !important;
   color: #ffffff !important;
 }
@@ -47,6 +98,8 @@ textarea {
 }
 blockquote,
 pre {
+  border: 1px solid #ffffff !important;
+  border-radius: 0 !important;
   background-color: #000000 !important;
   color: #ffffff !important;
 }
@@ -280,10 +333,6 @@ a.filter-item:hover,
 }
 .text-diff-deleted {
   color: #f00 !important;
-}
-.avatar,
-.timeline-comment-avatar {
-  filter: opacity(75%);
 }
 .blob-code {
   background-color: #000000 !important;
@@ -704,7 +753,6 @@ qul.branches-list * {
 }
 a.label {
   color: #000 !important;
-  filter: opacity(75%);
 }
 .notifications-list a {
   color: #ffffff !important;
@@ -1208,9 +1256,6 @@ div.vectorTabs li.selected span {
   background-color: transparent !important;
   background-image: linear-gradient(to bottom, #000000, #000000) !important;
 }
-.mw-wiki-logo {
-  filter: opacity(50%);
-}
 div#simpleSearch #searchInput {
   background-color: #000000 !important;
   padding: 0.05em 0px 0.2em 0.2em !important;
@@ -1620,9 +1665,6 @@ pre code .typ {
 #question-header .question-hyperlink {
   color: #0040ff !important;
 }
-#hlogo a {
-  filter: opacity(75%);
-}
 .new-post-activity {
   background-color: #000000 !important;
 }
@@ -1713,16 +1755,6 @@ a.comment-user.owner {
 .vote {
   background-color: #000000 !important;
 }
-.vote .star-off {
-  filter: opacity(75%);
-}
-.vote .star-on {
-  filter: opacity(50%) !important;
-}
-.vote .vote-down-off,
-.vote .vote-up-off {
-  filter: opacity(50%);
-}
 .answer-votes {
   background-color: #000000 !important;
   color: #000000 !important;
@@ -1742,16 +1774,16 @@ body{background-color:#000000 !important;color: #fff !important; background-imag
 .volume__button{filter: invert(100%) !important;}
 .playbackTimeline__duration{filter: invert(100%) !important;}
 .l-container{background-color: #000000 !important;}
-.playbackSoundBadge__titleLink, .playbackSoundBadge__titleLink:visited{filter: invert(100%) !important;}
-a.playbackSoundBadge__lightLink:hover, a.playbackSoundBadge__lightLink:focus{filter: invert(100%) !important;}
+/* .playbackSoundBadge__titleLink, .playbackSoundBadge__titleLink:visited{filter: invert(100%) !important;} */
+/* a.playbackSoundBadge__lightLink:hover, a.playbackSoundBadge__lightLink:focus{filter: invert(100%) !important;} */
 .g-tabs-link, .g-tabs-link:visited{color: #ffffff !important}
 .g-tabs-link.active{color: #00f !important}
 .sc-button-small.sc-button-icon:not(.sc-button-stretch-icon), .sc-button-small.sc-button-responsive:not(.sc-button-stretch-icon){background-color: #000 !important}
 .sound__soundActions{background-color: transparent !important}
 .soundActions{background-color: transparent !important}
-/*.soundTitle__title .sc-truncate{filter: invert(100%) !important;}*/
-.soundBadge .soundTitle__username{filter: invert(100%) !important;}
-a.sc-link-dark{filter: invert(100%) !important;}
+/*.soundTitle__title .sc-truncate{filter: invert(100%) !important;} */
+/* .soundBadge .soundTitle__username{filter: invert(100%) !important;} */
+/* a.sc-link-dark{filter: invert(100%) !important;} */
 .soundContext__line .sc-ministats{color: #fff !important}
 .sc-border-light-right{border-right: 1px solid #ffffff !important}
 .sc-border-light-bottom{border-bottom: 1px solid #fff !important}

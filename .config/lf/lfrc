@@ -90,8 +90,6 @@ map o
 map n
 map "'"
 map '"'
-map d
-map c
 map e
 map f
 
@@ -99,3 +97,5 @@ map <delete> delete
 map t mkfile
 map o open
 map c chmod
+map C clear
+map m mkdir

@@ -5,7 +5,7 @@ xsetroot -cursor_name left_ptr
 
 # Teclado
 setxkbmap -option caps:escape # muda a função da tecla caps lock para esc
-xset r rate 300 50 # acelera repetição de teclas
+xset r rate 300 100 # acelera repetição de teclas
 
 # Gnome keyring daemon
 eval "$(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)"
@@ -14,7 +14,7 @@ export SSH_AUTH_SOCK
 
 # Clipmenu
 systemctl --user import-environment DISPLAY
-export CM_DIR="$HOME/suckless/dmenu/menus/listas/clipmenu"
+export CM_DIR="$HOME/code/dmenuscripts/listas/clipmenu"
 clipmenud &
 
 # Outros

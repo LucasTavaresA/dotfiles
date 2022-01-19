@@ -1,7 +1,5 @@
 .cache/
-.config/Code*
 .config/dconf/
-.config/deadbeef/
 .config/discord/
 .config/galculator/
 .config/GIMP/
@@ -14,6 +12,7 @@
 .config/qutebrowser/autoconfig.yml
 .config/qutebrowser/bookmarks
 .config/qutebrowser/quickmarks
+.config/stumpwm/*log*
 .config/transmission/
 .config/VirtualBox/
 .config/nvim/plugged/
@@ -22,14 +21,12 @@
 .mozilla/
 .pki/
 .ssh/
-.vscode*
 cursos/
 documentos/
 Downloads/
-img vid/
+imgvid/
 mnt/
 musicas/
-projetos/
+code/
 roms/
-suckless/
 VirtualBox VMs/
