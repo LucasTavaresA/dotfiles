@@ -5,7 +5,7 @@
 # ZSH EXPORTS
 export SHELL="zsh"
 # Não adiciona esses itens ao histórico
-export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
+export HISTORY_IGNORE="(ls|cd|pwd|exit|doas reboot|history|cd -|cd ..)"
 HISTFILE=~/.local/share/history
 HISTSIZE=10000
 SAVEHIST=10000
@@ -82,22 +82,26 @@ IFS=$SAVEIFS
 
 # Aliases
 alias clip='xclip -selection clipboard'
-alias sudo="doas"
+alias sudo='doas'
+alias p='ping google.com'
 alias yt='yt-dlp'
 alias yta='yt-dlp -x --audio-format mp3'
 # Arquivos e Diretórios
 alias l='lsd -l --group-dirs first'
 alias la='lsd -A --group-dirs first'
 alias lla='lsd -lA --group-dirs first'
+alias lr='lsd -lRA --group-dirs first'
 alias ..='cd ..'
 alias lo='locate -Ai'
-alias u='sudo updatedb'
+alias u='doas updatedb'
 alias ch='chmod +x'
 alias rm='rm -rf'
 # Programas
 alias n='neofetch'
 alias v='nvim'
-alias e='emacs'
+alias estart="emacs --daemon"
+alias ekill="emacsclient -e '(kill-emacs)'"
+alias e='emacsclient -c'
 # Git aliases
 alias gi='git init'
 alias gc='git clone'
@@ -106,16 +110,17 @@ alias gd='git diff'
 alias gds='git diff --staged'
 alias gl='git log --oneline'
 alias ga='git add'
+alias gaf='git add -f'
 alias gcm='git commit -m'
 alias gp='git push'
 alias gr='git restore'
 # Pacman
-alias ps='sudo pacman -S'
+alias ps='doas pacman -S'
 alias psi='pacman -Si'
 alias pss='pacman -Ss'
-alias psyu='sudo pacman -Syu'
+alias psyu='doas pacman -Syu'
 alias pqs='pacman -Qs'
-alias prns='sudo pacman -Rns'
+alias prns='doas pacman -Rns'
 alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
 
 # Prompt do starship

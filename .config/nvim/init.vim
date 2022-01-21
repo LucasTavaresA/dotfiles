@@ -11,8 +11,6 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'terryma/vim-expand-region'
-" Modo leitura
-" Plug 'junegunn/goyo.vim'
 
 """"" Indicação de sintaxe
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -129,10 +127,6 @@ map <A-Left> <C-w>h
 map <A-Down> <C-w>j
 map <A-Up> <C-w>k
 map <A-Right> <C-w>l
-" Sai salvando o buffer
-map qq :wq<CR>
-" Sai sem salvar
-map qQ :q!<CR>
 
 """ Atalhos de plugins
 " Modo foco : LiteDFM
@@ -142,5 +136,3 @@ map <leader><Up> <Plug>(expand_region_expand)
 map <leader><Down> <Plug>(expand_region_shrink)
 " Ativa/Desativa o colorizer : Nvim-Colorizer.lua
 map cc :ColorizerToggle<CR>
-" Modo leitura : Goyo
-" map G :Goyo \| set bg=light \| set linebreak<CR>

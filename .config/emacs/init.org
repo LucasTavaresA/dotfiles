@@ -1,0 +1,370 @@
+#+title: Configuração do emacs
+#+PROPERTY: header-args:emacs-lisp :tangle ./init.el
+#+STARTUP: overview
+
+* Geral
+#+begin_src emacs-lisp
+
+  ;; Diminui a coleta de lixo
+  (setq gc-cons-threshold (* 50 1000 1000))
+
+  (setq inhibit-startup-message t)     ; Desativa a tela de inicio
+
+#+end_src
+* Gerenciamento de pacotes
+#+begin_src emacs-lisp
+
+    (require 'package)
+
+    ;; Repositórios de pacotes
+    (setq package-archives
+          '(("melpa" . "https://melpa.org/packages/")
+            ("org" . "https://orgmode.org/elpa/")
+            ("elpa" . "https://elpa.gnu.org/packages/")))
+
+    ;; Gerenciador de pacotes
+    (package-initialize)
+    (setq use-package-always-ensure t)
+    (unless (package-installed-p 'use-package)
+      (package-refresh-contents)
+      (package-install 'use-package))
+    (eval-when-compile (require 'use-package))
+
+  (use-package auto-package-update
+    :custom
+    (auto-package-update-interval 7)             ; Espera para atualizar pacotes (em dias)
+    (auto-package-update-prompt-before-update t) ; Pergunta antes de atualizar
+    (auto-package-update-hide-results t)         ; Mostra pacotes que foram atualizados
+    :config
+    (auto-package-update-maybe)                  ; Checa se o horário de update passou e atualiza
+    (auto-package-update-at-time "09:00"))       ; Horário de update
+
+    ;; Move arquivos temporários/cache para pastas separadas
+    (use-package no-littering)
+
+    ;; Move arquivo de auto salvamento para outra pasta
+    (setq auto-save-file-name-transforms
+          `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+
+
+#+end_src
+* Aparência
+#+begin_src emacs-lisp
+
+  (tooltip-mode -1)                    ; desativa as tooltips
+  (tool-bar-mode -1)                   ; desativa a aba de ferramentas
+  (menu-bar-mode -1)                   ; desativa o menu
+  (set-fringe-mode 0)                  ; bordas das janelas
+  (scroll-bar-mode -1)                 ; desativa a barra de scroll
+  (setq visible-bell t)                ; barra pisca em erros
+  (global-hl-line-mode 1)              ; indica a linha atual
+  (setq-default mode-line-format nil)  ; remove a mode-line
+  (global-display-line-numbers-mode t) ; numeros de linhas
+  (set-frame-parameter (selected-frame) 'alpha '(85 70))                 ; transparência
+  (set-face-attribute 'default nil :font "Fira Code Retina" :height 115) ; fonte
+  (load-theme 'wombat) ; tema original do emacs
+
+  ;; Doom temas
+  (use-package doom-themes
+    :ensure t
+    :config
+    (setq doom-themes-enable-bold t     ; se nil, negrito é globalmente desativado
+          doom-themes-enable-italic t)  ; se nil, italico é globalmente desativado
+    (load-theme 'doom-solarized-dark t)
+    (doom-themes-visual-bell-config)    ; ativa piscar a barra em erros
+    (doom-themes-org-config))           ; melhora as fontes do org-mode
+
+  ;; Adiciona ícones
+  (use-package all-the-icons
+    :if (display-graphic-p))
+
+  #+end_src
+* Evil
+#+begin_src emacs-lisp
+
+  ;; Refazer/Desfazer como no vim
+  ;; Não necessário no emacs 28
+  (use-package undo-fu)
+
+  ;; Evil
+  (use-package evil
+    :demand t
+    :bind (("<escape>" . keyboard-escape-quit))
+    (("s-c" . evilnc-comment-or-uncomment-lines))
+    (("M-v" . evil-paste-before))
+    (("M-c" . evil-yank))
+    (("<M-tab>" . evil-toggle-fold))
+    :init
+    (setq evil-want-integration t)
+    (setq evil-want-C-u-scroll t)
+    (setq evil-want-C-i-jump nil)
+    (setq evil-want-keybinding nil)  ; Desativa comandos no insert mode
+    (setq evil-undo-system 'undo-fu)
+    :config
+    (evil-mode 1)
+    (evil-set-initial-state 'messages-buffer-mode 'normal)
+    (evil-set-initial-state 'dashboard-mode 'normal))
+
+  ;; Teclas do vim para outros modos
+  (use-package evil-collection
+    :after evil
+    :config
+    (evil-collection-init))
+
+  #+end_src
+* Teclas
+#+begin_src emacs-lisp
+
+  (global-set-key (kbd "<escape>") 'keyboard-escape-quit) ; ESQ fecha prompts
+  (global-set-key (kbd "<C-tab>") 'counsel-switch-buffer)
+  (global-unset-key (kbd "C-SPC"))
+
+  ;; Melhora configuração de teclas
+  (use-package general
+    :after evil
+    :config
+    (general-evil-setup t)
+  (general-create-definer rune/leader-keys
+    :keymaps '(normal insert visual emacs)
+    :prefix "SPC"
+    :global-prefix "C-SPC"))
+  (rune/leader-keys
+   "t"   '(enable-theme :which-key "Escolher tema")
+   "p"   '(projectile-command-map :which-key "Projectile")
+   "r"   '(rainbow-mode :which-key "Rainbow mode")
+   "s"   '(flyspell-mode :which-key "Corretor ortográfico")
+   "C"   '(global-command-log-mode :which-key "Log de comandos")
+   "c"   '(clm/toggle-command-log-buffer :which-key "Buffer de comandos")
+   "d"   '(dired-jump :which-key "Explorar arquivos")
+   "w q" '(evil-save-and-quit :which-key "Salvar e sair")
+   "q q" '(evil-quit :which-key "Sair sem salvar")
+   "w w" '(evil-save :which-key "Salvar")
+   "SPC" '(org-toggle-checkbox :which-key "Marcar"))
+
+  #+end_src
+* Compleção
+#+begin_src emacs-lisp
+
+  ;; Front-end para compleção ivy
+  (use-package ivy
+    :diminish
+    :bind (("C-s" . swiper)
+           :map ivy-switch-buffer-map
+           ("C-d" . ivy-switch-buffer-kill))
+    :config
+    (ivy-mode 1))
+
+  ;; Melhora a interface do ivy
+  (use-package ivy-rich
+    :after ivy
+    :init
+    (ivy-rich-mode 1)
+    :config
+    (setq ivy-format-function #'ivy-format-function-line)
+    (setq ivy-rich-display-transformers-list
+          (plist-put ivy-rich-display-transformers-list
+                     'ivy-switch-buffer
+                     '(:columns
+                       ((ivy-rich-candidate (:width 40))
+                        (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right)); Retorna os indicadores de buffers
+                        (ivy-rich-switch-buffer-major-mode (:width 12 :face warning))          ; Retorna informações do major mode
+                        (ivy-rich-switch-buffer-project (:width 15 :face success))             ; Retorna o nome do projeto usando `projectile'
+                        ;; Retorna o caminho do arquivo relativo a raiz do projeto ou `default-directory' se projeto é nil
+                        (ivy-rich-switch-buffer-path (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path x (ivy-rich-minibuffer-width 0.3))))))))))
+
+  (use-package lsp-ivy
+    :after ivy)
+
+  ;; Mais funções de compleção para o ivy
+  (use-package counsel
+    :bind (("M-x" . counsel-M-x)
+           ("C-x C-f" . counsel-find-file)))
+
+  ;; Menu de compleção
+  (use-package vertico
+    :config
+    (vertico-mode))
+
+  ;; Servidor de compleção de linguagens
+  (use-package lsp-mode
+    :commands (lsp lsp-deferred)
+    :init
+    (setq lsp-keymap-prefix "C-c l")
+    (setq lsp-headerline-breadcrumb-enable nil)
+    :config
+    (lsp-enable-which-key-integration t))
+
+  ;; CSHARP
+  (use-package omnisharp
+     :init (lsp))
+
+  ;; Popup de compleção
+  (use-package company
+    :after lsp-mode
+    :hook (prog-mode . company-mode)
+    :bind (:map lsp-mode-map
+          ("<tab>" . company-indent-or-complete-common))
+    :custom
+    (company-minimum-prefix-length 1)
+    (company-idle-delay 0.0))
+
+  ;; Melhora a interface do company
+  (use-package company-box
+    :hook (company-mode . company-box-mode))
+
+  ;; Melhora a interface do lsp
+  (use-package lsp-ui
+    :hook (lsp-mode . lsp-ui-mode)
+    :custom
+    (setq lsp-ui-doc-position 'bottom))
+
+  #+end_src
+* Auxiliar
+#+begin_src emacs-lisp
+
+  ;; Menu de compleção de atalhos
+  (use-package which-key
+    :defer 0
+    :diminish which-key-mode
+    :config
+    (which-key-mode)
+    (setq which-key-idle-delay 0)
+    (setq which-key-idle-secondary-delay 0))
+
+  ;; Retorna comandos sendo usados
+  (use-package command-log-mode
+     :commands (command-log-mode clm/toggle-command-log-buffer))
+
+  ;; Comenta código
+  (use-package evil-nerd-commenter)
+
+  ;; Buffer de ajuda
+  (use-package helpful
+    ;;:commands (helpful-callable helpful-variable helpful-command helpful-key)
+    :custom
+    (counsel-describe-function-function #'helpful-callable)
+    (counsel-describe-variable-function #'helpful-variable)
+    :bind
+    ([remap describe-function] . counsel-describe-function)
+    ([remap describe-command] . helpful-command)
+    ([remap describe-variable] . counsel-describe-variable)
+    ([remap describe-key] . helpful-key))
+
+  ;; Indica indentação/prioridade de parenteses,etc
+  (use-package rainbow-delimiters
+    :hook (prog-mode . rainbow-delimiters-mode))
+
+  ;; Previsão de cores
+  (use-package rainbow-mode)
+
+  ;; Facilita o controle de projetos
+  (use-package projectile
+    :diminish projectile-mode
+    :config (projectile-mode)
+    :init
+    (when (file-directory-p "~/code")
+      (setq projectile-project-search-path '("~/code")))
+    (setq projectile-switch-project-action #'projectile-dired))
+  (use-package counsel-projectile
+    :after projectile
+    :config
+    (counsel-projectile-mode 1))
+
+  ;; Correção ortográfica
+  (with-eval-after-load "ispell"
+    ;; Uma lingua padrão deve ser configurada embora outras linguas sejam adicionadas mais abaixo
+    (setenv "LANG" "pt_BR.UTF-8")          ; lingua padrão
+    (setq ispell-program-name "hunspell")  ; programa utilizado
+    (setq ispell-dictionary "pt_BR,en_US") ; lista de linguas
+    (ispell-set-spellchecker-params)       ; isso deve ser chamado antes de adicionar multi dicionários
+    (ispell-hunspell-add-multi-dic "pt_BR,en_US")
+    ;; Local do dicionario pessoal, caso não definida novas palavras são adicionadas ao .hunspell_pt_BR
+    (setq ispell-personal-dictionary "~/.config/hunspell/hunspell_personal"))
+
+  ;; Caso o arquivo do dicionario pessoal não exista, essa funcionalidade não é utilizada
+  (unless (file-exists-p ispell-personal-dictionary)
+    (write-region "" nil ispell-personal-dictionary nil 0))
+
+  ;; Popup do corretor
+  (use-package flyspell-popup)
+  (define-key flyspell-mode-map (kbd "M-s") #'flyspell-popup-correct)
+
+  ;; Gerenciador de arquivos
+  (use-package dired
+    :ensure nil
+    :commands (dired dired-jump)
+    :bind (("C-x C-j" . dired-jump))
+    :custom ((dired-listing-switches "-agho --group-directories-first")))
+
+  (use-package dired-single
+    :after dired)
+
+  ;; Melhora icones no explorador de arquivos
+  (use-package all-the-icons-dired
+    :hook (dired-mode . all-the-icons-dired-mode))
+
+  #+end_src
+* Orgmode
+#+begin_src emacs-lisp
+
+    ;; Função ao iniciar o orgmode
+    (defun orgm/org-mode-setup ()
+      (org-indent-mode)
+      (auto-fill-mode 0)
+      (visual-line-mode 1)
+      (setq evil-auto-indent nil))
+
+    ;; Orgmode
+    (use-package org
+      :hook (org-mode . orgm/org-mode-setup)
+      :bind (("M-s" . org-toggle-checkbox))
+      :config
+      (setq org-ellipsis " "
+            org-hide-emphasis-markers t))
+
+    ;; Aparencia dos marcadores
+    (use-package org-bullets
+      :hook (org-mode . org-bullets-mode)
+      :custom
+      (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+
+    ;; Trocar listas com hífens por pontos
+    (font-lock-add-keywords 'org-mode
+                            '(("^ *\\([-]\\) "
+                               (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
+    ;; Melhor indentação orgmode
+    (require 'org-indent)
+
+    ;; Roda snippets de codigo
+    (with-eval-after-load 'org
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((emacs-lisp . t)
+       (shell . t)
+       (org . t)))
+
+    ;; Não pergunta se quer avaliar codigo
+    (setq org-confirm-babel-evaluate nil)
+
+    ;; Templates para o orgmode
+    (require 'org-tempo)
+
+    ;; Snippets para templates de codigo
+    (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+    (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+    (add-to-list 'org-structure-template-alist '("org" . "src org")))
+
+    ;; Automaticamente separa a configuração do init.org quando o salva
+    (defun orgm/org-babel-tangle-config ()
+      (when (string-equal (buffer-file-name)
+                          (expand-file-name "~/.config/emacs/init.org"))
+        (let ((org-confirm-babel-evaluate nil))
+          (org-babel-tangle))))
+
+    (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'orgm/org-babel-tangle-config)))
+
+    ;; Volta com a velocidade normal da coleta de lixo
+    (setq gc-cons-threshold (* 50 1000 1000))
+
+  #+end_src

@@ -137,11 +137,11 @@ c.content.blocking.adblock.lists = [
         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt"
         ]
 
-# Usa o ranger para mandar arquivos
-config.set("fileselect.handler", "external")
-config.set("fileselect.single_file.command", ['st', '-c', 'ranger,ranger', '-e', 'ranger', '--choosefile', '{}'])
-config.set("fileselect.multiple_files.command", ['st', '-c', 'ranger,ranger', '-e', 'ranger', '--choosefiles', '{}'])
-config.set("fileselect.folder.command", ['st', '-c', 'ranger,ranger', '-e', 'ranger', '--choosedir', '{}'])
+# Usa o lf para mandar arquivos
+# config.set("fileselect.handler", "external")
+# config.set("fileselect.single_file.command", ['st', '-c', 'lf,lf', '-e', 'lf', '{}'])
+# config.set("fileselect.multiple_files.command", ['st', '-c', 'lf,lf', '-e', 'lf', '{}'])
+# config.set("fileselect.folder.command", ['st', '-c', 'lf,lf', '-e', 'lf', '{}'])
 
 # Permitir notificações.
 # Valid values:
@@ -202,6 +202,7 @@ c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
 
 # ATALHOS
 config.unbind('M')
+config.unbind('m')
 config.unbind('<Shift-H>')
 config.unbind('<Shift-L>')
 

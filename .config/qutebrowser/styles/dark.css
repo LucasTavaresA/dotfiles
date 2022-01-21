@@ -68,6 +68,17 @@ div.content {
 h5, h6, dt {
     color: #656565 !important;
 }
+kbd {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+#license {
+    background-color: #000000 !important;
+    border-radius: 0;
+}
+#postamble {
+    background-color: #000000 !important;
+}
 * {
   border-color: #ffffff !important;
 }

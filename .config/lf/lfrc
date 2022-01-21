@@ -1,5 +1,5 @@
 # interpreter for shell commands
-set shell sh
+set shell bash
 
 # set '-eu' options for shell commands
 # These options are used to have safer shell commands. Option '-e' is used to
@@ -16,6 +16,8 @@ set shellopts '-eu'
 # is newline. You need to consider the values of these options and create your
 # commands accordingly.
 set ifs "\n"
+
+set period 1
 
 # arquivos ocultos
 set hidden on
@@ -44,27 +46,52 @@ set drawbox on
 # abre espaço na parte superior e inferior da tela
 set scrolloff 0
 
+# cmd open ${{
+    # case $(file --mime-type $f -b) in
+        # text/*) $EDITOR $fx ;;
+        # video/*) mpv $fx ;;
+        # image/*) sxiv $fx ;;
+        # *) xdg-open $f ;;
+    # esac
+# }}
+
 cmd open ${{
-    case $(file --mime-type $f -b) in
-        text/*) $EDITOR $fx ;;
-        video/*) mpv $fx ;;
-        image/*) sxiv $fx ;;
-        *) xdg-open $f ;;
+    case $(file --mime-type "$(readlink -f $f)" -b) in
+	image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) setsid -f zathura $fx >/dev/null 2>&1 ;;
+        text/*) $EDITOR $fx;;
+	image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
+	image/svg+xml) display -- $f ;;
+	image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\)\(_large\)*$" | setsid -f sxiv -aio 2>/dev/null | lf-select & ;;
+	audio/*) mpv --audio-display=no $f ;;
+	video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
+	application/pdf|application/vnd*|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
+	application/pgp-encrypted) $EDITOR $fx ;;
+        *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
     esac
 }}
 
 cmd delete ${{
-    set -f
-    printf "$fx\n"
-    printf "deletar?[y/n]"
-    read ans
-    [ $ans = "y" ] && rm -rf $fx
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	printf "%s\n\t" "$fx"
+	printf "deletar?[y/N]"
+	read ans
+	[ $ans = "y" ] && rm -rf -- $fx
 }}
 
 cmd mkdir ${{
   printf "Nome do diretório: "
   read ans
   mkdir $ans
+}}
+
+cmd extract ${{
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	printf "%s\n\t" "$fx"
+	printf "extrair?[y/N]"
+	read ans
+	[ $ans = "y" ] && aunpack $fx
 }}
 
 cmd mkfile ${{
@@ -99,3 +126,4 @@ map o open
 map c chmod
 map C clear
 map m mkdir
+map E extract
