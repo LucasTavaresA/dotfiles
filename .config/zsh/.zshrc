@@ -99,8 +99,8 @@ alias rm='rm -rf'
 # Programas
 alias n='neofetch'
 alias v='nvim'
-alias estart="emacs --daemon"
-alias ekill="emacsclient -e '(kill-emacs)'"
+alias ed="emacs --daemon"
+alias ek="emacsclient -e '(kill-emacs)'"
 alias e='emacsclient -c'
 # Git aliases
 alias gi='git init'
@@ -126,7 +126,7 @@ alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
 # Prompt do starship
 eval "$(starship init zsh)"
 
-# Carrega os indicações de sintaxe; deve ser o ultimo comando.
+# Carrega os indicações de sintaxe, deve ser o ultimo comando.
 source $HOME/.config/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source $HOME/.config/zsh/plugins/expand-all.zsh
 

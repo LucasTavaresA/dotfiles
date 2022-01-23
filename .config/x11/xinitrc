@@ -26,6 +26,7 @@ xbanish &
 fluxgui &
 slstatus &
 sxhkd &
+emacs --daemon &
 
 # Protetor de tela
 xautolock -detectsleep -time 30 -locker "slock" -notify 30 -notifier "notify-send Slock -u critical -t 1800000 'BLOQUEANDO A TELA 30 SEGUNDOS'" &

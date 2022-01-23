@@ -15,9 +15,9 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export TERMINAL="st"
 export TERM="xterm-256color"
 # Editor no terminal
-export EDITOR="nvim"
+export EDITOR="emacsclient -c"
 # Editor com interface gráfica
-export VISUAL="nvim"
+export VISUAL="emacsclient -c"
 # Navegador padrão
 export BROWSER="qutebrowser"
 # Pager

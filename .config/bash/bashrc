@@ -5,6 +5,7 @@
 # Aliases
 alias clip='xclip -selection clipboard'
 alias sudo='doas'
+alias p='ping google.com'
 alias yt='yt-dlp'
 alias yta='yt-dlp -x --audio-format mp3'
 # Arquivos e Diretórios
@@ -19,7 +20,9 @@ alias rm='rm -rf'
 # Programas
 alias n='neofetch'
 alias v='nvim'
-alias e='emacs'
+alias ed="emacs --daemon"
+alias ek="emacsclient -e '(kill-emacs)'"
+alias e='emacsclient -c'
 # Git aliases
 alias gi='git init'
 alias gc='git clone'
@@ -33,12 +36,12 @@ alias gcm='git commit -m'
 alias gp='git push'
 alias gr='git restore'
 # Pacman
-alias ps='sudo pacman -S'
+alias ps='doas pacman -S'
 alias psi='pacman -Si'
 alias pss='pacman -Ss'
-alias psyu='sudo pacman -Syu'
+alias psyu='doas pacman -Syu'
 alias pqs='pacman -Qs'
-alias prns='sudo pacman -Rns'
+alias prns='doas pacman -Rns'
 alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
 
 # Ignora case-sensitivity quando completa comandos com tab
