@@ -32,12 +32,14 @@ export WGETRC="$HOME/.config/wget/wgetrc"
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 # Cargo
 export CARGO_HOME="$HOME/.local/share/cargo"
-# Neovim omnisharp
+# Omnisharp
 export OMNISHARPHOME="$HOME/.local/share/omnisharp"
+# Nuget
+export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
 # Gnupg
 export GNUPGHOME="$HOME/.local/share/gnupg"
 # Npm
-export NPM_CONFIG_USERCONFIG="$HOME/.config/npm"
+export NPM_CONFIG_USERCONFIG="$HOME/.config/npm/npmrc"
 # Terminfo
 export TERMINFO="$HOME/.local/share/terminfo"
 # Inputrc
