@@ -13,6 +13,7 @@ application/javascript=nvim.desktop;
 application/json=nvim.desktop;
 application/ld+json=nvim.desktop;
 application/msword=libreoffice-writer.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.dektop;
 application/pdf=firefox.desktop;
 application/vnd.ms-excel=libreoffice-calc.desktop;
 application/vnd.ms-powerpoint=libreoffice-impress.desktop;

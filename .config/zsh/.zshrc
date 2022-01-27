@@ -44,92 +44,6 @@ lf () {
 	unset LF_TEMPDIR
 }
 
-# Facilita extrair arquivos
-# Exemplo: ex (arquivo).zip
-SAVEIFS=$IFS
-IFS=$(echo -en "\n\b")
-function ex {
-    for n in "$@"
-    do
-      if [ -f "$n" ] ; then
-          case "${n%,}" in
-            *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
-                         tar xvf "$n"       ;;
-            *.lzma)      unlzma ./"$n"      ;;
-            *.bz2)       bunzip2 ./"$n"     ;;
-            *.cbr|*.rar)       unrar x -ad ./"$n" ;;
-            *.gz)        gunzip ./"$n"      ;;
-            *.cbz|*.epub|*.zip)       unzip ./"$n"       ;;
-            *.z)         uncompress ./"$n"  ;;
-            *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
-                         7z x ./"$n"        ;;
-            *.xz)        unxz ./"$n"        ;;
-            *.exe)       cabextract ./"$n"  ;;
-            *.cpio)      cpio -id < ./"$n"  ;;
-            *.cba|*.ace)      unace x ./"$n"      ;;
-            *)
-                         echo "ex: '$n' - Metodo de archivação desconhecido"
-                         return 1
-                         ;;
-          esac
-      else
-          echo "'$n' - Arquivo não existe"
-          return 1
-      fi
-    done
-}
-IFS=$SAVEIFS
-
-# Aliases
-alias clip='xclip -selection clipboard'
-alias sudo='doas'
-alias p='ping google.com'
-alias yt='yt-dlp'
-alias yta='yt-dlp -x --audio-format mp3'
-# Arquivos e Diretórios
-alias l='lsd -l --group-dirs first'
-alias la='lsd -A --group-dirs first'
-alias lla='lsd -lA --group-dirs first'
-alias lr='lsd -lRA --group-dirs first'
-alias ..='cd ..'
-alias lo='locate -Ai'
-alias u='doas updatedb'
-alias ch='chmod +x'
-alias rm='rm -rf'
-# Programas
-alias n='neofetch'
-alias v='nvim'
-alias ed="emacs --daemon"
-alias ek="emacsclient -e '(kill-emacs)'"
-alias e='emacsclient -c'
-# Git aliases
-alias gi='git init'
-alias gc='git clone'
-alias gs='git status'
-alias gd='git diff'
-alias gds='git diff --staged'
-alias gl='git log --oneline'
-alias ga='git add'
-alias gaf='git add -f'
-alias gcm='git commit -m'
-alias gp='git push'
-alias gr='git restore'
-# Pacman
-alias ps='doas pacman -S'
-alias psi='pacman -Si'
-alias pss='pacman -Ss'
-alias psyu='doas pacman -Syu'
-alias pqs='pacman -Qs'
-alias prns='doas pacman -Rns'
-alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
-
-# Prompt do starship
-eval "$(starship init zsh)"
-
-# Carrega os indicações de sintaxe, deve ser o ultimo comando.
-source $HOME/.config/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source $HOME/.config/zsh/plugins/expand-all.zsh
-
 # Adiciona ícones no lf
 export LF_ICONS="\
 tw=:\
@@ -309,3 +223,112 @@ ex=:\
 *.pdf=:\
 *.nix=:\
 "
+
+# Facilita extrair arquivos
+# Exemplo: ex (arquivo).zip
+SAVEIFS=$IFS
+IFS=$(echo -en "\n\b")
+function ex {
+    for n in "$@"
+    do
+      if [ -f "$n" ] ; then
+          case "${n%,}" in
+            *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
+                         tar xvf "$n"       ;;
+            *.lzma)      unlzma ./"$n"      ;;
+            *.bz2)       bunzip2 ./"$n"     ;;
+            *.cbr|*.rar)       unrar x -ad ./"$n" ;;
+            *.gz)        gunzip ./"$n"      ;;
+            *.cbz|*.epub|*.zip)       unzip ./"$n"       ;;
+            *.z)         uncompress ./"$n"  ;;
+            *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
+                         7z x ./"$n"        ;;
+            *.xz)        unxz ./"$n"        ;;
+            *.exe)       cabextract ./"$n"  ;;
+            *.cpio)      cpio -id < ./"$n"  ;;
+            *.cba|*.ace)      unace x ./"$n"      ;;
+            *)
+                         echo "ex: '$n' - Metodo de archivação desconhecido"
+                         return 1
+                         ;;
+          esac
+      else
+          echo "'$n' - Arquivo não existe"
+          return 1
+      fi
+    done
+}
+IFS=$SAVEIFS
+
+# Aliases
+alias n="neofetch"
+alias v="nvim"
+alias h="htop"
+alias ed="emacs --daemon"
+alias ek="emacsclient -e '(kill-emacs)'"
+alias e="emacsclient -c"
+alias copy="xclip -selection clipboard"
+alias sudo="doas"
+alias p="ping google.com"
+alias yt="yt-dlp"
+alias yta="yt-dlp -x --audio-format mp3"
+alias ka="doas killall"
+alias mk="make"
+alias mki="make install"
+alias mku="make uninstall"
+alias xp="xprop"
+alias xk="xkill"
+alias grep="grep --color -i"
+alias sys="doas systemctl"
+# Arquivos e Diretórios
+alias l="lsd -l --group-dirs first"
+alias la="lsd -A --group-dirs first"
+alias lla="lsd -lA --group-dirs first"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias lo="locate -Ai"
+alias u="doas updatedb"
+alias ch="chmod +x"
+alias cp="cp -i"
+alias mv="mv -i"
+alias rm="rm -rfi"
+alias ln="ln -i"
+alias md="mkdir -pv"
+alias t="touch"
+alias mnt="mount"
+alias umnt="umount"
+# Git aliases
+alias gi="git init"
+alias gc="git clone"
+alias gs="git status"
+alias gd="git diff"
+alias gds="git diff --staged"
+alias gl="git log --oneline"
+alias ga="git add"
+alias gaf="git add -f"
+alias gcm="git commit -m"
+alias gp="git push"
+alias gr="git restore"
+# Pacman aliases
+alias ps="doas pacman -S"
+alias psi="pacman -Si"
+alias pss="pacman -Ss"
+alias psyu="doas pacman -Syu"
+alias pqs="pacman -Qs"
+alias prns="doas pacman -Rns"
+alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
+# Paru aliases
+alias pps="doas paru -S"
+alias ppsi="paru -Si"
+alias ppss="paru -Ss"
+alias ppsyu="doas paru -Syu"
+alias ppqs="paru -Qs"
+alias pprns="doas paru -Rns"
+
+# Prompt do starship
+eval "$(starship init zsh)"
+
+# Carrega os indicações de sintaxe, deve ser o ultimo comando.
+source $HOME/.config/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source $HOME/.config/zsh/plugins/you-should-use.plugin.zsh

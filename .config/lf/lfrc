@@ -57,16 +57,15 @@ set scrolloff 0
 
 cmd open ${{
     case $(file --mime-type "$(readlink -f $f)" -b) in
-	image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) setsid -f zathura $fx >/dev/null 2>&1 ;;
-        text/*) emacsclient -c $fx;;
-	image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
-	image/svg+xml) display -- $f ;;
-	image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\)\(_large\)*$" | setsid -f sxiv -aio 2>/dev/null | lf-select & ;;
-	audio/*) mpv --audio-display=no $f ;;
-	video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
-	application/pdf|application/vnd*|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
+    	application/vnd.openxmlformats-officedocument.wordprocessingml.document) libreoffice $f ;;
+	image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) zathura $fx ;;
+        text/*) emacsclient -c $fx ;;
+	image/*) sxiv $fx ;;
+	audio/*) mpv --audio-display=no $fx ;;
+	video/*) mpv $fx ;;
+	application/pdf|application/vnd*|application/epub*) zathura $fx ;;
 	application/pgp-encrypted) emacsclient -c $fx ;;
-        *) for f in $fx; do setsid -f xdg-open $f >/dev/null 2>&1; done;;
+        *) xdg-open $fx ;;
     esac
 }}
 

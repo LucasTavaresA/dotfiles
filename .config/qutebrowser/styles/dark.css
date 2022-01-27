@@ -121,6 +121,202 @@ header.navbar {
     background-color: #ffffff !important;
     color: #000000 !important;
 }
+.boxShadow {
+    background: #000000 !important;
+}
+.aCandidato div > .btn.bluecel {
+    background: #000000 !important;
+}
+.profile .addPhoto {
+    background-color: #000000 !important;
+}
+.nav-candidate {
+    background-color: #000000 !important;
+}
+.submenu {
+    background: #000000 !important;
+}
+.statusCandidate .olCounter {
+    background: #000000 !important;
+}
+footer .subfooter {
+    background: #000000 !important;
+}
+.resultsFacets {
+    background: #000000 !important;
+}
+.resultsGrid .element-vaga.lider {
+    background-color: #222222 !important;
+}
+.resultsGrid .element-vaga {
+    background: #000000 !important;
+}
+.courses {
+    background: #000000 !important;
+}
+.label-info {
+    background-color: #000000 !important;
+    border: 1px solid #ffffff !important;
+}
+.ui-widget-content {
+    background: #000000 !important;
+    border: 1px solid #ffffff !important;
+}
+.bar-mode .slOrder .drpItems {
+    background: #000000 !important;
+}
+.header .download-btns a {
+    background-color: #000000 !important;
+}
+.header nav {
+    background: #000000 !important;
+}
+.header nav.gnu-nav {
+    background: #000000 !important;
+}
+.releases {
+    background: #000000 !important;
+}
+.resultsGrid .vagaTitle:visited, .resultsGrid .vagaTitle:visited h2 {
+    color: #555555 !important;
+}
+.advisor-card {
+    background-color: #000000 !important;
+}
+.newForm fieldset, .lastFieldset {
+    background-color: #000000 !important;
+}
+.left {
+    background-color: #000000 !important;
+}
+.boxRight {
+    background-color: #000000 !important;
+}
+.container.cv {
+    background-color: #000000 !important;
+}
+.advisor-vacancy-content .descriptionItems li {
+    color: #ffffff !important;
+}
+.newForm .disabled, input:disabled {
+    background-color: #000000 !important;
+}
+.newForm .formStudies, .newForm .formExperiencia, .newForm .formRecommend, .newForm .formLanguages {
+    background-color: #000000 !important;
+    border: 1px solid #ffffff !important;
+}
+.newForm input[type=checkbox]:not(old)+label, .newForm input[type=radio]:not(old)+label {
+    color: #ffffff !important;
+}
+.newForm legend {
+    color: #ffffff !important;
+}
+.procesSecure {
+    color: #ffffff !important;
+}
+.Zvyb8e-T3iPGc-CCJ0ld, .Zvyb8e-T3iPGc-omnibox {
+    color: #ffffff !important;
+    background: #000000 !important;
+}
+.siAUzd-neVct {
+    background-color: #000000 !important;
+}
+.KV8BCb-JIbuQc {
+    background-color: #000000 !important;
+}
+.QTgvq-T3iPGc-PnexQd {
+    background-color: #000000 !important;
+}
+.advisor-btn {
+    background: #000000 !important;
+}
+#app__container {
+    background-color: #000000 !important;
+}
+.card-layout {
+    background: #000000 !important;
+}
+.header__content .header__content__subheading {
+    color: #ffffff !important;
+}
+.login__form .form__label--error {
+    background-color: #000000 !important;
+}
+.global-nav {
+    background-color: #000000 !important;
+}
+.global-nav__primary-link-text {
+    color: #ffffff !important;
+}
+#gnav-main-container.gnav .gnav-header-tnrrdf-Flex {
+    background-color: #000000 !important;
+}
+svg.gnav-header-i52vp6-factory.eac13zx0 {
+    background-color: #000000 !important;
+}
+.jobsearch-Content {
+    background-color: #000000 !important;
+}
+[dir] .icl-TextPromo {
+    background-color: #000000 !important;
+}
+.jasxrefreshcombotst .jobsearch-PopularSearchesPillBoxes-pillBox {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid #ffffff !important;
+}
+html body .jobsearch-Layout .icl-TextPromo-text {
+    color: #ffffff !important;
+}
+.css-yz2az3 {
+    background-color: #000000 !important;
+}
+.css-1d8uo2x {
+    background-color: #000000 !important;
+}
+.artdeco-card {
+    background-color: #000000 !important;
+}
+.job-card-container__metadata-item {
+    color: #ffffff !important;
+}
+.job-card-container__metadata-wrapper {
+    color: #ffffff !important;
+}
+.t-black--light {
+    color: #ffffff !important;
+}
+.t-black {
+    color: #ffffff !important;
+}
+.global-nav__a11y-menu {
+    background-color: #000000 !important;
+}
+.jobs-search-advanced-filters__slider-value, .jobs-search-box__input-icon, .jobs-search-inline-suggestions-card__search-icon {
+    color: #ffffff !important;
+}
+.container, .container-with-shadow, .ui-container, .ui-container--with-shadow {
+    background-color: #000000 !important;
+}
+.pun , .punwrap {
+    background: #000000 !important;
+    color: #ffffff !important;
+}
+#brdmenu {
+    background: #000000 !important;
+}
+#brdmenu a, #brdmenu a:link, #brdmenu a:visited {
+    background: #000000 !important;
+}
+.pun .blockpost {
+    background: #000000 !important;
+}
+.pun .blockpost h2 {
+    background: #000000 !important;
+}
+.pun .blockpost .postbody, .pun .blockpost .postfoot {
+    background: #000000 !important;
+}
 * {
   border-color: #ffffff !important;
 }
@@ -2024,7 +2220,7 @@ html:before {
 }
 /*Text Color Red*/
 ._2jnv,._1ht6,._43za,a,._ih3,._-kb label,._5xdy,h2,._r7 span,.rhcFooterCopyright span,._l0,._17tq,._2w0q,._5aff,._1ui7,._c24 {
-    color: #0050ff !important;
+    color: #ffffff !important;
 }
 /*Text Color Blue*/
 .t486r87n,.mfclru0v span,._4ly5,._4753,._1ht3 ._1htf,.UFICommentActions .UFISutroCommentTimestamp,._m_6,._2wq4,._4nr6 font,._3quh,._1ht7,._6s,th,.fbSettingsList .fbSettingsListItemLabel,._fel,footer p,._5xu4,.label label,._27vm,._3to7 ._3to8,.touch ._2-xr ._1e39,.fcl strong,.touch ._3kad,._5h69,.uiInputLabelLabel,.uiInfoTable .label,.lfloat span,div._58gj,._58mt,._-21,._34g8,._3sts,div,._5q4n,.dialog_body,.uiIconText,._175u,._4a0x,._5pd7,._5x7x,._4a0v,._4a0x,._4b0g,._4bjh,div._4-i2 div[role="document"],.addFriendText,._5f9e,._4-dq,._g3i,.__6k,._l1,.author span,._42ef,._4t37,td._5esm:first-child,.uiSearchInput input,._2qx7,.captcha_refresh,._29ef,.hasCaption,._4_cj,.count,._5v0s,._32w3,._32w2,.name,._2vxa span {

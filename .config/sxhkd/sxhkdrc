@@ -94,6 +94,10 @@ Menu;slash
 Menu;H
     dmenu_shhistory
 
+# Lf
+Menu;l
+    st -e lf	
+
 # Picom
 Menu;P
     killall picom || picom
@@ -144,6 +148,10 @@ Menu;f
 # Importante
 Menu;i
     dmenu_favoritos importante
+
+# Aliases
+Menu;a
+    zsh-aliases
 
 # Tira print
 Print

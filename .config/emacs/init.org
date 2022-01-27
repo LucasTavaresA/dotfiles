@@ -1,6 +1,6 @@
 #+title: Configuração do emacs
 #+PROPERTY: header-args:emacs-lisp :tangle ./init.el
-#+STARTUP: overview
+#+STARTUP: content
 
 * Gerenciamento de pacotes/systema
 ** Pacotes
@@ -181,6 +181,7 @@
   (("C-s" . swiper))
   (("<s-up>" . er/expand-region))
   (("<s-down>" . other-window))
+  (("<C-tab>" . evil-next-buffer))
   :init
   (setq evil-want-integration t)
   (setq evil-want-C-u-scroll t)
@@ -194,7 +195,6 @@
 
 (global-unset-key (kbd "C-SPC"))
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit) ; ESQ fecha prompts
-(global-set-key (kbd "<C-tab>") 'counsel-switch-buffer)
 (define-key flyspell-mode-map (kbd "M-s") #'flyspell-popup-correct)
 
 (use-package general ; Facilita configuração de teclas
@@ -222,6 +222,7 @@
   "q q" '(evil-quit :which-key "Sair sem salvar")
   "w w" '(evil-save :which-key "Salvar")
   "SPC" '(org-toggle-checkbox :which-key "Marcar")
+  "<tab>" '(counsel-switch-buffer :which-key "Mudar de buffer")
   "<S-right>" '(evil-window-vsplit :which-key "Dividir a direita") 
   "<S-down>"  '(evil-window-split :which-key "Dividir Abaixo"))
 
