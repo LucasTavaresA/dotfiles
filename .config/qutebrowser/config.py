@@ -235,6 +235,8 @@ config.bind('ztp', 'spawn --userscript translate')
 config.bind('zts', 'spawn --userscript translate --text')
 # Modo leitura
 config.bind('zl', 'spawn --userscript readability')
+# Passa a aba para uma outra janela
+config.bind('zg', 'tab-give')
 # Copia links
 config.bind('zc', 'hint links yank')
 # Copia trechos de codigo

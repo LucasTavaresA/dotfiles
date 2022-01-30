@@ -2,40 +2,68 @@
 #+PROPERTY: header-args:emacs-lisp :tangle ./init.el
 #+STARTUP: content
 
-* Gerenciamento de pacotes/systema
-** Pacotes
+* Iniciar
 #+begin_src emacs-lisp
 
-(setq gc-cons-threshold (* 50 1000 1000)) ; Diminui a coleta de lixo 
+;; -*- lexical-binding: t; -*-
 
-(require 'package)
-(setq package-archives ; Repositórios de pacotes
-      '(("melpa" . "https://melpa.org/packages/")
-	("org" . "https://orgmode.org/elpa/")
-	("elpa" . "https://elpa.gnu.org/packages/")))
+;; Diminui a coleta de lixo
+(setq gc-cons-threshold (* 50 1000 1000))
 
-(package-initialize) ; Gerenciador de pacotes use-package
-(setq use-package-always-ensure t)
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(eval-when-compile (require 'use-package))
-
-(use-package auto-package-update               ; Atualizar os pacotes automaticamente
-  :custom
-  (auto-package-update-interval 7)             ; Espera para atualizar pacotes (em dias)
-  (auto-package-update-prompt-before-update t) ; Pergunta antes de atualizar
-  (auto-package-update-hide-results t)         ; Mostra pacotes que foram atualizados
-  :config
-  (auto-package-update-maybe)                  ; Checa se o horário de update passou e atualiza
-  (auto-package-update-at-time "09:00"))       ; Horário de update
+;; Compilação nativa no emacs 28
+;; Silencia os avisos de compilação nativa
+;; (setq native-comp-async-report-warnings-errors nil)
+;; Ajusta o diretório correto para salvar o cache de compilação
+;; (add-to-list 'native-comp-eln-load-path (expand-file-name "eln-cache/" user-emacs-directory))
 
 #+end_src
-** Systema
+* Pacotes
+
+Para listar pactes usando o straight use =M-x straight-use-package=, Não os instale dessa maneira sem os referenciar no init.el
+
+Para atualizar todos os pacotes use =M-x straight-pull-all=
+
+Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x straight-remove-unused-repos=
+
 #+begin_src emacs-lisp
 
-(setq inhibit-startup-message t) ; Desativa a tela de inicio
-(use-package no-littering) ; Move arquivos temporários/cache para pastas separadas
+;; Boostrap straight.el
+(defvar bootstrap-version)
+(let ((bootstrap-file
+      (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+        "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+        'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+;; Integra a expressão use-package ao straight
+(straight-use-package 'use-package)
+;; Automaticamente instala todos os pacotes
+;; Sem usar o :straight t, equivalente ao :ensure t
+(setq straight-use-package-by-default t)
+
+;; Atualizar os pacotes automaticamente
+(use-package auto-package-update
+  :custom
+  (auto-package-update-interval 7)                 ; Espera para atualizar pacotes (em dias)
+  (auto-package-update-prompt-before-update t)     ; Pergunta antes de atualizar
+  (auto-package-update-hide-results t)             ; Mostra pacotes que foram atualizados
+  :config
+  (setq auto-package-update-delete-old-versions t) ; Remove versões antigas
+  (auto-package-update-maybe)                      ; Checa se o horário de update passou e atualiza
+  (auto-package-update-at-time "09:00"))           ; Horário de update
+
+#+end_src
+* Limpeza
+#+begin_src emacs-lisp
+
+;; Move arquivos temporários/cache para pastas separadas
+(use-package no-littering)
 
 ;; Move arquivo de auto salvamento para outra pasta
 (setq auto-save-file-name-transforms
@@ -45,59 +73,70 @@
 * Aparência
 #+begin_src emacs-lisp
 
-(tooltip-mode -1)                    ; Desativa as tooltips
-(tool-bar-mode -1)                   ; Desativa a aba de ferramentas
-(menu-bar-mode -1)                   ; Desativa o menu
-(set-fringe-mode 0)                  ; Bordas das janelas
-(scroll-bar-mode -1)                 ; Desativa a barra de scroll
-(setq visible-bell t)                ; Barra pisca em erros
-(global-hl-line-mode 1)              ; Indica a linha atual
+(tooltip-mode -1)     ; Desativa as tooltips
+(tool-bar-mode -1)    ; Desativa a aba de ferramentas
+(menu-bar-mode -1)    ; Desativa o menu
+(set-fringe-mode 0)   ; Bordas das janelas
+(scroll-bar-mode -1)  ; Desativa a barra de scroll
+(setq visible-bell t) ; Barra pisca em erros
+(setq inhibit-startup-message t)     ; Desativa a tela de inicio
 (setq-default mode-line-format nil)  ; Remove a mode-line
 (global-display-line-numbers-mode t) ; Numero de linhas
 (set-face-attribute 'default nil :font "Fira Code Retina" :height 115) ; Fonte
-(load-theme 'wombat) ; Tema original do emacs
 
-(set-frame-parameter (selected-frame) 'alpha '(90 90)) ; Transparência
+;; Transparência
+(set-frame-parameter (selected-frame) 'alpha '(90 90))
 (add-to-list 'default-frame-alist '(alpha 90  90))
 
-(use-package doom-themes ; Doom temas
-  :ensure t
+;; Tema original do emacs
+(load-theme 'wombat)
+;; Doom temas
+(use-package doom-themes
   :config
   (setq doom-themes-enable-bold t     ; se nil, negrito é globalmente desativado
         doom-themes-enable-italic t)  ; se nil, italico é globalmente desativado
   (load-theme 'doom-solarized-dark t) ; carrega o tema
   (doom-themes-visual-bell-config)    ; ativa piscar a barra em erros
+  (doom-themes-neotree-config)        ; tema na neotree
   (doom-themes-org-config))           ; melhora as fontes do org-mode
 
-(use-package emojify     ; Suporte a emojis
+;; Suporte a emojis
+(use-package emojify
   :hook (after-init . global-emojify-mode))
 
-(use-package all-the-icons ; Melhora suporte a ícones
-  :if (display-graphic-p))
+;; Melhora suporte a ícones
+(use-package all-the-icons)
 
 #+end_src
-* Geral
-** Auxiliar
+* Miscelânea
 #+begin_src emacs-lisp
 
-(use-package saveplace ; Salva posição no buffer
+;; Salva posição no buffer
+(use-package saveplace
   :init (save-place-mode))
 
-(use-package evil-nerd-commenter) ; Comenta código
+;; Comenta código
+(use-package evil-nerd-commenter)
 
-(use-package rainbow-mode) ; Previsão de cores
+;; Previsão de cores
+(use-package rainbow-mode)
 
-(use-package rainbow-delimiters ; Indica indentação de parenteses
+;; Indica indentação de parenteses
+(use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
-(use-package git-gutter ; Indica diffs
+;; Indica diffs
+(use-package git-gutter
   :config (global-git-gutter-mode +1))
 
-(use-package multiple-cursors) ; Múltiplos cursores
+;; Múltiplos cursores
+(use-package multiple-cursors)
 
-(use-package expand-region) ; Expande região selecionada
+;; Expande região selecionada
+(use-package expand-region)
 
-(use-package helpful ; Melhorias no buffer de ajuda
+;; Melhorias no buffer de ajuda
+(use-package helpful
   :commands (helpful-callable helpful-variable helpful-command helpful-key)
   :custom
   (counsel-describe-function-function #'helpful-callable)
@@ -108,7 +147,8 @@
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
 
-(with-eval-after-load "ispell" ; Correção ortográfica
+;; Correção ortográfica
+(with-eval-after-load "ispell"
   ;; Uma lingua padrão deve ser configurada embora outras linguas sejam adicionadas mais abaixo
   (setenv "LANG" "pt_BR.UTF-8")          ; lingua padrão
   (setq ispell-program-name "hunspell")  ; ferramenta uilizada
@@ -118,27 +158,27 @@
   ;; Local do dicionario pessoal, caso não definida novas palavras são adicionadas ao .hunspell_pt_BR
   (setq ispell-personal-dictionary "~/.config/hunspell/hunspell_personal"))
 
-(use-package flyspell-popup) ; Popup do corretor ortográfico
-
-(use-package dap-mode) ; Debugar código
-(setq dap-auto-configure-features '(sessions locals controls tooltip))
-(require 'dap-netcore) ; C# debugger
+;; Popup do corretor ortográfico
+(use-package flyspell-popup)
 
 #+end_src
-** Gerenciamento de arquivos/projetos
+* Gerenciamento de arquivos/projetos
 #+begin_src emacs-lisp
 
-(use-package dired ; Gerenciador de arquivos
-  :ensure nil
+;; Gerenciador de arquivos
+(use-package dired
+  :straight nil
   :commands (dired dired-jump)
   :custom ((dired-listing-switches "-agho --group-directories-first")))
 (use-package dired-single
   :after dired)
 
-(use-package all-the-icons-dired ; Melhora icones no explorador de arquivos
+;; Melhora icones no explorador de arquivos
+(use-package all-the-icons-dired
   :hook (dired-mode . all-the-icons-dired-mode))
 
-(use-package projectile ; Facilita o controle de projetos
+;; Facilita o controle de projetos
+(use-package projectile
   :diminish projectile-mode
   :config (projectile-mode)
   :init
@@ -146,17 +186,19 @@
     (setq projectile-project-search-path '("~/code")))
   (setq projectile-switch-project-action #'projectile-dired))
 
+;; Explorador arvore de arquivos
 (defcustom neo-window-width 25 ; define a largura da neotree
   "*Specifies the width of the NeoTree window."
   :type 'integer
   :group 'neotree)
-(use-package neotree ; Explorador arvore de arquivos
+(use-package neotree
+  :after all-the-icons
   :config
   (setq neo-smart-open t
         neo-window-width 30
-        neo-theme (if (display-graphic-p) 'icons 'arrow)
         inhibit-compacting-font-caches t
-        projectile-switch-project-action 'neotree-projectile-action) 
+	    neo-theme 'icons
+	    projectile-switch-project-action 'neotree-projectile-action)
   (add-hook 'neo-after-create-hook
             #'(lambda (_)
                 (with-current-buffer (get-buffer neo-buffer-name)
@@ -171,17 +213,22 @@
 * Teclas
 #+begin_src emacs-lisp
 
-(use-package evil ; Evil
+(use-package evil
   :demand t
   :bind (("<escape>" . keyboard-escape-quit))
+  (("C-s" . swiper))
   (("s-c" . evilnc-comment-or-uncomment-lines))
   (("M-v" . evil-paste-before))
   (("M-c" . evil-yank))
+  (("M-d" . org-babel-demarcate-block))
   (("<M-tab>" . evil-toggle-fold))
-  (("C-s" . swiper))
   (("<s-up>" . er/expand-region))
-  (("<s-down>" . other-window))
-  (("<C-tab>" . evil-next-buffer))
+  (("<s-down>" . er/contract-region))
+  (("<s-left>" . evil-next-buffer))
+  (("<s-right>" . evil-prev-buffer))
+  (("<C-tab>" . other-window))
+  (("<C-s-right>" . evil-window-vsplit))
+  (("<C-s-down>"  . evil-window-split))
   :init
   (setq evil-want-integration t)
   (setq evil-want-C-u-scroll t)
@@ -197,7 +244,8 @@
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit) ; ESQ fecha prompts
 (define-key flyspell-mode-map (kbd "M-s") #'flyspell-popup-correct)
 
-(use-package general ; Facilita configuração de teclas
+;; Facilita configuração de teclas
+(use-package general
   :after evil
   :config
   (general-evil-setup t)
@@ -211,7 +259,7 @@
   "l" '(clm/toggle-command-log-buffer :which-key "Buffer de comandos")
   "t" '(org-babel-tangle :which-key "Tangle file")
   "E" '((lambda () (interactive) (load-file "~/.config/emacs/init.el")) :which-key "Carregar configuração do emacs")
-  "e" '(eval-buffer :which-key "Avaliar buffer") 
+  "e" '(eval-buffer :which-key "Avaliar buffer")
   "p" '(projectile-command-map :which-key "Projectile")
   "R" '(rainbow-mode :which-key "Rainbow mode")
   "r" '(counsel-colors-emacs :which-key "Escolher cores")
@@ -222,23 +270,22 @@
   "q q" '(evil-quit :which-key "Sair sem salvar")
   "w w" '(evil-save :which-key "Salvar")
   "SPC" '(org-toggle-checkbox :which-key "Marcar")
-  "<tab>" '(counsel-switch-buffer :which-key "Mudar de buffer")
-  "<S-right>" '(evil-window-vsplit :which-key "Dividir a direita") 
-  "<S-down>"  '(evil-window-split :which-key "Dividir Abaixo"))
+  "<tab>" '(counsel-switch-buffer :which-key "Mudar de buffer"))
 
-(use-package evil-collection ; Teclas do vim para outros modos
+;; Suporte do evil em outros modos
+(use-package evil-collection
   :after evil
   :config
   (evil-collection-init))
 
 (use-package evil-surround
-  :ensure t
   :config
   (global-evil-surround-mode 1))
 
 (use-package undo-fu) ; Refazer/Desfazer como no vim, Não necessário no emacs 28, Adicionar suporte a ligaturas no emacs 28
 
-(use-package which-key ; Menu de compleção de atalhos
+;; Menu de compleção de atalhos
+(use-package which-key
   :defer 0
   :diminish which-key-mode
   :config
@@ -246,21 +293,24 @@
   (setq which-key-idle-delay 0)
   (setq which-key-idle-secondary-delay 0))
 
-(use-package command-log-mode ; Retorna comandos sendo usados
+;; Retorna comandos sendo usados
+(use-package command-log-mode
   :commands (command-log-mode clm/toggle-command-log-buffer))
 
 #+end_src
 * Compleção
 #+begin_src emacs-lisp
 
-(use-package ivy ; Front-end para compleção ivy
+;; Front-end para compleção ivy
+(use-package ivy
   :diminish
   :bind (:map ivy-switch-buffer-map
               ("C-d" . ivy-switch-buffer-kill))
   :config
   (ivy-mode 1))
 
-(use-package ivy-rich ; Melhora a interface do ivy
+;; Melhora a interface do ivy
+(use-package ivy-rich
   :after ivy
   :init
   (ivy-rich-mode 1)
@@ -277,12 +327,13 @@
                       ;; Retorna o caminho do arquivo relativo a raiz do projeto ou `default-directory' se projeto é nil
                       (ivy-rich-switch-buffer-path (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path x (ivy-rich-minibuffer-width 0.3))))))))))
 
-(use-package counsel ; Mais funções de compleção para o ivy
+;; Mais funções de compleção para o ivy
+(use-package counsel
   :bind (("M-x" . counsel-M-x)
          ("C-x C-f" . counsel-find-file)))
 
-(use-package prescient) ; Prioriza comandos mais utilizados
-
+;; Prioriza comandos mais utilizados
+(use-package prescient)
 (use-package ivy-prescient
   :after counsel
   :config
@@ -290,28 +341,13 @@
   (setq ivy-prescient-retain-classic-highlighting t)
   (prescient-persist-mode 1)) ; Lembra dos comandos caso o emacs seja fechado
 
-(use-package vertico ; Menu de compleção
+;; Menu de compleção
+(use-package vertico
   :config
   (vertico-mode))
 
-(use-package lsp-mode ; Servidor de compleção de linguagens
-  :commands (lsp lsp-deferred)
-  :init
-  (setq lsp-headerline-breadcrumb-enable nil)
-  :config
-  (lsp-enable-which-key-integration t))
-
-(use-package lsp-ivy ; Integração do lsp no ivy
-  :after ivy)
-
-(use-package lsp-ui ; Melhora a interface do lsp
-  :hook (lsp-mode . lsp-ui-mode)
-  :custom
-  (setq lsp-ui-doc-position 'bottom))
-
-(use-package omnisharp)
-
-(use-package company ; Popup de compleção
+;; Popup de compleção
+(use-package company
   :after lsp-mode
   :hook (prog-mode . company-mode)
   :bind (:map lsp-mode-map
@@ -320,20 +356,24 @@
   (company-minimum-prefix-length 1)
   (company-idle-delay 0.0))
 
-(use-package company-prescient ; Prioriza comandos mais utilizados
+;; Prioriza comandos mais utilizados
+(use-package company-prescient
   :after company
   :config
   (company-prescient-mode 1))
 
-(use-package company-box ; Melhora a interface do company
+;; Melhora a interface do company
+(use-package company-box
   :hook (company-mode . company-box-mode))
 
-(use-package counsel-projectile ; Integração do projectile ao ivy
+;; Integração do projectile ao ivy
+(use-package counsel-projectile
   :after projectile
   :config
   (counsel-projectile-mode 1))
 
-(use-package yasnippet ; Templates de código
+;; Templates de código
+(use-package yasnippet
   :diminish (yas-minor-mode . "")
   :config
   (yas-reload-all)
@@ -347,33 +387,67 @@
                                                 (yas-expand))))
 
 #+end_src
+* Linguagens
+#+begin_src emacs-lisp
+
+;; Debugar código
+(use-package dap-mode)
+(setq dap-auto-configure-features '(sessions locals controls tooltip))
+
+;; Servidor de compleção de linguagens
+(use-package lsp-mode
+  :commands (lsp lsp-deferred)
+  :init
+  (setq lsp-headerline-breadcrumb-enable nil)
+  :config
+  (lsp-enable-which-key-integration t))
+
+;; Integração do lsp no ivy
+(use-package lsp-ivy
+  :after ivy)
+
+;; Melhora a interface do lsp
+(use-package lsp-ui
+  :hook (lsp-mode . lsp-ui-mode)
+  :custom
+  (setq lsp-ui-doc-position 'bottom))
+
+;; C#
+(use-package omnisharp)
+;; C# debugger
+(require 'dap-netcore)
+
+#+end_src
 * Orgmode
 #+begin_src emacs-lisp
 
-(defun orgm/org-mode-setup () ; Função ao iniciar o orgmode
+;; Função ao iniciar o orgmode
+(defun orgm/org-mode-setup ()
   (org-indent-mode)
   (auto-fill-mode 0)
   (visual-line-mode 1)
   (setq evil-auto-indent nil))
 
-(use-package org ; Orgmode
+(use-package org
   :hook (org-mode . orgm/org-mode-setup)
   :config
   (setq org-ellipsis " "
         org-hide-emphasis-markers t))
 
-(use-package org-bullets ; Aparencia dos marcadores
+;; Aparencia dos marcadores
+(use-package org-bullets
   :hook (org-mode . org-bullets-mode)
   :custom
   (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
 
-(font-lock-add-keywords 'org-mode ; Trocar listas com hífens por pontos
+;; Trocar listas com hífens por pontos
+(font-lock-add-keywords 'org-mode
                         '(("^ *\\([-]\\) "
                            (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 
-(require 'org-indent) ; Melhor indentação orgmode
+(require 'org-indent)
 
-(with-eval-after-load 'org ; Roda snippets de codigo
+(with-eval-after-load 'org
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((emacs-lisp . t)
@@ -386,7 +460,8 @@
       org-confirm-babel-evaluate nil
       org-edit-src-content-indentation 0)
 
-(require 'org-tempo) ; Templates para o orgmode
+;; Templates para o orgmode
+(require 'org-tempo)
 
 ;; Snippets para templates de codigo
 (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
@@ -402,6 +477,14 @@
 
 (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'orgm/org-babel-tangle-config)))
 
-(setq gc-cons-threshold (* 50 1000 1000)) ; Volta com a velocidade normal da coleta de lixo
-(message "Emacs totalmente configurado!") ; Confirmação
+#+end_src
+* Final
+#+begin_src emacs-lisp
+
+;; Volta com a velocidade normal da coleta de lixo
+(setq gc-cons-threshold (* 2 1000 1000))
+
+;; Confirma se tudo foi configurado com sucesso
+(message "Emacs totalmente configurado!")
+
 #+end_src

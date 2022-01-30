@@ -3,27 +3,47 @@
 [[ $- != *i* ]] && return
 
 # Aliases
-alias clip='xclip -selection clipboard'
+alias n='neofetch'
+alias v='nvim'
+alias h="htop"
+alias ed="emacs --daemon"
+alias ek="emacsclient -e '(kill-emacs)'"
+alias e='emacsclient -c'
+alias copy='xclip -selection clipboard'
 alias sudo='doas'
 alias p='ping google.com'
 alias yt='yt-dlp'
 alias yta='yt-dlp -x --audio-format mp3'
+alias ka="doas killall"
+alias mk="make"
+alias mki="make install"
+alias mku="make uninstall"
+alias dmk="doas make"
+alias dmki="doas make install"
+alias dmku="doas make uninstall"
+alias xp="xprop"
+alias xk="xkill"
+alias grep="grep --color -i"
+alias sys="doas systemctl"
 # Arquivos e Diretórios
 alias l='lsd -l --group-dirs first'
 alias la='lsd -A --group-dirs first'
 alias lla='lsd -lA --group-dirs first'
 alias ..='cd ..'
+alias ...="cd ../.."
+alias ....="cd ../../.."
 alias lo='locate -Ai'
 alias u='sudo updatedb'
 alias ch='chmod +x'
-alias rm='rm -rf'
-# Programas
-alias n='neofetch'
-alias v='nvim'
-alias ed="emacs --daemon"
-alias ek="emacsclient -e '(kill-emacs)'"
-alias e='emacsclient -c'
-# Git aliases
+alias cp="cp -ri"
+alias mv="mv -i"
+alias rm="rm -rI"
+alias ln="ln -i"
+alias md="mkdir -p"
+alias t="touch"
+alias mnt="doas mount"
+alias umnt="doas umount"
+# Git
 alias gi='git init'
 alias gc='git clone'
 alias gs='git status'
@@ -33,8 +53,10 @@ alias gl='git log --oneline'
 alias ga='git add'
 alias gaf='git add -f'
 alias gcm='git commit -m'
-alias gp='git push'
+alias gps='git push'
+alias gpl='git pull'
 alias gr='git restore'
+alias grs="git restore --staged"
 # Pacman
 alias ps='doas pacman -S'
 alias psi='pacman -Si'
@@ -43,6 +65,13 @@ alias psyu='doas pacman -Syu'
 alias pqs='pacman -Qs'
 alias prns='doas pacman -Rns'
 alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
+# Paru
+alias pps="paru -S"
+alias ppsi="paru -Si"
+alias ppss="paru -Ss"
+alias ppsyu="paru -Syu"
+alias ppqs="paru -Qs"
+alias pprns="paru -Rns"
 
 # Ignora case-sensitivity quando completa comandos com tab
 if [ ! -a $HOME/.config/readline/inputrc ]; then echo '$include /etc/inputrc' > $HOME/.config/readline/inputrc; fi
@@ -51,36 +80,6 @@ echo 'set completion-ignore-case On' >> $HOME/.config/readline/inputrc
 shopt -s cdspell
 # Salva comandos de múltiplas linhas como uma linha única
 shopt -s cmdhist
-
-### Facilita extrair arquivos
-# Exemplo: ex <arquivo>
-ex ()
-{
-  if [ -f "$1" ] ; then
-    case $1 in
-      *.tar.bz2)   tar xjf $1   ;;
-      *.tar.gz)    tar xzf $1   ;;
-      *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1   ;;
-      *.gz)        gunzip $1    ;;
-      *.tar)       tar xf $1    ;;
-      *.tbz2)      tar xjf $1   ;;
-      *.tgz)       tar xzf $1   ;;
-      *.zip)       unzip $1     ;;
-      *.Z)         uncompress $1;;
-      *.7z)        7z x $1      ;;
-      *.deb)       ar x $1      ;;
-      *.tar.xz)    tar xf $1    ;;
-      *.tar.zst)   unzstd $1    ;;
-      *)           echo "'$1' não pode ser extraído com ex()" ;;
-    esac
-  else
-    echo "'$1' não é um arquivo valido"
-  fi
-}
-
-# Inicia prompt do starship
-eval "$(starship init bash)"
 
 # Adiciona ícones no lf
 export LF_ICONS="\
@@ -261,3 +260,33 @@ ex=:\
 *.pdf=:\
 *.nix=:\
 "
+
+### Facilita extrair arquivos
+# Exemplo: ex <arquivo>
+ex ()
+{
+  if [ -f "$1" ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *.deb)       ar x $1      ;;
+      *.tar.xz)    tar xf $1    ;;
+      *.tar.zst)   unzstd $1    ;;
+      *)           echo "'$1' não pode ser extraído com ex()" ;;
+    esac
+  else
+    echo "'$1' não é um arquivo valido"
+  fi
+}
+
+# Inicia prompt do starship
+eval "$(starship init bash)"

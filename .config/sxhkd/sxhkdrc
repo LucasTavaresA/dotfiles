@@ -1,6 +1,6 @@
 # Muda entre as janelas
-super + {Tab, Left, Right}
-	dwmc focusstack {+,-,+}1
+super + Tab
+	dwmc focusstack +1
 
 # Muda o tamanho da janela
 super + shift + {Left, Right}
@@ -149,8 +149,12 @@ Menu;f
 Menu;i
     dmenu_favoritos importante
 
-# Aliases
+# Anotações
 Menu;a
+    emacsclient -c ~/documentos/anotações.org
+
+# Aliases
+Menu;A
     zsh-aliases
 
 # Tira print

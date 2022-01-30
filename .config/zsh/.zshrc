@@ -17,10 +17,14 @@ autoload -U colors && colors
 # Ativa comentários na mesma linha de um comando
 setopt interactive_comments
 
+# TECLAS
 # Sai do modo vim
 bindkey -e
 # Deleta caracteres usado delete
 bindkey "^[[3~" delete-char
+# Home/End vai pro começo/fim da linha
+bindkey  "^[[H"   beginning-of-line
+bindkey  "^[[4~"   end-of-line
 
 # Completar comandos
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
@@ -32,16 +36,15 @@ _comp_options+=(globdots)		# Incluir arquivos ocultos.
 
 ## FUNÇÕES
 
-# Entra em diretórios usando o lf
-# e ajuda com previsão de imagens no lf
+# Previsão de imagens no lf
 lf () {
-	LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"
-	LF_TEMPDIR="$LF_TEMPDIR" lf-run -last-dir-path="$LF_TEMPDIR/lastdir" "$@"
-	if [ "$(cat "$LF_TEMPDIR/cdtolastdir" 2>/dev/null)" = "1" ]; then
-		cd "$(cat "$LF_TEMPDIR/lastdir")"
-	fi
-	rm -r "$LF_TEMPDIR"
-	unset LF_TEMPDIR
+    LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"
+    LF_TEMPDIR="$LF_TEMPDIR" lf-run -last-dir-path="$LF_TEMPDIR/lastdir" "$@"
+    if [ "$(cat "$LF_TEMPDIR/cdtolastdir" 2>/dev/null)" = "1" ]; then
+	cd "$(cat "$LF_TEMPDIR/lastdir")"
+    fi
+    rm -r "$LF_TEMPDIR"
+    unset LF_TEMPDIR
 }
 
 # Adiciona ícones no lf
@@ -276,6 +279,9 @@ alias ka="doas killall"
 alias mk="make"
 alias mki="make install"
 alias mku="make uninstall"
+alias dmk="doas make"
+alias dmki="doas make install"
+alias dmku="doas make uninstall"
 alias xp="xprop"
 alias xk="xkill"
 alias grep="grep --color -i"
@@ -290,15 +296,15 @@ alias ....="cd ../../.."
 alias lo="locate -Ai"
 alias u="doas updatedb"
 alias ch="chmod +x"
-alias cp="cp -i"
+alias cp="cp -ri"
 alias mv="mv -i"
-alias rm="rm -rfi"
+alias rm="rm -rI"
 alias ln="ln -i"
-alias md="mkdir -pv"
+alias md="mkdir -p"
 alias t="touch"
-alias mnt="mount"
-alias umnt="umount"
-# Git aliases
+alias mnt="doas mount"
+alias umnt="doas umount"
+# Git
 alias gi="git init"
 alias gc="git clone"
 alias gs="git status"
@@ -308,9 +314,11 @@ alias gl="git log --oneline"
 alias ga="git add"
 alias gaf="git add -f"
 alias gcm="git commit -m"
-alias gp="git push"
+alias gps="git push"
+alias gpl="git pull"
 alias gr="git restore"
-# Pacman aliases
+alias grs="git restore --staged"
+# Pacman
 alias ps="doas pacman -S"
 alias psi="pacman -Si"
 alias pss="pacman -Ss"
@@ -318,13 +326,13 @@ alias psyu="doas pacman -Syu"
 alias pqs="pacman -Qs"
 alias prns="doas pacman -Rns"
 alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
-# Paru aliases
-alias pps="doas paru -S"
+# Paru
+alias pps="paru -S"
 alias ppsi="paru -Si"
 alias ppss="paru -Ss"
-alias ppsyu="doas paru -Syu"
+alias ppsyu="paru -Syu"
 alias ppqs="paru -Qs"
-alias pprns="doas paru -Rns"
+alias pprns="paru -Rns"
 
 # Prompt do starship
 eval "$(starship init zsh)"
