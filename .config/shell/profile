@@ -60,9 +60,9 @@ export WINEPREFIX="$HOME/.local/share/wineprefixes/default"
 # Shell
 export SHELL="dash"
 # Muda o local do zshrc
-export ZDOTDIR="$HOME/.config/zsh"
+export ZDOTDIR="$HOME/.config/shell"
 # Muda o local do histórico
-export HISTFILE="$HOME/.local/share/history"
+export HISTFILE="$HOME/.config/shell/history"
 # Aumenta o tamanho limite do histórico
 export HISTSIZE=10000
 export HISTFILESIZE=10000

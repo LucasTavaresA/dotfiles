@@ -633,7 +633,7 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
 
 ;; HTML
 (use-package web-mode
-  :mode "(\\.\\(html?\\|ejs\\|tsx\\|jsx\\)\\'"
+  :mode "\\.html\\'"
   :config
   (setq-default web-mode-code-indent-offset 2)
   (setq-default web-mode-markup-indent-offset 2)

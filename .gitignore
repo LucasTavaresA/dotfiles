@@ -18,7 +18,8 @@
 .config/transmission/
 .config/VirtualBox/
 .config/nvim/plugged/
-.config/zsh/.zcompdump
+.config/shell/.zcompdump
+.config/shell/history
 .local/
 .mozilla/
 .pki/

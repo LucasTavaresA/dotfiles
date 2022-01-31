@@ -6,7 +6,7 @@
 export SHELL="zsh"
 # Não adiciona esses itens ao histórico
 export HISTORY_IGNORE="(ls|cd|pwd|exit|doas reboot|history|cd -|cd ..)"
-HISTFILE=~/.local/share/history
+HISTFILE=~/.config/shell/history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt SHARE_HISTORY
@@ -338,5 +338,5 @@ alias pprns="paru -Rns"
 eval "$(starship init zsh)"
 
 # Carrega os indicações de sintaxe, deve ser o ultimo comando.
-source $HOME/.config/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source $HOME/.config/zsh/plugins/you-should-use.plugin.zsh
+source $HOME/.config/shell/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source $HOME/.config/shell/plugins/you-should-use.plugin.zsh
