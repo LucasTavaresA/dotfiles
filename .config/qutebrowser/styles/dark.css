@@ -317,6 +317,43 @@ html body .jobsearch-Layout .icl-TextPromo-text {
 .pun .blockpost .postbody, .pun .blockpost .postfoot {
     background: #000000 !important;
 }
+.job-location-filter .job-location-filter-keyword {
+    background-color: #000000 !important;
+}
+.job-location-filter .job-location-filter-divider {
+    background-color: #000000 !important;
+}
+.job-location-filter .job-location-filter-location {
+    background-color: #000000 !important;
+}
+.job-location-filter .job-location-filter-btn {
+    background-color: #000000 !important;
+}
+.chip-light {
+    background-color: #000000 !important;
+}
+.vacancylist-index .grid .grid-row.active {
+    border: 1px solid #ffffff !important;
+}
+.card {
+    background-color: #000000 !important;
+    border-radius: 0 !important;
+}
+.text-body {
+    color: #ffffff !important;
+}
+.text-medium {
+    color: #ffffff !important;
+}
+.form-group.form-group-suggest .autocomplete-suggestions {
+    background-color: #000000 !important;
+}
+.job-location-filter .form-group.form-group-suggest.form-group-suggest-open .form-control {
+    background-color: #000000 !important;
+}
+.facet-container:not(.facet-multiple) .facet-content {
+    background-color: #000000 !important;
+}
 * {
   border-color: #ffffff !important;
 }

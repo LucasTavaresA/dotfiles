@@ -20,17 +20,20 @@
 .config/nvim/plugged/
 .config/shell/.zcompdump
 .config/shell/history
+.dotnet/
 .local/
 .mozilla/
 .pki/
+.password-store/
 .ssh/
+code/
 cursos/
 documentos/
 Downloads/
-.dotnet/
-imgvid/
+imagens/
+jogos/
 mnt/
 musicas/
-code/
-roms/
+videos/
 VirtualBox VMs/
+win/

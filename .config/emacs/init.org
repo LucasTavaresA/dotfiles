@@ -326,6 +326,13 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
    (kmacro-lambda-form [?\s-i down] 0 "%d"))
 (global-set-key (kbd "s-c") 'comentar-proxima-linha) ; Comenta e vai pra proxima linha
 
+;; Não copia logo após colar
+(defun evil-paste-after-from-0 ()
+  (interactive)
+  (let ((evil-this-register ?0))
+    (call-interactively 'evil-paste-after)))
+(define-key evil-visual-state-map "p" 'evil-paste-after-from-0)
+
 ;; Facilita configuração de teclas
 (use-package general
   :after evil
@@ -660,6 +667,10 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
       (remove-hook 'after-save-hook #'recompile t)
     (add-hook 'after-save-hook #'recompile nil t)))
 
+;; Vimscript
+(use-package vimrc-mode)
+(add-to-list 'auto-mode-alist '("\\.vim\\(rc\\)?\\'" . vimrc-mode))
+
 #+end_src
 * Orgmode
 #+begin_src emacs-lisp
@@ -698,7 +709,12 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((emacs-lisp . t)
-     (shell . t))))
+     (shell . t)
+     (C . t)
+     (css . t)
+     (js . t)
+     (makefile . t)
+     (python . t))))
 
 ;; Indicação de sintaxe em blocos de código, não pergunta se quer avaliar código
 (setq org-src-fontify-natively t
@@ -716,6 +732,10 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
 (add-to-list 'org-structure-template-alist '("go" . "src go"))
 (add-to-list 'org-structure-template-alist '("yaml" . "src yaml"))
 (add-to-list 'org-structure-template-alist '("json" . "src json"))
+(add-to-list 'org-structure-template-alist '("conf" . "src conf"))
+(add-to-list 'org-structure-template-alist '("vim" . "src vimrc"))
+
+(push '("conf-unix" . conf-unix) org-src-lang-modes)
 
 ;; Cria sumario automaticamente
 (use-package org-make-toc

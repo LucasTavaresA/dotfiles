@@ -77,7 +77,7 @@ super + shift + a
 super + shift + a
     mpc toggle
 
-# Musica anterior 
+# Musica anterior
 super + shift + comma
     mpc prev && notify-send Tocando "$(mpc current)"
 

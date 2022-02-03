@@ -19,12 +19,10 @@ clipmenud &
 
 # Outros
 mpd &
-nm-applet &
 dunst &
 nitrogen --restore &
 xbanish &
 fluxgui &
-slstatus &
 sxhkd &
 emacs --daemon &
 

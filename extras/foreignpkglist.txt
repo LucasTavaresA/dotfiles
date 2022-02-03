@@ -1,0 +1,13 @@
+chromium-widevine
+fluxgui-git
+handlr-bin
+hunspell-pt-br
+lf
+libxft-bgra
+mkinitcpio-numlock
+nerd-fonts-complete
+paru
+simple-mtpfs
+ttf-ms-fonts
+xbanish
+xdg-utils-handlr

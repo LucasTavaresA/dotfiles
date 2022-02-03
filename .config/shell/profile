@@ -9,6 +9,8 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_RUNTIME_DIR="/run/user/$UID"
 
+# Pass
+export PASSWORD_STORE_DIR="$HOME/.local/share/pass"
 # Bat como um manpager
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # Terminal

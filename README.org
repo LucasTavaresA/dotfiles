@@ -1,0 +1,3119 @@
+#+title: Archlinux dotfiles
+#+STARTUP: content
+
+* Sumario
+:PROPERTIES:
+:TOC:      :include all :force (depth) :ignore (this) :local (depth)
+:END:
+:CONTENTS:
+- [[#shells][Shells]]
+  - [[#dash][Dash]]
+  - [[#zsh][Zsh]]
+  - [[#bash][Bash]]
+- [[#x11][X11]]
+- [[#starship][Starship]]
+- [[#sxhkd][Sxhkd]]
+  - [[#dwm][Dwm]]
+  - [[#bspwm][Bspwm]]
+- [[#qutebrowser][Qutebrowser]]
+  - [[#configuração][Configuração]]
+  - [[#tema-escuro][Tema escuro]]
+- [[#picom][Picom]]
+- [[#neovim][Neovim]]
+- [[#ncmpcpp][Ncmpcpp]]
+  - [[#configuração][Configuração]]
+  - [[#teclas][Teclas]]
+- [[#mpd][Mpd]]
+- [[#lf][Lf]]
+- [[#handlr][Handlr]]
+- [[#mimetypes][Mimetypes]]
+- [[#zathura][Zathura]]
+- [[#gtk][Gtk]]
+  - [[#gtk-2][Gtk 2]]
+  - [[#gtk-3][Gtk 3]]
+- [[#dunst][Dunst]]
+- [[#bspwm][Bspwm]]
+- [[#gitignore][.gitignore]]
+- [[#paru][Paru]]
+- [[#npm][Npm]]
+:END:
+
+* Shells
+
+Todos os shells do systema localizados em =~/.config/shell=
+
+** Dash
+
+Usar o comando chsh -s /bin/dash para usar o dash como login shell, Profile trocado de lugar no meu [[https://github.com/LucasTavaresA/dash][fork]]
+
+- =~/.config/shell/profile=
+
+#+begin_src sh :tangle ~/.config/shell/profile
+### EXPORTS
+
+# Muda o local padrão de alguns dotfiles limpando a $HOME ou ~
+# Define diretórios com o padrão xdg
+UID="$(id -u)"
+export HOME="/home/lucas"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_RUNTIME_DIR="/run/user/$UID"
+
+# Pass
+export PASSWORD_STORE_DIR="$HOME/.local/share/pass"
+# Bat como um manpager
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# Terminal
+export TERMINAL="st"
+export TERM="xterm-256color"
+# Editor no terminal
+export EDITOR="emacsclient -c"
+# Editor com interface gráfica
+export VISUAL="emacsclient -c"
+# Navegador padrão
+export BROWSER="qutebrowser"
+# Pager
+export PAGER='less'
+# Faz o qt usar o thema do gtk2
+export QT_QPA_PLATFORMTHEME="gtk2"
+# Less
+export LESSHISTFILE="-"
+# Wget
+export WGETRC="$HOME/.config/wget/wgetrc"
+# XAuthority
+export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+# Cargo
+export CARGO_HOME="$HOME/.local/share/cargo"
+# Omnisharp
+export OMNISHARPHOME="$HOME/.local/share/omnisharp"
+# Nuget
+export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
+# Gnupg
+export GNUPGHOME="$HOME/.local/share/gnupg"
+# Npm
+export NPM_CONFIG_USERCONFIG="$HOME/.config/npm/npmrc"
+# Terminfo
+export TERMINFO="$HOME/.local/share/terminfo"
+# Inputrc
+export INPUTRC="$HOME/.config/readline/inputrc"
+# Gtk 2
+export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc"
+# W3m
+export W3M_DIR="$HOME/.config/w3m"
+# Go
+export GOPATH="$HOME/.local/share/go"
+# Starship
+export STARSHIP_CONFIG="$HOME/.config/starship/config.toml"
+# Android sdk
+export ANDROID_SDK_HOME="$HOME/.config/android"
+# Wine
+export WINEPREFIX="$HOME/.local/share/wineprefixes/default"
+
+# Shell
+export SHELL="dash"
+# Muda o local do zshrc
+export ZDOTDIR="$HOME/.config/shell"
+# Muda o local do histórico
+export HISTFILE="$HOME/.config/shell/history"
+# Aumenta o tamanho limite do histórico
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+# Ignora e deleta comandos duplicados no histórico
+export HISTCONTROL=ignoredups:erasedups
+
+# Adiciona diretório de scripts ao path
+export PATH="$HOME/code/dmenuscripts:$PATH"
+export PATH="$HOME/code/scripts:$PATH"
+
+# Usa o dmenu como autenticador GUI
+export SSH_ASKPASS="doas_askpass"
+export GIT_ASKPASS="doas_askpass"
+export SUDO_ASKPASS="$HOME/code/dmenuscripts/dmenu_pass"
+export DOAS_ASKPASS="dmenu -fn Monospace-18 -c -cw 500 -P -p 🔑Senha:"
+
+# Localização para datas
+export LC_TIME="pt_BR.UTF-8"
+
+# Inicia o servidor xorg com .xinitrc do usuário
+if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+	  exec startx "$HOME/.config/x11/xinitrc"
+fi
+#+end_src
+
+** Zsh
+
+Shell interativo, Trocado de diretório pela variavel *ZDOTDIR*
+
+- =~/.config/shell/.zshrc=
+
+#+begin_src sh :tangle ~/.config/shell/.zshrc
+# Se não executando zsh interativamente
+# Não executa o resto do bashrc
+[[ $- != *i* ]] && return
+
+# ZSH EXPORTS
+export SHELL="zsh"
+# Não adiciona esses itens ao histórico
+export HISTORY_IGNORE="(ls|cd|pwd|exit|doas reboot|history|cd -|cd ..)"
+HISTFILE=~/.config/shell/history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt SHARE_HISTORY
+
+# Carrega cores
+autoload -U colors && colors
+
+# Ativa comentários na mesma linha de um comando
+setopt interactive_comments
+
+# TECLAS
+# Sai do modo vim
+bindkey -e
+# Deleta caracteres usado delete
+bindkey "^[[3~" delete-char
+# Home/End vai pro começo/fim da linha
+bindkey  "^[[H"   beginning-of-line
+bindkey  "^[[4~"   end-of-line
+
+# Completar comandos
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)		# Incluir arquivos ocultos.
+
+## FUNÇÕES
+
+# Previsão de imagens no lf
+lf () {
+    LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"
+    LF_TEMPDIR="$LF_TEMPDIR" lf-run -last-dir-path="$LF_TEMPDIR/lastdir" "$@"
+    if [ "$(cat "$LF_TEMPDIR/cdtolastdir" 2>/dev/null)" = "1" ]; then
+	cd "$(cat "$LF_TEMPDIR/lastdir")"
+    fi
+    rm -r "$LF_TEMPDIR"
+    unset LF_TEMPDIR
+}
+
+# Adiciona ícones no lf
+export LF_ICONS="\
+tw=:\
+st=:\
+ow=:\
+dt=:\
+di=:\
+fi=:\
+ln=:\
+or=:\
+ex=:\
+*.el=:\
+*.log=:\
+*.xml=:\
+*.dic=﬜:\
+*.sqlite=:\
+*.db=:\
+*.csproj=:\
+*.sln=:\
+*.cs=:\
+*.vdi=💿:\
+*.yml=:\
+*.toml=:\
+*.ini=:\
+*.conf=:\
+*.cfg=:\
+*.config=:\
+*.c=:\
+*.cc=:\
+*.clj=:\
+*.coffee=:\
+*.cpp=:\
+*.css=:\
+*.d=:\
+*.dart=:\
+*.erl=:\
+*.exs=:\
+*.fs=:\
+*.go=:\
+*.h=:\
+*.hh=:\
+*.hpp=:\
+*.hs=:\
+*.html=:\
+*.java=:\
+*.jl=:\
+*.js=:\
+*.json=:\
+*.lua=:\
+*.md=:\
+*.php=:\
+*.pl=:\
+*.pro=:\
+*.py=:\
+*.rb=:\
+*.rs=:\
+*.scala=:\
+*.ts=:\
+*.vim=:\
+*.cmd=:\
+*.ps1=:\
+*.sh=:\
+*.bash=:\
+*.zsh=:\
+*.fish=:\
+*.tar=:\
+*.tgz=:\
+*.arc=:\
+*.arj=:\
+*.taz=:\
+*.lha=:\
+*.lz4=:\
+*.lzh=:\
+*.lzma=:\
+*.tlz=:\
+*.txz=:\
+*.tzo=:\
+*.t7z=:\
+*.zip=:\
+*.z=:\
+*.dz=:\
+*.gz=:\
+*.lrz=:\
+*.lz=:\
+*.lzo=:\
+*.xz=:\
+*.zst=:\
+*.tzst=:\
+*.bz2=:\
+*.bz=:\
+*.tbz=:\
+*.tbz2=:\
+*.tz=:\
+*.deb=:\
+*.rpm=:\
+*.jar=:\
+*.war=:\
+*.ear=:\
+*.sar=:\
+*.rar=:\
+*.alz=:\
+*.ace=:\
+*.zoo=:\
+*.cpio=:\
+*.7z=:\
+*.rz=:\
+*.cab=:\
+*.wim=:\
+*.swm=:\
+*.dwm=:\
+*.esd=:\
+*.jpg=:\
+*.jpeg=:\
+*.mjpg=:\
+*.mjpeg=:\
+*.gif=:\
+*.bmp=:\
+*.pbm=:\
+*.pgm=:\
+*.ppm=:\
+*.tga=:\
+*.xbm=:\
+*.xpm=:\
+*.tif=:\
+*.tiff=:\
+*.png=:\
+*.svg=:\
+*.svgz=:\
+*.mng=:\
+*.pcx=:\
+*.mov=:\
+*.mpg=:\
+*.mpeg=:\
+*.m2v=:\
+*.mkv=:\
+*.webm=:\
+*.ogm=:\
+*.mp4=:\
+*.m4v=:\
+*.mp4v=:\
+*.vob=:\
+*.qt=:\
+*.nuv=:\
+*.wmv=:\
+*.asf=:\
+*.rm=:\
+*.rmvb=:\
+*.flc=:\
+*.avi=:\
+*.fli=:\
+*.flv=:\
+*.gl=:\
+*.dl=:\
+*.xcf=:\
+*.xwd=:\
+*.yuv=:\
+*.cgm=:\
+*.emf=:\
+*.ogv=:\
+*.ogx=:\
+*.aac=:\
+*.au=:\
+*.flac=🎵:\
+*.m4a=🎵:\
+*.mid=:\
+*.midi=🎵:\
+*.mka=:\
+*.mp3=🎵:\
+*.mpc=:\
+*.ogg=🎵:\
+*.ra=:\
+*.wav=🎵:\
+*.oga=:\
+*.opus=🎵:\
+*.spx=:\
+*.xspf=:\
+*.pdf=:\
+*.nix=:\
+"
+
+# Facilita extrair arquivos
+# Exemplo: ex (arquivo).zip
+SAVEIFS=$IFS
+IFS=$(echo -en "\n\b")
+function ex {
+    for n in "$@"
+    do
+      if [ -f "$n" ] ; then
+          case "${n%,}" in
+            *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
+                         tar xvf "$n"       ;;
+            *.lzma)      unlzma ./"$n"      ;;
+            *.bz2)       bunzip2 ./"$n"     ;;
+            *.cbr|*.rar)       unrar x -ad ./"$n" ;;
+            *.gz)        gunzip ./"$n"      ;;
+            *.cbz|*.epub|*.zip)       unzip ./"$n"       ;;
+            *.z)         uncompress ./"$n"  ;;
+            *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
+                         7z x ./"$n"        ;;
+            *.xz)        unxz ./"$n"        ;;
+            *.exe)       cabextract ./"$n"  ;;
+            *.cpio)      cpio -id < ./"$n"  ;;
+            *.cba|*.ace)      unace x ./"$n"      ;;
+            *)
+                         echo "ex: '$n' - Metodo de archivação desconhecido"
+                         return 1
+                         ;;
+          esac
+      else
+          echo "'$n' - Arquivo não existe"
+          return 1
+      fi
+    done
+}
+IFS=$SAVEIFS
+
+# Aliases
+alias n="neofetch"
+alias v="nvim"
+alias h="htop"
+alias ed="emacs --daemon"
+alias ek="emacsclient -e '(kill-emacs)'"
+alias e="emacsclient -c"
+alias copy="xclip -selection clipboard"
+alias sudo="doas"
+alias p="ping google.com"
+alias yt="yt-dlp"
+alias yta="yt-dlp -x --audio-format mp3"
+alias ka="doas killall"
+alias mk="make"
+alias mki="make install"
+alias mku="make uninstall"
+alias dmk="doas make"
+alias dmki="doas make install"
+alias dmku="doas make uninstall"
+alias xp="xprop"
+alias xk="xkill"
+alias grep="grep --color -i"
+alias sys="doas systemctl"
+# Arquivos e Diretórios
+alias l="lsd -l --group-dirs first"
+alias la="lsd -A --group-dirs first"
+alias lla="lsd -lA --group-dirs first"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias lo="locate -Ai"
+alias u="doas updatedb"
+alias ch="chmod +x"
+alias cp="cp -ri"
+alias mv="mv -i"
+alias rm="rm -rI"
+alias ln="ln -i"
+alias md="mkdir -p"
+alias t="touch"
+alias mnt="doas mount"
+alias umnt="doas umount"
+# Git
+alias gi="git init"
+alias gc="git clone"
+alias gs="git status"
+alias gd="git diff"
+alias gds="git diff --staged"
+alias gl="git log --oneline"
+alias ga="git add"
+alias gaf="git add -f"
+alias gcm="git commit -m"
+alias gps="git push"
+alias gpl="git pull"
+alias gr="git restore"
+alias grs="git restore --staged"
+# Pacman
+alias ps="doas pacman -S"
+alias psi="pacman -Si"
+alias pss="pacman -Ss"
+alias psyu="doas pacman -Syu"
+alias pqs="pacman -Qs"
+alias prns="doas pacman -Rns"
+alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
+# Paru
+alias pps="paru -S"
+alias ppsi="paru -Si"
+alias ppss="paru -Ss"
+alias ppsyu="paru -Syu"
+alias ppqs="paru -Qs"
+alias pprns="paru -Rns"
+
+# Prompt do starship
+eval "$(starship init zsh)"
+
+# Carrega os indicações de sintaxe, deve ser o ultimo comando.
+source $HOME/.config/shell/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source $HOME/.config/shell/plugins/you-should-use.plugin.zsh
+#+end_src
+
+** Bash
+
+Shell usado pelo arch tambem muito usado em scripts, bashrc trocado de lugar colocando =. local/do/bashrc= no final de =/etc/bash.bashrc=
+
+- =~/.config/shell/bashrc=
+
+#+begin_src bash :tangle ~/.config/shell/bashrc
+# Se não executando bash interativamente
+# Não executa o resto do bashrc
+[[ $- != *i* ]] && return
+
+# Aliases
+alias n='neofetch'
+alias v='nvim'
+alias h="htop"
+alias ed="emacs --daemon"
+alias ek="emacsclient -e '(kill-emacs)'"
+alias e='emacsclient -c'
+alias copy='xclip -selection clipboard'
+alias sudo='doas'
+alias p='ping google.com'
+alias yt='yt-dlp'
+alias yta='yt-dlp -x --audio-format mp3'
+alias ka="doas killall"
+alias mk="make"
+alias mki="make install"
+alias mku="make uninstall"
+alias dmk="doas make"
+alias dmki="doas make install"
+alias dmku="doas make uninstall"
+alias xp="xprop"
+alias xk="xkill"
+alias grep="grep --color -i"
+alias sys="doas systemctl"
+# Arquivos e Diretórios
+alias l='lsd -l --group-dirs first'
+alias la='lsd -A --group-dirs first'
+alias lla='lsd -lA --group-dirs first'
+alias ..='cd ..'
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias lo='locate -Ai'
+alias u='sudo updatedb'
+alias ch='chmod +x'
+alias cp="cp -ri"
+alias mv="mv -i"
+alias rm="rm -rI"
+alias ln="ln -i"
+alias md="mkdir -p"
+alias t="touch"
+alias mnt="doas mount"
+alias umnt="doas umount"
+# Git
+alias gi='git init'
+alias gc='git clone'
+alias gs='git status'
+alias gd='git diff'
+alias gds='git diff --staged'
+alias gl='git log --oneline'
+alias ga='git add'
+alias gaf='git add -f'
+alias gcm='git commit -m'
+alias gps='git push'
+alias gpl='git pull'
+alias gr='git restore'
+alias grs="git restore --staged"
+# Pacman
+alias ps='doas pacman -S'
+alias psi='pacman -Si'
+alias pss='pacman -Ss'
+alias psyu='doas pacman -Syu'
+alias pqs='pacman -Qs'
+alias prns='doas pacman -Rns'
+alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
+# Paru
+alias pps="paru -S"
+alias ppsi="paru -Si"
+alias ppss="paru -Ss"
+alias ppsyu="paru -Syu"
+alias ppqs="paru -Qs"
+alias pprns="paru -Rns"
+
+# Ignora case-sensitivity quando completa comandos com tab
+if [ ! -a $HOME/.config/readline/inputrc ]; then echo '$include /etc/inputrc' > $HOME/.config/readline/inputrc; fi
+echo 'set completion-ignore-case On' >> $HOME/.config/readline/inputrc
+# Corrige automaticamente erros ao usar o cd
+shopt -s cdspell
+# Salva comandos de múltiplas linhas como uma linha única
+shopt -s cmdhist
+
+# Adiciona ícones no lf
+export LF_ICONS="\
+tw=:\
+st=:\
+ow=:\
+dt=:\
+di=:\
+fi=:\
+ln=:\
+or=:\
+ex=:\
+*.el=:\
+*.log=:\
+*.xml=:\
+*.dic=﬜:\
+*.sqlite=:\
+*.db=:\
+*.csproj=:\
+*.sln=:\
+*.cs=:\
+*.vdi=💿:\
+*.yml=:\
+*.toml=:\
+*.ini=:\
+*.conf=:\
+*.cfg=:\
+*.config=:\
+*.c=:\
+*.cc=:\
+*.clj=:\
+*.coffee=:\
+*.cpp=:\
+*.css=:\
+*.d=:\
+*.dart=:\
+*.erl=:\
+*.exs=:\
+*.fs=:\
+*.go=:\
+*.h=:\
+*.hh=:\
+*.hpp=:\
+*.hs=:\
+*.html=:\
+*.java=:\
+*.jl=:\
+*.js=:\
+*.json=:\
+*.lua=:\
+*.md=:\
+*.php=:\
+*.pl=:\
+*.pro=:\
+*.py=:\
+*.rb=:\
+*.rs=:\
+*.scala=:\
+*.ts=:\
+*.vim=:\
+*.cmd=:\
+*.ps1=:\
+*.sh=:\
+*.bash=:\
+*.zsh=:\
+*.fish=:\
+*.tar=:\
+*.tgz=:\
+*.arc=:\
+*.arj=:\
+*.taz=:\
+*.lha=:\
+*.lz4=:\
+*.lzh=:\
+*.lzma=:\
+*.tlz=:\
+*.txz=:\
+*.tzo=:\
+*.t7z=:\
+*.zip=:\
+*.z=:\
+*.dz=:\
+*.gz=:\
+*.lrz=:\
+*.lz=:\
+*.lzo=:\
+*.xz=:\
+*.zst=:\
+*.tzst=:\
+*.bz2=:\
+*.bz=:\
+*.tbz=:\
+*.tbz2=:\
+*.tz=:\
+*.deb=:\
+*.rpm=:\
+*.jar=:\
+*.war=:\
+*.ear=:\
+*.sar=:\
+*.rar=:\
+*.alz=:\
+*.ace=:\
+*.zoo=:\
+*.cpio=:\
+*.7z=:\
+*.rz=:\
+*.cab=:\
+*.wim=:\
+*.swm=:\
+*.dwm=:\
+*.esd=:\
+*.jpg=:\
+*.jpeg=:\
+*.mjpg=:\
+*.mjpeg=:\
+*.gif=:\
+*.bmp=:\
+*.pbm=:\
+*.pgm=:\
+*.ppm=:\
+*.tga=:\
+*.xbm=:\
+*.xpm=:\
+*.tif=:\
+*.tiff=:\
+*.png=:\
+*.svg=:\
+*.svgz=:\
+*.mng=:\
+*.pcx=:\
+*.mov=:\
+*.mpg=:\
+*.mpeg=:\
+*.m2v=:\
+*.mkv=:\
+*.webm=:\
+*.ogm=:\
+*.mp4=:\
+*.m4v=:\
+*.mp4v=:\
+*.vob=:\
+*.qt=:\
+*.nuv=:\
+*.wmv=:\
+*.asf=:\
+*.rm=:\
+*.rmvb=:\
+*.flc=:\
+*.avi=:\
+*.fli=:\
+*.flv=:\
+*.gl=:\
+*.dl=:\
+*.xcf=:\
+*.xwd=:\
+*.yuv=:\
+*.cgm=:\
+*.emf=:\
+*.ogv=:\
+*.ogx=:\
+*.aac=:\
+*.au=:\
+*.flac=🎵:\
+*.m4a=🎵:\
+*.mid=:\
+*.midi=🎵:\
+*.mka=:\
+*.mp3=🎵:\
+*.mpc=:\
+*.ogg=🎵:\
+*.ra=:\
+*.wav=🎵:\
+*.oga=:\
+*.opus=🎵:\
+*.spx=:\
+*.xspf=:\
+*.pdf=:\
+*.nix=:\
+"
+
+### Facilita extrair arquivos
+# Exemplo: ex <arquivo>
+ex ()
+{
+  if [ -f "$1" ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *.deb)       ar x $1      ;;
+      *.tar.xz)    tar xf $1    ;;
+      *.tar.zst)   unzstd $1    ;;
+      *)           echo "'$1' não pode ser extraído com ex()" ;;
+    esac
+  else
+    echo "'$1' não é um arquivo valido"
+  fi
+}
+
+# Inicia prompt do starship
+eval "$(starship init bash)"
+#+end_src
+
+* X11
+
+Configuração do xserver
+
+- =~/.config/x11/xinitrc=
+
+#+begin_src sh :tangle ~/.config/x11/xinitrc
+#!/bin/sh
+
+# Mouse
+xsetroot -cursor_name left_ptr
+
+# Teclado
+setxkbmap -option caps:escape # muda a função da tecla caps lock para esc
+xset r rate 300 100 # acelera repetição de teclas
+
+# Gnome keyring daemon
+eval "$(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)"
+export SSH_AUTH_SOCK
+. /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
+
+# Clipmenu
+systemctl --user import-environment DISPLAY
+export CM_DIR="$HOME/code/dmenuscripts/listas/clipmenu"
+clipmenud &
+
+# Outros
+mpd &
+dunst &
+nitrogen --restore &
+xbanish &
+fluxgui &
+sxhkd &
+emacs --daemon &
+
+# Protetor de tela
+xautolock -detectsleep -time 30 -locker "slock" -notify 30 -notifier "notify-send Slock -u critical -t 1800000 'BLOQUEANDO A TELA 30 SEGUNDOS'" &
+
+exec dwm
+#+end_src
+
+* Starship
+
+Prompt de comandos
+
+- =~/.config/starship/config.toml=
+
+#+begin_src conf :tangle ~/.config/starship/config.toml
+format = """$fill
+
+$directory$username$cmd_duration$dotnet$package$jobs
+$character"""
+
+[character]
+success_symbol = "[====>](bold green)"
+error_symbol = "[xxx=>](bold red)"
+
+# Ativa o relógio
+[time]
+disabled = false
+
+[line_break]
+disabled = true
+
+[directory]
+style = "bold #0099FF"
+truncation_length = 4
+truncate_to_repo = false
+
+[fill]
+symbol = "."
+style = "bold #ffffff"
+#+end_src
+
+* Sxhkd
+
+Todos os atalhos e teclas do dwm e bspwm
+
+** Dwm
+
+- =~/.config/sxhkd/sxhkdrc=
+
+#+begin_src conf :tangle ~/.config/sxhkd/sxhkdrc
+# Muda entre as janelas
+super + Tab
+	dwmc focusstack +1
+
+# Muda o tamanho da janela
+super + shift + {Left, Right}
+	dwmc setmfact {-,+}0.05
+
+# Muda o tamanho da janela
+super + shift + {Down, Up}
+	dwmc setcfact {-,+}0.20
+
+# Controla as tags
+super + {_, shift +} {1-9}
+	dwmc {viewex,tagex} {0-8}
+
+# Modo Grid
+super + g
+    dwmc setgrid 0
+
+# Fecha uma janela
+super + shift + backslash
+	dwmc killclient
+
+# Alterna janela flutuante
+super + t
+	dwmc togglefloating
+
+# Troca pela janela mestre
+super + Return
+    dwmc zoom
+
+# Troca entre layouts
+super + Escape
+    dwmc layoutscroll +1
+
+# Scratchpad do st
+super + backslash
+    dwmc togglescratch 0
+
+# Ncmpcpp/Pulsemixer
+super + {_,shift} + a
+    st -g 100x30 -c {'ncmpcpp\,ncmpcpp' -e ncmpcpp,'pulsemixer\,pulsemixer' -e pulsemixer}
+
+# Pausa/Toca musica
+super + space
+    mpc toggle
+
+# Anterior/Proxima musica
+super + shift + {comma, period}
+    mpc {prev,next} && tocando notificar
+
+# Abaixar/Aumentar o volume
+super + {comma, period}
+    amixer -q set Master 10%{-,+}
+
+# St
+super + shift + Return
+    st
+
+# St como um scratchpad
+Menu;Return
+    st -c 'stscratchpad,stscratchpad'
+
+# Menu
+Menu;Menu
+    dmenu_run
+
+# Menu energia
+Menu;Escape
+    dmenu_sys
+
+# Editar
+Menu;e
+    dmenu_edit
+
+# Emojis
+Menu;E
+    dmenu_emoji
+
+# Montar/Desmontar
+Menu;m
+    dmenu_mont
+
+# Atalhos do sxhkd
+Menu;slash
+    sxhkd_atalhos
+
+# SH History
+Menu;H
+    dmenu_shhistory
+
+# Lf
+Menu;l
+    st -e lf
+
+# Picom
+Menu;P
+    killall picom || picom
+# Fluxgui
+Menu;F
+    killall fluxgui || fluxgui
+
+# Clipboard
+Menu;c
+    dmenu_clip
+
+# Corretor
+Menu;C
+    dmenu_corretor
+
+# Htop
+Menu;h
+    st -e htop
+
+# Tradutor
+Menu;t
+    dmenu_tradutor
+
+# Transmission
+Menu;T
+    transmission-gtk
+
+# Menu virtualbox
+Menu;v
+    dmenu_virtualbox
+
+# Qutebrowser
+Menu;q
+    qutebrowser
+
+# Favoritos
+Menu;f
+    dmenu_favoritos
+
+# Importante
+Menu;i
+    dmenu_favoritos importante
+
+# Passmenu
+Menu;p
+    passmenu --type
+
+# Anotações
+Menu;a
+    emacsclient -c ~/documentos/anotações.org
+
+# Aliases
+Menu;A
+    zsh-aliases
+
+# Tira print
+Print
+    dmenu_print
+#+end_src
+
+** Bspwm
+
+- =~/.config/sxhkd/sxhkdrc_bspwm=
+
+#+begin_src conf :tangle ~/.config/sxhkd/sxhkdrc_bspwm
+# Fecha janela
+super + backslash
+	bspc node -c
+
+# Troca janela selecionada pela maior janela
+super + Return
+	bspc node -s biggest.window
+
+# Troca entre layout monocle e tiled
+super + Escape
+	bspc desktop -l next
+
+# Troca o foco para a janela anterior
+super + Left
+	bspc node -f prev.local.!hidden.window
+
+# Troca o foco para a proxima janela
+super + {Right,Tab}
+	bspc node -f next.local.!hidden.window
+
+# Alterna entre ou muda janela para um desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+# Move janela para o espaço preselecionado
+super + ctrl + Return
+    bspc node -n last.!automatic
+
+# Preseleciona uma direção
+super + ctrl + {Left,Down,Up,Right}
+	bspc node -p {west,south,north,east}
+
+# Cancela seleção
+super + space
+	bspc node -p cancel
+
+# Expande/contrai as janelas
+super + alt + {Left,Down,Up,Right}
+    {bspc node @parent/second -z left -20 0; \
+    bspc node @parent/first -z right -20 0, \
+    bspc node @parent/second -z top 0 +20; \
+    bspc node @parent/first -z bottom 0 +20, \
+    bspc node @parent/first -z bottom 0 -20; \
+    bspc node @parent/second -z top 0 -20, \
+    bspc node @parent/first -z right +20 0; \
+    bspc node @parent/second -z left +20 0}
+
+# Alterna entre janela flutuante
+super + t
+    bspc node -t \~floating
+
+# Alterna tela cheia
+super + f
+	bspc node -t \~fullscreen
+
+# Ajusta proporção da janela selecionada
+shift + Tab
+    ajustar_tamanho.sh
+
+# Menus
+Menu;Menu
+    dmenu_menu
+
+# Menu do systema
+Menu;Escape
+    dmenu_sys
+
+# Dmenu_musica
+super + a
+    dmenu_musica
+
+# Ncmpcpp
+super + shift + a
+    st -c ncmpcpp -e ncmpcpp
+
+# Pausa musica
+super + shift + a
+    mpc toggle
+
+# Musica anterior
+super + shift + comma
+    mpc prev && notify-send Tocando "$(mpc current)"
+
+# Proxima musica
+super + shift + period
+    mpc next && notify-send Tocando "$(mpc current)"
+
+# Abaixar o volume
+super + comma
+    amixer -q set Master 10%-
+
+# Aumentar o volume
+super + period
+    amixer -q set Master 10%+
+
+# St
+super + shift + Return
+	st
+
+# St_scratchpad
+shift + Menu
+    st_scratchpad
+
+# qutebrowser
+Menu;q
+    qutebrowser
+
+# Ranger
+Menu;r
+    st -e ranger
+
+# Gimp
+Menu;g
+    gimp
+
+# Galculator
+Menu;c
+    galculator
+
+# Telegram
+Menu;T
+    telegram-desktop
+
+# Abre/Fecha fluxgui
+Menu;f
+    killall fluxgui || fluxgui
+
+# Transmission
+Menu;t
+    transmission-gtk
+
+# Discord
+Menu;d
+    discord
+
+# Kill
+Menu;k
+    dmenu_kill
+
+# Abre/Fecha o picom
+Menu;p
+    killall picom || picom
+
+# Teclas do sxhkd
+Menu;slash
+    sxhkd_atalhos
+#+end_src
+
+* Qutebrowser
+
+Navegador controlado majoritariamente pelo teclado inspirado no *vim*
+
+** Configuração
+
+- =~/.config/qutebrowser/config.py=
+
+#+begin_src python :tangle ~/.config/qutebrowser/config.py
+# Autogenerated config.py
+#
+# NOTE: config.py is intended for advanced users who are comfortable
+# with manually migrating the config file on qutebrowser upgrades. If
+# you prefer, you can also configure qutebrowser using the
+# :set/:bind/:config-* commands without having to write a config.py
+# file.
+#
+# Documentation:
+#   qute://help/configuring.html
+#   qute://help/settings.html
+
+# CONFIGURAÇÕES PADRÃO
+
+# Valid values:
+#   - all: Accept all cookies.
+#   - no-3rdparty: Accept cookies from the same origin only. This is known to break some sites, such as GMail.
+#   - no-unknown-3rdparty: Accept cookies from the same origin only, unless a cookie is already set for the domain. On QtWebEngine, this is the same as no-3rdparty.
+#   - never: Don't accept cookies at all.
+config.set('content.cookies.accept', 'all', 'chrome-devtools://*')
+# Valid values:
+#   - all: Accept all cookies.
+#   - no-3rdparty: Accept cookies from the same origin only. This is known to break some sites, such as GMail.
+#   - no-unknown-3rdparty: Accept cookies from the same origin only, unless a cookie is already set for the domain. On QtWebEngine, this is the same as no-3rdparty.
+#   - never: Don't accept cookies at all.
+config.set('content.cookies.accept', 'all', 'devtools://*')
+
+# Value to send in the `Accept-Language` header. Note that the value
+# read from JavaScript is always the global value.
+config.set('content.headers.accept_language', '', 'https://matchmaker.krunker.io/*')
+
+# User agent to send.
+config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}', 'https://web.whatsapp.com/')
+# User agent to send.
+config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:90.0) Gecko/20100101 Firefox/90.0', 'https://accounts.google.com/*')
+# User agent to send.
+config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99 Safari/537.36', 'https://*.slack.com/*')
+
+# Load images automatically in web pages.
+config.set('content.images', True, 'chrome-devtools://*')
+# Load images automatically in web pages.
+config.set('content.images', True, 'devtools://*')
+
+# Enable JavaScript.
+config.set('content.javascript.enabled', True, 'chrome-devtools://*')
+# Enable JavaScript.
+config.set('content.javascript.enabled', True, 'devtools://*')
+# Enable JavaScript.
+config.set('content.javascript.enabled', True, 'chrome://*/*')
+# Enable JavaScript.
+config.set('content.javascript.enabled', True, 'qute://*/*')
+
+# MINHAS CONFIGURAÇÕES
+
+# Tela cheia limitada a janela do navegador
+config.set('content.fullscreen.window', True)
+
+# Mostra a barra de scroll quando procurando uma palavra
+config.set('scrolling.bar', 'when-searching')
+
+# Encolhe janela de compleção dependendo das opções
+config.set('completion.shrink', True)
+
+# Diminuiu javascript lento nos sites
+config.set('content.prefers_reduced_motion', True)
+
+# Vê pdfs no browser usando o pdfjs
+config.set('content.pdfjs', True)
+
+# Javascript desativado por padrão
+config.set('content.javascript.enabled', False)
+
+# Carregar o autoconfig.yml
+config.load_autoconfig(True)
+
+# Salva a sessão automaticamente
+c.auto_save.session = True
+
+# Abre novas abas de fundo
+config.set('new_instance_open_target', 'tab-bg')
+
+# Barra escondida
+config.set("statusbar.show", "in-mode")
+config.set("tabs.show", "switching")
+
+# Abre a pagina inicial caso fechada única aba aberta
+config.set("tabs.last_close", "ignore")
+
+# Confirma antes de sair
+config.set('confirm_quit', ["multiple-tabs"])
+
+# Muda ordem do menu de compleção
+config.set("completion.open_categories", ["quickmarks", "searchengines", "bookmarks", "history", "filesystem"])
+
+# Formatação dos títulos das abas
+config.set("tabs.title.format", "{perc}{private}{current_title}")
+
+# Vídeos não tocam automaticamente
+config.set("content.autoplay", False)
+
+# Formatação de horários
+config.set('completion.timestamp_format', '%A %d/%m/%Y - %H:%M')
+
+# Corretor ortográfico
+config.set('spellcheck.languages', ["pt-BR", "en-US"])
+
+# Conteúdo da barra de status
+config.set('statusbar.widgets', ["keypress", "url", "progress"])
+
+# Posição da barra de status
+config.set('statusbar.position', 'top')
+
+# Tamanho da barra de compleção
+config.set('completion.height', '100%')
+
+# Adblock
+config.set('content.blocking.method', 'both')
+c.content.blocking.adblock.lists = [
+        'https://easylist.to/easylist/easylist.txt',
+        'https://easylist.to/easylist/easyprivacy.txt',
+        'https://easylist-downloads.adblockplus.org/easylistdutch.txt',
+        'https://easylist-downloads.adblockplus.org/abp-filters-anti-cv.txt',
+        'https://www.i-dont-care-about-cookies.eu/abp/',
+        'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt',
+        "https://easylist.to/easylist/fanboy-social.txt",
+        "https://secure.fanboy.co.nz/fanboy-annoyance.txt",
+        "https://pgl.yoyo.org/adservers/serverlist.php?showintro=0;hostformat=hosts",
+        "https://github.com/uBlockOrigin/uAssets/raw/master/filters/legacy.txt",
+        "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt",
+        "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2020.txt",
+        "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2021.txt",
+        "https://github.com/uBlockOrigin/uAssets/raw/master/filters/badware.txt",
+        "https://github.com/uBlockOrigin/uAssets/raw/master/filters/privacy.txt",
+        "https://github.com/uBlockOrigin/uAssets/raw/master/filters/badlists.txt",
+        "https://github.com/uBlockOrigin/uAssets/raw/master/filters/annoyances.txt",
+        "https://github.com/uBlockOrigin/uAssets/raw/master/filters/resource-abuse.txt",
+        "https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt"
+        ]
+
+# Usa o lf para mandar arquivos
+# config.set("fileselect.handler", "external")
+# config.set("fileselect.single_file.command", ['st', '-c', 'lf,lf', '-e', 'lf', '{}'])
+# config.set("fileselect.multiple_files.command", ['st', '-c', 'lf,lf', '-e', 'lf', '{}'])
+# config.set("fileselect.folder.command", ['st', '-c', 'lf,lf', '-e', 'lf', '{}'])
+
+# Permitir notificações.
+# Valid values:
+#   - true
+#   - false
+#   - ask
+config.set('content.notifications.enabled', True, 'https://www.youtube.com/*')
+config.set('content.notifications.enabled', True, 'https://twitter.com/*')
+config.set('content.notifications.enabled', True, 'https://facebook.com/*')
+
+# Editor (and arguments) to use for the `edit-*` commands. The following
+# placeholders are defined:  * `{file}`: Filename of the file to be
+# edited. * `{line}`: Line in which the caret is found in the text. *
+# `{column}`: Column in which the caret is found in the text. *
+# `{line0}`: Same as `{line}`, but starting from index 0. * `{column0}`:
+# Same as `{column}`, but starting from index 0.
+c.editor.command = ['emacsclient', '-c', '{}']
+
+# Search engines which can be used via the address bar.  Maps a search
+# engine name (such as `DEFAULT`, or `ddg`) to a URL with a `{}`
+# placeholder. The placeholder will be replaced by the search term, use
+# `{{` and `}}` for literal `{`/`}` braces.  The following further
+# placeholds are defined to configure how special characters in the
+# search terms are replaced by safe characters (called 'quoting'):  *
+# `{}` and `{semiquoted}` quote everything except slashes; this is the
+# most   sensible choice for almost all search engines (for the search
+# term   `slash/and&amp` this placeholder expands to `slash/and%26amp`).
+# * `{quoted}` quotes all characters (for `slash/and&amp` this
+# placeholder   expands to `slash%2Fand%26amp`). * `{unquoted}` quotes
+# nothing (for `slash/and&amp` this placeholder   expands to
+# `slash/and&amp`). * `{0}` means the same as `{}`, but can be used
+# multiple times.  The search engine named `DEFAULT` is used when
+# `url.auto_search` is turned on and something else than a URL was
+# entered to be opened. Other search engines can be used by prepending
+# the search engine name to the search term, e.g. `:open google
+# qutebrowser`.
+c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
+                    ,  'yt': 'https://www.youtube.com/results?search_query={}'
+                    ,  'gh': 'https://github.com/search?q={}'
+                    ,  't': 'https://translate.google.com/?sl=auto&tl=en&text={}'
+                    ,  'sc': 'https://soundcloud.com/search?q={}'
+                    ,  'aw': 'https://wiki.archlinux.org/index.php?search={}'
+                    ,  'se': 'https://stackexchange.com/search?q={}'
+                    ,  'sf': 'https://sourceforge.net/directory/?q={}'
+                    ,  'gl': 'https://gitlab.com/search?search={}'
+                    ,  'gm': 'https://www.google.com.br/maps/search/{}'
+                    ,  'gf': 'https://greasyfork.org/en/scripts?q={}'
+                    ,  'md': 'https://mangadex.org/titles?page=1&q={}&order=relevance.desc'
+                    ,  'r': 'https://www.reddit.com/r/{}'
+                    ,  'ud': 'https://www.urbandictionary.com/define.php?term={}'
+                    ,  'al': 'https://anilist.co/search/anime?search={}&sort=SEARCH_MATCH'
+                    ,  'alm': 'https://anilist.co/search/manga?search={}&sort=SEARCH_MATCH'
+                    ,  'b': 'https://brainly.com.br/app/ask?q={}'
+                    ,  'tw': 'https://twitter.com/search?q={}'
+                    ,  'gt': 'https://trends.google.com.br/trends/explore?q={}'
+                    ,  'wm': 'https://web.archive.org/web/*/{}'
+                    }
+
+# ATALHOS
+config.unbind('M')
+config.unbind('m')
+config.unbind('<Shift-H>')
+config.unbind('<Shift-L>')
+
+config.bind('<Ctrl-Tab>', 'tab-next')
+config.bind('<Ctrl-Left>', 'tab-prev')
+config.bind('<Ctrl-Right>', 'tab-next')
+config.bind('<Ctrl-a>', 'back')
+config.bind('<Ctrl-d>', 'forward')
+config.bind('u', 'undo')
+config.bind('zx', 'config-cycle statusbar.show always in-mode;; config-cycle tabs.show always switching')
+# Atalho para assistir link com mpv
+config.bind('zp', 'hint links spawn mpv {hint-url}')
+# Baixar imagem selecionada
+config.bind('zi', 'hint images download')
+# Baixar como video
+config.bind('zv', 'hint links spawn st -c st_download -e yt {hint-url}')
+# Baixar como audio
+config.bind('za', 'hint links spawn st -c st_download -e yta {hint-url}')
+# Abre no firefox
+config.bind('zf', 'hint links spawn firefox {url}')
+# Ativa/Desativa tema escuro
+config.bind('zd', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/styles/dark.css ""')
+# Ativa/Desativa javascript para um site
+config.bind('zj', 'config-cycle -p -u *://*.{url:host}/* content.javascript.enabled ;; reload')
+# Ativa/Desativa adblocking para um site
+config.bind('zb', 'config-cycle -p -u *://*.{url:host}/* content.blocking.enabled ;; reload')
+# Traduz a pagina
+config.bind('ztp', 'spawn --userscript translate')
+# Traduz o texto selecionado
+config.bind('zts', 'spawn --userscript translate --text')
+# Modo leitura
+config.bind('zl', 'spawn --userscript readability')
+# Passa a aba para uma outra janela
+config.bind('zg', 'tab-give')
+# Copia links
+config.bind('zc', 'hint links yank')
+# Copia trechos de codigo
+config.bind('zC', 'hint code userscript code_select.py')
+c.hints.selectors["code"] = [
+    # Selects all code tags whose direct parent is not a pre tag
+    ":not(pre) > code",
+    "pre"
+]
+
+# diretório de downloads
+c.downloads.location.directory = '~/Downloads'
+
+# pagina inicial e novas abas
+# quando usando comandos como :open -t e :open -w .
+c.url.default_page = 'https://www.google.com/'
+c.url.start_pages = 'https://www.google.com/'
+
+# CORES
+
+# Pedir modo escuro aos sites que o suportam
+config.set('colors.webpage.preferred_color_scheme', 'dark')
+# Cor do texto da barra de compleção
+c.colors.completion.fg = '#ffffff'
+# Cor de fundo da barra de compleção.
+c.colors.completion.odd.bg = '#000000'
+c.colors.completion.even.bg = '#000000'
+# Cor do texto das categorias.
+c.colors.completion.category.fg = '#ffffff'
+# Cor de fundo das categorias.
+c.colors.completion.category.bg = '#000000'
+# Cor da borda superior de categorias.
+c.colors.completion.category.border.top = '#ffffff'
+# Cor da borda inferior de categorias.
+c.colors.completion.category.border.bottom = '#ffffff'
+# Cor de texto selecionado na barra de seleção
+c.colors.completion.item.selected.fg = '#ffffff'
+# Cor de fundo de texto selecionado na barra de compleção
+c.colors.completion.item.selected.bg = '#555555'
+# Cor do texto procurado quando selecionado na barra de compleção
+c.colors.completion.item.selected.match.fg = '#ffff00'
+# Cor de texto procurado na aba de compleção.
+c.colors.completion.match.fg = '#ffff00'
+# Cor da barra de scroll na aba de compleção
+c.colors.completion.scrollbar.fg = '#555555'
+# Cor de fundo da barra de download
+c.colors.downloads.bar.bg = '#000000'
+# Cor de fundo de downloads com erro
+c.colors.downloads.error.bg = '#ff0000'
+# Cor da fonte de indicadores de links
+c.colors.hints.fg = '#ffffff'
+# Cor de fundo de indicadores de links
+c.colors.hints.bg = '#000000'
+# Borda de indicadores de links
+config.set('hints.border', '1px solid #ffffff')
+config.set('hints.radius', 0)
+# Cor da fonte em partes procuradas
+c.colors.hints.match.fg = '#ffff00'
+# Cor de fundo de informações importantes
+c.colors.messages.info.bg = '#222222'
+# Cor de fundo da barra de status
+c.colors.statusbar.normal.bg = '#000000'
+# Cor do texto da barra de status quando inserindo texto
+c.colors.statusbar.insert.fg = '#ffffff'
+# Cor da barra de status quando inserindo texto
+c.colors.statusbar.insert.bg = '#008800'
+# Cor da barra de status no modo passthrough
+c.colors.statusbar.passthrough.bg = '#000000'
+# Cor de fundo da barra de status quando digitando comandos
+c.colors.statusbar.command.bg = '#000000'
+# Cor do texto da barra de status quando em alerta
+c.colors.statusbar.url.warn.fg = '#ffff00'
+# Cor de fundo da barra de abas abertas
+c.colors.tabs.bar.bg = '#000000'
+# Cor de fundo de abas deselecionadas
+c.colors.tabs.odd.bg = '#000000'
+c.colors.tabs.even.bg = '#000000'
+# Cor de fundo de abas selecionadas
+c.colors.tabs.selected.odd.bg = '#555555'
+c.colors.tabs.selected.even.bg = '#555555'
+# Cor de fundo de abas fixadas deselecionadas
+c.colors.tabs.pinned.odd.bg = '#000000'
+c.colors.tabs.pinned.even.bg = '#000000'
+# Cor de fundo de abas fixadas selecionadas
+c.colors.tabs.pinned.selected.odd.bg = '#555555'
+c.colors.tabs.pinned.selected.even.bg = '#555555'
+# Cor da borda do texto selecionado na barra de compleção
+c.colors.completion.item.selected.border.bottom = '#555555'
+c.colors.completion.item.selected.border.top = '#555555'
+
+# FONTES
+
+# Fonte padrão
+c.fonts.default_family = '"monospace"'
+# Tamanho padrão das fontes
+c.fonts.default_size = '14px'
+# Fonte usada nas abas de completação de comandos.
+c.fonts.completion.entry = '14px "monospace"'
+# Fonte used for the debugging console.
+c.fonts.debug_console = '14px "monospace"'
+# Fonte usada nos prompts.
+c.fonts.prompts = 'default_size "monospace"'
+# Fonte usada na barra de status.
+c.fonts.statusbar = '14px "monospace"'
+#+end_src
+
+** Tema escuro
+
+- [[https://github.com/LucasTavaresA/dotfiles/blob/main/.config/qutebrowser/styles/dark.css][dark.css]]
+
+* Picom
+
+Compositor
+
+- =~/.config/picom/picom.conf=
+
+#+begin_src conf :tangle ~/.config/picom/picom.conf
+#################################
+#             Shadows           #
+#################################
+
+
+# Enabled client-side shadows on windows. Note desktop windows
+# (windows with '_NET_WM_WINDOW_TYPE_DESKTOP') never get shadow,
+# unless explicitly requested using the wintypes option.
+#
+# shadow = false
+shadow = true;
+
+# The blur radius for shadows, in pixels. (defaults to 12)
+# shadow-radius = 12
+shadow-radius = 7;
+
+# The opacity of shadows. (0.0 - 1.0, defaults to 0.75)
+# shadow-opacity = .75
+
+# The left offset for shadows, in pixels. (defaults to -15)
+# shadow-offset-x = -15
+shadow-offset-x = -7;
+
+# The top offset for shadows, in pixels. (defaults to -15)
+# shadow-offset-y = -15
+shadow-offset-y = -7;
+
+# Avoid drawing shadows on dock/panel windows. This option is deprecated,
+# you should use the *wintypes* option in your config file instead.
+#
+# no-dock-shadow = false
+
+# Don't draw shadows on drag-and-drop windows. This option is deprecated,
+# you should use the *wintypes* option in your config file instead.
+#
+# no-dnd-shadow = false
+
+# Red color value of shadow (0.0 - 1.0, defaults to 0).
+# shadow-red = 0
+
+# Green color value of shadow (0.0 - 1.0, defaults to 0).
+# shadow-green = 0
+
+# Blue color value of shadow (0.0 - 1.0, defaults to 0).
+# shadow-blue = 0
+
+# Do not paint shadows on shaped windows. Note shaped windows
+# here means windows setting its shape through X Shape extension.
+# Those using ARGB background is beyond our control.
+# Deprecated, use
+#   shadow-exclude = 'bounding_shaped'
+# or
+#   shadow-exclude = 'bounding_shaped && !rounded_corners'
+# instead.
+#
+# shadow-ignore-shaped = ''
+
+# Specify a list of conditions of windows that should have no shadow.
+#
+# examples:
+#   shadow-exclude = "n:e:Notification";
+#
+# shadow-exclude = []
+shadow-exclude = [
+  "name = 'Notification'",
+  "class_g = 'Conky'",
+  "class_g ?= 'Notify-osd'",
+  "class_g = 'Cairo-clock'",
+  "_GTK_FRAME_EXTENTS@:c"
+];
+
+# Specify a X geometry that describes the region in which shadow should not
+# be painted in, such as a dock window region. Use
+#    shadow-exclude-reg = "x10+0+0"
+# for example, if the 10 pixels on the bottom of the screen should not have shadows painted on.
+#
+# shadow-exclude-reg = ""
+
+# Crop shadow of a window fully on a particular Xinerama screen to the screen.
+# xinerama-shadow-crop = false
+
+
+#################################
+#           Fading              #
+#################################
+
+
+# Fade windows in/out when opening/closing and when opacity changes,
+#  unless no-fading-openclose is used.
+# fading = false
+fading = true
+
+# Opacity change between steps while fading in. (0.01 - 1.0, defaults to 0.028)
+# fade-in-step = 0.028
+fade-in-step = 0.03;
+
+# Opacity change between steps while fading out. (0.01 - 1.0, defaults to 0.03)
+# fade-out-step = 0.03
+fade-out-step = 0.03;
+
+# The time between steps in fade step, in milliseconds. (> 0, defaults to 10)
+# fade-delta = 10
+
+# Specify a list of conditions of windows that should not be faded.
+# fade-exclude = []
+
+# Do not fade on window open/close.
+# no-fading-openclose = false
+
+# Do not fade destroyed ARGB windows with WM frame. Workaround of bugs in Openbox, Fluxbox, etc.
+# no-fading-destroyed-argb = false
+
+
+#################################
+#   Transparency / Opacity      #
+#################################
+
+
+# Opacity of inactive windows. (0.1 - 1.0, defaults to 1.0)
+# inactive-opacity = 1
+inactive-opacity = 0.8;
+
+# Opacity of window titlebars and borders. (0.1 - 1.0, disabled by default)
+# frame-opacity = 1.0
+frame-opacity = 0.7;
+
+# Default opacity for dropdown menus and popup menus. (0.0 - 1.0, defaults to 1.0)
+# menu-opacity = 1.0
+
+# Let inactive opacity set by -i override the '_NET_WM_OPACITY' values of windows.
+# inactive-opacity-override = true
+inactive-opacity-override = false;
+
+# Default opacity for active windows. (0.0 - 1.0, defaults to 1.0)
+# active-opacity = 1.0
+
+# Dim inactive windows. (0.0 - 1.0, defaults to 0.0)
+# inactive-dim = 0.0
+
+# Specify a list of conditions of windows that should always be considered focused.
+# focus-exclude = []
+focus-exclude = [ "class_g = 'Cairo-clock'" ];
+
+# Use fixed inactive dim value, instead of adjusting according to window opacity.
+# inactive-dim-fixed = 1.0
+
+# Specify a list of opacity rules, in the format `PERCENT:PATTERN`,
+# like `50:name *= "Firefox"`. picom-trans is recommended over this.
+# Note we don't make any guarantee about possible conflicts with other
+# programs that set '_NET_WM_WINDOW_OPACITY' on frame or client windows.
+# example:
+#    opacity-rule = [ "80:class_g = 'URxvt'" ];
+#    opacity-rule = [ "80:class_i = 'alacritty'" ]
+
+#################################
+#     Background-Blurring       #
+#################################
+
+
+# Parameters for background blurring, see the *BLUR* section for more information.
+# blur-method =
+# blur-size = 12
+#
+# blur-deviation = false
+
+# Blur background of semi-transparent / ARGB windows.
+# Bad in performance, with driver-dependent behavior.
+# The name of the switch may change without prior notifications.
+#
+# blur-background = false
+
+# Blur background of windows when the window frame is not opaque.
+# Implies:
+#    blur-background
+# Bad in performance, with driver-dependent behavior. The name may change.
+#
+# blur-background-frame = false
+
+
+# Use fixed blur strength rather than adjusting according to window opacity.
+# blur-background-fixed = false
+
+
+# Specify the blur convolution kernel, with the following format:
+# example:
+#   blur-kern = "5,5,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1";
+#
+# blur-kern = ''
+blur-kern = "3x3box";
+
+
+# Exclude conditions for background blur.
+# blur-background-exclude = []
+blur-background-exclude = [
+  "window_type = 'dock'",
+  "window_type = 'desktop'",
+  "_GTK_FRAME_EXTENTS@:c"
+];
+
+#################################
+#       General Settings        #
+#################################
+
+# Daemonize process. Fork to background after initialization. Causes issues with certain (badly-written) drivers.
+# daemon = false
+
+# Specify the backend to use: `xrender`, `glx`, or `xr_glx_hybrid`.
+# `xrender` is the default one.
+#
+# backend = 'glx'
+backend = "xrender";
+
+# Enable/disable VSync.
+# vsync = false
+vsync = true
+
+# Enable remote control via D-Bus. See the *D-BUS API* section below for more details.
+# dbus = false
+
+# Try to detect WM windows (a non-override-redirect window with no
+# child that has 'WM_STATE') and mark them as active.
+#
+# mark-wmwin-focused = false
+mark-wmwin-focused = true;
+
+# Mark override-redirect windows that doesn't have a child window with 'WM_STATE' focused.
+# mark-ovredir-focused = false
+mark-ovredir-focused = true;
+
+# Try to detect windows with rounded corners and don't consider them
+# shaped windows. The accuracy is not very high, unfortunately.
+#
+# detect-rounded-corners = false
+detect-rounded-corners = true;
+
+# Detect '_NET_WM_OPACITY' on client windows, useful for window managers
+# not passing '_NET_WM_OPACITY' of client windows to frame windows.
+#
+# detect-client-opacity = false
+detect-client-opacity = true;
+
+# Specify refresh rate of the screen. If not specified or 0, picom will
+# try detecting this with X RandR extension.
+#
+# refresh-rate = 60
+refresh-rate = 0
+
+# Limit picom to repaint at most once every 1 / 'refresh_rate' second to
+# boost performance. This should not be used with
+#   vsync drm/opengl/opengl-oml
+# as they essentially does sw-opti's job already,
+# unless you wish to specify a lower refresh rate than the actual value.
+#
+# sw-opti =
+
+# Use EWMH '_NET_ACTIVE_WINDOW' to determine currently focused window,
+# rather than listening to 'FocusIn'/'FocusOut' event. Might have more accuracy,
+# provided that the WM supports it.
+#
+# use-ewmh-active-win = false
+
+# Unredirect all windows if a full-screen opaque window is detected,
+# to maximize performance for full-screen windows. Known to cause flickering
+# when redirecting/unredirecting windows.
+#
+# unredir-if-possible = false
+
+# Delay before unredirecting the window, in milliseconds. Defaults to 0.
+# unredir-if-possible-delay = 0
+
+# Conditions of windows that shouldn't be considered full-screen for unredirecting screen.
+# unredir-if-possible-exclude = []
+
+# Use 'WM_TRANSIENT_FOR' to group windows, and consider windows
+# in the same group focused at the same time.
+#
+# detect-transient = false
+detect-transient = true
+
+# Use 'WM_CLIENT_LEADER' to group windows, and consider windows in the same
+# group focused at the same time. 'WM_TRANSIENT_FOR' has higher priority if
+# detect-transient is enabled, too.
+#
+# detect-client-leader = false
+detect-client-leader = true
+
+# Resize damaged region by a specific number of pixels.
+# A positive value enlarges it while a negative one shrinks it.
+# If the value is positive, those additional pixels will not be actually painted
+# to screen, only used in blur calculation, and such. (Due to technical limitations,
+# with use-damage, those pixels will still be incorrectly painted to screen.)
+# Primarily used to fix the line corruption issues of blur,
+# in which case you should use the blur radius value here
+# (e.g. with a 3x3 kernel, you should use `--resize-damage 1`,
+# with a 5x5 one you use `--resize-damage 2`, and so on).
+# May or may not work with *--glx-no-stencil*. Shrinking doesn't function correctly.
+#
+# resize-damage = 1
+
+# Specify a list of conditions of windows that should be painted with inverted color.
+# Resource-hogging, and is not well tested.
+#
+# invert-color-include = []
+
+# GLX backend: Avoid using stencil buffer, useful if you don't have a stencil buffer.
+# Might cause incorrect opacity when rendering transparent content (but never
+# practically happened) and may not work with blur-background.
+# My tests show a 15% performance boost. Recommended.
+#
+# glx-no-stencil = false
+
+# GLX backend: Avoid rebinding pixmap on window damage.
+# Probably could improve performance on rapid window content changes,
+# but is known to break things on some drivers (LLVMpipe, xf86-video-intel, etc.).
+# Recommended if it works.
+#
+# glx-no-rebind-pixmap = false
+
+# Disable the use of damage information.
+# This cause the whole screen to be redrawn everytime, instead of the part of the screen
+# has actually changed. Potentially degrades the performance, but might fix some artifacts.
+# The opposing option is use-damage
+#
+# no-use-damage = false
+use-damage = true
+
+# Use X Sync fence to sync clients' draw calls, to make sure all draw
+# calls are finished before picom starts drawing. Needed on nvidia-drivers
+# with GLX backend for some users.
+#
+# xrender-sync-fence = false
+
+# GLX backend: Use specified GLSL fragment shader for rendering window contents.
+# See `compton-default-fshader-win.glsl` and `compton-fake-transparency-fshader-win.glsl`
+# in the source tree for examples.
+#
+# glx-fshader-win = ''
+
+# Force all windows to be painted with blending. Useful if you
+# have a glx-fshader-win that could turn opaque pixels transparent.
+#
+# force-win-blend = false
+
+# Do not use EWMH to detect fullscreen windows.
+# Reverts to checking if a window is fullscreen based only on its size and coordinates.
+#
+# no-ewmh-fullscreen = false
+
+# Dimming bright windows so their brightness doesn't exceed this set value.
+# Brightness of a window is estimated by averaging all pixels in the window,
+# so this could comes with a performance hit.
+# Setting this to 1.0 disables this behaviour. Requires --use-damage to be disabled. (default: 1.0)
+#
+# max-brightness = 1.0
+
+# Make transparent windows clip other windows like non-transparent windows do,
+# instead of blending on top of them.
+#
+# transparent-clipping = false
+
+# Set the log level. Possible values are:
+#  "trace", "debug", "info", "warn", "error"
+# in increasing level of importance. Case doesn't matter.
+# If using the "TRACE" log level, it's better to log into a file
+# using *--log-file*, since it can generate a huge stream of logs.
+#
+# log-level = "debug"
+log-level = "warn";
+
+# Set the log file.
+# If *--log-file* is never specified, logs will be written to stderr.
+# Otherwise, logs will to written to the given file, though some of the early
+# logs might still be written to the stderr.
+# When setting this option from the config file, it is recommended to use an absolute path.
+#
+# log-file = '/path/to/your/log/file'
+
+# Show all X errors (for debugging)
+# show-all-xerrors = false
+
+# Write process ID to a file.
+# write-pid-path = '/path/to/your/log/file'
+
+# Window type settings
+#
+# 'WINDOW_TYPE' is one of the 15 window types defined in EWMH standard:
+#     "unknown", "desktop", "dock", "toolbar", "menu", "utility",
+#     "splash", "dialog", "normal", "dropdown_menu", "popup_menu",
+#     "tooltip", "notification", "combo", and "dnd".
+#
+# Following per window-type options are available: ::
+#
+#   fade, shadow:::
+#     Controls window-type-specific shadow and fade settings.
+#
+#   opacity:::
+#     Controls default opacity of the window type.
+#
+#   focus:::
+#     Controls whether the window of this type is to be always considered focused.
+#     (By default, all window types except "normal" and "dialog" has this on.)
+#
+#   full-shadow:::
+#     Controls whether shadow is drawn under the parts of the window that you
+#     normally won't be able to see. Useful when the window has parts of it
+#     transparent, and you want shadows in those areas.
+#
+#   redir-ignore:::
+#     Controls whether this type of windows should cause screen to become
+#     redirected again after been unredirected. If you have unredir-if-possible
+#     set, and doesn't want certain window to cause unnecessary screen redirection,
+#     you can set this to `true`.
+#
+wintypes:
+{
+  tooltip = { fade = false; shadow = false; opacity = 1; focus = true; full-shadow = false; };
+  dock = { shadow = false; }
+  dnd = { shadow = false; }
+  popup_menu = { opacity = 1; }
+  dropdown_menu = { opacity = 1; }
+};
+#+end_src
+
+* Neovim
+
+Editor de texto baseado no *vim*
+
+- =~/.config/nvim/init.vim=
+
+#+begin_src vimrc :tangle ~/.config/nvim/init.vim
+call plug#begin('~/.config/nvim/plugged')
+
+Plug 'projekt0n/github-nvim-theme'
+Plug 'farmergreg/vim-lastplace'
+Plug 'mhinz/vim-signify'
+Plug 'bilalq/lite-dfm'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'terryma/vim-expand-region'
+
+call plug#end()
+
+set hidden
+set lazyredraw
+" Desabilita swapfile
+set noswapfile
+" Da a volta entre linhas
+set whichwrap+=<,>,h,l,[,]
+" Indica linha selecionada no modo normal
+set cursorline
+" Ativa uso do mouse
+set mouse=a
+" Define quando a barra superior aparece
+set showtabline=0
+" Diminui tamanho da barra inferior
+set cmdheight=1
+" Copiar usando vim
+autocmd InsertEnter * set cul
+autocmd InsertLeave * set nocul
+set clipboard+=unnamedplus
+" Idioma para correção ortográfica
+set spell spelllang=pt
+" Junta os números e marcadores em uma única coluna
+set signcolumn=number
+" Atualiza o neovim mais rápido
+set updatetime=100
+" Procura ignorando maiúsculas
+set ignorecase
+set smartcase
+" Desativa comentar automaticamente a próxima linha
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+" Habilita a compleção de comandos
+set wildmode=longest,list,full
+" Divide a tela do lado e para baixo
+set splitbelow splitright
+" Inicia no modo foco
+autocmd VimEnter * LiteDFMToggle
+
+" Automaticamente deleta todos os espaços em branco e novas linhas no salvamento do arquivo e reseta a posição do cursor
+autocmd BufWritePre * let currPos = getpos(".")
+autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritePre * %s/\n\+\%$//e
+autocmd BufWritePre *.[ch] %s/\%$/\r/e
+autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
+
+colorscheme github_dark_default
+set background=dark
+" Transparência
+hi Normal guibg=NONE ctermbg=NONE
+hi EndOfBuffer guibg=NONE ctermbg=NONE
+hi Normal guibg=NONE ctermbg=NONE
+hi CursorLine guibg=#222222
+highlight Search guibg=#222222 guifg=#ffff00
+
+let mapleader ="z"
+" Troca entre partes da mesma linha usando setas
+nnoremap <Down> gj
+nnoremap <Up> gk
+inoremap <Down> <C-o>gj
+inoremap <Up> <C-o>gk
+vnoremap <Down> gj
+vnoremap <Up> gk
+" Comentar linhas
+map cc :norm gcc<CR>j
+" Copiar na linha abaixo
+map P :norm o<CR>p
+" Ativa/Desativa o corretor ortográfico
+map <leader>s :setlocal spell! spelllang=pt<CR>
+" Navega entre as divisórias
+map <A-Left> <C-w>h
+map <A-Down> <C-w>j
+map <A-Up> <C-w>k
+map <A-Right> <C-w>l
+" Esconde a modeline
+map <leader>x :LiteDFMToggle<CR>
+" Expande região selecionada
+map <leader><Up> <Plug>(expand_region_expand)
+map <leader><Down> <Plug>(expand_region_shrink)
+" Troca para o próximo buffer
+map <leader><Tab> :bn<CR>
+" Fecha buffer
+map <leader>d :bd<CR>
+" Divide a tela do lado
+map <leader>S :vs<CR>
+" Divide a tela abaixo
+map <leader>b :sp<CR>
+#+end_src
+
+* Ncmpcpp
+
+Player de musica
+
+** Configuração
+
+- =~/.config/ncmpcpp/config=
+
+#+begin_src conf :tangle ~/.config/ncmpcpp/config
+# vim: filetype=conf
+
+ncmpcpp_directory = "~/.config/ncmpcpp"
+lyrics_directory = "~/.local/share/lyrics"
+mpd_music_dir = "~/musicas"
+message_delay_time = "1"
+playlist_display_mode = classic
+browser_display_mode = classic
+progressbar_look = "━🬋-"
+media_library_primary_tag = album_artist
+media_library_albums_split_by_date = no
+startup_screen = "playlist"
+display_volume_level = no
+ignore_leading_the = yes
+external_editor = nvim
+use_console_editor = yes
+empty_tag_color = cyan
+main_window_color = white
+progressbar_color = white
+progressbar_elapsed_color = white:b
+statusbar_color = white
+statusbar_time_color = white:b
+cyclic_scrolling = yes
+mouse_support = no
+song_list_format = {$8%f$9}$R{$3%l$9}
+song_status_format = {%f}
+song_library_format = {%f}
+alternative_header_first_line_format = {%f} $1$atqq$/a$9$/b
+alternative_header_second_line_format = {%D}
+current_item_prefix = $(white)$r
+current_item_suffix = $/r$(end)
+current_item_inactive_column_prefix = $(cyan)$r
+current_item_inactive_column_suffix = $/r$(end)
+now_playing_prefix = $b
+now_playing_suffix = $/b
+browser_playlist_prefix = "$2playlist$9 "
+selected_item_prefix = $6
+selected_item_suffix = $9
+modified_item_prefix = $3> $9
+song_window_title_format = {%f}
+browser_sort_mode = none
+browser_sort_format = {%f} {%l}
+song_columns_list_format = (50)[white]{f:Title} (7f)[white]{l}
+#+end_src
+
+** Teclas
+
+- =~/.config/ncmpcpp/bindings=
+
+#+begin_src conf :tangle ~/.config/ncmpcpp/bindings
+def_key "home"
+  move_home
+def_key "end"
+  move_end
+def_key "right"
+  enter_directory
+def_key "enter"
+  toggle_output
+def_key "enter"
+  run_action
+def_key "enter"
+  play_item
+def_key "delete"
+  delete_playlist_items
+def_key "delete"
+  delete_browser_items
+def_key "delete"
+  delete_stored_playlist
+def_key "right"
+  next_column
+def_key "left"
+  previous_column
+def_key ":"
+  execute_command
+def_key "f1"
+  show_help
+def_key "p"
+  stop
+def_key "space"
+  pause
+def_key ">"
+  next
+def_key "<"
+  previous
+def_key "left"
+  jump_to_parent_directory
+def_key "right"
+  seek_forward
+def_key "left"
+  seek_backward
+def_key "e"
+  edit_song
+def_key "e"
+  edit_library_tag
+def_key "e"
+  edit_library_album
+def_key "e"
+  edit_directory_name
+def_key "e"
+  edit_playlist_name
+def_key "R"
+  remove_selection
+def_key "M"
+  move_selected_items_to
+def_key "A"
+  add
+def_key "S"
+  save_playlist
+def_key "z"
+  toggle_interface
+def_key "!"
+  toggle_separators_between_albums
+def_key "q"
+  quit
+def_key "f"
+	find
+def_key "u"
+  update_database
+def_key "delete"
+  delete_playlist_items
+#+end_src
+
+* Mpd
+
+Daemon player de musica
+
+- =~/.config/mpd/mpd.conf=
+
+#+begin_src conf :tangle ~/.config/mpd/mpd.conf
+music_directory		"~/musicas"
+playlist_directory	"~/.config/mpd/playlists"
+db_file			    "~/.config/mpd/database"
+pid_file			"~/.config/mpd/pid"
+state_file			"~/.config/mpd/state"
+
+auto_update "yes"
+bind_to_address "127.0.0.1"
+restore_paused "yes"
+max_output_buffer_size "16384"
+
+audio_output {
+	type "pulse"
+	name "pulse"
+}
+#+end_src
+
+* Lf
+
+Explorador de arquivos lf
+
+- =~/.config/lf/lfrc=
+
+#+begin_src bash :tangle ~/.config/lf/lfrc
+# interpreter for shell commands
+set shell bash
+
+# set '-eu' options for shell commands
+# These options are used to have safer shell commands. Option '-e' is used to
+# exit on error and option '-u' is used to give error for unset variables.
+# Option '-f' disables pathname expansion which can be useful when $f, $fs, and
+# $fx variables contain names with '*' or '?' characters. However, this option
+# is used selectively within individual commands as it can be limiting at
+# times.
+set shellopts '-eu'
+
+# set internal field separator (IFS) to "\n" for shell commands
+# This is useful to automatically split file names in $fs and $fx properly
+# since default file separator used in these variables (i.e. 'filesep' option)
+# is newline. You need to consider the values of these options and create your
+# commands accordingly.
+set ifs "\n"
+
+set period 1
+
+# arquivos ocultos
+set hidden on
+
+# ícones
+set icons on
+
+# informação mostrada do lado do arquivo
+set info "size"
+
+# previa de arquivos
+set previewer lf-previewer
+set cleaner lf-cleaner
+
+# fração das abas
+set ratios 1:2
+
+set wrapscroll on
+
+# informação no topo das abas
+set promptfmt "\033[32;1m\033[0m\033[34;1m%d\033[0m\033[1m%f\033[0m"
+
+# borda ao redor das abas
+set drawbox on
+
+# abre espaço na parte superior e inferior da tela
+set scrolloff 0
+
+# cmd open ${{
+    # case $(file --mime-type $f -b) in
+        # text/*) $EDITOR $fx ;;
+        # video/*) mpv $fx ;;
+        # image/*) sxiv $fx ;;
+        # *) xdg-open $f ;;
+    # esac
+# }}
+
+cmd open ${{
+    case $(file --mime-type "$(readlink -f $f)" -b) in
+    	application/vnd.openxmlformats-officedocument.wordprocessingml.document) libreoffice $f ;;
+	image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) zathura $fx ;;
+        text/*) nvim $fx ;;
+	image/*) sxiv $fx ;;
+	audio/*) mpv --audio-display=no $fx ;;
+	video/*) mpv $fx ;;
+	application/pdf|application/vnd*|application/epub*) zathura $fx ;;
+	application/pgp-encrypted) nvim $fx ;;
+        *) xdg-open $fx ;;
+    esac
+}}
+
+cmd delete ${{
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	printf "%s\n\t" "$fx"
+	printf "deletar?[y/N]"
+	read ans
+	[ $ans = "y" ] && rm -rf -- $fx
+}}
+
+cmd mkdir ${{
+  printf "Nome do diretório: "
+  read ans
+  mkdir $ans
+}}
+
+cmd extract ${{
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	printf "%s\n\t" "$fx"
+	printf "extrair?[y/N]"
+	read ans
+	[ $ans = "y" ] && aunpack $fx
+}}
+
+cmd mkfile ${{
+  printf "Nome do arquivo: "
+  read ans
+  $EDITOR $ans
+}}
+
+cmd chmod ${{
+  printf "Bits: "
+  read ans
+
+  for file in "$fx"
+  do
+    chmod $ans $file
+  done
+
+  lf -remote 'send reload'
+}}
+
+map m
+map o
+map n
+map "'"
+map '"'
+map e
+map f
+
+map <delete> delete
+map t mkfile
+map o open
+map c chmod
+map C clear
+map m mkdir
+map E extract
+#+end_src
+
+* Handlr
+
+Abre arquivos de acordo com o mimetype, substitui o *xdg-open*
+
+- =~/.config/handlr/handlr.toml=
+
+#+begin_src conf :tangle ~/.config/handlr/handlr.toml
+enable_selector = true
+selector = "dmenu -p 'Abrir com: '"
+#+end_src
+
+* Mimetypes
+
+Tipos de arquivos e programa chamado para os abrir
+
+- =~/.config/mimeapps.list=
+
+#+begin_src conf :tangle ~/.config/mimeapps.list
+[Added Associations]
+x-scheme-handler/tg=userapp-Telegram Desktop-EJM1D1.desktop;
+x-scheme-handler/magnet=transmission-gtk.desktop;
+application/x.bittorrent=transmission-gtk.desktop;
+audio/mp4=mpv.desktop;
+audio/x-opus+ogg=mpv.desktop;
+image/jpeg=sxiv.desktop;
+image/png=sxiv.desktop;
+inode/directory=lf.desktop;
+
+[Default Applications]
+application/javascript=nvim.desktop;
+application/json=nvim.desktop;
+application/ld+json=nvim.desktop;
+application/msword=libreoffice-writer.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.dektop;
+application/pdf=firefox.desktop;
+application/vnd.ms-excel=libreoffice-calc.desktop;
+application/vnd.ms-powerpoint=libreoffice-impress.desktop;
+application/x-bittorrent=transmission-gtk.desktop;
+audio/*=mpv.desktop;
+image/*=sxiv.desktop;
+inode/directory=lf.desktop;
+text/*=nvim.desktop;
+text/markdown=geany.desktop;
+video/*=mpv.desktop;
+x-scheme-handler/tg=userapp-Telegram Desktop-EJM1D1.desktop;
+x-scheme-handler/http=org.qutebrowser.qutebrowser.desktop;
+x-scheme-handler/https=org.qutebrowser.qutebrowser.desktop;
+x-scheme-handler/ftp=org.qutebrowser.qutebrowser.desktop;
+x-scheme-handler/magnet=transmission-gtk.desktop;
+application/x.bittorrent=transmission-gtk.desktop;
+#+end_src
+
+* Zathura
+
+Leitor de pdf
+
+- =~/.config/zathura/zathurarc=
+
+#+begin_src conf :tangle ~/.config/zathura/zathurarc
+set sandbox none
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+set page-padding 1
+set selection-clipboard clipboard
+map D toggle_page_mode
+map R reload
+map r rotate
+map zd recolor
+#+end_src
+
+* Gtk
+
+Interface de usuário
+
+** Gtk 2
+
+- =~/.config/gtk-2.0/gtkrc=
+
+#+begin_src conf :tangle ~/.config/gtk-2.0/gtkrc
+include "/home/lucas/.gtkrc-2.0.mine"
+gtk-theme-name="Adwaita-dark"
+gtk-icon-theme-name="Papirus-Dark"
+gtk-font-name="Inconsolata 13"
+gtk-cursor-theme-name="Bluecurve"
+gtk-cursor-theme-size=0
+gtk-toolbar-style=GTK_TOOLBAR_ICONS
+gtk-toolbar-icon-size=GTK_ICON_SIZE_MENU
+gtk-button-images=1
+gtk-menu-images=1
+gtk-enable-event-sounds=1
+gtk-enable-input-feedback-sounds=1
+gtk-xft-antialias=1
+gtk-xft-hinting=1
+gtk-xft-hintstyle="hintfull"
+#+end_src
+
+** Gtk 3
+
+- =~/.config/gtk-3.0/settings.ini=
+
+#+begin_src conf :tangle ~/.config/gtk-3.0/settings.ini
+[Settings]
+gtk-theme-name=Adwaita-dark
+gtk-font-name=Inconsolata 13
+gtk-cursor-theme-name=Adwaita
+gtk-cursor-theme-size=0
+gtk-toolbar-style=GTK_TOOLBAR_ICONS
+gtk-toolbar-icon-size=GTK_ICON_SIZE_MENU
+gtk-button-images=1
+gtk-menu-images=1
+gtk-enable-event-sounds=1
+gtk-enable-input-feedback-sounds=1
+gtk-xft-antialias=1
+gtk-xft-hinting=1
+gtk-xft-hintstyle=hintfull
+gtk-icon-theme-name=Papirus-Dark
+gtk-application-prefer-dark-theme=true
+#+end_src
+
+- =~/.config/settings.ini=
+
+#+begin_src conf :tangle ~/.config/settings.ini
+[Settings]
+gtk-font-name=Inconsolata 13
+gtk-cursor-theme-size=0
+gtk-toolbar-style=GTK_TOOLBAR_BOTH
+gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
+gtk-button-images=1
+gtk-menu-images=1
+gtk-enable-event-sounds=1
+gtk-enable-input-feedback-sounds=1
+gtk-xft-antialias=1
+gtk-xft-hinting=1
+gtk-xft-hintstyle=hintfull
+#+end_src
+
+* Dunst
+
+Daemon de notificação
+
+- =~/.config/dunst/dunstrc=
+
+#+begin_src conf :tangle ~/.config/dunst/dunstrc
+[global]
+    ### Display ###
+
+    # Which monitor should the notifications be displayed on.
+    monitor = 0
+
+    # Display notification on focused monitor.  Possible modes are:
+    #   mouse: follow mouse pointer
+    #   keyboard: follow window with keyboard focus
+    #   none: don't follow anything
+    #
+    # "keyboard" needs a window manager that exports the
+    # _NET_ACTIVE_WINDOW property.
+    # This should be the case for almost all modern window managers.
+    #
+    # If this option is set to mouse or keyboard, the monitor option
+    # will be ignored.
+    follow = mouse
+
+    # The geometry of the window:
+    #   [{width}]x{height}[+/-{x}+/-{y}]
+    # The geometry of the message window.
+    # The height is measured in number of notifications everything else
+    # in pixels.  If the width is omitted but the height is given
+    # ("-geometry x2"), the message window expands over the whole screen
+    # (dmenu-like).  If width is 0, the window expands to the longest
+    # message displayed.  A positive x is measured from the left, a
+    # negative from the right side of the screen.  Y is measured from
+    # the top and down respectively.
+    # The width can be negative.  In this case the actual width is the
+    # screen width minus the width defined in within the geometry option.
+    geometry = "800x5-30+20"
+
+    # Turn on the progess bar
+    progress_bar = true
+
+    # Set the progress bar height. This includes the frame, so make sure
+    # it's at least twice as big as the frame width.
+    progress_bar_height = 10
+
+    # Set the frame width of the progress bar
+    progress_bar_frame_width = 1
+
+    # Set the minimum width for the progress bar
+    progress_bar_min_width = 150
+
+    # Set the maximum width for the progress bar
+    progress_bar_max_width = 300
+
+
+    # Show how many messages are currently hidden (because of geometry).
+    indicate_hidden = yes
+
+    # Shrink window if it's smaller than the width.  Will be ignored if
+    # width is 0.
+    shrink = no
+
+    # The transparency of the window.  Range: [0; 100].
+    # This option will only work if a compositing window manager is
+    # present (e.g. xcompmgr, compiz, etc.).
+    transparency = 30
+
+    # The height of the entire notification.  If the height is smaller
+    # than the font height and padding combined, it will be raised
+    # to the font height and padding.
+    notification_height = 0
+
+    # Draw a line of "separator_height" pixel height between two
+    # notifications.
+    # Set to 0 to disable.
+    separator_height = 2
+
+    # Padding between text and separator.
+    padding = 8
+
+    # Horizontal padding.
+    horizontal_padding = 8
+
+    # Padding between text and icon.
+    text_icon_padding = 0
+
+    # Defines width in pixels of frame around the notification window.
+    # Set to 0 to disable.
+    frame_width = 1
+
+    # Defines color of the frame around the notification window.
+    frame_color = "#FFFFFF"
+
+    # Define a color for the separator.
+    # possible values are:
+    #  * auto: dunst tries to find a color fitting to the background;
+    #  * foreground: use the same color as the foreground;
+    #  * frame: use the same color as the frame;
+    #  * anything else will be interpreted as a X color.
+    separator_color = auto
+
+    # Sort messages by urgency.
+    sort = yes
+
+    # Don't remove messages, if the user is idle (no mouse or keyboard input)
+    # for longer than idle_threshold seconds.
+    # Set to 0 to disable.
+    # A client can set the 'transient' hint to bypass this. See the rules
+    # section for how to disable this if necessary
+    idle_threshold = 120
+
+    ### Text ###
+
+    font = Inconsolata 13
+
+    # The spacing between lines.  If the height is smaller than the
+    # font height, it will get raised to the font height.
+    line_height = 1
+
+    # Possible values are:
+    # full: Allow a small subset of html markup in notifications:
+    #        <b>bold</b>
+    #        <i>italic</i>
+    #        <s>strikethrough</s>
+    #        <u>underline</u>
+    #
+    #        For a complete reference see
+    #        <https://developer.gnome.org/pango/stable/pango-Markup.html>.
+    #
+    # strip: This setting is provided for compatibility with some broken
+    #        clients that send markup even though it's not enabled on the
+    #        server. Dunst will try to strip the markup but the parsing is
+    #        simplistic so using this option outside of matching rules for
+    #        specific applications *IS GREATLY DISCOURAGED*.
+    #
+    # no:    Disable markup parsing, incoming notifications will be treated as
+    #        plain text. Dunst will not advertise that it has the body-markup
+    #        capability if this is set as a global setting.
+    #
+    # It's important to note that markup inside the format option will be parsed
+    # regardless of what this is set to.
+    markup = full
+
+    # The format of the message.  Possible variables are:
+    #   %a  appname
+    #   %s  summary
+    #   %b  body
+    #   %i  iconname (including its path)
+    #   %I  iconname (without its path)
+    #   %p  progress value if set ([  0%] to [100%]) or nothing
+    #   %n  progress value if set without any extra characters
+    #   %%  Literal %
+    # Markup is allowed
+    format = "<b>%s</b>\n%b"
+
+    # Alignment of message text.
+    # Possible values are "left", "center" and "right".
+    alignment = left
+
+    # Vertical alignment of message text and icon.
+    # Possible values are "top", "center" and "bottom".
+    vertical_alignment = center
+
+    # Show age of message if message is older than show_age_threshold
+    # seconds.
+    # Set to -1 to disable.
+    show_age_threshold = 60
+
+    # Split notifications into multiple lines if they don't fit into
+    # geometry.
+    word_wrap = yes
+
+    # When word_wrap is set to no, specify where to make an ellipsis in long lines.
+    # Possible values are "start", "middle" and "end".
+    ellipsize = middle
+
+    # Ignore newlines '\n' in notifications.
+    ignore_newline = no
+
+    # Stack together notifications with the same content
+    stack_duplicates = true
+
+    # Hide the count of stacked notifications with the same content
+    hide_duplicate_count = false
+
+    # Display indicators for URLs (U) and actions (A).
+    show_indicators = yes
+
+    ### Icons ###
+
+    # Align icons left/right/off
+    icon_position = left
+
+    # Scale small icons up to this size, set to 0 to disable. Helpful
+    # for e.g. small files or high-dpi screens. In case of conflict,
+    # max_icon_size takes precedence over this.
+    min_icon_size = 0
+
+    # Scale larger icons down to this size, set to 0 to disable
+    max_icon_size = 32
+
+    # Paths to default icons.
+    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+
+    ### History ###
+
+    # Should a notification popped up from history be sticky or timeout
+    # as if it would normally do.
+    sticky_history = yes
+
+    # Maximum amount of notifications kept in history
+    history_length = 20
+
+    ### Misc/Advanced ###
+
+    # dmenu path.
+    dmenu = /usr/bin/dmenu -p dunst:
+
+    # Browser for opening urls in context menu.
+    browser = /usr/bin/firefox -new-tab
+
+    # Always run rule-defined scripts, even if the notification is suppressed
+    always_run_script = true
+
+    # Define the title of the windows spawned by dunst
+    title = Dunst
+
+    # Define the class of the windows spawned by dunst
+    class = Dunst
+
+    # Print a notification on startup.
+    # This is mainly for error detection, since dbus (re-)starts dunst
+    # automatically after a crash.
+    startup_notification = true
+
+    # Manage dunst's desire for talking
+    # Can be one of the following values:
+    #  crit: Critical features. Dunst aborts
+    #  warn: Only non-fatal warnings
+    #  mesg: Important Messages
+    #  info: all unimportant stuff
+    # debug: all less than unimportant stuff
+    verbosity = mesg
+
+    # Define the corner radius of the notification window
+    # in pixel size. If the radius is 0, you have no rounded
+    # corners.
+    # The radius will be automatically lowered if it exceeds half of the
+    # notification height to avoid clipping text and/or icons.
+    corner_radius = 0
+
+    # Ignore the dbus closeNotification message.
+    # Useful to enforce the timeout set by dunst configuration. Without this
+    # parameter, an application may close the notification sent before the
+    # user defined timeout.
+    ignore_dbusclose = false
+
+    ### Wayland ###
+    # These settings are Wayland-specific. They have no effect when using X11
+
+    # Uncomment this if you want to let notications appear under fullscreen
+    # applications (default: overlay)
+    # layer = top
+
+    # Set this to true to use X11 output on Wayland.
+    force_xwayland = false
+
+    ### Legacy
+
+    # Use the Xinerama extension instead of RandR for multi-monitor support.
+    # This setting is provided for compatibility with older nVidia drivers that
+    # do not support RandR and using it on systems that support RandR is highly
+    # discouraged.
+    #
+    # By enabling this setting dunst will not be able to detect when a monitor
+    # is connected or disconnected which might break follow mode if the screen
+    # layout changes.
+    force_xinerama = false
+
+    ### mouse
+
+    # Defines list of actions for each mouse event
+    # Possible values are:
+    # * none: Don't do anything.
+    # * do_action: If the notification has exactly one action, or one is marked as default,
+    #              invoke it. If there are multiple and no default, open the context menu.
+    # * close_current: Close current notification.
+    # * close_all: Close all notifications.
+    # These values can be strung together for each mouse event, and
+    # will be executed in sequence.
+    mouse_left_click = close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = do_action, close_current
+
+# Experimental features that may or may not work correctly. Do not expect them
+# to have a consistent behaviour across releases.
+[experimental]
+    # Calculate the dpi to use on a per-monitor basis.
+    # If this setting is enabled the Xft.dpi value will be ignored and instead
+    # dunst will attempt to calculate an appropriate dpi value for each monitor
+    # using the resolution and physical size. This might be useful in setups
+    # where there are multiple screens with very different dpi values.
+    per_monitor_dpi = false
+
+# The internal keyboard shortcut support in dunst is now considered deprecated
+# and should be replaced by dunstctl calls. You can use the configuration of your
+# WM or DE to bind these to shortcuts of your choice.
+# Check the dunstctl manual page for more info.
+[shortcuts]
+
+    # Shortcuts are specified as [modifier+][modifier+]...key
+    # Available modifiers are "ctrl", "mod1" (the alt-key), "mod2",
+    # "mod3" and "mod4" (windows-key).
+    # Xev might be helpful to find names for keys.
+
+    # Close notification. Equivalent dunstctl command:
+    # dunstctl close
+    # close = ctrl+space
+
+    # Close all notifications. Equivalent dunstctl command:
+    # dunstctl close-all
+    # close_all = ctrl+shift+space
+
+    # Redisplay last message(s). Equivalent dunstctl command:
+    # dunstctl history-pop
+    # history = ctrl+grave
+
+    # Context menu. Equivalent dunstctl command:
+    # dunstctl context
+    # context = ctrl+shift+period
+
+[urgency_low]
+    # IMPORTANT: colors have to be defined in quotation marks.
+    # Otherwise the "#" and following would be interpreted as a comment.
+    background = "#606060"
+    foreground = "#FFFFFF"
+    timeout = 10
+    # Icon for notifications with low urgency, uncomment to enable
+    #icon = /path/to/icon
+
+[urgency_normal]
+    background = "#000000"
+    foreground = "#FFFFFF"
+    timeout = 10
+    # Icon for notifications with normal urgency, uncomment to enable
+    #icon = /path/to/icon
+
+[urgency_critical]
+    background = "#800000"
+    foreground = "#ffffff"
+    frame_color = "#FF0000"
+    timeout = 0
+    # Icon for notifications with critical urgency, uncomment to enable
+    #icon = /path/to/icon
+
+# Every section that isn't one of the above is interpreted as a rules to
+# override settings for certain messages.
+#
+# Messages can be matched by
+#    appname (discouraged, see desktop_entry)
+#    body
+#    category
+#    desktop_entry
+#    icon
+#    match_transient
+#    msg_urgency
+#    stack_tag
+#    summary
+#
+# and you can override the
+#    background
+#    foreground
+#    format
+#    frame_color
+#    fullscreen
+#    new_icon
+#    set_stack_tag
+#    set_transient
+#    timeout
+#    urgency
+#
+# Shell-like globbing will get expanded.
+#
+# Instead of the appname filter, it's recommended to use the desktop_entry filter.
+# GLib based applications export their desktop-entry name. In comparison to the appname,
+# the desktop-entry won't get localized.
+#
+# SCRIPTING
+# You can specify a script that gets run when the rule matches by
+# setting the "script" option.
+# The script will be called as follows:
+#   script appname summary body icon urgency
+# where urgency can be "LOW", "NORMAL" or "CRITICAL".
+#
+# NOTE: if you don't want a notification to be displayed, set the format
+# to "".
+# NOTE: It might be helpful to run dunst -print in a terminal in order
+# to find fitting options for rules.
+
+# Disable the transient hint so that idle_threshold cannot be bypassed from the
+# client
+#[transient_disable]
+#    match_transient = yes
+#    set_transient = no
+#
+# Make the handling of transient notifications more strict by making them not
+# be placed in history.
+#[transient_history_ignore]
+#    match_transient = yes
+#    history_ignore = yes
+
+# fullscreen values
+# show: show the notifications, regardless if there is a fullscreen window opened
+# delay: displays the new notification, if there is no fullscreen window active
+#        If the notification is already drawn, it won't get undrawn.
+# pushback: same as delay, but when switching into fullscreen, the notification will get
+#           withdrawn from screen again and will get delayed like a new notification
+#[fullscreen_delay_everything]
+#    fullscreen = delay
+#[fullscreen_show_critical]
+#    msg_urgency = critical
+#    fullscreen = show
+
+#[espeak]
+#    summary = "*"
+#    script = dunst_espeak.sh
+
+#[script-test]
+#    summary = "*script*"
+#    script = dunst_test.sh
+
+#[ignore]
+#    # This notification will not be displayed
+#    summary = "foobar"
+#    format = ""
+
+#[history-ignore]
+#    # This notification will not be saved in history
+#    summary = "foobar"
+#    history_ignore = yes
+
+#[skip-display]
+#    # This notification will not be displayed, but will be included in the history
+#    summary = "foobar"
+#    skip_display = yes
+
+#[signed_on]
+#    appname = Pidgin
+#    summary = "*signed on*"
+#    urgency = low
+#
+#[signed_off]
+#    appname = Pidgin
+#    summary = *signed off*
+#    urgency = low
+#
+#[says]
+#    appname = Pidgin
+#    summary = *says*
+#    urgency = critical
+#
+#[twitter]
+#    appname = Pidgin
+#    summary = *twitter.com*
+#    urgency = normal
+#
+#[stack-volumes]
+#    appname = "some_volume_notifiers"
+#    set_stack_tag = "volume"
+#
+# vim: ft=cfg
+#+end_src
+
+* Bspwm
+
+Gerenciador de janelas bspwm
+
+- =~/.config/bspwm/bspwmrc=
+
+#+begin_src conf :tangle ~/.config/bspwm/bspwmrc
+#!/bin/sh
+
+# Monitor
+bspc monitor -d 1 2 3
+
+# Configurações
+bspc config border_width            1
+bspc config window_gap              0
+bspc config top_padding             1
+bspc config bottom_padding          0
+bspc config left_padding            1
+bspc config right_padding           0
+bspc config split_ratio             0.50
+bspc config borderless_monocle      true
+bspc config gapless_monocle         true
+bspc config pointer_modifier mod4
+bspc config pointer_action1 move
+bspc config click_to_focus          true
+bspc config single_monocle          true
+
+# Cores
+bspc config normal_border_color		      "#333333"
+bspc config active_border_color	          "#ffffff"
+bspc config focused_border_color	      "#ffffff"
+bspc config presel_feedback_color	      "#111111"
+bspc config urgent_border_color 	      "#ff0000"
+
+# Regras
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+bspc rule -a mpv state=fullscreen
+bspc rule -a guvcview state=floating rectangle=480x270+0+0 sticky=on layer=above
+bspc rule -a Deadbeef state=floating rectangle=1200x600+0+0 sticky=on layer=above center=true
+bspc rule -a ncmpcpp state=floating rectangle=1200x600+0+0 sticky=on layer=above center=true
+bspc rule -a xev state=floating rectangle=480x270+0+0 sticky=on layer=above center=true
+bspc rule -a Gcr-prompter state=floating rectangle=480x270+0+0 sticky=on layer=above center=true
+bspc rule -a Transmission-gtk state=floating rectangle=1000x700+0+0 sticky=on layer=above center=true
+bspc rule -a firefox:Places state=floating rectangle=480x270+0+0 sticky=off layer=above center=true
+bspc rule -a confirm state=floating rectangle=480x270+0+0 sticky=on layer=above center=true
+bspc rule -a file_progress state=floating rectangle=480x270+0+0 sticky=off layer=above center=true
+bspc rule -a dialog state=floating rectangle=480x270+0+0 sticky=on layer=above center=true
+bspc rule -a download state=floating rectangle=480x270+0+0 sticky=off layer=above
+bspc rule -a MEGAsync:megasync state=floating rectangle=480x270+0+0 sticky=off layer=above center=true
+bspc rule -a firefox:Devtools state=floating rectangle=800x350+0+0 sticky=on layer=above center=true
+bspc rule -a Galculator:galculator state=floating rectangle=480x270+0+0 sticky=on layer=above center=true
+bspc rule -a toolbar state=floating rectangle=480x270+0+0 sticky=off layer=above
+bspc rule -a error state=floating rectangle=480x270+0+0 sticky=off layer=above center=true
+bspc rule -a MPlayer state=floating rectangle=480x270+0+0 sticky=off layer=above center=true
+bspc rule -a notification state=floating rectangle=480x270+0+0 sticky=off layer=above center=true
+bspc rule -a pulsemixer state=floating rectangle=800x300+0+0 center=true
+bspc rule -a VirtualBox Manager state=fullscreen
+bspc rule -a VirtualBox Machine state=fullscreen
+bspc rule -a :Zathura state=tiled
+bspc rule -a st_download state=floating rectangle=1000x700+0+0 center=true
+#+end_src
+
+* .gitignore
+
+Arquivos ignorados pelo git
+
+- =~/.gitignore=
+
+#+begin_src conf :tangle ~/.gitignore
+.cache/
+.config/dconf/
+.config/discord/
+.config/emacs/
+.config/galculator/
+.config/GIMP/
+.config/git/config
+.config/libreoffice/
+.config/mpd/
+.config/ncmpcpp/error.log
+.config/nitrogen/
+.config/npm/
+.config/pulse/
+.config/qutebrowser/autoconfig.yml
+.config/qutebrowser/bookmarks
+.config/qutebrowser/quickmarks
+.config/stumpwm/*log*
+.config/transmission/
+.config/VirtualBox/
+.config/nvim/plugged/
+.config/shell/.zcompdump
+.config/shell/history
+.dotnet/
+.local/
+.mozilla/
+.pki/
+.password-store/
+.ssh/
+code/
+cursos/
+documentos/
+Downloads/
+imagens/
+jogos/
+mnt/
+musicas/
+videos/
+VirtualBox VMs/
+win/
+#+end_src
+
+* Paru
+
+Gerenciador de pacotes da *aur*, Trocado sudo pelo doas
+
+- =~/.config/paru/paru.conf=
+
+#+begin_src conf :tangle ~/.config/paru/paru.conf
+[bin]
+Sudo = /bin/doas
+#+end_src
+
+* Npm
+
+Gerenciador de pacotes do node.js, Trocados diretórios para limpar a ~
+
+- =~/.config/npm/npmrc=
+
+#+begin_src conf :tangle ~/.config/npm/npmrc
+prefix=${XDG_DATA_HOME}/npm
+cache=${XDG_CACHE_HOME}/npm
+tmp=${XDG_RUNTIME_DIR}/npm
+init-module=${XDG_CONFIG_HOME}/npm/config/npm-init.js
+#+end_src

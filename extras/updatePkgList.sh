@@ -1,3 +1,3 @@
 #!/bin/sh
 
-pacman -Qqet > $HOME/especial/pkglist.txt &
+pacman -Qqem > foreignpkglist.txt && pacman -Qq > pkglist.txt
