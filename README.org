@@ -6,6 +6,7 @@
 :TOC:      :include all :force (depth) :ignore (this) :local (depth)
 :END:
 :CONTENTS:
+- [[#emacs][Emacs]]
 - [[#shells][Shells]]
   - [[#dash][Dash]]
   - [[#zsh][Zsh]]
@@ -37,6 +38,10 @@
 - [[#paru][Paru]]
 - [[#npm][Npm]]
 :END:
+
+* Emacs
+
+- [[https://github.com/LucasTavaresA/dotfiles/blob/main/.config/emacs/init.org][Minha configuração do emacs]]
 
 * Shells
 

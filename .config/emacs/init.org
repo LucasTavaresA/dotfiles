@@ -38,7 +38,7 @@
 #+end_src
 * Pacotes
 
-Para listar pactes usando o straight use =M-x straight-use-package=, Não os instale dessa maneira sem os referenciar no init.el
+Para listar pacotes usando o straight use =M-x straight-use-package=, Não os instale dessa maneira sem os referenciar no init.el
 
 Para atualizar todos os pacotes use =M-x straight-pull-all=
 
@@ -62,9 +62,12 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
 
 ;; Integra a expressão use-package ao straight
 (straight-use-package 'use-package)
-;; Automaticamente instala todos os pacotes
-;; Sem usar o :straight t, equivalente ao :ensure t
+;; Automaticamente instala todos os pacotes sem usar o :straight t, equivalente ao :ensure t
 (setq straight-use-package-by-default t)
+
+;; Hack para rápida coleta de lixo
+(use-package gcmh)
+(gcmh-mode 1)
 
 ;; Atualizar os pacotes automaticamente
 (use-package auto-package-update
@@ -117,16 +120,8 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
   (doom-themes-neotree-config)        ; tema na neotree
   (doom-themes-org-config))           ; melhora as fontes do org-mode
 
-;; Suporte a emojis
-(use-package emojify
-  :hook (after-init . emojify-mode)
-  :commands emojify-mode)
-
 ;; Melhora suporte a ícones
 (use-package all-the-icons)
-;; Melhora icones no explorador de arquivos
-(use-package all-the-icons-dired
-:hook (dired-mode . all-the-icons-dired-mode))
 
 #+end_src
 * Miscelânea
@@ -163,7 +158,6 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
 
 ;; Tamanho dos tabs
 (setq-default tab-width 2)
-(setq-default evil-shift-width tab-width)
 ;; Usar espaços no lugar de tabs
 (setq-default indent-tabs-mode nil)
 
@@ -175,7 +169,39 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
 
 ;; Parenteses inteligentes
 (use-package smartparens
-  :hook (prog-mode . smartparens-mode))
+  :defer 1
+  :config
+  ;; Carrega valores padrão do smartparens para varias linguas
+  (require 'smartparens-config)
+  (setq sp-max-prefix-length 25)
+  (setq sp-max-pair-length 4)
+  (setq sp-highlight-pair-overlay nil
+        sp-highlight-wrap-overlay nil
+        sp-highlight-wrap-tag-overlay nil)
+  (with-eval-after-load 'evil
+    (setq sp-show-pair-from-inside t)
+    (setq sp-cancel-autoskip-on-backward-movement nil)
+    (setq sp-pair-overlay-keymap (make-sparse-keymap)))
+  (let ((unless-list '(sp-point-before-word-p
+                       sp-point-after-word-p
+                       sp-point-before-same-p)))
+    (sp-pair "'"  nil :unless unless-list)
+    (sp-pair "\"" nil :unless unless-list))
+  ;; Em lisps ( deve abrir nova form se antesa de outro parenteses
+  (sp-local-pair sp-lisp-modes "(" ")" :unless '(:rem sp-point-before-same-p))
+  ;; Não fazer expansão de espaços em colchetes a onde não faz sentido
+  (sp-local-pair '(emacs-lisp-mode org-mode markdown-mode gfm-mode)
+                 "[" nil :post-handlers '(:rem ("| " "SPC")))
+  (dolist (brace '("(" "{" "["))
+    (sp-pair brace nil
+             :post-handlers '(("||\n[i]" "RET") ("| " "SPC"))
+             ;; Don't autopair opening braces if before a word character or
+             ;; other opening brace. The rationale: it interferes with manual
+             ;; balancing of braces, and is odd form to have s-exps with no
+             ;; whitespace in between, e.g. ()()(). Insert whitespace if
+             ;; genuinely want to start a new form in the middle of a word.
+             :unless '(sp-point-before-word-p sp-point-before-same-p)))
+  (smartparens-global-mode t))
 
 ;; Limpa espaços em branco automaticamente
 (use-package ws-butler
@@ -184,10 +210,8 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
 
 ;; Salva posição no buffer
 (use-package saveplace
-  :init (save-place-mode))
-
-;; Comenta código
-(use-package evil-nerd-commenter)
+  :init (setq save-place-limit 100)
+  :config (save-place-mode))
 
 ;; Previsão de cores
 (use-package rainbow-mode
@@ -209,9 +233,6 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
 (use-package git-gutter
   :config (global-git-gutter-mode +1))
 
-;; Múltiplos cursores
-(use-package multiple-cursors)
-
 ;; Expande região selecionada
 (use-package expand-region)
 
@@ -228,6 +249,21 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
   ([remap describe-key] . helpful-key))
 
 ;; Correção ortográfica
+(use-package flyspell
+  :defer t
+  :config
+  (add-to-list 'ispell-skip-region-alist '("~" "~"))
+  (add-to-list 'ispell-skip-region-alist '("=" "="))
+  (add-to-list 'ispell-skip-region-alist '("^#\\+BEGIN_SRC" . "^#\\+END_SRC"))
+  (add-to-list 'ispell-skip-region-alist '("^#\\+BEGIN_EXPORT" . "^#\\+END_EXPORT"))
+  (add-to-list 'ispell-skip-region-alist '("^#\\+BEGIN_EXPORT" . "^#\\+END_EXPORT"))
+  (add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
+
+  (dolist (mode '(org-mode-hook
+                  mu4e-compose-mode-hook))
+    (add-hook mode (lambda () (flyspell-mode 1)))))
+(setq flyspell-sort-corrections nil) ; Não organizar correções por ordem alfabetica
+(setq flyspell-issue-message-flag nil) ; Não mandar mensagens para cada palavra errada
 (with-eval-after-load "ispell"
   ;; Uma lingua padrão deve ser configurada embora outras linguas sejam adicionadas mais abaixo
   (setenv "LANG" "pt_BR.UTF-8")          ; lingua padrão
@@ -257,6 +293,10 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
   :defer t)
 (use-package dired-collapse
   :defer t)
+
+;; Melhora ícones no explorador de arquivos
+(use-package all-the-icons-dired
+:hook (dired-mode . all-the-icons-dired-mode))
 
 ;; Facilita o controle de projetos
 (use-package projectile
@@ -290,19 +330,33 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
 * Teclas
 #+begin_src emacs-lisp
 
+(global-unset-key (kbd "C-SPC"))
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit) ; ESQ fecha prompts
+(global-set-key (kbd "C-M-u") 'universal-argument) ; Tecla padrão utilizada pelo evil
+
+;; Comenta e vai pra proxima linha
+(fset 'comentar-proxima-linha
+   (kmacro-lambda-form [?\s-i down] 0 "%d"))
+(global-set-key (kbd "s-c") 'comentar-proxima-linha)
+
 ;; Modo vim
 (use-package evil
   :demand t
   :bind (("<escape>" . keyboard-escape-quit))
+  (("M-x" . counsel-M-x))
   (("C-s" . swiper))
   (("s-i" . evilnc-comment-or-uncomment-lines))
+  (("s-s" . evil-mc-make-all-cursors))
+  (("s-x" . evil-mc-undo-all-cursors))
+  (("<s-down>" . evil-mc-make-cursor-move-next-line))
+  (("<s-up>" . evil-mc-make-cursor-move-prev-line))
   (("M-v" . evil-paste-before))
   (("M-s" . flyspell-popup-correct))
   (("M-c" . evil-yank))
   (("M-d" . org-babel-demarcate-block))
   (("<M-tab>" . evil-toggle-fold))
-  (("<s-up>" . er/expand-region))
-  (("<s-down>" . er/contract-region))
+  (("<M-up>" . er/expand-region))
+  (("<M-down>" . er/contract-region))
   (("<s-left>" . evil-next-buffer))
   (("<s-right>" . evil-prev-buffer))
   (("<C-tab>" . other-window))
@@ -315,16 +369,18 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
   (setq evil-want-keybinding nil) ; Desativa comandos no insert mode
   (setq evil-undo-system 'undo-fu)
   :config
-  (evil-mode 1)
+  ;; Formato e cor dos cursores em diferentes modos
+  (setq evil-emacs-state-cursor    '("#ffff00" box))
+  (setq evil-normal-state-cursor   '("#ffffff" box))
+  (setq evil-operator-state-cursor '("#ebcb8b" hollow))
+  (setq evil-visual-state-cursor   '("#555555" box))
+  (setq evil-insert-state-cursor   '("#ffffff" (bar . 2)))
+  (setq evil-replace-state-cursor  '("#0000ff" hbar))
+  (setq evil-motion-state-cursor   '("#ad8beb" box))
   (evil-set-initial-state 'messages-buffer-mode 'normal)
-  (evil-set-initial-state 'dashboard-mode 'normal))
-
-(global-unset-key (kbd "C-SPC"))
-(global-set-key (kbd "<escape>") 'keyboard-escape-quit) ; ESQ fecha prompts
-(global-set-key (kbd "C-M-u") 'universal-argument) ; Tecla padrão utilizada pelo evil
-(fset 'comentar-proxima-linha
-   (kmacro-lambda-form [?\s-i down] 0 "%d"))
-(global-set-key (kbd "s-c") 'comentar-proxima-linha) ; Comenta e vai pra proxima linha
+  (evil-set-initial-state 'dashboard-mode 'normal)
+  (evil-mode 1))
+(setq-default evil-shift-width tab-width)
 
 ;; Não copia logo após colar
 (defun evil-paste-after-from-0 ()
@@ -332,6 +388,14 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
   (let ((evil-this-register ?0))
     (call-interactively 'evil-paste-after)))
 (define-key evil-visual-state-map "p" 'evil-paste-after-from-0)
+
+;; Comenta código
+(use-package evil-nerd-commenter)
+
+(defun copiar-buffer ()
+    "Copia todo o buffer"
+    (interactive)
+    (clipboard-kill-ring-save (point-min) (point-max)))
 
 ;; Facilita configuração de teclas
 (use-package general
@@ -349,8 +413,8 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
   "p" '(projectile-command-map :which-key "Projectile")
   "R" '(rainbow-mode :which-key "Indicar cores")
   "r" '(counsel-colors-emacs :which-key "Escolher cores")
-  "m" '(mc/mark-more-like-this-extended :which-key "Múltiplos cursores")
   "n" '(neotree-toggle :which-key "Ativa/Desativa a neotree")
+  "c" '(copiar-buffer :which-key "Copiar o buffer")
   "E" '((lambda () (interactive) (load-file "~/.config/emacs/init.el")) :which-key "Avaliar configuração do emacs")
   "e b" '(eval-buffer :which-key "Avaliar buffer")
   "e r" '(eval-region :which-key "Avaliar região")
@@ -359,6 +423,12 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
   "q q" '(evil-quit :which-key "Sair sem salvar")
   "SPC" '(org-toggle-checkbox :which-key "Marcar")
   "<tab>" '(counsel-switch-buffer :which-key "Mudar de buffer"))
+
+(use-package flyspell
+  :general ;; Troca corrigir palavra do botão do meio para o botão direito do mouse
+  (general-define-key :keymaps 'flyspell-mouse-map
+                      "<mouse-3>" #'flyspell-correct-word
+                      "<mouse-2>" nil))
 
 ;; Suporte do evil em outros modos
 (use-package evil-collection
@@ -373,6 +443,10 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
   (global-evil-surround-mode 1))
 
 (use-package undo-fu) ; Refazer/Desfazer como no vim, Não necessário no emacs 28, Adicionar suporte a ligaturas no emacs 28
+
+;; Múltiplos cursores
+(use-package evil-mc)
+(global-evil-mc-mode  1)
 
 ;; Menu de compleção de atalhos
 (use-package which-key
@@ -430,98 +504,129 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
 * Compleção
 #+begin_src emacs-lisp
 
-;; Front-end para compleção ivy
-(use-package ivy
-  :bind (:map ivy-switch-buffer-map
-              ("C-d" . ivy-switch-buffer-kill))
-  :config
-  (ivy-mode 1))
+  ;; Front-end para compleção ivy
+  (use-package ivy
+    :bind (:map ivy-switch-buffer-map
+                ("C-d" . ivy-switch-buffer-kill))
+    :config
+    (ivy-mode 1))
+
+  ;; Mais detalhes nas compleções do ivy
+  (use-package counsel
+    :config
+    (setq counsel-switch-buffer-preview-virtual-buffers nil) ;; Remove arquivos recente/marcados do counsel-switch-buffer
+    (setq counsel-find-file-ignore-regexp
+          (concat
+           ;; Esconde nomes de arquivos que começam com .
+           "\\(?:\\`[#.]\\)"))
+    ;; Lista arquivos recentes na ordem de ultimos acessados
+    (add-to-list 'ivy-sort-functions-alist
+                 '(counsel-recentf . file-newer-than-file-p)))
 
 ;; Melhora a interface do ivy
 (use-package ivy-rich
   :after ivy
   :init
-  (ivy-rich-mode 1)
+    (ivy-rich-mode 1)
+    :config
+    (setq ivy-format-function #'ivy-format-function-line)
+    (setq ivy-rich-display-transformers-list
+          (plist-put ivy-rich-display-transformers-list
+                     'ivy-switch-buffer
+                     '(:columns
+                       ((ivy-rich-candidate (:width 40))
+                        (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right)) ; Retorna os indicadores de buffers
+                        (ivy-rich-switch-buffer-major-mode (:width 12 :face warning)) ; Retorna informações do major mode
+                        (ivy-rich-switch-buffer-project (:width 15 :face success)) ; Retorna o nome do projeto usando `projectile'
+                        ;; Retorna o caminho do arquivo relativo a raiz do projeto ou `default-directory' se projeto é nil
+                        (ivy-rich-switch-buffer-path (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path x (ivy-rich-minibuffer-width 0.3))))))))))
+
+;; Ícones nas pesquisas do ivy
+(use-package all-the-icons-ivy-rich
+  :init (all-the-icons-ivy-rich-mode 1)
   :config
-  (setq ivy-format-function #'ivy-format-function-line)
-  (setq ivy-rich-display-transformers-list
-        (plist-put ivy-rich-display-transformers-list
-                   'ivy-switch-buffer
-                   '(:columns
-                     ((ivy-rich-candidate (:width 40))
-                      (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right)) ; Retorna os indicadores de buffers
-                      (ivy-rich-switch-buffer-major-mode (:width 12 :face warning)) ; Retorna informações do major mode
-                      (ivy-rich-switch-buffer-project (:width 15 :face success)) ; Retorna o nome do projeto usando `projectile'
-                      ;; Retorna o caminho do arquivo relativo a raiz do projeto ou `default-directory' se projeto é nil
-                      (ivy-rich-switch-buffer-path (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path x (ivy-rich-minibuffer-width 0.3))))))))))
+  (setq all-the-icons-ivy-rich-icon-size 1.0))
 
-;; Mais funções de compleção para o ivy
-(use-package counsel
-  :bind (("M-x" . counsel-M-x)
-         ("C-x C-f" . counsel-find-file)))
-
-;; Prioriza comandos mais utilizados
-(use-package prescient)
-(use-package ivy-prescient
-  :after counsel
+  ;; Prioriza comandos mais utilizados
+(use-package prescient
   :config
-  (ivy-prescient-mode 1)
-  (setq ivy-prescient-retain-classic-highlighting t)
-  (prescient-persist-mode 1)) ; Lembra dos comandos caso o emacs seja fechado
+  (setq-default history-length 1000)
+  (setq-default prescient-history-length 1000) ;; Histórico maior
+  (prescient-persist-mode +1))
 
-;; Menu de compleção
-(use-package vertico
-  :custom
-  (vertico-cycle t)
-  :custom-face
-  (vertico-current ((t (:background "#444444"))))
-  :init
-  (vertico-mode))
+  (use-package ivy-prescient
+    :after ivy
+    :config
+    (ivy-prescient-mode +1)
+    (setq ivy-prescient-retain-classic-highlighting t)
+    (prescient-persist-mode 1)) ; Lembra dos comandos caso o emacs seja fechado
 
-;; Popup de compleção
-(use-package company
-  :after lsp-mode
-  :hook (prog-mode . company-mode)
-  :bind (:map lsp-mode-map
-              ("<tab>" . company-indent-or-complete-common))
-  :custom
-  (company-minimum-prefix-length 1)
-  (company-idle-delay 0.0))
+  ;; Menu de compleção
+  (use-package vertico
+    :custom
+    (vertico-cycle t)
+    :custom-face
+    (vertico-current ((t (:background "#444444"))))
+    :init
+    (vertico-mode))
 
-;; Prioriza comandos mais utilizados
-(use-package company-prescient
-  :after company
-  :config
-  (company-prescient-mode 1))
+  ;; Popup de compleção
+  (use-package company
+    :after lsp-mode
+    :hook (prog-mode . company-mode)
+    :bind (:map lsp-mode-map
+                ("<tab>" . company-indent-or-complete-common))
+    :init
+    (add-hook 'after-init-hook 'global-company-mode)
+    (setq company-minimum-prefix-length 2
+          company-tooltip-limit 14
+          company-tooltip-align-annotations t
+          company-require-match 'never
+          company-global-modes '(not erc-mode message-mode help-mode gud-mode)
+          company-frontends
+          '(company-pseudo-tooltip-frontend
+            company-echo-metadata-frontend)
+          company-backends '(company-capf company-files company-keywords)
+          company-auto-complete nil
+          company-auto-complete-chars nil
+          company-dabbrev-other-buffers nil
+          company-dabbrev-ignore-case nil
+          company-dabbrev-downcase nil)
+    :custom
+    (company-minimum-prefix-length 1)
+    (company-idle-delay 0.0))
 
-;; Melhora a interface do company
-(use-package company-box
-  :hook (company-mode . company-box-mode))
+  ;; Prioriza comandos mais utilizados
+  (use-package company-prescient
+    :defer 2
+    :after company
+    :config
+    (company-prescient-mode +1))
 
-;; Integração do projectile ao ivy
-(use-package counsel-projectile
-  :after projectile
-  :config
-  (counsel-projectile-mode 1))
+  ;; Integração do projectile ao ivy
+  (use-package counsel-projectile
+    :after projectile
+    :config
+    (counsel-projectile-mode 1))
 
-;; Checagem de sintaxe
-(use-package flycheck
-  :defer t
-  :hook (lsp-mode . flycheck-mode))
+  ;; Checagem de sintaxe
+  (use-package flycheck
+    :defer t
+    :hook (lsp-mode . flycheck-mode))
 
-;; Templates de código
-(use-package yasnippet
-  :hook (prog-mode . yas-minor-mode)
-  :config
-  (yas-reload-all)
-  (require 'warnings))
-(use-package yasnippet-snippets)
-(yas-global-mode t)
-(defvar yas/company-point nil)
-(advice-add 'company-complete-common :before (lambda () (setq yas/company-point (point))))
-(advice-add 'company-complete-common :after (lambda ()
-                                              (when (equal yas/company-point (point))
-                                                (yas-expand))))
+  ;; Templates de código
+  (use-package yasnippet
+    :hook (prog-mode . yas-minor-mode)
+    :config
+    (yas-reload-all)
+    (require 'warnings))
+  (use-package yasnippet-snippets)
+  (yas-global-mode t)
+  (defvar yas/company-point nil)
+  (advice-add 'company-complete-common :before (lambda () (setq yas/company-point (point))))
+  (advice-add 'company-complete-common :after (lambda ()
+                                                (when (equal yas/company-point (point))
+                                                  (yas-expand))))
 
 #+end_src
 * Linguagens
@@ -564,6 +669,44 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
   (dap-node-setup))
 (setq dap-auto-configure-features '(sessions locals controls tooltip))
 
+;; C/C++
+(use-package ccls
+  :hook ((c-mode c++-mode objc-mode cuda-mode) .
+         (lambda () (require 'ccls) (lsp))))
+
+;; GO
+(use-package go-mode
+  :hook (go-mode . lsp-deferred))
+
+;; C#
+(use-package omnisharp)
+;; C# debugger
+(require 'dap-netcore)
+(use-package csharp-mode
+  :mode "\\.cs\\'")
+
+;; Vimscript
+(use-package vimrc-mode)
+(add-to-list 'auto-mode-alist '("\\.vim\\(rc\\)?\\'" . vimrc-mode))
+
+;; YAML
+(use-package yaml-mode
+  :mode "\\.ya?ml\\'")
+
+;; Python
+(use-package python-mode
+  :defer t)
+;; Usa ambientes virtuais
+(use-package pyvenv
+  :defer t
+  :init
+  (setenv "WORKON_HOME" "~/.config/pyenv/versions")) ;; Localização dos ambientes
+;; Automaticamente ativa o ambiente virtual quando entrando em um diretório
+(use-package auto-virtualenv
+  :defer 2
+  :config
+  (add-hook 'python-mode-hook 'auto-virtualenv-set-virtualenv))
+
 ;; Lisps
 (add-hook 'emacs-lisp-mode-hook #'flycheck-mode)
 (use-package parinfer
@@ -605,22 +748,6 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
   :config
   (apheleia-global-mode +1))
 
-;; C/C++
-(use-package ccls
-  :hook ((c-mode c++-mode objc-mode cuda-mode) .
-         (lambda () (require 'ccls) (lsp))))
-
-;; GO
-(use-package go-mode
-  :hook (go-mode . lsp-deferred))
-
-;; C#
-(use-package omnisharp)
-;; C# debugger
-(require 'dap-netcore)
-(use-package csharp-mode
-  :mode "\\.cs\\'")
-
 ;; Markdown
 (use-package markdown-mode
   :straight t
@@ -652,10 +779,6 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
 (use-package skewer-mode
   :straight t)
 
-;; YAML
-(use-package yaml-mode
-  :mode "\\.ya?ml\\'")
-
 ;; Compilar
 (use-package compile
   :straight nil
@@ -667,92 +790,90 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
       (remove-hook 'after-save-hook #'recompile t)
     (add-hook 'after-save-hook #'recompile nil t)))
 
-;; Vimscript
-(use-package vimrc-mode)
-(add-to-list 'auto-mode-alist '("\\.vim\\(rc\\)?\\'" . vimrc-mode))
-
 #+end_src
 * Orgmode
 #+begin_src emacs-lisp
 
-;; Função ao iniciar o orgmode
-(defun orgm/org-mode-setup ()
-  (org-indent-mode)
-  (auto-fill-mode 0)
-  (visual-line-mode 1)
-  (setq evil-auto-indent nil))
+  ;; Função ao iniciar o orgmode
+  (defun orgm/org-mode-setup ()
+    (org-indent-mode)
+    (auto-fill-mode 0)
+    (visual-line-mode 1)
+    (setq evil-auto-indent nil)
+    (define-key org-mode-map (kbd "<M-up>") nil)
+    (define-key org-mode-map (kbd "<M-down>") nil))
 
-(use-package org
-  :hook (org-mode . orgm/org-mode-setup)
-  :config
-  (setq org-ellipsis " "
-        org-hide-emphasis-markers t))
+  (use-package org
+    :hook (org-mode . orgm/org-mode-setup)
+    :config
+    (setq org-ellipsis " "
+          org-hide-emphasis-markers t))
 
-;; Aparencia dos marcadores
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+  ;; Aparencia dos marcadores
+        (use-package org-bullets
+          :hook (org-mode . org-bullets-mode)
+          :custom
+          (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
 
-;; Trocar listas com hífens por pontos
-(font-lock-add-keywords 'org-mode
-                        '(("^ *\\([-]\\) "
-                           (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+        ;; Trocar listas com hífens por pontos
+        (font-lock-add-keywords 'org-mode
+                                '(("^ *\\([-]\\) "
+                                   (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 
-(require 'org-indent)
+        (require 'org-indent)
 
-;; Retira fundo de headings
-(set-face-attribute 'org-column nil :background nil)
-(set-face-attribute 'org-column-title nil :background nil)
+        ;; Retira fundo de headings
+        (set-face-attribute 'org-column nil :background nil)
+        (set-face-attribute 'org-column-title nil :background nil)
 
-(with-eval-after-load 'org
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((emacs-lisp . t)
-     (shell . t)
-     (C . t)
-     (css . t)
-     (js . t)
-     (makefile . t)
-     (python . t))))
+        (with-eval-after-load 'org
+          (org-babel-do-load-languages
+           'org-babel-load-languages
+           '((emacs-lisp . t)
+             (shell . t)
+             (C . t)
+             (css . t)
+             (js . t)
+             (makefile . t)
+             (python . t))))
 
-;; Indicação de sintaxe em blocos de código, não pergunta se quer avaliar código
-(setq org-src-fontify-natively t
-      org-src-tab-acts-natively t
-      org-confirm-babel-evaluate nil
-      org-edit-src-content-indentation 0)
+        ;; Indicação de sintaxe em blocos de código, não pergunta se quer avaliar código
+        (setq org-src-fontify-natively t
+              org-src-tab-acts-natively t
+              org-confirm-babel-evaluate nil
+              org-edit-src-content-indentation 0)
 
-;; Templates para o orgmode
-(require 'org-tempo)
-;; Snippets para templates de codigo
-(add-to-list 'org-structure-template-alist '("sh" . "src sh"))
-(add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
-(add-to-list 'org-structure-template-alist '("li" . "src lisp"))
-(add-to-list 'org-structure-template-alist '("py" . "src python"))
-(add-to-list 'org-structure-template-alist '("go" . "src go"))
-(add-to-list 'org-structure-template-alist '("yaml" . "src yaml"))
-(add-to-list 'org-structure-template-alist '("json" . "src json"))
-(add-to-list 'org-structure-template-alist '("conf" . "src conf"))
-(add-to-list 'org-structure-template-alist '("vim" . "src vimrc"))
+        ;; Templates para o orgmode
+        (require 'org-tempo)
+        ;; Snippets para templates de codigo
+        (add-to-list 'org-structure-template-alist '("sh" . "src sh"))
+        (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+        (add-to-list 'org-structure-template-alist '("li" . "src lisp"))
+        (add-to-list 'org-structure-template-alist '("py" . "src python"))
+        (add-to-list 'org-structure-template-alist '("go" . "src go"))
+        (add-to-list 'org-structure-template-alist '("yaml" . "src yaml"))
+        (add-to-list 'org-structure-template-alist '("json" . "src json"))
+        (add-to-list 'org-structure-template-alist '("conf" . "src conf"))
+        (add-to-list 'org-structure-template-alist '("vim" . "src vimrc"))
 
-(push '("conf-unix" . conf-unix) org-src-lang-modes)
+        (push '("conf-unix" . conf-unix) org-src-lang-modes)
 
-;; Cria sumario automaticamente
-(use-package org-make-toc
-  :hook (org-mode . org-make-toc-mode))
+        ;; Cria sumario automaticamente
+        (use-package org-make-toc
+          :hook (org-mode . org-make-toc-mode))
 
-;; Mostra marcação do orgmode quando necessário
-(use-package org-appear
-  :hook (org-mode . org-appear-mode))
+        ;; Mostra marcação do orgmode quando necessário
+        (use-package org-appear
+          :hook (org-mode . org-appear-mode))
 
-;; Automaticamente separa a configuração do init.org quando o salva
-(defun orgm/org-babel-tangle-config ()
-  (when (string-equal (buffer-file-name)
-                      (expand-file-name "~/.config/emacs/init.org"))
-    (let ((org-confirm-babel-evaluate nil))
-      (org-babel-tangle))))
+        ;; Automaticamente separa a configuração do init.org quando o salva
+        (defun orgm/org-babel-tangle-config ()
+          (when (string-equal (buffer-file-name)
+                              (expand-file-name "~/.config/emacs/init.org"))
+            (let ((org-confirm-babel-evaluate nil))
+              (org-babel-tangle))))
 
-(add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'orgm/org-babel-tangle-config)))
+        (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'orgm/org-babel-tangle-config)))
 
 #+end_src
 * Final
