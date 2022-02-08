@@ -721,6 +721,7 @@ pacman
 pacman-contrib
 pacman-mirrorlist
 pam
+pam-gnupg
 pambase
 pandoc
 pango
@@ -728,6 +729,7 @@ pangomm
 papirus-icon-theme
 parted
 paru
+pass
 patch
 pciutils
 pcre
@@ -838,6 +840,7 @@ python-xlib
 python-yaml
 python-zipp
 python2
+qrencode
 qt5-3d
 qt5-base
 qt5-charts
@@ -955,6 +958,7 @@ tracker3
 translate-shell
 transmission-gtk
 tre
+tree
 tree-sitter
 tslib
 ttc-iosevka-aile

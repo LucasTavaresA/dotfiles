@@ -1,7 +1,10 @@
 .cache/
 .config/dconf/
 .config/discord/
-.config/emacs/
+.config/emacs/elpa/
+.config/emacs/straight/
+.config/emacs/var/
+.config/emacs/.last-package-update-day
 .config/galculator/
 .config/GIMP/
 .config/git/config
@@ -11,6 +14,7 @@
 .config/nitrogen/
 .config/npm/
 .config/pulse/
+.config/qutebrowser/qsettings/
 .config/qutebrowser/autoconfig.yml
 .config/qutebrowser/bookmarks
 .config/qutebrowser/quickmarks
@@ -20,20 +24,18 @@
 .config/nvim/plugged/
 .config/shell/.zcompdump
 .config/shell/history
+.config/pam-gnupg
 .dotnet/
 .local/
 .mozilla/
+.nuget/
 .pki/
-.password-store/
 .ssh/
+.templateengine/
 code/
-cursos/
 documentos/
 Downloads/
-imagens/
 jogos/
+media/
 mnt/
-musicas/
-videos/
 VirtualBox VMs/
-win/

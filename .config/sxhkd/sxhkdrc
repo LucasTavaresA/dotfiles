@@ -90,10 +90,6 @@ Menu;slash
 Menu;H
     dmenu_shhistory
 
-# Lf
-Menu;l
-    st -e lf
-
 # Picom
 Menu;P
     killall picom || picom
@@ -131,11 +127,7 @@ Menu;q
 
 # Favoritos
 Menu;f
-    dmenu_favoritos
-
-# Importante
-Menu;i
-    dmenu_favoritos importante
+    tmenu ~/code/shell/dmenuscripts/listas/favoritos
 
 # Passmenu
 Menu;p

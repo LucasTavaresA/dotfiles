@@ -1,29 +1,3 @@
-#+title: Configuração do emacs
-#+PROPERTY: header-args:emacs-lisp :tangle ./init.el
-#+STARTUP: content
-
-* Sumario
-:PROPERTIES:
-:TOC:      :include all :depth 2 :force (depth) :ignore (this) :local (depth)
-:END:
-
-:CONTENTS:
-- [[#iniciar][Iniciar]]
-- [[#pacotes][Pacotes]]
-- [[#limpeza][Limpeza]]
-- [[#aparência][Aparência]]
-- [[#miscelânea][Miscelânea]]
-- [[#gerenciamento-de-arquivosprojetos][Gerenciamento de arquivos/projetos]]
-- [[#teclas][Teclas]]
-- [[#compleção][Compleção]]
-- [[#linguagens][Linguagens]]
-- [[#orgmode][Orgmode]]
-- [[#final][Final]]
-:END:
-
-* Iniciar
-#+begin_src emacs-lisp
-
 ;; -*- lexical-binding: t; -*-
 
 ;; Diminui a coleta de lixo
@@ -34,17 +8,6 @@
 ;; (setq native-comp-async-report-warnings-errors nil)
 ;; Ajusta o diretório correto para salvar o cache de compilação
 ;; (add-to-list 'native-comp-eln-load-path (expand-file-name "eln-cache/" user-emacs-directory))
-
-#+end_src
-* Pacotes
-
-Para listar pacotes usando o straight use =M-x straight-use-package=, Não os instale dessa maneira sem os referenciar no init.el
-
-Para atualizar todos os pacotes use =M-x straight-pull-all=
-
-Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x straight-remove-unused-repos=
-
-#+begin_src emacs-lisp
 
 ;; Desativa package.el
 (setq package-enable-at-startup nil)
@@ -72,20 +35,12 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
 (use-package gcmh)
 (gcmh-mode 1)
 
-#+end_src
-* Limpeza
-#+begin_src emacs-lisp
-
 ;; Move arquivos temporários/cache para pastas separadas
 (use-package no-littering)
 
 ;; Move arquivo de auto salvamento para outra pasta
 (setq auto-save-file-name-transforms
       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
-
-#+end_src
-* Aparência
-#+begin_src emacs-lisp
 
 (tooltip-mode -1)     ; Desativa as tooltips
 (tool-bar-mode -1)    ; Desativa a aba de ferramentas
@@ -115,10 +70,6 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
 
 ;; Melhora suporte a ícones
 (use-package all-the-icons)
-
-#+end_src
-* Miscelânea
-#+begin_src emacs-lisp
 
 ;; Desativa a tela de inicio
 (setq inhibit-startup-message t)
@@ -270,10 +221,6 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
   ;; Local do dicionario pessoal, caso não definida novas palavras são adicionadas ao .hunspell_pt_BR
   (setq ispell-personal-dictionary "~/.config/hunspell/hunspell_personal"))
 
-#+end_src
-* Gerenciamento de arquivos/projetos
-#+begin_src emacs-lisp
-
 ;; Gerenciador de arquivos
 (use-package dired
   :ensure nil
@@ -321,10 +268,6 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
           (display-line-numbers-mode -1) ; desativa numero de linhas
           (setq auto-hscroll-mode nil)))))
 (setq-default neo-show-hidden-files t) ; mostrar arquivos ocultos
-
-#+end_src
-* Teclas
-#+begin_src emacs-lisp
 
 (global-unset-key (kbd "C-SPC"))
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit) ; ESQ fecha prompts
@@ -509,14 +452,6 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
             :internal-border-color "#444444"
             :override-parameters '((parent-frame . nil)))))))
 
-#+end_src
-
-#+RESULTS:
-: log/toggle-command-window
-
-* Compleção
-#+begin_src emacs-lisp
-
 ;; Front-end para compleção ivy
 (use-package ivy
   :bind (:map ivy-switch-buffer-map
@@ -653,197 +588,189 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
   :hook
   ((after-init . global-flycheck-mode)))
 
-#+end_src
-* Linguagens
-#+begin_src emacs-lisp
+(use-package tree-sitter
+  :init
+  (global-tree-sitter-mode))
+(use-package tree-sitter-langs
+  :after (tree-sitter))
+(use-package tree-sitter-indent)
 
-  (use-package tree-sitter
-    :init
-    (global-tree-sitter-mode))
-  (use-package tree-sitter-langs
-    :after (tree-sitter))
-  (use-package tree-sitter-indent)
+;; Servidor de compleção de linguagens
+(use-package lsp-mode
+  :straight t
+  :commands (lsp lsp-deferred)
+  :hook ((csharp-mode . lsp-mode)
+         (js2-mode . lsp-mode)
+         (web-mode . lsp-mode)
+         (prog-mode . lsp-mode)
+         (python-mode . lsp-mode)
+         (java-mode . lsp-mode)
+         (lsp-mode . lsp-enable-which-key-integration))
+  :bind (:map lsp-mode-map
+              ("TAB" . completion-at-point))
+  :custom
+  (setq lsp-headerline-breadcrumb-enable nil)
+  (lsp-enable-which-key-integration t))
 
-  ;; Servidor de compleção de linguagens
-  (use-package lsp-mode
-    :straight t
-    :commands (lsp lsp-deferred)
-    :hook ((csharp-mode . lsp-mode)
-           (js2-mode . lsp-mode)
-           (web-mode . lsp-mode)
-           (prog-mode . lsp-mode)
-           (python-mode . lsp-mode)
-           (java-mode . lsp-mode)
-           (lsp-mode . lsp-enable-which-key-integration))
-    :bind (:map lsp-mode-map
-                ("TAB" . completion-at-point))
-    :custom
-    (setq lsp-headerline-breadcrumb-enable nil)
-    (lsp-enable-which-key-integration t))
+;; Integração do lsp no ivy
+(use-package lsp-ivy
+  :after ivy)
 
-  ;; Integração do lsp no ivy
-  (use-package lsp-ivy
-    :after ivy)
+;; Melhora a interface do lsp
+(use-package lsp-ui
+  :straight t
+  :hook (lsp-mode . lsp-ui-mode)
+  :config
+  (setq lsp-ui-sideline-enable t)
+  (setq lsp-ui-sideline-show-hover nil)
+  (setq lsp-ui-doc-position 'bottom)
+  (lsp-ui-doc-show))
 
-  ;; Melhora a interface do lsp
-  (use-package lsp-ui
-    :straight t
-    :hook (lsp-mode . lsp-ui-mode)
-    :config
-    (setq lsp-ui-sideline-enable t)
-    (setq lsp-ui-sideline-show-hover nil)
-    (setq lsp-ui-doc-position 'bottom)
-    (lsp-ui-doc-show))
+;; Debugar código
+(use-package dap-mode
+  :straight t
+  :custom
+  (lsp-enable-dap-auto-configure nil)
+  :config
+  (dap-ui-mode 1)
+  (dap-tooltip-mode 1)
+  (require 'dap-node)
+  (dap-node-setup))
+(setq dap-auto-configure-features '(sessions locals controls tooltip))
 
-  ;; Debugar código
-  (use-package dap-mode
-    :straight t
-    :custom
-    (lsp-enable-dap-auto-configure nil)
-    :config
-    (dap-ui-mode 1)
-    (dap-tooltip-mode 1)
-    (require 'dap-node)
-    (dap-node-setup))
-  (setq dap-auto-configure-features '(sessions locals controls tooltip))
+;; C/C++
+(use-package ccls
+  :hook ((c-mode c++-mode objc-mode cuda-mode) .
+         (lambda () (require 'ccls) (lsp))))
 
-  ;; C/C++
-  (use-package ccls
-    :hook ((c-mode c++-mode objc-mode cuda-mode) .
-           (lambda () (require 'ccls) (lsp))))
+;; GO
+(use-package go-mode
+  :hook (go-mode . lsp-deferred))
 
-  ;; GO
-  (use-package go-mode
-    :hook (go-mode . lsp-deferred))
+;; C#
+(use-package csharp-mode
+  :mode ("\\.cs\\'" . csharp-mode)
+  :hook ((csharp-mode) .
+         (lambda () (require 'dap-netcore) (lsp))))
+(use-package omnisharp
+  :hook (csharp-mode . omnisharp-mode))
+;; C# debugger
+(require 'dap-netcore)
+(use-package sln-mode
+  :mode "\\.sln\\'")
 
-  ;; C#
-  (use-package csharp-mode
-    :mode ("\\.cs\\'" . csharp-mode)
-    :hook ((csharp-mode) .
-           (lambda () (require 'dap-netcore) (lsp))))
-  (use-package omnisharp
-    :hook (csharp-mode . omnisharp-mode))
-  ;; C# debugger
-  (require 'dap-netcore)
-  (use-package sln-mode
-    :mode "\\.sln\\'")
+;; Unity
+(use-package shader-mode
+  :mode "\\.shader\\'")
 
-  ;; Unity
-  (use-package shader-mode
-    :mode "\\.shader\\'")
+;; Vimscript
+(use-package vimrc-mode)
+(add-to-list 'auto-mode-alist '("\\.vim\\(rc\\)?\\'" . vimrc-mode))
 
-  ;; Vimscript
-  (use-package vimrc-mode)
-  (add-to-list 'auto-mode-alist '("\\.vim\\(rc\\)?\\'" . vimrc-mode))
+;; YAML
+(use-package yaml-mode
+  :mode ("\\.ya?ml\\'" . yaml-mode))
 
-  ;; YAML
-  (use-package yaml-mode
-    :mode ("\\.ya?ml\\'" . yaml-mode))
+;; JSON
+(use-package json-mode
+  :mode ("\\.json\\'" . json-mode))
 
-  ;; JSON
-  (use-package json-mode
-    :mode ("\\.json\\'" . json-mode))
+;; Python
+(use-package python-mode
+  :defer t)
+;; Usa ambientes virtuais
+(use-package pyvenv
+  :defer t
+  :init
+  (setenv "WORKON_HOME" "~/.config/pyenv/versions")) ;; Localização dos ambientes
+;; Automaticamente ativa o ambiente virtual quando entrando em um diretório
+(use-package auto-virtualenv
+  :defer 2
+  :config
+  (add-hook 'python-mode-hook 'auto-virtualenv-set-virtualenv))
 
-  ;; Python
-  (use-package python-mode
-    :defer t)
-  ;; Usa ambientes virtuais
-  (use-package pyvenv
-    :defer t
-    :init
-    (setenv "WORKON_HOME" "~/.config/pyenv/versions")) ;; Localização dos ambientes
-  ;; Automaticamente ativa o ambiente virtual quando entrando em um diretório
-  (use-package auto-virtualenv
-    :defer 2
-    :config
-    (add-hook 'python-mode-hook 'auto-virtualenv-set-virtualenv))
+;; Lisps
+(add-hook 'emacs-lisp-mode-hook #'flycheck-mode)
+(use-package parinfer
+  :disabled ;; Problema com o pacote antigo cl, possivelmente consertado no emacs 28
+  :hook ((clojure-mode . parinfer-mode)
+         (emacs-lisp-mode . parinfer-mode)
+         (common-lisp-mode . parinfer-mode)
+         (scheme-mode . parinfer-mode)
+         (lisp-mode . parinfer-mode))
+  :config
+  (setq parinfer-extensions
+        '(defaults       ; deve ser incluido
+           pretty-parens  ; diferentes estilos de parenteses para modos diferentes
+           evil
+           smart-tab      ; C-b & C-f pula posições e shift inteligente com tab e S-tab
+           smart-yank)))  ; comportamento do yank depende do modo
+;; Common lisp
+(use-package sly
+  :mode "\\.lisp\\'")
+(use-package slime
+  :mode "\\.lisp\\'")
 
-  ;; Lisps
-  (add-hook 'emacs-lisp-mode-hook #'flycheck-mode)
-  (use-package parinfer
-    :disabled ;; Problema com o pacote antigo cl, possivelmente consertado no emacs 28
-    :hook ((clojure-mode . parinfer-mode)
-           (emacs-lisp-mode . parinfer-mode)
-           (common-lisp-mode . parinfer-mode)
-           (scheme-mode . parinfer-mode)
-           (lisp-mode . parinfer-mode))
-    :config
-    (setq parinfer-extensions
-          '(defaults       ; deve ser incluido
-             pretty-parens  ; diferentes estilos de parenteses para modos diferentes
-             evil
-             smart-tab      ; C-b & C-f pula posições e shift inteligente com tab e S-tab
-             smart-yank)))  ; comportamento do yank depende do modo
-  ;; Common lisp
-  (use-package sly
-    :mode "\\.lisp\\'")
-  (use-package slime
-    :mode "\\.lisp\\'")
+;; Javascript
+(defun js/set-js-indentation ()
+  (setq js-indent-level 2)
+  (setq evil-shift-width js-indent-level)
+  (setq-default tab-width 2))
+(use-package js2-mode
+  :mode "\\.jsx?\\'"
+  :config
+  ;; Use js2-mode para scripts do node
+  (add-to-list 'magic-mode-alist '("#!/usr/bin/env node" . js2-mode))
+  ;; Não usar a checagem de sintaxe nativa
+  (setq js2-mode-show-strict-warnings nil)
+  ;; Indentação apropriada para JAVASCRIPT e JSON
+  (add-hook 'js2-mode-hook #'js/set-js-indentation)
+  (add-hook 'json-mode-hook #'js/set-js-indentation))
+(use-package apheleia
+  :config
+  (apheleia-global-mode +1))
 
-  ;; Javascript
-  (defun js/set-js-indentation ()
-    (setq js-indent-level 2)
-    (setq evil-shift-width js-indent-level)
-    (setq-default tab-width 2))
-  (use-package js2-mode
-    :mode "\\.jsx?\\'"
-    :config
-    ;; Use js2-mode para scripts do node
-    (add-to-list 'magic-mode-alist '("#!/usr/bin/env node" . js2-mode))
-    ;; Não usar a checagem de sintaxe nativa
-    (setq js2-mode-show-strict-warnings nil)
-    ;; Indentação apropriada para JAVASCRIPT e JSON
-    (add-hook 'js2-mode-hook #'js/set-js-indentation)
-    (add-hook 'json-mode-hook #'js/set-js-indentation))
-  (use-package apheleia
-    :config
-    (apheleia-global-mode +1))
+;; Markdown
+(use-package markdown-mode
+  :straight t
+  :mode "\\.md\\'"
+  :config
+  (setq markdown-command "marked")
+  (defun md/set-markdown-header-font-sizes ()
+    (dolist (face '((markdown-header-face-1 . 1.2)
+                    (markdown-header-face-2 . 1.1)
+                    (markdown-header-face-3 . 1.0)
+                    (markdown-header-face-4 . 1.0)
+                    (markdown-header-face-5 . 1.0)))
+      (set-face-attribute (car face) nil :weight 'normal :height (cdr face))))
+  (defun md/markdown-mode-hook ()
+    (dw/set-markdown-header-font-sizes))
+  (add-hook 'markdown-mode-hook 'md/markdown-mode-hook))
 
-  ;; Markdown
-  (use-package markdown-mode
-    :straight t
-    :mode "\\.md\\'"
-    :config
-    (setq markdown-command "marked")
-    (defun md/set-markdown-header-font-sizes ()
-      (dolist (face '((markdown-header-face-1 . 1.2)
-                      (markdown-header-face-2 . 1.1)
-                      (markdown-header-face-3 . 1.0)
-                      (markdown-header-face-4 . 1.0)
-                      (markdown-header-face-5 . 1.0)))
-        (set-face-attribute (car face) nil :weight 'normal :height (cdr face))))
-    (defun md/markdown-mode-hook ()
-      (dw/set-markdown-header-font-sizes))
-    (add-hook 'markdown-mode-hook 'md/markdown-mode-hook))
+;; HTML
+(use-package web-mode
+  :mode "\\.html\\'"
+  :config
+  (setq-default web-mode-code-indent-offset 2)
+  (setq-default web-mode-markup-indent-offset 2)
+  (setq-default web-mode-attribute-indent-offset 2))
+;; 1. Inicie o server com `httpd-start'
+;; 2. Use `impatient-mode' em qualquer buffer
+(use-package impatient-mode
+  :straight t)
+(use-package skewer-mode
+  :straight t)
 
-  ;; HTML
-  (use-package web-mode
-    :mode "\\.html\\'"
-    :config
-    (setq-default web-mode-code-indent-offset 2)
-    (setq-default web-mode-markup-indent-offset 2)
-    (setq-default web-mode-attribute-indent-offset 2))
-  ;; 1. Inicie o server com `httpd-start'
-  ;; 2. Use `impatient-mode' em qualquer buffer
-  (use-package impatient-mode
-    :straight t)
-  (use-package skewer-mode
-    :straight t)
-
-  ;; Compilar
-  (use-package compile
-    :straight nil
-    :custom
-    (compilation-scroll-output t))
-  (defun auto-recompile-buffer ()
-    (interactive)
-    (if (member #'recompile after-save-hook)
-        (remove-hook 'after-save-hook #'recompile t)
-      (add-hook 'after-save-hook #'recompile nil t)))
-
-#+end_src
-* Orgmode
-#+begin_src emacs-lisp
+;; Compilar
+(use-package compile
+  :straight nil
+  :custom
+  (compilation-scroll-output t))
+(defun auto-recompile-buffer ()
+  (interactive)
+  (if (member #'recompile after-save-hook)
+      (remove-hook 'after-save-hook #'recompile t)
+    (add-hook 'after-save-hook #'recompile nil t)))
 
 ;; Função ao iniciar o orgmode
 (defun orgm/org-mode-setup ()
@@ -928,14 +855,8 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
 
 (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'orgm/org-babel-tangle-config)))
 
-#+end_src
-* Final
-#+begin_src emacs-lisp
-
 ;; Volta com a velocidade normal da coleta de lixo
 (setq gc-cons-threshold (* 2 1000 1000))
 
 ;; Confirma se tudo foi configurado com sucesso
 (message "Emacs totalmente configurado!")
-
-#+end_src

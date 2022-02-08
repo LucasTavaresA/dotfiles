@@ -72,13 +72,13 @@ export HISTFILESIZE=10000
 export HISTCONTROL=ignoredups:erasedups
 
 # Adiciona diretório de scripts ao path
-export PATH="$HOME/code/dmenuscripts:$PATH"
-export PATH="$HOME/code/scripts:$PATH"
+export PATH="$HOME/code/shell/dmenuscripts:$PATH"
+export PATH="$HOME/code/shell/scripts:$PATH"
 
 # Usa o dmenu como autenticador GUI
 export SSH_ASKPASS="doas_askpass"
 export GIT_ASKPASS="doas_askpass"
-export SUDO_ASKPASS="$HOME/code/dmenuscripts/dmenu_pass"
+export SUDO_ASKPASS="$HOME/code/shell/dmenuscripts/dmenu_pass"
 export DOAS_ASKPASS="dmenu -fn Monospace-18 -c -cw 500 -P -p 🔑Senha:"
 
 # Localização para datas

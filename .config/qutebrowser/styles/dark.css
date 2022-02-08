@@ -354,6 +354,18 @@ html body .jobsearch-Layout .icl-TextPromo-text {
 .facet-container:not(.facet-multiple) .facet-content {
     background-color: #000000 !important;
 }
+.code-container {
+    background-color: #000000 !important;
+}
+#main, #sidebar nav {
+    background-color: #000000 !important;
+}
+#sidebar .button {
+    background-color: #000000 !important;
+}
+#sidebar .button:hover {
+    background-color: #444444 !important;
+}
 * {
   border-color: #ffffff !important;
 }

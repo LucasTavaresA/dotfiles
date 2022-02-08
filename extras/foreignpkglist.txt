@@ -1,3 +1,4 @@
+atool
 chromium-widevine
 fluxgui-git
 handlr-bin
@@ -6,6 +7,7 @@ lf
 libxft-bgra
 mkinitcpio-numlock
 nerd-fonts-complete
+pam-gnupg
 paru
 simple-mtpfs
 ttf-ms-fonts

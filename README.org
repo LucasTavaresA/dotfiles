@@ -128,13 +128,13 @@ export HISTFILESIZE=10000
 export HISTCONTROL=ignoredups:erasedups
 
 # Adiciona diretório de scripts ao path
-export PATH="$HOME/code/dmenuscripts:$PATH"
-export PATH="$HOME/code/scripts:$PATH"
+export PATH="$HOME/code/shell/dmenuscripts:$PATH"
+export PATH="$HOME/code/shell/scripts:$PATH"
 
 # Usa o dmenu como autenticador GUI
 export SSH_ASKPASS="doas_askpass"
 export GIT_ASKPASS="doas_askpass"
-export SUDO_ASKPASS="$HOME/code/dmenuscripts/dmenu_pass"
+export SUDO_ASKPASS="$HOME/code/shell/dmenuscripts/dmenu_pass"
 export DOAS_ASKPASS="dmenu -fn Monospace-18 -c -cw 500 -P -p 🔑Senha:"
 
 # Localização para datas
@@ -152,7 +152,7 @@ Shell interativo, Trocado de diretório pela variavel *ZDOTDIR*
 
 - =~/.config/shell/.zshrc=
 
-#+begin_src sh :tangle ~/.config/shell/.zshrc
+#+begin_src zsh :tangle ~/.config/shell/.zshrc
 # Se não executando zsh interativamente
 # Não executa o resto do bashrc
 [[ $- != *i* ]] && return
@@ -431,12 +431,13 @@ alias p="ping google.com"
 alias yt="yt-dlp"
 alias yta="yt-dlp -x --audio-format mp3"
 alias ka="doas killall"
-alias mk="make"
-alias mki="make install"
-alias mku="make uninstall"
-alias dmk="doas make"
-alias dmki="doas make install"
-alias dmku="doas make uninstall"
+alias mi="make install"
+alias mu="make uninstall"
+alias dmi="doas make install"
+alias dmu="doas make uninstall"
+alias dnr="dotnet run"
+alias dnn="dotnet new"
+alias dns="dotnet-script"
 alias xp="xprop"
 alias xk="xkill"
 alias grep="grep --color -i"
@@ -521,12 +522,13 @@ alias p='ping google.com'
 alias yt='yt-dlp'
 alias yta='yt-dlp -x --audio-format mp3'
 alias ka="doas killall"
-alias mk="make"
-alias mki="make install"
-alias mku="make uninstall"
-alias dmk="doas make"
-alias dmki="doas make install"
-alias dmku="doas make uninstall"
+alias mi="make install"
+alias mu="make uninstall"
+alias dmi="doas make install"
+alias dmu="doas make uninstall"
+alias dnr="dotnet run"
+alias dnn="dotnet new"
+alias dns="dotnet-script"
 alias xp="xprop"
 alias xk="xkill"
 alias grep="grep --color -i"
@@ -598,173 +600,173 @@ fi=:\
 ln=:\
 or=:\
 ex=:\
-*.el=:\
-*.log=:\
-*.xml=:\
-*.dic=﬜:\
-*.sqlite=:\
-*.db=:\
-*.csproj=:\
-*.sln=:\
-*.cs=:\
-*.vdi=💿:\
-*.yml=:\
-*.toml=:\
-*.ini=:\
-*.conf=:\
-*.cfg=:\
-*.config=:\
-*.c=:\
-*.cc=:\
-*.clj=:\
-*.coffee=:\
-*.cpp=:\
-*.css=:\
-*.d=:\
-*.dart=:\
-*.erl=:\
-*.exs=:\
-*.fs=:\
-*.go=:\
-*.h=:\
-*.hh=:\
-*.hpp=:\
-*.hs=:\
-*.html=:\
-*.java=:\
-*.jl=:\
-*.js=:\
-*.json=:\
-*.lua=:\
-*.md=:\
-*.php=:\
-*.pl=:\
-*.pro=:\
-*.py=:\
-*.rb=:\
-*.rs=:\
-*.scala=:\
-*.ts=:\
-*.vim=:\
-*.cmd=:\
-*.ps1=:\
-*.sh=:\
-*.bash=:\
-*.zsh=:\
-*.fish=:\
-*.tar=:\
-*.tgz=:\
-*.arc=:\
-*.arj=:\
-*.taz=:\
-*.lha=:\
-*.lz4=:\
-*.lzh=:\
-*.lzma=:\
-*.tlz=:\
-*.txz=:\
-*.tzo=:\
-*.t7z=:\
-*.zip=:\
-*.z=:\
-*.dz=:\
-*.gz=:\
-*.lrz=:\
-*.lz=:\
-*.lzo=:\
-*.xz=:\
-*.zst=:\
-*.tzst=:\
-*.bz2=:\
-*.bz=:\
-*.tbz=:\
-*.tbz2=:\
-*.tz=:\
-*.deb=:\
-*.rpm=:\
-*.jar=:\
-*.war=:\
-*.ear=:\
-*.sar=:\
-*.rar=:\
-*.alz=:\
-*.ace=:\
-*.zoo=:\
-*.cpio=:\
-*.7z=:\
-*.rz=:\
-*.cab=:\
-*.wim=:\
-*.swm=:\
-*.dwm=:\
-*.esd=:\
-*.jpg=:\
-*.jpeg=:\
-*.mjpg=:\
-*.mjpeg=:\
-*.gif=:\
-*.bmp=:\
-*.pbm=:\
-*.pgm=:\
-*.ppm=:\
-*.tga=:\
-*.xbm=:\
-*.xpm=:\
-*.tif=:\
-*.tiff=:\
-*.png=:\
-*.svg=:\
-*.svgz=:\
-*.mng=:\
-*.pcx=:\
-*.mov=:\
-*.mpg=:\
-*.mpeg=:\
-*.m2v=:\
-*.mkv=:\
-*.webm=:\
-*.ogm=:\
-*.mp4=:\
-*.m4v=:\
-*.mp4v=:\
-*.vob=:\
-*.qt=:\
-*.nuv=:\
-*.wmv=:\
-*.asf=:\
-*.rm=:\
-*.rmvb=:\
-*.flc=:\
-*.avi=:\
-*.fli=:\
-*.flv=:\
-*.gl=:\
-*.dl=:\
-*.xcf=:\
-*.xwd=:\
-*.yuv=:\
-*.cgm=:\
-*.emf=:\
-*.ogv=:\
-*.ogx=:\
-*.aac=:\
-*.au=:\
-*.flac=🎵:\
-*.m4a=🎵:\
-*.mid=:\
-*.midi=🎵:\
-*.mka=:\
-*.mp3=🎵:\
-*.mpc=:\
-*.ogg=🎵:\
-*.ra=:\
-*.wav=🎵:\
-*.oga=:\
-*.opus=🎵:\
-*.spx=:\
-*.xspf=:\
-*.pdf=:\
-*.nix=:\
+,*.el=:\
+,*.log=:\
+,*.xml=:\
+,*.dic=﬜:\
+,*.sqlite=:\
+,*.db=:\
+,*.csproj=:\
+,*.sln=:\
+,*.cs=:\
+,*.vdi=💿:\
+,*.yml=:\
+,*.toml=:\
+,*.ini=:\
+,*.conf=:\
+,*.cfg=:\
+,*.config=:\
+,*.c=:\
+,*.cc=:\
+,*.clj=:\
+,*.coffee=:\
+,*.cpp=:\
+,*.css=:\
+,*.d=:\
+,*.dart=:\
+,*.erl=:\
+,*.exs=:\
+,*.fs=:\
+,*.go=:\
+,*.h=:\
+,*.hh=:\
+,*.hpp=:\
+,*.hs=:\
+,*.html=:\
+,*.java=:\
+,*.jl=:\
+,*.js=:\
+,*.json=:\
+,*.lua=:\
+,*.md=:\
+,*.php=:\
+,*.pl=:\
+,*.pro=:\
+,*.py=:\
+,*.rb=:\
+,*.rs=:\
+,*.scala=:\
+,*.ts=:\
+,*.vim=:\
+,*.cmd=:\
+,*.ps1=:\
+,*.sh=:\
+,*.bash=:\
+,*.zsh=:\
+,*.fish=:\
+,*.tar=:\
+,*.tgz=:\
+,*.arc=:\
+,*.arj=:\
+,*.taz=:\
+,*.lha=:\
+,*.lz4=:\
+,*.lzh=:\
+,*.lzma=:\
+,*.tlz=:\
+,*.txz=:\
+,*.tzo=:\
+,*.t7z=:\
+,*.zip=:\
+,*.z=:\
+,*.dz=:\
+,*.gz=:\
+,*.lrz=:\
+,*.lz=:\
+,*.lzo=:\
+,*.xz=:\
+,*.zst=:\
+,*.tzst=:\
+,*.bz2=:\
+,*.bz=:\
+,*.tbz=:\
+,*.tbz2=:\
+,*.tz=:\
+,*.deb=:\
+,*.rpm=:\
+,*.jar=:\
+,*.war=:\
+,*.ear=:\
+,*.sar=:\
+,*.rar=:\
+,*.alz=:\
+,*.ace=:\
+,*.zoo=:\
+,*.cpio=:\
+,*.7z=:\
+,*.rz=:\
+,*.cab=:\
+,*.wim=:\
+,*.swm=:\
+,*.dwm=:\
+,*.esd=:\
+,*.jpg=:\
+,*.jpeg=:\
+,*.mjpg=:\
+,*.mjpeg=:\
+,*.gif=:\
+,*.bmp=:\
+,*.pbm=:\
+,*.pgm=:\
+,*.ppm=:\
+,*.tga=:\
+,*.xbm=:\
+,*.xpm=:\
+,*.tif=:\
+,*.tiff=:\
+,*.png=:\
+,*.svg=:\
+,*.svgz=:\
+,*.mng=:\
+,*.pcx=:\
+,*.mov=:\
+,*.mpg=:\
+,*.mpeg=:\
+,*.m2v=:\
+,*.mkv=:\
+,*.webm=:\
+,*.ogm=:\
+,*.mp4=:\
+,*.m4v=:\
+,*.mp4v=:\
+,*.vob=:\
+,*.qt=:\
+,*.nuv=:\
+,*.wmv=:\
+,*.asf=:\
+,*.rm=:\
+,*.rmvb=:\
+,*.flc=:\
+,*.avi=:\
+,*.fli=:\
+,*.flv=:\
+,*.gl=:\
+,*.dl=:\
+,*.xcf=:\
+,*.xwd=:\
+,*.yuv=:\
+,*.cgm=:\
+,*.emf=:\
+,*.ogv=:\
+,*.ogx=:\
+,*.aac=:\
+,*.au=:\
+,*.flac=🎵:\
+,*.m4a=🎵:\
+,*.mid=:\
+,*.midi=🎵:\
+,*.mka=:\
+,*.mp3=🎵:\
+,*.mpc=:\
+,*.ogg=🎵:\
+,*.ra=:\
+,*.wav=🎵:\
+,*.oga=:\
+,*.opus=🎵:\
+,*.spx=:\
+,*.xspf=:\
+,*.pdf=:\
+,*.nix=:\
 "
 
 ### Facilita extrair arquivos
@@ -773,21 +775,21 @@ ex ()
 {
   if [ -f "$1" ] ; then
     case $1 in
-      *.tar.bz2)   tar xjf $1   ;;
-      *.tar.gz)    tar xzf $1   ;;
-      *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1   ;;
-      *.gz)        gunzip $1    ;;
-      *.tar)       tar xf $1    ;;
-      *.tbz2)      tar xjf $1   ;;
-      *.tgz)       tar xzf $1   ;;
-      *.zip)       unzip $1     ;;
-      *.Z)         uncompress $1;;
-      *.7z)        7z x $1      ;;
-      *.deb)       ar x $1      ;;
-      *.tar.xz)    tar xf $1    ;;
-      *.tar.zst)   unzstd $1    ;;
-      *)           echo "'$1' não pode ser extraído com ex()" ;;
+      ,*.tar.bz2)   tar xjf $1   ;;
+      ,*.tar.gz)    tar xzf $1   ;;
+      ,*.bz2)       bunzip2 $1   ;;
+      ,*.rar)       unrar x $1   ;;
+      ,*.gz)        gunzip $1    ;;
+      ,*.tar)       tar xf $1    ;;
+      ,*.tbz2)      tar xjf $1   ;;
+      ,*.tgz)       tar xzf $1   ;;
+      ,*.zip)       unzip $1     ;;
+      ,*.Z)         uncompress $1;;
+      ,*.7z)        7z x $1      ;;
+      ,*.deb)       ar x $1      ;;
+      ,*.tar.xz)    tar xf $1    ;;
+      ,*.tar.zst)   unzstd $1    ;;
+      ,*)           echo "'$1' não pode ser extraído com ex()" ;;
     esac
   else
     echo "'$1' não é um arquivo valido"
@@ -816,12 +818,11 @@ xset r rate 300 100 # acelera repetição de teclas
 
 # Gnome keyring daemon
 eval "$(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)"
-export SSH_AUTH_SOCK
-. /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 # Clipmenu
 systemctl --user import-environment DISPLAY
-export CM_DIR="$HOME/code/dmenuscripts/listas/clipmenu"
+export CM_DIR="$HOME/code/shell/dmenuscripts/listas/clipmenu"
 clipmenud &
 
 # Outros
@@ -973,10 +974,6 @@ Menu;slash
 Menu;H
     dmenu_shhistory
 
-# Lf
-Menu;l
-    st -e lf
-
 # Picom
 Menu;P
     killall picom || picom
@@ -1014,11 +1011,7 @@ Menu;q
 
 # Favoritos
 Menu;f
-    dmenu_favoritos
-
-# Importante
-Menu;i
-    dmenu_favoritos importante
+    tmenu ~/code/shell/dmenuscripts/listas/favoritos
 
 # Passmenu
 Menu;p
@@ -1359,7 +1352,7 @@ config.set('content.notifications.enabled', True, 'https://facebook.com/*')
 # `{column}`: Column in which the caret is found in the text. *
 # `{line0}`: Same as `{line}`, but starting from index 0. * `{column0}`:
 # Same as `{column}`, but starting from index 0.
-c.editor.command = ['emacsclient', '-c', '{}']
+c.editor.command = ['nvim', '{}']
 
 # Search engines which can be used via the address bar.  Maps a search
 # engine name (such as `DEFAULT`, or `ddg`) to a URL with a `{}`
@@ -2097,7 +2090,7 @@ Player de musica
 
 ncmpcpp_directory = "~/.config/ncmpcpp"
 lyrics_directory = "~/.local/share/lyrics"
-mpd_music_dir = "~/musicas"
+mpd_music_dir = "~/media/musicas"
 message_delay_time = "1"
 playlist_display_mode = classic
 browser_display_mode = classic
@@ -2222,7 +2215,7 @@ Daemon player de musica
 - =~/.config/mpd/mpd.conf=
 
 #+begin_src conf :tangle ~/.config/mpd/mpd.conf
-music_directory		"~/musicas"
+music_directory		"~/media/musicas"
 playlist_directory	"~/.config/mpd/playlists"
 db_file			    "~/.config/mpd/database"
 pid_file			"~/.config/mpd/pid"
@@ -2993,7 +2986,7 @@ Gerenciador de janelas bspwm
 
 - =~/.config/bspwm/bspwmrc=
 
-#+begin_src conf :tangle ~/.config/bspwm/bspwmrc
+#+begin_src sh :tangle ~/.config/bspwm/bspwmrc
 #!/bin/sh
 
 # Monitor
@@ -3061,7 +3054,10 @@ Arquivos ignorados pelo git
 .cache/
 .config/dconf/
 .config/discord/
-.config/emacs/
+.config/emacs/elpa/
+.config/emacs/straight/
+.config/emacs/var/
+.config/emacs/.last-package-update-day
 .config/galculator/
 .config/GIMP/
 .config/git/config
@@ -3071,6 +3067,7 @@ Arquivos ignorados pelo git
 .config/nitrogen/
 .config/npm/
 .config/pulse/
+.config/qutebrowser/qsettings/
 .config/qutebrowser/autoconfig.yml
 .config/qutebrowser/bookmarks
 .config/qutebrowser/quickmarks
@@ -3080,23 +3077,21 @@ Arquivos ignorados pelo git
 .config/nvim/plugged/
 .config/shell/.zcompdump
 .config/shell/history
+.config/pam-gnupg
 .dotnet/
 .local/
 .mozilla/
+.nuget/
 .pki/
-.password-store/
 .ssh/
+.templateengine/
 code/
-cursos/
 documentos/
 Downloads/
-imagens/
 jogos/
+media/
 mnt/
-musicas/
-videos/
 VirtualBox VMs/
-win/
 #+end_src
 
 * Paru
