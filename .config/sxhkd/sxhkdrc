@@ -10,9 +10,13 @@ super + shift + {Left, Right}
 super + shift + {Down, Up}
 	dwmc setcfact {-,+}0.20
 
-# Controla as tags
-super + {_, shift +} {1-9}
-	dwmc {viewex,tagex} {0-8}
+# Muda de tag
+alt + {Left, Right}
+	dwmc {viewprev, viewnext}
+
+# Muda a janela de tag
+alt + shift {Left, Right}
+  dwmc {tagtoprev, tagtonext}
 
 # Modo Grid
 super + g

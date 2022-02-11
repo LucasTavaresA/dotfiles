@@ -4,8 +4,8 @@ x-scheme-handler/magnet=transmission-gtk.desktop;
 application/x.bittorrent=transmission-gtk.desktop;
 audio/mp4=mpv.desktop;
 audio/x-opus+ogg=mpv.desktop;
-image/jpeg=sxiv.desktop;
-image/png=sxiv.desktop;
+image/jpeg=nsxiv.desktop;
+image/png=nsxiv.desktop;
 inode/directory=lf.desktop;
 
 [Default Applications]
@@ -19,7 +19,7 @@ application/vnd.ms-excel=libreoffice-calc.desktop;
 application/vnd.ms-powerpoint=libreoffice-impress.desktop;
 application/x-bittorrent=transmission-gtk.desktop;
 audio/*=mpv.desktop;
-image/*=sxiv.desktop;
+image/*=nsxiv.desktop;
 inode/directory=lf.desktop;
 text/*=nvim.desktop;
 text/markdown=geany.desktop;

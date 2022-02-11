@@ -894,9 +894,13 @@ super + shift + {Left, Right}
 super + shift + {Down, Up}
 	dwmc setcfact {-,+}0.20
 
-# Controla as tags
-super + {_, shift +} {1-9}
-	dwmc {viewex,tagex} {0-8}
+# Muda de tag
+alt + {Left, Right}
+	dwmc {viewprev, viewnext}
+
+# Muda a janela de tag
+alt + shift {Left, Right}
+  dwmc {tagtoprev, tagtonext}
 
 # Modo Grid
 super + g
@@ -1352,7 +1356,7 @@ config.set('content.notifications.enabled', True, 'https://facebook.com/*')
 # `{column}`: Column in which the caret is found in the text. *
 # `{line0}`: Same as `{line}`, but starting from index 0. * `{column0}`:
 # Same as `{column}`, but starting from index 0.
-c.editor.command = ['nvim', '{}']
+c.editor.command = ['emacsclient', '-c', '{}']
 
 # Search engines which can be used via the address bar.  Maps a search
 # engine name (such as `DEFAULT`, or `ddg`) to a URL with a `{}`
@@ -2287,26 +2291,17 @@ set drawbox on
 # abre espaço na parte superior e inferior da tela
 set scrolloff 0
 
-# cmd open ${{
-    # case $(file --mime-type $f -b) in
-        # text/*) $EDITOR $fx ;;
-        # video/*) mpv $fx ;;
-        # image/*) sxiv $fx ;;
-        # *) xdg-open $f ;;
-    # esac
-# }}
-
 cmd open ${{
     case $(file --mime-type "$(readlink -f $f)" -b) in
     	application/vnd.openxmlformats-officedocument.wordprocessingml.document) libreoffice $f ;;
 	image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) zathura $fx ;;
-        text/*) nvim $fx ;;
-	image/*) sxiv $fx ;;
+        text/*) emacsclient -c $fx ;;
+	image/*) nsxiv . ;;
 	audio/*) mpv --audio-display=no $fx ;;
 	video/*) mpv $fx ;;
 	application/pdf|application/vnd*|application/epub*) zathura $fx ;;
 	application/pgp-encrypted) nvim $fx ;;
-        *) xdg-open $fx ;;
+        ,*) xdg-open $fx ;;
     esac
 }}
 
@@ -2393,8 +2388,8 @@ x-scheme-handler/magnet=transmission-gtk.desktop;
 application/x.bittorrent=transmission-gtk.desktop;
 audio/mp4=mpv.desktop;
 audio/x-opus+ogg=mpv.desktop;
-image/jpeg=sxiv.desktop;
-image/png=sxiv.desktop;
+image/jpeg=nsxiv.desktop;
+image/png=nsxiv.desktop;
 inode/directory=lf.desktop;
 
 [Default Applications]
@@ -2408,7 +2403,7 @@ application/vnd.ms-excel=libreoffice-calc.desktop;
 application/vnd.ms-powerpoint=libreoffice-impress.desktop;
 application/x-bittorrent=transmission-gtk.desktop;
 audio/*=mpv.desktop;
-image/*=sxiv.desktop;
+image/*=nsxiv.desktop;
 inode/directory=lf.desktop;
 text/*=nvim.desktop;
 text/markdown=geany.desktop;
@@ -3067,7 +3062,6 @@ Arquivos ignorados pelo git
 .config/nitrogen/
 .config/npm/
 .config/pulse/
-.config/qutebrowser/qsettings/
 .config/qutebrowser/autoconfig.yml
 .config/qutebrowser/bookmarks
 .config/qutebrowser/quickmarks

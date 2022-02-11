@@ -49,7 +49,7 @@
 (scroll-bar-mode -1)  ; Desativa a barra de scroll
 (setq visible-bell t) ; Barra pisca em erros
 (setq-default mode-line-format nil)  ; Remove a mode-line
-(set-face-attribute 'default nil :font "Fira Code" :height 115) ; Fonte
+(set-face-attribute 'default nil :font "Fira Code" :height 117) ; Fonte
 
 ;; Transparência
 (set-frame-parameter (selected-frame) 'alpha '(90 90))
@@ -205,10 +205,7 @@
   (add-to-list 'ispell-skip-region-alist '("^#\\+BEGIN_SRC" . "^#\\+END_SRC"))
   (add-to-list 'ispell-skip-region-alist '("^#\\+BEGIN_EXPORT" . "^#\\+END_EXPORT"))
   (add-to-list 'ispell-skip-region-alist '("^#\\+BEGIN_EXPORT" . "^#\\+END_EXPORT"))
-  (add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
-  (dolist (mode '(org-mode-hook
-                  mu4e-compose-mode-hook))
-    (add-hook mode (lambda () (flyspell-mode 1)))))
+  (add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:")))
 (setq flyspell-sort-corrections nil) ; Não organizar correções por ordem alfabetica
 (setq flyspell-issue-message-flag nil) ; Não mandar mensagens para cada palavra errada
 (with-eval-after-load "ispell"
@@ -357,6 +354,7 @@
 (keys/leader-keys
   "c" '(copiar-buffer :which-key "Copiar o buffer")
   "E" '((lambda () (interactive) (load-file "~/.config/emacs/init.el")) :which-key "Avaliar configuração do emacs")
+  "s" '(flyspell-mode :which-key "Ativa/Desativa checagem ortográfica")
   "l" '(log/toggle-command-window :which-key "Log de comandos")
   "n" '(neotree-toggle :which-key "Ativa/Desativa a neotree")
   "p" '(projectile-command-map :which-key "Projectile")
@@ -375,12 +373,6 @@
   "RET" '(terminal-here-launch :which-key "Abrir terminal externo")
   "<tab>" '(counsel-switch-buffer :which-key "Mudar de buffer"))
 
-(use-package flyspell
-  :general ;; Troca corrigir palavra do botão do meio para o botão direito do mouse
-  (general-define-key :keymaps 'flyspell-mouse-map
-                      "<mouse-3>" #'flyspell-correct-word
-                      "<mouse-2>" nil))
-
 ;; Suporte do evil em outros modos
 (use-package evil-collection
   :after evil
@@ -393,7 +385,6 @@
   :config
   (global-evil-surround-mode 1))
 
-;;(use-package undo-fu)
 (use-package undo-tree ; Refazer/Desfazer como no vim, Não necessário no emacs 28, Adicionar suporte a ligaturas no emacs 28
   :straight t
   :delight
@@ -588,6 +579,7 @@
   :hook
   ((after-init . global-flycheck-mode)))
 
+;; Melhora a compleção em varias linguagens
 (use-package tree-sitter
   :init
   (global-tree-sitter-mode))
@@ -602,7 +594,6 @@
   :hook ((csharp-mode . lsp-mode)
          (js2-mode . lsp-mode)
          (web-mode . lsp-mode)
-         (prog-mode . lsp-mode)
          (python-mode . lsp-mode)
          (java-mode . lsp-mode)
          (lsp-mode . lsp-enable-which-key-integration))
@@ -711,6 +702,9 @@
 (use-package slime
   :mode "\\.lisp\\'")
 
+;; Formata código
+(use-package apheleia)
+
 ;; Javascript
 (defun js/set-js-indentation ()
   (setq js-indent-level 2)
@@ -719,6 +713,7 @@
 (use-package js2-mode
   :mode "\\.jsx?\\'"
   :config
+  (apheleia-global-mode +1)
   ;; Use js2-mode para scripts do node
   (add-to-list 'magic-mode-alist '("#!/usr/bin/env node" . js2-mode))
   ;; Não usar a checagem de sintaxe nativa
@@ -726,9 +721,6 @@
   ;; Indentação apropriada para JAVASCRIPT e JSON
   (add-hook 'js2-mode-hook #'js/set-js-indentation)
   (add-hook 'json-mode-hook #'js/set-js-indentation))
-(use-package apheleia
-  :config
-  (apheleia-global-mode +1))
 
 ;; Markdown
 (use-package markdown-mode
@@ -774,7 +766,6 @@
 
 ;; Função ao iniciar o orgmode
 (defun orgm/org-mode-setup ()
-  (org-indent-mode)
   (auto-fill-mode 0)
   (visual-line-mode 1)
   (setq evil-auto-indent nil)
