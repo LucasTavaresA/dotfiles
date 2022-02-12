@@ -887,19 +887,19 @@ super + Tab
 	dwmc focusstack +1
 
 # Muda o tamanho da janela
-super + shift + {Left, Right}
+alt + shift + {Left, Right}
 	dwmc setmfact {-,+}0.05
 
 # Muda o tamanho da janela
-super + shift + {Down, Up}
+alt + shift + {Down, Up}
 	dwmc setcfact {-,+}0.20
 
 # Muda de tag
-alt + {Left, Right}
+super + {Left, Right}
 	dwmc {viewprev, viewnext}
 
 # Muda a janela de tag
-alt + shift {Left, Right}
+super + shift {Left, Right}
   dwmc {tagtoprev, tagtonext}
 
 # Modo Grid
@@ -2355,13 +2355,35 @@ map '"'
 map e
 map f
 
+cmd open-with %"$@" $fx
+map o push :open-with<space>
+
 map <delete> delete
 map t mkfile
-map o open
 map c chmod
 map C clear
 map m mkdir
 map E extract
+
+# Atalhos
+map gcC cd ~/.config
+map gcc cd ~/code/c
+map gcs cd ~/code/shell
+map gcS cd ~/code/csharp
+map gcw cd ~/code/webPages
+map gcu cd ~/code/unity
+
+map gd cd ~/documentos
+map gD cd ~/downloads
+map ge cd ~/extras
+map gj cd ~/jogos
+map gh cd ~
+map gM cd ~/mnt
+
+map gmv cd ~/media/videos
+map gmi cd ~/media/imagens
+map gmm cd ~/media/musicas
+map gmc cd ~/media/cursos
 #+end_src
 
 * Handlr

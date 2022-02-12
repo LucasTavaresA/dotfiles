@@ -3,19 +3,19 @@ super + Tab
 	dwmc focusstack +1
 
 # Muda o tamanho da janela
-super + shift + {Left, Right}
+alt + shift + {Left, Right}
 	dwmc setmfact {-,+}0.05
 
 # Muda o tamanho da janela
-super + shift + {Down, Up}
+alt + shift + {Down, Up}
 	dwmc setcfact {-,+}0.20
 
 # Muda de tag
-alt + {Left, Right}
+super + {Left, Right}
 	dwmc {viewprev, viewnext}
 
 # Muda a janela de tag
-alt + shift {Left, Right}
+super + shift {Left, Right}
   dwmc {tagtoprev, tagtonext}
 
 # Modo Grid

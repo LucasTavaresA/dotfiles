@@ -22,18 +22,26 @@
 :END:
 
 * Iniciar
-#+begin_src emacs-lisp
-
+#+begin_src emacs-lisp :tangle ./early-init.el
 ;; -*- lexical-binding: t; -*-
 
 ;; Diminui a coleta de lixo
 (setq gc-cons-threshold (* 50 1000 1000))
 
-;; Compilação nativa no emacs 28
-;; Silencia os avisos de compilação nativa
-;; (setq native-comp-async-report-warnings-errors nil)
-;; Ajusta o diretório correto para salvar o cache de compilação
-;; (add-to-list 'native-comp-eln-load-path (expand-file-name "eln-cache/" user-emacs-directory))
+;; Desativa package.el
+(setq package-enable-at-startup nil
+      ;; não adicionar `custom-set-variables' no seu init.el
+      package--init-file-ensured t)
+
+;; Tema original do emacs
+(load-theme 'wombat)
+
+;; Compilação nativa
+(when (featurep 'native-compile)
+  ;; Silencia os avisos de compilação nativa
+  (setq native-comp-async-report-warnings-errors nil)
+  ;; Ajusta o diretório correto para salvar o cache de compilação
+  (add-to-list 'native-comp-eln-load-path (expand-file-name "eln-cache/" user-emacs-directory)))
 
 #+end_src
 * Pacotes
@@ -45,9 +53,7 @@ Para atualizar todos os pacotes use =M-x straight-pull-all=
 Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x straight-remove-unused-repos=
 
 #+begin_src emacs-lisp
-
-;; Desativa package.el
-(setq package-enable-at-startup nil)
+;; -*- lexical-binding: t; -*-
 
 ;; Boostrap straight.el
 (defvar bootstrap-version)
@@ -100,8 +106,6 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
 (set-frame-parameter (selected-frame) 'alpha '(90 90))
 (add-to-list 'default-frame-alist '(alpha 90  90))
 
-;; Tema original do emacs
-(load-theme 'wombat)
 ;; Doom temas
 (use-package doom-themes
   :config
@@ -132,15 +136,6 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
 (setq mouse-wheel-follow-mouse 't)
 ;; scroll do teclado desce uma linha por vez
 (setq scroll-step 1)
-
-;; Ativa numero de linhas para alguns modos
-(dolist (mode '(text-mode-hook
-                prog-mode-hook
-                conf-mode-hook))
-  (add-hook mode (lambda () (display-line-numbers-mode 1))))
-;; Remove o modo para modos não listados acima
-(dolist (mode '(org-mode-hook))
-  (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 ;; Não alerta sobre arquivos grandes
 (setq large-file-warning-threshold nil)
@@ -315,7 +310,6 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
           (setq truncate-lines t) ; trunca nomes de arquivo muito grandes
                   (setq word-wrap nil)
                   (make-local-variable 'auto-hscroll-mode)
-          (display-line-numbers-mode -1) ; desativa numero de linhas
           (setq auto-hscroll-mode nil)))))
 (setq-default neo-show-hidden-files t) ; mostrar arquivos ocultos
 
@@ -343,16 +337,14 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
   (("s-x" . evil-mc-undo-all-cursors))
   (("<s-down>" . evil-mc-make-cursor-move-next-line))
   (("<s-up>" . evil-mc-make-cursor-move-prev-line))
+  (("M-c" . evil-yank))
   (("M-v" . evil-paste-before))
   (("M-s" . flyspell-popup-correct))
-  (("M-c" . evil-yank))
   (("M-d" . org-babel-demarcate-block))
   (("<M-tab>" . evil-toggle-fold))
   (("<M-up>" . er/expand-region))
   (("<M-down>" . er/contract-region))
-  (("<s-left>" . evil-next-buffer))
-  (("<s-right>" . evil-prev-buffer))
-  (("<C-tab>" . other-window))
+  (("<C-tab>" . evil-next-buffer))
   (("<C-s-right>" . evil-window-vsplit))
   (("<C-s-down>"  . evil-window-split))
   :init
@@ -411,16 +403,16 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
 (keys/leader-keys
   "c" '(copiar-buffer :which-key "Copiar o buffer")
   "E" '((lambda () (interactive) (load-file "~/.config/emacs/init.el")) :which-key "Avaliar configuração do emacs")
-  "s" '(flyspell-mode :which-key "Ativa/Desativa checagem ortográfica")
-  "l" '(log/toggle-command-window :which-key "Log de comandos")
-  "n" '(neotree-toggle :which-key "Ativa/Desativa a neotree")
+  "s" '(flyspell-mode :which-key "Correção ortográfica")
+  "l" '(org-insert-link :which-key "Org inserir link")
+  "L" '(log/toggle-command-window :which-key "Log de comandos")
+  "n" '(neotree-toggle :which-key "Neotree")
   "p" '(projectile-command-map :which-key "Projectile")
   "R" '(rainbow-mode :which-key "Indicar cores")
   "r" '(counsel-colors-emacs :which-key "Escolher cores")
   "T" '(enable-theme :which-key "Escolher tema")
   "t" '(org-babel-tangle :which-key "Tangle file")
   "u" '(undo-tree-visualize :which-key "Undo tree")
-  "y" '(aya-create :which-key "Criar snippet")
   "e b" '(eval-buffer :which-key "Avaliar buffer")
   "e r" '(eval-region :which-key "Avaliar região")
   "w w" '(save-buffer :which-key "Salvar")
@@ -428,6 +420,7 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
   "q q" '(evil-quit :which-key "Sair sem salvar")
   "SPC" '(org-toggle-checkbox :which-key "Marcar")
   "RET" '(terminal-here-launch :which-key "Abrir terminal externo")
+  "C-SPC" '(other-window :which-key "Mudar de janela")
   "<tab>" '(counsel-switch-buffer :which-key "Mudar de buffer"))
 
 ;; Suporte do evil em outros modos
@@ -454,13 +447,30 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
 
 ;; Menu de compleção de atalhos
 (use-package which-key
-  :init (which-key-mode)
   :config
-  (which-key-setup-side-window-right-bottom) ;; Teclas do lado se houver espaço
-  (setq which-key-side-window-max-width 0.33) ;; Tamanho máximo da janela ao lado
-  (setq which-key-use-C-h-commands nil) ;; Paging com C-h
-  (setq which-key-show-early-on-C-h t) ;; Mostra atalhos C-h na hora
-  (setq which-key-idle-delay 0.3)) ;; Atrasa o popup em atalhos mais usados
+  (which-key-mode)
+  (which-key-setup-side-window-bottom))
+
+;; Menu de atalhos no minibuffer
+(use-package embark
+  :init
+  (setq prefix-help-command #'embark-prefix-help-command)
+  :config
+  (setq embark-quit-after-action nil)
+  ;; Esconder a modeline nas compleções
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none))))
+  ;; fazer os commandos visiveis no which-key
+  (setq embark-action-indicator
+	(lambda (map _target)
+          (which-key--show-keymap "Embark" map nil nil 'no-paging)
+          #'which-key--hide-popup-ignore-command)
+	embark-become-indicator embark-action-indicator)
+  :bind (("C-." . embark-act)
+	 ("M-." . embark-dwim)
+	 ("C-h B" . embark-bindings)))
 
 ;; Cria múltiplos comandos com um único prefixo
 (use-package hydra
@@ -680,11 +690,18 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
 (use-package lsp-ui
   :straight t
   :hook (lsp-mode . lsp-ui-mode)
-  :config
-  (setq lsp-ui-sideline-enable t)
-  (setq lsp-ui-sideline-show-hover nil)
-  (setq lsp-ui-doc-position 'bottom)
-  (lsp-ui-doc-show))
+  :custom
+  (lsp-ui-doc-max-height 8)
+  (lsp-ui-doc-max-width 72)
+  (lsp-ui-doc-delay 0.75)
+  (lsp-ui-doc-show-with-cursor nil)
+  (lsp-ui-doc-show-with-mouse nil)
+  (lsp-ui-doc-position 'at-point)
+  (lsp-ui-sideline-show-diagnostics t)
+  (lsp-ui-sideline-show-code-actions nil)
+  (lsp-ui-sideline-actions-icon lsp-ui-sideline-actions-icon-default)
+  (lsp-lens-enable nil)
+  (lsp-signature-render-documentation nil))
 
 ;; Debugar código
 (use-package dap-mode
@@ -697,6 +714,9 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
   (require 'dap-node)
   (dap-node-setup))
 (setq dap-auto-configure-features '(sessions locals controls tooltip))
+
+;; Shell script
+(use-package sh-script)
 
 ;; C/C++
 (use-package ccls
@@ -867,17 +887,6 @@ Para remover *Pacotes não referenciados pelo use-package ao iniciar* use =M-x s
 ;; Retira fundo de headings
 (set-face-attribute 'org-column nil :background nil)
 (set-face-attribute 'org-column-title nil :background nil)
-
-(with-eval-after-load 'org
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((emacs-lisp . t)
-     (shell . t)
-     (C . t)
-     (css . t)
-     (js . t)
-     (makefile . t)
-     (python . t))))
 
 ;; Indicação de sintaxe em blocos de código, não pergunta se quer avaliar código
 (setq org-src-fontify-natively t
