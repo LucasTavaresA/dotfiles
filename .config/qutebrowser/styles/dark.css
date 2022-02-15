@@ -1,3 +1,6 @@
+.blank-state-link:hover {
+    background-color: #222222 !important;
+}
 strong {
     color: #ffffff;
     font-weight: 900;
@@ -118,8 +121,8 @@ header.navbar {
     background-color: #000000 !important;
 }
 .nav>li>a:focus, .nav>li>a:hover {
-    background-color: #ffffff !important;
-    color: #000000 !important;
+    background-color: #222222 !important;
+    color: #ffffff !important;
 }
 .boxShadow {
     background: #000000 !important;

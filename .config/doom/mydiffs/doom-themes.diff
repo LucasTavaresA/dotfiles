@@ -1,10 +1,10 @@
 diff --git a/themes/doom-solarized-dark-theme.el b/themes/doom-solarized-dark-theme.el
-index 090c379..f0754fc 100644
+index 090c379..1539131 100644
 --- a/themes/doom-solarized-dark-theme.el
 +++ b/themes/doom-solarized-dark-theme.el
 @@ -53,67 +53,82 @@ Can be an integer to determine the exact padding."
    "A dark theme inspired by VS Code Solarized Dark"
-
+ 
    ;; name        default   256       16
 -  ((bg         '("#002b36" "#002b36" "brightwhite" ))
 +  ((bg         '("#000000" "#000000" "brightwhite" ))
@@ -13,7 +13,7 @@ index 090c379..f0754fc 100644
 -                 '("#839496" "#839496" "brightwhite")))
 +  	           '("#ffffff" "#ffffff" "brightwhite")
 +                 '("#aaaaaa" "#aaaaaa" "brightwhite")))
-
+ 
     ;; These are off-color variants of bg/fg, used primarily for `solaire-mode',
     ;; but can also be useful as a basis for subtle highlights (e.g. for hl-line
     ;; or region), especially when paired with the `doom-darken', `doom-lighten',
@@ -22,7 +22,7 @@ index 090c379..f0754fc 100644
 -   (fg-alt     '("#657b83" "#657b83" "white"       ))
 +   (bg-alt     '("#111111" "#111111" "white"       ))
 +   (fg-alt     '("#999999" "#999999" "white"       ))
-
+ 
     ;; These should represent a spectrum from bg to fg, where base0 is a starker
     ;; bg and base8 is a starker fg. For example, if bg is light grey and fg is
     ;; dark grey, base0 should be white and base8 should be black.
@@ -48,17 +48,17 @@ index 090c379..f0754fc 100644
 +   (base7      '("#eeeeee" "#eeeeee" "brightblack" ))
 +   (base8      '("#ffffff" "#ffffff" "white"       ))
 +
-+   (pgreen     '("#009900" "#009900" "pgreen"       ))
++   (pgreen     '("#00aa00" "#00aa00" "pgreen"       ))
 +   (pyellow    '("#ffff00" "#ffff00" "pyellow"      ))
 +   (pred       '("#ff0000" "#ff0000" "pred"         ))
 +   (pwhite     '("#ffffff" "#ffffff" "pwhite"       ))
 +   (porange    '("#ff6600" "#ff6600" "porange"      ))
 +   (pdarkblue  '("#0000ff" "#0000ff" "pdarkblue"    ))
-+   (plightblue '("#0099ff" "#0099ff" "plightblue"   ))
-+   (pgrey      '("#333333" "#333333" "pgrey"        ))
-+   (plightgrey '("#555555" "#555555" "plightgrey"   ))
-+   (pteal      '("#009988" "#009988" "pteal"        ))
-+   (pcyan      '("#00d9ff" "#00d9ff" "pcyan"        ))
++   (plightblue '("#0077ff" "#0077ff" "plightblue"   ))
++   (pgrey      '("#222222" "#222222" "pgrey"        ))
++   (plightgrey '("#444444" "#444444" "plightgrey"   ))
++   (pteal      '("#009966" "#009966" "pteal"        ))
++   (pcyan      '("#00aaff" "#00aaff" "pcyan"        ))
 +
 +   (grey       base2)
 +   (red        '("#ff0000" "#ff0000" "red"          ))
@@ -77,7 +77,7 @@ index 090c379..f0754fc 100644
 -   (cyan       '("#2aa198" "#46D9FF" "brightcyan"   ))
 +   (cyan       '("#ff9900" "#ff9900" "brightcyan"   ))
     (dark-cyan  '("#204052" "#5699AF" "cyan"         ))
-
+ 
     ;; face categories -- required for all themes
 -   (highlight      blue)
 -   (vertical-bar   (doom-darken base1 0.5))
@@ -102,22 +102,22 @@ index 090c379..f0754fc 100644
 -   (vc-added       green)
 -   (vc-deleted     red)
 +   (highlight      pwhite) ; Cursor
-+   (vertical-bar   pgrey) ; Barra entre splits
-+   (horizontal-bar pgrey) ; Barra entre splits
-+   (selection      pred) ; ?
-+   (builtin        plightblue) ; ex: :config
++   (vertical-bar   plightgrey) ; Barra entre splits
++   (horizontal-bar plightgrey) ; Barra entre splits
++   (selection      pwhite) ; alerta qual é a linha atual
++   (builtin        pcyan) ; ex: :config
 +   ;; Comentários
-+   (comments       plightgrey)
-+   (doc-comments   plightgrey)
-+   (constants      pteal) ; ex: ivy, ivy-rich, evil
-+   (functions      pdarkblue) ; ex: orgm/org-babel (), cut()
-+   (keywords       pdarkblue) ; ex: USE-PACKAGE
++   (comments       base3)
++   (doc-comments   base3)
++   (constants      pdarkblue) ; ex: ivy, ivy-rich, evil
++   (functions      porange) ; ex: orgm/org-babel (), cut()
++   (keywords       pwhite) ; ex: USE-PACKAGE
 +   (methods        pred) ; ?
 +   (operators      pdarkblue) ; ex :#define, #include
-+   (type           pcyan) ; ex: int, var
++   (type           pdarkblue) ; ex: int, var
 +   (strings        pyellow)
-+   (variables      porange) ; ex: x, width, state
-+   (numbers        pred) ; ?
++   (variables      pcyan) ; ex: x, width, state
++   (numbers        pgreen) ; 23, 33, 0
 +   (region         pgrey) ; Região selecionada
 +   (error          pred)
 +   (warning        pyellow)
@@ -126,6 +126,6 @@ index 090c379..f0754fc 100644
 +   (vc-modified    pyellow)
 +   (vc-added       pgreen)
 +   (vc-deleted     pred)
-
+ 
     ;; custom categories
     (-modeline-bright doom-solarized-dark-brighter-modeline)

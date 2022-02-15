@@ -2,7 +2,7 @@
 
 # Muda o local padrão de alguns dotfiles limpando a $HOME ou ~
 # Define diretórios com o padrão xdg
-UID="$(id -u)"
+UID="$(id -u)" # Pega o id de usuario
 export HOME="/home/lucas"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -16,10 +16,6 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # Terminal
 export TERMINAL="st"
 export TERM="xterm-256color"
-# Editor no terminal
-export EDITOR="emacsclient -c"
-# Editor com interface gráfica
-export VISUAL="emacsclient -c"
 # Navegador padrão
 export BROWSER="qutebrowser"
 # Pager
@@ -72,8 +68,20 @@ export HISTFILESIZE=10000
 export HISTCONTROL=ignoredups:erasedups
 
 # Adiciona diretório de scripts ao path
+export PATH="$GOPATH/bin:$PATH"
 export PATH="$HOME/code/shell/dmenuscripts:$PATH"
 export PATH="$HOME/code/shell/scripts:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+
+# DOOM emacs
+export PATH="$HOME/.config/emacs/bin:$PATH"
+export EMACSDIR="$HOME/.config/emacs"
+export DOOMDIR="$HOME/.config/doom"
+export DOOMLOCALDIR="$HOME/.config/emacs/.local"
+# Editor no terminal
+export EDITOR="emacsclient -c"
+# Editor com interface gráfica
+export VISUAL="emacsclient -c"
 
 # Usa o dmenu como autenticador GUI
 export SSH_ASKPASS="doas_askpass"

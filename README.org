@@ -53,12 +53,12 @@ Usar o comando chsh -s /bin/dash para usar o dash como login shell, Profile troc
 
 - =~/.config/shell/profile=
 
-#+begin_src sh :tangle ~/.config/shell/profile
+#+begin_src shell-script :tangle ~/.config/shell/profile
 ### EXPORTS
 
 # Muda o local padrão de alguns dotfiles limpando a $HOME ou ~
 # Define diretórios com o padrão xdg
-UID="$(id -u)"
+UID="$(id -u)" # Pega o id de usuario
 export HOME="/home/lucas"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -72,10 +72,6 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # Terminal
 export TERMINAL="st"
 export TERM="xterm-256color"
-# Editor no terminal
-export EDITOR="emacsclient -c"
-# Editor com interface gráfica
-export VISUAL="emacsclient -c"
 # Navegador padrão
 export BROWSER="qutebrowser"
 # Pager
@@ -128,8 +124,20 @@ export HISTFILESIZE=10000
 export HISTCONTROL=ignoredups:erasedups
 
 # Adiciona diretório de scripts ao path
+export PATH="$GOPATH/bin:$PATH"
 export PATH="$HOME/code/shell/dmenuscripts:$PATH"
 export PATH="$HOME/code/shell/scripts:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+
+# DOOM emacs
+export PATH="$HOME/.config/emacs/bin:$PATH"
+export EMACSDIR="$HOME/.config/emacs"
+export DOOMDIR="$HOME/.config/doom"
+export DOOMLOCALDIR="$HOME/.config/emacs/.local"
+# Editor no terminal
+export EDITOR="emacsclient -c"
+# Editor com interface gráfica
+export VISUAL="emacsclient -c"
 
 # Usa o dmenu como autenticador GUI
 export SSH_ASKPASS="doas_askpass"
@@ -433,6 +441,12 @@ alias yta="yt-dlp -x --audio-format mp3"
 alias ka="doas killall"
 alias mi="make install"
 alias mu="make uninstall"
+alias dh="doom help"
+alias ds="doom sync"
+alias dd="doom doctor"
+alias du="doom upgrade"
+alias dr="doom run"
+alias dp="doom purge"
 alias dmi="doas make install"
 alias dmu="doas make uninstall"
 alias dnr="dotnet run"
@@ -524,6 +538,12 @@ alias yta='yt-dlp -x --audio-format mp3'
 alias ka="doas killall"
 alias mi="make install"
 alias mu="make uninstall"
+alias dh="doom help"
+alias ds="doom sync"
+alias dd="doom doctor"
+alias du="doom upgrade"
+alias dr="doom run"
+alias dp="doom purge"
 alias dmi="doas make install"
 alias dmu="doas make uninstall"
 alias dnr="dotnet run"
@@ -806,7 +826,7 @@ Configuração do xserver
 
 - =~/.config/x11/xinitrc=
 
-#+begin_src sh :tangle ~/.config/x11/xinitrc
+#+begin_src shell-script :tangle ~/.config/x11/xinitrc
 #!/bin/sh
 
 # Mouse
@@ -881,7 +901,7 @@ Todos os atalhos e teclas do dwm e bspwm
 
 - =~/.config/sxhkd/sxhkdrc=
 
-#+begin_src conf :tangle ~/.config/sxhkd/sxhkdrc
+#+begin_src sxhkd :tangle ~/.config/sxhkd/sxhkdrc
 # Muda entre as janelas
 super + Tab
 	dwmc focusstack +1
@@ -1038,7 +1058,7 @@ Print
 
 - =~/.config/sxhkd/sxhkdrc_bspwm=
 
-#+begin_src conf :tangle ~/.config/sxhkd/sxhkdrc_bspwm
+#+begin_src sxhkd :tangle ~/.config/sxhkd/sxhkdrc_bspwm
 # Fecha janela
 super + backslash
 	bspc node -c
@@ -3003,7 +3023,7 @@ Gerenciador de janelas bspwm
 
 - =~/.config/bspwm/bspwmrc=
 
-#+begin_src sh :tangle ~/.config/bspwm/bspwmrc
+#+begin_src shell-script :tangle ~/.config/bspwm/bspwmrc
 #!/bin/sh
 
 # Monitor
@@ -3067,14 +3087,17 @@ Arquivos ignorados pelo git
 
 - =~/.gitignore=
 
-#+begin_src conf :tangle ~/.gitignore
+#+begin_src gitignore :tangle ~/.gitignore
 .cache/
 .config/dconf/
 .config/discord/
-.config/emacs/elpa/
-.config/emacs/straight/
-.config/emacs/var/
-.config/emacs/.last-package-update-day
+.config/emacs/
+.config/emacsbkp/
+.config/doom/themes/
+.config/doom/yasnippet-snippets/
+.config/doom/init.el
+.config/doom/packages.el
+.config/doom/config.el
 .config/galculator/
 .config/GIMP/
 .config/git/config

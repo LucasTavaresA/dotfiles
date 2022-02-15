@@ -1,10 +1,13 @@
 .cache/
 .config/dconf/
 .config/discord/
-.config/emacs/elpa/
-.config/emacs/straight/
-.config/emacs/var/
-.config/emacs/.last-package-update-day
+.config/emacs/
+.config/emacsbkp/
+.config/doom/themes/
+.config/doom/yasnippet-snippets/
+.config/doom/init.el
+.config/doom/packages.el
+.config/doom/config.el
 .config/galculator/
 .config/GIMP/
 .config/git/config
