@@ -41,7 +41,7 @@
 
 * Emacs
 
-- [[https://github.com/LucasTavaresA/dotfiles/blob/main/.config/emacs/init.org][Minha configuração do emacs]]
+- [[https://github.com/LucasTavaresA/dotfiles/blob/main/.config/doom/config.org][Minha configuração do doom emacs]]
 
 * Shells
 
@@ -478,16 +478,20 @@ alias umnt="doas umount"
 alias gi="git init"
 alias gc="git clone"
 alias gs="git status"
+alias gsr="git_status_recursivo"
 alias gd="git diff"
 alias gds="git diff --staged"
 alias gl="git log --oneline"
 alias ga="git add"
 alias gaf="git add -f"
 alias gcm="git commit -m"
+alias gco="git checkout"
 alias gps="git push"
 alias gpl="git pull"
 alias gr="git restore"
 alias grs="git restore --staged"
+alias grrs='git reset --soft'
+alias grrh='git reset --hard'
 # Pacman
 alias ps="doas pacman -S"
 alias psi="pacman -Si"
@@ -575,16 +579,20 @@ alias umnt="doas umount"
 alias gi='git init'
 alias gc='git clone'
 alias gs='git status'
+alias gsr="git_status_recursivo"
 alias gd='git diff'
 alias gds='git diff --staged'
 alias gl='git log --oneline'
 alias ga='git add'
 alias gaf='git add -f'
 alias gcm='git commit -m'
+alias gco="git checkout"
 alias gps='git push'
 alias gpl='git pull'
 alias gr='git restore'
 alias grs="git restore --staged"
+alias grrs='git reset --soft'
+alias grrh='git reset --hard'
 # Pacman
 alias ps='doas pacman -S'
 alias psi='pacman -Si'
@@ -3089,6 +3097,7 @@ Arquivos ignorados pelo git
 
 #+begin_src gitignore :tangle ~/.gitignore
 .cache/
+.config/coc/
 .config/dconf/
 .config/discord/
 .config/emacs/

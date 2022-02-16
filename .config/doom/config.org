@@ -284,8 +284,8 @@ Voce pode usar =gd= para ver como é implementado
 ;; Desabilita numero de linhas
 (setq display-line-numbers-type nil)
 
-(global-undo-tree-mode)
-(evil-set-undo-system 'undo-tree)
+;; Desabilita indicação de linha atual
+(remove-hook 'doom-first-buffer-hook #'global-hl-line-mode)
 
 ;; Formato e cor dos cursor em diferentes modos
 (setq evil-emacs-state-cursor    '("#ffff00" box))
@@ -311,6 +311,10 @@ Voce pode usar =gd= para ver como é implementado
 ;; Para GPG, email, clientes, templates e snippets
 (setq user-full-name "Lucas Tavares"
       user-mail-address "tavares.lassuncao@gmail.com")
+
+;; Muda systema de desfazer para o undo-tree
+(global-undo-tree-mode)
+(evil-set-undo-system 'undo-tree)
 
 ;; Barra pisca em alertas
 (setq visible-bell t)
@@ -460,13 +464,14 @@ Voce pode usar =gd= para ver como é implementado
                         '(("^ *\\([-]\\) "
                            (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 
-;; Indicação de sintaxe em blocos de código, não pergunta se quer avaliar código
+(require 'org-indent)
+
 (setq org-src-fontify-natively t
       org-src-tab-acts-natively t
-      org-confirm-babel-evaluate nil
+      org-confirm-babel-evaluate nil ;; Não pergunta antes de avaliar
       org-ellipsis " "
-      org-hide-emphasis-markers t
-      org-edit-src-content-indentation 0)
+      org-hide-emphasis-markers t ;; Esconde marcação
+      org-edit-src-content-indentation 0) ;; Indentação nos blocos de codigo
 
 ;; Snippets para templates de codigo
 (require 'org-tempo)
@@ -502,3 +507,6 @@ Voce pode usar =gd= para ver como é implementado
 
 (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'orgm/org-babel-tangle-config)))
 #+end_src
+
+#+RESULTS:
+| (lambda nil (add-hook 'after-save-hook #'orgm/org-babel-tangle-config)) | er/add-org-mode-expansions | doom--setq-emojify-inhibit-functions-for-org-mode-h | (closure (t) nil (add-hook 'after-save-hook #'orgm/org-babel-tangle-config)) | org-appear-mode | org-make-toc-mode | org-tempo-setup | +lookup--init-org-mode-handlers-h | (closure ((hook . org-mode-hook) (--dolist-tail--) t) (&rest _) (add-hook 'before-save-hook 'org-encrypt-entries nil t)) | #[0 \301\211\207 [imenu-create-index-function org-imenu-get-tree] 2] | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-show-all append local] 5] | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-babel-show-result-all append local] 5] | org-babel-result-hide-spec | org-babel-hide-all-hashes | doom-disable-show-paren-mode-h | doom-disable-show-trailing-whitespace-h | +org-enable-auto-reformat-tables-h | +org-enable-auto-update-cookies-h | +org-make-last-point-visible-h | evil-org-mode | toc-org-enable | embrace-org-mode-hook | org-eldoc-load | +literate-enable-recompile-h |

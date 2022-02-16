@@ -1,4 +1,5 @@
 .cache/
+.config/coc/
 .config/dconf/
 .config/discord/
 .config/emacs/
