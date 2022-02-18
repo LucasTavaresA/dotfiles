@@ -73,24 +73,24 @@ config.set('content.javascript.enabled', False)
 # Carregar o autoconfig.yml
 config.load_autoconfig(True)
 
-# Salva a sessão automaticamente
-c.auto_save.session = True
-
 # Abre novas abas de fundo
-config.set('new_instance_open_target', 'tab-bg')
+config.set('new_instance_open_target', 'window')
 
 # Barra escondida
 config.set("statusbar.show", "in-mode")
 config.set("tabs.show", "switching")
 
-# Abre a pagina inicial caso fechada única aba aberta
+# O que fazer caso a ultima pagina seja fechada
 config.set("tabs.last_close", "ignore")
+
+# Abre abas como janelas
+config.set("tabs.tabs_are_windows", True)
 
 # Confirma antes de sair
 config.set('confirm_quit', ["multiple-tabs"])
 
 # Muda ordem do menu de compleção
-config.set("completion.open_categories", ["quickmarks", "searchengines", "bookmarks", "history", "filesystem"])
+config.set("completion.open_categories", ["quickmarks", "bookmarks", "history", "filesystem"])
 
 # Formatação dos títulos das abas
 config.set("tabs.title.format", "{perc}{private}{current_title}")
@@ -138,10 +138,9 @@ c.content.blocking.adblock.lists = [
         ]
 
 # Usa o lf para mandar arquivos
-# config.set("fileselect.handler", "external")
-# config.set("fileselect.single_file.command", ['st', '-c', 'lf,lf', '-e', 'lf', '{}'])
-# config.set("fileselect.multiple_files.command", ['st', '-c', 'lf,lf', '-e', 'lf', '{}'])
-# config.set("fileselect.folder.command", ['st', '-c', 'lf,lf', '-e', 'lf', '{}'])
+config.set("fileselect.handler", "external")
+config.set("fileselect.single_file.command", ["st", "-e", "lf", "-selection-path", "{}"])
+config.set("fileselect.multiple_files.command", ["st", "-e", "lf", "-selection-path", "{}"])
 
 # Permitir notificações.
 # Valid values:
@@ -158,7 +157,7 @@ config.set('content.notifications.enabled', True, 'https://facebook.com/*')
 # `{column}`: Column in which the caret is found in the text. *
 # `{line0}`: Same as `{line}`, but starting from index 0. * `{column0}`:
 # Same as `{column}`, but starting from index 0.
-c.editor.command = ['emacsclient', '-c', '{}']
+c.editor.command = ['nvim', '{}']
 
 # Search engines which can be used via the address bar.  Maps a search
 # engine name (such as `DEFAULT`, or `ddg`) to a URL with a `{}`
@@ -179,25 +178,6 @@ c.editor.command = ['emacsclient', '-c', '{}']
 # the search engine name to the search term, e.g. `:open google
 # qutebrowser`.
 c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
-                    ,  'yt': 'https://www.youtube.com/results?search_query={}'
-                    ,  'gh': 'https://github.com/search?q={}'
-                    ,  't': 'https://translate.google.com/?sl=auto&tl=en&text={}'
-                    ,  'sc': 'https://soundcloud.com/search?q={}'
-                    ,  'aw': 'https://wiki.archlinux.org/index.php?search={}'
-                    ,  'se': 'https://stackexchange.com/search?q={}'
-                    ,  'sf': 'https://sourceforge.net/directory/?q={}'
-                    ,  'gl': 'https://gitlab.com/search?search={}'
-                    ,  'gm': 'https://www.google.com.br/maps/search/{}'
-                    ,  'gf': 'https://greasyfork.org/en/scripts?q={}'
-                    ,  'md': 'https://mangadex.org/titles?page=1&q={}&order=relevance.desc'
-                    ,  'r': 'https://www.reddit.com/r/{}'
-                    ,  'ud': 'https://www.urbandictionary.com/define.php?term={}'
-                    ,  'al': 'https://anilist.co/search/anime?search={}&sort=SEARCH_MATCH'
-                    ,  'alm': 'https://anilist.co/search/manga?search={}&sort=SEARCH_MATCH'
-                    ,  'b': 'https://brainly.com.br/app/ask?q={}'
-                    ,  'tw': 'https://twitter.com/search?q={}'
-                    ,  'gt': 'https://trends.google.com.br/trends/explore?q={}'
-                    ,  'wm': 'https://web.archive.org/web/*/{}'
                     }
 
 # ATALHOS
@@ -235,14 +215,12 @@ config.bind('ztp', 'spawn --userscript translate')
 config.bind('zts', 'spawn --userscript translate --text')
 # Modo leitura
 config.bind('zl', 'spawn --userscript readability')
-# Passa a aba para uma outra janela
-config.bind('zg', 'tab-give')
 # Copia links
 config.bind('zc', 'hint links yank')
 # Copia trechos de codigo
 config.bind('zC', 'hint code userscript code_select.py')
 c.hints.selectors["code"] = [
-    # Selects all code tags whose direct parent is not a pre tag
+    # Seleciona code tags onde o parente nao é uma tag pre
     ":not(pre) > code",
     "pre"
 ]

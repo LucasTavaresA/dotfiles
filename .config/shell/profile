@@ -1,5 +1,185 @@
 ### EXPORTS
 
+# Adiciona ícones no lf
+export LF_ICONS="\
+tw=:\
+st=:\
+ow=:\
+dt=:\
+di=:\
+fi=:\
+ln=:\
+or=:\
+ex=:\
+*.el=:\
+*.log=:\
+*.xml=:\
+*.dic=﬜:\
+*.sqlite=:\
+*.db=:\
+*.csproj=:\
+*.sln=:\
+*.cs=:\
+*.vdi=💿:\
+*.yml=:\
+*.toml=:\
+*.ini=:\
+*.conf=:\
+*.cfg=:\
+*.config=:\
+*.c=:\
+*.cc=:\
+*.clj=:\
+*.coffee=:\
+*.cpp=:\
+*.css=:\
+*.d=:\
+*.dart=:\
+*.erl=:\
+*.exs=:\
+*.fs=:\
+*.go=:\
+*.h=:\
+*.hh=:\
+*.hpp=:\
+*.hs=:\
+*.html=:\
+*.java=:\
+*.jl=:\
+*.js=:\
+*.json=:\
+*.lua=:\
+*.md=:\
+*.php=:\
+*.pl=:\
+*.pro=:\
+*.py=:\
+*.rb=:\
+*.rs=:\
+*.scala=:\
+*.ts=:\
+*.vim=:\
+*.cmd=:\
+*.ps1=:\
+*.sh=:\
+*.bash=:\
+*.zsh=:\
+*.fish=:\
+*.tar=:\
+*.tgz=:\
+*.arc=:\
+*.arj=:\
+*.taz=:\
+*.lha=:\
+*.lz4=:\
+*.lzh=:\
+*.lzma=:\
+*.tlz=:\
+*.txz=:\
+*.tzo=:\
+*.t7z=:\
+*.zip=:\
+*.z=:\
+*.dz=:\
+*.gz=:\
+*.lrz=:\
+*.lz=:\
+*.lzo=:\
+*.xz=:\
+*.zst=:\
+*.tzst=:\
+*.bz2=:\
+*.bz=:\
+*.tbz=:\
+*.tbz2=:\
+*.tz=:\
+*.deb=:\
+*.rpm=:\
+*.jar=:\
+*.war=:\
+*.ear=:\
+*.sar=:\
+*.rar=:\
+*.alz=:\
+*.ace=:\
+*.zoo=:\
+*.cpio=:\
+*.7z=:\
+*.rz=:\
+*.cab=:\
+*.wim=:\
+*.swm=:\
+*.dwm=:\
+*.esd=:\
+*.jpg=:\
+*.jpeg=:\
+*.mjpg=:\
+*.mjpeg=:\
+*.gif=:\
+*.bmp=:\
+*.pbm=:\
+*.pgm=:\
+*.ppm=:\
+*.tga=:\
+*.xbm=:\
+*.xpm=:\
+*.tif=:\
+*.tiff=:\
+*.png=:\
+*.svg=:\
+*.svgz=:\
+*.mng=:\
+*.pcx=:\
+*.mov=:\
+*.mpg=:\
+*.mpeg=:\
+*.m2v=:\
+*.mkv=:\
+*.webm=:\
+*.ogm=:\
+*.mp4=:\
+*.m4v=:\
+*.mp4v=:\
+*.vob=:\
+*.qt=:\
+*.nuv=:\
+*.wmv=:\
+*.asf=:\
+*.rm=:\
+*.rmvb=:\
+*.flc=:\
+*.avi=:\
+*.fli=:\
+*.flv=:\
+*.gl=:\
+*.dl=:\
+*.xcf=:\
+*.xwd=:\
+*.yuv=:\
+*.cgm=:\
+*.emf=:\
+*.ogv=:\
+*.ogx=:\
+*.aac=:\
+*.au=:\
+*.flac=🎵:\
+*.m4a=🎵:\
+*.mid=:\
+*.midi=🎵:\
+*.mka=:\
+*.mp3=🎵:\
+*.mpc=:\
+*.ogg=🎵:\
+*.ra=:\
+*.wav=🎵:\
+*.oga=:\
+*.opus=🎵:\
+*.spx=:\
+*.xspf=:\
+*.pdf=:\
+*.nix=:\
+"
+
 # Muda o local padrão de alguns dotfiles limpando a $HOME ou ~
 # Define diretórios com o padrão xdg
 UID="$(id -u)" # Pega o id de usuario
@@ -8,9 +188,10 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_RUNTIME_DIR="/run/user/$UID"
+export XDG_BIN_HOME="$HOME/.local/bin"
 
 # Pass
-export PASSWORD_STORE_DIR="$HOME/.local/share/pass"
+export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/pass"
 # Bat como um manpager
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # Terminal
@@ -25,63 +206,71 @@ export QT_QPA_PLATFORMTHEME="gtk2"
 # Less
 export LESSHISTFILE="-"
 # Wget
-export WGETRC="$HOME/.config/wget/wgetrc"
+export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
 # XAuthority
-export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+export XAUTHORITY="${XDG_RUNTIME_DIR:-/run/user/$UID}/Xauthority"
 # Cargo
-export CARGO_HOME="$HOME/.local/share/cargo"
+export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 # Omnisharp
-export OMNISHARPHOME="$HOME/.local/share/omnisharp"
+export OMNISHARPHOME="${XDG_DATA_HOME:-$HOME/.local/share}/omnisharp"
 # Nuget
-export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
+export NUGET_PACKAGES="${XDG_CACHE_HOME:-$HOME/.cache}/NuGetPackages"
 # Gnupg
-export GNUPGHOME="$HOME/.local/share/gnupg"
+export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
 # Npm
-export NPM_CONFIG_USERCONFIG="$HOME/.config/npm/npmrc"
+export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc"
 # Terminfo
-export TERMINFO="$HOME/.local/share/terminfo"
+export TERMINFO="${XDG_DATA_HOME:-$HOME/.local/share}/terminfo"
 # Inputrc
-export INPUTRC="$HOME/.config/readline/inputrc"
+export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/readline/inputrc"
 # Gtk 2
-export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc"
+export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc"
 # W3m
-export W3M_DIR="$HOME/.config/w3m"
+export W3M_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/w3m"
 # Go
-export GOPATH="$HOME/.local/share/go"
+export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
+# Ghcup
+export GHCUP_INSTALL_BASE_PREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/"
+export GHCUP_USE_XDG_DIRS="1"
+# Cabal
+export CABAL_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/cabal/config"
+export CABAL_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/cabal"
 # Starship
-export STARSHIP_CONFIG="$HOME/.config/starship/config.toml"
+export STARSHIP_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/starship/config.toml"
 # Android sdk
-export ANDROID_SDK_HOME="$HOME/.config/android"
+export ANDROID_SDK_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/android"
 # Wine
-export WINEPREFIX="$HOME/.local/share/wineprefixes/default"
+export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
 
 # Shell
 export SHELL="dash"
 # Muda o local do zshrc
-export ZDOTDIR="$HOME/.config/shell"
+export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/shell"
 # Muda o local do histórico
-export HISTFILE="$HOME/.config/shell/history"
+export HISTFILE="${XDG_CONFIG_HOME:-$HOME/.config}/shell/history"
 # Aumenta o tamanho limite do histórico
 export HISTSIZE=10000
 export HISTFILESIZE=10000
 # Ignora e deleta comandos duplicados no histórico
 export HISTCONTROL=ignoredups:erasedups
 
-# Adiciona diretório de scripts ao path
+# Adiciona diretórios bin e scripts ao path
 export PATH="$GOPATH/bin:$PATH"
+export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/ghcup/ghc/**/bin:$PATH"
+export PATH="/usr/lib/jvm/java-11-openjdk/bin:$PATH"
 export PATH="$HOME/code/shell/dmenuscripts:$PATH"
 export PATH="$HOME/code/shell/scripts:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="${XDG_BIN_HOME:-$HOME/.local/bin}:$PATH"
 
 # DOOM emacs
-export PATH="$HOME/.config/emacs/bin:$PATH"
-export EMACSDIR="$HOME/.config/emacs"
-export DOOMDIR="$HOME/.config/doom"
-export DOOMLOCALDIR="$HOME/.config/emacs/.local"
+export PATH="${XDG_CONFIG_HOME:-$HOME/.config}/emacs/bin:$PATH"
+export EMACSDIR="${XDG_CONFIG_HOME:-$HOME/.config}/emacs"
+export DOOMDIR="${XDG_CONFIG_HOME:-$HOME/.config}/doom"
+export DOOMLOCALDIR="${XDG_CONFIG_HOME:-$HOME/.config}/emacs/.local"
 # Editor no terminal
-export EDITOR="emacsclient -c"
+export EDITOR="emacsclient -n -c"
 # Editor com interface gráfica
-export VISUAL="emacsclient -c"
+export VISUAL="emacsclient -n -c"
 
 # Usa o dmenu como autenticador GUI
 export SSH_ASKPASS="doas_askpass"
@@ -92,7 +281,15 @@ export DOAS_ASKPASS="dmenu -fn Monospace-18 -c -cw 500 -P -p 🔑Senha:"
 # Localização para datas
 export LC_TIME="pt_BR.UTF-8"
 
-# Inicia o servidor xorg com .xinitrc do usuário
-if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-	  exec startx "$HOME/.config/x11/xinitrc"
-fi
+# Previsão de imagens no lf
+lf () {
+    LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"
+    LF_TEMPDIR="$LF_TEMPDIR" lf-run -last-dir-path="$LF_TEMPDIR/lastdir" "$@"
+    if [ "$(cat "$LF_TEMPDIR/cdtolastdir" 2>/dev/null)" = "1" ]; then
+	cd "$(cat "$LF_TEMPDIR/lastdir")"
+    fi
+    rm -r "$LF_TEMPDIR"
+    unset LF_TEMPDIR
+}
+
+[ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"

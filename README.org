@@ -45,577 +45,16 @@
 
 * Shells
 
-Todos os shells do systema localizados em =~/.config/shell=
+Todos os shells do sistema localizados em =~/.config/shell=
 
 ** Dash
 
-Usar o comando chsh -s /bin/dash para usar o dash como login shell, Profile trocado de lugar no meu [[https://github.com/LucasTavaresA/dash][fork]]
+Usar o comando =chsh -s /bin/dash= para usar o dash como login shell, Profile trocado de lugar no meu [[https://github.com/LucasTavaresA/dash][fork]]
 
 - =~/.config/shell/profile=
 
-#+begin_src shell-script :tangle ~/.config/shell/profile
+#+begin_src sh :tangle ~/.config/shell/profile
 ### EXPORTS
-
-# Muda o local padrão de alguns dotfiles limpando a $HOME ou ~
-# Define diretórios com o padrão xdg
-UID="$(id -u)" # Pega o id de usuario
-export HOME="/home/lucas"
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_RUNTIME_DIR="/run/user/$UID"
-
-# Pass
-export PASSWORD_STORE_DIR="$HOME/.local/share/pass"
-# Bat como um manpager
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-# Terminal
-export TERMINAL="st"
-export TERM="xterm-256color"
-# Navegador padrão
-export BROWSER="qutebrowser"
-# Pager
-export PAGER='less'
-# Faz o qt usar o thema do gtk2
-export QT_QPA_PLATFORMTHEME="gtk2"
-# Less
-export LESSHISTFILE="-"
-# Wget
-export WGETRC="$HOME/.config/wget/wgetrc"
-# XAuthority
-export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
-# Cargo
-export CARGO_HOME="$HOME/.local/share/cargo"
-# Omnisharp
-export OMNISHARPHOME="$HOME/.local/share/omnisharp"
-# Nuget
-export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
-# Gnupg
-export GNUPGHOME="$HOME/.local/share/gnupg"
-# Npm
-export NPM_CONFIG_USERCONFIG="$HOME/.config/npm/npmrc"
-# Terminfo
-export TERMINFO="$HOME/.local/share/terminfo"
-# Inputrc
-export INPUTRC="$HOME/.config/readline/inputrc"
-# Gtk 2
-export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc"
-# W3m
-export W3M_DIR="$HOME/.config/w3m"
-# Go
-export GOPATH="$HOME/.local/share/go"
-# Starship
-export STARSHIP_CONFIG="$HOME/.config/starship/config.toml"
-# Android sdk
-export ANDROID_SDK_HOME="$HOME/.config/android"
-# Wine
-export WINEPREFIX="$HOME/.local/share/wineprefixes/default"
-
-# Shell
-export SHELL="dash"
-# Muda o local do zshrc
-export ZDOTDIR="$HOME/.config/shell"
-# Muda o local do histórico
-export HISTFILE="$HOME/.config/shell/history"
-# Aumenta o tamanho limite do histórico
-export HISTSIZE=10000
-export HISTFILESIZE=10000
-# Ignora e deleta comandos duplicados no histórico
-export HISTCONTROL=ignoredups:erasedups
-
-# Adiciona diretório de scripts ao path
-export PATH="$GOPATH/bin:$PATH"
-export PATH="$HOME/code/shell/dmenuscripts:$PATH"
-export PATH="$HOME/code/shell/scripts:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-
-# DOOM emacs
-export PATH="$HOME/.config/emacs/bin:$PATH"
-export EMACSDIR="$HOME/.config/emacs"
-export DOOMDIR="$HOME/.config/doom"
-export DOOMLOCALDIR="$HOME/.config/emacs/.local"
-# Editor no terminal
-export EDITOR="emacsclient -c"
-# Editor com interface gráfica
-export VISUAL="emacsclient -c"
-
-# Usa o dmenu como autenticador GUI
-export SSH_ASKPASS="doas_askpass"
-export GIT_ASKPASS="doas_askpass"
-export SUDO_ASKPASS="$HOME/code/shell/dmenuscripts/dmenu_pass"
-export DOAS_ASKPASS="dmenu -fn Monospace-18 -c -cw 500 -P -p 🔑Senha:"
-
-# Localização para datas
-export LC_TIME="pt_BR.UTF-8"
-
-# Inicia o servidor xorg com .xinitrc do usuário
-if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-	  exec startx "$HOME/.config/x11/xinitrc"
-fi
-#+end_src
-
-** Zsh
-
-Shell interativo, Trocado de diretório pela variavel *ZDOTDIR*
-
-- =~/.config/shell/.zshrc=
-
-#+begin_src zsh :tangle ~/.config/shell/.zshrc
-# Se não executando zsh interativamente
-# Não executa o resto do bashrc
-[[ $- != *i* ]] && return
-
-# ZSH EXPORTS
-export SHELL="zsh"
-# Não adiciona esses itens ao histórico
-export HISTORY_IGNORE="(ls|cd|pwd|exit|doas reboot|history|cd -|cd ..)"
-HISTFILE=~/.config/shell/history
-HISTSIZE=10000
-SAVEHIST=10000
-setopt SHARE_HISTORY
-
-# Carrega cores
-autoload -U colors && colors
-
-# Ativa comentários na mesma linha de um comando
-setopt interactive_comments
-
-# TECLAS
-# Sai do modo vim
-bindkey -e
-# Deleta caracteres usado delete
-bindkey "^[[3~" delete-char
-# Home/End vai pro começo/fim da linha
-bindkey  "^[[H"   beginning-of-line
-bindkey  "^[[4~"   end-of-line
-
-# Completar comandos
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
-autoload -U compinit
-zstyle ':completion:*' menu select
-zmodload zsh/complist
-compinit
-_comp_options+=(globdots)		# Incluir arquivos ocultos.
-
-## FUNÇÕES
-
-# Previsão de imagens no lf
-lf () {
-    LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"
-    LF_TEMPDIR="$LF_TEMPDIR" lf-run -last-dir-path="$LF_TEMPDIR/lastdir" "$@"
-    if [ "$(cat "$LF_TEMPDIR/cdtolastdir" 2>/dev/null)" = "1" ]; then
-	cd "$(cat "$LF_TEMPDIR/lastdir")"
-    fi
-    rm -r "$LF_TEMPDIR"
-    unset LF_TEMPDIR
-}
-
-# Adiciona ícones no lf
-export LF_ICONS="\
-tw=:\
-st=:\
-ow=:\
-dt=:\
-di=:\
-fi=:\
-ln=:\
-or=:\
-ex=:\
-*.el=:\
-*.log=:\
-*.xml=:\
-*.dic=﬜:\
-*.sqlite=:\
-*.db=:\
-*.csproj=:\
-*.sln=:\
-*.cs=:\
-*.vdi=💿:\
-*.yml=:\
-*.toml=:\
-*.ini=:\
-*.conf=:\
-*.cfg=:\
-*.config=:\
-*.c=:\
-*.cc=:\
-*.clj=:\
-*.coffee=:\
-*.cpp=:\
-*.css=:\
-*.d=:\
-*.dart=:\
-*.erl=:\
-*.exs=:\
-*.fs=:\
-*.go=:\
-*.h=:\
-*.hh=:\
-*.hpp=:\
-*.hs=:\
-*.html=:\
-*.java=:\
-*.jl=:\
-*.js=:\
-*.json=:\
-*.lua=:\
-*.md=:\
-*.php=:\
-*.pl=:\
-*.pro=:\
-*.py=:\
-*.rb=:\
-*.rs=:\
-*.scala=:\
-*.ts=:\
-*.vim=:\
-*.cmd=:\
-*.ps1=:\
-*.sh=:\
-*.bash=:\
-*.zsh=:\
-*.fish=:\
-*.tar=:\
-*.tgz=:\
-*.arc=:\
-*.arj=:\
-*.taz=:\
-*.lha=:\
-*.lz4=:\
-*.lzh=:\
-*.lzma=:\
-*.tlz=:\
-*.txz=:\
-*.tzo=:\
-*.t7z=:\
-*.zip=:\
-*.z=:\
-*.dz=:\
-*.gz=:\
-*.lrz=:\
-*.lz=:\
-*.lzo=:\
-*.xz=:\
-*.zst=:\
-*.tzst=:\
-*.bz2=:\
-*.bz=:\
-*.tbz=:\
-*.tbz2=:\
-*.tz=:\
-*.deb=:\
-*.rpm=:\
-*.jar=:\
-*.war=:\
-*.ear=:\
-*.sar=:\
-*.rar=:\
-*.alz=:\
-*.ace=:\
-*.zoo=:\
-*.cpio=:\
-*.7z=:\
-*.rz=:\
-*.cab=:\
-*.wim=:\
-*.swm=:\
-*.dwm=:\
-*.esd=:\
-*.jpg=:\
-*.jpeg=:\
-*.mjpg=:\
-*.mjpeg=:\
-*.gif=:\
-*.bmp=:\
-*.pbm=:\
-*.pgm=:\
-*.ppm=:\
-*.tga=:\
-*.xbm=:\
-*.xpm=:\
-*.tif=:\
-*.tiff=:\
-*.png=:\
-*.svg=:\
-*.svgz=:\
-*.mng=:\
-*.pcx=:\
-*.mov=:\
-*.mpg=:\
-*.mpeg=:\
-*.m2v=:\
-*.mkv=:\
-*.webm=:\
-*.ogm=:\
-*.mp4=:\
-*.m4v=:\
-*.mp4v=:\
-*.vob=:\
-*.qt=:\
-*.nuv=:\
-*.wmv=:\
-*.asf=:\
-*.rm=:\
-*.rmvb=:\
-*.flc=:\
-*.avi=:\
-*.fli=:\
-*.flv=:\
-*.gl=:\
-*.dl=:\
-*.xcf=:\
-*.xwd=:\
-*.yuv=:\
-*.cgm=:\
-*.emf=:\
-*.ogv=:\
-*.ogx=:\
-*.aac=:\
-*.au=:\
-*.flac=🎵:\
-*.m4a=🎵:\
-*.mid=:\
-*.midi=🎵:\
-*.mka=:\
-*.mp3=🎵:\
-*.mpc=:\
-*.ogg=🎵:\
-*.ra=:\
-*.wav=🎵:\
-*.oga=:\
-*.opus=🎵:\
-*.spx=:\
-*.xspf=:\
-*.pdf=:\
-*.nix=:\
-"
-
-# Facilita extrair arquivos
-# Exemplo: ex (arquivo).zip
-SAVEIFS=$IFS
-IFS=$(echo -en "\n\b")
-function ex {
-    for n in "$@"
-    do
-      if [ -f "$n" ] ; then
-          case "${n%,}" in
-            *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
-                         tar xvf "$n"       ;;
-            *.lzma)      unlzma ./"$n"      ;;
-            *.bz2)       bunzip2 ./"$n"     ;;
-            *.cbr|*.rar)       unrar x -ad ./"$n" ;;
-            *.gz)        gunzip ./"$n"      ;;
-            *.cbz|*.epub|*.zip)       unzip ./"$n"       ;;
-            *.z)         uncompress ./"$n"  ;;
-            *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
-                         7z x ./"$n"        ;;
-            *.xz)        unxz ./"$n"        ;;
-            *.exe)       cabextract ./"$n"  ;;
-            *.cpio)      cpio -id < ./"$n"  ;;
-            *.cba|*.ace)      unace x ./"$n"      ;;
-            *)
-                         echo "ex: '$n' - Metodo de archivação desconhecido"
-                         return 1
-                         ;;
-          esac
-      else
-          echo "'$n' - Arquivo não existe"
-          return 1
-      fi
-    done
-}
-IFS=$SAVEIFS
-
-# Aliases
-alias n="neofetch"
-alias v="nvim"
-alias h="htop"
-alias ed="emacs --daemon"
-alias ek="emacsclient -e '(kill-emacs)'"
-alias e="emacsclient -c"
-alias copy="xclip -selection clipboard"
-alias sudo="doas"
-alias p="ping google.com"
-alias yt="yt-dlp"
-alias yta="yt-dlp -x --audio-format mp3"
-alias ka="doas killall"
-alias mi="make install"
-alias mu="make uninstall"
-alias dh="doom help"
-alias ds="doom sync"
-alias dd="doom doctor"
-alias du="doom upgrade"
-alias dr="doom run"
-alias dp="doom purge"
-alias dmi="doas make install"
-alias dmu="doas make uninstall"
-alias dnr="dotnet run"
-alias dnn="dotnet new"
-alias dns="dotnet-script"
-alias xp="xprop"
-alias xk="xkill"
-alias grep="grep --color -i"
-alias sys="doas systemctl"
-# Arquivos e Diretórios
-alias l="lsd -l --group-dirs first"
-alias la="lsd -A --group-dirs first"
-alias lla="lsd -lA --group-dirs first"
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias lo="locate -Ai"
-alias u="doas updatedb"
-alias ch="chmod +x"
-alias cp="cp -ri"
-alias mv="mv -i"
-alias rm="rm -rI"
-alias ln="ln -i"
-alias md="mkdir -p"
-alias t="touch"
-alias mnt="doas mount"
-alias umnt="doas umount"
-# Git
-alias gi="git init"
-alias gc="git clone"
-alias gs="git status"
-alias gsr="git_status_recursivo"
-alias gd="git diff"
-alias gds="git diff --staged"
-alias gl="git log --oneline"
-alias ga="git add"
-alias gaf="git add -f"
-alias gcm="git commit -m"
-alias gco="git checkout"
-alias gps="git push"
-alias gpl="git pull"
-alias gr="git restore"
-alias grs="git restore --staged"
-alias grrs='git reset --soft'
-alias grrh='git reset --hard'
-# Pacman
-alias ps="doas pacman -S"
-alias psi="pacman -Si"
-alias pss="pacman -Ss"
-alias psyu="doas pacman -Syu"
-alias pqs="pacman -Qs"
-alias prns="doas pacman -Rns"
-alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
-# Paru
-alias pps="paru -S"
-alias ppsi="paru -Si"
-alias ppss="paru -Ss"
-alias ppsyu="paru -Syu"
-alias ppqs="paru -Qs"
-alias pprns="paru -Rns"
-
-# Prompt do starship
-eval "$(starship init zsh)"
-
-# Carrega os indicações de sintaxe, deve ser o ultimo comando.
-source $HOME/.config/shell/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source $HOME/.config/shell/plugins/you-should-use.plugin.zsh
-#+end_src
-
-** Bash
-
-Shell usado pelo arch tambem muito usado em scripts, bashrc trocado de lugar colocando =. local/do/bashrc= no final de =/etc/bash.bashrc=
-
-- =~/.config/shell/bashrc=
-
-#+begin_src bash :tangle ~/.config/shell/bashrc
-# Se não executando bash interativamente
-# Não executa o resto do bashrc
-[[ $- != *i* ]] && return
-
-# Aliases
-alias n='neofetch'
-alias v='nvim'
-alias h="htop"
-alias ed="emacs --daemon"
-alias ek="emacsclient -e '(kill-emacs)'"
-alias e='emacsclient -c'
-alias copy='xclip -selection clipboard'
-alias sudo='doas'
-alias p='ping google.com'
-alias yt='yt-dlp'
-alias yta='yt-dlp -x --audio-format mp3'
-alias ka="doas killall"
-alias mi="make install"
-alias mu="make uninstall"
-alias dh="doom help"
-alias ds="doom sync"
-alias dd="doom doctor"
-alias du="doom upgrade"
-alias dr="doom run"
-alias dp="doom purge"
-alias dmi="doas make install"
-alias dmu="doas make uninstall"
-alias dnr="dotnet run"
-alias dnn="dotnet new"
-alias dns="dotnet-script"
-alias xp="xprop"
-alias xk="xkill"
-alias grep="grep --color -i"
-alias sys="doas systemctl"
-# Arquivos e Diretórios
-alias l='lsd -l --group-dirs first'
-alias la='lsd -A --group-dirs first'
-alias lla='lsd -lA --group-dirs first'
-alias ..='cd ..'
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias lo='locate -Ai'
-alias u='sudo updatedb'
-alias ch='chmod +x'
-alias cp="cp -ri"
-alias mv="mv -i"
-alias rm="rm -rI"
-alias ln="ln -i"
-alias md="mkdir -p"
-alias t="touch"
-alias mnt="doas mount"
-alias umnt="doas umount"
-# Git
-alias gi='git init'
-alias gc='git clone'
-alias gs='git status'
-alias gsr="git_status_recursivo"
-alias gd='git diff'
-alias gds='git diff --staged'
-alias gl='git log --oneline'
-alias ga='git add'
-alias gaf='git add -f'
-alias gcm='git commit -m'
-alias gco="git checkout"
-alias gps='git push'
-alias gpl='git pull'
-alias gr='git restore'
-alias grs="git restore --staged"
-alias grrs='git reset --soft'
-alias grrh='git reset --hard'
-# Pacman
-alias ps='doas pacman -S'
-alias psi='pacman -Si'
-alias pss='pacman -Ss'
-alias psyu='doas pacman -Syu'
-alias pqs='pacman -Qs'
-alias prns='doas pacman -Rns'
-alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
-# Paru
-alias pps="paru -S"
-alias ppsi="paru -Si"
-alias ppss="paru -Ss"
-alias ppsyu="paru -Syu"
-alias ppqs="paru -Qs"
-alias pprns="paru -Rns"
-
-# Ignora case-sensitivity quando completa comandos com tab
-if [ ! -a $HOME/.config/readline/inputrc ]; then echo '$include /etc/inputrc' > $HOME/.config/readline/inputrc; fi
-echo 'set completion-ignore-case On' >> $HOME/.config/readline/inputrc
-# Corrige automaticamente erros ao usar o cd
-shopt -s cdspell
-# Salva comandos de múltiplas linhas como uma linha única
-shopt -s cmdhist
 
 # Adiciona ícones no lf
 export LF_ICONS="\
@@ -797,6 +236,415 @@ ex=:\
 ,*.nix=:\
 "
 
+# Muda o local padrão de alguns dotfiles limpando a $HOME ou ~
+# Define diretórios com o padrão xdg
+UID="$(id -u)" # Pega o id de usuario
+export HOME="/home/lucas"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_RUNTIME_DIR="/run/user/$UID"
+export XDG_BIN_HOME="$HOME/.local/bin"
+
+# Pass
+export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/pass"
+# Bat como um manpager
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# Terminal
+export TERMINAL="st"
+export TERM="xterm-256color"
+# Navegador padrão
+export BROWSER="qutebrowser"
+# Pager
+export PAGER='less'
+# Faz o qt usar o thema do gtk2
+export QT_QPA_PLATFORMTHEME="gtk2"
+# Less
+export LESSHISTFILE="-"
+# Wget
+export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
+# XAuthority
+export XAUTHORITY="${XDG_RUNTIME_DIR:-/run/user/$UID}/Xauthority"
+# Cargo
+export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
+# Omnisharp
+export OMNISHARPHOME="${XDG_DATA_HOME:-$HOME/.local/share}/omnisharp"
+# Nuget
+export NUGET_PACKAGES="${XDG_CACHE_HOME:-$HOME/.cache}/NuGetPackages"
+# Gnupg
+export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
+# Npm
+export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc"
+# Terminfo
+export TERMINFO="${XDG_DATA_HOME:-$HOME/.local/share}/terminfo"
+# Inputrc
+export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/readline/inputrc"
+# Gtk 2
+export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc"
+# W3m
+export W3M_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/w3m"
+# Go
+export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
+# Ghcup
+export GHCUP_INSTALL_BASE_PREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/"
+export GHCUP_USE_XDG_DIRS="1"
+# Cabal
+export CABAL_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/cabal/config"
+export CABAL_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/cabal"
+# Starship
+export STARSHIP_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/starship/config.toml"
+# Android sdk
+export ANDROID_SDK_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/android"
+# Wine
+export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
+
+# Shell
+export SHELL="dash"
+# Muda o local do zshrc
+export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/shell"
+# Muda o local do histórico
+export HISTFILE="${XDG_CONFIG_HOME:-$HOME/.config}/shell/history"
+# Aumenta o tamanho limite do histórico
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+# Ignora e deleta comandos duplicados no histórico
+export HISTCONTROL=ignoredups:erasedups
+
+# Adiciona diretórios bin e scripts ao path
+export PATH="$GOPATH/bin:$PATH"
+export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/ghcup/ghc/**/bin:$PATH"
+export PATH="/usr/lib/jvm/java-11-openjdk/bin:$PATH"
+export PATH="$HOME/code/shell/dmenuscripts:$PATH"
+export PATH="$HOME/code/shell/scripts:$PATH"
+export PATH="${XDG_BIN_HOME:-$HOME/.local/bin}:$PATH"
+
+# DOOM emacs
+export PATH="${XDG_CONFIG_HOME:-$HOME/.config}/emacs/bin:$PATH"
+export EMACSDIR="${XDG_CONFIG_HOME:-$HOME/.config}/emacs"
+export DOOMDIR="${XDG_CONFIG_HOME:-$HOME/.config}/doom"
+export DOOMLOCALDIR="${XDG_CONFIG_HOME:-$HOME/.config}/emacs/.local"
+# Editor no terminal
+export EDITOR="emacsclient -n -c"
+# Editor com interface gráfica
+export VISUAL="emacsclient -n -c"
+
+# Usa o dmenu como autenticador GUI
+export SSH_ASKPASS="doas_askpass"
+export GIT_ASKPASS="doas_askpass"
+export SUDO_ASKPASS="$HOME/code/shell/dmenuscripts/dmenu_pass"
+export DOAS_ASKPASS="dmenu -fn Monospace-18 -c -cw 500 -P -p 🔑Senha:"
+
+# Localização para datas
+export LC_TIME="pt_BR.UTF-8"
+
+# Previsão de imagens no lf
+lf () {
+    LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"
+    LF_TEMPDIR="$LF_TEMPDIR" lf-run -last-dir-path="$LF_TEMPDIR/lastdir" "$@"
+    if [ "$(cat "$LF_TEMPDIR/cdtolastdir" 2>/dev/null)" = "1" ]; then
+	cd "$(cat "$LF_TEMPDIR/lastdir")"
+    fi
+    rm -r "$LF_TEMPDIR"
+    unset LF_TEMPDIR
+}
+
+[ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
+#+end_src
+
+** Zsh
+
+Shell interativo, Trocado de diretório pela variável *ZDOTDIR*
+
+- =~/.config/shell/.zshrc=
+
+#+begin_src zsh :tangle ~/.config/shell/.zshrc
+# Se não executando zsh interativamente
+# Não executa o resto do bashrc
+[[ $- != *i* ]] && return
+
+# ZSH EXPORTS
+export SHELL="zsh"
+# Não adiciona esses itens ao histórico
+export HISTORY_IGNORE="(ls|cd|pwd|exit|doas reboot|history|cd -|cd ..)"
+HISTFILE=~/.config/shell/history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt SHARE_HISTORY
+
+# Carrega cores
+autoload -U colors && colors
+
+# Ativa comentários na mesma linha de um comando
+setopt interactive_comments
+
+# TECLAS
+# Sai do modo vim
+bindkey -e
+# Deleta caracteres usado delete
+bindkey "^[[3~" delete-char
+# Home/End vai pro começo/fim da linha
+bindkey  "^[[H"   beginning-of-line
+bindkey  "^[[4~"   end-of-line
+
+# Completar comandos
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)		# Incluir arquivos ocultos.
+
+## FUNÇÕES
+
+# Previsão de imagens no lf
+lf () {
+    LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"
+    LF_TEMPDIR="$LF_TEMPDIR" lf-run -last-dir-path="$LF_TEMPDIR/lastdir" "$@"
+    if [ "$(cat "$LF_TEMPDIR/cdtolastdir" 2>/dev/null)" = "1" ]; then
+	cd "$(cat "$LF_TEMPDIR/lastdir")"
+    fi
+    rm -r "$LF_TEMPDIR"
+    unset LF_TEMPDIR
+}
+
+# Facilita extrair arquivos
+# Exemplo: ex (arquivo).zip
+SAVEIFS=$IFS
+IFS=$(echo -en "\n\b")
+function ex {
+    for n in "$@"
+    do
+      if [ -f "$n" ] ; then
+          case "${n%,}" in
+            *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
+                         tar xvf "$n"       ;;
+            *.lzma)      unlzma ./"$n"      ;;
+            *.bz2)       bunzip2 ./"$n"     ;;
+            *.cbr|*.rar)       unrar x -ad ./"$n" ;;
+            *.gz)        gunzip ./"$n"      ;;
+            *.cbz|*.epub|*.zip)       unzip ./"$n"       ;;
+            *.z)         uncompress ./"$n"  ;;
+            *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
+                         7z x ./"$n"        ;;
+            *.xz)        unxz ./"$n"        ;;
+            *.exe)       cabextract ./"$n"  ;;
+            *.cpio)      cpio -id < ./"$n"  ;;
+            *.cba|*.ace)      unace x ./"$n"      ;;
+            *)
+                         echo "ex: '$n' - Metodo de archivação desconhecido"
+                         return 1
+                         ;;
+          esac
+      else
+          echo "'$n' - Arquivo não existe"
+          return 1
+      fi
+    done
+}
+IFS=$SAVEIFS
+
+# Aliases
+alias n="neofetch"
+alias v="nvim"
+alias h="htop"
+alias ed="emacs --daemon"
+alias ek="emacsclient -e '(kill-emacs)'"
+alias e="emacsclient -n -c"
+alias copy="xclip -selection clipboard"
+alias sudo="doas"
+alias p="ping google.com"
+alias yt="yt-dlp"
+alias yta="yt-dlp -x --audio-format mp3"
+alias ka="doas killall"
+alias mi="make install"
+alias mu="make uninstall"
+alias dh="doom help"
+alias ds="doom sync"
+alias dd="doom doctor"
+alias du="doom upgrade"
+alias dr="doom run"
+alias dp="doom purge"
+alias dmi="doas make install"
+alias dmu="doas make uninstall"
+alias dnr="dotnet run"
+alias dnn="dotnet new"
+alias dns="dotnet-script"
+alias xp="xprop"
+alias xk="xkill"
+alias grep="grep --color -i"
+alias sys="doas systemctl"
+# Arquivos e Diretórios
+alias l="lsd -l --group-dirs first"
+alias la="lsd -A --group-dirs first"
+alias lla="lsd -lA --group-dirs first"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias lo="locate -Ai"
+alias u="doas updatedb"
+alias ch="chmod +x"
+alias cp="cp -ri"
+alias mv="mv -i"
+alias rm="rm -rI"
+alias ln="ln -i"
+alias md="mkdir -p"
+alias t="touch"
+alias mnt="doas mount"
+alias umnt="doas umount"
+# Git
+alias gi="git init"
+alias gc="git clone"
+alias gs="git status"
+alias gsr="git_status_recursivo"
+alias gd="git diff"
+alias gds="git diff --staged"
+alias gl="git log --oneline"
+alias ga="git add"
+alias gaf="git add -f"
+alias gcm="git commit -m"
+alias gco="git checkout"
+alias gps="git push"
+alias gpl="git pull"
+alias gr="git restore"
+alias grs="git restore --staged"
+alias grrs='git reset --soft'
+alias grrh='git reset --hard'
+# Pacman
+alias ps="doas pacman -S"
+alias psi="pacman -Si"
+alias pss="pacman -Ss"
+alias psyu="doas pacman -Syu"
+alias pqs="pacman -Qs"
+alias prns="doas pacman -Rns"
+alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
+# Paru
+alias pps="paru -S"
+alias ppsi="paru -Si"
+alias ppss="paru -Ss"
+alias ppsyu="paru -Syu"
+alias ppqs="paru -Qs"
+alias pprns="paru -Rns"
+
+# Prompt do starship
+eval "$(starship init zsh)"
+
+# Carrega os indicações de sintaxe, deve ser o ultimo comando.
+source $HOME/.config/shell/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source $HOME/.config/shell/plugins/you-should-use.plugin.zsh
+#+end_src
+
+** Bash
+
+Shell usado pelo arch também muito usado em scripts, bashrc trocado de lugar colocando =. local/do/bashrc= no final de =/etc/bash.bashrc=
+
+- =~/.config/shell/bashrc=
+
+#+begin_src bash :tangle ~/.config/shell/bashrc
+# Se não executando bash interativamente
+# Não executa o resto do bashrc
+[[ $- != *i* ]] && return
+
+# Aliases
+alias n='neofetch'
+alias v='nvim'
+alias h="htop"
+alias ed="emacs --daemon"
+alias ek="emacsclient -e '(kill-emacs)'"
+alias e='emacsclient -n -c'
+alias copy='xclip -selection clipboard'
+alias sudo='doas'
+alias p='ping google.com'
+alias yt='yt-dlp'
+alias yta='yt-dlp -x --audio-format mp3'
+alias ka="doas killall"
+alias mi="make install"
+alias mu="make uninstall"
+alias dh="doom help"
+alias ds="doom sync"
+alias dd="doom doctor"
+alias du="doom upgrade"
+alias dr="doom run"
+alias dp="doom purge"
+alias dmi="doas make install"
+alias dmu="doas make uninstall"
+alias dnr="dotnet run"
+alias dnn="dotnet new"
+alias dns="dotnet-script"
+alias xp="xprop"
+alias xk="xkill"
+alias grep="grep --color -i"
+alias sys="doas systemctl"
+# Arquivos e Diretórios
+alias l='lsd -l --group-dirs first'
+alias la='lsd -A --group-dirs first'
+alias lla='lsd -lA --group-dirs first'
+alias ..='cd ..'
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias lo='locate -Ai'
+alias u='sudo updatedb'
+alias ch='chmod +x'
+alias cp="cp -ri"
+alias mv="mv -i"
+alias rm="rm -rI"
+alias ln="ln -i"
+alias md="mkdir -p"
+alias t="touch"
+alias mnt="doas mount"
+alias umnt="doas umount"
+# Git
+alias gi='git init'
+alias gc='git clone'
+alias gs='git status'
+alias gsr="git_status_recursivo"
+alias gd='git diff'
+alias gds='git diff --staged'
+alias gl='git log --oneline'
+alias ga='git add'
+alias gaf='git add -f'
+alias gcm='git commit -m'
+alias gco="git checkout"
+alias gps='git push'
+alias gpl='git pull'
+alias gr='git restore'
+alias grs="git restore --staged"
+alias grrs='git reset --soft'
+alias grrh='git reset --hard'
+# Pacman
+alias ps='doas pacman -S'
+alias psi='pacman -Si'
+alias pss='pacman -Ss'
+alias psyu='doas pacman -Syu'
+alias pqs='pacman -Qs'
+alias prns='doas pacman -Rns'
+alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
+# Paru
+alias pps="paru -S"
+alias ppsi="paru -Si"
+alias ppss="paru -Ss"
+alias ppsyu="paru -Syu"
+alias ppqs="paru -Qs"
+alias pprns="paru -Rns"
+
+# Ignora case-sensitivity quando completa comandos com tab
+if [ ! -a $HOME/.config/readline/inputrc ]; then echo '$include /etc/inputrc' > $HOME/.config/readline/inputrc; fi
+echo 'set completion-ignore-case On' >> $HOME/.config/readline/inputrc
+# Corrige automaticamente erros ao usar o cd
+shopt -s cdspell
+# Salva comandos de múltiplas linhas como uma linha única
+shopt -s cmdhist
+
+# Previsão de imagens no lf
+lf () {
+    LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"
+    LF_TEMPDIR="$LF_TEMPDIR" lf-run -last-dir-path="$LF_TEMPDIR/lastdir" "$@"
+    if [ "$(cat "$LF_TEMPDIR/cdtolastdir" 2>/dev/null)" = "1" ]; then
+	cd "$(cat "$LF_TEMPDIR/lastdir")"
+    fi
+    rm -r "$LF_TEMPDIR"
+    unset LF_TEMPDIR
+}
+
 ### Facilita extrair arquivos
 # Exemplo: ex <arquivo>
 ex ()
@@ -834,7 +682,7 @@ Configuração do xserver
 
 - =~/.config/x11/xinitrc=
 
-#+begin_src shell-script :tangle ~/.config/x11/xinitrc
+#+begin_src sh :tangle ~/.config/x11/xinitrc
 #!/bin/sh
 
 # Mouse
@@ -926,7 +774,7 @@ alt + shift + {Down, Up}
 super + {Left, Right}
 	dwmc {viewprev, viewnext}
 
-# Muda a janela de tag
+# Troca a janela de tag
 super + shift {Left, Right}
   dwmc {tagtoprev, tagtonext}
 
@@ -1043,11 +891,15 @@ Menu;q
 
 # Favoritos
 Menu;f
-    tmenu ~/code/shell/dmenuscripts/listas/favoritos
+    tmenu ~/code/shell/dmenuscripts/listas/favoritos.yaml
 
 # Passmenu
 Menu;p
     passmenu --type
+
+# Dmenu_pesquisa
+Menu;o
+    dmenu_pesquisa
 
 # Anotações
 Menu;a
@@ -1299,24 +1151,24 @@ config.set('content.javascript.enabled', False)
 # Carregar o autoconfig.yml
 config.load_autoconfig(True)
 
-# Salva a sessão automaticamente
-c.auto_save.session = True
-
 # Abre novas abas de fundo
-config.set('new_instance_open_target', 'tab-bg')
+config.set('new_instance_open_target', 'window')
 
 # Barra escondida
 config.set("statusbar.show", "in-mode")
 config.set("tabs.show", "switching")
 
-# Abre a pagina inicial caso fechada única aba aberta
+# O que fazer caso a ultima pagina seja fechada
 config.set("tabs.last_close", "ignore")
+
+# Abre abas como janelas
+config.set("tabs.tabs_are_windows", True)
 
 # Confirma antes de sair
 config.set('confirm_quit', ["multiple-tabs"])
 
 # Muda ordem do menu de compleção
-config.set("completion.open_categories", ["quickmarks", "searchengines", "bookmarks", "history", "filesystem"])
+config.set("completion.open_categories", ["quickmarks", "bookmarks", "history", "filesystem"])
 
 # Formatação dos títulos das abas
 config.set("tabs.title.format", "{perc}{private}{current_title}")
@@ -1364,10 +1216,9 @@ c.content.blocking.adblock.lists = [
         ]
 
 # Usa o lf para mandar arquivos
-# config.set("fileselect.handler", "external")
-# config.set("fileselect.single_file.command", ['st', '-c', 'lf,lf', '-e', 'lf', '{}'])
-# config.set("fileselect.multiple_files.command", ['st', '-c', 'lf,lf', '-e', 'lf', '{}'])
-# config.set("fileselect.folder.command", ['st', '-c', 'lf,lf', '-e', 'lf', '{}'])
+config.set("fileselect.handler", "external")
+config.set("fileselect.single_file.command", ["st", "-e", "lf", "-selection-path", "{}"])
+config.set("fileselect.multiple_files.command", ["st", "-e", "lf", "-selection-path", "{}"])
 
 # Permitir notificações.
 # Valid values:
@@ -1384,7 +1235,7 @@ config.set('content.notifications.enabled', True, 'https://facebook.com/*')
 # `{column}`: Column in which the caret is found in the text. *
 # `{line0}`: Same as `{line}`, but starting from index 0. * `{column0}`:
 # Same as `{column}`, but starting from index 0.
-c.editor.command = ['emacsclient', '-c', '{}']
+c.editor.command = ['nvim', '{}']
 
 # Search engines which can be used via the address bar.  Maps a search
 # engine name (such as `DEFAULT`, or `ddg`) to a URL with a `{}`
@@ -1405,25 +1256,6 @@ c.editor.command = ['emacsclient', '-c', '{}']
 # the search engine name to the search term, e.g. `:open google
 # qutebrowser`.
 c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
-                    ,  'yt': 'https://www.youtube.com/results?search_query={}'
-                    ,  'gh': 'https://github.com/search?q={}'
-                    ,  't': 'https://translate.google.com/?sl=auto&tl=en&text={}'
-                    ,  'sc': 'https://soundcloud.com/search?q={}'
-                    ,  'aw': 'https://wiki.archlinux.org/index.php?search={}'
-                    ,  'se': 'https://stackexchange.com/search?q={}'
-                    ,  'sf': 'https://sourceforge.net/directory/?q={}'
-                    ,  'gl': 'https://gitlab.com/search?search={}'
-                    ,  'gm': 'https://www.google.com.br/maps/search/{}'
-                    ,  'gf': 'https://greasyfork.org/en/scripts?q={}'
-                    ,  'md': 'https://mangadex.org/titles?page=1&q={}&order=relevance.desc'
-                    ,  'r': 'https://www.reddit.com/r/{}'
-                    ,  'ud': 'https://www.urbandictionary.com/define.php?term={}'
-                    ,  'al': 'https://anilist.co/search/anime?search={}&sort=SEARCH_MATCH'
-                    ,  'alm': 'https://anilist.co/search/manga?search={}&sort=SEARCH_MATCH'
-                    ,  'b': 'https://brainly.com.br/app/ask?q={}'
-                    ,  'tw': 'https://twitter.com/search?q={}'
-                    ,  'gt': 'https://trends.google.com.br/trends/explore?q={}'
-                    ,  'wm': 'https://web.archive.org/web/*/{}'
                     }
 
 # ATALHOS
@@ -1461,14 +1293,12 @@ config.bind('ztp', 'spawn --userscript translate')
 config.bind('zts', 'spawn --userscript translate --text')
 # Modo leitura
 config.bind('zl', 'spawn --userscript readability')
-# Passa a aba para uma outra janela
-config.bind('zg', 'tab-give')
 # Copia links
 config.bind('zc', 'hint links yank')
 # Copia trechos de codigo
 config.bind('zC', 'hint code userscript code_select.py')
 c.hints.selectors["code"] = [
-    # Selects all code tags whose direct parent is not a pre tag
+    # Seleciona code tags onde o parente nao é uma tag pre
     ":not(pre) > code",
     "pre"
 ]
@@ -2270,9 +2100,9 @@ Explorador de arquivos lf
 
 - =~/.config/lf/lfrc=
 
-#+begin_src bash :tangle ~/.config/lf/lfrc
+#+begin_src sh :tangle ~/.config/lf/lfrc
 # interpreter for shell commands
-set shell bash
+set shell sh
 
 # set '-eu' options for shell commands
 # These options are used to have safer shell commands. Option '-e' is used to
@@ -2322,13 +2152,13 @@ set scrolloff 0
 cmd open ${{
     case $(file --mime-type "$(readlink -f $f)" -b) in
     	application/vnd.openxmlformats-officedocument.wordprocessingml.document) libreoffice $f ;;
-	image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) zathura $fx ;;
-        text/*) emacsclient -c $fx ;;
-	image/*) nsxiv . ;;
-	audio/*) mpv --audio-display=no $fx ;;
-	video/*) mpv $fx ;;
-	application/pdf|application/vnd*|application/epub*) zathura $fx ;;
-	application/pgp-encrypted) nvim $fx ;;
+	    image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) zathura $fx ;;
+      text/*) emacsclient -n -c $fx ;;
+	    image/*) nsxiv . ;;
+	    audio/*) mpv --audio-display=no $fx ;;
+	    video/*) mpv $fx ;;
+	    application/pdf|application/vnd*|application/epub*) zathura $fx ;;
+	    application/pgp-encrypted) nvim $fx ;;
         ,*) xdg-open $fx ;;
     esac
 }}
@@ -2360,19 +2190,26 @@ cmd extract ${{
 cmd mkfile ${{
   printf "Nome do arquivo: "
   read ans
-  $EDITOR $ans
+  if [ $ans != "" ]; then
+  touch $ans
+  echo " " > $ans
+  fi
 }}
 
 cmd chmod ${{
-  printf "Bits: "
-  read ans
-
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	printf "%s\n\t" "$fx"
+	printf "tornar executavel?[y/N]"
+	read ans
+	if [ $ans = "y" ]; then
   for file in "$fx"
   do
-    chmod $ans $file
+     chmod +x $file
   done
 
   lf -remote 'send reload'
+  fi
 }}
 
 map m
@@ -2392,9 +2229,10 @@ map c chmod
 map C clear
 map m mkdir
 map E extract
+map p !nsxiv .
 
 # Atalhos
-map gcC cd ~/.config
+map gC cd ~/.config
 map gcc cd ~/code/c
 map gcs cd ~/code/shell
 map gcS cd ~/code/csharp
@@ -2413,6 +2251,8 @@ map gmi cd ~/media/imagens
 map gmm cd ~/media/musicas
 map gmc cd ~/media/cursos
 #+end_src
+
+#+RESULTS:
 
 * Handlr
 
@@ -3031,7 +2871,7 @@ Gerenciador de janelas bspwm
 
 - =~/.config/bspwm/bspwmrc=
 
-#+begin_src shell-script :tangle ~/.config/bspwm/bspwmrc
+#+begin_src sh :tangle ~/.config/bspwm/bspwmrc
 #!/bin/sh
 
 # Monitor
@@ -3097,11 +2937,11 @@ Arquivos ignorados pelo git
 
 #+begin_src gitignore :tangle ~/.gitignore
 .cache/
+.config/cabal/
 .config/coc/
 .config/dconf/
 .config/discord/
 .config/emacs/
-.config/emacsbkp/
 .config/doom/themes/
 .config/doom/yasnippet-snippets/
 .config/doom/init.el

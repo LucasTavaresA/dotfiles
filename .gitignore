@@ -1,9 +1,9 @@
 .cache/
+.config/cabal/
 .config/coc/
 .config/dconf/
 .config/discord/
 .config/emacs/
-.config/emacsbkp/
 .config/doom/themes/
 .config/doom/yasnippet-snippets/
 .config/doom/init.el

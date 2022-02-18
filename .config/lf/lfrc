@@ -1,5 +1,5 @@
 # interpreter for shell commands
-set shell bash
+set shell sh
 
 # set '-eu' options for shell commands
 # These options are used to have safer shell commands. Option '-e' is used to
@@ -49,13 +49,13 @@ set scrolloff 0
 cmd open ${{
     case $(file --mime-type "$(readlink -f $f)" -b) in
     	application/vnd.openxmlformats-officedocument.wordprocessingml.document) libreoffice $f ;;
-	image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) zathura $fx ;;
-        text/*) emacsclient -c $fx ;;
-	image/*) nsxiv . ;;
-	audio/*) mpv --audio-display=no $fx ;;
-	video/*) mpv $fx ;;
-	application/pdf|application/vnd*|application/epub*) zathura $fx ;;
-	application/pgp-encrypted) nvim $fx ;;
+	    image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) zathura $fx ;;
+      text/*) emacsclient -n -c $fx ;;
+	    image/*) nsxiv . ;;
+	    audio/*) mpv --audio-display=no $fx ;;
+	    video/*) mpv $fx ;;
+	    application/pdf|application/vnd*|application/epub*) zathura $fx ;;
+	    application/pgp-encrypted) nvim $fx ;;
         *) xdg-open $fx ;;
     esac
 }}
@@ -87,19 +87,26 @@ cmd extract ${{
 cmd mkfile ${{
   printf "Nome do arquivo: "
   read ans
-  $EDITOR $ans
+  if [ $ans != "" ]; then
+  touch $ans
+  echo " " > $ans
+  fi
 }}
 
 cmd chmod ${{
-  printf "Bits: "
-  read ans
-
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	printf "%s\n\t" "$fx"
+	printf "tornar executavel?[y/N]"
+	read ans
+	if [ $ans = "y" ]; then
   for file in "$fx"
   do
-    chmod $ans $file
+     chmod +x $file
   done
 
   lf -remote 'send reload'
+  fi
 }}
 
 map m
@@ -119,9 +126,10 @@ map c chmod
 map C clear
 map m mkdir
 map E extract
+map p !nsxiv .
 
 # Atalhos
-map gcC cd ~/.config
+map gC cd ~/.config
 map gcc cd ~/code/c
 map gcs cd ~/code/shell
 map gcS cd ~/code/csharp

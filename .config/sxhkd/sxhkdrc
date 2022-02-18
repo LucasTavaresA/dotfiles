@@ -14,7 +14,7 @@ alt + shift + {Down, Up}
 super + {Left, Right}
 	dwmc {viewprev, viewnext}
 
-# Muda a janela de tag
+# Troca a janela de tag
 super + shift {Left, Right}
   dwmc {tagtoprev, tagtonext}
 
@@ -131,11 +131,15 @@ Menu;q
 
 # Favoritos
 Menu;f
-    tmenu ~/code/shell/dmenuscripts/listas/favoritos
+    tmenu ~/code/shell/dmenuscripts/listas/favoritos.yaml
 
 # Passmenu
 Menu;p
     passmenu --type
+
+# Dmenu_pesquisa
+Menu;o
+    dmenu_pesquisa
 
 # Anotações
 Menu;a

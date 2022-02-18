@@ -16,11 +16,11 @@
 
 - =init.el=
 
-Esse arquivo controla quais modulos do doom estão ativados e a ordem que carregam. Lembre de executar =doom sync= apos modificar
+Esse arquivo controla quais módulos do doom estão ativados e a ordem que carregam. Lembre de executar =doom sync= apos modificar
 
 Para informações em uma função/macro aperte =K= isso abre a sua documentação
 
-Voce pode usar =gd= para ver como é implementado
+Você pode usar =gd= para ver como é implementado
 
 #+begin_src emacs-lisp :tangle ./init.el
 ;;; init.el -*- lexical-binding: t; -*-
@@ -42,10 +42,10 @@ Voce pode usar =gd= para ver como é implementado
        doom              ; what makes DOOM look the way it does
        ;;doom-dashboard    ; a nifty splash screen for Emacs
        ;;doom-quit         ; DOOM quit-message prompts when you quit Emacs
-       (emoji +unicode)  ; 🙂
+       ;;(emoji +unicode)  ; 🙂
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        hydra
-       indent-guides     ; highlighted indent columns
+       ;;indent-guides     ; highlighted indent columns
        ;;(ligatures +fira)         ; ligatures and symbols to make your code pretty again
        ;;minimap           ; show a map of the code on the side
        ;;modeline          ; snazzy, Atom-inspired modeline, plus API
@@ -97,7 +97,7 @@ Voce pode usar =gd= para ver como é implementado
        :tools
        ;;ansible
        ;;biblio            ; Writes a PhD for you (citation needed)
-       ;;debugger          ; FIXME stepping through code, to help you add bugs
+       debugger          ; FIXME stepping through code, to help you add bugs
        ;;direnv
        ;;docker
        ;;editorconfig      ; let someone else argue about tabs vs spaces
@@ -106,11 +106,11 @@ Voce pode usar =gd= para ver como é implementado
        ;;gist              ; interacting with github gists
        lookup              ; navigate your code and its documentation
        lsp               ; M-x vscode
-       magit             ; a git porcelain for Emacs
+       ;;magit             ; a git porcelain for Emacs
        make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
        ;;pdf               ; pdf enhancements
-       ;;prodigy           ; FIXME managing external services & code builders
+       prodigy           ; FIXME managing external services & code builders
        rgb               ; creating color strings
        ;;taskrunner        ; taskrunner for all your projects
        ;;terraform         ; infrastructure as code
@@ -207,7 +207,7 @@ Voce pode usar =gd= para ver como é implementado
 
 Para instalar um pacote o declare aqui e execute =doom sync= na linha de comando, e reinicie o emacs para as mudanças fazerem efeito ou use =M-x doom/reload=
 
-Para installar *algum-pacote* da MELPA, ELPA ou emacsmirror: =(package! algum-pacote)=
+Para instalar *algum-pacote* da MELPA, ELPA ou emacsmirror: =(package! algum-pacote)=
 
 Para desabilitar um *pacote-do-doom* use =(package! pacote-do-doom :disable t)=
 
@@ -243,6 +243,10 @@ Para desabilitar um *pacote-do-doom* use =(package! pacote-do-doom :disable t)=
 ;; Arvore de undos
 (package! undo-tree)
 
+;; Correção ortografica
+(package! flyspell)
+(package! flyspell-popup)
+
 ;; Centraliza seguindo o cursor ainda muito lento
 ;; (package! centered-cursor-mode)
 
@@ -259,14 +263,14 @@ Não é necessário usar =doom sync= apos modificar esse arquivo
 
 Para informações em uma função/macro aperte =K= isso abre a sua documentação
 
-Voce pode usar =gd= para ver como é implementado
+Você pode usar =gd= para ver como é implementado
 
 - =load!= para carregar arquivos *.el relativos a esse
 - =use-package!= para configurar pacotes
-- =after!= para rodar codigo apos um pacote ser carregado
+- =after!= para rodar código apos um pacote ser carregado
 - =add-load-path!= para adicionar diretórios ao =load-path=, relativos a esse arquivo. Emacs procura pelo =load-path= quando usando =require= e =use-package=
 
-** Aparencia
+** Aparência
 
 #+begin_src emacs-lisp :tangle ./config.el
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
@@ -291,13 +295,13 @@ Voce pode usar =gd= para ver como é implementado
 (setq evil-emacs-state-cursor    '("#ffff00" box))
 (setq evil-normal-state-cursor   '("#ffffff" box))
 (setq evil-operator-state-cursor '("#ebcb8b" hollow))
-(setq evil-visual-state-cursor   '("#555555" box))
+(setq evil-visual-state-cursor   '("#ffffff" box))
 (setq evil-insert-state-cursor   '("#ffffff" (bar . 2)))
-(setq evil-replace-state-cursor  '("#ff0000" hbar))
+(setq evil-replace-state-cursor  '("#ff0000" (hbar . 4)))
 (setq evil-motion-state-cursor   '("#ad8beb" box))
 #+end_src
 
-** Miscelanea
+** Miscelânea
 
 #+begin_src emacs-lisp :tangle ./config.el
 
@@ -328,6 +332,30 @@ Voce pode usar =gd= para ver como é implementado
 
 ;; Simula linhas de acordo com visibilidade
 ;; (global-visual-line-mode t)
+
+(use-package! flyspell
+  :defer t
+  :config
+  (add-to-list 'ispell-skip-region-alist '("~" "~"))
+  (add-to-list 'ispell-skip-region-alist '("=" "="))
+  (add-to-list 'ispell-skip-region-alist '("^#\\+BEGIN_SRC" . "^#\\+END_SRC"))
+  (add-to-list 'ispell-skip-region-alist '("^#\\+BEGIN_EXPORT" . "^#\\+END_EXPORT"))
+  (add-to-list 'ispell-skip-region-alist '("^#\\+BEGIN_EXPORT" . "^#\\+END_EXPORT"))
+  (add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:")))
+(setq flyspell-sort-corrections nil) ; Não organizar correções por ordem alfabetica
+(setq flyspell-issue-message-flag nil) ; Não mandar mensagens para cada palavra errada
+(with-eval-after-load "ispell"
+  ;; Uma lingua padrão deve ser configurada embora outras linguas sejam adicionadas mais abaixo
+  (setenv "LANG" "pt_BR.UTF-8")          ; lingua padrão
+  (setq ispell-program-name "hunspell")  ; ferramenta uilizada
+  (setq ispell-dictionary "pt_BR,en_US") ; lista de linguas
+  (ispell-set-spellchecker-params)       ; isso deve ser chamado antes de adicionar multi dicionários
+  (ispell-hunspell-add-multi-dic "pt_BR,en_US")
+  ;; Local do dicionario pessoal, caso não definida novas palavras são adicionadas ao .hunspell_pt_BR
+  (setq ispell-personal-dictionary "~/.config/hunspell/hunspell_personal"))
+;; Não  carrega dicionario pessoal caso ele não exista
+(unless (file-exists-p ispell-personal-dictionary)
+  (write-region "" nil ispell-personal-dictionary nil 0))
 
 ;; Desabilita funções incomodantes do lsp
 (after! lsp-mode
@@ -498,14 +526,9 @@ Voce pode usar =gd= para ver como é implementado
 (use-package! org-appear
   :hook (org-mode . org-appear-mode))
 
-;; Automaticamente separa a configuração do init.org quando o salva
-(defun orgm/org-babel-tangle-config ()
-  (when (string-equal (buffer-file-name)
-                      (expand-file-name "~/.config/doom/config.org"))
-    (let ((org-confirm-babel-evaluate nil))
-      (org-babel-tangle))))
+;; Pergunta se quer separar apos salvar arquivos org
+(add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook (lambda ()(if (y-or-n-p "Tangle?")(org-babel-tangle))) nil t)))
 
-(add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'orgm/org-babel-tangle-config)))
 #+end_src
 
 #+RESULTS:

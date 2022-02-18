@@ -1,5 +1,5 @@
 diff --git a/themes/doom-solarized-dark-theme.el b/themes/doom-solarized-dark-theme.el
-index 090c379..1539131 100644
+index 090c379..52c158b 100644
 --- a/themes/doom-solarized-dark-theme.el
 +++ b/themes/doom-solarized-dark-theme.el
 @@ -53,67 +53,82 @@ Can be an integer to determine the exact padding."
@@ -104,7 +104,7 @@ index 090c379..1539131 100644
 +   (highlight      pwhite) ; Cursor
 +   (vertical-bar   plightgrey) ; Barra entre splits
 +   (horizontal-bar plightgrey) ; Barra entre splits
-+   (selection      pwhite) ; alerta qual é a linha atual
++   (selection      pred) ; alerta qual é a linha atual
 +   (builtin        pcyan) ; ex: :config
 +   ;; Comentários
 +   (comments       base3)
