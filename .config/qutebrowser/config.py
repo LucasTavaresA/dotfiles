@@ -53,7 +53,7 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 # MINHAS CONFIGURAÇÕES
 
 # Tela cheia limitada a janela do navegador
-config.set('content.fullscreen.window', True)
+config.set('content.fullscreen.window', False)
 
 # Mostra a barra de scroll quando procurando uma palavra
 config.set('scrolling.bar', 'when-searching')
@@ -75,6 +75,9 @@ config.load_autoconfig(True)
 
 # Abre novas abas de fundo
 config.set('new_instance_open_target', 'window')
+
+# Entrar no modo inserção apos clicar em um elemento do tipo
+config.set('input.insert_mode.auto_enter', False)
 
 # Barra escondida
 config.set("statusbar.show", "in-mode")

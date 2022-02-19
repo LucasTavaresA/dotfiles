@@ -126,7 +126,7 @@ map c chmod
 map C clear
 map m mkdir
 map E extract
-map p !nsxiv .
+map i !nsxiv .
 
 # Atalhos
 map gC cd ~/.config

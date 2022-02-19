@@ -705,6 +705,8 @@ clipmenud &
 mpd &
 dunst &
 nitrogen --restore &
+slstatus &
+nm-applet &
 xbanish &
 fluxgui &
 sxhkd &
@@ -1131,7 +1133,7 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 # MINHAS CONFIGURAÇÕES
 
 # Tela cheia limitada a janela do navegador
-config.set('content.fullscreen.window', True)
+config.set('content.fullscreen.window', False)
 
 # Mostra a barra de scroll quando procurando uma palavra
 config.set('scrolling.bar', 'when-searching')
@@ -1153,6 +1155,9 @@ config.load_autoconfig(True)
 
 # Abre novas abas de fundo
 config.set('new_instance_open_target', 'window')
+
+# Entrar no modo inserção apos clicar em um elemento do tipo
+config.set('input.insert_mode.auto_enter', False)
 
 # Barra escondida
 config.set("statusbar.show", "in-mode")
@@ -1398,6 +1403,8 @@ c.fonts.prompts = 'default_size "monospace"'
 # Fonte usada na barra de status.
 c.fonts.statusbar = '14px "monospace"'
 #+end_src
+
+#+RESULTS:
 
 ** Tema escuro
 
@@ -2229,7 +2236,7 @@ map c chmod
 map C clear
 map m mkdir
 map E extract
-map p !nsxiv .
+map i !nsxiv .
 
 # Atalhos
 map gC cd ~/.config
