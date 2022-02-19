@@ -256,7 +256,6 @@ export HISTCONTROL=ignoredups:erasedups
 
 # Adiciona diretórios bin e scripts ao path
 export PATH="$GOPATH/bin:$PATH"
-export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/ghcup/ghc/**/bin:$PATH"
 export PATH="/usr/lib/jvm/java-11-openjdk/bin:$PATH"
 export PATH="$HOME/code/shell/dmenuscripts:$PATH"
 export PATH="$HOME/code/shell/scripts:$PATH"

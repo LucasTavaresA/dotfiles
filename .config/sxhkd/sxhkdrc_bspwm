@@ -85,13 +85,9 @@ super + shift + comma
 super + shift + period
     mpc next && notify-send Tocando "$(mpc current)"
 
-# Abaixar o volume
-super + comma
-    amixer -q set Master 10%-
-
-# Aumentar o volume
-super + period
-    amixer -q set Master 10%+
+# Abaixar/Aumentar o volume e atualizar a barra
+super + {comma, period}
+    amixer -q set Master 10%{-,+} && pkill -RTMIN+9 dwmblocks
 
 # St
 super + shift + Return

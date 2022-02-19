@@ -76,9 +76,6 @@ config.load_autoconfig(True)
 # Abre novas abas de fundo
 config.set('new_instance_open_target', 'window')
 
-# Entrar no modo inserção apos clicar em um elemento do tipo
-config.set('input.insert_mode.auto_enter', False)
-
 # Barra escondida
 config.set("statusbar.show", "in-mode")
 config.set("tabs.show", "switching")

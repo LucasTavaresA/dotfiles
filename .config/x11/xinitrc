@@ -20,7 +20,7 @@ clipmenud &
 mpd &
 dunst &
 nitrogen --restore &
-slstatus &
+dwmblocks &
 nm-applet &
 xbanish &
 fluxgui &

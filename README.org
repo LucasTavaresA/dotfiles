@@ -312,7 +312,6 @@ export HISTCONTROL=ignoredups:erasedups
 
 # Adiciona diretórios bin e scripts ao path
 export PATH="$GOPATH/bin:$PATH"
-export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/ghcup/ghc/**/bin:$PATH"
 export PATH="/usr/lib/jvm/java-11-openjdk/bin:$PATH"
 export PATH="$HOME/code/shell/dmenuscripts:$PATH"
 export PATH="$HOME/code/shell/scripts:$PATH"
@@ -705,7 +704,7 @@ clipmenud &
 mpd &
 dunst &
 nitrogen --restore &
-slstatus &
+dwmblocks &
 nm-applet &
 xbanish &
 fluxgui &
@@ -816,9 +815,9 @@ super + space
 super + shift + {comma, period}
     mpc {prev,next} && tocando notificar
 
-# Abaixar/Aumentar o volume
+# Abaixar/Aumentar o volume e atualizar a barra
 super + {comma, period}
-    amixer -q set Master 10%{-,+}
+    amixer -q set Master 10%{-,+} && pkill -RTMIN+9 dwmblocks
 
 # St
 super + shift + Return
@@ -1008,13 +1007,9 @@ super + shift + comma
 super + shift + period
     mpc next && notify-send Tocando "$(mpc current)"
 
-# Abaixar o volume
-super + comma
-    amixer -q set Master 10%-
-
-# Aumentar o volume
-super + period
-    amixer -q set Master 10%+
+# Abaixar/Aumentar o volume e atualizar a barra
+super + {comma, period}
+    amixer -q set Master 10%{-,+} && pkill -RTMIN+9 dwmblocks
 
 # St
 super + shift + Return
@@ -1155,9 +1150,6 @@ config.load_autoconfig(True)
 
 # Abre novas abas de fundo
 config.set('new_instance_open_target', 'window')
-
-# Entrar no modo inserção apos clicar em um elemento do tipo
-config.set('input.insert_mode.auto_enter', False)
 
 # Barra escondida
 config.set("statusbar.show", "in-mode")

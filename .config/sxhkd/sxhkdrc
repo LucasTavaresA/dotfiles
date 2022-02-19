@@ -54,9 +54,9 @@ super + space
 super + shift + {comma, period}
     mpc {prev,next} && tocando notificar
 
-# Abaixar/Aumentar o volume
+# Abaixar/Aumentar o volume e atualizar a barra
 super + {comma, period}
-    amixer -q set Master 10%{-,+}
+    amixer -q set Master 10%{-,+} && pkill -RTMIN+9 dwmblocks
 
 # St
 super + shift + Return
