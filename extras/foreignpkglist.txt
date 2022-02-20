@@ -7,8 +7,10 @@ lf
 libxft-bgra
 mkinitcpio-numlock
 nerd-fonts-complete
+nsxiv
 pam-gnupg
 paru
+rtags
 simple-mtpfs
 ttf-ms-fonts
 xbanish

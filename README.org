@@ -485,6 +485,7 @@ alias ch="chmod +x"
 alias cp="cp -ri"
 alias mv="mv -i"
 alias rm="rm -rI"
+alias rmf="rm -rf"
 alias ln="ln -i"
 alias md="mkdir -p"
 alias t="touch"
@@ -503,6 +504,7 @@ alias gaf="git add -f"
 alias gcm="git commit -m"
 alias gco="git checkout"
 alias gps="git push"
+alias gpsf="git push -f"
 alias gpl="git pull"
 alias gr="git restore"
 alias grs="git restore --staged"
@@ -586,6 +588,7 @@ alias ch='chmod +x'
 alias cp="cp -ri"
 alias mv="mv -i"
 alias rm="rm -rI"
+alias rmf="rm -rf"
 alias ln="ln -i"
 alias md="mkdir -p"
 alias t="touch"
@@ -604,6 +607,7 @@ alias gaf='git add -f'
 alias gcm='git commit -m'
 alias gco="git checkout"
 alias gps='git push'
+alias gpsf="git push -f"
 alias gpl='git pull'
 alias gr='git restore'
 alias grs="git restore --staged"
@@ -674,6 +678,8 @@ ex ()
 # Inicia prompt do starship
 eval "$(starship init bash)"
 #+end_src
+
+#+RESULTS:
 
 * X11
 
@@ -819,9 +825,9 @@ super + shift + {comma, period}
 super + {comma, period}
     amixer -q set Master 10%{-,+} && pkill -RTMIN+9 dwmblocks
 
-# St
+# Terminal
 super + shift + Return
-    st
+    terminal
 
 # St como um scratchpad
 Menu;Return
@@ -1258,6 +1264,7 @@ c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
 # ATALHOS
 config.unbind('M')
 config.unbind('m')
+config.unbind('u')
 config.unbind('<Shift-H>')
 config.unbind('<Shift-L>')
 
@@ -1266,7 +1273,7 @@ config.bind('<Ctrl-Left>', 'tab-prev')
 config.bind('<Ctrl-Right>', 'tab-next')
 config.bind('<Ctrl-a>', 'back')
 config.bind('<Ctrl-d>', 'forward')
-config.bind('u', 'undo')
+config.bind('u', 'undo --window')
 config.bind('zx', 'config-cycle statusbar.show always in-mode;; config-cycle tabs.show always switching')
 # Atalho para assistir link com mpv
 config.bind('zp', 'hint links spawn mpv {hint-url}')

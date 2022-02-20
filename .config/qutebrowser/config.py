@@ -183,6 +183,7 @@ c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
 # ATALHOS
 config.unbind('M')
 config.unbind('m')
+config.unbind('u')
 config.unbind('<Shift-H>')
 config.unbind('<Shift-L>')
 
@@ -191,7 +192,7 @@ config.bind('<Ctrl-Left>', 'tab-prev')
 config.bind('<Ctrl-Right>', 'tab-next')
 config.bind('<Ctrl-a>', 'back')
 config.bind('<Ctrl-d>', 'forward')
-config.bind('u', 'undo')
+config.bind('u', 'undo --window')
 config.bind('zx', 'config-cycle statusbar.show always in-mode;; config-cycle tabs.show always switching')
 # Atalho para assistir link com mpv
 config.bind('zp', 'hint links spawn mpv {hint-url}')

@@ -58,9 +58,9 @@ super + shift + {comma, period}
 super + {comma, period}
     amixer -q set Master 10%{-,+} && pkill -RTMIN+9 dwmblocks
 
-# St
+# Terminal
 super + shift + Return
-    st
+    terminal
 
 # St como um scratchpad
 Menu;Return
