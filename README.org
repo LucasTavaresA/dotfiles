@@ -49,7 +49,7 @@ Todos os shells do sistema localizados em =~/.config/shell=
 
 ** Dash
 
-Usar o comando =chsh -s /bin/dash= para usar o dash como login shell, Profile trocado de lugar no meu [[https://github.com/LucasTavaresA/dash][fork]]
+Usar o comando =chsh -s /bin/dash= para usar o dash como login shell, Profile trocado de lugar no meu [[https://gitlab.com/LucasTavaresA/dash][fork]]
 
 - =~/.config/shell/profile=
 
@@ -274,7 +274,7 @@ export OMNISHARPHOME="${XDG_DATA_HOME:-$HOME/.local/share}/omnisharp"
 # Nuget
 export NUGET_PACKAGES="${XDG_CACHE_HOME:-$HOME/.cache}/NuGetPackages"
 # Gnupg
-export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
+export GNUPGHOME="$HOME/.gnupg"
 # Npm
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc"
 # Terminfo
@@ -1161,6 +1161,10 @@ config.load_autoconfig(True)
 
 # Abre novas abas de fundo
 config.set('new_instance_open_target', 'window')
+
+# Não sai do modo de inserção automaticamente
+config.set('input.insert_mode.auto_leave', False)
+config.set('input.insert_mode.leave_on_load', False)
 
 # Barra escondida
 config.set("statusbar.show", "in-mode")
@@ -2977,6 +2981,7 @@ Arquivos ignorados pelo git
 .config/shell/.zcompdump
 .config/shell/history
 .config/pam-gnupg
+.gnupg/
 .dotnet/
 .local/
 .mozilla/

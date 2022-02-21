@@ -28,6 +28,7 @@
 .config/shell/.zcompdump
 .config/shell/history
 .config/pam-gnupg
+.gnupg/
 .dotnet/
 .local/
 .mozilla/

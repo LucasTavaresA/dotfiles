@@ -76,6 +76,10 @@ config.load_autoconfig(True)
 # Abre novas abas de fundo
 config.set('new_instance_open_target', 'window')
 
+# Não sai do modo de inserção automaticamente
+config.set('input.insert_mode.auto_leave', False)
+config.set('input.insert_mode.leave_on_load', False)
+
 # Barra escondida
 config.set("statusbar.show", "in-mode")
 config.set("tabs.show", "switching")
