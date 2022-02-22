@@ -358,7 +358,7 @@ Shell interativo, Trocado de diretório pela variável *ZDOTDIR*
 
 - =~/.config/shell/.zshrc=
 
-#+begin_src zsh :tangle ~/.config/shell/.zshrc
+#+begin_src sh :tangle ~/.config/shell/.zshrc
 # Se não executando zsh interativamente
 # Não executa o resto do bashrc
 [[ $- != *i* ]] && return
@@ -386,6 +386,7 @@ bindkey "^[[3~" delete-char
 # Home/End vai pro começo/fim da linha
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[4~"   end-of-line
+bindkey  "^[d"   fzf-cd-widget
 
 # Completar comandos
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
@@ -417,21 +418,21 @@ function ex {
     do
       if [ -f "$n" ] ; then
           case "${n%,}" in
-            *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
+            ,*.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
                          tar xvf "$n"       ;;
-            *.lzma)      unlzma ./"$n"      ;;
-            *.bz2)       bunzip2 ./"$n"     ;;
-            *.cbr|*.rar)       unrar x -ad ./"$n" ;;
-            *.gz)        gunzip ./"$n"      ;;
-            *.cbz|*.epub|*.zip)       unzip ./"$n"       ;;
-            *.z)         uncompress ./"$n"  ;;
-            *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
+            ,*.lzma)      unlzma ./"$n"      ;;
+            ,*.bz2)       bunzip2 ./"$n"     ;;
+            ,*.cbr|*.rar)       unrar x -ad ./"$n" ;;
+            ,*.gz)        gunzip ./"$n"      ;;
+            ,*.cbz|*.epub|*.zip)       unzip ./"$n"       ;;
+            ,*.z)         uncompress ./"$n"  ;;
+            ,*.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
                          7z x ./"$n"        ;;
-            *.xz)        unxz ./"$n"        ;;
-            *.exe)       cabextract ./"$n"  ;;
-            *.cpio)      cpio -id < ./"$n"  ;;
-            *.cba|*.ace)      unace x ./"$n"      ;;
-            *)
+            ,*.xz)        unxz ./"$n"        ;;
+            ,*.exe)       cabextract ./"$n"  ;;
+            ,*.cpio)      cpio -id < ./"$n"  ;;
+            ,*.cba|*.ace)      unace x ./"$n"      ;;
+            ,*)
                          echo "ex: '$n' - Metodo de archivação desconhecido"
                          return 1
                          ;;
@@ -532,9 +533,11 @@ alias pprns="paru -Rns"
 # Prompt do starship
 eval "$(starship init zsh)"
 
-# Carrega os indicações de sintaxe, deve ser o ultimo comando.
+# Carrega plugins do zsh, deve ser o ultimo comando
 source $HOME/.config/shell/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source $HOME/.config/shell/plugins/you-should-use.plugin.zsh
+source $HOME/.config/shell/plugins/fzf.zsh
+source $HOME/.config/shell/plugins/keys-fzf.zsh
 #+end_src
 
 ** Bash
@@ -713,14 +716,13 @@ clipmenud &
 # Outros
 mpd &
 dunst &
-pacman -Sy &
 nitrogen --restore &
-dwmblocks &
 nm-applet &
 xbanish &
 fluxgui &
 sxhkd &
 emacs --daemon &
+dwmblocks &
 
 # Protetor de tela
 xautolock -detectsleep -time 30 -locker "slock" -notify 30 -notifier "notify-send Slock -u critical -t 1800000 'BLOQUEANDO A TELA 30 SEGUNDOS'" &
@@ -741,8 +743,8 @@ $directory$username$cmd_duration$dotnet$package$jobs
 $character"""
 
 [character]
-success_symbol = "[====>](bold green)"
-error_symbol = "[xxx=>](bold red)"
+success_symbol = "[>](bold green)"
+error_symbol = "[x](bold red)"
 
 # Ativa o relógio
 [time]
@@ -1411,8 +1413,6 @@ c.fonts.prompts = 'default_size "monospace"'
 # Fonte usada na barra de status.
 c.fonts.statusbar = '14px "monospace"'
 #+end_src
-
-#+RESULTS:
 
 ** Tema escuro
 

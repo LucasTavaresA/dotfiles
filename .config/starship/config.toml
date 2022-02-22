@@ -4,8 +4,8 @@ $directory$username$cmd_duration$dotnet$package$jobs
 $character"""
 
 [character]
-success_symbol = "[====>](bold green)"
-error_symbol = "[xxx=>](bold red)"
+success_symbol = "[>](bold green)"
+error_symbol = "[x](bold red)"
 
 # Ativa o relógio
 [time]

@@ -134,6 +134,7 @@ freetype2
 fribidi
 fuse-common
 fuse2
+fzf
 galculator
 gawk
 gc

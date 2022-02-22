@@ -19,14 +19,13 @@ clipmenud &
 # Outros
 mpd &
 dunst &
-pacman -Sy &
 nitrogen --restore &
-dwmblocks &
 nm-applet &
 xbanish &
 fluxgui &
 sxhkd &
 emacs --daemon &
+dwmblocks &
 
 # Protetor de tela
 xautolock -detectsleep -time 30 -locker "slock" -notify 30 -notifier "notify-send Slock -u critical -t 1800000 'BLOQUEANDO A TELA 30 SEGUNDOS'" &

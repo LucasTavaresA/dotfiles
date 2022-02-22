@@ -243,7 +243,7 @@ Para desabilitar um *pacote-do-doom* use =(package! pacote-do-doom :disable t)=
 ;; Arvore de undos
 (package! undo-tree)
 
-;; Correção ortografica
+;; Correção ortográfica
 (package! flyspell)
 (package! flyspell-popup)
 
@@ -333,6 +333,7 @@ Você pode usar =gd= para ver como é implementado
 ;; Simula linhas de acordo com visibilidade
 ;; (global-visual-line-mode t)
 
+;; Correção ortográfica
 (use-package! flyspell
   :defer t
   :config
@@ -373,9 +374,6 @@ Você pode usar =gd= para ver como é implementado
   '("sxhkdrc") nil
   "Modo simples para o sxhkd.")
 #+end_src
-
-#+RESULTS:
-: sxhkd-mode
 
 ** Teclas
 

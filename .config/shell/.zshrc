@@ -25,6 +25,7 @@ bindkey "^[[3~" delete-char
 # Home/End vai pro começo/fim da linha
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[4~"   end-of-line
+bindkey  "^[d"   fzf-cd-widget
 
 # Completar comandos
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
@@ -171,6 +172,8 @@ alias pprns="paru -Rns"
 # Prompt do starship
 eval "$(starship init zsh)"
 
-# Carrega os indicações de sintaxe, deve ser o ultimo comando.
+# Carrega plugins do zsh, deve ser o ultimo comando
 source $HOME/.config/shell/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source $HOME/.config/shell/plugins/you-should-use.plugin.zsh
+source $HOME/.config/shell/plugins/fzf.zsh
+source $HOME/.config/shell/plugins/keys-fzf.zsh
