@@ -77,17 +77,14 @@ super + shift + a
 super + shift + a
     mpc toggle
 
-# Musica anterior
-super + shift + comma
-    mpc prev && notify-send Tocando "$(mpc current)"
-
-# Proxima musica
-super + shift + period
-    mpc next && notify-send Tocando "$(mpc current)"
+# Anterior/Proxima musica
+super + shift + {comma, period}
+    mpc {prev,next} && musica notificar
 
 # Abaixar/Aumentar o volume e atualizar a barra
-super + {comma, period}
-    amixer -q set Master 10%{-,+} && pkill -RTMIN+9 dwmblocks
+super + {comma, period, button5, button4}
+    amixer -q set Master 5%{-,+,-,+} && pkill -RTMIN+9 dwmblocks
+
 
 # St
 super + shift + Return

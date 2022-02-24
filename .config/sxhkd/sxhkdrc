@@ -48,19 +48,19 @@ super + {_,shift} + a
 
 # Pausa/Toca musica
 super + space
-    mpc toggle
+    mpc toggle && pkill -RTMIN+11 dwmblocks
 
 # Anterior/Proxima musica
 super + shift + {comma, period}
-    mpc {prev,next} && tocando notificar
+    mpc {prev,next} && musica notificar && pkill -RTMIN+11 dwmblocks
 
 # Abaixar/Aumentar o volume e atualizar a barra
-super + {comma, period}
-    amixer -q set Master 10%{-,+} && pkill -RTMIN+9 dwmblocks
+super + {comma, period, button5, button4}
+    amixer -q set Master 5%{-,+,-,+} && pkill -RTMIN+9 dwmblocks
 
 # Terminal
 super + shift + Return
-    terminal
+    st
 
 # St como um scratchpad
 Menu;Return
