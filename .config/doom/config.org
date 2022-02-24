@@ -401,7 +401,19 @@ Você pode usar =gd= para ver como é implementado
 (define-key evil-visual-state-map (kbd "<C-tab>") nil)
 
 ;; Teclas
-(global-set-key (kbd "C-s") '+default/search-buffer)
+;; Comenta e vai para proxima linha
+(global-set-key (kbd "s-i") 'comment-line)
+(global-set-key (kbd "s-c") 'comentar-linha)
+(fset 'comentar-linha
+   (kmacro-lambda-form [?\s-i down] 0 "%d"))
+
+;; Move entre partes da mesma linha
+(define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
+(define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
+(define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
+(define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
+
+;; (global-set-key (kbd "C-s") '+default/search-buffer)
 (global-set-key (kbd "s-s") 'evil-mc-make-all-cursors)
 (global-set-key (kbd "<s-down>") 'evil-mc-make-cursor-move-next-line)
 (global-set-key (kbd "<s-up>") 'evil-mc-make-cursor-move-prev-line)
@@ -414,18 +426,6 @@ Você pode usar =gd= para ver como é implementado
 (global-set-key (kbd "<C-tab>") 'next-buffer)
 (global-set-key (kbd "<C-s-right>") 'evil-window-vsplit)
 (global-set-key (kbd "<C-s-down>") 'evil-window-split)
-
-;; Comenta e vai para proxima linha
-(global-set-key (kbd "s-i") 'comment-line)
-(global-set-key (kbd "s-c") 'comentar-linha)
-(fset 'comentar-linha
-   (kmacro-lambda-form [?\s-i down] 0 "%d"))
-
-;; Move entre partes da mesma linha
-(define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
-(define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
-(define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
-(define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
 (define-key doom-leader-map (kbd "c b") 'doom/copy-buffer-contents)
 (define-key doom-leader-map (kbd "e r") 'eval-region)
 (define-key doom-leader-map (kbd "S") 'flyspell-mode)

@@ -1919,8 +1919,15 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 set wildmode=longest,list,full
 " Divide a tela do lado e para baixo
 set splitbelow splitright
-" Inicia no modo foco
+" Não vai automaticamente para os itens pesquisados
+set incsearch!
+" Inicia sem a barra
 autocmd VimEnter * LiteDFMToggle
+" Numero de linhas
+set number
+set signcolumn=number
+" Linhas não dão a volta na tela
+set nowrap
 
 " Automaticamente deleta todos os espaços em branco e novas linhas no salvamento do arquivo e reseta a posição do cursor
 autocmd BufWritePre * let currPos = getpos(".")
@@ -1935,17 +1942,14 @@ set background=dark
 hi Normal guibg=NONE ctermbg=NONE
 hi EndOfBuffer guibg=NONE ctermbg=NONE
 hi Normal guibg=NONE ctermbg=NONE
-hi CursorLine guibg=#222222
-highlight Search guibg=#222222 guifg=#ffff00
+hi CursorLine guibg=#000000
+highlight Search guibg=#000000 guifg=#ffff00
+hi! MatchParen cterm=NONE,bold gui=NONE,bold  guibg=NONE guifg=#ff0000
 
-let mapleader ="z"
-" Troca entre partes da mesma linha usando setas
-nnoremap <Down> gj
-nnoremap <Up> gk
-inoremap <Down> <C-o>gj
-inoremap <Up> <C-o>gk
-vnoremap <Down> gj
-vnoremap <Up> gk
+let mapleader =" "
+let maplocalleader = " "
+" Para indicação de palavras procuradas
+nnoremap <esc><esc> :noh<return>
 " Comentar linhas
 map cc :norm gcc<CR>j
 " Copiar na linha abaixo
@@ -1953,23 +1957,31 @@ map P :norm o<CR>p
 " Ativa/Desativa o corretor ortográfico
 map <leader>s :setlocal spell! spelllang=pt<CR>
 " Navega entre as divisórias
-map <A-Left> <C-w>h
-map <A-Down> <C-w>j
-map <A-Up> <C-w>k
-map <A-Right> <C-w>l
+map <leader><Tab> :wincmd w<CR>
 " Esconde a modeline
 map <leader>x :LiteDFMToggle<CR>
 " Expande região selecionada
-map <leader><Up> <Plug>(expand_region_expand)
-map <leader><Down> <Plug>(expand_region_shrink)
+map <A-Up> <Plug>(expand_region_expand)
+map <A-Down> <Plug>(expand_region_shrink)
 " Troca para o próximo buffer
-map <leader><Tab> :bn<CR>
-" Fecha buffer
-map <leader>d :bd<CR>
+map <A-Tab> :bn<CR>
+" Salvar buffer
+map <leader>ww :w<CR>
+" Sair e salvar
+map <leader>wq :wq<CR>
+" Fecha sem salvar
+map <leader>qq :q!<CR>
 " Divide a tela do lado
-map <leader>S :vs<CR>
+map <C-A-Right> :vs<CR>
 " Divide a tela abaixo
-map <leader>b :sp<CR>
+map <C-A-down> :sp<CR>
+" Selecionar multiplas palavras
+map <A-s> <C-n>
+" criar cursor em uma linha
+map <C-s-Up> <C-Up>
+map <C-s-Down> <C-Down>
+" Copiar buffer
+map cb ggVGy
 #+end_src
 
 * Ncmpcpp
