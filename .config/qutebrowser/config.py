@@ -94,7 +94,7 @@ config.set("tabs.tabs_are_windows", True)
 config.set('confirm_quit', ["multiple-tabs"])
 
 # Muda ordem do menu de compleção
-config.set("completion.open_categories", ["quickmarks", "bookmarks", "history", "filesystem"])
+config.set("completion.open_categories", ["searchengines", "quickmarks", "bookmarks", "history", "filesystem"])
 
 # Formatação dos títulos das abas
 config.set("tabs.title.format", "{perc}{private}{current_title}")
@@ -182,6 +182,27 @@ c.editor.command = ['nvim', '{}']
 # the search engine name to the search term, e.g. `:open google
 # qutebrowser`.
 c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
+                    ,  'yt': 'https://www.youtube.com/results?search_query={}'
+                    ,  'r':  'https://www.reddit.com/search/?q={}'
+                    ,  'gh': 'https://github.com/search?q={}'
+                    ,  'gl': 'https://gitlab.com/search?search={}'
+                    ,  'se': 'https://stackexchange.com/search?q={}'
+                    ,  'aw': 'https://wiki.archlinux.org/index.php?search={}'
+                    ,  't':  'https://translate.google.com/?sl=auto&tl=en&text={}'
+                    ,  'b':  'https://brainly.com.br/app/ask?q={}'
+                    ,  'tw': 'https://twitter.com/search?q={}'
+                    ,  'sc': 'https://soundcloud.com/search?q={}'
+                    ,  'al': 'https://anilist.co/search/anime?search={}&sort=SEARCH_MATCH'
+                    ,  'alm': 'https://anilist.co/search/manga?search={}&sort=SEARCH_MATCH'
+                    ,  'md':  'https://mangadex.org/titles?page=1&q={}&order=relevance.desc'
+                    ,  'vn':  'https://vndb.org/v?sq={}'
+                    ,  'imdb': 'https://www.imdb.com/find?q={}&ref_=nv_sr_sm'
+                    ,  'gm':  'https://www.google.com.br/maps/search/{}'
+                    ,  'sf':  'https://sourceforge.net/directory/?q={}'
+                    ,  'gf':  'https://greasyfork.org/en/scripts?q={}'
+                    ,  'ud':  'https://www.urbandictionary.com/define.php?term={}'
+                    ,  'gt':  'https://trends.google.com.br/trends/explore?q={}'
+                    ,  'wm':  'https://web.archive.org/web/*/{}'
                     }
 
 # ATALHOS

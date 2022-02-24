@@ -1,3 +1,7 @@
+# Ativa/Desativa a barra
+super + b
+    dwmc togglebar
+
 # Muda entre as janelas
 super + Tab
 	dwmc focusstack +1
@@ -136,10 +140,6 @@ Menu;f
 # Passmenu
 Menu;p
     passmenu --type
-
-# Dmenu_pesquisa
-Menu;o
-    dmenu_pesquisa
 
 # Anotações
 Menu;a
