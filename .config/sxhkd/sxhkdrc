@@ -1,17 +1,17 @@
-# Ativa/Desativa a barra
-super + b
-    dwmc togglebar
-
 # Muda entre as janelas
 super + Tab
 	dwmc focusstack +1
 
+# Ativa/Desativa a barra
+ctrl + space
+    dwmc togglebar
+
 # Muda o tamanho da janela
-alt + shift + {Left, Right}
+ctrl + {Left,Right}
 	dwmc setmfact {-,+}0.05
 
 # Muda o tamanho da janela
-alt + shift + {Down, Up}
+ctrl + {Down,Up}
 	dwmc setcfact {-,+}0.20
 
 # Muda de tag
@@ -21,10 +21,6 @@ super + {Left, Right}
 # Troca a janela de tag
 super + shift {Left, Right}
   dwmc {tagtoprev, tagtonext}
-
-# Modo Grid
-super + g
-    dwmc setgrid 0
 
 # Fecha uma janela
 super + shift + backslash
@@ -59,12 +55,16 @@ super + shift + {comma, period}
     mpc {prev,next} && musica notificar && pkill -RTMIN+11 dwmblocks
 
 # Abaixar/Aumentar o volume e atualizar a barra
-super + {comma, period, button5, button4}
-    amixer -q set Master 5%{-,+,-,+} && pkill -RTMIN+9 dwmblocks
+super + {comma, period}
+    amixer -q set Master 5%{-,+} && pkill -RTMIN+9 dwmblocks
 
 # Terminal
 super + shift + Return
     st
+
+# Monocle
+Menu;f
+    dwmc setmonocle 0
 
 # St como um scratchpad
 Menu;Return
@@ -101,28 +101,17 @@ Menu;H
 # Picom
 Menu;P
     killall picom || picom
-# Fluxgui
-Menu;F
-    killall fluxgui || fluxgui
 
 # Clipboard
 Menu;c
     dmenu_clip
 
-# Corretor
-Menu;C
-    dmenu_corretor
-
 # Htop
 Menu;h
     st -e htop
 
-# Tradutor
-Menu;t
-    dmenu_tradutor
-
 # Transmission
-Menu;T
+Menu;t
     transmission-gtk
 
 # Menu virtualbox
@@ -134,7 +123,7 @@ Menu;q
     qutebrowser
 
 # Favoritos
-Menu;f
+Menu;F
     tmenu ~/code/shell/dmenuscripts/listas/favoritos.yaml
 
 # Passmenu

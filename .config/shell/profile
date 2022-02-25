@@ -243,6 +243,8 @@ export STARSHIP_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/starship/config.toml"
 export ANDROID_SDK_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/android"
 # Wine
 export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
+# Fzf
+export FZF_ALT_C_COMMAND="find . -path '*/.*' -prune -o -not -name '.*' -maxdepth 4 -type d"
 
 # Shell
 export SHELL="dash"

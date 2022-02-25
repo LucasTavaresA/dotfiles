@@ -288,9 +288,6 @@ Você pode usar =gd= para ver como é implementado
 ;; Desabilita numero de linhas
 (setq display-line-numbers-type nil)
 
-;; Desabilita indicação de linha atual
-(remove-hook 'doom-first-buffer-hook #'global-hl-line-mode)
-
 ;; Formato e cor dos cursor em diferentes modos
 (setq evil-emacs-state-cursor    '("#ffff00" box))
 (setq evil-normal-state-cursor   '("#ffffff" box))
@@ -413,7 +410,7 @@ Você pode usar =gd= para ver como é implementado
 (define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
 (define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
 
-;; (global-set-key (kbd "C-s") '+default/search-buffer)
+(global-set-key (kbd "C-s") '+default/search-buffer)
 (global-set-key (kbd "s-s") 'evil-mc-make-all-cursors)
 (global-set-key (kbd "<s-down>") 'evil-mc-make-cursor-move-next-line)
 (global-set-key (kbd "<s-up>") 'evil-mc-make-cursor-move-prev-line)
