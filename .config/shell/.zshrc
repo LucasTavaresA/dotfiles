@@ -25,7 +25,6 @@ bindkey "^[[3~" delete-char
 # Home/End vai pro começo/fim da linha
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[4~"   end-of-line
-bindkey  "^[d"   fzf-cd-widget
 
 # Completar comandos
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
@@ -179,3 +178,4 @@ source $HOME/.config/shell/plugins/fast-syntax-highlighting/fast-syntax-highligh
 source $HOME/.config/shell/plugins/you-should-use.plugin.zsh
 source $HOME/.config/shell/plugins/fzf.zsh
 source $HOME/.config/shell/plugins/keys-fzf.zsh
+bindkey  "^[d"   fzf-cd-widget

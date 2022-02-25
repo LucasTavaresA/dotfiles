@@ -1,24 +1,27 @@
-format = """$fill
-
-$directory$username$cmd_duration$dotnet$package$jobs
-$character"""
+format = """
+[┌┤](bold green) $directory$shell$status$git_status$username$hostname$cmd_duration$package$jobs$container[├](bold green)$fill
+[└─](bold green)$character"""
 
 [character]
-success_symbol = "[>](bold green)"
-error_symbol = "[x](bold red)"
+success_symbol = "[](green)"
+error_symbol = "[X](bold red)"
 
-# Ativa o relógio
+[shell]
+unknown_indicator = "unknown shell"
+style = "white bold"
+disabled = false # Ativa esse modulo
+
 [time]
-disabled = false
+disabled = false # Ativa o relógio
 
 [line_break]
 disabled = true
 
 [directory]
-style = "bold #0099FF"
+style = "bold #00ccFF"
 truncation_length = 4
 truncate_to_repo = false
 
 [fill]
-symbol = "."
-style = "bold #ffffff"
+symbol = "─"
+style = "bold green"

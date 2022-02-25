@@ -388,7 +388,6 @@ bindkey "^[[3~" delete-char
 # Home/End vai pro começo/fim da linha
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[4~"   end-of-line
-bindkey  "^[d"   fzf-cd-widget
 
 # Completar comandos
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
@@ -542,6 +541,7 @@ source $HOME/.config/shell/plugins/fast-syntax-highlighting/fast-syntax-highligh
 source $HOME/.config/shell/plugins/you-should-use.plugin.zsh
 source $HOME/.config/shell/plugins/fzf.zsh
 source $HOME/.config/shell/plugins/keys-fzf.zsh
+bindkey  "^[d"   fzf-cd-widget
 #+end_src
 
 ** Bash
@@ -707,7 +707,7 @@ Configuração do xserver
 xsetroot -cursor_name left_ptr
 
 # Teclado
-setxkbmap -option caps:escape # muda a função da tecla caps lock para esc
+setxkbmap -option caps:escape # grep -E "(ctrl|caps):" /usr/share/X11/xkb/rules/base.lst
 xset r rate 300 100 # acelera repetição de teclas
 
 # Gnome keyring daemon
@@ -743,30 +743,33 @@ Prompt de comandos
 - =~/.config/starship/config.toml=
 
 #+begin_src conf :tangle ~/.config/starship/config.toml
-format = """$fill
-
-$directory$username$cmd_duration$dotnet$package$jobs
-$character"""
+format = """
+[┌┤](bold green) $directory$shell$status$git_status$username$hostname$cmd_duration$package$jobs$container[├](bold green)$fill
+[└─](bold green)$character"""
 
 [character]
-success_symbol = "[>](bold green)"
-error_symbol = "[x](bold red)"
+success_symbol = "[](green)"
+error_symbol = "[X](bold red)"
 
-# Ativa o relógio
+[shell]
+unknown_indicator = "unknown shell"
+style = "white bold"
+disabled = false # Ativa esse modulo
+
 [time]
-disabled = false
+disabled = false # Ativa o relógio
 
 [line_break]
 disabled = true
 
 [directory]
-style = "bold #0099FF"
+style = "bold #00ccFF"
 truncation_length = 4
 truncate_to_repo = false
 
 [fill]
-symbol = "."
-style = "bold #ffffff"
+symbol = "─"
+style = "bold green"
 #+end_src
 
 * Sxhkd
@@ -778,10 +781,6 @@ Todos os atalhos e teclas do dwm e bspwm
 - =~/.config/sxhkd/sxhkdrc=
 
 #+begin_src sxhkd :tangle ~/.config/sxhkd/sxhkdrc
-# Muda entre as janelas
-super + Tab
-	dwmc focusstack +1
-
 # Ativa/Desativa a barra
 ctrl + space
     dwmc togglebar
@@ -793,6 +792,10 @@ ctrl + {Left,Right}
 # Muda o tamanho da janela
 ctrl + {Down,Up}
 	dwmc setcfact {-,+}0.20
+
+# Muda entre as janelas
+super + Tab
+	dwmc focusstack +1
 
 # Muda de tag
 super + {Left, Right}
@@ -1133,7 +1136,7 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 # MINHAS CONFIGURAÇÕES
 
 # Tela cheia limitada a janela do navegador
-config.set('content.fullscreen.window', False)
+config.set('content.fullscreen.window', True)
 
 # Mostra a barra de scroll quando procurando uma palavra
 config.set('scrolling.bar', 'when-searching')

@@ -53,7 +53,7 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 # MINHAS CONFIGURAÇÕES
 
 # Tela cheia limitada a janela do navegador
-config.set('content.fullscreen.window', False)
+config.set('content.fullscreen.window', True)
 
 # Mostra a barra de scroll quando procurando uma palavra
 config.set('scrolling.bar', 'when-searching')
