@@ -30,17 +30,17 @@ super + shift + backslash
 super + t
 	dwmc togglefloating
 
-# Troca pela janela mestre
+# troca todas as janelas de posição
 super + Return
-    dwmc zoom
+    dwmc inplacerotate +2
+
+# troca todas as janelas da stack de posição
+alt + Tab
+    dwmc inplacerotate +1
 
 # Troca entre layouts
 super + Escape
     dwmc layoutscroll +1
-
-# Scratchpad do st
-super + backslash
-    dwmc togglescratch 0
 
 # Ncmpcpp/Pulsemixer
 super + {_,shift} + a
@@ -58,17 +58,21 @@ super + shift + {comma, period}
 super + {comma, period}
     amixer -q set Master 5%{-,+} && pkill -RTMIN+9 dwmblocks
 
-# Terminal
+# St
 super + shift + Return
     st
+
+# Aparece/Esconde o st
+super + backslash
+    st_scratchpad
+
+# Torna a janela fixa em todas as tags
+Menu;s
+    dwmc togglesticky
 
 # Monocle
 Menu;f
     dwmc setmonocle 0
-
-# St como um scratchpad
-Menu;Return
-    st -c 'stscratchpad,stscratchpad'
 
 # Menu
 Menu;Menu
@@ -94,41 +98,53 @@ Menu;m
 Menu;slash
     sxhkd_atalhos
 
-# SH History
-Menu;H
+# Shell History
+Menu;h
     dmenu_shhistory
+
+# Htop
+Menu;H
+    st -e htop
+
+# Passmenu
+Menu;p
+    passmenu --type
 
 # Picom
 Menu;P
     killall picom || picom
 
+# Fluxgui
+Menu;F
+    killall fluxgui || fluxgui
+
 # Clipboard
-Menu;c
+Menu;C
     dmenu_clip
 
-# Htop
-Menu;h
-    st -e htop
+# Calculadora
+Menu;c
+    galculator
+
+# Gimp
+Menu;g
+    gimp
 
 # Transmission
 Menu;t
     transmission-gtk
 
-# Menu virtualbox
-Menu;v
-    dmenu_virtualbox
+# Telegram
+Menu;T
+    telegram-desktop
 
-# Qutebrowser
+# Discord
+Menu;d
+    discord
+
+# Qutebrowser, pesquisa e favoritos
 Menu;q
-    qutebrowser
-
-# Favoritos
-Menu;F
     tmenu ~/code/shell/dmenuscripts/listas/favoritos.yaml
-
-# Passmenu
-Menu;p
-    passmenu --type
 
 # Anotações
 Menu;a

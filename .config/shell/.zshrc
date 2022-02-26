@@ -25,6 +25,7 @@ bindkey "^[[3~" delete-char
 # Home/End vai pro começo/fim da linha
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[4~"   end-of-line
+bindkey -s "^[f" '^Ulf^M'
 
 # Completar comandos
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'

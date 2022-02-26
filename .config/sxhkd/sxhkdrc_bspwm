@@ -1,26 +1,26 @@
 # Fecha janela
-super + backslash
-	bspc node -c
+super + shift + backslash
+    bspc node -c
 
 # Troca janela selecionada pela maior janela
 super + Return
-	bspc node -s biggest.window
+    bspc node -s biggest.window
 
 # Troca entre layout monocle e tiled
 super + Escape
-	bspc desktop -l next
+    bspc desktop -l next
 
 # Troca o foco para a janela anterior
 super + Left
-	bspc node -f prev.local.!hidden.window
+    bspc node -f prev.local.!hidden.window
 
 # Troca o foco para a proxima janela
 super + {Right,Tab}
-	bspc node -f next.local.!hidden.window
+    bspc node -f next.local.!hidden.window
 
 # Alterna entre ou muda janela para um desktop
 super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+    bspc {desktop -f,node -d} '^{1-9,10}'
 
 # Move janela para o espaço preselecionado
 super + ctrl + Return
@@ -28,53 +28,57 @@ super + ctrl + Return
 
 # Preseleciona uma direção
 super + ctrl + {Left,Down,Up,Right}
-	bspc node -p {west,south,north,east}
+    bspc node -p {west,south,north,east}
 
 # Cancela seleção
-super + space
-	bspc node -p cancel
+ctrl + space
+    bspc node -p cancel
 
-# Expande/contrai as janelas
-super + alt + {Left,Down,Up,Right}
+# muda o tamanho das janelas
+ctrl + {Left,Down,Up,Right}
     {bspc node @parent/second -z left -20 0; \
-    bspc node @parent/first -z right -20 0, \
-    bspc node @parent/second -z top 0 +20; \
-    bspc node @parent/first -z bottom 0 +20, \
-    bspc node @parent/first -z bottom 0 -20; \
-    bspc node @parent/second -z top 0 -20, \
-    bspc node @parent/first -z right +20 0; \
-    bspc node @parent/second -z left +20 0}
+     bspc node @parent/first -z right -20 0, \
+     bspc node @parent/second -z top 0 +20; \
+     bspc node @parent/first -z bottom 0 +20, \
+     bspc node @parent/first -z bottom 0 -20; \
+     bspc node @parent/second -z top 0 -20, \
+     bspc node @parent/first -z right +20 0; \
+     bspc node @parent/second -z left +20 0}
 
 # Alterna entre janela flutuante
 super + t
     bspc node -t \~floating
 
 # Alterna tela cheia
-super + f
-	bspc node -t \~fullscreen
+Menu;f
+    bspc node -t \~fullscreen
 
 # Ajusta proporção da janela selecionada
 shift + Tab
     ajustar_tamanho.sh
 
-# Menus
+# Menu
 Menu;Menu
     dmenu_menu
 
-# Menu do systema
+# Menu energia
 Menu;Escape
     dmenu_sys
 
-# Dmenu_musica
-super + a
-    dmenu_musica
+# Editar
+Menu;e
+    dmenu_edit
 
-# Ncmpcpp
-super + shift + a
-    st -c ncmpcpp -e ncmpcpp
+# Emojis
+Menu;E
+    dmenu_emoji
 
-# Pausa musica
-super + shift + a
+# Ncmpcpp/Pulsemixer
+super + {_,shift} + a
+    st -g 100x30 -c {'ncmpcpp\,ncmpcpp' -e ncmpcpp,'pulsemixer\,pulsemixer' -e pulsemixer}
+
+# Pausa/Toca musica
+super + space
     mpc toggle
 
 # Anterior/Proxima musica
@@ -82,58 +86,81 @@ super + shift + {comma, period}
     mpc {prev,next} && musica notificar
 
 # Abaixar/Aumentar o volume e atualizar a barra
-super + {comma, period, button5, button4}
-    amixer -q set Master 5%{-,+,-,+} && pkill -RTMIN+9 dwmblocks
-
+super + {comma, period}
+    amixer -q set Master 5%{-,+}
 
 # St
 super + shift + Return
-	st
+    st
 
-# St_scratchpad
-shift + Menu
+# Aparece/Esconde o st
+super + backslash
     st_scratchpad
-
-# qutebrowser
-Menu;q
-    qutebrowser
-
-# Ranger
-Menu;r
-    st -e ranger
 
 # Gimp
 Menu;g
     gimp
 
-# Galculator
+# Clipboard
+Menu;C
+    dmenu_clip
+
+# Calculadora
 Menu;c
     galculator
-
-# Telegram
-Menu;T
-    telegram-desktop
-
-# Abre/Fecha fluxgui
-Menu;f
-    killall fluxgui || fluxgui
 
 # Transmission
 Menu;t
     transmission-gtk
 
+# Telegram
+Menu;T
+    telegram-desktop
+
 # Discord
 Menu;d
     discord
 
-# Kill
-Menu;k
-    dmenu_kill
+# Shell History
+Menu;h
+    dmenu_shhistory
 
-# Abre/Fecha o picom
+# Htop
+Menu;H
+    st -e htop
+
+# Passmenu
 Menu;p
+    passmenu --type
+
+# Picom
+Menu;P
     killall picom || picom
+
+# Fluxgui
+Menu;F
+    killall fluxgui || fluxgui
+
+# Montar/Desmontar
+Menu;m
+    dmenu_mont
 
 # Teclas do sxhkd
 Menu;slash
-    sxhkd_atalhos
+    sxhkd_atalhos bspwm
+
+# Qutebrowser, pesquisa e favoritos
+Menu;q
+    tmenu ~/code/shell/dmenuscripts/listas/favoritos.yaml
+
+# Anotações
+Menu;a
+    emacsclient -c ~/documentos/anotações.org
+
+# Aliases
+Menu;A
+    zsh-aliases
+
+# Tira print
+Print
+    dmenu_print

@@ -8,6 +8,7 @@ error_symbol = "[X](bold red)"
 
 [shell]
 unknown_indicator = "unknown shell"
+zsh_indicator = ""
 style = "white bold"
 disabled = false # Ativa esse modulo
 

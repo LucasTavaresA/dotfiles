@@ -388,6 +388,7 @@ bindkey "^[[3~" delete-char
 # Home/End vai pro começo/fim da linha
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[4~"   end-of-line
+bindkey -s "^[f" '^Ulf^M'
 
 # Completar comandos
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
@@ -753,6 +754,7 @@ error_symbol = "[X](bold red)"
 
 [shell]
 unknown_indicator = "unknown shell"
+zsh_indicator = ""
 style = "white bold"
 disabled = false # Ativa esse modulo
 
@@ -813,17 +815,17 @@ super + shift + backslash
 super + t
 	dwmc togglefloating
 
-# Troca pela janela mestre
+# troca todas as janelas de posição
 super + Return
-    dwmc zoom
+    dwmc inplacerotate +2
+
+# troca todas as janelas da stack de posição
+alt + Tab
+    dwmc inplacerotate +1
 
 # Troca entre layouts
 super + Escape
     dwmc layoutscroll +1
-
-# Scratchpad do st
-super + backslash
-    dwmc togglescratch 0
 
 # Ncmpcpp/Pulsemixer
 super + {_,shift} + a
@@ -841,17 +843,21 @@ super + shift + {comma, period}
 super + {comma, period}
     amixer -q set Master 5%{-,+} && pkill -RTMIN+9 dwmblocks
 
-# Terminal
+# St
 super + shift + Return
     st
+
+# Aparece/Esconde o st
+super + backslash
+    st_scratchpad
+
+# Torna a janela fixa em todas as tags
+Menu;s
+    dwmc togglesticky
 
 # Monocle
 Menu;f
     dwmc setmonocle 0
-
-# St como um scratchpad
-Menu;Return
-    st -c 'stscratchpad,stscratchpad'
 
 # Menu
 Menu;Menu
@@ -877,41 +883,53 @@ Menu;m
 Menu;slash
     sxhkd_atalhos
 
-# SH History
-Menu;H
+# Shell History
+Menu;h
     dmenu_shhistory
+
+# Htop
+Menu;H
+    st -e htop
+
+# Passmenu
+Menu;p
+    passmenu --type
 
 # Picom
 Menu;P
     killall picom || picom
 
+# Fluxgui
+Menu;F
+    killall fluxgui || fluxgui
+
 # Clipboard
-Menu;c
+Menu;C
     dmenu_clip
 
-# Htop
-Menu;h
-    st -e htop
+# Calculadora
+Menu;c
+    galculator
+
+# Gimp
+Menu;g
+    gimp
 
 # Transmission
 Menu;t
     transmission-gtk
 
-# Menu virtualbox
-Menu;v
-    dmenu_virtualbox
+# Telegram
+Menu;T
+    telegram-desktop
 
-# Qutebrowser
+# Discord
+Menu;d
+    discord
+
+# Qutebrowser, pesquisa e favoritos
 Menu;q
-    qutebrowser
-
-# Favoritos
-Menu;F
     tmenu ~/code/shell/dmenuscripts/listas/favoritos.yaml
-
-# Passmenu
-Menu;p
-    passmenu --type
 
 # Anotações
 Menu;a
@@ -932,28 +950,28 @@ Print
 
 #+begin_src sxhkd :tangle ~/.config/sxhkd/sxhkdrc_bspwm
 # Fecha janela
-super + backslash
-	bspc node -c
+super + shift + backslash
+    bspc node -c
 
 # Troca janela selecionada pela maior janela
 super + Return
-	bspc node -s biggest.window
+    bspc node -s biggest.window
 
 # Troca entre layout monocle e tiled
 super + Escape
-	bspc desktop -l next
+    bspc desktop -l next
 
 # Troca o foco para a janela anterior
 super + Left
-	bspc node -f prev.local.!hidden.window
+    bspc node -f prev.local.!hidden.window
 
 # Troca o foco para a proxima janela
 super + {Right,Tab}
-	bspc node -f next.local.!hidden.window
+    bspc node -f next.local.!hidden.window
 
 # Alterna entre ou muda janela para um desktop
 super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+    bspc {desktop -f,node -d} '^{1-9,10}'
 
 # Move janela para o espaço preselecionado
 super + ctrl + Return
@@ -961,53 +979,57 @@ super + ctrl + Return
 
 # Preseleciona uma direção
 super + ctrl + {Left,Down,Up,Right}
-	bspc node -p {west,south,north,east}
+    bspc node -p {west,south,north,east}
 
 # Cancela seleção
-super + space
-	bspc node -p cancel
+ctrl + space
+    bspc node -p cancel
 
-# Expande/contrai as janelas
-super + alt + {Left,Down,Up,Right}
+# muda o tamanho das janelas
+ctrl + {Left,Down,Up,Right}
     {bspc node @parent/second -z left -20 0; \
-    bspc node @parent/first -z right -20 0, \
-    bspc node @parent/second -z top 0 +20; \
-    bspc node @parent/first -z bottom 0 +20, \
-    bspc node @parent/first -z bottom 0 -20; \
-    bspc node @parent/second -z top 0 -20, \
-    bspc node @parent/first -z right +20 0; \
-    bspc node @parent/second -z left +20 0}
+     bspc node @parent/first -z right -20 0, \
+     bspc node @parent/second -z top 0 +20; \
+     bspc node @parent/first -z bottom 0 +20, \
+     bspc node @parent/first -z bottom 0 -20; \
+     bspc node @parent/second -z top 0 -20, \
+     bspc node @parent/first -z right +20 0; \
+     bspc node @parent/second -z left +20 0}
 
 # Alterna entre janela flutuante
 super + t
     bspc node -t \~floating
 
 # Alterna tela cheia
-super + f
-	bspc node -t \~fullscreen
+Menu;f
+    bspc node -t \~fullscreen
 
 # Ajusta proporção da janela selecionada
 shift + Tab
     ajustar_tamanho.sh
 
-# Menus
+# Menu
 Menu;Menu
     dmenu_menu
 
-# Menu do systema
+# Menu energia
 Menu;Escape
     dmenu_sys
 
-# Dmenu_musica
-super + a
-    dmenu_musica
+# Editar
+Menu;e
+    dmenu_edit
 
-# Ncmpcpp
-super + shift + a
-    st -c ncmpcpp -e ncmpcpp
+# Emojis
+Menu;E
+    dmenu_emoji
 
-# Pausa musica
-super + shift + a
+# Ncmpcpp/Pulsemixer
+super + {_,shift} + a
+    st -g 100x30 -c {'ncmpcpp\,ncmpcpp' -e ncmpcpp,'pulsemixer\,pulsemixer' -e pulsemixer}
+
+# Pausa/Toca musica
+super + space
     mpc toggle
 
 # Anterior/Proxima musica
@@ -1015,61 +1037,84 @@ super + shift + {comma, period}
     mpc {prev,next} && musica notificar
 
 # Abaixar/Aumentar o volume e atualizar a barra
-super + {comma, period, button5, button4}
-    amixer -q set Master 5%{-,+,-,+} && pkill -RTMIN+9 dwmblocks
-
+super + {comma, period}
+    amixer -q set Master 5%{-,+}
 
 # St
 super + shift + Return
-	st
+    st
 
-# St_scratchpad
-shift + Menu
+# Aparece/Esconde o st
+super + backslash
     st_scratchpad
-
-# qutebrowser
-Menu;q
-    qutebrowser
-
-# Ranger
-Menu;r
-    st -e ranger
 
 # Gimp
 Menu;g
     gimp
 
-# Galculator
+# Clipboard
+Menu;C
+    dmenu_clip
+
+# Calculadora
 Menu;c
     galculator
-
-# Telegram
-Menu;T
-    telegram-desktop
-
-# Abre/Fecha fluxgui
-Menu;f
-    killall fluxgui || fluxgui
 
 # Transmission
 Menu;t
     transmission-gtk
 
+# Telegram
+Menu;T
+    telegram-desktop
+
 # Discord
 Menu;d
     discord
 
-# Kill
-Menu;k
-    dmenu_kill
+# Shell History
+Menu;h
+    dmenu_shhistory
 
-# Abre/Fecha o picom
+# Htop
+Menu;H
+    st -e htop
+
+# Passmenu
 Menu;p
+    passmenu --type
+
+# Picom
+Menu;P
     killall picom || picom
+
+# Fluxgui
+Menu;F
+    killall fluxgui || fluxgui
+
+# Montar/Desmontar
+Menu;m
+    dmenu_mont
 
 # Teclas do sxhkd
 Menu;slash
-    sxhkd_atalhos
+    sxhkd_atalhos bspwm
+
+# Qutebrowser, pesquisa e favoritos
+Menu;q
+    tmenu ~/code/shell/dmenuscripts/listas/favoritos.yaml
+
+# Anotações
+Menu;a
+    emacsclient -c ~/documentos/anotações.org
+
+# Aliases
+Menu;A
+    zsh-aliases
+
+# Tira print
+Print
+    dmenu_print
 #+end_src
 
 * Qutebrowser
@@ -1265,27 +1310,27 @@ c.editor.command = ['nvim', '{}']
 # the search engine name to the search term, e.g. `:open google
 # qutebrowser`.
 c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
-                    ,  'yt': 'https://www.youtube.com/results?search_query={}'
-                    ,  'r':  'https://www.reddit.com/search/?q={}'
-                    ,  'gh': 'https://github.com/search?q={}'
-                    ,  'gl': 'https://gitlab.com/search?search={}'
-                    ,  'se': 'https://stackexchange.com/search?q={}'
-                    ,  'aw': 'https://wiki.archlinux.org/index.php?search={}'
-                    ,  'gt':  'https://translate.google.com/?sl=auto&tl=en&text={}'
-                    ,  'b':  'https://brainly.com.br/app/ask?q={}'
-                    ,  'tw': 'https://twitter.com/search?q={}'
-                    ,  'sc': 'https://soundcloud.com/search?q={}'
-                    ,  'al': 'https://anilist.co/search/anime?search={}&sort=SEARCH_MATCH'
-                    ,  'alm': 'https://anilist.co/search/manga?search={}&sort=SEARCH_MATCH'
-                    ,  'md':  'https://mangadex.org/titles?page=1&q={}&order=relevance.desc'
-                    ,  'vn':  'https://vndb.org/v?sq={}'
+                    ,  'yt':   'https://www.youtube.com/results?search_query={}'
+                    ,  'r':    'https://www.reddit.com/search/?q={}'
+                    ,  'gh':   'https://github.com/search?q={}'
+                    ,  'gl':   'https://gitlab.com/search?search={}'
+                    ,  'se':   'https://stackexchange.com/search?q={}'
+                    ,  'aw':   'https://wiki.archlinux.org/index.php?search={}'
+                    ,  'gt':   'https://translate.google.com/?sl=auto&tl=en&text={}'
+                    ,  'b':    'https://brainly.com.br/app/ask?q={}'
+                    ,  'tw':   'https://twitter.com/search?q={}'
+                    ,  'sc':   'https://soundcloud.com/search?q={}'
+                    ,  'al':   'https://anilist.co/search/anime?search={}&sort=SEARCH_MATCH'
+                    ,  'alm':  'https://anilist.co/search/manga?search={}&sort=SEARCH_MATCH'
+                    ,  'md':   'https://mangadex.org/titles?page=1&q={}&order=relevance.desc'
+                    ,  'vn':   'https://vndb.org/v?sq={}'
                     ,  'imdb': 'https://www.imdb.com/find?q={}&ref_=nv_sr_sm'
-                    ,  'gm':  'https://www.google.com.br/maps/search/{}'
-                    ,  'sf':  'https://sourceforge.net/directory/?q={}'
-                    ,  'gf':  'https://greasyfork.org/en/scripts?q={}'
-                    ,  'ud':  'https://www.urbandictionary.com/define.php?term={}'
-                    ,  'tg':  'https://trends.google.com.br/trends/explore?q={}'
-                    ,  'wm':  'https://web.archive.org/web/*/{}'
+                    ,  'gm':   'https://www.google.com.br/maps/search/{}'
+                    ,  'sf':   'https://sourceforge.net/directory/?q={}'
+                    ,  'gf':   'https://greasyfork.org/en/scripts?q={}'
+                    ,  'ud':   'https://www.urbandictionary.com/define.php?term={}'
+                    ,  'tg':   'https://trends.google.com.br/trends/explore?q={}'
+                    ,  'wm':   'https://web.archive.org/web/*/{}'
                     }
 
 # ATALHOS
