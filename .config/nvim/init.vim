@@ -13,6 +13,9 @@ call plug#end()
 
 set hidden
 set lazyredraw
+" Muda o titulo da janela
+set title
+set titlestring=nvim
 " Desabilita swapfile
 set noswapfile
 " Da a volta entre linhas

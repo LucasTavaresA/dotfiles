@@ -161,7 +161,7 @@ config.set('content.notifications.enabled', True, 'https://facebook.com/*')
 # `{column}`: Column in which the caret is found in the text. *
 # `{line0}`: Same as `{line}`, but starting from index 0. * `{column0}`:
 # Same as `{column}`, but starting from index 0.
-c.editor.command = ['nvim', '{}']
+c.editor.command = ['st', '-e','nvim', '{}']
 
 # Search engines which can be used via the address bar.  Maps a search
 # engine name (such as `DEFAULT`, or `ddg`) to a URL with a `{}`
