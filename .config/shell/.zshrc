@@ -18,13 +18,14 @@ autoload -U colors && colors
 setopt interactive_comments
 
 # TECLAS
-# Sai do modo vim
+# Modo emacs
 bindkey -e
-# Deleta caracteres usado delete
+bindkey "^?" backward-delete-char
 bindkey "^[[3~" delete-char
-# Home/End vai pro começo/fim da linha
-bindkey  "^[[H"   beginning-of-line
-bindkey  "^[[4~"   end-of-line
+bindkey -a '^[[3~' delete-char
+bindkey "^X" execute-named-cmd
+bindkey "^[[H"   beginning-of-line
+bindkey "^[[4~"   end-of-line
 bindkey -s "^[f" '^Ulf^M'
 
 # Completar comandos
