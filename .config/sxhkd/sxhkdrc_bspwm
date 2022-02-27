@@ -151,7 +151,7 @@ Menu;slash
 
 # Qutebrowser, pesquisa e favoritos
 Menu;q
-    tmenu ~/code/shell/dmenuscripts/listas/favoritos.yaml
+    dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml
 
 # Anotações
 Menu;a

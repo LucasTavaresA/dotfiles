@@ -1,13 +1,19 @@
+# Ativa/Desativa a barra enquando super esquerdo é segurado
+Super_L + any
+	dwmc togglebar
+~@Super_L + any
+	dwmc togglebar
+
 # Ativa/Desativa a barra
-ctrl + space
+super + b
     dwmc togglebar
 
 # Muda o tamanho da janela
-ctrl + {Left,Right}
+ctrl + super + {Left,Right}
 	dwmc setmfact {-,+}0.05
 
 # Muda o tamanho da janela
-ctrl + {Down,Up}
+ctrl + super + {Down,Up}
 	dwmc setcfact {-,+}0.20
 
 # Muda entre as janelas
@@ -27,16 +33,12 @@ super + shift + backslash
 	dwmc killclient
 
 # Alterna janela flutuante
-super + t
+super + w
 	dwmc togglefloating
 
 # troca todas as janelas de posição
 super + Return
     dwmc inplacerotate +2
-
-# troca todas as janelas da stack de posição
-alt + Tab
-    dwmc inplacerotate +1
 
 # Troca entre layouts
 super + Escape
@@ -44,7 +46,7 @@ super + Escape
 
 # Ncmpcpp/Pulsemixer
 super + {_,shift} + a
-    st -g 100x30 -c {'ncmpcpp\,ncmpcpp' -e ncmpcpp,'pulsemixer\,pulsemixer' -e pulsemixer}
+    st -g 100x30 -c {ncmpcpp -n ncmpcpp -e ncmpcpp,pulsemixer -n pulsemixer -e pulsemixer}
 
 # Pausa/Toca musica
 super + space
@@ -55,8 +57,8 @@ super + shift + {comma, period}
     mpc {prev,next} && musica notificar && pkill -RTMIN+11 dwmblocks
 
 # Abaixar/Aumentar o volume e atualizar a barra
-super + {comma, period}
-    amixer -q set Master 5%{-,+} && pkill -RTMIN+9 dwmblocks
+super + {comma, period, Down, Up}
+    amixer -q set Master 5%{-,+,-,+} && pkill -RTMIN+9 dwmblocks
 
 # St
 super + shift + Return
@@ -67,11 +69,11 @@ super + backslash
     st_scratchpad
 
 # Torna a janela fixa em todas as tags
-Menu;s
+super + s
     dwmc togglesticky
 
 # Monocle
-Menu;f
+super + f
     dwmc setmonocle 0
 
 # Menu
@@ -104,7 +106,7 @@ Menu;h
 
 # Htop
 Menu;H
-    st -e htop
+    st -g 100x30 -c htop -n htop -e htop
 
 # Passmenu
 Menu;p
@@ -144,7 +146,7 @@ Menu;d
 
 # Qutebrowser, pesquisa e favoritos
 Menu;q
-    tmenu ~/code/shell/dmenuscripts/listas/favoritos.yaml
+    dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml
 
 # Anotações
 Menu;a

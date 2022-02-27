@@ -251,10 +251,6 @@ Para desabilitar um *pacote-do-doom* use =(package! pacote-do-doom :disable t)=
 ;; (package! centered-cursor-mode)
 
 #+end_src
-
-#+RESULTS:
-| solarized-darker | :modules | ((:private . config) (:private . modules)) | :recipe | (:local-repo ~/.config/doom/themes/solarized-darker/) |
-
 * Configuração
 
 - =config.el=
@@ -271,19 +267,17 @@ Você pode usar =gd= para ver como é implementado
 - =add-load-path!= para adicionar diretórios ao =load-path=, relativos a esse arquivo. Emacs procura pelo =load-path= quando usando =require= e =use-package=
 
 ** Aparência
-
 #+begin_src emacs-lisp :tangle ./config.el
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; Fonte
-(setq doom-font (font-spec :family "Fira Code" :size 16 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "sans" :size 13))
+(setq doom-font (font-spec :family "Fira Code Retina" :size 16))
 
 ;; Desativa a modeline
 (setq-default mode-line-format nil)
 
 ;; Carregar um tema com `doom-theme' ou `load-theme'
-(setq doom-theme 'doom-solarized-dark)
+(setq doom-theme 'doom-moonlight)
 
 ;; Desabilita numero de linhas
 (setq display-line-numbers-type nil)
@@ -297,9 +291,7 @@ Você pode usar =gd= para ver como é implementado
 (setq evil-replace-state-cursor  '("#ff0000" (hbar . 4)))
 (setq evil-motion-state-cursor   '("#ad8beb" box))
 #+end_src
-
 ** Miscelânea
-
 #+begin_src emacs-lisp :tangle ./config.el
 
 ;; Controle de projetos
@@ -371,17 +363,12 @@ Você pode usar =gd= para ver como é implementado
   '("sxhkdrc") nil
   "Modo simples para o sxhkd.")
 #+end_src
-
 ** Teclas
 
 - use =map!= para configurar novos atalhos
 
 #+begin_src emacs-lisp :tangle ./config.el
-
-(with-eval-after-load "org"
-    (define-key org-mode-map (kbd "<M-up>") nil)
-    (define-key org-mode-map (kbd "<M-down>") nil))
-
+;; Abre/Fecha header atual
 (defun orgm/org-cycle-current-headline ()
   (interactive)
   (org-cycle-internal-local))
@@ -390,19 +377,22 @@ Você pode usar =gd= para ver como é implementado
 (setq-default evil-cross-lines t)
 
 ;; Desabilita teclas
-(global-unset-key (kbd "<C-SPC>"))
-(global-unset-key (kbd "C-s"))
-(global-unset-key (kbd "C-M-i"))
+(with-eval-after-load "org"
+  (define-key org-mode-map (kbd "<M-up>") nil)
+  (define-key org-mode-map (kbd "<M-down>") nil)
+  (define-key org-mode-map (kbd "C-c C-c") nil)
+  (define-key org-mode-map (kbd "<C-S-down>") nil)
+  (define-key org-mode-map (kbd "<C-S-up>") nil))
 (define-key evil-normal-state-map (kbd "<C-tab>") nil)
 (define-key evil-normal-state-map (kbd "M-d") nil)
 (define-key evil-visual-state-map (kbd "<C-tab>") nil)
+(define-key evil-motion-state-map (kbd ";") nil)
 
 ;; Teclas
 ;; Comenta e vai para proxima linha
-(global-set-key (kbd "s-i") 'comment-line)
-(global-set-key (kbd "s-c") 'comentar-linha)
-(fset 'comentar-linha
-   (kmacro-lambda-form [?\s-i down] 0 "%d"))
+(global-set-key (kbd "C-c C-c") 'comentar-e-descer-linha)
+(fset 'comentar-e-descer-linha
+   (kmacro-lambda-form [?\C-x ?\C-\; down] 0 "%d"))
 
 ;; Move entre partes da mesma linha
 (define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
@@ -410,10 +400,14 @@ Você pode usar =gd= para ver como é implementado
 (define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
 (define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
 
-(global-set-key (kbd "C-s") '+default/search-buffer)
-(global-set-key (kbd "s-s") 'evil-mc-make-all-cursors)
-(global-set-key (kbd "<s-down>") 'evil-mc-make-cursor-move-next-line)
-(global-set-key (kbd "<s-up>") 'evil-mc-make-cursor-move-prev-line)
+(define-key evil-motion-state-map "?" 'evil-ex-search-word-forward)
+(define-key evil-motion-state-map ":" '+vertico/search-symbol-at-point)
+(define-key evil-normal-state-map ";" '+default/search-buffer)
+(global-set-key (kbd "C-s") 'evil-mc-make-all-cursors)
+(global-set-key (kbd "<C-S-down>") 'evil-mc-make-and-goto-next-match)
+(global-set-key (kbd "<C-S-up>") 'evil-mc-make-and-goto-prev-match)
+(global-set-key (kbd "<C-down>") 'evil-mc-skip-and-goto-next-match)
+(global-set-key (kbd "<C-up>") 'evil-mc-skip-and-goto-prev-match)
 (global-set-key (kbd "M-c") 'evil-yank)
 (global-set-key (kbd "M-v") 'evil-paste-before)
 (global-set-key (kbd "M-d") 'org-babel-demarcate-block)
@@ -421,19 +415,19 @@ Você pode usar =gd= para ver como é implementado
 (global-set-key (kbd "<M-up>") 'er/expand-region)
 (global-set-key (kbd "<M-down>") 'er/contract-region)
 (global-set-key (kbd "<C-tab>") 'next-buffer)
-(global-set-key (kbd "<C-s-right>") 'evil-window-vsplit)
-(global-set-key (kbd "<C-s-down>") 'evil-window-split)
+(global-set-key (kbd "<C-M-right>") 'evil-window-vsplit)
+(global-set-key (kbd "<C-M-down>") 'evil-window-split)
 (define-key doom-leader-map (kbd "c b") 'doom/copy-buffer-contents)
 (define-key doom-leader-map (kbd "e r") 'eval-region)
 (define-key doom-leader-map (kbd "s s") 'flyspell-mode)
 (define-key doom-leader-map (kbd "s b") 'flyspell-buffer)
+(define-key doom-leader-map (kbd "h l") 'hl-line-mode)
 (define-key doom-leader-map (kbd "k") 'kill-buffer)
 (define-key doom-leader-map (kbd "l") 'org-insert-link)
 (define-key doom-leader-map (kbd "L") 'log/toggle-command-window)
 (define-key doom-leader-map (kbd "n") 'neotree-toggle)
 (define-key doom-leader-map (kbd "P") 'projectile-command-map)
-(define-key doom-leader-map (kbd "R") 'rainbow-mode)
-(define-key doom-leader-map (kbd "r") 'list-colors-display)
+(define-key doom-leader-map (kbd "r") 'rainbow-mode)
 (define-key doom-leader-map (kbd "U") 'undo-tree-visualize)
 (define-key doom-leader-map (kbd "b t") 'org-babel-tangle)
 (define-key doom-leader-map (kbd "w w") 'save-buffer)
@@ -442,8 +436,6 @@ Você pode usar =gd= para ver como é implementado
 (define-key doom-leader-map (kbd "RET") 'terminal-here-launch)
 (define-key doom-leader-map (kbd "SPC") 'org-toggle-checkbox)
 (define-key doom-leader-map (kbd "TAB") 'other-window)
-(define-key evil-motion-state-map ":" nil)
-(define-key evil-motion-state-map "?" '+vertico/search-symbol-at-point)
 
 ;; centralizar quando fora do modo de inserção ainda em desenvolvimento
 ;; (global-centered-cursor-mode)
@@ -480,12 +472,7 @@ Você pode usar =gd= para ver como é implementado
             :internal-border-color "#ffffff"
             :override-parameters '((parent-frame . nil)))))))
 #+end_src
-
-#+RESULTS:
-: log/toggle-command-window
-
 ** Org
-
 #+begin_src emacs-lisp :tangle ./config.el
 
 ;; Trocar listas com hífens por pontos
@@ -500,9 +487,16 @@ Você pode usar =gd= para ver como é implementado
       org-confirm-babel-evaluate nil ;; Não pergunta antes de avaliar
       org-ellipsis " "
       org-hide-emphasis-markers t ;; Esconde marcação
-      org-edit-src-content-indentation 0) ;; Indentação nos blocos de codigo
+      org-edit-src-content-indentation 0) ;; Indentação nos blocos de código
 
-;; Snippets para templates de codigo
+;; Orgmode mais rápido
+(after! org
+  (setq org-fontify-quote-and-verse-blocks nil
+        org-fontify-whole-heading-line nil
+        org-hide-leading-stars nil
+        org-startup-indented nil))
+
+;; Snippets para templates de código
 (require 'org-tempo)
 
 (add-to-list 'org-structure-template-alist '("sh" . "src sh"))
