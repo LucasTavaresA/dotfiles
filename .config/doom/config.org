@@ -367,7 +367,7 @@ Você pode usar =gd= para ver como é implementado
 ;; Modo simples para o sxhkd
 (define-generic-mode sxhkd-mode
   '(?#)
-  '("alt" "Escape" "super" "bspc" "ctrl" "space" "shift") nil
+  '("alt" "Escape" "super" "bspc" "dwmc" "ctrl" "space" "shift" "Return" "Menu" "backslash" "slash" "comma" "period" "Tab" "Left" "Right" "Up" "Down" "Print") nil
   '("sxhkdrc") nil
   "Modo simples para o sxhkd.")
 #+end_src
@@ -425,7 +425,8 @@ Você pode usar =gd= para ver como é implementado
 (global-set-key (kbd "<C-s-down>") 'evil-window-split)
 (define-key doom-leader-map (kbd "c b") 'doom/copy-buffer-contents)
 (define-key doom-leader-map (kbd "e r") 'eval-region)
-(define-key doom-leader-map (kbd "S") 'flyspell-mode)
+(define-key doom-leader-map (kbd "s s") 'flyspell-mode)
+(define-key doom-leader-map (kbd "s b") 'flyspell-buffer)
 (define-key doom-leader-map (kbd "k") 'kill-buffer)
 (define-key doom-leader-map (kbd "l") 'org-insert-link)
 (define-key doom-leader-map (kbd "L") 'log/toggle-command-window)
@@ -442,6 +443,7 @@ Você pode usar =gd= para ver como é implementado
 (define-key doom-leader-map (kbd "SPC") 'org-toggle-checkbox)
 (define-key doom-leader-map (kbd "TAB") 'other-window)
 (define-key evil-motion-state-map ":" nil)
+(define-key evil-motion-state-map "?" '+vertico/search-symbol-at-point)
 
 ;; centralizar quando fora do modo de inserção ainda em desenvolvimento
 ;; (global-centered-cursor-mode)

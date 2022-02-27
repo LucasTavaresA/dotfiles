@@ -16,6 +16,7 @@ set lazyredraw
 " Muda o titulo da janela
 set title
 set titlestring=nvim
+set titleold=st
 " Desabilita swapfile
 set noswapfile
 " Da a volta entre linhas

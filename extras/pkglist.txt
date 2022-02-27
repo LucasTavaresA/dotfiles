@@ -1,3 +1,4 @@
+aalib
 abseil-cpp
 acl
 adobe-source-code-pro-fonts
@@ -30,6 +31,7 @@ atool
 attr
 audiofile
 audit
+augeas
 autoconf
 autoconf-archive
 automake
@@ -50,6 +52,7 @@ bluez-libs
 bluez-utils
 boost-libs
 box2d
+bridge-utils
 brotli
 btrfs-progs
 bubblewrap
@@ -76,6 +79,7 @@ clucene
 cmake
 compiler-rt
 coreutils
+cpio
 cryptsetup
 ctpl
 curl
@@ -88,12 +92,15 @@ dbus
 dbus-glib
 dbus-python
 dconf
+debootstrap
 desktop-file-utils
 device-mapper
+dhcpcd
 diffutils
 ding-libs
 discord
 dmraid
+dnsmasq
 dnssec-anchors
 docx2txt
 dosfstools
@@ -102,6 +109,7 @@ dotnet-runtime
 dotnet-sdk
 dotnet-targeting-pack
 double-conversion
+dtc
 dunst
 e2fsprogs
 elfutils
@@ -109,10 +117,12 @@ elinks
 ell
 emacs
 enchant
+exfatprogs
 exiv2
 expac
 expat
 expect
+f2fs-tools
 faad2
 fakeroot
 fd
@@ -134,6 +144,7 @@ freetype2
 fribidi
 fuse-common
 fuse2
+fuse3
 fzf
 galculator
 gawk
@@ -192,12 +203,15 @@ gssproxy
 gst-libav
 gst-plugins-base
 gst-plugins-base-libs
+gst-plugins-good
 gstreamer
 gtk-update-icon-cache
+gtk-vnc
 gtk2
 gtk3
 gtkmm
 gtkmm3
+gtksourceview4
 gtkspell3
 gts
 guile
@@ -340,6 +354,7 @@ haskell-zlib
 hicolor-icon-theme
 hidapi
 highlight
+hivex
 hspell
 htop
 http-parser
@@ -371,6 +386,7 @@ java-runtime-common
 jbig2dec
 jdk11-openjdk
 jemalloc
+jfsutils
 jq
 jre-openjdk
 jre-openjdk-headless
@@ -409,8 +425,12 @@ libb2
 libb64
 libblockdev
 libbluray
+libbpf
 libbsd
+libburn
 libbytesize
+libcaca
+libcacard
 libcanberra
 libcap
 libcap-ng
@@ -431,6 +451,7 @@ libdbusmenu-qt5
 libde265
 libdispatch
 libdrm
+libdv
 libdvdnav
 libdvdread
 libe-book
@@ -443,6 +464,7 @@ libetonyek
 libev
 libevdev
 libevent
+libewf
 libexif
 libexttextcat
 libfdk-aac
@@ -457,8 +479,10 @@ libgit2
 libglvnd
 libgme
 libgnome-keyring
+libgovirt
 libgpg-error
 libgudev
+libguestfs
 libheif
 libibus
 libical
@@ -473,12 +497,15 @@ libindicator-gtk3
 libinih
 libinput
 libinstpatch
+libisoburn
+libisofs
 libixion
 libjpeg-turbo
 libksba
 liblangtag
 libldac
 libldap
+libldm
 liblqr
 libluv
 libmad
@@ -519,6 +546,7 @@ libogg
 libomxil-bellagio
 libopenmpt
 liborcus
+libosinfo
 libotf
 libp11-kit
 libpagemaker
@@ -547,6 +575,7 @@ libshout
 libsidplayfp
 libsigc++
 libsigsegv
+libslirp
 libsm
 libsndfile
 libsodium
@@ -578,6 +607,9 @@ libusb
 libuv
 libva
 libvdpau
+libvirt
+libvirt-glib
+libvirt-python
 libvisio
 libvisual
 libvncserver
@@ -641,8 +673,10 @@ llvm-libs
 lm_sensors
 lmdb
 lpsolve
+lrzip
 lsd
 lsof
+lsscsi
 lua
 lua51
 lua52
@@ -654,6 +688,7 @@ lxappearance
 lynx
 lz4
 lzo
+lzop
 m17n-db
 m17n-lib
 m4
@@ -682,7 +717,9 @@ mpg123
 mpv
 msgpack-c
 mtdev
+mtools
 mujs
+multipath-tools
 mypaint-brushes1
 ncmpcpp
 ncurses
@@ -698,6 +735,7 @@ network-manager-applet
 networkmanager
 nfs-utils
 nfsidmap
+nilfs-utils
 nitrogen
 nm-connection-editor
 node-gyp
@@ -715,8 +753,10 @@ nsxiv
 ntfs-3g
 numactl
 nuspell
+onefetch
 oniguruma
 openal
+openbsd-netcat
 opencore-amr
 opendoas
 openexr
@@ -728,6 +768,7 @@ opus
 opusfile
 orc
 os-prober
+osinfo-db
 p11-kit
 p7zip
 pacman
@@ -764,6 +805,7 @@ perl-http-negotiate
 perl-image-exiftool
 perl-io-html
 perl-io-socket-ssl
+perl-libintl-perl
 perl-libwww
 perl-lwp-mediatypes
 perl-lwp-protocol-https
@@ -776,6 +818,7 @@ perl-uri
 perl-www-robotrules
 perl-xml-parser
 perl-xml-writer
+phodav
 picom
 pinentry
 pipewire
@@ -803,6 +846,7 @@ python-attrs
 python-beaker
 python-beautifulsoup4
 python-cachecontrol
+python-cairo
 python-cffi
 python-chardet
 python-colorama
@@ -871,6 +915,7 @@ python-xlib
 python-yaml
 python-zipp
 python2
+qemu
 qrencode
 qt5-3d
 qt5-base
@@ -926,6 +971,7 @@ re2
 readline
 redland
 reflector
+reiserfsprogs
 rest
 rhash
 ripgrep
@@ -941,6 +987,8 @@ sbc
 sbcl
 sdl
 sdl2
+sdl2_image
+seabios
 sed
 semver
 serd
@@ -950,6 +998,7 @@ shared-mime-info
 shellcheck
 simple-mtpfs
 slang
+sleuthkit
 slop
 smbclient
 snappy
@@ -959,16 +1008,22 @@ sound-theme-freedesktop
 speedtest-cli
 speex
 speexdsp
+spice
+spice-gtk
 spirv-tools
 sqlite
+squashfs-tools
 sratom
 srt
 starship
+strace
 stylelint
 suitesparse
+supermin
 svt-av1
 sxhkd
 sysfsutils
+syslinux
 systemd
 systemd-libs
 systemd-sysvcompat
@@ -988,6 +1043,7 @@ texlive-core
 thin-provisioning-tools
 tidy
 tinyxml2
+tpm2-tss
 tracker3
 translate-shell
 transmission-gtk
@@ -1014,6 +1070,7 @@ ueberzug
 unibilium
 unrar
 unzip
+usbredir
 usbutils
 uthash
 util-linux
@@ -1021,6 +1078,12 @@ util-linux-libs
 v4l-utils
 vde2
 vid.stab
+vim
+vim-runtime
+virglrenderer
+virt-install
+virt-manager
+virt-viewer
 vmaf
 volume_key
 vte-common
@@ -1089,6 +1152,7 @@ xvidcore
 xxhash
 xz
 yajl
+yara
 yasm
 youtube-dl
 yt-dlp

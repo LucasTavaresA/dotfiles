@@ -102,11 +102,11 @@ Menu;g
     gimp
 
 # Clipboard
-Menu;C
+Menu;c
     dmenu_clip
 
 # Calculadora
-Menu;c
+Menu;C
     galculator
 
 # Transmission
@@ -147,7 +147,7 @@ Menu;m
 
 # Teclas do sxhkd
 Menu;slash
-    sxhkd_atalhos bspwm
+    sxhkd_atalhos
 
 # Qutebrowser, pesquisa e favoritos
 Menu;q

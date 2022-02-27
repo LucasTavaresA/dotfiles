@@ -119,11 +119,11 @@ Menu;F
     killall fluxgui || fluxgui
 
 # Clipboard
-Menu;C
+Menu;c
     dmenu_clip
 
 # Calculadora
-Menu;c
+Menu;C
     galculator
 
 # Gimp
