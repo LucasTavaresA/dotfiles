@@ -1,7 +1,11 @@
-# Ativa/Desativa a barra enquando super esquerdo é segurado
+# Ativa/Desativa a barra enquando super é segurado
 Super_L + any
 	dwmc togglebar
 ~@Super_L + any
+	dwmc togglebar
+Super_R + any
+	dwmc togglebar
+~@Super_R + any
 	dwmc togglebar
 
 # Ativa/Desativa a barra

@@ -321,6 +321,7 @@ Você pode usar =gd= para ver como é implementado
 ;; Tamanho dos tabs
 (setq-default tab-width 4)
 (setq-default evil-shift-width tab-width)
+(setq-default indent-tabs-mode nil)
 
 ;; Correção ortográfica
 (use-package! flyspell

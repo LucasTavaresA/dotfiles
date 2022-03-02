@@ -1,18 +1,35 @@
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'projekt0n/github-nvim-theme'
+" Tema
+Plug '~/.config/nvim/plugged/moonlight.nvim'
+" Salva posição do cursor
 Plug 'farmergreg/vim-lastplace'
+" Indica diffs
 Plug 'mhinz/vim-signify'
-Plug 'bilalq/lite-dfm'
+" Esconde a barra
+Plug '~/.config/nvim/plugged/lite-dfm'
+" Multiplos cursores
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+" Comenta linhas
 Plug 'tpope/vim-commentary'
+" Troca/coloca aspas/parenteses
 Plug 'tpope/vim-surround'
+" Expande região selecionada
 Plug 'terryma/vim-expand-region'
+" Previsão de cores
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 
 call plug#end()
 
+filetype plugin on
+filetype indent on
 set hidden
 set lazyredraw
+" Limita tabs em 4 espaços
+set tabstop=4
+set shiftwidth=4
+" Troca tabs por espaços
+set expandtab
 " Muda o titulo da janela
 set title
 set titlestring=nvim
@@ -35,8 +52,6 @@ autocmd InsertLeave * set nocul
 set clipboard+=unnamedplus
 " Idioma para correção ortográfica
 set spell spelllang=pt
-" Junta os números e marcadores em uma única coluna
-set signcolumn=number
 " Atualiza o neovim mais rápido
 set updatetime=100
 " Procura ignorando maiúsculas
@@ -52,11 +67,10 @@ set splitbelow splitright
 set incsearch!
 " Inicia sem a barra
 autocmd VimEnter * LiteDFMToggle
-" Numero de linhas
-set number
-set signcolumn=number
 " Linhas não dão a volta na tela
 set nowrap
+" Estilo de previsão de cores
+let g:Hexokinase_highlighters = [ 'backgroundfull' ]
 
 " Automaticamente deleta todos os espaços em branco e novas linhas no salvamento do arquivo e reseta a posição do cursor
 autocmd BufWritePre * let currPos = getpos(".")
@@ -65,7 +79,8 @@ autocmd BufWritePre * %s/\n\+\%$//e
 autocmd BufWritePre *.[ch] %s/\%$/\r/e
 autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
 
-colorscheme github_dark_default
+syntax on
+colorscheme moonlight
 set background=dark
 " Transparência
 hi Normal guibg=NONE ctermbg=NONE
@@ -97,13 +112,15 @@ map <A-Tab> :bn<CR>
 " Salvar buffer
 map <leader>ww :w<CR>
 " Sair e salvar
-map <leader>wq :wq<CR>
+map <leader>wq :wq!<CR>
 " Fecha sem salvar
 map <leader>qq :q!<CR>
 " Divide a tela do lado
 map <C-A-Right> :vs<CR>
 " Divide a tela abaixo
 map <C-A-down> :sp<CR>
+" Ativa previsão de cores
+map <leader>r :ColorizerToggle<CR>
 " Selecionar multiplas palavras
 map <A-s> <C-n>
 " criar cursor em uma linha
