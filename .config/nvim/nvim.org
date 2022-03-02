@@ -1,3 +1,21 @@
+#+TITLE: Configuração do neovim
+#+PROPERTY: header-args:vimrc
+#+STARTUP: content
+
+* Sumario
+:PROPERTIES:
+:TOC:      :include all :depth 2 :force (depth) :ignore (this) :local (depth)
+:END:
+
+:CONTENTS:
+- [[#miscellanea][Miscellanea]]
+- [[#plugins][Plugins]]
+- [[#teclas][Teclas]]
+:END:
+
+* Miscellanea
+
+#+begin_src vimrc :tangle ~/.config/nvim/init.vim
 filetype plugin on
 filetype indent on
 set nocompatible
@@ -72,6 +90,11 @@ hi CursorLine guibg=#000000
 highlight Search guibg=#000000 guifg=#ffff00
 " Incida parenteses correspondente
 hi! MatchParen cterm=NONE,bold gui=NONE,bold  guibg=NONE guifg=#ff0000
+#+end_src
+
+* Plugins
+
+#+begin_src vimrc :tangle ~/.config/nvim/init.vim
 
 call plug#begin('~/.config/nvim/plugins')
 
@@ -109,6 +132,11 @@ let g:Hexokinase_highlighters = [ 'backgroundfull' ]
 
 " Tema - moonlight
 colorscheme moonlight
+#+end_src
+
+* Teclas
+
+#+begin_src vimrc :tangle ~/.config/nvim/init.vim
 
 let mapleader =" "
 let maplocalleader = " "
@@ -148,3 +176,4 @@ map <C-s-Up> <C-Up>
 map <C-s-Down> <C-Down>
 " Copiar buffer
 map cb ggVGy
+#+end_src

@@ -24,7 +24,8 @@
 .config/stumpwm/*log*
 .config/transmission/
 .config/VirtualBox/
-.config/nvim/plugged/
+.config/NuGet/
+.config/nvim/plugins/
 .config/shell/.zcompdump
 .config/shell/history
 .config/pam-gnupg
