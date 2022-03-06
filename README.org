@@ -584,7 +584,7 @@ eval "$(starship init zsh)"
 
 # Carrega plugins do zsh, deve ser o ultimo comando
 source $HOME/.config/shell/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source $HOME/.config/shell/plugins/you-should-use.plugin.zsh
+source $HOME/.config/shell/plugins/expand-all.zsh
 source $HOME/.config/shell/plugins/fzf.zsh
 source $HOME/.config/shell/plugins/keys-fzf.zsh
 bindkey  "^[d"   fzf-cd-widget
@@ -775,6 +775,7 @@ fluxgui &
 sxhkd &
 emacs --daemon &
 dwmblocks &
+picom &
 
 # Protetor de tela
 xautolock -detectsleep -time 30 -locker "slock" -notify 30 -notifier "notify-send Slock -u critical -t 1800000 'BLOQUEANDO A TELA 30 SEGUNDOS'" &
@@ -1905,6 +1906,7 @@ Arquivos ignorados pelo git
 .config/VirtualBox/
 .config/NuGet/
 .config/nvim/plugins/
+.config/nvim/plugin/
 .config/shell/.zcompdump
 .config/shell/history
 .config/pam-gnupg

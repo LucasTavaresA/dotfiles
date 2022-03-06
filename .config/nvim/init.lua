@@ -1,22 +1,3 @@
-#+TITLE: Configuração do neovim
-#+PROPERTY: header-args:vimrc
-#+STARTUP: content
-
-* Sumario
-:PROPERTIES:
-:TOC:      :include all :depth 2 :force (depth) :ignore (this) :local (depth)
-:END:
-
-:CONTENTS:
-- [[#plugins][Plugins]]
-- [[#miscellanea][Miscellanea]]
-- [[#teclas][Teclas]]
-:END:
-
-* Plugins
-
-#+begin_src lua :tangle ~/.config/nvim/init.lua
-
 require('packer').startup(function()
     ---- Vim
     -- Vim mais rapido
@@ -60,11 +41,6 @@ require('packer').startup(function()
     use 'baskerville/vim-sxhkdrc'
 end)
 
-#+end_src
-
-* Miscellanea
-
-#+begin_src lua :tangle ~/.config/nvim/init.lua
 ---- vim
 vim.cmd("filetype plugin on")
 vim.cmd("filetype indent on")
@@ -151,11 +127,6 @@ vim.cmd("highlight Search guibg=#000000 guifg=#ffff00")
 -- Incida parenteses correspondente
 vim.cmd("hi! MatchParen cterm=NONE,bold gui=NONE,bold  guibg=NONE guifg=#ff0000")
 
-#+end_src
-
-* Teclas
-
-#+begin_src lua :tangle ~/.config/nvim/init.lua
 local keymap = vim.api.nvim_set_keymap
 local nr = { noremap = true }
 vim.g.mapleader = " "
@@ -207,5 +178,3 @@ keymap("n", "fh", ":History<CR>", {})
 keymap("n", "tn", ":set number!<CR>", {})
 -- Trocar de buffer
 keymap("n", "<A-Tab>", ":Buffers<CR>", {})
-
-#+end_src

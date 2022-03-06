@@ -26,6 +26,7 @@
 .config/VirtualBox/
 .config/NuGet/
 .config/nvim/plugins/
+.config/nvim/plugin/
 .config/shell/.zcompdump
 .config/shell/history
 .config/pam-gnupg
