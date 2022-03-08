@@ -1,8 +1,8 @@
 # Se não executando zsh interativamente
-# Não executa o resto do bashrc
+# Não executa o resto do zshrc
 [[ $- != *i* ]] && return
 
-# ZSH EXPORTS
+# EXPORTS
 export SHELL="zsh"
 # Não adiciona esses itens ao histórico
 export HISTORY_IGNORE="(ls|cd|pwd|exit|doas reboot|history|cd -|cd ..)"
@@ -34,7 +34,7 @@ autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
-_comp_options+=(globdots)		# Incluir arquivos ocultos.
+_comp_options+=(globdots)       # Incluir arquivos ocultos.
 
 ## FUNÇÕES
 
@@ -43,7 +43,7 @@ lf () {
     LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"
     LF_TEMPDIR="$LF_TEMPDIR" lf-run -last-dir-path="$LF_TEMPDIR/lastdir" "$@"
     if [ "$(cat "$LF_TEMPDIR/cdtolastdir" 2>/dev/null)" = "1" ]; then
-	cd "$(cat "$LF_TEMPDIR/lastdir")"
+    cd "$(cat "$LF_TEMPDIR/lastdir")"
     fi
     rm -r "$LF_TEMPDIR"
     unset LF_TEMPDIR
@@ -73,7 +73,7 @@ function ex {
             *.cpio)      cpio -id < ./"$n"  ;;
             *.cba|*.ace)      unace x ./"$n"      ;;
             *)
-                         echo "ex: '$n' - Metodo de archivação desconhecido"
+                         echo "ex: '$n' - Método de arquivação desconhecido"
                          return 1
                          ;;
           esac
@@ -91,7 +91,8 @@ alias v="nvim"
 alias h="htop"
 alias ed="emacs --daemon"
 alias ek="emacsclient -e '(kill-emacs)'"
-alias e="emacsclient -n -c"
+alias ec="emacsclient -n -c"
+alias e="emacs"
 alias copy="xclip -selection clipboard"
 alias sudo="doas"
 alias p="ping google.com"

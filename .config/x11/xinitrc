@@ -24,7 +24,6 @@ nm-applet &
 xbanish &
 fluxgui &
 sxhkd &
-emacs --daemon &
 dwmblocks &
 picom &
 

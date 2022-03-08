@@ -155,7 +155,7 @@ Menu;q
 
 # Anotações
 Menu;a
-    emacsclient -c ~/documentos/anotações.org
+    nvim ~/documentos/anotações.md
 
 # Aliases
 Menu;A

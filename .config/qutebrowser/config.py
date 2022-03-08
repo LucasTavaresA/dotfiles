@@ -10,6 +10,9 @@
 #   qute://help/configuring.html
 #   qute://help/settings.html
 
+# Carregar o autoconfig.yml
+config.load_autoconfig()
+
 # CONFIGURAÇÕES PADRÃO
 
 # Valid values:
@@ -69,9 +72,6 @@ config.set('content.pdfjs', True)
 
 # Javascript desativado por padrão
 config.set('content.javascript.enabled', False)
-
-# Carregar o autoconfig.yml
-config.load_autoconfig(True)
 
 # Abre novas abas de fundo
 config.set('new_instance_open_target', 'window')
@@ -161,7 +161,7 @@ config.set('content.notifications.enabled', True, 'https://facebook.com/*')
 # `{column}`: Column in which the caret is found in the text. *
 # `{line0}`: Same as `{line}`, but starting from index 0. * `{column0}`:
 # Same as `{column}`, but starting from index 0.
-c.editor.command = ['st', '-e','nvim', '{}']
+c.editor.command = ['nvim', '{}']
 
 # Search engines which can be used via the address bar.  Maps a search
 # engine name (such as `DEFAULT`, or `ddg`) to a URL with a `{}`
@@ -218,35 +218,36 @@ config.bind('<Ctrl-Right>', 'tab-next')
 config.bind('<Ctrl-a>', 'back')
 config.bind('<Ctrl-d>', 'forward')
 config.bind('u', 'undo --window')
-config.bind('zx', 'config-cycle statusbar.show always in-mode;; config-cycle tabs.show always switching')
 # Atalho para assistir link com mpv
-config.bind('zp', 'hint links spawn mpv {hint-url}')
+config.bind('zvw', 'hint links spawn mpv {hint-url}')
 # Baixar imagem selecionada
-config.bind('zi', 'hint images download')
+config.bind('zid', 'hint images download')
 # Baixar como video
-config.bind('zv', 'hint links spawn st -c st_download -e yt {hint-url}')
+config.bind('zvd', 'hint links spawn st -c st_download -e yt {hint-url}')
 # Baixar como audio
-config.bind('za', 'hint links spawn st -c st_download -e yta {hint-url}')
+config.bind('zad', 'hint links spawn st -c st_download -e yta {hint-url}')
 # Abre no firefox
 config.bind('zf', 'hint links spawn firefox {url}')
+# Ativa/Desativa a barra
+config.bind('zx', 'config-cycle statusbar.show always in-mode;; config-cycle tabs.show always switching')
 # Ativa/Desativa tema escuro
 config.bind('zd', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/styles/dark.css ""')
 # Ativa/Desativa javascript para um site
 config.bind('zj', 'config-cycle -p -u *://*.{url:host}/* content.javascript.enabled ;; reload')
 # Ativa/Desativa adblocking para um site
 config.bind('zb', 'config-cycle -p -u *://*.{url:host}/* content.blocking.enabled ;; reload')
+# Modo leitura
+config.bind('zr', 'spawn --userscript readability')
 # Traduz a pagina
 config.bind('ztp', 'spawn --userscript translate')
 # Traduz o texto selecionado
 config.bind('zts', 'spawn --userscript translate --text')
-# Modo leitura
-config.bind('zl', 'spawn --userscript readability')
 # Copia links
-config.bind('zc', 'hint links yank')
-# Copia trechos de codigo
-config.bind('zC', 'hint code userscript code_select.py')
+config.bind('cl', 'hint links yank')
+# Copia trechos de código
+config.bind('cc', 'hint code userscript code_select.py')
 c.hints.selectors["code"] = [
-    # Seleciona code tags onde o parente nao é uma tag pre
+    # Seleciona code tags onde o parente não é uma tag pre
     ":not(pre) > code",
     "pre"
 ]
@@ -315,19 +316,19 @@ c.colors.statusbar.command.bg = '#2f334d'
 c.colors.statusbar.url.warn.fg = '#ff0000'
 # Cor de fundo da barra de abas abertas
 c.colors.tabs.bar.bg = '#2f334d'
-# Cor de fundo de abas deselecionadas
+# Cor de fundo de abas não selecionadas
 c.colors.tabs.odd.bg = '#000000'
 c.colors.tabs.even.bg = '#000000'
 # Cor de fundo de abas selecionadas
 c.colors.tabs.selected.odd.bg = '#2f334d'
 c.colors.tabs.selected.even.bg = '#2f334d'
-# Cor de fundo de abas fixadas deselecionadas
+# Cor de fundo de abas fixadas não selecionadas
 c.colors.tabs.pinned.odd.bg = '#000000'
 c.colors.tabs.pinned.even.bg = '#000000'
 # Cor de fundo de abas fixadas selecionadas
 c.colors.tabs.pinned.selected.odd.bg = '#2f334d'
 c.colors.tabs.pinned.selected.even.bg = '#2f334d'
-# Cor das fontes de abas deselecionadas
+# Cor das fontes de abas não selecionadas
 c.colors.tabs.even.fg = '#ffffff'
 c.colors.tabs.odd.fg = '#ffffff'
 c.colors.tabs.pinned.even.fg = '#ffffff'

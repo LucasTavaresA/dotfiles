@@ -48,25 +48,25 @@ set scrolloff 0
 
 cmd open ${{
     case $(file --mime-type "$(readlink -f $f)" -b) in
-    	application/vnd.openxmlformats-officedocument.wordprocessingml.document) libreoffice $f ;;
-	    image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) zathura $fx ;;
-      text/*) emacsclient -n -c $fx ;;
-	    image/*) nsxiv . ;;
-	    audio/*) mpv --audio-display=no $fx ;;
-	    video/*) mpv $fx ;;
-	    application/pdf|application/vnd*|application/epub*) zathura $fx ;;
-	    application/pgp-encrypted) nvim $fx ;;
+        application/vnd.openxmlformats-officedocument.wordprocessingml.document) libreoffice $f ;;
+        image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) zathura $fx ;;
+        text/*) nvim $fx ;;
+        image/*) nsxiv . ;;
+        audio/*) mpv --audio-display=no $fx ;;
+        video/*) mpv $fx ;;
+        application/pdf|application/vnd*|application/epub*) zathura $fx ;;
+        application/pgp-encrypted) nvim $fx ;;
         *) xdg-open $fx ;;
     esac
 }}
 
 cmd delete ${{
-	clear; tput cup $(($(tput lines)/3)); tput bold
-	set -f
-	printf "%s\n\t" "$fx"
-	printf "deletar?[y/N]"
-	read ans
-	[ $ans = "y" ] && rm -rf -- $fx
+    clear; tput cup $(($(tput lines)/3)); tput bold
+    set -f
+    printf "%s\n\t" "$fx"
+    printf "deletar?[y/N]"
+    read ans
+    [ $ans = "y" ] && rm -rf -- $fx
 }}
 
 cmd mkdir ${{
@@ -76,12 +76,12 @@ cmd mkdir ${{
 }}
 
 cmd extract ${{
-	clear; tput cup $(($(tput lines)/3)); tput bold
-	set -f
-	printf "%s\n\t" "$fx"
-	printf "extrair?[y/N]"
-	read ans
-	[ $ans = "y" ] && aunpack $fx
+    clear; tput cup $(($(tput lines)/3)); tput bold
+    set -f
+    printf "%s\n\t" "$fx"
+    printf "extrair?[y/N]"
+    read ans
+    [ $ans = "y" ] && aunpack $fx
 }}
 
 cmd mkfile ${{
@@ -94,12 +94,12 @@ cmd mkfile ${{
 }}
 
 cmd chmod ${{
-	clear; tput cup $(($(tput lines)/3)); tput bold
-	set -f
-	printf "%s\n\t" "$fx"
-	printf "tornar executavel?[y/N]"
-	read ans
-	if [ $ans = "y" ]; then
+    clear; tput cup $(($(tput lines)/3)); tput bold
+    set -f
+    printf "%s\n\t" "$fx"
+    printf "tornar executavel?[y/N]"
+    read ans
+    if [ $ans = "y" ]; then
   for file in "$fx"
   do
      chmod +x $file

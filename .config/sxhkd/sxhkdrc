@@ -1,12 +1,12 @@
 # Ativa/Desativa a barra enquando super é segurado
 Super_L + any
-	dwmc togglebar
+    dwmc togglebar
 ~@Super_L + any
-	dwmc togglebar
+    dwmc togglebar
 Super_R + any
-	dwmc togglebar
+    dwmc togglebar
 ~@Super_R + any
-	dwmc togglebar
+    dwmc togglebar
 
 # Ativa/Desativa a barra
 super + b
@@ -14,19 +14,19 @@ super + b
 
 # Muda o tamanho da janela
 ctrl + super + {Left,Right}
-	dwmc setmfact {-,+}0.05
+    dwmc setmfact {-,+}0.05
 
 # Muda o tamanho da janela
 ctrl + super + {Down,Up}
-	dwmc setcfact {-,+}0.20
+    dwmc setcfact {-,+}0.20
 
 # Muda entre as janelas
 super + Tab
-	dwmc focusstack +1
+    dwmc focusstack +1
 
 # Muda de tag
 super + {Left, Right}
-	dwmc {viewprev, viewnext}
+    dwmc {viewprev, viewnext}
 
 # Troca a janela de tag
 super + shift {Left, Right}
@@ -34,11 +34,11 @@ super + shift {Left, Right}
 
 # Fecha uma janela
 super + shift + backslash
-	dwmc killclient
+    dwmc killclient
 
 # Alterna janela flutuante
 super + w
-	dwmc togglefloating
+    dwmc togglefloating
 
 # troca todas as janelas de posição
 super + Return
@@ -154,7 +154,7 @@ Menu;q
 
 # Anotações
 Menu;a
-    emacsclient -c ~/documentos/anotações.org
+    nvim ~/documentos/anotações.md
 
 # Aliases
 Menu;A

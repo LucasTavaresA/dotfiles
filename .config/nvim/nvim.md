@@ -1,3 +1,16 @@
+# Configuração do neovim
+
+Configuração do neovim em lua
+
+## Sumario
+
+- [Plugins](#plugins)
+- [Miscellanea](#miscellanea)
+- [Teclas](#teclas)
+
+## Plugins
+
+```lua tangle:~/.config/nvim/init.lua
 require('packer').startup(function()
     ---- Iniciar
     -- Vim mais rapido
@@ -65,6 +78,11 @@ require('packer').startup(function()
     use 'elzr/vim-json'
 end)
 
+```
+
+## Miscellanea
+
+```lua tangle:~/.config/nvim/init.lua
 ---- vim
 vim.cmd("filetype plugin on")
 vim.cmd("filetype indent on")
@@ -204,6 +222,11 @@ lsp_installer.on_server_ready(function(server)
   server:setup(opts)
 end)
 
+```
+
+## Teclas
+
+```lua tangle:~/.config/nvim/init.lua
 local keymap = vim.api.nvim_set_keymap
 local nr = { noremap = true }
 vim.g.mapleader = " "
@@ -301,3 +324,4 @@ keymap("n", "<c-k>", ":lua vim.lsp.buf.signature_help()<cr>", {})
 keymap("n", "<leader>af", ":lua vim.lsp.buf.code_action()<cr>", {})
 keymap("n", "<leader>rn", ":lua vim.lsp.buf.rename()<cr>", {})
 
+```

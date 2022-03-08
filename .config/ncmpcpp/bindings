@@ -63,7 +63,7 @@ def_key "!"
 def_key "q"
   quit
 def_key "f"
-	find
+    find
 def_key "u"
   update_database
 def_key "delete"

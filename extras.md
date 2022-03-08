@@ -1,32 +1,300 @@
-#+TITLE: Extras
-#+STARTUP: content
+# Extras
 
 Configurações menos importantes
 
-* Sumario
-:PROPERTIES:
-:TOC:      :include all :force (depth) :ignore (this) :local (depth)
-:END:
-:CONTENTS:
-- [[#starship][Starship]]
-- [[#picom][Picom]]
-- [[#zathura][Zathura]]
-- [[#gtk][Gtk]]
-  - [[#gtk-2][Gtk 2]]
-  - [[#gtk-3][Gtk 3]]
-- [[#dunst][Dunst]]
-- [[#bspwm][Bspwm]]
-- [[#paru][Paru]]
-- [[#npm][Npm]]
-:END:
+Blocos de código são salvos em seus arquivos usando [md-tangle](https://github.com/joakimmj/md-tangle)
 
-* Starship
+## Sumario
+
+-   [Ncmpcpp](#ncmpcpp)
+    -   [Configuração](#configuração)
+    -   [Teclas](#teclas)
+-   [Mpd](#mpd)
+-   [Handlr](#handlr)
+-   [Mimetypes](#mimetypes)
+-   [.gitignore](#gitignore)
+-   [Starship](#starship)
+-   [Picom](#picom)
+-   [Zathura](#zathura)
+-   [Gtk](#gtk)
+    -   [Gtk 2](#gtk-2)
+    -   [Gtk 3](#gtk-3)
+-   [Dunst](#dunst)
+-   [Bspwm](#bspwm)
+-   [Paru](#paru)
+-   [Npm](#npm)
+
+## Ncmpcpp
+
+Player de musica
+
+### Configuração
+
+- `~/.config/ncmpcpp/config`
+
+```conf tangle:~/.config/ncmpcpp/config
+# vim: filetype=conf
+
+ncmpcpp_directory = "~/.config/ncmpcpp"
+lyrics_directory = "~/.local/share/lyrics"
+mpd_music_dir = "~/media/musicas"
+message_delay_time = "1"
+playlist_display_mode = classic
+browser_display_mode = classic
+progressbar_look = "━🬋-"
+media_library_primary_tag = album_artist
+media_library_albums_split_by_date = no
+startup_screen = "playlist"
+display_volume_level = no
+ignore_leading_the = yes
+external_editor = nvim
+use_console_editor = yes
+empty_tag_color = cyan
+main_window_color = white
+progressbar_color = white
+progressbar_elapsed_color = white:b
+statusbar_color = white
+statusbar_time_color = white:b
+cyclic_scrolling = yes
+mouse_support = no
+song_list_format = {$8%f$9}$R{$3%l$9}
+song_status_format = {%f}
+song_library_format = {%f}
+alternative_header_first_line_format = {%f} $1$atqq$/a$9$/b
+alternative_header_second_line_format = {%D}
+current_item_prefix = $(white)$r
+current_item_suffix = $/r$(end)
+current_item_inactive_column_prefix = $(cyan)$r
+current_item_inactive_column_suffix = $/r$(end)
+now_playing_prefix = $b
+now_playing_suffix = $/b
+browser_playlist_prefix = "$2playlist$9 "
+selected_item_prefix = $6
+selected_item_suffix = $9
+modified_item_prefix = $3> $9
+song_window_title_format = {%f}
+browser_sort_mode = none
+browser_sort_format = {%f} {%l}
+song_columns_list_format = (50)[white]{f:Title} (7f)[white]{l}
+```
+
+### Teclas
+
+- `~/.config/ncmpcpp/bindings`
+
+```conf tangle:~/.config/ncmpcpp/bindings
+def_key "home"
+  move_home
+def_key "end"
+  move_end
+def_key "right"
+  enter_directory
+def_key "enter"
+  toggle_output
+def_key "enter"
+  run_action
+def_key "enter"
+  play_item
+def_key "delete"
+  delete_playlist_items
+def_key "delete"
+  delete_browser_items
+def_key "delete"
+  delete_stored_playlist
+def_key "right"
+  next_column
+def_key "left"
+  previous_column
+def_key ":"
+  execute_command
+def_key "f1"
+  show_help
+def_key "p"
+  stop
+def_key "space"
+  pause
+def_key ">"
+  next
+def_key "<"
+  previous
+def_key "left"
+  jump_to_parent_directory
+def_key "right"
+  seek_forward
+def_key "left"
+  seek_backward
+def_key "e"
+  edit_song
+def_key "e"
+  edit_library_tag
+def_key "e"
+  edit_library_album
+def_key "e"
+  edit_directory_name
+def_key "e"
+  edit_playlist_name
+def_key "R"
+  remove_selection
+def_key "M"
+  move_selected_items_to
+def_key "A"
+  add
+def_key "S"
+  save_playlist
+def_key "z"
+  toggle_interface
+def_key "!"
+  toggle_separators_between_albums
+def_key "q"
+  quit
+def_key "f"
+    find
+def_key "u"
+  update_database
+def_key "delete"
+  delete_playlist_items
+```
+
+## Mpd
+
+Daemon player de musica
+
+- `~/.config/mpd/mpd.conf`
+
+```conf tangle:~/.config/mpd/mpd.conf
+music_directory     "~/media/musicas"
+playlist_directory  "~/.config/mpd/playlists"
+db_file             "~/.config/mpd/database"
+pid_file            "~/.config/mpd/pid"
+state_file          "~/.config/mpd/state"
+
+auto_update "yes"
+bind_to_address "127.0.0.1"
+restore_paused "yes"
+max_output_buffer_size "16384"
+
+audio_output {
+    type "pulse"
+    name "pulse"
+}
+```
+
+## Handlr
+
+Abre arquivos de acordo com o mimetype, substitui o **xdg-open**
+
+- `~/.config/handlr/handlr.toml`
+
+```toml tangle:~/.config/handlr/handlr.toml
+enable_selector = true
+selector = "dmenu -p 'Abrir com: '"
+```
+
+## Mimetypes
+
+Tipos de arquivos e programa chamado para os abrir
+
+- `~/.config/mimeapps.list`
+
+```conf tangle:~/.config/mimeapps.list
+[Added Associations]
+x-scheme-handler/tg=userapp-Telegram Desktop-EJM1D1.desktop;
+x-scheme-handler/magnet=transmission-gtk.desktop;
+application/x.bittorrent=transmission-gtk.desktop;
+audio/mp4=mpv.desktop;
+audio/x-opus+ogg=mpv.desktop;
+image/jpeg=nsxiv.desktop;
+image/png=nsxiv.desktop;
+inode/directory=lf.desktop;
+
+[Default Applications]
+application/javascript=nvim.desktop;
+application/json=nvim.desktop;
+application/ld+json=nvim.desktop;
+application/msword=libreoffice-writer.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.dektop;
+application/pdf=firefox.desktop;
+application/vnd.ms-excel=libreoffice-calc.desktop;
+application/vnd.ms-powerpoint=libreoffice-impress.desktop;
+application/x-bittorrent=transmission-gtk.desktop;
+audio/*=mpv.desktop;
+image/*=nsxiv.desktop;
+inode/directory=lf.desktop;
+text/*=nvim.desktop;
+text/markdown=geany.desktop;
+video/*=mpv.desktop;
+x-scheme-handler/tg=userapp-Telegram Desktop-EJM1D1.desktop;
+x-scheme-handler/http=org.qutebrowser.qutebrowser.desktop;
+x-scheme-handler/https=org.qutebrowser.qutebrowser.desktop;
+x-scheme-handler/ftp=org.qutebrowser.qutebrowser.desktop;
+x-scheme-handler/magnet=transmission-gtk.desktop;
+application/x.bittorrent=transmission-gtk.desktop;
+```
+
+## .gitignore
+
+Arquivos ignorados pelo git
+
+- `~/.gitignore`
+
+```gitignore tangle:~/.gitignore
+.cache/
+.config/cabal/
+.config/coc/
+.config/dconf/
+.config/discord/
+.config/emacs/
+.config/doom/themes/
+.config/doom/yasnippet-snippets/
+.config/doom/init.el
+.config/doom/packages.el
+.config/doom/config.el
+.config/galculator/
+.config/GIMP/
+.config/git/config
+.config/libreoffice/
+.config/mpd/
+.config/ncmpcpp/error.log
+.config/nitrogen/
+.config/npm/
+.config/pulse/
+.config/qutebrowser/autoconfig.yml
+.config/qutebrowser/bookmarks
+.config/qutebrowser/quickmarks
+.config/stumpwm/*log*
+.config/transmission/
+.config/VirtualBox/
+.config/NuGet/
+.config/nvim/plugins/
+.config/nvim/plugin/
+.config/shell/.zcompdump
+.config/shell/history
+.config/pam-gnupg
+.gnupg/
+.dotnet/
+.local/
+.mozilla/
+.nuget/
+.pki/
+.ssh/
+.templateengine/
+code/
+documentos/
+Downloads/
+jogos/
+media/
+mnt/
+VirtualBox VMs/
+bkp/
+```
+
+## Starship
 
 Prompt de comandos
 
-- =~/.config/starship/config.toml=
+- `~/.config/starship/config.toml`
 
-#+begin_src conf :tangle ~/.config/starship/config.toml
+```toml tangle:~/.config/starship/config.toml
 format = """
 [┌┤](bold green) $directory$shell$status$git_status$username$hostname$cmd_duration$package$jobs$container[├](bold green)$fill
 [└](bold green)$character"""
@@ -56,15 +324,15 @@ truncate_to_repo = false
 [fill]
 symbol = "─"
 style = "bold green"
-#+end_src
+```
 
-* Picom
+## Picom
 
 Compositor
 
-- =~/.config/picom/picom.conf=
+- `~/.config/picom/picom.conf`
 
-#+begin_src conf :tangle ~/.config/picom/picom.conf
+```conf tangle:~/.config/picom/picom.conf
 #################################
 #             Shadows           #
 #################################
@@ -486,15 +754,15 @@ wintypes:
   popup_menu = { opacity = 1; }
   dropdown_menu = { opacity = 1; }
 };
-#+end_src
+```
 
-* Zathura
+## Zathura
 
 Leitor de pdf
 
-- =~/.config/zathura/zathurarc=
+- `~/.config/zathura/zathurarc`
 
-#+begin_src conf :tangle ~/.config/zathura/zathurarc
+```conf tangle:~/.config/zathura/zathurarc
 set sandbox none
 set statusbar-h-padding 0
 set statusbar-v-padding 0
@@ -504,17 +772,17 @@ map D toggle_page_mode
 map R reload
 map r rotate
 map zd recolor
-#+end_src
+```
 
-* Gtk
+## Gtk
 
 Interface de usuário
 
-** Gtk 2
+### Gtk 2
 
-- =~/.config/gtk-2.0/gtkrc=
+- `~/.config/gtk-2.0/gtkrc`
 
-#+begin_src conf :tangle ~/.config/gtk-2.0/gtkrc
+```conf tangle:~/.config/gtk-2.0/gtkrc
 include "/home/lucas/.gtkrc-2.0.mine"
 gtk-theme-name="Adwaita-dark"
 gtk-icon-theme-name="Papirus-Dark"
@@ -530,13 +798,13 @@ gtk-enable-input-feedback-sounds=1
 gtk-xft-antialias=1
 gtk-xft-hinting=1
 gtk-xft-hintstyle="hintfull"
-#+end_src
+```
 
-** Gtk 3
+### Gtk 3
 
-- =~/.config/gtk-3.0/settings.ini=
+- `~/.config/gtk-3.0/settings.ini`
 
-#+begin_src conf :tangle ~/.config/gtk-3.0/settings.ini
+```conf tangle:~/.config/gtk-3.0/settings.ini
 [Settings]
 gtk-theme-name=Adwaita-dark
 gtk-font-name=Inconsolata 13
@@ -553,11 +821,11 @@ gtk-xft-hinting=1
 gtk-xft-hintstyle=hintfull
 gtk-icon-theme-name=Papirus-Dark
 gtk-application-prefer-dark-theme=true
-#+end_src
+```
 
-- =~/.config/settings.ini=
+- `~/.config/settings.ini`
 
-#+begin_src conf :tangle ~/.config/settings.ini
+```conf tangle:~/.config/settings.ini
 [Settings]
 gtk-font-name=Inconsolata 13
 gtk-cursor-theme-size=0
@@ -570,15 +838,15 @@ gtk-enable-input-feedback-sounds=1
 gtk-xft-antialias=1
 gtk-xft-hinting=1
 gtk-xft-hintstyle=hintfull
-#+end_src
+```
 
-* Dunst
+## Dunst
 
 Daemon de notificação
 
-- =~/.config/dunst/dunstrc=
+- `~/.config/dunst/dunstrc`
 
-#+begin_src conf :tangle ~/.config/dunst/dunstrc
+```conf tangle:~/.config/dunst/dunstrc
 [global]
     ### Display ###
 
@@ -1045,15 +1313,15 @@ Daemon de notificação
 #    set_stack_tag = "volume"
 #
 # vim: ft=cfg
-#+end_src
+```
 
-* Bspwm
+## Bspwm
 
 Gerenciador de janelas bspwm
 
-- =~/.config/bspwm/bspwmrc=
+- `~/.config/bspwm/bspwmrc`
 
-#+begin_src sh :tangle ~/.config/bspwm/bspwmrc
+```bash tangle:~/.config/bspwm/bspwmrc
 #!/bin/sh
 
 # Monitor
@@ -1075,11 +1343,11 @@ bspc config click_to_focus          true
 bspc config single_monocle          true
 
 # Cores
-bspc config normal_border_color		  "#2f334d"
-bspc config active_border_color	      "#ffffff"
-bspc config focused_border_color	      "#ffffff"
-bspc config presel_feedback_color	      "#2f334d"
-bspc config urgent_border_color 	      "#ff0000"
+bspc config normal_border_color       "#2f334d"
+bspc config active_border_color       "#ffffff"
+bspc config focused_border_color          "#ffffff"
+bspc config presel_feedback_color         "#2f334d"
+bspc config urgent_border_color           "#ff0000"
 
 # Regras
 bspc rule -a mplayer2 state=floating
@@ -1109,28 +1377,28 @@ bspc rule -a VirtualBox Manager state=fullscreen
 bspc rule -a VirtualBox Machine state=fullscreen
 bspc rule -a :Zathura state=tiled
 bspc rule -a st_download state=floating rectangle=1000x700+0+0 center=true
-#+end_src
+```
 
-* Paru
+## Paru
 
-Gerenciador de pacotes da *aur*, Trocado sudo pelo doas
+Gerenciador de pacotes da **aur**, Trocado sudo pelo doas
 
-- =~/.config/paru/paru.conf=
+- `~/.config/paru/paru.conf`
 
-#+begin_src conf :tangle ~/.config/paru/paru.conf
+```conf tangle:~/.config/paru/paru.conf
 [bin]
 Sudo = /bin/doas
-#+end_src
+```
 
-* Npm
+## Npm
 
-Gerenciador de pacotes do node.js, Trocados diretórios para limpar a ~
+Gerenciador de pacotes do node.js, Trocados diretórios para limpar a \~
 
-- =~/.config/npm/npmrc=
+- `~/.config/npm/npmrc`
 
-#+begin_src conf :tangle ~/.config/npm/npmrc
+```conf tangle:~/.config/npm/npmrc
 prefix=${XDG_DATA_HOME}/npm
 cache=${XDG_CACHE_HOME}/npm
 tmp=${XDG_RUNTIME_DIR}/npm
 init-module=${XDG_CONFIG_HOME}/npm/config/npm-init.js
-#+end_src
+```

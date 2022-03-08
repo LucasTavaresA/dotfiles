@@ -1,54 +1,46 @@
-#+TITLE: Archlinux dotfiles
-#+STARTUP: content
+# Archlinux dotfiles
 
-* Sumario
-:PROPERTIES:
-:TOC:      :include all :force (depth) :ignore (this) :local (depth)
-:END:
-:CONTENTS:
-- [[#emacs][Emacs]]
-- [[#neovim][Neovim]]
-- [[#shells][Shells]]
-  - [[#dash][Dash]]
-  - [[#zsh][Zsh]]
-  - [[#bash][Bash]]
-- [[#x11][X11]]
-- [[#sxhkd][Sxhkd]]
-  - [[#dwm][Dwm]]
-  - [[#bspwm][Bspwm]]
-- [[#qutebrowser][Qutebrowser]]
-  - [[#configuração][Configuração]]
-  - [[#tema-escuro][Tema escuro]]
-- [[#ncmpcpp][Ncmpcpp]]
-  - [[#configuração][Configuração]]
-  - [[#teclas][Teclas]]
-- [[#mpd][Mpd]]
-- [[#lf][Lf]]
-- [[#handlr][Handlr]]
-- [[#mimetypes][Mimetypes]]
-- [[#gitignore][.gitignore]]
-- [[#extras][Extras]]
-:END:
+Arquivos de configuração do archlinux
 
-* Emacs
+Blocos de código são salvos em seus arquivos usando [md-tangle](https://github.com/joakimmj/md-tangle)
 
-[[https://github.com/LucasTavaresA/dotfiles/blob/main/.config/doom/config.org][Minha configuração do doom emacs]]
+## Sumario
 
-* Neovim
+-   [Emacs](#emacs)
+-   [Neovim](#neovim)
+-   [Shells](#shells)
+    -   [Dash](#dash)
+    -   [Zsh](#zsh)
+    -   [Bash](#bash)
+-   [X11](#x11)
+-   [Sxhkd](#sxhkd)
+    -   [Dwm](#dwm)
+    -   [Bspwm](#bspwm)
+-   [Qutebrowser](#qutebrowser)
+    -   [Configuração](#configuração)
+    -   [Tema escuro](#tema-escuro)
+-   [Lf](#lf)
+-   [Extras](#extras)
 
-[[https://github.com/LucasTavaresA/dotfiles/blob/main/.config/nvim/nvim.org][Minha configuração do neovim]]
+## Emacs
 
-* Shells
+[Minha configuração do doom emacs](https://github.com/LucasTavaresA/dotfiles/blob/main/.config/doom/config.org)
 
-Todos os shells do sistema localizados em =~/.config/shell=
+## Neovim
 
-** Dash
+[Minha configuração do neovim](https://github.com/LucasTavaresA/dotfiles/blob/main/.config/nvim/nvim.md)
 
-Usar o comando =chsh -s /bin/dash= para usar o dash como login shell, Profile trocado de lugar no meu [[https://gitlab.com/LucasTavaresA/dash][fork]]
+## Shells
 
-- =~/.config/shell/profile=
+Todos os shells do sistema localizados em `~/.config/shell`
 
-#+begin_src sh :tangle ~/.config/shell/profile
+### Dash
+
+Usar o comando `chsh -s /bin/dash` para usar o dash como login shell, Profile trocado de lugar no meu [fork](https://gitlab.com/LucasTavaresA/dash)
+
+- `~/.config/shell/profile`
+
+```sh tangle:~/.config/shell/profile
 ### EXPORTS
 # Adiciona ícones no lf
 export LF_ICONS="di=📁:\
@@ -60,229 +52,229 @@ dt=📁:\
 ln=⛓:\
 or=❌:\
 ex=🎯:\
-,*.txt=✍:\
-,*.mom=✍:\
-,*.me=✍:\
-,*.ms=✍:\
+*.txt=✍:\
+*.mom=✍:\
+*.me=✍:\
+*.ms=✍:\
 ,hosts=:\
-,*.hook=🪝:\
-,*.ttf=:\
-,*.otf=:\
-,*.woff=:\
-,*.woff2=:\
-,*.png=🖼:\
-,*.webp=🖼:\
-,*.ico=🖼:\
-,*.bmp=🖼:\
-,*.pbm=🖼:\
-,*.pgm=🖼:\
-,*.ppm=🖼:\
-,*.tga=🖼:\
-,*.xbm=🖼:\
-,*.xpm=🖼:\
-,*.jpg=📸:\
-,*.jpe=📸:\
-,*.jpeg=📸:\
-,*.mjpg=📸:\
-,*.mjpeg=📸:\
-,*.gif=🖼:\
-,*.svg=🗺:\
-,*.svgz=🗺:\
-,*.mng=🗺:\
-,*.pcx=🗺:\
-,*.tif=🖼:\
-,*.tiff=🖼:\
-,*.xwd=🖼:\
-,*.yuv=🖼:\
-,*.gl=🖼:\
-,*.dl=🖼:\
-,*.cgm=🖼:\
-,*.emf=🖼:\
-,*.xcf=🖌:\
-,*.html=🌎:\
-,*.xml=📰:\
-,*.qt=📰:\
-,*.yml=:\
-,*.toml=:\
-,*.ini=:\
+*.hook=🪝:\
+*.ttf=:\
+*.otf=:\
+*.woff=:\
+*.woff2=:\
+*.png=🖼:\
+*.webp=🖼:\
+*.ico=🖼:\
+*.bmp=🖼:\
+*.pbm=🖼:\
+*.pgm=🖼:\
+*.ppm=🖼:\
+*.tga=🖼:\
+*.xbm=🖼:\
+*.xpm=🖼:\
+*.jpg=📸:\
+*.jpe=📸:\
+*.jpeg=📸:\
+*.mjpg=📸:\
+*.mjpeg=📸:\
+*.gif=🖼:\
+*.svg=🗺:\
+*.svgz=🗺:\
+*.mng=🗺:\
+*.pcx=🗺:\
+*.tif=🖼:\
+*.tiff=🖼:\
+*.xwd=🖼:\
+*.yuv=🖼:\
+*.gl=🖼:\
+*.dl=🖼:\
+*.cgm=🖼:\
+*.emf=🖼:\
+*.xcf=🖌:\
+*.html=🌎:\
+*.xml=📰:\
+*.qt=📰:\
+*.yml=:\
+*.toml=:\
+*.ini=:\
 ,config=:\
-,*.conf=:\
-,*.cfg=:\
-,*.config=:\
+*.conf=:\
+*.cfg=:\
+*.config=:\
 ,.gitignore=:\
-,*.gpg=🔒:\
-,*.css=🎨:\
-,*.dic=📖:\
-,*.pdf=📚:\
-,*.djvu=📚:\
-,*.epub=📚:\
-,*.csv=📓:\
-,*.xlsx=📓:\
-,*.xspf=📓:\
-,*.tex=📜:\
-,*.md=📘:\
-,*.org=🦄:\
-,*.r=📊:\
-,*.R=📊:\
-,*.rmd=📊:\
-,*.Rmd=📊:\
-,*.m=📊:\
-,*.mp3=🎵:\
-,*.opus=🎵:\
-,*.ogg=🎵:\
-,*.m4a=🎵:\
-,*.midi=🎵:\
-,*.mid=🎵:\
-,*.aac=🎵:\
-,*.au=🎵:\
-,*.mka=🎵:\
-,*.mpc=🎵:\
-,*.ra=🎵:\
-,*.oga=🎵:\
-,*.spx=🎵:\
-,*.flac=🎼:\
-,*.wav=🎼:\
-,*.asf=🎥:\
-,*.rm=🎥:\
-,*.rmvb=🎥:\
-,*.flc=🎥:\
-,*.mkv=🎥:\
-,*.m2v=🎥:\
-,*.mp4=🎥:\
-,*.webm=🎥:\
-,*.mpeg=🎥:\
-,*.avi=🎥:\
-,*.mov=🎥:\
-,*.mpg=🎥:\
-,*.wmv=🎥:\
-,*.m4b=🎥:\
-,*.flv=🎥:\
-,*.ogm=🎥:\
-,*.m4v=🎥:\
-,*.mp4v=🎥:\
-,*.vob=🎥:\
-,*.nuv=🎥:\
-,*.fli=🎥:\
-,*.ogv=🎥:\
-,*.ogx=🎥:\
-,*.zip=📦:\
-,*.rar=📦:\
-,*.7z=📦:\
-,*.tar.gz=📦:\
-,*.tar=📦:\
-,*.tgz=📦:\
-,*.arc=📦:\
-,*.arj=📦:\
-,*.taz=📦:\
-,*.lha=📦:\
-,*.lz4=📦:\
-,*.lzh=📦:\
-,*.lzma=📦:\
-,*.tlz=📦:\
-,*.txz=📦:\
-,*.tzo=📦:\
-,*.t7z=📦:\
-,*.z=📦:\
-,*.dz=📦:\
-,*.gz=📦:\
-,*.lrz=📦:\
-,*.lz=📦:\
-,*.lzo=📦:\
-,*.xz=📦:\
-,*.zst=📦:\
-,*.tzst=📦:\
-,*.bz2=📦:\
-,*.bz=📦:\
-,*.tbz=📦:\
-,*.tbz2=📦:\
-,*.tz=📦:\
-,*.deb=📦:\
-,*.rpm=📦:\
-,*.war=📦:\
-,*.ear=📦:\
-,*.sar=📦:\
-,*.alz=📦:\
-,*.ace=📦:\
-,*.zoo=📦:\
-,*.cpio=📦:\
-,*.rz=📦:\
-,*.cab=📦:\
-,*.wim=📦:\
-,*.swm=📦:\
-,*.dwm=📦:\
-,*.esd=📦:\
-,*.sqlite=:\
-,*.db=:\
-,*.rom=🎮:\
-,*.nds=🎮:\
-,*.z64=🎮:\
-,*.v64=🎮:\
-,*.n64=🎮:\
-,*.gba=🎮:\
-,*.nes=🎮:\
-,*.gdi=🎮:\
-,*.1=ℹ:\
-,*.nfo=ℹ:\
-,*.info=ℹ:\
-,*.log=📙:\
-,*.bin=🎯:\
-,*.exe=🎯:\
-,*.dll=🎯:\
-,*.iso=📀:\
-,*.img=📀:\
-,*.vdi=📀:\
-,*.bib=🎓:\
-,*.ged=👪:\
-,*.part=💔:\
-,*.torrent=🔽:\
-,*.jar=♨:\
-,*.java=♨:\
-,*.el=:\
-,*.csproj=:\
-,*.sln=:\
-,*.cs=:\
-,*.c=:\
-,*.cpp=:\
-,*.cc=:\
-,*.clj=:\
-,*.coffee=:\
-,*.d=:\
-,*.dart=:\
-,*.erl=:\
-,*.exs=:\
-,*.fs=:\
-,*.go=:\
-,*.h=:\
-,*.hh=:\
-,*.hpp=:\
-,*.hs=:\
-,*.jl=:\
-,*.js=:\
-,*.json=:\
-,*.lua=:\
-,*.php=:\
-,*.pl=:\
-,*.pro=:\
-,*.py=:\
-,*.rb=:\
-,*.rs=:\
-,*.scala=:\
-,*.ts=:\
-,*.vim=:\
-,*.cmd=:\
-,*.ps1=:\
-,*.sh=:\
-,*.bash=:\
-,*.zsh=:\
-,*.fish=:\
+*.gpg=🔒:\
+*.css=🎨:\
+*.dic=📖:\
+*.pdf=📚:\
+*.djvu=📚:\
+*.epub=📚:\
+*.csv=📓:\
+*.xlsx=📓:\
+*.xspf=📓:\
+*.tex=📜:\
+*.md=📘:\
+*.org=🦄:\
+*.r=📊:\
+*.R=📊:\
+*.rmd=📊:\
+*.Rmd=📊:\
+*.m=📊:\
+*.mp3=🎵:\
+*.opus=🎵:\
+*.ogg=🎵:\
+*.m4a=🎵:\
+*.midi=🎵:\
+*.mid=🎵:\
+*.aac=🎵:\
+*.au=🎵:\
+*.mka=🎵:\
+*.mpc=🎵:\
+*.ra=🎵:\
+*.oga=🎵:\
+*.spx=🎵:\
+*.flac=🎼:\
+*.wav=🎼:\
+*.asf=🎥:\
+*.rm=🎥:\
+*.rmvb=🎥:\
+*.flc=🎥:\
+*.mkv=🎥:\
+*.m2v=🎥:\
+*.mp4=🎥:\
+*.webm=🎥:\
+*.mpeg=🎥:\
+*.avi=🎥:\
+*.mov=🎥:\
+*.mpg=🎥:\
+*.wmv=🎥:\
+*.m4b=🎥:\
+*.flv=🎥:\
+*.ogm=🎥:\
+*.m4v=🎥:\
+*.mp4v=🎥:\
+*.vob=🎥:\
+*.nuv=🎥:\
+*.fli=🎥:\
+*.ogv=🎥:\
+*.ogx=🎥:\
+*.zip=📦:\
+*.rar=📦:\
+*.7z=📦:\
+*.tar.gz=📦:\
+*.tar=📦:\
+*.tgz=📦:\
+*.arc=📦:\
+*.arj=📦:\
+*.taz=📦:\
+*.lha=📦:\
+*.lz4=📦:\
+*.lzh=📦:\
+*.lzma=📦:\
+*.tlz=📦:\
+*.txz=📦:\
+*.tzo=📦:\
+*.t7z=📦:\
+*.z=📦:\
+*.dz=📦:\
+*.gz=📦:\
+*.lrz=📦:\
+*.lz=📦:\
+*.lzo=📦:\
+*.xz=📦:\
+*.zst=📦:\
+*.tzst=📦:\
+*.bz2=📦:\
+*.bz=📦:\
+*.tbz=📦:\
+*.tbz2=📦:\
+*.tz=📦:\
+*.deb=📦:\
+*.rpm=📦:\
+*.war=📦:\
+*.ear=📦:\
+*.sar=📦:\
+*.alz=📦:\
+*.ace=📦:\
+*.zoo=📦:\
+*.cpio=📦:\
+*.rz=📦:\
+*.cab=📦:\
+*.wim=📦:\
+*.swm=📦:\
+*.dwm=📦:\
+*.esd=📦:\
+*.sqlite=:\
+*.db=:\
+*.rom=🎮:\
+*.nds=🎮:\
+*.z64=🎮:\
+*.v64=🎮:\
+*.n64=🎮:\
+*.gba=🎮:\
+*.nes=🎮:\
+*.gdi=🎮:\
+*.1=ℹ:\
+*.nfo=ℹ:\
+*.info=ℹ:\
+*.log=📙:\
+*.bin=🎯:\
+*.exe=🎯:\
+*.dll=🎯:\
+*.iso=📀:\
+*.img=📀:\
+*.vdi=📀:\
+*.bib=🎓:\
+*.ged=👪:\
+*.part=💔:\
+*.torrent=🔽:\
+*.jar=♨:\
+*.java=♨:\
+*.el=:\
+*.csproj=:\
+*.sln=:\
+*.cs=:\
+*.c=:\
+*.cpp=:\
+*.cc=:\
+*.clj=:\
+*.coffee=:\
+*.d=:\
+*.dart=:\
+*.erl=:\
+*.exs=:\
+*.fs=:\
+*.go=:\
+*.h=:\
+*.hh=:\
+*.hpp=:\
+*.hs=:\
+*.jl=:\
+*.js=:\
+*.json=:\
+*.lua=:\
+*.php=:\
+*.pl=:\
+*.pro=:\
+*.py=:\
+*.rb=:\
+*.rs=:\
+*.scala=:\
+*.ts=:\
+*.vim=:\
+*.cmd=:\
+*.ps1=:\
+*.sh=:\
+*.bash=:\
+*.zsh=:\
+*.fish=:\
 ,Makefile=:\
-,*.mk=:\
-,*.nix=:\
+*.mk=:\
+*.nix=:\
 "
 
 # Muda o local padrão de alguns dotfiles limpando a $HOME ou ~
 # Define diretórios com o padrão xdg
-UID="$(id -u)" # Pega o id de usuario
+UID="$(id -u)" # Pega o id de usuário
 export HOME="/home/lucas"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -303,7 +295,7 @@ export TERM="xterm-256color"
 export BROWSER="qutebrowser"
 # Pager
 export PAGER='less'
-# Faz o qt usar o thema do gtk2
+# Faz o qt usar o tema do gtk2
 export QT_QPA_PLATFORMTHEME="gtk2"
 # Less
 export LESSHISTFILE="-"
@@ -332,8 +324,8 @@ export W3M_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/w3m"
 # Go
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 # Ghcup
-export GHCUP_INSTALL_BASE_PREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/"
 export GHCUP_USE_XDG_DIRS="1"
+export GHCUP_INSTALL_BASE_PREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/"
 # Cabal
 export CABAL_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/cabal/config"
 export CABAL_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/cabal"
@@ -344,7 +336,7 @@ export ANDROID_SDK_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/android"
 # Wine
 export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
 # Fzf
-export FZF_ALT_C_COMMAND="find . -path '*/.*' -prune -o -not -name '.*' -maxdepth 4 -type d"
+export FZF_ALT_C_COMMAND="find . -maxdepth 4 -type d | grep -v '^\./\.cache'"
 
 # Shell
 export SHELL="dash"
@@ -371,9 +363,9 @@ export EMACSDIR="${XDG_CONFIG_HOME:-$HOME/.config}/emacs"
 export DOOMDIR="${XDG_CONFIG_HOME:-$HOME/.config}/doom"
 export DOOMLOCALDIR="${XDG_CONFIG_HOME:-$HOME/.config}/emacs/.local"
 # Editor no terminal
-export EDITOR="emacsclient -n -c"
+export EDITOR="nvim"
 # Editor com interface gráfica
-export VISUAL="emacsclient -n -c"
+export VISUAL="nvim"
 
 # Usa o dmenu como autenticador GUI
 export SSH_ASKPASS="doas_askpass"
@@ -384,32 +376,21 @@ export DOAS_ASKPASS="dmenu -fn Monospace-18 -c -cw 500 -P -p 🔑Senha:"
 # Localização para datas
 export LC_TIME="pt_BR.UTF-8"
 
-# Previsão de imagens no lf
-lf () {
-    LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"
-    LF_TEMPDIR="$LF_TEMPDIR" lf-run -last-dir-path="$LF_TEMPDIR/lastdir" "$@"
-    if [ "$(cat "$LF_TEMPDIR/cdtolastdir" 2>/dev/null)" = "1" ]; then
-	cd "$(cat "$LF_TEMPDIR/lastdir")"
-    fi
-    rm -r "$LF_TEMPDIR"
-    unset LF_TEMPDIR
-}
-
 [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
-#+end_src
+```
 
-** Zsh
+### Zsh
 
-Shell interativo, Trocado de diretório pela variável *ZDOTDIR*
+Shell interativo, Trocado de diretório pela variável **ZDOTDIR**
 
-- =~/.config/shell/.zshrc=
+- `~/.config/shell/.zshrc`
 
-#+begin_src sh :tangle ~/.config/shell/.zshrc
+```zsh tangle:~/.config/shell/.zshrc
 # Se não executando zsh interativamente
-# Não executa o resto do bashrc
+# Não executa o resto do zshrc
 [[ $- != *i* ]] && return
 
-# ZSH EXPORTS
+# EXPORTS
 export SHELL="zsh"
 # Não adiciona esses itens ao histórico
 export HISTORY_IGNORE="(ls|cd|pwd|exit|doas reboot|history|cd -|cd ..)"
@@ -441,7 +422,7 @@ autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
-_comp_options+=(globdots)		# Incluir arquivos ocultos.
+_comp_options+=(globdots)       # Incluir arquivos ocultos.
 
 ## FUNÇÕES
 
@@ -450,7 +431,7 @@ lf () {
     LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"
     LF_TEMPDIR="$LF_TEMPDIR" lf-run -last-dir-path="$LF_TEMPDIR/lastdir" "$@"
     if [ "$(cat "$LF_TEMPDIR/cdtolastdir" 2>/dev/null)" = "1" ]; then
-	cd "$(cat "$LF_TEMPDIR/lastdir")"
+    cd "$(cat "$LF_TEMPDIR/lastdir")"
     fi
     rm -r "$LF_TEMPDIR"
     unset LF_TEMPDIR
@@ -465,22 +446,22 @@ function ex {
     do
       if [ -f "$n" ] ; then
           case "${n%,}" in
-            ,*.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
+            *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
                          tar xvf "$n"       ;;
-            ,*.lzma)      unlzma ./"$n"      ;;
-            ,*.bz2)       bunzip2 ./"$n"     ;;
-            ,*.cbr|*.rar)       unrar x -ad ./"$n" ;;
-            ,*.gz)        gunzip ./"$n"      ;;
-            ,*.cbz|*.epub|*.zip)       unzip ./"$n"       ;;
-            ,*.z)         uncompress ./"$n"  ;;
-            ,*.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
+            *.lzma)      unlzma ./"$n"      ;;
+            *.bz2)       bunzip2 ./"$n"     ;;
+            *.cbr|*.rar)       unrar x -ad ./"$n" ;;
+            *.gz)        gunzip ./"$n"      ;;
+            *.cbz|*.epub|*.zip)       unzip ./"$n"       ;;
+            *.z)         uncompress ./"$n"  ;;
+            *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
                          7z x ./"$n"        ;;
-            ,*.xz)        unxz ./"$n"        ;;
-            ,*.exe)       cabextract ./"$n"  ;;
-            ,*.cpio)      cpio -id < ./"$n"  ;;
-            ,*.cba|*.ace)      unace x ./"$n"      ;;
-            ,*)
-                         echo "ex: '$n' - Metodo de archivação desconhecido"
+            *.xz)        unxz ./"$n"        ;;
+            *.exe)       cabextract ./"$n"  ;;
+            *.cpio)      cpio -id < ./"$n"  ;;
+            *.cba|*.ace)      unace x ./"$n"      ;;
+            *)
+                         echo "ex: '$n' - Método de arquivação desconhecido"
                          return 1
                          ;;
           esac
@@ -498,7 +479,8 @@ alias v="nvim"
 alias h="htop"
 alias ed="emacs --daemon"
 alias ek="emacsclient -e '(kill-emacs)'"
-alias e="emacsclient -n -c"
+alias ec="emacsclient -n -c"
+alias e="emacs"
 alias copy="xclip -selection clipboard"
 alias sudo="doas"
 alias p="ping google.com"
@@ -588,15 +570,15 @@ source $HOME/.config/shell/plugins/expand-all.zsh
 source $HOME/.config/shell/plugins/fzf.zsh
 source $HOME/.config/shell/plugins/keys-fzf.zsh
 bindkey  "^[d"   fzf-cd-widget
-#+end_src
+```
 
-** Bash
+### Bash
 
-Shell usado pelo arch também muito usado em scripts, bashrc trocado de lugar colocando =. local/do/bashrc= no final de =/etc/bash.bashrc=
+Shell usado pelo arch também muito usado em scripts, bashrc trocado de lugar colocando `. local/do/bashrc` no final de `/etc/bash.bashrc`
 
-- =~/.config/shell/bashrc=
+- `~/.config/shell/bashrc`
 
-#+begin_src bash :tangle ~/.config/shell/bashrc
+```bash tangle:~/.config/shell/bashrc
 # Se não executando bash interativamente
 # Não executa o resto do bashrc
 [[ $- != *i* ]] && return
@@ -607,7 +589,8 @@ alias v="nvim"
 alias h="htop"
 alias ed="emacs --daemon"
 alias ek="emacsclient -e '(kill-emacs)'"
-alias e="emacsclient -n -c"
+alias ec="emacsclient -n -c"
+alias e="emacs"
 alias copy="xclip -selection clipboard"
 alias sudo="doas"
 alias p="ping google.com"
@@ -701,7 +684,7 @@ lf () {
     LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"
     LF_TEMPDIR="$LF_TEMPDIR" lf-run -last-dir-path="$LF_TEMPDIR/lastdir" "$@"
     if [ "$(cat "$LF_TEMPDIR/cdtolastdir" 2>/dev/null)" = "1" ]; then
-	cd "$(cat "$LF_TEMPDIR/lastdir")"
+    cd "$(cat "$LF_TEMPDIR/lastdir")"
     fi
     rm -r "$LF_TEMPDIR"
     unset LF_TEMPDIR
@@ -713,21 +696,21 @@ ex ()
 {
   if [ -f "$1" ] ; then
     case $1 in
-      ,*.tar.bz2)   tar xjf $1   ;;
-      ,*.tar.gz)    tar xzf $1   ;;
-      ,*.bz2)       bunzip2 $1   ;;
-      ,*.rar)       unrar x $1   ;;
-      ,*.gz)        gunzip $1    ;;
-      ,*.tar)       tar xf $1    ;;
-      ,*.tbz2)      tar xjf $1   ;;
-      ,*.tgz)       tar xzf $1   ;;
-      ,*.zip)       unzip $1     ;;
-      ,*.Z)         uncompress $1;;
-      ,*.7z)        7z x $1      ;;
-      ,*.deb)       ar x $1      ;;
-      ,*.tar.xz)    tar xf $1    ;;
-      ,*.tar.zst)   unzstd $1    ;;
-      ,*)           echo "'$1' não pode ser extraído com ex()" ;;
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *.deb)       ar x $1      ;;
+      *.tar.xz)    tar xf $1    ;;
+      *.tar.zst)   unzstd $1    ;;
+      *)           echo "'$1' não pode ser extraído com ex()" ;;
     esac
   else
     echo "'$1' não é um arquivo valido"
@@ -736,17 +719,15 @@ ex ()
 
 # Inicia prompt do starship
 eval "$(starship init bash)"
-#+end_src
+```
 
-#+RESULTS:
-
-* X11
+## X11
 
 Configuração do xorg
 
-- =~/.config/x11/xinitrc=
+- `~/.config/x11/xinitrc`
 
-#+begin_src sh :tangle ~/.config/x11/xinitrc
+```sh tangle:~/.config/x11/xinitrc
 #!/bin/sh
 
 # Mouse
@@ -773,7 +754,6 @@ nm-applet &
 xbanish &
 fluxgui &
 sxhkd &
-emacs --daemon &
 dwmblocks &
 picom &
 
@@ -781,26 +761,26 @@ picom &
 xautolock -detectsleep -time 30 -locker "slock" -notify 30 -notifier "notify-send Slock -u critical -t 1800000 'BLOQUEANDO A TELA 30 SEGUNDOS'" &
 
 exec "$WM"
-#+end_src
+```
 
-* Sxhkd
+## Sxhkd
 
 Todos os atalhos e teclas do dwm e bspwm
 
-** Dwm
+### Dwm
 
-- =~/.config/sxhkd/sxhkdrc=
+- `~/.config/sxhkd/sxhkdrc`
 
-#+begin_src sxhkd :tangle ~/.config/sxhkd/sxhkdrc
+```sxhkdrc tangle:~/.config/sxhkd/sxhkdrc
 # Ativa/Desativa a barra enquando super é segurado
 Super_L + any
-	dwmc togglebar
+    dwmc togglebar
 ~@Super_L + any
-	dwmc togglebar
+    dwmc togglebar
 Super_R + any
-	dwmc togglebar
+    dwmc togglebar
 ~@Super_R + any
-	dwmc togglebar
+    dwmc togglebar
 
 # Ativa/Desativa a barra
 super + b
@@ -808,19 +788,19 @@ super + b
 
 # Muda o tamanho da janela
 ctrl + super + {Left,Right}
-	dwmc setmfact {-,+}0.05
+    dwmc setmfact {-,+}0.05
 
 # Muda o tamanho da janela
 ctrl + super + {Down,Up}
-	dwmc setcfact {-,+}0.20
+    dwmc setcfact {-,+}0.20
 
 # Muda entre as janelas
 super + Tab
-	dwmc focusstack +1
+    dwmc focusstack +1
 
 # Muda de tag
 super + {Left, Right}
-	dwmc {viewprev, viewnext}
+    dwmc {viewprev, viewnext}
 
 # Troca a janela de tag
 super + shift {Left, Right}
@@ -828,11 +808,11 @@ super + shift {Left, Right}
 
 # Fecha uma janela
 super + shift + backslash
-	dwmc killclient
+    dwmc killclient
 
 # Alterna janela flutuante
 super + w
-	dwmc togglefloating
+    dwmc togglefloating
 
 # troca todas as janelas de posição
 super + Return
@@ -948,7 +928,7 @@ Menu;q
 
 # Anotações
 Menu;a
-    emacsclient -c ~/documentos/anotações.org
+    nvim ~/documentos/anotações.md
 
 # Aliases
 Menu;A
@@ -957,13 +937,13 @@ Menu;A
 # Tira print
 Print
     dmenu_print
-#+end_src
+```
 
-** Bspwm
+### Bspwm
 
-- =~/.config/sxhkd/sxhkdrc_bspwm=
+- `~/.config/sxhkd/sxhkdrc_bspwm`
 
-#+begin_src sxhkd :tangle ~/.config/sxhkd/sxhkdrc_bspwm
+```sxhkdrc tangle:~/.config/sxhkd/sxhkdrc_bspwm
 # Fecha janela
 super + shift + backslash
     bspc node -c
@@ -1121,7 +1101,7 @@ Menu;q
 
 # Anotações
 Menu;a
-    emacsclient -c ~/documentos/anotações.org
+    nvim ~/documentos/anotações.md
 
 # Aliases
 Menu;A
@@ -1130,17 +1110,17 @@ Menu;A
 # Tira print
 Print
     dmenu_print
-#+end_src
+```
 
-* Qutebrowser
+## Qutebrowser
 
-Navegador controlado majoritariamente pelo teclado inspirado no *vim*
+Navegador controlado majoritariamente pelo teclado inspirado no **vim**
 
-** Configuração
+### Configuração
 
-- =~/.config/qutebrowser/config.py=
+- `~/.config/qutebrowser/config.py`
 
-#+begin_src python :tangle ~/.config/qutebrowser/config.py
+```python tangle:~/.config/qutebrowser/config.py
 # Autogenerated config.py
 #
 # NOTE: config.py is intended for advanced users who are comfortable
@@ -1152,6 +1132,9 @@ Navegador controlado majoritariamente pelo teclado inspirado no *vim*
 # Documentation:
 #   qute://help/configuring.html
 #   qute://help/settings.html
+
+# Carregar o autoconfig.yml
+config.load_autoconfig()
 
 # CONFIGURAÇÕES PADRÃO
 
@@ -1212,9 +1195,6 @@ config.set('content.pdfjs', True)
 
 # Javascript desativado por padrão
 config.set('content.javascript.enabled', False)
-
-# Carregar o autoconfig.yml
-config.load_autoconfig(True)
 
 # Abre novas abas de fundo
 config.set('new_instance_open_target', 'window')
@@ -1304,7 +1284,7 @@ config.set('content.notifications.enabled', True, 'https://facebook.com/*')
 # `{column}`: Column in which the caret is found in the text. *
 # `{line0}`: Same as `{line}`, but starting from index 0. * `{column0}`:
 # Same as `{column}`, but starting from index 0.
-c.editor.command = ['st', '-e','nvim', '{}']
+c.editor.command = ['nvim', '{}']
 
 # Search engines which can be used via the address bar.  Maps a search
 # engine name (such as `DEFAULT`, or `ddg`) to a URL with a `{}`
@@ -1361,35 +1341,36 @@ config.bind('<Ctrl-Right>', 'tab-next')
 config.bind('<Ctrl-a>', 'back')
 config.bind('<Ctrl-d>', 'forward')
 config.bind('u', 'undo --window')
-config.bind('zx', 'config-cycle statusbar.show always in-mode;; config-cycle tabs.show always switching')
 # Atalho para assistir link com mpv
-config.bind('zp', 'hint links spawn mpv {hint-url}')
+config.bind('zvw', 'hint links spawn mpv {hint-url}')
 # Baixar imagem selecionada
-config.bind('zi', 'hint images download')
+config.bind('zid', 'hint images download')
 # Baixar como video
-config.bind('zv', 'hint links spawn st -c st_download -e yt {hint-url}')
+config.bind('zvd', 'hint links spawn st -c st_download -e yt {hint-url}')
 # Baixar como audio
-config.bind('za', 'hint links spawn st -c st_download -e yta {hint-url}')
+config.bind('zad', 'hint links spawn st -c st_download -e yta {hint-url}')
 # Abre no firefox
 config.bind('zf', 'hint links spawn firefox {url}')
+# Ativa/Desativa a barra
+config.bind('zx', 'config-cycle statusbar.show always in-mode;; config-cycle tabs.show always switching')
 # Ativa/Desativa tema escuro
 config.bind('zd', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/styles/dark.css ""')
 # Ativa/Desativa javascript para um site
 config.bind('zj', 'config-cycle -p -u *://*.{url:host}/* content.javascript.enabled ;; reload')
 # Ativa/Desativa adblocking para um site
 config.bind('zb', 'config-cycle -p -u *://*.{url:host}/* content.blocking.enabled ;; reload')
+# Modo leitura
+config.bind('zr', 'spawn --userscript readability')
 # Traduz a pagina
 config.bind('ztp', 'spawn --userscript translate')
 # Traduz o texto selecionado
 config.bind('zts', 'spawn --userscript translate --text')
-# Modo leitura
-config.bind('zl', 'spawn --userscript readability')
 # Copia links
-config.bind('zc', 'hint links yank')
-# Copia trechos de codigo
-config.bind('zC', 'hint code userscript code_select.py')
+config.bind('cl', 'hint links yank')
+# Copia trechos de código
+config.bind('cc', 'hint code userscript code_select.py')
 c.hints.selectors["code"] = [
-    # Seleciona code tags onde o parente nao é uma tag pre
+    # Seleciona code tags onde o parente não é uma tag pre
     ":not(pre) > code",
     "pre"
 ]
@@ -1458,19 +1439,19 @@ c.colors.statusbar.command.bg = '#2f334d'
 c.colors.statusbar.url.warn.fg = '#ff0000'
 # Cor de fundo da barra de abas abertas
 c.colors.tabs.bar.bg = '#2f334d'
-# Cor de fundo de abas deselecionadas
+# Cor de fundo de abas não selecionadas
 c.colors.tabs.odd.bg = '#000000'
 c.colors.tabs.even.bg = '#000000'
 # Cor de fundo de abas selecionadas
 c.colors.tabs.selected.odd.bg = '#2f334d'
 c.colors.tabs.selected.even.bg = '#2f334d'
-# Cor de fundo de abas fixadas deselecionadas
+# Cor de fundo de abas fixadas não selecionadas
 c.colors.tabs.pinned.odd.bg = '#000000'
 c.colors.tabs.pinned.even.bg = '#000000'
 # Cor de fundo de abas fixadas selecionadas
 c.colors.tabs.pinned.selected.odd.bg = '#2f334d'
 c.colors.tabs.pinned.selected.even.bg = '#2f334d'
-# Cor das fontes de abas deselecionadas
+# Cor das fontes de abas não selecionadas
 c.colors.tabs.even.fg = '#ffffff'
 c.colors.tabs.odd.fg = '#ffffff'
 c.colors.tabs.pinned.even.fg = '#ffffff'
@@ -1498,174 +1479,19 @@ c.fonts.debug_console = '14px "monospace"'
 c.fonts.prompts = 'default_size "monospace"'
 # Fonte usada na barra de status.
 c.fonts.statusbar = '14px "monospace"'
-#+end_src
+```
 
-** Tema escuro
+### Tema escuro
 
-- [[https://github.com/LucasTavaresA/dotfiles/blob/main/.config/qutebrowser/styles/dark.css][dark.css]]
+-   [dark.css](https://github.com/LucasTavaresA/dotfiles/blob/main/.config/qutebrowser/styles/dark.css)
 
-* Ncmpcpp
-
-Player de musica
-
-** Configuração
-
-- =~/.config/ncmpcpp/config=
-
-#+begin_src conf :tangle ~/.config/ncmpcpp/config
-# vim: filetype=conf
-
-ncmpcpp_directory = "~/.config/ncmpcpp"
-lyrics_directory = "~/.local/share/lyrics"
-mpd_music_dir = "~/media/musicas"
-message_delay_time = "1"
-playlist_display_mode = classic
-browser_display_mode = classic
-progressbar_look = "━🬋-"
-media_library_primary_tag = album_artist
-media_library_albums_split_by_date = no
-startup_screen = "playlist"
-display_volume_level = no
-ignore_leading_the = yes
-external_editor = nvim
-use_console_editor = yes
-empty_tag_color = cyan
-main_window_color = white
-progressbar_color = white
-progressbar_elapsed_color = white:b
-statusbar_color = white
-statusbar_time_color = white:b
-cyclic_scrolling = yes
-mouse_support = no
-song_list_format = {$8%f$9}$R{$3%l$9}
-song_status_format = {%f}
-song_library_format = {%f}
-alternative_header_first_line_format = {%f} $1$atqq$/a$9$/b
-alternative_header_second_line_format = {%D}
-current_item_prefix = $(white)$r
-current_item_suffix = $/r$(end)
-current_item_inactive_column_prefix = $(cyan)$r
-current_item_inactive_column_suffix = $/r$(end)
-now_playing_prefix = $b
-now_playing_suffix = $/b
-browser_playlist_prefix = "$2playlist$9 "
-selected_item_prefix = $6
-selected_item_suffix = $9
-modified_item_prefix = $3> $9
-song_window_title_format = {%f}
-browser_sort_mode = none
-browser_sort_format = {%f} {%l}
-song_columns_list_format = (50)[white]{f:Title} (7f)[white]{l}
-#+end_src
-
-** Teclas
-
-- =~/.config/ncmpcpp/bindings=
-
-#+begin_src conf :tangle ~/.config/ncmpcpp/bindings
-def_key "home"
-  move_home
-def_key "end"
-  move_end
-def_key "right"
-  enter_directory
-def_key "enter"
-  toggle_output
-def_key "enter"
-  run_action
-def_key "enter"
-  play_item
-def_key "delete"
-  delete_playlist_items
-def_key "delete"
-  delete_browser_items
-def_key "delete"
-  delete_stored_playlist
-def_key "right"
-  next_column
-def_key "left"
-  previous_column
-def_key ":"
-  execute_command
-def_key "f1"
-  show_help
-def_key "p"
-  stop
-def_key "space"
-  pause
-def_key ">"
-  next
-def_key "<"
-  previous
-def_key "left"
-  jump_to_parent_directory
-def_key "right"
-  seek_forward
-def_key "left"
-  seek_backward
-def_key "e"
-  edit_song
-def_key "e"
-  edit_library_tag
-def_key "e"
-  edit_library_album
-def_key "e"
-  edit_directory_name
-def_key "e"
-  edit_playlist_name
-def_key "R"
-  remove_selection
-def_key "M"
-  move_selected_items_to
-def_key "A"
-  add
-def_key "S"
-  save_playlist
-def_key "z"
-  toggle_interface
-def_key "!"
-  toggle_separators_between_albums
-def_key "q"
-  quit
-def_key "f"
-	find
-def_key "u"
-  update_database
-def_key "delete"
-  delete_playlist_items
-#+end_src
-
-* Mpd
-
-Daemon player de musica
-
-- =~/.config/mpd/mpd.conf=
-
-#+begin_src conf :tangle ~/.config/mpd/mpd.conf
-music_directory		"~/media/musicas"
-playlist_directory	"~/.config/mpd/playlists"
-db_file			    "~/.config/mpd/database"
-pid_file			"~/.config/mpd/pid"
-state_file			"~/.config/mpd/state"
-
-auto_update "yes"
-bind_to_address "127.0.0.1"
-restore_paused "yes"
-max_output_buffer_size "16384"
-
-audio_output {
-	type "pulse"
-	name "pulse"
-}
-#+end_src
-
-* Lf
+## Lf
 
 Explorador de arquivos lf
 
-- =~/.config/lf/lfrc=
+- `~/.config/lf/lfrc`
 
-#+begin_src sh :tangle ~/.config/lf/lfrc
+```sh tangle:~/.config/lf/lfrc
 # interpreter for shell commands
 set shell sh
 
@@ -1716,25 +1542,25 @@ set scrolloff 0
 
 cmd open ${{
     case $(file --mime-type "$(readlink -f $f)" -b) in
-    	application/vnd.openxmlformats-officedocument.wordprocessingml.document) libreoffice $f ;;
-	    image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) zathura $fx ;;
-      text/*) emacsclient -n -c $fx ;;
-	    image/*) nsxiv . ;;
-	    audio/*) mpv --audio-display=no $fx ;;
-	    video/*) mpv $fx ;;
-	    application/pdf|application/vnd*|application/epub*) zathura $fx ;;
-	    application/pgp-encrypted) nvim $fx ;;
-        ,*) xdg-open $fx ;;
+        application/vnd.openxmlformats-officedocument.wordprocessingml.document) libreoffice $f ;;
+        image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) zathura $fx ;;
+        text/*) nvim $fx ;;
+        image/*) nsxiv . ;;
+        audio/*) mpv --audio-display=no $fx ;;
+        video/*) mpv $fx ;;
+        application/pdf|application/vnd*|application/epub*) zathura $fx ;;
+        application/pgp-encrypted) nvim $fx ;;
+        *) xdg-open $fx ;;
     esac
 }}
 
 cmd delete ${{
-	clear; tput cup $(($(tput lines)/3)); tput bold
-	set -f
-	printf "%s\n\t" "$fx"
-	printf "deletar?[y/N]"
-	read ans
-	[ $ans = "y" ] && rm -rf -- $fx
+    clear; tput cup $(($(tput lines)/3)); tput bold
+    set -f
+    printf "%s\n\t" "$fx"
+    printf "deletar?[y/N]"
+    read ans
+    [ $ans = "y" ] && rm -rf -- $fx
 }}
 
 cmd mkdir ${{
@@ -1744,12 +1570,12 @@ cmd mkdir ${{
 }}
 
 cmd extract ${{
-	clear; tput cup $(($(tput lines)/3)); tput bold
-	set -f
-	printf "%s\n\t" "$fx"
-	printf "extrair?[y/N]"
-	read ans
-	[ $ans = "y" ] && aunpack $fx
+    clear; tput cup $(($(tput lines)/3)); tput bold
+    set -f
+    printf "%s\n\t" "$fx"
+    printf "extrair?[y/N]"
+    read ans
+    [ $ans = "y" ] && aunpack $fx
 }}
 
 cmd mkfile ${{
@@ -1762,12 +1588,12 @@ cmd mkfile ${{
 }}
 
 cmd chmod ${{
-	clear; tput cup $(($(tput lines)/3)); tput bold
-	set -f
-	printf "%s\n\t" "$fx"
-	printf "tornar executavel?[y/N]"
-	read ans
-	if [ $ans = "y" ]; then
+    clear; tput cup $(($(tput lines)/3)); tput bold
+    set -f
+    printf "%s\n\t" "$fx"
+    printf "tornar executavel?[y/N]"
+    read ans
+    if [ $ans = "y" ]; then
   for file in "$fx"
   do
      chmod +x $file
@@ -1815,119 +1641,8 @@ map gmv cd ~/media/videos
 map gmi cd ~/media/imagens
 map gmm cd ~/media/musicas
 map gmc cd ~/media/cursos
-#+end_src
+```
 
-#+RESULTS:
+## Extras
 
-* Handlr
-
-Abre arquivos de acordo com o mimetype, substitui o *xdg-open*
-
-- =~/.config/handlr/handlr.toml=
-
-#+begin_src conf :tangle ~/.config/handlr/handlr.toml
-enable_selector = true
-selector = "dmenu -p 'Abrir com: '"
-#+end_src
-
-* Mimetypes
-
-Tipos de arquivos e programa chamado para os abrir
-
-- =~/.config/mimeapps.list=
-
-#+begin_src conf :tangle ~/.config/mimeapps.list
-[Added Associations]
-x-scheme-handler/tg=userapp-Telegram Desktop-EJM1D1.desktop;
-x-scheme-handler/magnet=transmission-gtk.desktop;
-application/x.bittorrent=transmission-gtk.desktop;
-audio/mp4=mpv.desktop;
-audio/x-opus+ogg=mpv.desktop;
-image/jpeg=nsxiv.desktop;
-image/png=nsxiv.desktop;
-inode/directory=lf.desktop;
-
-[Default Applications]
-application/javascript=nvim.desktop;
-application/json=nvim.desktop;
-application/ld+json=nvim.desktop;
-application/msword=libreoffice-writer.desktop;
-application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.dektop;
-application/pdf=firefox.desktop;
-application/vnd.ms-excel=libreoffice-calc.desktop;
-application/vnd.ms-powerpoint=libreoffice-impress.desktop;
-application/x-bittorrent=transmission-gtk.desktop;
-audio/*=mpv.desktop;
-image/*=nsxiv.desktop;
-inode/directory=lf.desktop;
-text/*=nvim.desktop;
-text/markdown=geany.desktop;
-video/*=mpv.desktop;
-x-scheme-handler/tg=userapp-Telegram Desktop-EJM1D1.desktop;
-x-scheme-handler/http=org.qutebrowser.qutebrowser.desktop;
-x-scheme-handler/https=org.qutebrowser.qutebrowser.desktop;
-x-scheme-handler/ftp=org.qutebrowser.qutebrowser.desktop;
-x-scheme-handler/magnet=transmission-gtk.desktop;
-application/x.bittorrent=transmission-gtk.desktop;
-#+end_src
-
-* .gitignore
-
-Arquivos ignorados pelo git
-
-- =~/.gitignore=
-
-#+begin_src gitignore :tangle ~/.gitignore
-.cache/
-.config/cabal/
-.config/coc/
-.config/dconf/
-.config/discord/
-.config/emacs/
-.config/doom/themes/
-.config/doom/yasnippet-snippets/
-.config/doom/init.el
-.config/doom/packages.el
-.config/doom/config.el
-.config/galculator/
-.config/GIMP/
-.config/git/config
-.config/libreoffice/
-.config/mpd/
-.config/ncmpcpp/error.log
-.config/nitrogen/
-.config/npm/
-.config/pulse/
-.config/qutebrowser/autoconfig.yml
-.config/qutebrowser/bookmarks
-.config/qutebrowser/quickmarks
-.config/stumpwm/*log*
-.config/transmission/
-.config/VirtualBox/
-.config/NuGet/
-.config/nvim/plugins/
-.config/nvim/plugin/
-.config/shell/.zcompdump
-.config/shell/history
-.config/pam-gnupg
-.gnupg/
-.dotnet/
-.local/
-.mozilla/
-.nuget/
-.pki/
-.ssh/
-.templateengine/
-code/
-documentos/
-Downloads/
-jogos/
-media/
-mnt/
-VirtualBox VMs/
-bkp/
-#+end_src
-
-* Extras
-
-- [[https://github.com/LucasTavaresA/dotfiles/blob/main/extras.org][Mais configurações]]
+- [Mais configurações](https://github.com/LucasTavaresA/dotfiles/blob/main/extras.md)
