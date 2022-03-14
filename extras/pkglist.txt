@@ -497,6 +497,7 @@ libindicator-gtk3
 libinih
 libinput
 libinstpatch
+libisl
 libisoburn
 libisofs
 libixion
@@ -710,6 +711,7 @@ mkinitcpio-numlock
 mlocate
 mobile-broadband-provider-info
 mono
+mono-msbuild
 mpc
 mpd
 mpfr
@@ -749,11 +751,11 @@ npm
 npth
 nspr
 nss
-nsxiv
 ntfs-3g
 numactl
 nuspell
-onefetch
+nvim-packer-git
+omnisharp-roslyn
 oniguruma
 openal
 openbsd-netcat

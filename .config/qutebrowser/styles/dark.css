@@ -1214,6 +1214,11 @@ a.label {
 .markdown-body table * pre {
   background-color: #000000 !important;
 }
+.markdown-body code, .markdown-body table * code, .markdown-body pre, .markdown-body table * pre {
+    background-color: #000000 !important;
+    border: 1px solid white !important;
+    border-radius: 0;
+}
 .markdown-body hr,
 .markdown-body table * hr {
   background-color: #000000 !important;

@@ -483,7 +483,9 @@ alias ec="emacsclient -n -c"
 alias e="emacs"
 alias copy="xclip -selection clipboard"
 alias sudo="doas"
-alias p="ping google.com"
+alias ping="ping google.com"
+alias p="patch -p1 <"
+alias pr="patch -R <"
 alias yt="yt-dlp"
 alias yta="yt-dlp -x --audio-format mp3"
 alias ka="doas killall"
@@ -593,7 +595,9 @@ alias ec="emacsclient -n -c"
 alias e="emacs"
 alias copy="xclip -selection clipboard"
 alias sudo="doas"
-alias p="ping google.com"
+alias ping="ping google.com"
+alias p="patch -p1 <"
+alias pr="patch -R <"
 alias yt="yt-dlp"
 alias yta="yt-dlp -x --audio-format mp3"
 alias ka="doas killall"
@@ -736,10 +740,6 @@ xsetroot -cursor_name left_ptr
 # Teclado
 setxkbmap -option caps:escape # grep -E "(ctrl|caps):" /usr/share/X11/xkb/rules/base.lst
 xset r rate 300 100 # acelera repetição de teclas
-
-# Gnome keyring daemon
-eval "$(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)"
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 # Clipmenu
 systemctl --user import-environment DISPLAY

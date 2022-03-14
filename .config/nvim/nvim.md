@@ -5,7 +5,7 @@ Configuração do neovim em lua
 ## Sumario
 
 - [Plugins](#plugins)
-- [Miscellanea](#miscellanea)
+- [Miscelânea](#miscelânea)
 - [Teclas](#teclas)
 
 ## Plugins
@@ -13,18 +13,18 @@ Configuração do neovim em lua
 ```lua tangle:~/.config/nvim/init.lua
 require('packer').startup(function()
     ---- Iniciar
-    -- Vim mais rapido
+    -- Vim mais rápido
     use 'lewis6991/impatient.nvim'
     -- Gerenciador de pacotes
     use 'wbthomason/packer.nvim'
 
-    ---- Aparencia
+    ---- Aparência
     -- Tema
     use '~/.config/nvim/plugins/moonlight.nvim'
     -- Esconde a barra
     use '~/.config/nvim/plugins/lite-dfm'
 
-    ---- Miscellanea
+    ---- Miscelânea
     -- Salva posição do cursor
     use 'farmergreg/vim-lastplace'
     -- Múltiplos cursores
@@ -80,7 +80,7 @@ end)
 
 ```
 
-## Miscellanea
+## Miscelânea
 
 ```lua tangle:~/.config/nvim/init.lua
 ---- vim
@@ -90,7 +90,7 @@ vim.cmd("filetype indent on")
 vim.opt.hidden = true
 -- Diminui recarregamentos da tela
 vim.opt.lazyredraw = true
--- Melhora support ao terminal
+-- Melhora suporte ao terminal
 vim.opt.termguicolors = true
 
 ---- Arquivos
@@ -104,7 +104,7 @@ vim.opt.shiftwidth = 4
 -- Troca tabs por espaços
 vim.opt.expandtab = true
 
----- Miscellanea
+---- Miscelânea
 -- Muda o titulo da janela
 vim.opt.title = true
 vim.opt.titlestring = "nvim"
@@ -196,7 +196,7 @@ augroup RunCommandOnWrite
   autocmd BufWritePost ~/extras.md !md-tangle -f %
 augroup END
 ]])
--- Função para Fechar e abrir Toc
+-- Função para fechar e abrir sumario
 vim.cmd([[
 function s:TocToggle()
     if index(["markdown", "qf"], &filetype) == -1
@@ -211,7 +211,6 @@ function s:TocToggle()
         Toc
     endif
 endfunction
-
 command TocToggle call s:TocToggle()
 ]])
 
@@ -259,6 +258,13 @@ keymap("n", "<leader>tn", ":set number!<CR>", {})
 keymap("n", "?", "*", {})
 -- Abrir e Fechar Toc
 keymap("n", "<S-Tab>", "<CR>:TocToggle<CR>", {})
+-- Abre terminal no local do arquivo atual
+keymap("n", "<Space><return>", ":!sh -c 'cd %:p:h ; st' &<CR><CR>", {})
+-- Centraliza cursor no modo normal
+keymap("n", "<Up>", "<Up>zz", {})
+keymap("n", "<down>", "<down>zz", {})
+-- Executa um macro
+keymap("n", "m", "@", {})
 -- Marca/Desmarca caixas
 vim.cmd([[
 function Marcar()
@@ -292,7 +298,7 @@ keymap("v", "<A-up>", "<Plug>(expand_region_expand)", {})
 keymap("v", "<A-down>", "<Plug>(expand_region_shrink)", {})
 -- Criar cursor na próxima palavra - visual multi
 keymap("n", "<A-s-s>", "<C-n>", {})
--- Pular cursor ate a prox palavra - visual multi
+-- Pular cursor ate a próxima palavra - visual multi
 keymap("n", "<A-s>", "q", {})
 -- Criar cursor abaixo/acima - visual multi
 keymap("n", "<C-s-Up>", "<C-Up>", {})
@@ -310,6 +316,10 @@ keymap("n", "<leader><Tab>", ":Buffers<CR>", {})
 keymap("n", "cc", ":norm gcc<CR>j", {})
 -- Ativa previsão de cores - nvimcolorizer
 keymap("n", "<leader>tc", ":ColorizerToggle<CR>", {})
+-- Troca entre partes do snippet - ultisnips
+vim.g.UltiSnipsExpandTrigger = "<tab>"
+vim.g.UltiSnipsJumpForwardTrigger = "<tab>"
+vim.g.UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 
 -- LSP
 keymap("n", "gd", ":lua vim.lsp.buf.definition()<cr>", {})

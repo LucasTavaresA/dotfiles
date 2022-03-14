@@ -7,10 +7,6 @@ xsetroot -cursor_name left_ptr
 setxkbmap -option caps:escape # grep -E "(ctrl|caps):" /usr/share/X11/xkb/rules/base.lst
 xset r rate 300 100 # acelera repetição de teclas
 
-# Gnome keyring daemon
-eval "$(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)"
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-
 # Clipmenu
 systemctl --user import-environment DISPLAY
 export CM_DIR="$HOME/code/shell/dmenuscripts/listas/clipmenu"
