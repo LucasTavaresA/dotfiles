@@ -294,13 +294,13 @@ export TERM="xterm-256color"
 # Navegador padrão
 export BROWSER="qutebrowser"
 # Pager
-export PAGER='less'
+export PAGER="less -R"
 # Faz o qt usar o tema do gtk2
 export QT_QPA_PLATFORMTHEME="gtk2"
 # Less
 export LESSHISTFILE="-"
 # Wget
-export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
+export WGETRC="${XDG_DATA_HOME:-$HOME/.local/share}/wget/wgetrc"
 # XAuthority
 export XAUTHORITY="${XDG_RUNTIME_DIR:-/run/user/$UID}/Xauthority"
 # Cargo
@@ -755,7 +755,7 @@ xbanish &
 fluxgui &
 sxhkd &
 dwmblocks &
-picom &
+# picom &
 
 # Protetor de tela
 xautolock -detectsleep -time 30 -locker "slock" -notify 30 -notifier "notify-send Slock -u critical -t 1800000 'BLOQUEANDO A TELA 30 SEGUNDOS'" &

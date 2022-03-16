@@ -59,8 +59,8 @@ require('packer').startup(function()
         end,
       }
     }
-    -- Tabelas em markdown
-    use 'godlygeek/tabular'
+    -- tabelas em markdown
+    use 'dhruvasagar/vim-table-mode'
     -- Json
     use 'elzr/vim-json'
 end)
@@ -195,6 +195,8 @@ function s:TocToggle()
 endfunction
 command TocToggle call s:TocToggle()
 ]])
+-- tabelas em markdown
+vim.g.table_mode_corner = '|'
 
 ---- LSP
 local lsp_installer = require("nvim-lsp-installer")
@@ -290,7 +292,8 @@ keymap("n", "<leader>fh", ":History<CR>", {})
 -- Trocar de buffer - fzf
 keymap("n", "<leader><Tab>", ":Buffers<CR>", {})
 -- Comentar linhas - vim comentary
-keymap("n", "cc", ":norm gcc<CR>j", {})
+keymap("n", "cc", "gccj", {})
+keymap("v", "cc", "gc", {})
 -- Ativa previsão de cores - nvimcolorizer
 keymap("n", "<leader>tc", ":ColorizerToggle<CR>", {})
 -- Troca entre partes do snippet - ultisnips

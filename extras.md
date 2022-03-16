@@ -6,6 +6,7 @@ Blocos de código são salvos em seus arquivos usando [md-tangle](https://github
 
 ## Sumario
 
+-   [Tmux](#tmux)
 -   [Ncmpcpp](#ncmpcpp)
     -   [Configuração](#configuração)
     -   [Teclas](#teclas)
@@ -23,6 +24,18 @@ Blocos de código são salvos em seus arquivos usando [md-tangle](https://github
 -   [Bspwm](#bspwm)
 -   [Paru](#paru)
 -   [Npm](#npm)
+
+## Tmux
+
+- `~/.config/tmux/tmux.conf`
+
+```conf tangle:~/.config/tmux/tmux.conf
+set -g default-terminal "screen-256color"
+set-option -ga update-environment ' PAGER VISUAL EDITOR W3M_DIR NNN_OPENER NNN_COLORS NNN_PLUG NNN_FIFO NNN_TMPFILE MANPAGER SHELL'
+set -g status off
+set -g status-fg white
+set -g pane-active-border-style bg=default,fg=white
+```
 
 ## Ncmpcpp
 
@@ -200,7 +213,10 @@ Tipos de arquivos e programa chamado para os abrir
 [Added Associations]
 x-scheme-handler/tg=userapp-Telegram Desktop-EJM1D1.desktop;
 x-scheme-handler/magnet=transmission-gtk.desktop;
+x-scheme-handler/terminal=st.desktop;
 application/x.bittorrent=transmission-gtk.desktop;
+application/x-troff-man=nvim.desktop;
+application/x-executable=nvim.desktop;
 audio/mp4=mpv.desktop;
 audio/x-opus+ogg=mpv.desktop;
 image/jpeg=nsxiv.desktop;
