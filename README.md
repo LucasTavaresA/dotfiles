@@ -6,6 +6,7 @@ Blocos de código são salvos em seus arquivos usando [md-tangle](https://github
 
 ## Sumario
 
+-   [Herbstluftwm](#herbstluftwm)
 -   [Emacs](#emacs)
 -   [Neovim](#neovim)
 -   [Shells](#shells)
@@ -283,7 +284,7 @@ export XDG_RUNTIME_DIR="/run/user/$UID"
 export XDG_BIN_HOME="$HOME/.local/bin"
 
 # Window manager
-export WM="dwm"
+export WM="herbstluftwm"
 # Pass
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/pass"
 # Bat como um manpager
@@ -476,7 +477,9 @@ IFS=$SAVEIFS
 # Aliases
 alias n="neofetch"
 alias v="nvim"
+alias vv="/usr/bin/nvim"
 alias h="htop"
+alias hc="herbstclient"
 alias ed="emacs --daemon"
 alias ek="emacsclient -e '(kill-emacs)'"
 alias ec="emacsclient -n -c"
@@ -589,7 +592,9 @@ Shell usado pelo arch também muito usado em scripts, bashrc trocado de lugar co
 # Aliases
 alias n="neofetch"
 alias v="nvim"
+alias vv="/usr/bin/nvim"
 alias h="htop"
+alias hc="herbstclient"
 alias ed="emacs --daemon"
 alias ek="emacsclient -e '(kill-emacs)'"
 alias ec="emacsclient -n -c"
@@ -747,32 +752,305 @@ systemctl --user import-environment DISPLAY
 export CM_DIR="$HOME/code/shell/dmenuscripts/listas/clipmenu"
 clipmenud &
 
-# Outros
+# Protetor de tela
+xautolock -detectsleep -time 30 -locker "slock" -notify 30 -notifier "notify-send Slock -u critical -t 1800000 'BLOQUEANDO A TELA 30 SEGUNDOS'" &
+
 mpd &
 dunst &
 nitrogen --restore &
 nm-applet &
 xbanish &
 fluxgui &
-sxhkd &
+picom &
+
+if [ "$WM" = "dwm" ]; then
+sxhkd -c "$HOME/.config/sxhkd/sxhkd_dwm" &
 dwmblocks &
-# picom &
+elif [ "$WM" = "herbstluftwm" ]; then
+sxhkd -c "$HOME/.config/sxhkd/sxhkd_herbstluftwm" &
+elif [ "$WM" = "bspwm" ]; then
+sxhkd -c "$HOME/.config/sxhkd/sxhkd_bspwm" &
+fi
 
-# Protetor de tela
-xautolock -detectsleep -time 30 -locker "slock" -notify 30 -notifier "notify-send Slock -u critical -t 1800000 'BLOQUEANDO A TELA 30 SEGUNDOS'" &
+if [ -n "$flags" ]; then
+    exec "$WM $flags"
+else
+    exec "$WM"
+fi
+```
 
-exec "$WM"
+## Herbstluftwm
+
+Gerenciador de janelas
+
+- `~/.config/herbstluftwm/autostart`
+
+```bash tangle:~/.config/herbstluftwm/autostart
+#!/usr/bin/env bash
+
+pegar_erros() {
+    trap '' ERR
+    local frame=0 str
+    local stacktrace="Comando fechado com status $1\n\nStack:"
+    while str=$(caller $frame); do
+        stacktrace+="\nlinha $str"
+        frame=$((frame+1))
+    done
+    notify-send -u critical "Erro de configuração no hlwm" "$stacktrace"
+}
+set -o errtrace
+trap 'pegar_erros $?' ERR
+
+primeira_vez_aberto() {
+    ! hstc silent get_attr my_loaded 2>/dev/null
+}
+
+hstc() {
+    herbstclient "$@"
+}
+
+hstc emit_hook reload
+
+# remove todas as teclas de atalho
+hstc keyunbind --all
+hstc mouseunbind --all
+
+# Atalhos do mouse
+hstc mousebind Super-Button1 move
+hstc mousebind Super-Button2 zoom
+hstc mousebind Super-Button3 resize
+
+# Adiciona tags no primeiro iniciar
+if primeira_vez_aberto; then
+    tag_names=( {1..5} )
+    hstc rename default "${tag_names[0]}" || true
+    for i in "${!tag_names[@]}"; do
+        hstc add "${tag_names[$i]}"
+    done
+    hstc detect_monitors
+fi
+
+# tags
+tag_names=("1" "2" "3" "4" "5")
+tag_keys=( {1..5} 0 )
+tag_count=$(hstc attr tags.count)
+for i in "${!tag_keys[@]}"; do
+    (( i >= tag_count )) && break
+    key="${tag_keys[$i]}"
+done
+
+hstc set default_frame_layout max
+hstc set frame_border_active_color '#ffff55'
+hstc set frame_border_normal_color '#000000'
+hstc set frame_bg_normal_color '#000000'
+hstc set frame_bg_active_color '#ffff55'
+hstc set frame_border_width 1
+hstc set always_show_frame 0
+hstc set frame_bg_transparent 1
+hstc set frame_transparent_width 0
+hstc set frame_padding 0
+hstc set focus_follows_mouse 0
+hstc set window_gap 0
+hstc set smart_window_surroundings 1
+hstc set smart_frame_surroundings 1
+hstc set mouse_recenter_gap 0
+hstc set focus_crosses_monitor_boundaries 1
+hstc set swap_monitors_to_get_tag 1
+hstc set tree_style '╾│ ├└╼─┐'
+
+hstc attr theme.tiling.reset 1
+hstc attr theme.floating.reset 1
+hstc attr theme.active.color '#ffffff'
+hstc attr theme.normal.color '#000000'
+hstc attr theme.urgent.color '#ff0000'
+hstc attr theme.inner_width 0
+hstc attr theme.inner_color '#000000'
+hstc attr theme.border_width 1
+hstc attr theme.floating.border_width 1
+hstc attr theme.floating.outer_width 1
+hstc attr theme.floating.outer_color '#000000'
+hstc attr theme.active.inner_color '#ffffff'
+hstc attr theme.active.outer_color '#ffffff'
+hstc attr theme.background_color '#000000'
+
+# regras
+hstc unrule -F
+hstc rule focus=on # normally focus new clients
+hstc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' pseudotile=on
+hstc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
+hstc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
+
+hstc unlock
 ```
 
 ## Sxhkd
 
 Todos os atalhos e teclas do dwm e bspwm
 
+### Herbstluftwm
+
+- `~/.config/sxhkd/sxhkd_herbstluftwm`
+
+```sxhkdrc tangle:~/.config/sxhkd/sxhkd_herbstluftwm
+# Ativa/Desativa a barra enquando super é segurado
+# Super_L + any
+# ~@Super_L + any
+# Super_R + any
+# ~@Super_R + any
+
+# Ativa/Desativa a barra
+# super + b
+
+# Muda o tamanho de frames
+ctrl + super + {Left,Down,Up,Right}
+    herbstclient resize {left +0.05,down +0.05,up +0.05,right +0.05}
+
+# Muda entre as janelas
+super + Tab
+    herbstclient cycle
+
+# troca todas as janelas de posição
+super + shift + {Up,Down,Left,Right}
+    herbstclient shift {up,down,left,right}
+
+# Muda de tag
+alt + {Left, Right}
+    herbstclient {use_index +1 --skip-visible,use_index -1 --skip-visible}
+
+# Troca entre layouts
+super + Escape
+    herbstclient or , and . compare tags.focus.curframe_wcount = 2                   \
+                     . cycle_layout +1 vertical horizontal max vertical grid    \
+               , cycle_layout +1
+
+# Fecha uma janela
+super + shift + backslash
+    herbstclient close
+
+# Tela cheias
+super + f
+    herbstclient fullscreen
+
+# Alterna janela flutuante
+super + w
+    herbstclient floating
+
+# Troca a janela de tag
+# super + shift {Left, Right}
+
+# Torna a janela fixa em todas as tags
+# super + s
+
+# Ncmpcpp/Pulsemixer
+super + {_,shift} + a
+    st -g 100x30 -c {ncmpcpp -n ncmpcpp -e ncmpcpp,pulsemixer -n pulsemixer -e pulsemixer}
+
+# Pausa/Toca musica
+super + space
+    mpc toggle && pkill -RTMIN+11 dwmblocks
+
+# Anterior/Proxima musica
+super + shift + {comma, period}
+    mpc {prev,next} && musica notificar && pkill -RTMIN+11 dwmblocks
+
+# Abaixar/Aumentar o volume e atualizar a barra
+super + {comma, period, Down, Up}
+    amixer -q set Master 5%{-,+,-,+} && pkill -RTMIN+9 dwmblocks
+
+# St
+super + shift + Return
+    st
+
+# Menu
+Menu;Menu
+    dmenu_run
+
+# Menu energia
+Menu;Escape
+    dmenu_sys
+
+# Editar
+Menu;e
+    dmenu_edit
+
+# Emojis
+Menu;E
+    dmenu_emoji
+
+# Montar/Desmontar
+Menu;m
+    dmenu_mont
+
+# Atalhos do sxhkd
+Menu;slash
+    dmenu_sxhkd
+
+# Shell History
+Menu;h
+    dmenu_shhistory
+
+# Htop
+Menu;H
+    st -g 100x30 -c htop -n htop -e htop
+
+# Passmenu
+Menu;p
+    passmenu --type
+
+# Picom
+Menu;P
+    killall picom || picom
+
+# Fluxgui
+Menu;F
+    killall fluxgui || fluxgui
+
+# Clipboard
+Menu;c
+    dmenu_clip
+
+# Calculadora
+Menu;C
+    galculator
+
+# Gimp
+Menu;g
+    gimp
+
+# Transmission
+Menu;t
+    transmission-gtk
+
+# Telegram
+Menu;T
+    telegram-desktop
+
+# Discord
+Menu;d
+    discord
+
+# Qutebrowser, pesquisa e favoritos
+Menu;q
+    dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml
+
+# Anotações
+Menu;a
+    nvim ~/documentos/anotações.md
+
+# Aliases
+Menu;A
+    dmenu_aliases
+
+# Tira print
+Print
+    dmenu_print
+```
+
 ### Dwm
 
-- `~/.config/sxhkd/sxhkdrc`
+- `~/.config/sxhkd/sxhkd_dwm`
 
-```sxhkdrc tangle:~/.config/sxhkd/sxhkdrc
+```sxhkdrc tangle:~/.config/sxhkd/sxhkd_dwm
 # Ativa/Desativa a barra enquando super é segurado
 Super_L + any
     dwmc togglebar
@@ -942,9 +1220,9 @@ Print
 
 ### Bspwm
 
-- `~/.config/sxhkd/sxhkdrc_bspwm`
+- `~/.config/sxhkd/sxhkd_bspwm`
 
-```sxhkdrc tangle:~/.config/sxhkd/sxhkdrc_bspwm
+```sxhkdrc tangle:~/.config/sxhkd/sxhkd_bspwm
 # Fecha janela
 super + shift + backslash
     bspc node -c
@@ -1333,6 +1611,9 @@ c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
 config.unbind('M')
 config.unbind('m')
 config.unbind('u')
+config.unbind('d')
+config.unbind('.')
+config.unbind('q')
 config.unbind('<Shift-H>')
 config.unbind('<Shift-L>')
 

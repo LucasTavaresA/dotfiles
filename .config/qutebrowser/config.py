@@ -209,6 +209,9 @@ c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
 config.unbind('M')
 config.unbind('m')
 config.unbind('u')
+config.unbind('d')
+config.unbind('.')
+config.unbind('q')
 config.unbind('<Shift-H>')
 config.unbind('<Shift-L>')
 

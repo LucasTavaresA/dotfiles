@@ -5,7 +5,9 @@
 # Aliases
 alias n="neofetch"
 alias v="nvim"
+alias vv="/usr/bin/nvim"
 alias h="htop"
+alias hc="herbstclient"
 alias ed="emacs --daemon"
 alias ek="emacsclient -e '(kill-emacs)'"
 alias ec="emacsclient -n -c"

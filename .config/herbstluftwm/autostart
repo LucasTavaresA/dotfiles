@@ -1,0 +1,95 @@
+#!/usr/bin/env bash
+
+pegar_erros() {
+    trap '' ERR
+    local frame=0 str
+    local stacktrace="Comando fechado com status $1\n\nStack:"
+    while str=$(caller $frame); do
+        stacktrace+="\nlinha $str"
+        frame=$((frame+1))
+    done
+    notify-send -u critical "Erro de configuração no hlwm" "$stacktrace"
+}
+set -o errtrace
+trap 'pegar_erros $?' ERR
+
+primeira_vez_aberto() {
+    ! hstc silent get_attr my_loaded 2>/dev/null
+}
+
+hstc() {
+    herbstclient "$@"
+}
+
+hstc emit_hook reload
+
+# remove todas as teclas de atalho
+hstc keyunbind --all
+hstc mouseunbind --all
+
+# Atalhos do mouse
+hstc mousebind Super-Button1 move
+hstc mousebind Super-Button2 zoom
+hstc mousebind Super-Button3 resize
+
+# Adiciona tags no primeiro iniciar
+if primeira_vez_aberto; then
+    tag_names=( {1..5} )
+    hstc rename default "${tag_names[0]}" || true
+    for i in "${!tag_names[@]}"; do
+        hstc add "${tag_names[$i]}"
+    done
+    hstc detect_monitors
+fi
+
+# tags
+tag_names=("1" "2" "3" "4" "5")
+tag_keys=( {1..5} 0 )
+tag_count=$(hstc attr tags.count)
+for i in "${!tag_keys[@]}"; do
+    (( i >= tag_count )) && break
+    key="${tag_keys[$i]}"
+done
+
+hstc set default_frame_layout max
+hstc set frame_border_active_color '#ffff55'
+hstc set frame_border_normal_color '#000000'
+hstc set frame_bg_normal_color '#000000'
+hstc set frame_bg_active_color '#ffff55'
+hstc set frame_border_width 1
+hstc set always_show_frame 0
+hstc set frame_bg_transparent 1
+hstc set frame_transparent_width 0
+hstc set frame_padding 0
+hstc set focus_follows_mouse 0
+hstc set window_gap 0
+hstc set smart_window_surroundings 1
+hstc set smart_frame_surroundings 1
+hstc set mouse_recenter_gap 0
+hstc set focus_crosses_monitor_boundaries 1
+hstc set swap_monitors_to_get_tag 1
+hstc set tree_style '╾│ ├└╼─┐'
+
+hstc attr theme.tiling.reset 1
+hstc attr theme.floating.reset 1
+hstc attr theme.active.color '#ffffff'
+hstc attr theme.normal.color '#000000'
+hstc attr theme.urgent.color '#ff0000'
+hstc attr theme.inner_width 0
+hstc attr theme.inner_color '#000000'
+hstc attr theme.border_width 1
+hstc attr theme.floating.border_width 1
+hstc attr theme.floating.outer_width 1
+hstc attr theme.floating.outer_color '#000000'
+hstc attr theme.active.inner_color '#ffffff'
+hstc attr theme.active.outer_color '#ffffff'
+hstc attr theme.background_color '#000000'
+
+# regras
+hstc unrule -F
+hstc rule focus=on # normally focus new clients
+hstc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' pseudotile=on
+hstc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
+hstc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
+
+hstc unlock

@@ -1,0 +1,152 @@
+# Ativa/Desativa a barra enquando super é segurado
+# Super_L + any
+# ~@Super_L + any
+# Super_R + any
+# ~@Super_R + any
+
+# Ativa/Desativa a barra
+# super + b
+
+# Muda o tamanho de frames
+ctrl + super + {Left,Down,Up,Right}
+    herbstclient resize {left +0.05,down +0.05,up +0.05,right +0.05}
+
+# Muda entre as janelas
+super + Tab
+    herbstclient cycle
+
+# troca todas as janelas de posição
+super + shift + {Up,Down,Left,Right}
+    herbstclient shift {up,down,left,right}
+
+# Muda de tag
+alt + {Left, Right}
+    herbstclient {use_index +1 --skip-visible,use_index -1 --skip-visible}
+
+# Troca entre layouts
+super + Escape
+    herbstclient or , and . compare tags.focus.curframe_wcount = 2                   \
+                     . cycle_layout +1 vertical horizontal max vertical grid    \
+               , cycle_layout +1
+
+# Fecha uma janela
+super + shift + backslash
+    herbstclient close
+
+# Tela cheias
+super + f
+    herbstclient fullscreen
+
+# Alterna janela flutuante
+super + w
+    herbstclient floating
+
+# Troca a janela de tag
+# super + shift {Left, Right}
+
+# Torna a janela fixa em todas as tags
+# super + s
+
+# Ncmpcpp/Pulsemixer
+super + {_,shift} + a
+    st -g 100x30 -c {ncmpcpp -n ncmpcpp -e ncmpcpp,pulsemixer -n pulsemixer -e pulsemixer}
+
+# Pausa/Toca musica
+super + space
+    mpc toggle && pkill -RTMIN+11 dwmblocks
+
+# Anterior/Proxima musica
+super + shift + {comma, period}
+    mpc {prev,next} && musica notificar && pkill -RTMIN+11 dwmblocks
+
+# Abaixar/Aumentar o volume e atualizar a barra
+super + {comma, period, Down, Up}
+    amixer -q set Master 5%{-,+,-,+} && pkill -RTMIN+9 dwmblocks
+
+# St
+super + shift + Return
+    st
+
+# Menu
+Menu;Menu
+    dmenu_run
+
+# Menu energia
+Menu;Escape
+    dmenu_sys
+
+# Editar
+Menu;e
+    dmenu_edit
+
+# Emojis
+Menu;E
+    dmenu_emoji
+
+# Montar/Desmontar
+Menu;m
+    dmenu_mont
+
+# Atalhos do sxhkd
+Menu;slash
+    dmenu_sxhkd
+
+# Shell History
+Menu;h
+    dmenu_shhistory
+
+# Htop
+Menu;H
+    st -g 100x30 -c htop -n htop -e htop
+
+# Passmenu
+Menu;p
+    passmenu --type
+
+# Picom
+Menu;P
+    killall picom || picom
+
+# Fluxgui
+Menu;F
+    killall fluxgui || fluxgui
+
+# Clipboard
+Menu;c
+    dmenu_clip
+
+# Calculadora
+Menu;C
+    galculator
+
+# Gimp
+Menu;g
+    gimp
+
+# Transmission
+Menu;t
+    transmission-gtk
+
+# Telegram
+Menu;T
+    telegram-desktop
+
+# Discord
+Menu;d
+    discord
+
+# Qutebrowser, pesquisa e favoritos
+Menu;q
+    dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml
+
+# Anotações
+Menu;a
+    nvim ~/documentos/anotações.md
+
+# Aliases
+Menu;A
+    dmenu_aliases
+
+# Tira print
+Print
+    dmenu_print

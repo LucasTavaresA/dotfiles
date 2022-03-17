@@ -12,18 +12,28 @@ systemctl --user import-environment DISPLAY
 export CM_DIR="$HOME/code/shell/dmenuscripts/listas/clipmenu"
 clipmenud &
 
-# Outros
+# Protetor de tela
+xautolock -detectsleep -time 30 -locker "slock" -notify 30 -notifier "notify-send Slock -u critical -t 1800000 'BLOQUEANDO A TELA 30 SEGUNDOS'" &
+
 mpd &
 dunst &
 nitrogen --restore &
 nm-applet &
 xbanish &
 fluxgui &
-sxhkd &
+picom &
+
+if [ "$WM" = "dwm" ]; then
+sxhkd -c "$HOME/.config/sxhkd/sxhkd_dwm" &
 dwmblocks &
-# picom &
+elif [ "$WM" = "herbstluftwm" ]; then
+sxhkd -c "$HOME/.config/sxhkd/sxhkd_herbstluftwm" &
+elif [ "$WM" = "bspwm" ]; then
+sxhkd -c "$HOME/.config/sxhkd/sxhkd_bspwm" &
+fi
 
-# Protetor de tela
-xautolock -detectsleep -time 30 -locker "slock" -notify 30 -notifier "notify-send Slock -u critical -t 1800000 'BLOQUEANDO A TELA 30 SEGUNDOS'" &
-
-exec "$WM"
+if [ -n "$flags" ]; then
+    exec "$WM $flags"
+else
+    exec "$WM"
+fi

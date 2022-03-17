@@ -240,7 +240,7 @@ export XDG_RUNTIME_DIR="/run/user/$UID"
 export XDG_BIN_HOME="$HOME/.local/bin"
 
 # Window manager
-export WM="dwm"
+export WM="herbstluftwm"
 # Pass
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/pass"
 # Bat como um manpager

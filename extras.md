@@ -1337,33 +1337,32 @@ Gerenciador de janelas bspwm
 
 - `~/.config/bspwm/bspwmrc`
 
-```bash tangle:~/.config/bspwm/bspwmrc
+```sh tangle:~/.config/bspwm/bspwmrc
 #!/bin/sh
 
 # Monitor
-bspc monitor -d 1 2 3
+bspc monitor -d 1 2 3 4 5
 
 # Configurações
 bspc config border_width            1
 bspc config window_gap              0
-bspc config top_padding             1
+bspc config top_padding             0
 bspc config bottom_padding          0
-bspc config left_padding            1
+bspc config left_padding            0
 bspc config right_padding           0
 bspc config split_ratio             0.50
 bspc config borderless_monocle      true
 bspc config gapless_monocle         true
-bspc config pointer_modifier mod4
-bspc config pointer_action1 move
-bspc config click_to_focus          true
+bspc config pointer_modifier        mod4
+bspc config pointer_action1         move
+bspc config click_to_focus          any
 bspc config single_monocle          true
 
 # Cores
-bspc config normal_border_color       "#2f334d"
-bspc config active_border_color       "#ffffff"
+bspc config normal_border_color           "#000000"
+bspc config active_border_color           "#ffffff"
 bspc config focused_border_color          "#ffffff"
 bspc config presel_feedback_color         "#2f334d"
-bspc config urgent_border_color           "#ff0000"
 
 # Regras
 bspc rule -a mplayer2 state=floating
