@@ -50,12 +50,12 @@ cmd open ${{
     case $(file --mime-type "$(readlink -f $f)" -b) in
         application/vnd.openxmlformats-officedocument.wordprocessingml.document) libreoffice $f ;;
         image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) zathura $fx ;;
-        text/*) nvim $fx ;;
-        image/*) nsxiv . ;;
-        audio/*) mpv --audio-display=no $fx ;;
-        video/*) mpv $fx ;;
         application/pdf|application/vnd*|application/epub*) zathura $fx ;;
         application/pgp-encrypted) nvim $fx ;;
+        text/*) nvim $fx ;;
+        audio/*) mpv -no-video $fx ;;
+        image/*) nsxiv . ;;
+        video/*) mpv $fx ;;
         *) xdg-open $fx ;;
     esac
 }}

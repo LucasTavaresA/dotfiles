@@ -147,7 +147,7 @@ Menu;m
 
 # Teclas do sxhkd
 Menu;slash
-    sxhkd_atalhos
+    dmenu_sxhkd
 
 # Qutebrowser, pesquisa e favoritos
 Menu;q
@@ -159,7 +159,7 @@ Menu;a
 
 # Aliases
 Menu;A
-    zsh-aliases
+    dmenu_aliases
 
 # Tira print
 Print

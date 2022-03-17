@@ -572,6 +572,7 @@ source $HOME/.config/shell/plugins/expand-all.zsh
 source $HOME/.config/shell/plugins/fzf.zsh
 source $HOME/.config/shell/plugins/keys-fzf.zsh
 bindkey  "^[d"   fzf-cd-widget
+bindkey  "^[s"   fzf-history-widget
 ```
 
 ### Bash
@@ -876,7 +877,7 @@ Menu;m
 
 # Atalhos do sxhkd
 Menu;slash
-    sxhkd_atalhos
+    dmenu_sxhkd
 
 # Shell History
 Menu;h
@@ -932,7 +933,7 @@ Menu;a
 
 # Aliases
 Menu;A
-    zsh-aliases
+    dmenu_aliases
 
 # Tira print
 Print
@@ -1093,7 +1094,7 @@ Menu;m
 
 # Teclas do sxhkd
 Menu;slash
-    sxhkd_atalhos
+    dmenu_sxhkd
 
 # Qutebrowser, pesquisa e favoritos
 Menu;q
@@ -1105,7 +1106,7 @@ Menu;a
 
 # Aliases
 Menu;A
-    zsh-aliases
+    dmenu_aliases
 
 # Tira print
 Print
@@ -1544,12 +1545,12 @@ cmd open ${{
     case $(file --mime-type "$(readlink -f $f)" -b) in
         application/vnd.openxmlformats-officedocument.wordprocessingml.document) libreoffice $f ;;
         image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) zathura $fx ;;
-        text/*) nvim $fx ;;
-        image/*) nsxiv . ;;
-        audio/*) mpv --audio-display=no $fx ;;
-        video/*) mpv $fx ;;
         application/pdf|application/vnd*|application/epub*) zathura $fx ;;
         application/pgp-encrypted) nvim $fx ;;
+        text/*) nvim $fx ;;
+        audio/*) mpv -no-video $fx ;;
+        image/*) nsxiv . ;;
+        video/*) mpv $fx ;;
         *) xdg-open $fx ;;
     esac
 }}

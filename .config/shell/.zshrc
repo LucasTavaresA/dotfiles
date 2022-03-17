@@ -184,3 +184,4 @@ source $HOME/.config/shell/plugins/expand-all.zsh
 source $HOME/.config/shell/plugins/fzf.zsh
 source $HOME/.config/shell/plugins/keys-fzf.zsh
 bindkey  "^[d"   fzf-cd-widget
+bindkey  "^[s"   fzf-history-widget
