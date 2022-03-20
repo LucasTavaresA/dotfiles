@@ -28,12 +28,13 @@ sxhkd -c "$HOME/.config/sxhkd/sxhkd_dwm" &
 dwmblocks &
 elif [ "$WM" = "herbstluftwm" ]; then
 sxhkd -c "$HOME/.config/sxhkd/sxhkd_herbstluftwm" &
+flags=" --locked"
 elif [ "$WM" = "bspwm" ]; then
 sxhkd -c "$HOME/.config/sxhkd/sxhkd_bspwm" &
 fi
 
 if [ -n "$flags" ]; then
-    exec "$WM $flags"
+    exec $WM$flags
 else
     exec "$WM"
 fi

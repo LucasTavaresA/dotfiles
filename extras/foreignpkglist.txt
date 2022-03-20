@@ -11,6 +11,7 @@ nvim-packer-git
 omnisharp-roslyn
 pam-gnupg
 paru
+powder-toy
 rtags
 simple-mtpfs
 ttf-ms-fonts

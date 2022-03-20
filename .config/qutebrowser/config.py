@@ -215,6 +215,7 @@ config.unbind('q')
 config.unbind('<Shift-H>')
 config.unbind('<Shift-L>')
 
+config.bind('<Space>qq', 'quit')
 config.bind('<Ctrl-Tab>', 'tab-next')
 config.bind('<Ctrl-Left>', 'tab-prev')
 config.bind('<Ctrl-Right>', 'tab-next')
@@ -270,67 +271,67 @@ config.set('colors.webpage.preferred_color_scheme', 'dark')
 # Cor do texto da barra de compleção
 c.colors.completion.fg = '#ffffff'
 # Cor de fundo da barra de compleção.
-c.colors.completion.odd.bg = '#2f334d'
-c.colors.completion.even.bg = '#2f334d'
+c.colors.completion.odd.bg = '#000000'
+c.colors.completion.even.bg = '#000000'
 # Cor do texto das categorias.
 c.colors.completion.category.fg = '#ffffff'
 # Cor de fundo das categorias.
-c.colors.completion.category.bg = '#2f334d'
+c.colors.completion.category.bg = '#000000'
 # Cor da borda superior de categorias.
 c.colors.completion.category.border.top = '#ffffff'
 # Cor da borda inferior de categorias.
 c.colors.completion.category.border.bottom = '#ffffff'
 # Cor de texto selecionado na barra de seleção
-c.colors.completion.item.selected.fg = '#2f334d'
+c.colors.completion.item.selected.fg = '#000000'
 # Cor de fundo de texto selecionado na barra de compleção
 c.colors.completion.item.selected.bg = '#ffffff'
 # Cor do texto procurado quando selecionado na barra de compleção
-c.colors.completion.item.selected.match.fg = '#ff0000'
+c.colors.completion.item.selected.match.fg = '#000000'
 # Cor de texto procurado na aba de compleção.
-c.colors.completion.match.fg = '#ff0000'
+c.colors.completion.match.fg = '#ffff00'
 # Cor da barra de scroll na aba de compleção
-c.colors.completion.scrollbar.fg = '#2f334d'
+c.colors.completion.scrollbar.fg = '#000000'
 # Cor de fundo da barra de download
-c.colors.downloads.bar.bg = '#2f334d'
+c.colors.downloads.bar.bg = '#000000'
 # Cor de fundo de downloads com erro
 c.colors.downloads.error.bg = '#ff0000'
 # Cor da fonte de indicadores de links
 c.colors.hints.fg = '#ffffff'
 # Cor de fundo de indicadores de links
-c.colors.hints.bg = '#2f334d'
+c.colors.hints.bg = '#000000'
 # Borda de indicadores de links
 config.set('hints.border', '1px solid #ffffff')
 config.set('hints.radius', 0)
 # Cor da fonte em partes procuradas
 c.colors.hints.match.fg = '#ff0000'
 # Cor de fundo de informações importantes
-c.colors.messages.info.bg = '#2f334d'
+c.colors.messages.info.bg = '#000000'
 # Cor de fundo da barra de status
-c.colors.statusbar.normal.bg = '#2f334d'
+c.colors.statusbar.normal.bg = '#000000'
 # Cor do texto da barra de status quando inserindo texto
 c.colors.statusbar.insert.fg = '#ffffff'
 # Cor da barra de status quando inserindo texto
 c.colors.statusbar.insert.bg = '#008800'
 # Cor da barra de status no modo passthrough
-c.colors.statusbar.passthrough.bg = '#2f334d'
+c.colors.statusbar.passthrough.bg = '#000000'
 # Cor de fundo da barra de status quando digitando comandos
-c.colors.statusbar.command.bg = '#2f334d'
+c.colors.statusbar.command.bg = '#000000'
 # Cor do texto da barra de status quando em alerta
 c.colors.statusbar.url.warn.fg = '#ff0000'
 # Cor de fundo da barra de abas abertas
-c.colors.tabs.bar.bg = '#2f334d'
+c.colors.tabs.bar.bg = '#000000'
 # Cor de fundo de abas não selecionadas
 c.colors.tabs.odd.bg = '#000000'
 c.colors.tabs.even.bg = '#000000'
 # Cor de fundo de abas selecionadas
-c.colors.tabs.selected.odd.bg = '#2f334d'
-c.colors.tabs.selected.even.bg = '#2f334d'
+c.colors.tabs.selected.odd.bg = '#333333'
+c.colors.tabs.selected.even.bg = '#333333'
 # Cor de fundo de abas fixadas não selecionadas
 c.colors.tabs.pinned.odd.bg = '#000000'
 c.colors.tabs.pinned.even.bg = '#000000'
 # Cor de fundo de abas fixadas selecionadas
-c.colors.tabs.pinned.selected.odd.bg = '#2f334d'
-c.colors.tabs.pinned.selected.even.bg = '#2f334d'
+c.colors.tabs.pinned.selected.odd.bg = '#333333'
+c.colors.tabs.pinned.selected.even.bg = '#333333'
 # Cor das fontes de abas não selecionadas
 c.colors.tabs.even.fg = '#ffffff'
 c.colors.tabs.odd.fg = '#ffffff'

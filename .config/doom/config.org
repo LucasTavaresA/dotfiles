@@ -247,9 +247,6 @@ Para desabilitar um *pacote-do-doom* use =(package! pacote-do-doom :disable t)=
 (package! flyspell)
 (package! flyspell-popup)
 
-;; Centraliza seguindo o cursor ainda muito lento
-;; (package! centered-cursor-mode)
-
 #+end_src
 * Configuração
 
@@ -318,6 +315,9 @@ Você pode usar =gd= para ver como é implementado
 ;; Terminal do systema
 (setq terminal-here-linux-terminal-command 'st)
 
+;; Da a volta na tela para a proxima linha
+(setq-default evil-cross-lines t)
+
 ;; Tamanho dos tabs
 (setq-default tab-width 4)
 (setq-default evil-shift-width tab-width)
@@ -369,13 +369,20 @@ Você pode usar =gd= para ver como é implementado
 - use =map!= para configurar novos atalhos
 
 #+begin_src emacs-lisp :tangle ./config.el
+
+;; Funções
 ;; Abre/Fecha header atual
 (defun orgm/org-cycle-current-headline ()
   (interactive)
   (org-cycle-internal-local))
 
-;; Da a volta na tela para a proxima linha
-(setq-default evil-cross-lines t)
+;; Macros
+(fset 'comentar-e-descer-linha
+   (kmacro-lambda-form [?\C-x ?\C-\; down] 0 "%d"))
+(fset 'subir-e-centralizar
+   (kmacro-lambda-form [?k ?z ?z] 0 "%d"))
+(fset 'descer-e-centralizar
+   (kmacro-lambda-form [?j ?z ?z] 0 "%d"))
 
 ;; Desabilita teclas
 (with-eval-after-load "org"
@@ -388,36 +395,15 @@ Você pode usar =gd= para ver como é implementado
 (define-key evil-normal-state-map (kbd "M-d") nil)
 (define-key evil-visual-state-map (kbd "<C-tab>") nil)
 (define-key evil-motion-state-map (kbd ";") nil)
+(define-key flyspell-mode-map (kbd "C-M-i") nil)
 
-;; Teclas
-;; Comenta e vai para proxima linha
-(global-set-key (kbd "C-c C-c") 'comentar-e-descer-linha)
-(fset 'comentar-e-descer-linha
-   (kmacro-lambda-form [?\C-x ?\C-\; down] 0 "%d"))
-
-;; Move entre partes da mesma linha
-(define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
-(define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
-(define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
-(define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
-
+;; Define
 (define-key evil-motion-state-map "?" 'evil-ex-search-word-forward)
 (define-key evil-motion-state-map ":" '+vertico/search-symbol-at-point)
 (define-key evil-normal-state-map ";" '+default/search-buffer)
-(global-set-key (kbd "C-s") 'evil-mc-make-all-cursors)
-(global-set-key (kbd "<C-S-down>") 'evil-mc-make-and-goto-next-match)
-(global-set-key (kbd "<C-S-up>") 'evil-mc-make-and-goto-prev-match)
-(global-set-key (kbd "<C-down>") 'evil-mc-skip-and-goto-next-match)
-(global-set-key (kbd "<C-up>") 'evil-mc-skip-and-goto-prev-match)
-(global-set-key (kbd "M-c") 'evil-yank)
-(global-set-key (kbd "M-v") 'evil-paste-before)
-(global-set-key (kbd "M-d") 'org-babel-demarcate-block)
-(global-set-key (kbd "C-M-i") 'orgm/org-cycle-current-headline)
-(global-set-key (kbd "<M-up>") 'er/expand-region)
-(global-set-key (kbd "<M-down>") 'er/contract-region)
-(global-set-key (kbd "<C-tab>") 'next-buffer)
-(global-set-key (kbd "<C-M-right>") 'evil-window-vsplit)
-(global-set-key (kbd "<C-M-down>") 'evil-window-split)
+(define-key evil-normal-state-map (kbd "<up>") 'subir-e-centralizar)
+(define-key evil-normal-state-map (kbd "<down>") 'descer-e-centralizar)
+;; Prefixadas com espaço
 (define-key doom-leader-map (kbd "c b") 'doom/copy-buffer-contents)
 (define-key doom-leader-map (kbd "e r") 'eval-region)
 (define-key doom-leader-map (kbd "s s") 'flyspell-mode)
@@ -437,11 +423,27 @@ Você pode usar =gd= para ver como é implementado
 (define-key doom-leader-map (kbd "RET") 'terminal-here-launch)
 (define-key doom-leader-map (kbd "SPC") 'org-toggle-checkbox)
 (define-key doom-leader-map (kbd "TAB") 'other-window)
-
-;; centralizar quando fora do modo de inserção ainda em desenvolvimento
-;; (global-centered-cursor-mode)
-;; (add-hook 'evil-insert-state-entry-hook (lambda() (global-centered-cursor-mode)))
-;; (add-hook 'evil-insert-state-exit-hook (lambda() (global-centered-cursor-mode)))
+;; Move entre partes da mesma linha
+(define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
+(define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
+(define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
+(define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
+;; Globais
+(global-set-key (kbd "C-c C-c") 'comentar-e-descer-linha)
+(global-set-key (kbd "C-s") 'evil-mc-make-all-cursors)
+(global-set-key (kbd "<C-S-down>") 'evil-mc-make-and-goto-next-match)
+(global-set-key (kbd "<C-S-up>") 'evil-mc-make-and-goto-prev-match)
+(global-set-key (kbd "<C-down>") 'evil-mc-skip-and-goto-next-match)
+(global-set-key (kbd "<C-up>") 'evil-mc-skip-and-goto-prev-match)
+(global-set-key (kbd "M-c") 'evil-yank)
+(global-set-key (kbd "M-v") 'evil-paste-before)
+(global-set-key (kbd "M-d") 'org-babel-demarcate-block)
+(global-set-key (kbd "C-M-i") 'orgm/org-cycle-current-headline)
+(global-set-key (kbd "<M-up>") 'er/expand-region)
+(global-set-key (kbd "<M-down>") 'er/contract-region)
+(global-set-key (kbd "<C-tab>") 'next-buffer)
+(global-set-key (kbd "<C-M-right>") 'evil-window-vsplit)
+(global-set-key (kbd "<C-M-down>") 'evil-window-split)
 
 ;; Popup que retorna comandos sendo usados
 (use-package! command-log-mode

@@ -144,7 +144,7 @@ vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
 vim.cmd("hi EndOfBuffer guibg=NONE ctermbg=NONE")
 vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
 -- Cor da linha atual
-vim.cmd("hi CursorLine guibg=#2f334d")
+vim.cmd("hi CursorLine guibg=#333333")
 vim.cmd("autocmd InsertLeave * set cursorline")
 -- Incida parenteses correspondente
 vim.cmd("hi! MatchParen cterm=NONE,bold gui=NONE,bold  guibg=NONE guifg=#ff0000")
@@ -175,7 +175,9 @@ augroup RunCommandOnWrite
   autocmd!
   autocmd BufWritePost ~/.config/nvim/nvim.md !md-tangle -f %
   autocmd BufWritePost ~/README.md !md-tangle -f %
-  autocmd BufWritePost ~/extras.md !md-tangle -f %
+  autocmd BufWritePost ~/extras/extras.md !md-tangle -f %
+  autocmd BufWritePost ~/extras/teclas.md !md-tangle -f %
+  autocmd BufWritePost ~/extras/shells.md !md-tangle -f %
 augroup END
 ]])
 -- Função para fechar e abrir sumario
@@ -214,9 +216,9 @@ keymap("n", "<esc><esc>", ":noh<CR>", {})
 -- Copiar na linha abaixo
 keymap("n", "P", ":norm o<CR>p", {})
 -- Ativa/Desativa o corretor ortográfico
-keymap("n", "<leader>ts", ":setlocal spell! spelllang=pt", {})
+keymap("n", "ts", ":setlocal spell! spelllang=pt", {})
 -- Navega entre as divisórias
-keymap("n", "<A-Tab>", ":wincmd w<CR>", nr)
+keymap("n", "<leader><Tab>", ":wincmd w<CR>", nr)
 -- Salvar buffer
 keymap("n", "<leader>ww", ":w<CR>", {})
 -- Sair e salvar
@@ -230,15 +232,15 @@ keymap("n", "<C-A-Right>", ":vs<CR>", {})
 -- Divide a tela abaixo
 keymap("n", "<C-A-down>", ":sp<CR>", {})
 -- Copiar buffer
-keymap("n", "<leader>cb", "ggVGy", nr)
+keymap("n", "cb", "ggVGy", nr)
 -- Ativa/Desativa números de linha
-keymap("n", "<leader>tn", ":set number!<CR>", {})
+keymap("n", "tn", ":set number!<CR>", {})
 -- Procura palavra no cursor
 keymap("n", "?", "*", {})
 -- Abrir e Fechar Toc
-keymap("n", "<S-Tab>", "<CR>:TocToggle<CR>", {})
+keymap("n", "<A-Tab>", "<CR>:TocToggle<CR>", {})
 -- Abre terminal no local do arquivo atual
-keymap("n", "<Space><return>", ":!sh -c 'cd %:p:h ; st' &<CR><CR>", {})
+keymap("n", "<leader><return>", ":!sh -c 'cd %:p:h ; st' &<CR><CR>", {})
 -- Centraliza cursor no modo normal
 keymap("n", "<Up>", "<Up>zz", {})
 keymap("n", "<down>", "<down>zz", {})
@@ -256,7 +258,7 @@ function Marcar()
     endif
     call winrestview(l:curs)
 endfunction
-autocmd FileType markdown nnoremap <silent> <leader><leader> :call Marcar()<CR>
+autocmd FileType markdown nnoremap <silent> <leader><leader> :call Marcar()<CR>j
 ]])
 
 ---- Plugins
@@ -267,41 +269,42 @@ keymap("n", "<leader>pc", ":PackerClean<CR>", {})
 -- Editar snippets para o tipo de arquivo atual - ultisnips
 keymap("n", "<leader>es", ":UltiSnipsEdit<CR>", {})
 -- Prevê arquivo markdown - markdown-preview
--- Prevê arquivo markdown - markdown-preview
-keymap("n", "<leader>mp", ":MarkdownPreview<CR>", {})
-keymap("n", "<leader>tb", ":LiteDFMToggle<CR>", {})
+keymap("n", "mp", ":MarkdownPreview<CR>", {})
+-- Ativa/Desativa a barra - litedfm
+keymap("n", "tb", ":LiteDFMToggle<CR>", {})
 -- Expande região selecionada - expand region
-keymap("n", "<A-up>", "<Plug>(expand_region_expand)", {})
-keymap("n", "<A-down>", "<Plug>(expand_region_shrink)", {})
-keymap("v", "<A-up>", "<Plug>(expand_region_expand)", {})
-keymap("v", "<A-down>", "<Plug>(expand_region_shrink)", {})
+keymap("n", "<S-up>", "<Plug>(expand_region_expand)", {})
+keymap("n", "<S-down>", "<Plug>(expand_region_shrink)", {})
+keymap("v", "<S-up>", "<Plug>(expand_region_expand)", {})
+keymap("v", "<S-down>", "<Plug>(expand_region_shrink)", {})
 -- Criar cursor na próxima palavra - visual multi
 keymap("n", "<A-s-s>", "<C-n>", {})
 -- Pular cursor ate a próxima palavra - visual multi
 keymap("n", "<A-s>", "q", {})
 -- Criar cursor abaixo/acima - visual multi
-keymap("n", "<C-s-Up>", "<C-Up>", {})
-keymap("n", "<C-s-Down>", "<C-Down>", {})
+keymap("n", "<leader><Up>", "<C-Up>", {})
+keymap("n", "<leader><Down>", "<C-Down>", {})
 -- Procura linhas no buffer - swoop
 keymap("n", ";", ":call Swoop()<CR>", {})
 keymap("v", ";", ":call SwoopSelection()<CR>", {})
 -- Abre arquivos no diretório atual - fzf
-keymap("n", "<leader>ff", ":Files %:p:h<CR>", {})
+keymap("n", "ff", ":Files %:p:h<CR>", {})
 -- Histórico de arquivos - fzf
-keymap("n", "<leader>fh", ":History<CR>", {})
+keymap("n", "fh", ":History<CR>", {})
 -- Trocar de buffer - fzf
-keymap("n", "<leader><Tab>", ":Buffers<CR>", {})
+keymap("n", "<S-Tab>", ":Buffers<CR>", {})
 -- Comentar linhas - vim comentary
 keymap("n", "cc", "gccj", {})
 keymap("v", "cc", "gc", {})
 -- Ativa previsão de cores - nvimcolorizer
-keymap("n", "<leader>tc", ":ColorizerToggle<CR>", {})
+keymap("n", "tc", ":ColorizerToggle<CR>", {})
 -- Troca entre partes do snippet - ultisnips
 vim.g.UltiSnipsExpandTrigger = "<tab>"
 vim.g.UltiSnipsJumpForwardTrigger = "<tab>"
 vim.g.UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 
--- LSP
+---- LSP
+-- Lua
 keymap("n", "gd", ":lua vim.lsp.buf.definition()<cr>", {})
 keymap("n", "gD", ":lua vim.lsp.buf.declaration()<cr>", {})
 keymap("n", "gi", ":lua vim.lsp.buf.implementation()<cr>", {})
@@ -313,4 +316,3 @@ keymap("n", "K", ":lua vim.lsp.buf.hover()<cr>", {})
 keymap("n", "<c-k>", ":lua vim.lsp.buf.signature_help()<cr>", {})
 keymap("n", "<leader>af", ":lua vim.lsp.buf.code_action()<cr>", {})
 keymap("n", "<leader>rn", ":lua vim.lsp.buf.rename()<cr>", {})
-

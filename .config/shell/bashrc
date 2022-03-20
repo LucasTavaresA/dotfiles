@@ -102,6 +102,13 @@ shopt -s cdspell
 # Salva comandos de múltiplas linhas como uma linha única
 shopt -s cmdhist
 
+## FUNÇÕES
+
+# Hersbstluftwm
+hc() {
+    herbstclient "$@"
+}
+
 # Previsão de imagens no lf
 lf () {
     LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"

@@ -1,67 +1,72 @@
-# Ativa/Desativa a barra enquando super é segurado
-# Super_L + any
-# ~@Super_L + any
-# Super_R + any
-# ~@Super_R + any
+# Abre e fecha scratchpads
+super + backslash
+    st_scratchpad
 
-# Ativa/Desativa a barra
-# super + b
-
-# Muda o tamanho de frames
-ctrl + super + {Left,Down,Up,Right}
-    herbstclient resize {left +0.05,down +0.05,up +0.05,right +0.05}
-
-# Muda entre as janelas
-super + Tab
-    herbstclient cycle
-
-# troca todas as janelas de posição
-super + shift + {Up,Down,Left,Right}
-    herbstclient shift {up,down,left,right}
-
-# Muda de tag
-alt + {Left, Right}
-    herbstclient {use_index +1 --skip-visible,use_index -1 --skip-visible}
-
-# Troca entre layouts
-super + Escape
-    herbstclient or , and . compare tags.focus.curframe_wcount = 2                   \
-                     . cycle_layout +1 vertical horizontal max vertical grid    \
-               , cycle_layout +1
-
-# Fecha uma janela
+# Fecha janela
 super + shift + backslash
     herbstclient close
 
-# Tela cheias
+# Alterna tela cheia
 super + f
     herbstclient fullscreen
 
 # Alterna janela flutuante
 super + w
-    herbstclient floating
+    herbstclient attr clients.focus.floating toggle
 
-# Troca a janela de tag
-# super + shift {Left, Right}
+# Alterna entre as janelas
+super + Tab
+    herbstclient cycle
 
-# Torna a janela fixa em todas as tags
-# super + s
+# Muda entre as janelas
+super + {Up,Down,Left,Right}
+    herbstclient focus {up,down,left,right}
+
+# Troca as janelas de posição
+super + shift + {Up,Down,Left,Right}
+    herbstclient shift {up,down,left,right}
+
+# Muda de tags pulando tags vazias
+alt + {Left, Right}
+    hlwm-tagswitch {prev, next}
+
+# Muda janela de tag e a segue
+alt + shift + {Left, Right}
+    herbstclient {move_index -1 && hlwm-tagswitch prev, move_index +1 && hlwm-tagswitch next}
+
+# Remove divisória
+super + q
+    herbstclient remove
+
+# Cria uma divisória
+ctrl + shift + {Left,Down,Up,Right}
+    herbstclient split {left, bottom, top, right}
+
+# Muda o tamanho de frames
+ctrl + {Left,Down,Up,Right}
+    herbstclient resize {left +0.05,down +0.05,up +0.05,right +0.05}
+
+# Troca entre layouts pulando layouts que não mudam janelas de posição
+super + Escape
+    herbstclient or , and . compare tags.focus.curframe_wcount = 2                   \
+                     . cycle_layout +1 vertical horizontal max vertical grid    \
+               , cycle_layout +1
 
 # Ncmpcpp/Pulsemixer
 super + {_,shift} + a
-    st -g 100x30 -c {ncmpcpp -n ncmpcpp -e ncmpcpp,pulsemixer -n pulsemixer -e pulsemixer}
+    st -g 120x30 -c {ncmpcpp -n ncmpcpp -e ncmpcpp,pulsemixer -n pulsemixer -e pulsemixer}
 
 # Pausa/Toca musica
 super + space
-    mpc toggle && pkill -RTMIN+11 dwmblocks
+    mpc toggle
 
 # Anterior/Proxima musica
 super + shift + {comma, period}
-    mpc {prev,next} && musica notificar && pkill -RTMIN+11 dwmblocks
+    mpc {prev,next} && musica notificar
 
 # Abaixar/Aumentar o volume e atualizar a barra
 super + {comma, period, Down, Up}
-    amixer -q set Master 5%{-,+,-,+} && pkill -RTMIN+9 dwmblocks
+    amixer -q set Master 5%{-,+,-,+}
 
 # St
 super + shift + Return
@@ -97,7 +102,7 @@ Menu;h
 
 # Htop
 Menu;H
-    st -g 100x30 -c htop -n htop -e htop
+    st -g 120x30 -c htop -n htop -e htop
 
 # Passmenu
 Menu;p

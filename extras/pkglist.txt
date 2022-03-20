@@ -7,6 +7,7 @@ adobe-source-han-sans-jp-fonts
 adobe-source-han-sans-kr-fonts
 adobe-source-sans-fonts
 adwaita-icon-theme
+alacritty
 alsa-card-profiles
 alsa-lib
 alsa-plugins
@@ -54,6 +55,7 @@ boost-libs
 box2d
 bridge-utils
 brotli
+bspwm
 btrfs-progs
 bubblewrap
 bzip2
@@ -278,9 +280,15 @@ haskell-haddock-library
 haskell-hashable
 haskell-hourglass
 haskell-hslua
+haskell-hslua-classes
+haskell-hslua-core
+haskell-hslua-marshalling
 haskell-hslua-module-path
 haskell-hslua-module-system
 haskell-hslua-module-text
+haskell-hslua-module-version
+haskell-hslua-objectorientation
+haskell-hslua-packaging
 haskell-hsyaml
 haskell-http-client
 haskell-http-client-tls
@@ -291,6 +299,9 @@ haskell-iproute
 haskell-ipynb
 haskell-jira-wiki-markup
 haskell-juicypixels
+haskell-lexer
+haskell-libyaml
+haskell-lua
 haskell-memory
 haskell-mime-types
 haskell-mono-traversable
@@ -300,6 +311,7 @@ haskell-old-locale
 haskell-old-time
 haskell-pandoc-types
 haskell-pem
+haskell-pretty-show
 haskell-primitive
 haskell-quickcheck
 haskell-random
@@ -349,8 +361,10 @@ haskell-x509-validation
 haskell-xml
 haskell-xml-conduit
 haskell-xml-types
+haskell-yaml
 haskell-zip-archive
 haskell-zlib
+herbstluftwm
 hicolor-icon-theme
 hidapi
 highlight
@@ -487,6 +501,7 @@ libheif
 libibus
 libical
 libice
+libicns
 libid3tag
 libidn
 libidn2
@@ -605,6 +620,7 @@ libupnp
 liburcu
 liburing
 libusb
+libutempter
 libuv
 libva
 libvdpau
@@ -702,6 +718,7 @@ md4c
 mdadm
 mediainfo
 mesa
+meson
 metis
 miniupnpc
 minizip
@@ -738,6 +755,7 @@ networkmanager
 nfs-utils
 nfsidmap
 nilfs-utils
+ninja
 nitrogen
 nm-connection-editor
 node-gyp
@@ -833,6 +851,7 @@ poppler-glib
 popt
 portaudio
 potrace
+powder-toy
 procps-ng
 progsreiserfs
 psmisc
@@ -845,6 +864,7 @@ python
 python-adblock
 python-appdirs
 python-attrs
+python-babel
 python-beaker
 python-beautifulsoup4
 python-cachecontrol
@@ -895,6 +915,7 @@ python-pyperclip
 python-pyqt5
 python-pyqt5-sip
 python-pyqt5-webengine
+python-pytz
 python-pyxdg
 python-readability-lxml
 python-requests
@@ -1045,6 +1066,7 @@ texlive-core
 thin-provisioning-tools
 tidy
 tinyxml2
+tmux
 tpm2-tss
 tracker3
 translate-shell
@@ -1145,6 +1167,7 @@ xorg-xkbcomp
 xorg-xkill
 xorg-xmodmap
 xorg-xprop
+xorg-xrandr
 xorg-xrdb
 xorg-xset
 xorg-xsetroot

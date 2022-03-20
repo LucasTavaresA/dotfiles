@@ -6,17 +6,12 @@ Blocos de código são salvos em seus arquivos usando [md-tangle](https://github
 
 ## Sumario
 
--   [Herbstluftwm](#herbstluftwm)
 -   [Emacs](#emacs)
 -   [Neovim](#neovim)
 -   [Shells](#shells)
-    -   [Dash](#dash)
-    -   [Zsh](#zsh)
-    -   [Bash](#bash)
 -   [X11](#x11)
--   [Sxhkd](#sxhkd)
-    -   [Dwm](#dwm)
-    -   [Bspwm](#bspwm)
+-   [Herbstluftwm](#herbstluftwm)
+-   [Teclas](#teclas)
 -   [Qutebrowser](#qutebrowser)
     -   [Configuração](#configuração)
     -   [Tema escuro](#tema-escuro)
@@ -33,703 +28,7 @@ Blocos de código são salvos em seus arquivos usando [md-tangle](https://github
 
 ## Shells
 
-Todos os shells do sistema localizados em `~/.config/shell`
-
-### Dash
-
-Usar o comando `chsh -s /bin/dash` para usar o dash como login shell, Profile trocado de lugar no meu [fork](https://gitlab.com/LucasTavaresA/dash)
-
-- `~/.config/shell/profile`
-
-```sh tangle:~/.config/shell/profile
-### EXPORTS
-# Adiciona ícones no lf
-export LF_ICONS="di=📁:\
-fi=📃:\
-tw=🤝:\
-st=:\
-ow=📂:\
-dt=📁:\
-ln=⛓:\
-or=❌:\
-ex=🎯:\
-*.txt=✍:\
-*.mom=✍:\
-*.me=✍:\
-*.ms=✍:\
-,hosts=:\
-*.hook=🪝:\
-*.ttf=:\
-*.otf=:\
-*.woff=:\
-*.woff2=:\
-*.png=🖼:\
-*.webp=🖼:\
-*.ico=🖼:\
-*.bmp=🖼:\
-*.pbm=🖼:\
-*.pgm=🖼:\
-*.ppm=🖼:\
-*.tga=🖼:\
-*.xbm=🖼:\
-*.xpm=🖼:\
-*.jpg=📸:\
-*.jpe=📸:\
-*.jpeg=📸:\
-*.mjpg=📸:\
-*.mjpeg=📸:\
-*.gif=🖼:\
-*.svg=🗺:\
-*.svgz=🗺:\
-*.mng=🗺:\
-*.pcx=🗺:\
-*.tif=🖼:\
-*.tiff=🖼:\
-*.xwd=🖼:\
-*.yuv=🖼:\
-*.gl=🖼:\
-*.dl=🖼:\
-*.cgm=🖼:\
-*.emf=🖼:\
-*.xcf=🖌:\
-*.html=🌎:\
-*.xml=📰:\
-*.qt=📰:\
-*.yml=:\
-*.toml=:\
-*.ini=:\
-,config=:\
-*.conf=:\
-*.cfg=:\
-*.config=:\
-,.gitignore=:\
-*.gpg=🔒:\
-*.css=🎨:\
-*.dic=📖:\
-*.pdf=📚:\
-*.djvu=📚:\
-*.epub=📚:\
-*.csv=📓:\
-*.xlsx=📓:\
-*.xspf=📓:\
-*.tex=📜:\
-*.md=📘:\
-*.org=🦄:\
-*.r=📊:\
-*.R=📊:\
-*.rmd=📊:\
-*.Rmd=📊:\
-*.m=📊:\
-*.mp3=🎵:\
-*.opus=🎵:\
-*.ogg=🎵:\
-*.m4a=🎵:\
-*.midi=🎵:\
-*.mid=🎵:\
-*.aac=🎵:\
-*.au=🎵:\
-*.mka=🎵:\
-*.mpc=🎵:\
-*.ra=🎵:\
-*.oga=🎵:\
-*.spx=🎵:\
-*.flac=🎼:\
-*.wav=🎼:\
-*.asf=🎥:\
-*.rm=🎥:\
-*.rmvb=🎥:\
-*.flc=🎥:\
-*.mkv=🎥:\
-*.m2v=🎥:\
-*.mp4=🎥:\
-*.webm=🎥:\
-*.mpeg=🎥:\
-*.avi=🎥:\
-*.mov=🎥:\
-*.mpg=🎥:\
-*.wmv=🎥:\
-*.m4b=🎥:\
-*.flv=🎥:\
-*.ogm=🎥:\
-*.m4v=🎥:\
-*.mp4v=🎥:\
-*.vob=🎥:\
-*.nuv=🎥:\
-*.fli=🎥:\
-*.ogv=🎥:\
-*.ogx=🎥:\
-*.zip=📦:\
-*.rar=📦:\
-*.7z=📦:\
-*.tar.gz=📦:\
-*.tar=📦:\
-*.tgz=📦:\
-*.arc=📦:\
-*.arj=📦:\
-*.taz=📦:\
-*.lha=📦:\
-*.lz4=📦:\
-*.lzh=📦:\
-*.lzma=📦:\
-*.tlz=📦:\
-*.txz=📦:\
-*.tzo=📦:\
-*.t7z=📦:\
-*.z=📦:\
-*.dz=📦:\
-*.gz=📦:\
-*.lrz=📦:\
-*.lz=📦:\
-*.lzo=📦:\
-*.xz=📦:\
-*.zst=📦:\
-*.tzst=📦:\
-*.bz2=📦:\
-*.bz=📦:\
-*.tbz=📦:\
-*.tbz2=📦:\
-*.tz=📦:\
-*.deb=📦:\
-*.rpm=📦:\
-*.war=📦:\
-*.ear=📦:\
-*.sar=📦:\
-*.alz=📦:\
-*.ace=📦:\
-*.zoo=📦:\
-*.cpio=📦:\
-*.rz=📦:\
-*.cab=📦:\
-*.wim=📦:\
-*.swm=📦:\
-*.dwm=📦:\
-*.esd=📦:\
-*.sqlite=:\
-*.db=:\
-*.rom=🎮:\
-*.nds=🎮:\
-*.z64=🎮:\
-*.v64=🎮:\
-*.n64=🎮:\
-*.gba=🎮:\
-*.nes=🎮:\
-*.gdi=🎮:\
-*.1=ℹ:\
-*.nfo=ℹ:\
-*.info=ℹ:\
-*.log=📙:\
-*.bin=🎯:\
-*.exe=🎯:\
-*.dll=🎯:\
-*.iso=📀:\
-*.img=📀:\
-*.vdi=📀:\
-*.bib=🎓:\
-*.ged=👪:\
-*.part=💔:\
-*.torrent=🔽:\
-*.jar=♨:\
-*.java=♨:\
-*.el=:\
-*.csproj=:\
-*.sln=:\
-*.cs=:\
-*.c=:\
-*.cpp=:\
-*.cc=:\
-*.clj=:\
-*.coffee=:\
-*.d=:\
-*.dart=:\
-*.erl=:\
-*.exs=:\
-*.fs=:\
-*.go=:\
-*.h=:\
-*.hh=:\
-*.hpp=:\
-*.hs=:\
-*.jl=:\
-*.js=:\
-*.json=:\
-*.lua=:\
-*.php=:\
-*.pl=:\
-*.pro=:\
-*.py=:\
-*.rb=:\
-*.rs=:\
-*.scala=:\
-*.ts=:\
-*.vim=:\
-*.cmd=:\
-*.ps1=:\
-*.sh=:\
-*.bash=:\
-*.zsh=:\
-*.fish=:\
-,Makefile=:\
-*.mk=:\
-*.nix=:\
-"
-
-# Muda o local padrão de alguns dotfiles limpando a $HOME ou ~
-# Define diretórios com o padrão xdg
-UID="$(id -u)" # Pega o id de usuário
-export HOME="/home/lucas"
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_RUNTIME_DIR="/run/user/$UID"
-export XDG_BIN_HOME="$HOME/.local/bin"
-
-# Window manager
-export WM="herbstluftwm"
-# Pass
-export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/pass"
-# Bat como um manpager
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-# Terminal
-export TERMINAL="st"
-export TERM="xterm-256color"
-# Navegador padrão
-export BROWSER="qutebrowser"
-# Pager
-export PAGER="less -R"
-# Faz o qt usar o tema do gtk2
-export QT_QPA_PLATFORMTHEME="gtk2"
-# Less
-export LESSHISTFILE="-"
-# Wget
-export WGETRC="${XDG_DATA_HOME:-$HOME/.local/share}/wget/wgetrc"
-# XAuthority
-export XAUTHORITY="${XDG_RUNTIME_DIR:-/run/user/$UID}/Xauthority"
-# Cargo
-export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
-# Omnisharp
-export OMNISHARPHOME="${XDG_DATA_HOME:-$HOME/.local/share}/omnisharp"
-# Nuget
-export NUGET_PACKAGES="${XDG_CACHE_HOME:-$HOME/.cache}/NuGetPackages"
-# Gnupg
-export GNUPGHOME="$HOME/.gnupg"
-# Npm
-export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc"
-# Terminfo
-export TERMINFO="${XDG_DATA_HOME:-$HOME/.local/share}/terminfo"
-# Inputrc
-export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/readline/inputrc"
-# Gtk 2
-export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc"
-# W3m
-export W3M_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/w3m"
-# Go
-export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
-# Ghcup
-export GHCUP_USE_XDG_DIRS="1"
-export GHCUP_INSTALL_BASE_PREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/"
-# Cabal
-export CABAL_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/cabal/config"
-export CABAL_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/cabal"
-# Starship
-export STARSHIP_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/starship/config.toml"
-# Android sdk
-export ANDROID_SDK_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/android"
-# Wine
-export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
-# Fzf
-export FZF_ALT_C_COMMAND="find . -maxdepth 4 -type d | grep -v '^\./\.cache'"
-
-# Shell
-export SHELL="dash"
-# Muda o local do zshrc
-export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/shell"
-# Muda o local do histórico
-export HISTFILE="${XDG_CONFIG_HOME:-$HOME/.config}/shell/history"
-# Aumenta o tamanho limite do histórico
-export HISTSIZE=10000
-export HISTFILESIZE=10000
-# Ignora e deleta comandos duplicados no histórico
-export HISTCONTROL=ignoredups:erasedups
-
-# Adiciona diretórios bin e scripts ao path
-export PATH="$GOPATH/bin:$PATH"
-export PATH="/usr/lib/jvm/java-11-openjdk/bin:$PATH"
-export PATH="$HOME/code/shell/dmenuscripts:$PATH"
-export PATH="$HOME/code/shell/scripts:$PATH"
-export PATH="${XDG_BIN_HOME:-$HOME/.local/bin}:$PATH"
-
-# DOOM emacs
-export PATH="${XDG_CONFIG_HOME:-$HOME/.config}/emacs/bin:$PATH"
-export EMACSDIR="${XDG_CONFIG_HOME:-$HOME/.config}/emacs"
-export DOOMDIR="${XDG_CONFIG_HOME:-$HOME/.config}/doom"
-export DOOMLOCALDIR="${XDG_CONFIG_HOME:-$HOME/.config}/emacs/.local"
-# Editor no terminal
-export EDITOR="nvim"
-# Editor com interface gráfica
-export VISUAL="nvim"
-
-# Usa o dmenu como autenticador GUI
-export SSH_ASKPASS="doas_askpass"
-export GIT_ASKPASS="doas_askpass"
-export SUDO_ASKPASS="$HOME/code/shell/dmenuscripts/dmenu_pass"
-export DOAS_ASKPASS="dmenu -fn Monospace-18 -c -cw 500 -P -p 🔑Senha:"
-
-# Localização para datas
-export LC_TIME="pt_BR.UTF-8"
-
-[ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
-```
-
-### Zsh
-
-Shell interativo, Trocado de diretório pela variável **ZDOTDIR**
-
-- `~/.config/shell/.zshrc`
-
-```zsh tangle:~/.config/shell/.zshrc
-# Se não executando zsh interativamente
-# Não executa o resto do zshrc
-[[ $- != *i* ]] && return
-
-# EXPORTS
-export SHELL="zsh"
-# Não adiciona esses itens ao histórico
-export HISTORY_IGNORE="(ls|cd|pwd|exit|doas reboot|history|cd -|cd ..)"
-HISTFILE=~/.config/shell/history
-HISTSIZE=10000
-SAVEHIST=10000
-setopt SHARE_HISTORY
-
-# Carrega cores
-autoload -U colors && colors
-
-# Ativa comentários na mesma linha de um comando
-setopt interactive_comments
-
-# TECLAS
-# Modo emacs
-bindkey -e
-bindkey "^?" backward-delete-char
-bindkey "^[[3~" delete-char
-bindkey -a '^[[3~' delete-char
-bindkey "^X" execute-named-cmd
-bindkey "^[[H"   beginning-of-line
-bindkey "^[[4~"   end-of-line
-bindkey -s "^[f" '^Ulf^M'
-
-# Completar comandos
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
-autoload -U compinit
-zstyle ':completion:*' menu select
-zmodload zsh/complist
-compinit
-_comp_options+=(globdots)       # Incluir arquivos ocultos.
-
-## FUNÇÕES
-
-# Previsão de imagens no lf
-lf () {
-    LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"
-    LF_TEMPDIR="$LF_TEMPDIR" lf-run -last-dir-path="$LF_TEMPDIR/lastdir" "$@"
-    if [ "$(cat "$LF_TEMPDIR/cdtolastdir" 2>/dev/null)" = "1" ]; then
-    cd "$(cat "$LF_TEMPDIR/lastdir")"
-    fi
-    rm -r "$LF_TEMPDIR"
-    unset LF_TEMPDIR
-}
-
-# Facilita extrair arquivos
-# Exemplo: ex (arquivo).zip
-SAVEIFS=$IFS
-IFS=$(echo -en "\n\b")
-function ex {
-    for n in "$@"
-    do
-      if [ -f "$n" ] ; then
-          case "${n%,}" in
-            *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
-                         tar xvf "$n"       ;;
-            *.lzma)      unlzma ./"$n"      ;;
-            *.bz2)       bunzip2 ./"$n"     ;;
-            *.cbr|*.rar)       unrar x -ad ./"$n" ;;
-            *.gz)        gunzip ./"$n"      ;;
-            *.cbz|*.epub|*.zip)       unzip ./"$n"       ;;
-            *.z)         uncompress ./"$n"  ;;
-            *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
-                         7z x ./"$n"        ;;
-            *.xz)        unxz ./"$n"        ;;
-            *.exe)       cabextract ./"$n"  ;;
-            *.cpio)      cpio -id < ./"$n"  ;;
-            *.cba|*.ace)      unace x ./"$n"      ;;
-            *)
-                         echo "ex: '$n' - Método de arquivação desconhecido"
-                         return 1
-                         ;;
-          esac
-      else
-          echo "'$n' - Arquivo não existe"
-          return 1
-      fi
-    done
-}
-IFS=$SAVEIFS
-
-# Aliases
-alias n="neofetch"
-alias v="nvim"
-alias vv="/usr/bin/nvim"
-alias h="htop"
-alias hc="herbstclient"
-alias ed="emacs --daemon"
-alias ek="emacsclient -e '(kill-emacs)'"
-alias ec="emacsclient -n -c"
-alias e="emacs"
-alias copy="xclip -selection clipboard"
-alias sudo="doas"
-alias ping="ping google.com"
-alias p="patch -p1 <"
-alias pr="patch -R <"
-alias yt="yt-dlp"
-alias yta="yt-dlp -x --audio-format mp3"
-alias ka="doas killall"
-alias mi="make install"
-alias mu="make uninstall"
-alias dh="doom help"
-alias ds="doom sync"
-alias dd="doom doctor"
-alias du="doom upgrade"
-alias dr="doom_reset"
-alias dp="doom purge"
-alias dmi="doas make install"
-alias dmu="doas make uninstall"
-alias dnr="dotnet run"
-alias dnn="dotnet new"
-alias dns="dotnet-script"
-alias xp="xprop"
-alias xk="xkill"
-alias grep="grep --color -i"
-alias sys="doas systemctl"
-# Arquivos e Diretórios
-alias l="lsd -l --group-dirs first"
-alias la="lsd -A --group-dirs first"
-alias lla="lsd -lA --group-dirs first"
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias lo="locate -Ai"
-alias u="doas updatedb"
-alias ch="chmod +x"
-alias cp="cp -ri"
-alias mv="mv -i"
-alias rm="rm -rI"
-alias rmf="rm -rf"
-alias ln="ln -i"
-alias md="mkdir -p"
-alias t="touch"
-alias mnt="doas mount"
-alias umnt="doas umount"
-# Git
-alias gi="git init"
-alias gc="git clone"
-alias gs="git status"
-alias gsr="git_status_recursivo"
-alias gd="git diff"
-alias gds="git diff --staged"
-alias gl="git log --oneline"
-alias ga="git add"
-alias gaf="git add -f"
-alias gcm="git commit"
-alias gcmm="git commit -m"
-alias gco="git checkout"
-alias gps="git push"
-alias gpsf="git push -f"
-alias gpl="git pull"
-alias gr="git restore"
-alias grs="git restore --staged"
-alias grrs='git reset --soft'
-alias grrh='git reset --hard'
-# Pacman
-alias ps="doas pacman -S"
-alias psi="pacman -Si"
-alias pss="pacman -Ss"
-alias psyu="doas pacman -Syu"
-alias pq="pacman -Q"
-alias pqs="pacman -Qs"
-alias prns="doas pacman -Rns"
-alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
-# Paru
-alias pps="paru -S"
-alias ppsi="paru -Si"
-alias ppss="paru -Ss"
-alias ppsyu="paru -Syu"
-alias ppq="paru -Q"
-alias ppqs="paru -Qs"
-alias pprns="paru -Rns"
-
-# Prompt do starship
-eval "$(starship init zsh)"
-
-# Carrega plugins do zsh, deve ser o ultimo comando
-source $HOME/.config/shell/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source $HOME/.config/shell/plugins/expand-all.zsh
-source $HOME/.config/shell/plugins/fzf.zsh
-source $HOME/.config/shell/plugins/keys-fzf.zsh
-bindkey  "^[d"   fzf-cd-widget
-bindkey  "^[s"   fzf-history-widget
-```
-
-### Bash
-
-Shell usado pelo arch também muito usado em scripts, bashrc trocado de lugar colocando `. local/do/bashrc` no final de `/etc/bash.bashrc`
-
-- `~/.config/shell/bashrc`
-
-```bash tangle:~/.config/shell/bashrc
-# Se não executando bash interativamente
-# Não executa o resto do bashrc
-[[ $- != *i* ]] && return
-
-# Aliases
-alias n="neofetch"
-alias v="nvim"
-alias vv="/usr/bin/nvim"
-alias h="htop"
-alias hc="herbstclient"
-alias ed="emacs --daemon"
-alias ek="emacsclient -e '(kill-emacs)'"
-alias ec="emacsclient -n -c"
-alias e="emacs"
-alias copy="xclip -selection clipboard"
-alias sudo="doas"
-alias ping="ping google.com"
-alias p="patch -p1 <"
-alias pr="patch -R <"
-alias yt="yt-dlp"
-alias yta="yt-dlp -x --audio-format mp3"
-alias ka="doas killall"
-alias mi="make install"
-alias mu="make uninstall"
-alias dh="doom help"
-alias ds="doom sync"
-alias dd="doom doctor"
-alias du="doom upgrade"
-alias dr="doom_reset"
-alias dp="doom purge"
-alias dmi="doas make install"
-alias dmu="doas make uninstall"
-alias dnr="dotnet run"
-alias dnn="dotnet new"
-alias dns="dotnet-script"
-alias xp="xprop"
-alias xk="xkill"
-alias grep="grep --color -i"
-alias sys="doas systemctl"
-# Arquivos e Diretórios
-alias l="lsd -l --group-dirs first"
-alias la="lsd -A --group-dirs first"
-alias lla="lsd -lA --group-dirs first"
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias lo="locate -Ai"
-alias u="sudo updatedb"
-alias ch="chmod +x"
-alias cp="cp -ri"
-alias mv="mv -i"
-alias rm="rm -rI"
-alias rmf="rm -rf"
-alias ln="ln -i"
-alias md="mkdir -p"
-alias t="touch"
-alias mnt="doas mount"
-alias umnt="doas umount"
-# Git
-alias gi="git init"
-alias gc="git clone"
-alias gs="git status"
-alias gsr="git_status_recursivo"
-alias gd="git diff"
-alias gds="git diff --staged"
-alias gl="git log --oneline"
-alias ga="git add"
-alias gaf="git add -f"
-alias gcm="git commit"
-alias gcmm="git commit -m"
-alias gco="git checkout"
-alias gps="git push"
-alias gpsf="git push -f"
-alias gpl="git pull"
-alias gr="git restore"
-alias grs="git restore --staged"
-alias grrs="git reset --soft"
-alias grrh="git reset --hard"
-# Pacman
-alias ps="doas pacman -S"
-alias psi="pacman -Si"
-alias pss="pacman -Ss"
-alias psyu="doas pacman -Syu"
-alias pq="pacman -Q"
-alias pqs="pacman -Qs"
-alias prns="doas pacman -Rns"
-alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
-# Paru
-alias pps="paru -S"
-alias ppsi="paru -Si"
-alias ppss="paru -Ss"
-alias ppsyu="paru -Syu"
-alias ppq="paru -Q"
-alias ppqs="paru -Qs"
-alias pprns="paru -Rns"
-
-# Ignora case-sensitivity quando completa comandos com tab
-if [ ! -a $HOME/.config/readline/inputrc ]; then echo '$include /etc/inputrc' > $HOME/.config/readline/inputrc; fi
-echo 'set completion-ignore-case On' >> $HOME/.config/readline/inputrc
-# Corrige automaticamente erros ao usar o cd
-shopt -s cdspell
-# Salva comandos de múltiplas linhas como uma linha única
-shopt -s cmdhist
-
-# Previsão de imagens no lf
-lf () {
-    LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"
-    LF_TEMPDIR="$LF_TEMPDIR" lf-run -last-dir-path="$LF_TEMPDIR/lastdir" "$@"
-    if [ "$(cat "$LF_TEMPDIR/cdtolastdir" 2>/dev/null)" = "1" ]; then
-    cd "$(cat "$LF_TEMPDIR/lastdir")"
-    fi
-    rm -r "$LF_TEMPDIR"
-    unset LF_TEMPDIR
-}
-
-### Facilita extrair arquivos
-# Exemplo: ex <arquivo>
-ex ()
-{
-  if [ -f "$1" ] ; then
-    case $1 in
-      *.tar.bz2)   tar xjf $1   ;;
-      *.tar.gz)    tar xzf $1   ;;
-      *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1   ;;
-      *.gz)        gunzip $1    ;;
-      *.tar)       tar xf $1    ;;
-      *.tbz2)      tar xjf $1   ;;
-      *.tgz)       tar xzf $1   ;;
-      *.zip)       unzip $1     ;;
-      *.Z)         uncompress $1;;
-      *.7z)        7z x $1      ;;
-      *.deb)       ar x $1      ;;
-      *.tar.xz)    tar xf $1    ;;
-      *.tar.zst)   unzstd $1    ;;
-      *)           echo "'$1' não pode ser extraído com ex()" ;;
-    esac
-  else
-    echo "'$1' não é um arquivo valido"
-  fi
-}
-
-# Inicia prompt do starship
-eval "$(starship init bash)"
-```
+[Todos os shells do sistema](https://github.com/LucasTavaresA/dotfiles/blob/main/extras/shells.md)
 
 ## X11
 
@@ -768,12 +67,13 @@ sxhkd -c "$HOME/.config/sxhkd/sxhkd_dwm" &
 dwmblocks &
 elif [ "$WM" = "herbstluftwm" ]; then
 sxhkd -c "$HOME/.config/sxhkd/sxhkd_herbstluftwm" &
+flags=" --locked"
 elif [ "$WM" = "bspwm" ]; then
 sxhkd -c "$HOME/.config/sxhkd/sxhkd_bspwm" &
 fi
 
 if [ -n "$flags" ]; then
-    exec "$WM $flags"
+    exec $WM$flags
 else
     exec "$WM"
 fi
@@ -801,595 +101,112 @@ pegar_erros() {
 set -o errtrace
 trap 'pegar_erros $?' ERR
 
-primeira_vez_aberto() {
-    ! hstc silent get_attr my_loaded 2>/dev/null
-}
-
-hstc() {
+hc() {
     herbstclient "$@"
 }
 
-hstc emit_hook reload
+primeira_vez_aberto() {
+    ! hc silent get_attr my_loaded 2>/dev/null
+}
+
+hc emit_hook reload
 
 # remove todas as teclas de atalho
-hstc keyunbind --all
-hstc mouseunbind --all
+hc keyunbind --all
+hc mouseunbind --all
 
 # Atalhos do mouse
-hstc mousebind Super-Button1 move
-hstc mousebind Super-Button2 zoom
-hstc mousebind Super-Button3 resize
+hc mousebind Super-Button1 move
+hc mousebind Super-Button2 zoom
+hc mousebind Super-Button3 resize
 
 # Adiciona tags no primeiro iniciar
 if primeira_vez_aberto; then
-    tag_names=( {1..5} )
-    hstc rename default "${tag_names[0]}" || true
+    tag_names=( {1..7} )
+    hc rename default "${tag_names[0]}" || true
     for i in "${!tag_names[@]}"; do
-        hstc add "${tag_names[$i]}"
+        hc add "${tag_names[$i]}"
     done
-    hstc detect_monitors
+    hc detect_monitors
 fi
-
-# tags
-tag_names=("1" "2" "3" "4" "5")
-tag_keys=( {1..5} 0 )
-tag_count=$(hstc attr tags.count)
+tag_keys=( {1..7} 0 )
+tag_count=$(hc attr tags.count)
 for i in "${!tag_keys[@]}"; do
     (( i >= tag_count )) && break
     key="${tag_keys[$i]}"
 done
 
-hstc set default_frame_layout max
-hstc set frame_border_active_color '#ffff55'
-hstc set frame_border_normal_color '#000000'
-hstc set frame_bg_normal_color '#000000'
-hstc set frame_bg_active_color '#ffff55'
-hstc set frame_border_width 1
-hstc set always_show_frame 0
-hstc set frame_bg_transparent 1
-hstc set frame_transparent_width 0
-hstc set frame_padding 0
-hstc set focus_follows_mouse 0
-hstc set window_gap 0
-hstc set smart_window_surroundings 1
-hstc set smart_frame_surroundings 1
-hstc set mouse_recenter_gap 0
-hstc set focus_crosses_monitor_boundaries 1
-hstc set swap_monitors_to_get_tag 1
-hstc set tree_style '╾│ ├└╼─┐'
+hc attr theme.tiling.reset 1
+hc attr theme.floating.reset 1
+hc attr theme.active.color '#ffffff'
+hc attr theme.normal.color '#000000'
+hc attr theme.urgent.color '#ff0000'
+hc attr theme.inner_color '#000000'
+hc attr theme.floating.outer_color '#000000'
+hc attr theme.active.inner_color '#ffffff'
+hc attr theme.active.outer_color '#ffffff'
+hc attr theme.background_color '#000000'
+hc attr theme.inner_width 0
+hc attr theme.border_width 1
+hc attr theme.floating.border_width 1
+hc attr theme.floating.outer_width 0
 
-hstc attr theme.tiling.reset 1
-hstc attr theme.floating.reset 1
-hstc attr theme.active.color '#ffffff'
-hstc attr theme.normal.color '#000000'
-hstc attr theme.urgent.color '#ff0000'
-hstc attr theme.inner_width 0
-hstc attr theme.inner_color '#000000'
-hstc attr theme.border_width 1
-hstc attr theme.floating.border_width 1
-hstc attr theme.floating.outer_width 1
-hstc attr theme.floating.outer_color '#000000'
-hstc attr theme.active.inner_color '#ffffff'
-hstc attr theme.active.outer_color '#ffffff'
-hstc attr theme.background_color '#000000'
+hc set frame_border_active_color '#00ff00'
+hc set frame_border_normal_color '#000000'
+hc set frame_bg_active_color '#111111'
+hc set frame_bg_normal_color '#000000'
+hc set auto_detect_panels true
+hc set default_frame_layout max
+hc set always_show_frame 0
+hc set frame_border_width 1
+hc set frame_bg_transparent 1
+hc set frame_bg_transparent 1
+hc set frame_transparent_width 0
+hc set frame_padding 0
+hc set frame_gap 0
+hc set smart_frame_surroundings 1
+hc set smart_window_surroundings 1
+hc set window_gap 0
+hc set focus_follows_mouse 0
+hc set raise_on_focus 1
+hc set mouse_recenter_gap 0
+hc set swap_monitors_to_get_tag 1
+hc set tree_style '╾│ ├└╼─┐'
 
-# regras
-hstc unrule -F
-hstc rule focus=on # normally focus new clients
-hstc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' pseudotile=on
-hstc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
-hstc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
+### Regras
+hc unrule -F
+hc rule focus=on # Focar novas janelas
+hc rule floatplacement=smart
+# Programas
+hc rule class="qutebrowser" tag=1
+hc rule class="Firefox" tag=1
+hc rule class="Emacs" tag=2
+hc rule class="nvim" tag=2
+hc rule class="mpv" tag=3
+hc rule class="Gimp" tag=4
+hc rule class="discord" tag=5
+hc rule class="TelegramDesktop" tag=5
+#hc rule class="" tag=6
+#hc rule class="" tag=7
+# Flutuantes
+hc rule class="ncmpcpp" floating=on floatplacement=center
+hc rule class="pulsemixer" floating=on floatplacement=center
+hc rule class="MEGAsync" floating=on floatplacement=center
+hc rule class="Transmission-gtk" floating=on floatplacement=center
+hc rule class="Galculator" floating=on floatplacement=center
+hc rule class="htop" floating=on floatplacement=center
+# Notificações, pop-ups, etc.
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
+hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
+hc rule class="qutebrowser" windowtype='_NET_WM_WINDOW_TYPE_UTILITY' floating=on
 
-hstc unlock
+hc unlock
 ```
 
-## Sxhkd
+## Teclas
 
-Todos os atalhos e teclas do dwm e bspwm
-
-### Herbstluftwm
-
-- `~/.config/sxhkd/sxhkd_herbstluftwm`
-
-```sxhkdrc tangle:~/.config/sxhkd/sxhkd_herbstluftwm
-# Ativa/Desativa a barra enquando super é segurado
-# Super_L + any
-# ~@Super_L + any
-# Super_R + any
-# ~@Super_R + any
-
-# Ativa/Desativa a barra
-# super + b
-
-# Muda o tamanho de frames
-ctrl + super + {Left,Down,Up,Right}
-    herbstclient resize {left +0.05,down +0.05,up +0.05,right +0.05}
-
-# Muda entre as janelas
-super + Tab
-    herbstclient cycle
-
-# troca todas as janelas de posição
-super + shift + {Up,Down,Left,Right}
-    herbstclient shift {up,down,left,right}
-
-# Muda de tag
-alt + {Left, Right}
-    herbstclient {use_index +1 --skip-visible,use_index -1 --skip-visible}
-
-# Troca entre layouts
-super + Escape
-    herbstclient or , and . compare tags.focus.curframe_wcount = 2                   \
-                     . cycle_layout +1 vertical horizontal max vertical grid    \
-               , cycle_layout +1
-
-# Fecha uma janela
-super + shift + backslash
-    herbstclient close
-
-# Tela cheias
-super + f
-    herbstclient fullscreen
-
-# Alterna janela flutuante
-super + w
-    herbstclient floating
-
-# Troca a janela de tag
-# super + shift {Left, Right}
-
-# Torna a janela fixa em todas as tags
-# super + s
-
-# Ncmpcpp/Pulsemixer
-super + {_,shift} + a
-    st -g 100x30 -c {ncmpcpp -n ncmpcpp -e ncmpcpp,pulsemixer -n pulsemixer -e pulsemixer}
-
-# Pausa/Toca musica
-super + space
-    mpc toggle && pkill -RTMIN+11 dwmblocks
-
-# Anterior/Proxima musica
-super + shift + {comma, period}
-    mpc {prev,next} && musica notificar && pkill -RTMIN+11 dwmblocks
-
-# Abaixar/Aumentar o volume e atualizar a barra
-super + {comma, period, Down, Up}
-    amixer -q set Master 5%{-,+,-,+} && pkill -RTMIN+9 dwmblocks
-
-# St
-super + shift + Return
-    st
-
-# Menu
-Menu;Menu
-    dmenu_run
-
-# Menu energia
-Menu;Escape
-    dmenu_sys
-
-# Editar
-Menu;e
-    dmenu_edit
-
-# Emojis
-Menu;E
-    dmenu_emoji
-
-# Montar/Desmontar
-Menu;m
-    dmenu_mont
-
-# Atalhos do sxhkd
-Menu;slash
-    dmenu_sxhkd
-
-# Shell History
-Menu;h
-    dmenu_shhistory
-
-# Htop
-Menu;H
-    st -g 100x30 -c htop -n htop -e htop
-
-# Passmenu
-Menu;p
-    passmenu --type
-
-# Picom
-Menu;P
-    killall picom || picom
-
-# Fluxgui
-Menu;F
-    killall fluxgui || fluxgui
-
-# Clipboard
-Menu;c
-    dmenu_clip
-
-# Calculadora
-Menu;C
-    galculator
-
-# Gimp
-Menu;g
-    gimp
-
-# Transmission
-Menu;t
-    transmission-gtk
-
-# Telegram
-Menu;T
-    telegram-desktop
-
-# Discord
-Menu;d
-    discord
-
-# Qutebrowser, pesquisa e favoritos
-Menu;q
-    dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml
-
-# Anotações
-Menu;a
-    nvim ~/documentos/anotações.md
-
-# Aliases
-Menu;A
-    dmenu_aliases
-
-# Tira print
-Print
-    dmenu_print
-```
-
-### Dwm
-
-- `~/.config/sxhkd/sxhkd_dwm`
-
-```sxhkdrc tangle:~/.config/sxhkd/sxhkd_dwm
-# Ativa/Desativa a barra enquando super é segurado
-Super_L + any
-    dwmc togglebar
-~@Super_L + any
-    dwmc togglebar
-Super_R + any
-    dwmc togglebar
-~@Super_R + any
-    dwmc togglebar
-
-# Ativa/Desativa a barra
-super + b
-    dwmc togglebar
-
-# Muda o tamanho da janela
-ctrl + super + {Left,Right}
-    dwmc setmfact {-,+}0.05
-
-# Muda o tamanho da janela
-ctrl + super + {Down,Up}
-    dwmc setcfact {-,+}0.20
-
-# Muda entre as janelas
-super + Tab
-    dwmc focusstack +1
-
-# Muda de tag
-super + {Left, Right}
-    dwmc {viewprev, viewnext}
-
-# Troca a janela de tag
-super + shift {Left, Right}
-  dwmc {tagtoprev, tagtonext}
-
-# Fecha uma janela
-super + shift + backslash
-    dwmc killclient
-
-# Alterna janela flutuante
-super + w
-    dwmc togglefloating
-
-# troca todas as janelas de posição
-super + Return
-    dwmc inplacerotate +2
-
-# Troca entre layouts
-super + Escape
-    dwmc layoutscroll +1
-
-# Ncmpcpp/Pulsemixer
-super + {_,shift} + a
-    st -g 100x30 -c {ncmpcpp -n ncmpcpp -e ncmpcpp,pulsemixer -n pulsemixer -e pulsemixer}
-
-# Pausa/Toca musica
-super + space
-    mpc toggle && pkill -RTMIN+11 dwmblocks
-
-# Anterior/Proxima musica
-super + shift + {comma, period}
-    mpc {prev,next} && musica notificar && pkill -RTMIN+11 dwmblocks
-
-# Abaixar/Aumentar o volume e atualizar a barra
-super + {comma, period, Down, Up}
-    amixer -q set Master 5%{-,+,-,+} && pkill -RTMIN+9 dwmblocks
-
-# St
-super + shift + Return
-    st
-
-# Aparece/Esconde o st
-super + backslash
-    st_scratchpad
-
-# Torna a janela fixa em todas as tags
-super + s
-    dwmc togglesticky
-
-# Monocle
-super + f
-    dwmc setmonocle 0
-
-# Menu
-Menu;Menu
-    dmenu_run
-
-# Menu energia
-Menu;Escape
-    dmenu_sys
-
-# Editar
-Menu;e
-    dmenu_edit
-
-# Emojis
-Menu;E
-    dmenu_emoji
-
-# Montar/Desmontar
-Menu;m
-    dmenu_mont
-
-# Atalhos do sxhkd
-Menu;slash
-    dmenu_sxhkd
-
-# Shell History
-Menu;h
-    dmenu_shhistory
-
-# Htop
-Menu;H
-    st -g 100x30 -c htop -n htop -e htop
-
-# Passmenu
-Menu;p
-    passmenu --type
-
-# Picom
-Menu;P
-    killall picom || picom
-
-# Fluxgui
-Menu;F
-    killall fluxgui || fluxgui
-
-# Clipboard
-Menu;c
-    dmenu_clip
-
-# Calculadora
-Menu;C
-    galculator
-
-# Gimp
-Menu;g
-    gimp
-
-# Transmission
-Menu;t
-    transmission-gtk
-
-# Telegram
-Menu;T
-    telegram-desktop
-
-# Discord
-Menu;d
-    discord
-
-# Qutebrowser, pesquisa e favoritos
-Menu;q
-    dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml
-
-# Anotações
-Menu;a
-    nvim ~/documentos/anotações.md
-
-# Aliases
-Menu;A
-    dmenu_aliases
-
-# Tira print
-Print
-    dmenu_print
-```
-
-### Bspwm
-
-- `~/.config/sxhkd/sxhkd_bspwm`
-
-```sxhkdrc tangle:~/.config/sxhkd/sxhkd_bspwm
-# Fecha janela
-super + shift + backslash
-    bspc node -c
-
-# Troca janela selecionada pela maior janela
-super + Return
-    bspc node -s biggest.window
-
-# Troca entre layout monocle e tiled
-super + Escape
-    bspc desktop -l next
-
-# Troca o foco para a janela anterior
-super + Left
-    bspc node -f prev.local.!hidden.window
-
-# Troca o foco para a proxima janela
-super + {Right,Tab}
-    bspc node -f next.local.!hidden.window
-
-# Alterna entre ou muda janela para um desktop
-super + {_,shift + }{1-9,0}
-    bspc {desktop -f,node -d} '^{1-9,10}'
-
-# Move janela para o espaço preselecionado
-super + ctrl + Return
-    bspc node -n last.!automatic
-
-# Preseleciona uma direção
-super + ctrl + {Left,Down,Up,Right}
-    bspc node -p {west,south,north,east}
-
-# Cancela seleção
-ctrl + space
-    bspc node -p cancel
-
-# muda o tamanho das janelas
-ctrl + {Left,Down,Up,Right}
-    {bspc node @parent/second -z left -20 0; \
-     bspc node @parent/first -z right -20 0, \
-     bspc node @parent/second -z top 0 +20; \
-     bspc node @parent/first -z bottom 0 +20, \
-     bspc node @parent/first -z bottom 0 -20; \
-     bspc node @parent/second -z top 0 -20, \
-     bspc node @parent/first -z right +20 0; \
-     bspc node @parent/second -z left +20 0}
-
-# Alterna entre janela flutuante
-super + t
-    bspc node -t \~floating
-
-# Alterna tela cheia
-Menu;f
-    bspc node -t \~fullscreen
-
-# Ajusta proporção da janela selecionada
-shift + Tab
-    ajustar_tamanho.sh
-
-# Menu
-Menu;Menu
-    dmenu_menu
-
-# Menu energia
-Menu;Escape
-    dmenu_sys
-
-# Editar
-Menu;e
-    dmenu_edit
-
-# Emojis
-Menu;E
-    dmenu_emoji
-
-# Ncmpcpp/Pulsemixer
-super + {_,shift} + a
-    st -g 100x30 -c {'ncmpcpp\,ncmpcpp' -e ncmpcpp,'pulsemixer\,pulsemixer' -e pulsemixer}
-
-# Pausa/Toca musica
-super + space
-    mpc toggle
-
-# Anterior/Proxima musica
-super + shift + {comma, period}
-    mpc {prev,next} && musica notificar
-
-# Abaixar/Aumentar o volume e atualizar a barra
-super + {comma, period}
-    amixer -q set Master 5%{-,+}
-
-# St
-super + shift + Return
-    st
-
-# Aparece/Esconde o st
-super + backslash
-    st_scratchpad
-
-# Gimp
-Menu;g
-    gimp
-
-# Clipboard
-Menu;c
-    dmenu_clip
-
-# Calculadora
-Menu;C
-    galculator
-
-# Transmission
-Menu;t
-    transmission-gtk
-
-# Telegram
-Menu;T
-    telegram-desktop
-
-# Discord
-Menu;d
-    discord
-
-# Shell History
-Menu;h
-    dmenu_shhistory
-
-# Htop
-Menu;H
-    st -e htop
-
-# Passmenu
-Menu;p
-    passmenu --type
-
-# Picom
-Menu;P
-    killall picom || picom
-
-# Fluxgui
-Menu;F
-    killall fluxgui || fluxgui
-
-# Montar/Desmontar
-Menu;m
-    dmenu_mont
-
-# Teclas do sxhkd
-Menu;slash
-    dmenu_sxhkd
-
-# Qutebrowser, pesquisa e favoritos
-Menu;q
-    dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml
-
-# Anotações
-Menu;a
-    nvim ~/documentos/anotações.md
-
-# Aliases
-Menu;A
-    dmenu_aliases
-
-# Tira print
-Print
-    dmenu_print
-```
+[Teclas do sxhkd no herbstluftwm, dwm e bspwm](https://github.com/LucasTavaresA/dotfiles/blob/main/extras/teclas.md)
 
 ## Qutebrowser
 
@@ -1617,6 +434,7 @@ config.unbind('q')
 config.unbind('<Shift-H>')
 config.unbind('<Shift-L>')
 
+config.bind('<Space>qq', 'quit')
 config.bind('<Ctrl-Tab>', 'tab-next')
 config.bind('<Ctrl-Left>', 'tab-prev')
 config.bind('<Ctrl-Right>', 'tab-next')
@@ -1672,67 +490,67 @@ config.set('colors.webpage.preferred_color_scheme', 'dark')
 # Cor do texto da barra de compleção
 c.colors.completion.fg = '#ffffff'
 # Cor de fundo da barra de compleção.
-c.colors.completion.odd.bg = '#2f334d'
-c.colors.completion.even.bg = '#2f334d'
+c.colors.completion.odd.bg = '#000000'
+c.colors.completion.even.bg = '#000000'
 # Cor do texto das categorias.
 c.colors.completion.category.fg = '#ffffff'
 # Cor de fundo das categorias.
-c.colors.completion.category.bg = '#2f334d'
+c.colors.completion.category.bg = '#000000'
 # Cor da borda superior de categorias.
 c.colors.completion.category.border.top = '#ffffff'
 # Cor da borda inferior de categorias.
 c.colors.completion.category.border.bottom = '#ffffff'
 # Cor de texto selecionado na barra de seleção
-c.colors.completion.item.selected.fg = '#2f334d'
+c.colors.completion.item.selected.fg = '#000000'
 # Cor de fundo de texto selecionado na barra de compleção
 c.colors.completion.item.selected.bg = '#ffffff'
 # Cor do texto procurado quando selecionado na barra de compleção
-c.colors.completion.item.selected.match.fg = '#ff0000'
+c.colors.completion.item.selected.match.fg = '#000000'
 # Cor de texto procurado na aba de compleção.
-c.colors.completion.match.fg = '#ff0000'
+c.colors.completion.match.fg = '#ffff00'
 # Cor da barra de scroll na aba de compleção
-c.colors.completion.scrollbar.fg = '#2f334d'
+c.colors.completion.scrollbar.fg = '#000000'
 # Cor de fundo da barra de download
-c.colors.downloads.bar.bg = '#2f334d'
+c.colors.downloads.bar.bg = '#000000'
 # Cor de fundo de downloads com erro
 c.colors.downloads.error.bg = '#ff0000'
 # Cor da fonte de indicadores de links
 c.colors.hints.fg = '#ffffff'
 # Cor de fundo de indicadores de links
-c.colors.hints.bg = '#2f334d'
+c.colors.hints.bg = '#000000'
 # Borda de indicadores de links
 config.set('hints.border', '1px solid #ffffff')
 config.set('hints.radius', 0)
 # Cor da fonte em partes procuradas
 c.colors.hints.match.fg = '#ff0000'
 # Cor de fundo de informações importantes
-c.colors.messages.info.bg = '#2f334d'
+c.colors.messages.info.bg = '#000000'
 # Cor de fundo da barra de status
-c.colors.statusbar.normal.bg = '#2f334d'
+c.colors.statusbar.normal.bg = '#000000'
 # Cor do texto da barra de status quando inserindo texto
 c.colors.statusbar.insert.fg = '#ffffff'
 # Cor da barra de status quando inserindo texto
 c.colors.statusbar.insert.bg = '#008800'
 # Cor da barra de status no modo passthrough
-c.colors.statusbar.passthrough.bg = '#2f334d'
+c.colors.statusbar.passthrough.bg = '#000000'
 # Cor de fundo da barra de status quando digitando comandos
-c.colors.statusbar.command.bg = '#2f334d'
+c.colors.statusbar.command.bg = '#000000'
 # Cor do texto da barra de status quando em alerta
 c.colors.statusbar.url.warn.fg = '#ff0000'
 # Cor de fundo da barra de abas abertas
-c.colors.tabs.bar.bg = '#2f334d'
+c.colors.tabs.bar.bg = '#000000'
 # Cor de fundo de abas não selecionadas
 c.colors.tabs.odd.bg = '#000000'
 c.colors.tabs.even.bg = '#000000'
 # Cor de fundo de abas selecionadas
-c.colors.tabs.selected.odd.bg = '#2f334d'
-c.colors.tabs.selected.even.bg = '#2f334d'
+c.colors.tabs.selected.odd.bg = '#333333'
+c.colors.tabs.selected.even.bg = '#333333'
 # Cor de fundo de abas fixadas não selecionadas
 c.colors.tabs.pinned.odd.bg = '#000000'
 c.colors.tabs.pinned.even.bg = '#000000'
 # Cor de fundo de abas fixadas selecionadas
-c.colors.tabs.pinned.selected.odd.bg = '#2f334d'
-c.colors.tabs.pinned.selected.even.bg = '#2f334d'
+c.colors.tabs.pinned.selected.odd.bg = '#333333'
+c.colors.tabs.pinned.selected.even.bg = '#333333'
 # Cor das fontes de abas não selecionadas
 c.colors.tabs.even.fg = '#ffffff'
 c.colors.tabs.odd.fg = '#ffffff'
@@ -1927,4 +745,4 @@ map gmc cd ~/media/cursos
 
 ## Extras
 
-- [Mais configurações](https://github.com/LucasTavaresA/dotfiles/blob/main/extras.md)
+- [Mais configurações](https://github.com/LucasTavaresA/dotfiles/blob/main/extras/extras.md)

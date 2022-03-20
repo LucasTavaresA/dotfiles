@@ -38,6 +38,11 @@ _comp_options+=(globdots)       # Incluir arquivos ocultos.
 
 ## FUNÇÕES
 
+# Hersbstluftwm
+hc() {
+    herbstclient "$@"
+}
+
 # Previsão de imagens no lf
 lf () {
     LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"

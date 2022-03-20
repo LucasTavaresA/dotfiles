@@ -15,13 +15,13 @@ Blocos de código são salvos em seus arquivos usando [md-tangle](https://github
 -   [Mimetypes](#mimetypes)
 -   [.gitignore](#gitignore)
 -   [Starship](#starship)
+-   [Bspwm](#bspwm)
 -   [Picom](#picom)
 -   [Zathura](#zathura)
 -   [Gtk](#gtk)
     -   [Gtk 2](#gtk-2)
     -   [Gtk 3](#gtk-3)
 -   [Dunst](#dunst)
--   [Bspwm](#bspwm)
 -   [Paru](#paru)
 -   [Npm](#npm)
 
@@ -342,6 +342,69 @@ symbol = "─"
 style = "bold green"
 ```
 
+## Bspwm
+
+Gerenciador de janelas bspwm
+
+- `~/.config/bspwm/bspwmrc`
+
+```sh tangle:~/.config/bspwm/bspwmrc
+#!/bin/sh
+
+# Monitor
+bspc monitor -d 1 2 3 4 5
+
+# Configurações
+bspc config border_width            1
+bspc config window_gap              0
+bspc config top_padding             0
+bspc config bottom_padding          0
+bspc config left_padding            0
+bspc config right_padding           0
+bspc config split_ratio             0.50
+bspc config borderless_monocle      true
+bspc config gapless_monocle         true
+bspc config pointer_modifier        mod4
+bspc config pointer_action1         move
+bspc config click_to_focus          any
+bspc config single_monocle          true
+
+# Cores
+bspc config normal_border_color           "#000000"
+bspc config active_border_color           "#ffffff"
+bspc config focused_border_color          "#ffffff"
+bspc config presel_feedback_color         "#333333"
+
+# Regras
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+bspc rule -a mpv state=fullscreen
+bspc rule -a guvcview state=floating rectangle=480x270+0+0 sticky=on layer=above
+bspc rule -a Deadbeef state=floating rectangle=1200x600+0+0 sticky=on layer=above center=true
+bspc rule -a ncmpcpp state=floating rectangle=1200x600+0+0 sticky=on layer=above center=true
+bspc rule -a xev state=floating rectangle=480x270+0+0 sticky=on layer=above center=true
+bspc rule -a Gcr-prompter state=floating rectangle=480x270+0+0 sticky=on layer=above center=true
+bspc rule -a Transmission-gtk state=floating rectangle=1000x700+0+0 sticky=on layer=above center=true
+bspc rule -a firefox:Places state=floating rectangle=480x270+0+0 sticky=off layer=above center=true
+bspc rule -a confirm state=floating rectangle=480x270+0+0 sticky=on layer=above center=true
+bspc rule -a file_progress state=floating rectangle=480x270+0+0 sticky=off layer=above center=true
+bspc rule -a dialog state=floating rectangle=480x270+0+0 sticky=on layer=above center=true
+bspc rule -a download state=floating rectangle=480x270+0+0 sticky=off layer=above
+bspc rule -a MEGAsync:megasync state=floating rectangle=480x270+0+0 sticky=off layer=above center=true
+bspc rule -a firefox:Devtools state=floating rectangle=800x350+0+0 sticky=on layer=above center=true
+bspc rule -a Galculator:galculator state=floating rectangle=480x270+0+0 sticky=on layer=above center=true
+bspc rule -a toolbar state=floating rectangle=480x270+0+0 sticky=off layer=above
+bspc rule -a error state=floating rectangle=480x270+0+0 sticky=off layer=above center=true
+bspc rule -a MPlayer state=floating rectangle=480x270+0+0 sticky=off layer=above center=true
+bspc rule -a notification state=floating rectangle=480x270+0+0 sticky=off layer=above center=true
+bspc rule -a pulsemixer state=floating rectangle=800x300+0+0 center=true
+bspc rule -a VirtualBox Manager state=fullscreen
+bspc rule -a VirtualBox Machine state=fullscreen
+bspc rule -a :Zathura state=tiled
+bspc rule -a st_download state=floating rectangle=1000x700+0+0 center=true
+```
+
 ## Picom
 
 Compositor
@@ -469,14 +532,15 @@ fade-out-step = 0.03;
 
 # Opacity of inactive windows. (0.1 - 1.0, defaults to 1.0)
 # inactive-opacity = 1
-inactive-opacity = 0.8;
+inactive-opacity = 1.0;
 
 # Opacity of window titlebars and borders. (0.1 - 1.0, disabled by default)
 # frame-opacity = 1.0
-frame-opacity = 0.7;
+frame-opacity = 1.0;
 
 # Default opacity for dropdown menus and popup menus. (0.0 - 1.0, defaults to 1.0)
 # menu-opacity = 1.0
+menu-opacity = 1.0
 
 # Let inactive opacity set by -i override the '_NET_WM_OPACITY' values of windows.
 # inactive-opacity-override = true
@@ -582,7 +646,7 @@ mark-ovredir-focused = true;
 # shaped windows. The accuracy is not very high, unfortunately.
 #
 # detect-rounded-corners = false
-detect-rounded-corners = true;
+detect-rounded-corners = false;
 
 # Detect '_NET_WM_OPACITY' on client windows, useful for window managers
 # not passing '_NET_WM_OPACITY' of client windows to frame windows.
@@ -1199,16 +1263,16 @@ Daemon de notificação
     #icon = /path/to/icon
 
 [urgency_normal]
-    background = "#2f334d"
+    background = "#333333"
     foreground = "#FFFFFF"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
     #icon = /path/to/icon
 
 [urgency_critical]
-    background = "#800000"
+    background = "#ff0000"
     foreground = "#ffffff"
-    frame_color = "#FF0000"
+    frame_color = "#ff0000"
     timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
     #icon = /path/to/icon
@@ -1329,69 +1393,6 @@ Daemon de notificação
 #    set_stack_tag = "volume"
 #
 # vim: ft=cfg
-```
-
-## Bspwm
-
-Gerenciador de janelas bspwm
-
-- `~/.config/bspwm/bspwmrc`
-
-```sh tangle:~/.config/bspwm/bspwmrc
-#!/bin/sh
-
-# Monitor
-bspc monitor -d 1 2 3 4 5
-
-# Configurações
-bspc config border_width            1
-bspc config window_gap              0
-bspc config top_padding             0
-bspc config bottom_padding          0
-bspc config left_padding            0
-bspc config right_padding           0
-bspc config split_ratio             0.50
-bspc config borderless_monocle      true
-bspc config gapless_monocle         true
-bspc config pointer_modifier        mod4
-bspc config pointer_action1         move
-bspc config click_to_focus          any
-bspc config single_monocle          true
-
-# Cores
-bspc config normal_border_color           "#000000"
-bspc config active_border_color           "#ffffff"
-bspc config focused_border_color          "#ffffff"
-bspc config presel_feedback_color         "#2f334d"
-
-# Regras
-bspc rule -a mplayer2 state=floating
-bspc rule -a Kupfer.py focus=on
-bspc rule -a Screenkey manage=off
-bspc rule -a mpv state=fullscreen
-bspc rule -a guvcview state=floating rectangle=480x270+0+0 sticky=on layer=above
-bspc rule -a Deadbeef state=floating rectangle=1200x600+0+0 sticky=on layer=above center=true
-bspc rule -a ncmpcpp state=floating rectangle=1200x600+0+0 sticky=on layer=above center=true
-bspc rule -a xev state=floating rectangle=480x270+0+0 sticky=on layer=above center=true
-bspc rule -a Gcr-prompter state=floating rectangle=480x270+0+0 sticky=on layer=above center=true
-bspc rule -a Transmission-gtk state=floating rectangle=1000x700+0+0 sticky=on layer=above center=true
-bspc rule -a firefox:Places state=floating rectangle=480x270+0+0 sticky=off layer=above center=true
-bspc rule -a confirm state=floating rectangle=480x270+0+0 sticky=on layer=above center=true
-bspc rule -a file_progress state=floating rectangle=480x270+0+0 sticky=off layer=above center=true
-bspc rule -a dialog state=floating rectangle=480x270+0+0 sticky=on layer=above center=true
-bspc rule -a download state=floating rectangle=480x270+0+0 sticky=off layer=above
-bspc rule -a MEGAsync:megasync state=floating rectangle=480x270+0+0 sticky=off layer=above center=true
-bspc rule -a firefox:Devtools state=floating rectangle=800x350+0+0 sticky=on layer=above center=true
-bspc rule -a Galculator:galculator state=floating rectangle=480x270+0+0 sticky=on layer=above center=true
-bspc rule -a toolbar state=floating rectangle=480x270+0+0 sticky=off layer=above
-bspc rule -a error state=floating rectangle=480x270+0+0 sticky=off layer=above center=true
-bspc rule -a MPlayer state=floating rectangle=480x270+0+0 sticky=off layer=above center=true
-bspc rule -a notification state=floating rectangle=480x270+0+0 sticky=off layer=above center=true
-bspc rule -a pulsemixer state=floating rectangle=800x300+0+0 center=true
-bspc rule -a VirtualBox Manager state=fullscreen
-bspc rule -a VirtualBox Machine state=fullscreen
-bspc rule -a :Zathura state=tiled
-bspc rule -a st_download state=floating rectangle=1000x700+0+0 center=true
 ```
 
 ## Paru
