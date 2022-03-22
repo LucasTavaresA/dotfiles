@@ -3,7 +3,7 @@ super + backslash
     st_scratchpad
 
 # Fecha janela
-super + shift + backslash
+super + q
     herbstclient close
 
 # Alterna tela cheia
@@ -35,11 +35,11 @@ alt + shift + {Left, Right}
     herbstclient {move_index -1 && hlwm-tagswitch prev, move_index +1 && hlwm-tagswitch next}
 
 # Remove divisória
-super + q
+super + shift + q
     herbstclient remove
 
 # Cria uma divisória
-ctrl + shift + {Left,Down,Up,Right}
+ctrl + super + {Left,Down,Up,Right}
     herbstclient split {left, bottom, top, right}
 
 # Muda o tamanho de frames
