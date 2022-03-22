@@ -1,13 +1,13 @@
 # Teclas
 
-Teclas usando sxhkd no spectrwm, herbstluftwm, dwm e bspwm
+Teclas usando sxhkd no herbstluftwm, dwm, bspwm e spectrwm
 
 ## Sumario
 
 -   [Herbstluftwm](#herbstluftwm)
 -   [Dwm](#dwm)
 -   [Bspwm](#bspwm)
--   [Spectrwm](#spectrwm)
+-   [Nowm](#nowm)
 
 ## Herbstluftwm
 
@@ -59,7 +59,7 @@ super + shift + q
     herbstclient remove
 
 # Cria uma divisória
-ctrl + super + {Left,Down,Up,Right}
+ctrl + shift + {Left,Down,Up,Right}
     herbstclient split {left, bottom, top, right}
 
 # Muda o tamanho de frames
@@ -522,11 +522,13 @@ Print
     dmenu_print
 ```
 
-## Spectrwm
+## Nowm
 
-- `~/.config/sxhkd/sxhkd_spectrwm`
+Caso o window manager não execute comandos
 
-```sxhkdrc tangle:~/.config/sxhkd/sxhkd_spectrwm
+- `~/.config/sxhkd/sxhkd_nowm`
+
+```sxhkdrc tangle:~/.config/sxhkd/sxhkd_nowm
 # Abre e fecha scratchpads
 super + backslash
     st_scratchpad

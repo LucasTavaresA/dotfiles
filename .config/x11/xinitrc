@@ -24,15 +24,15 @@ fluxgui &
 picom &
 
 if [ "$WM" = "herbstluftwm" ]; then
-sxhkd -c "$HOME/.config/sxhkd/sxhkd_herbstluftwm" &
-flags=" --locked"
+    sxhkd -c "$HOME/.config/sxhkd/sxhkd_herbstluftwm" &
+    flags=" --locked"
 elif [ "$WM" = "dwm" ]; then
-sxhkd -c "$HOME/.config/sxhkd/sxhkd_dwm" &
-dwmblocks &
+    sxhkd -c "$HOME/.config/sxhkd/sxhkd_dwm" &
+    dwmblocks &
 elif [ "$WM" = "bspwm" ]; then
-sxhkd -c "$HOME/.config/sxhkd/sxhkd_bspwm" &
-elif [ "$WM" = "spectrwm" ]; then
-sxhkd -c "$HOME/.config/sxhkd/sxhkd_spectrwm" &
+    sxhkd -c "$HOME/.config/sxhkd/sxhkd_bspwm" &
+else
+    sxhkd -c "$HOME/.config/sxhkd/sxhkd_nowm" &
 fi
 
 if [ -n "$flags" ]; then

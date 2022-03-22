@@ -63,15 +63,15 @@ fluxgui &
 picom &
 
 if [ "$WM" = "herbstluftwm" ]; then
-sxhkd -c "$HOME/.config/sxhkd/sxhkd_herbstluftwm" &
-flags=" --locked"
+    sxhkd -c "$HOME/.config/sxhkd/sxhkd_herbstluftwm" &
+    flags=" --locked"
 elif [ "$WM" = "dwm" ]; then
-sxhkd -c "$HOME/.config/sxhkd/sxhkd_dwm" &
-dwmblocks &
+    sxhkd -c "$HOME/.config/sxhkd/sxhkd_dwm" &
+    dwmblocks &
 elif [ "$WM" = "bspwm" ]; then
-sxhkd -c "$HOME/.config/sxhkd/sxhkd_bspwm" &
-elif [ "$WM" = "spectrwm" ]; then
-sxhkd -c "$HOME/.config/sxhkd/sxhkd_spectrwm" &
+    sxhkd -c "$HOME/.config/sxhkd/sxhkd_bspwm" &
+else
+    sxhkd -c "$HOME/.config/sxhkd/sxhkd_nowm" &
 fi
 
 if [ -n "$flags" ]; then
@@ -202,14 +202,14 @@ hc rule class="qutebrowser" windowtype='_NET_WM_WINDOW_TYPE_UTILITY' floating=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on floatplacement=center
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
-hc rule class="pinentry-gtk-2" floating=on floatplacement=center
+hc rule class="Pinentry-gtk-2" floating=on floatplacement=center
 
 hc unlock
 ```
 
 ## Teclas
 
-[Teclas do sxhkd no herbstluftwm, dwm e bspwm](https://github.com/LucasTavaresA/dotfiles/blob/main/extras/teclas.md)
+[Todas as teclas do sxhkd](https://github.com/LucasTavaresA/dotfiles/blob/main/extras/teclas.md)
 
 ## Qutebrowser
 
@@ -437,7 +437,6 @@ config.unbind('q')
 config.unbind('<Shift-H>')
 config.unbind('<Shift-L>')
 
-config.bind('<Space>qq', 'quit')
 config.bind('<Ctrl-Tab>', 'tab-next')
 config.bind('<Ctrl-Left>', 'tab-prev')
 config.bind('<Ctrl-Right>', 'tab-next')

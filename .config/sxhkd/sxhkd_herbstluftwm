@@ -43,7 +43,7 @@ super + shift + q
     herbstclient remove
 
 # Cria uma divisória
-ctrl + super + {Left,Down,Up,Right}
+ctrl + shift + {Left,Down,Up,Right}
     herbstclient split {left, bottom, top, right}
 
 # Muda o tamanho de frames

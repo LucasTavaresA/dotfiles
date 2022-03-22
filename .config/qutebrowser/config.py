@@ -215,7 +215,6 @@ config.unbind('q')
 config.unbind('<Shift-H>')
 config.unbind('<Shift-L>')
 
-config.bind('<Space>qq', 'quit')
 config.bind('<Ctrl-Tab>', 'tab-next')
 config.bind('<Ctrl-Left>', 'tab-prev')
 config.bind('<Ctrl-Right>', 'tab-next')
