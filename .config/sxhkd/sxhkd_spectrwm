@@ -2,60 +2,6 @@
 super + backslash
     st_scratchpad
 
-# Fecha janela
-super + q
-    herbstclient close
-
-# Alterna tela cheia
-super + f
-    herbstclient fullscreen
-
-# Alterna janela flutuante
-super + w
-    herbstclient attr clients.focus.floating toggle
-
-# Alterna entre as janelas
-super + Tab
-    herbstclient cycle
-
-# Muda entre as janelas
-super + {Up,Down,Left,Right}
-    herbstclient focus {up,down,left,right}
-
-# Troca as janelas de posição
-super + shift + {Up,Down,Left,Right}
-    herbstclient shift {up,down,left,right}
-
-# Muda de tags pulando tags vazias
-alt + {Left, Right}
-    hlwm-tagswitch {prev, next}
-
-# Muda de tags
-super + alt + {Left, Right}
-    herbstclient {use_index -1, use_index +1}
-
-# Muda janela de tag e a segue
-alt + shift + {Left, Right}
-    herbstclient {move_index -1 && hlwm-tagswitch prev, move_index +1 && hlwm-tagswitch next}
-
-# Remove divisória
-super + shift + q
-    herbstclient remove
-
-# Cria uma divisória
-ctrl + super + {Left,Down,Up,Right}
-    herbstclient split {left, bottom, top, right}
-
-# Muda o tamanho de frames
-ctrl + {Left,Down,Up,Right}
-    herbstclient resize {left +0.05,down +0.05,up +0.05,right +0.05}
-
-# Troca entre layouts pulando layouts que não mudam janelas de posição
-super + Escape
-    herbstclient or , and . compare tags.focus.curframe_wcount = 2                   \
-                     . cycle_layout +1 vertical horizontal max vertical grid    \
-               , cycle_layout +1
-
 # Ncmpcpp/Pulsemixer
 super + {_,shift} + a
     st -g 120x30 -c {ncmpcpp -n ncmpcpp -e ncmpcpp,pulsemixer -n pulsemixer -e pulsemixer}

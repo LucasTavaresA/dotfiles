@@ -20,6 +20,8 @@ setopt interactive_comments
 # TECLAS
 # Modo emacs
 bindkey -e
+# Modo vi
+# bindkey -v
 bindkey "^?" backward-delete-char
 bindkey "^[[3~" delete-char
 bindkey -a '^[[3~' delete-char

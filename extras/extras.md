@@ -16,6 +16,7 @@ Blocos de código são salvos em seus arquivos usando [md-tangle](https://github
 -   [.gitignore](#gitignore)
 -   [Starship](#starship)
 -   [Bspwm](#bspwm)
+-   [Spectrwm](#spectrwm)
 -   [Picom](#picom)
 -   [Zathura](#zathura)
 -   [Gtk](#gtk)
@@ -403,6 +404,150 @@ bspc rule -a VirtualBox Manager state=fullscreen
 bspc rule -a VirtualBox Machine state=fullscreen
 bspc rule -a :Zathura state=tiled
 bspc rule -a st_download state=floating rectangle=1000x700+0+0 center=true
+```
+
+## Spectrwm
+
+Gerenciador de janelas spectrwm
+
+- `~/.config/spectrwm/spectrwm.conf`
+
+```conf tangle:~/.config/spectrwm/spectrwm.conf
+workspace_limit   = 5
+focus_mode        = manual
+focus_close       = previous
+focus_close_wrap  = 1
+focus_default     = last
+spawn_position    = next
+workspace_clamp   = 1
+warp_focus        = 1
+warp_pointer      = 1
+
+# Decoração de janelas
+border_width            = 1
+color_focus             = rgb:ff/ff/ff
+color_focus_maximized   = rgb:ff/ff/ff
+color_unfocus           = rgb:00/00/00
+color_unfocus_maximized = rgb:00/00/00
+region_padding          = 0
+tile_gap                = 1
+
+# Região de contenção
+boundary_width = 50
+
+# Remove bordas quando ha uma janela e a barra é desativada
+disable_border = 1
+
+# Barra
+bar_enabled               = 0
+bar_border_width          = 1
+bar_font_color_selected   = rgb:00/00/00
+bar_font                  = Fira Code:pixelsize=12:antialias=true
+bar_font_pua              = symbols nerd font:pixelsize=14:antialias=true
+bar_justify               = center
+bar_format                = +N:+I +S <+D>+4< | %a %d/%m/%Y - %H:%M | +8<+A+4<+V
+workspace_indicator       = listcurrent,listactive,listurgent,markcurrent,markurgent,printnames
+bar_at_bottom             = 1
+stack_enabled             = 1
+clock_enabled             = 1
+clock_format              = %a %d/%m/%Y - %H:%M
+iconic_enabled            = 1
+maximize_hide_bar         = 1
+window_class_enabled      = 1
+window_instance_enabled   = 1
+window_name_enabled       = 1
+verbose_layout            = 1
+urgent_enabled            = 1
+urgent_collapse           = 1
+bar_action                = baraction.sh
+bar_action_expand         = 0
+bar_enabled_ws[1]         = 1
+bar_border[1]             = rgb:00/00/00
+bar_border_unfocus[1]     = rgb:00/00/00
+bar_color[1]              = rgb:00/00/00
+bar_color_selected[1]     = rgb:ff/ff/ff
+bar_font_color[1]         = rgb:ff/ff/ff
+
+dialog_ratio      = 0.6
+
+# Nome dos workspaces
+name          = ws[1]:Browse
+name          = ws[2]:Edit
+name          = ws[3]:Watch
+name          = ws[4]:Image
+name          = ws[5]:Message
+
+# Tecla mod
+modkey = Mod4
+
+# Desabilitar programas padrão
+bind[] = MOD+Shift+Delete
+bind[] = MOD+Shift+Return
+bind[] = MOD+p
+bind[] = MOD+q
+bind[] = MOD+r
+bind[] = MOD+f
+bind[] = MOD+Escape
+bind[] = MOD+Left
+bind[] = MOD+Right
+bind[] = MOD+w
+bind[] = Mod1+Left
+bind[] = Mod1+Right
+bind[] = Mod1+Shift+Right
+bind[] = Mod1+Shift+Left
+bind[] = MOD+Mod1+Left
+bind[] = MOD+Mod1+Right
+bind[] = MOD+Return
+
+# Teclas
+bind[wind_del]          = MOD+q
+bind[restart]           = MOD+r
+bind[fullscreen_toggle] = MOD+f
+bind[cycle_layout]      = MOD+Escape
+bind[master_shrink]     = MOD+Left
+bind[master_grow]       = MOD+Right
+bind[float_toggle]      = MOD+w
+bind[ws_prev]           = Mod1+Left
+bind[ws_next]           = Mod1+Right
+bind[ws_next_move]      = Mod1+Shift+Right
+bind[ws_prev_move]      = Mod1+Shift+Left
+bind[ws_prev_all]       = MOD+Mod1+Left
+bind[ws_next_all]       = MOD+Mod1+Right
+bind[swap_next]         = MOD+Return
+
+# Regras
+# remova com: quirk[class:name] = NONE
+# Programas
+quirk[qutebrowser]     = WS[1]
+quirk[Firefox]         = WS[1]
+quirk[Emacs]           = WS[2]
+quirk[nvim]            = WS[2]
+quirk[mpv]             = WS[3]
+quirk[Gimp]            = WS[4]
+quirk[discord]         = WS[5]
+quirk[TelegramDesktop] = WS[5]
+# Flutuantes
+quirk[ncmpcpp]          = FLOAT
+quirk[pulsemixer]       = FLOAT
+quirk[MEGAsync]         = FLOAT
+quirk[Transmission-gtk] = FLOAT
+quirk[Galculator]       = FLOAT
+quirk[htop]             = FLOAT
+# Padrões
+quirk[MPlayer:xv]                        = FLOAT + FULLSCREEN + FOCUSPREV
+quirk[OpenOffice.org 2.4:VCLSalFrame]    = FLOAT
+quirk[OpenOffice.org 3.0:VCLSalFrame]    = FLOAT
+quirk[OpenOffice.org 3.1:VCLSalFrame]    = FLOAT
+quirk[Firefox-bin:firefox-bin]           = TRANSSZ
+quirk[Firefox:Dialog]                    = FLOAT
+quirk[Gimp:gimp]                         = FLOAT + ANYWHERE
+quirk[XTerm:xterm]                       = XTERM_FONTADJ
+quirk[xine:Xine Window]                  = FLOAT + ANYWHERE
+quirk[Xitk:Xitk Combo]                   = FLOAT + ANYWHERE
+quirk[xine:xine Panel]                   = FLOAT + ANYWHERE
+quirk[Xitk:Xine Window]                  = FLOAT + ANYWHERE
+quirk[xine:xine Video Fullscreen Window] = FULLSCREEN + FLOAT
+quirk[pcb:pcb]                           = FLOAT
 ```
 
 ## Picom

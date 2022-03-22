@@ -243,7 +243,7 @@ export XDG_BIN_HOME="$HOME/.local/bin"
 export WM="herbstluftwm"
 # Pass
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/pass"
-# Bat como um manpager
+# Bat como o manpager
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # Terminal
 export TERMINAL="st"

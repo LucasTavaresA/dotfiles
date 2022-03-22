@@ -62,14 +62,16 @@ xbanish &
 fluxgui &
 picom &
 
-if [ "$WM" = "dwm" ]; then
-sxhkd -c "$HOME/.config/sxhkd/sxhkd_dwm" &
-dwmblocks &
-elif [ "$WM" = "herbstluftwm" ]; then
+if [ "$WM" = "herbstluftwm" ]; then
 sxhkd -c "$HOME/.config/sxhkd/sxhkd_herbstluftwm" &
 flags=" --locked"
+elif [ "$WM" = "dwm" ]; then
+sxhkd -c "$HOME/.config/sxhkd/sxhkd_dwm" &
+dwmblocks &
 elif [ "$WM" = "bspwm" ]; then
 sxhkd -c "$HOME/.config/sxhkd/sxhkd_bspwm" &
+elif [ "$WM" = "spectrwm" ]; then
+sxhkd -c "$HOME/.config/sxhkd/sxhkd_spectrwm" &
 fi
 
 if [ -n "$flags" ]; then
@@ -196,10 +198,11 @@ hc rule class="Transmission-gtk" floating=on floatplacement=center
 hc rule class="Galculator" floating=on floatplacement=center
 hc rule class="htop" floating=on floatplacement=center
 # Notificações, pop-ups, etc.
-hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
+hc rule class="qutebrowser" windowtype='_NET_WM_WINDOW_TYPE_UTILITY' floating=on
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on floatplacement=center
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
-hc rule class="qutebrowser" windowtype='_NET_WM_WINDOW_TYPE_UTILITY' floating=on
+hc rule class="pinentry-gtk-2" floating=on floatplacement=center
 
 hc unlock
 ```

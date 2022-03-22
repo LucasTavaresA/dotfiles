@@ -1,12 +1,13 @@
 # Teclas
 
-Teclas usando sxhkd no herbstluftwm, dwm e bspwm
+Teclas usando sxhkd no spectrwm, herbstluftwm, dwm e bspwm
 
 ## Sumario
 
 -   [Herbstluftwm](#herbstluftwm)
 -   [Dwm](#dwm)
 -   [Bspwm](#bspwm)
+-   [Spectrwm](#spectrwm)
 
 ## Herbstluftwm
 
@@ -44,6 +45,10 @@ super + shift + {Up,Down,Left,Right}
 # Muda de tags pulando tags vazias
 alt + {Left, Right}
     hlwm-tagswitch {prev, next}
+
+# Muda de tags
+super + alt + {Left, Right}
+    herbstclient {use_index -1, use_index +1}
 
 # Muda janela de tag e a segue
 alt + shift + {Left, Right}
@@ -499,6 +504,120 @@ Menu;m
 # Teclas do sxhkd
 Menu;slash
     dmenu_sxhkd
+
+# Qutebrowser, pesquisa e favoritos
+Menu;q
+    dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml
+
+# Anotações
+Menu;a
+    nvim ~/documentos/anotações.md
+
+# Aliases
+Menu;A
+    dmenu_aliases
+
+# Tira print
+Print
+    dmenu_print
+```
+
+## Spectrwm
+
+- `~/.config/sxhkd/sxhkd_spectrwm`
+
+```sxhkdrc tangle:~/.config/sxhkd/sxhkd_spectrwm
+# Abre e fecha scratchpads
+super + backslash
+    st_scratchpad
+
+# Ncmpcpp/Pulsemixer
+super + {_,shift} + a
+    st -g 120x30 -c {ncmpcpp -n ncmpcpp -e ncmpcpp,pulsemixer -n pulsemixer -e pulsemixer}
+
+# Pausa/Toca musica
+super + space
+    mpc toggle
+
+# Anterior/Proxima musica
+super + shift + {comma, period}
+    mpc {prev,next} && musica notificar
+
+# Abaixar/Aumentar o volume e atualizar a barra
+super + {comma, period, Down, Up}
+    amixer -q set Master 5%{-,+,-,+}
+
+# St
+super + shift + Return
+    st
+
+# Menu
+Menu;Menu
+    dmenu_run
+
+# Menu energia
+Menu;Escape
+    dmenu_sys
+
+# Editar
+Menu;e
+    dmenu_edit
+
+# Emojis
+Menu;E
+    dmenu_emoji
+
+# Montar/Desmontar
+Menu;m
+    dmenu_mont
+
+# Atalhos do sxhkd
+Menu;slash
+    dmenu_sxhkd
+
+# Shell History
+Menu;h
+    dmenu_shhistory
+
+# Htop
+Menu;H
+    st -g 120x30 -c htop -n htop -e htop
+
+# Passmenu
+Menu;p
+    passmenu --type
+
+# Picom
+Menu;P
+    killall picom || picom
+
+# Fluxgui
+Menu;F
+    killall fluxgui || fluxgui
+
+# Clipboard
+Menu;c
+    dmenu_clip
+
+# Calculadora
+Menu;C
+    galculator
+
+# Gimp
+Menu;g
+    gimp
+
+# Transmission
+Menu;t
+    transmission-gtk
+
+# Telegram
+Menu;T
+    telegram-desktop
+
+# Discord
+Menu;d
+    discord
 
 # Qutebrowser, pesquisa e favoritos
 Menu;q
