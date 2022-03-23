@@ -2,29 +2,477 @@
 
 Configurações menos importantes
 
-Blocos de código são salvos em seus arquivos usando [md-tangle](https://github.com/joakimmj/md-tangle)
-
 ## Sumario
 
+-   [Alacritty](#alacritty)
 -   [Tmux](#tmux)
 -   [Ncmpcpp](#ncmpcpp)
     -   [Configuração](#configuração)
     -   [Teclas](#teclas)
 -   [Mpd](#mpd)
--   [Handlr](#handlr)
 -   [Mimetypes](#mimetypes)
 -   [.gitignore](#gitignore)
 -   [Starship](#starship)
--   [Bspwm](#bspwm)
--   [Spectrwm](#spectrwm)
 -   [Picom](#picom)
 -   [Zathura](#zathura)
--   [Gtk](#gtk)
-    -   [Gtk 2](#gtk-2)
-    -   [Gtk 3](#gtk-3)
 -   [Dunst](#dunst)
--   [Paru](#paru)
--   [Npm](#npm)
+
+## Alacritty
+
+Emulador de terminal alacritty
+
+- `~/.config/alacritty/alacritty.yml`
+
+```yaml tangle:~/.config/alacritty/alacritty.yml
+#import:
+#  - /path/to/alacritty.yml
+
+env:
+  TERM: alacritty
+
+window:
+  dimensions:
+    columns: 150
+    lines: 50
+
+  #position:
+    #x: 0
+    #y: 0
+
+  #padding:
+  #  x: 0
+  #  y: 0
+
+  # Spread additional padding evenly around the terminal content.
+  #dynamic_padding: false
+
+  decorations: none
+
+  # Background opacity
+  opacity: 0.7
+
+  startup_mode: Maximized
+
+  title: Alacritty
+
+  dynamic_title: true
+
+  class:
+    instance: Alacritty
+    general: Alacritty
+
+  # gtk_theme_variant: None
+
+#scrolling:
+  #history: 10000
+
+  #multiplier: 3
+
+font:
+  normal:
+    family: Fira Code
+    style: Regular
+  bold:
+    family: Fira Code
+    style: Bold
+  italic:
+    family: Fira Code
+    style: Italic
+  bold_italic:
+    family: Inconsolata
+    style: Bold Italic
+  size: 12.0
+  #offset:
+  #  x: 0
+  #  y: 0
+  #glyph_offset:
+  #  x: 0
+  #  y: 0
+  #use_thin_strokes: true
+#draw_bold_text_with_bright_colors: false
+
+# Blood_Moon Theme START -----------------------------------------------
+
+# Colors (Blood Moon)
+colors:
+  # Default colors
+  primary:
+    background: '#000000'
+    foreground: '#FFFFFF'
+
+  # Normal colors
+  normal:
+    black:   '#222222'
+    red:     '#FF0000'
+    green:   '#00FF00'
+    yellow:  '#FFFF00'
+    blue:    '#0052FF'
+    magenta: '#9A4EAE'
+    cyan:    '#20B2AA'
+    white:   '#CCCCCC'
+
+  # Bright colors
+  bright:
+    black:   '#696969'
+    red:     '#FF2400'
+    green:   '#03C03C'
+    yellow:  '#FDFF00'
+    blue:    '#007FFF'
+    magenta: '#FF1493'
+    cyan:    '#00CCCC'
+    white:   '#FFFAFA'
+
+  #search:
+    #matches:
+    #  foreground: '#000000'
+    #  background: '#ffffff'
+    #focused_match:
+    #  foreground: '#ffffff'
+    #  background: '#000000'
+    #bar:
+    #  background: '#c5c8c6'
+    #  foreground: '#1d1f21'
+
+# Blood_Moon Theme END --------------------------------------------------
+
+selection:
+  # This string contains all characters that are used as separators for
+  # "semantic words" in Alacritty.
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+  # When set to `true`, selected text will be copied to the primary clipboard.
+  #save_to_clipboard: false
+
+cursor:
+  style:
+    # Cursor shape
+    # Values for `shape`:
+    #   - ▇ Block
+    #   - _ Underline
+    #   - | Beam
+    shape: Beam
+    # Cursor blinking state
+    blinking: On
+  vi_mode_style: Block
+
+  #blink_interval: 750
+
+  # If this is `true`, the cursor will be rendered as a hollow box when the
+  # window is not focused.
+  unfocused_hollow: true
+
+  # Thickness of the cursor relative to the cell width as floating point number
+  #thickness: 0.15
+
+# Live config reload (changes require restart)
+live_config_reload: true
+
+# Shell
+shell:
+   program: /bin/zsh
+#  args:
+#    - --login
+
+# Startup directory
+#working_directory: None
+
+# Send ESC (\x1b) before characters when alt is pressed.
+#alt_send_esc: true
+
+# Offer IPC using `alacritty msg` (unix only)
+#ipc_socket: true
+
+# Key bindings
+#
+# Key bindings are specified as a list of objects. For example, this is the
+# default paste binding:
+#
+# `- { key: V, mods: Control|Shift, action: Paste }`
+#
+# Each key binding will specify a:
+#
+# - `key`: Identifier of the key pressed
+#
+#    - A-Z
+#    - F1-F24
+#    - Key0-Key9
+#
+#    A full list with available key codes can be found here:
+#    https://docs.rs/glutin/*/glutin/event/enum.VirtualKeyCode.html#variants
+#
+#    Instead of using the name of the keys, the `key` field also supports using
+#    the scancode of the desired key. Scancodes have to be speceified as a
+#    decimal number. This command will allow you to display the hex scancodes
+#    for certain keys:
+#
+#       `showkey --scancodes`.
+#
+# Then exactly one of:
+#
+# - `chars`: Send a byte sequence to the running application
+#
+#    Th `chars` field writes the specified string to the terminal. This makes
+#    it possible to pass escape sequences. To find escape codes for bindings
+#    like `PageUp` (`"\x1b[5~"`), you can run the command `showkey -a` outside
+#    of tmux. Note that applications use terminfo to map escape sequences back
+#    to keys. It is therefore required to update the terminfo when changing an
+#    escape sequence.
+#
+# - `action`: Execute a predefined action
+#
+#   - ToggleViMode
+#   - SearchForward
+#       Start searching toward the right of the search origin.
+#   - SearchBackward
+#       Start searching toward the left of the search origin.
+#   - Copy
+#   - Paste
+#   - IncreaseFontSize
+#   - DecreaseFontSize
+#   - ResetFontSize
+#   - ScrollPageUp
+#   - ScrollPageDown
+#   - ScrollHalfPageUp
+#   - ScrollHalfPageDown
+#   - ScrollLineUp
+#   - ScrollLineDown
+#   - ScrollToTop
+#   - ScrollToBottom
+#   - ClearHistory
+#       Remove the terminal's scrollback history.
+#   - Hide
+#       Hide the Alacritty window.
+#   - Minimize
+#       Minimize the Alacritty window.
+#   - Quit
+#       Quit Alacritty.
+#   - ToggleFullscreen
+#   - SpawnNewInstance
+#       Spawn a new instance of Alacritty.
+#   - CreateNewWindow
+#       Create a new Alacritty window from the current process.
+#   - ClearLogNotice
+#       Clear Alacritty's UI warning and error notice.
+#   - ClearSelection
+#       Remove the active selection.
+#   - ReceiveChar
+#   - None
+#
+# - Vi mode exclusive actions:
+#
+#   - Open
+#       Perform the action of the first matching hint under the vi mode cursor
+#       with `mouse.enabled` set to `true`.
+#   - ToggleNormalSelection
+#   - ToggleLineSelection
+#   - ToggleBlockSelection
+#   - ToggleSemanticSelection
+#       Toggle semantic selection based on `selection.semantic_escape_chars`.
+#
+# - Vi mode exclusive cursor motion actions:
+#
+#   - Up
+#       One line up.
+#   - Down
+#       One line down.
+#   - Left
+#       One character left.
+#   - Right
+#       One character right.
+#   - First
+#       First column, or beginning of the line when already at the first column.
+#   - Last
+#       Last column, or beginning of the line when already at the last column.
+#   - FirstOccupied
+#       First non-empty cell in this terminal row, or first non-empty cell of
+#       the line when already at the first cell of the row.
+#   - High
+#       Top of the screen.
+#   - Middle
+#       Center of the screen.
+#   - Low
+#       Bottom of the screen.
+#   - SemanticLeft
+#       Start of the previous semantically separated word.
+#   - SemanticRight
+#       Start of the next semantically separated word.
+#   - SemanticLeftEnd
+#       End of the previous semantically separated word.
+#   - SemanticRightEnd
+#       End of the next semantically separated word.
+#   - WordLeft
+#       Start of the previous whitespace separated word.
+#   - WordRight
+#       Start of the next whitespace separated word.
+#   - WordLeftEnd
+#       End of the previous whitespace separated word.
+#   - WordRightEnd
+#       End of the next whitespace separated word.
+#   - Bracket
+#       Character matching the bracket at the cursor's location.
+#   - SearchNext
+#       Beginning of the next match.
+#   - SearchPrevious
+#       Beginning of the previous match.
+#   - SearchStart
+#       Start of the match to the left of the vi mode cursor.
+#   - SearchEnd
+#       End of the match to the right of the vi mode cursor.
+#
+# - Search mode exclusive actions:
+#   - SearchFocusNext
+#       Move the focus to the next search match.
+#   - SearchFocusPrevious
+#       Move the focus to the previous search match.
+#   - SearchConfirm
+#   - SearchCancel
+#   - SearchClear
+#       Reset the search regex.
+#   - SearchDeleteWord
+#       Delete the last word in the search regex.
+#   - SearchHisetoryPrevious
+#       Go to the previous regex in the search history.
+#   - SearchHistoryNext
+#       Go to the next regex in the search history.
+#
+# - macOS exclusive actions:
+#   - ToggleSimpleFullscreen
+#       Enter fullscreen without occupying another space.
+#
+# - Linux/BSD exclusive actions:
+#
+#   - CopySelection
+#      Copy from the selection buffer.
+#   - PasteSelection
+#       Paste from the selection buffer.
+#
+# - `command`: Fork and execute a specified command plus arguments
+#
+#    The `command` field must be a map containing a `program` string and an
+#    `args` array of command line parameter strings. For example:
+#       `{ program: "alacritty", args: ["-e", "vttest"] }`
+#
+# And optionally:
+#
+# - `mods`: Key modifiers to filter binding actions
+#
+#    - Command
+#    - Control
+#    - Option
+#    - Super
+#    - Shift
+#    - Alt
+#
+#    Multiple `mods` can be combined using `|` like this:
+#       `mods: Control|Shift`.
+#    Whitespace and capitalization are relevant and must match the example.
+#
+# - `mode`: Indicate a binding for only specific terminal reported modes
+#
+#    This is mainly used to send applications the correct escape sequences
+#    when in different modes.
+#
+#    - AppCursor
+#    - AppKeypad
+#    - Search
+#    - Alt
+#    - Vi
+#
+#    A `~` operator can be used before a mode to apply the binding whenever
+#    the mode is *not* active, e.g. `~Alt`.
+#
+# Bindings are always filled by default, but will be replaced when a new
+# binding with the same triggers is defined. To unset a default binding, it can
+# be mapped to the `ReceiveChar` action. Alternatively, you can use `None` for
+# a no-op if you do not wish to receive input characters for that binding.
+#
+# If the same trigger is assigned to multiple actions, all of them are executed
+# in the order they were defined in.
+#key_bindings:
+  #- { key: Paste,                                       action: Paste          }
+  #- { key: Copy,                                        action: Copy           }
+  #- { key: L,         mods: Control,                    action: ClearLogNotice }
+  #- { key: L,         mods: Control, mode: ~Vi|~Search, chars: "\x0c"          }
+  #- { key: PageUp,    mods: Shift,   mode: ~Alt,        action: ScrollPageUp,  }
+  #- { key: PageDown,  mods: Shift,   mode: ~Alt,        action: ScrollPageDown }
+  #- { key: Home,      mods: Shift,   mode: ~Alt,        action: ScrollToTop,   }
+  #- { key: End,       mods: Shift,   mode: ~Alt,        action: ScrollToBottom }
+
+  # Vi Mode
+  #- { key: Space,  mods: Shift|Control, mode: ~Search,    action: ToggleViMode            }
+  #- { key: Space,  mods: Shift|Control, mode: Vi|~Search, action: ScrollToBottom          }
+  #- { key: Escape,                      mode: Vi|~Search, action: ClearSelection          }
+  #- { key: I,                           mode: Vi|~Search, action: ToggleViMode            }
+  #- { key: I,                           mode: Vi|~Search, action: ScrollToBottom          }
+  #- { key: C,      mods: Control,       mode: Vi|~Search, action: ToggleViMode            }
+  #- { key: Y,      mods: Control,       mode: Vi|~Search, action: ScrollLineUp            }
+  #- { key: E,      mods: Control,       mode: Vi|~Search, action: ScrollLineDown          }
+  #- { key: G,                           mode: Vi|~Search, action: ScrollToTop             }
+  #- { key: G,      mods: Shift,         mode: Vi|~Search, action: ScrollToBottom          }
+  #- { key: B,      mods: Control,       mode: Vi|~Search, action: ScrollPageUp            }
+  #- { key: F,      mods: Control,       mode: Vi|~Search, action: ScrollPageDown          }
+  #- { key: U,      mods: Control,       mode: Vi|~Search, action: ScrollHalfPageUp        }
+  #- { key: D,      mods: Control,       mode: Vi|~Search, action: ScrollHalfPageDown      }
+  #- { key: Y,                           mode: Vi|~Search, action: Copy                    }
+  #- { key: Y,                           mode: Vi|~Search, action: ClearSelection          }
+  #- {  key: Copy,                        mode: Vi|~Search, action: ClearSelection          }
+  #- { key: V,                           mode: Vi|~Search, action: ToggleNormalSelection   }
+  #- { key: V,      mods: Shift,         mode: Vi|~Search, action: ToggleLineSelection     }
+  #- { key: V,      mods: Control,       mode: Vi|~Search, action: ToggleBlockSelection    }
+  #- { key: V,      mods: Alt,           moe: Vi|~Search, action: ToggleSemanticSelection }
+  #- { key: Return,                      mode: Vi|~Search, action: Open                    }
+  #- { key: K,                           mode: Vi|~Search, action: Up                      }
+  #- { key: J,                           mode: Vi|~Search, action: Down                    }
+  #- { key: H,                           mode: Vi|~Search, action: Left                    }
+  #- { key: L,                           mode: Vi|~Search, action: Right                   }
+  #- { key: Up,                          mode: Vi|~Search, action: Up                      }
+  #- { key: Down,                        mode: Vi|~Search, action: Down                    }
+  #- { key: Left,                        mode: Vi|~Search, action: Left                    }
+  #- { key: Right,                       mode: Vi|~Search, action: Right                   }
+  #- { key: Key0,                        mode: Vi|~Search, action: First                   }
+  #- { key: Key4,   mods: Shift,         mode: Vi|~Search, action: Last                    }
+  #- { key: Key6,   mods: Shift,         mode: Vi|~Search, action: FirstOccupied           }
+  #- { key: H,      mods: Shift,         mode: Vi|~Search, action: High                    }
+  #- { key: M,      mods: Shift,         mode: Vi|~Search, action: Middle                  }
+  #- { key: L,      mods: Shift,         mode: Vi|~Search, action: Low                     }
+  #- { key: B,                           mode: Vi|~Search, action: SemanticLeft            }
+  #- { key: W,                           mode: Vi|~Search, action: SemanticRight           }
+  #- { key: E,                           mode: Vi|~Search, action: SemanticRightEnd        }
+  #- { key: B,      mods: Shift,         mode: Vi|~Search, action: WordLeft                }
+  #- { key: W,      mods: Shift,         mode: Vi|~Search, action: WordRight               }
+  #- { key: E,      mods: Shift,         mode: Vi|~Search, action: WordRightEnd            }
+  #- { key: Key5,   mods: Shift,         mode: Vi|~Search, action: Bracket                 }
+  #- { key: Slash,                       mode: Vi|~Search, action: SearchForward           }
+  #- { key: Slash,  mods: Shift,         mode: Vi|~Search, action: SearchBackward          }
+  #- { key: N,                           mode: Vi|~Search, action: SearchNext              }
+  #- { key: N,      mods: Shift,         mode: Vi|~Search, action: SearchPrevious          }
+
+  # Search Mode
+  #- { key: Return,                mode: Search|Vi,  action: SearchConfirm         }
+  #- { key: Escape,                mode: Search,     action: SearchCancel          }
+  #- { key: C,      mods: Control, mode: Search,     action: SearchCancel          }
+  #- { key: U,      mods: Control, mode: Search,     action: SearchClear           }
+  #- { key: W,      mods: Control, mode: Search,     action: SearchDeleteWord      }
+  #- { key: P,      mods: Control, mode: Search,     action: SearchHistoryPrevious }
+  #- { key: N,      mods: Control, mode: Search,     action: SearchHistoryNext     }
+  #- { key: Up,                    mode: Search,     action: SearchHistoryPrevious }
+  #- { key: Down,                  mode: Search,     action: SearchHistoryNext     }
+  #- { key: Return,                mode: Search|~Vi, action: SearchFocusNext       }
+  #- { key: Return, mods: Shift,   mode: Search|~Vi, action: SearchFocusPrevious   }
+
+  # (Windows, Linux, and BSD only)
+  #- { key: V,              mods: Control|Shift, mode: ~Vi,        action: Paste            }
+  #- { key: C,              mods: Control|dShift,                   action: Copy             }
+  #- { key: F,              mods: Control|Shift, mode: ~Search,    action: SearchForward    }
+  #- { key: B,              mods: Control|Shift, mode: ~Search,    action: SearchBackward   }
+  #- { key: C,              mods: Control|Shift, mode: Vi|~Search, action: ClearSelection   }
+  #- { key: Insert,         mods: Shift,                           action: PasteSelection   }
+  #- { key: Key0,           mods: Control,                        action: ResetFontSize    }
+  #- { key: Equals,         mods: Control,                         action: IncreaseFontSize }
+  #- { key: Plus,           mods: Control,                         action: IncreaseFontSize }
+  #- { key: NumpadAdd,      mods: Control,                         action: IncreaseFontSize }
+  #- { key: Minus,          mods: Control,                         action: DecreaseFontSize }
+  #- { key: NumpadSubtract, mods: Control,                         action: DecreaseFontSize }
+```
 
 ## Tmux
 
@@ -47,8 +495,6 @@ Player de musica
 - `~/.config/ncmpcpp/config`
 
 ```conf tangle:~/.config/ncmpcpp/config
-# vim: filetype=conf
-
 ncmpcpp_directory = "~/.config/ncmpcpp"
 lyrics_directory = "~/.local/share/lyrics"
 mpd_music_dir = "~/media/musicas"
@@ -193,17 +639,6 @@ audio_output {
 }
 ```
 
-## Handlr
-
-Abre arquivos de acordo com o mimetype, substitui o **xdg-open**
-
-- `~/.config/handlr/handlr.toml`
-
-```toml tangle:~/.config/handlr/handlr.toml
-enable_selector = true
-selector = "dmenu -p 'Abrir com: '"
-```
-
 ## Mimetypes
 
 Tipos de arquivos e programa chamado para os abrir
@@ -343,213 +778,6 @@ symbol = "─"
 style = "bold green"
 ```
 
-## Bspwm
-
-Gerenciador de janelas bspwm
-
-- `~/.config/bspwm/bspwmrc`
-
-```sh tangle:~/.config/bspwm/bspwmrc
-#!/bin/sh
-
-# Monitor
-bspc monitor -d 1 2 3 4 5
-
-# Configurações
-bspc config border_width            1
-bspc config window_gap              0
-bspc config top_padding             0
-bspc config bottom_padding          0
-bspc config left_padding            0
-bspc config right_padding           0
-bspc config split_ratio             0.50
-bspc config borderless_monocle      true
-bspc config gapless_monocle         true
-bspc config pointer_modifier        mod4
-bspc config pointer_action1         move
-bspc config click_to_focus          any
-bspc config single_monocle          true
-
-# Cores
-bspc config normal_border_color           "#000000"
-bspc config active_border_color           "#ffffff"
-bspc config focused_border_color          "#ffffff"
-bspc config presel_feedback_color         "#333333"
-
-# Regras
-bspc rule -a mplayer2 state=floating
-bspc rule -a Kupfer.py focus=on
-bspc rule -a Screenkey manage=off
-bspc rule -a mpv state=fullscreen
-bspc rule -a guvcview state=floating rectangle=480x270+0+0 sticky=on layer=above
-bspc rule -a Deadbeef state=floating rectangle=1200x600+0+0 sticky=on layer=above center=true
-bspc rule -a ncmpcpp state=floating rectangle=1200x600+0+0 sticky=on layer=above center=true
-bspc rule -a xev state=floating rectangle=480x270+0+0 sticky=on layer=above center=true
-bspc rule -a Gcr-prompter state=floating rectangle=480x270+0+0 sticky=on layer=above center=true
-bspc rule -a Transmission-gtk state=floating rectangle=1000x700+0+0 sticky=on layer=above center=true
-bspc rule -a firefox:Places state=floating rectangle=480x270+0+0 sticky=off layer=above center=true
-bspc rule -a confirm state=floating rectangle=480x270+0+0 sticky=on layer=above center=true
-bspc rule -a file_progress state=floating rectangle=480x270+0+0 sticky=off layer=above center=true
-bspc rule -a dialog state=floating rectangle=480x270+0+0 sticky=on layer=above center=true
-bspc rule -a download state=floating rectangle=480x270+0+0 sticky=off layer=above
-bspc rule -a MEGAsync:megasync state=floating rectangle=480x270+0+0 sticky=off layer=above center=true
-bspc rule -a firefox:Devtools state=floating rectangle=800x350+0+0 sticky=on layer=above center=true
-bspc rule -a Galculator:galculator state=floating rectangle=480x270+0+0 sticky=on layer=above center=true
-bspc rule -a toolbar state=floating rectangle=480x270+0+0 sticky=off layer=above
-bspc rule -a error state=floating rectangle=480x270+0+0 sticky=off layer=above center=true
-bspc rule -a MPlayer state=floating rectangle=480x270+0+0 sticky=off layer=above center=true
-bspc rule -a notification state=floating rectangle=480x270+0+0 sticky=off layer=above center=true
-bspc rule -a pulsemixer state=floating rectangle=800x300+0+0 center=true
-bspc rule -a VirtualBox Manager state=fullscreen
-bspc rule -a VirtualBox Machine state=fullscreen
-bspc rule -a :Zathura state=tiled
-bspc rule -a st_download state=floating rectangle=1000x700+0+0 center=true
-```
-
-## Spectrwm
-
-Gerenciador de janelas spectrwm
-
-- `~/.config/spectrwm/spectrwm.conf`
-
-```conf tangle:~/.config/spectrwm/spectrwm.conf
-workspace_limit   = 5
-focus_mode        = manual
-focus_close       = previous
-focus_close_wrap  = 1
-focus_default     = last
-spawn_position    = next
-workspace_clamp   = 1
-warp_focus        = 1
-warp_pointer      = 1
-
-# Decoração de janelas
-border_width            = 1
-color_focus             = rgb:ff/ff/ff
-color_focus_maximized   = rgb:ff/ff/ff
-color_unfocus           = rgb:00/00/00
-color_unfocus_maximized = rgb:00/00/00
-region_padding          = 0
-tile_gap                = 1
-
-# Região de contenção
-boundary_width = 50
-
-# Remove bordas quando ha uma janela e a barra é desativada
-disable_border = 1
-
-# Barra
-bar_enabled               = 0
-bar_border_width          = 1
-bar_font_color_selected   = rgb:00/00/00
-bar_font                  = Fira Code:pixelsize=12:antialias=true
-bar_font_pua              = symbols nerd font:pixelsize=14:antialias=true
-bar_justify               = center
-bar_format                = +N:+I +S <+D>+4< | %a %d/%m/%Y - %H:%M | +8<+A+4<+V
-workspace_indicator       = listcurrent,listactive,listurgent,markcurrent,markurgent,printnames
-bar_at_bottom             = 1
-stack_enabled             = 1
-clock_enabled             = 1
-clock_format              = %a %d/%m/%Y - %H:%M
-iconic_enabled            = 1
-maximize_hide_bar         = 1
-window_class_enabled      = 1
-window_instance_enabled   = 1
-window_name_enabled       = 1
-verbose_layout            = 1
-urgent_enabled            = 1
-urgent_collapse           = 1
-bar_action                = baraction.sh
-bar_action_expand         = 0
-bar_enabled_ws[1]         = 1
-bar_border[1]             = rgb:00/00/00
-bar_border_unfocus[1]     = rgb:00/00/00
-bar_color[1]              = rgb:00/00/00
-bar_color_selected[1]     = rgb:ff/ff/ff
-bar_font_color[1]         = rgb:ff/ff/ff
-
-dialog_ratio      = 0.6
-
-# Nome dos workspaces
-name          = ws[1]:Browse
-name          = ws[2]:Edit
-name          = ws[3]:Watch
-name          = ws[4]:Image
-name          = ws[5]:Message
-
-# Tecla mod
-modkey = Mod4
-
-# Desabilitar programas padrão
-bind[] = MOD+Shift+Delete
-bind[] = MOD+Shift+Return
-bind[] = MOD+p
-bind[] = MOD+q
-bind[] = MOD+r
-bind[] = MOD+f
-bind[] = MOD+Escape
-bind[] = MOD+Left
-bind[] = MOD+Right
-bind[] = MOD+w
-bind[] = Mod1+Left
-bind[] = Mod1+Right
-bind[] = Mod1+Shift+Right
-bind[] = Mod1+Shift+Left
-bind[] = MOD+Mod1+Left
-bind[] = MOD+Mod1+Right
-bind[] = MOD+Return
-
-# Teclas
-bind[wind_del]          = MOD+q
-bind[restart]           = MOD+r
-bind[fullscreen_toggle] = MOD+f
-bind[cycle_layout]      = MOD+Escape
-bind[master_shrink]     = MOD+Left
-bind[master_grow]       = MOD+Right
-bind[float_toggle]      = MOD+w
-bind[ws_prev]           = Mod1+Left
-bind[ws_next]           = Mod1+Right
-bind[ws_next_move]      = Mod1+Shift+Right
-bind[ws_prev_move]      = Mod1+Shift+Left
-bind[ws_prev_all]       = MOD+Mod1+Left
-bind[ws_next_all]       = MOD+Mod1+Right
-bind[swap_next]         = MOD+Return
-
-# Regras
-# remova com: quirk[class:name] = NONE
-# Programas
-quirk[qutebrowser]     = WS[1]
-quirk[Firefox]         = WS[1]
-quirk[Emacs]           = WS[2]
-quirk[nvim]            = WS[2]
-quirk[mpv]             = WS[3]
-quirk[Gimp]            = WS[4]
-quirk[discord]         = WS[5]
-quirk[TelegramDesktop] = WS[5]
-# Flutuantes
-quirk[ncmpcpp]          = FLOAT
-quirk[pulsemixer]       = FLOAT
-quirk[MEGAsync]         = FLOAT
-quirk[Transmission-gtk] = FLOAT
-quirk[Galculator]       = FLOAT
-quirk[htop]             = FLOAT
-# Padrões
-quirk[MPlayer:xv]                        = FLOAT + FULLSCREEN + FOCUSPREV
-quirk[OpenOffice.org 2.4:VCLSalFrame]    = FLOAT
-quirk[OpenOffice.org 3.0:VCLSalFrame]    = FLOAT
-quirk[OpenOffice.org 3.1:VCLSalFrame]    = FLOAT
-quirk[Firefox-bin:firefox-bin]           = TRANSSZ
-quirk[Firefox:Dialog]                    = FLOAT
-quirk[Gimp:gimp]                         = FLOAT + ANYWHERE
-quirk[XTerm:xterm]                       = XTERM_FONTADJ
-quirk[xine:Xine Window]                  = FLOAT + ANYWHERE
-quirk[Xitk:Xitk Combo]                   = FLOAT + ANYWHERE
-quirk[xine:xine Panel]                   = FLOAT + ANYWHERE
-quirk[Xitk:Xine Window]                  = FLOAT + ANYWHERE
-quirk[xine:xine Video Fullscreen Window] = FULLSCREEN + FLOAT
-quirk[pcb:pcb]                           = FLOAT
-```
-
 ## Picom
 
 Compositor
@@ -557,68 +785,26 @@ Compositor
 - `~/.config/picom/picom.conf`
 
 ```conf tangle:~/.config/picom/picom.conf
-#################################
-#             Shadows           #
-#################################
-
-
-# Enabled client-side shadows on windows. Note desktop windows
-# (windows with '_NET_WM_WINDOW_TYPE_DESKTOP') never get shadow,
-# unless explicitly requested using the wintypes option.
-#
-# shadow = false
-shadow = true;
-
-# The blur radius for shadows, in pixels. (defaults to 12)
-# shadow-radius = 12
+shadow = false
 shadow-radius = 7;
-
-# The opacity of shadows. (0.0 - 1.0, defaults to 0.75)
 # shadow-opacity = .75
-
-# The left offset for shadows, in pixels. (defaults to -15)
-# shadow-offset-x = -15
 shadow-offset-x = -7;
-
-# The top offset for shadows, in pixels. (defaults to -15)
-# shadow-offset-y = -15
 shadow-offset-y = -7;
-
-# Avoid drawing shadows on dock/panel windows. This option is deprecated,
-# you should use the *wintypes* option in your config file instead.
-#
 # no-dock-shadow = false
-
-# Don't draw shadows on drag-and-drop windows. This option is deprecated,
-# you should use the *wintypes* option in your config file instead.
-#
-# no-dnd-shadow = false
-
-# Red color value of shadow (0.0 - 1.0, defaults to 0).
 # shadow-red = 0
-
-# Green color value of shadow (0.0 - 1.0, defaults to 0).
 # shadow-green = 0
-
-# Blue color value of shadow (0.0 - 1.0, defaults to 0).
 # shadow-blue = 0
-
-# Do not paint shadows on shaped windows. Note shaped windows
-# here means windows setting its shape through X Shape extension.
-# Those using ARGB background is beyond our control.
+# Do not paint shadows on shaped windows.
 # Deprecated, use
 #   shadow-exclude = 'bounding_shaped'
 # or
 #   shadow-exclude = 'bounding_shaped && !rounded_corners'
 # instead.
-#
 # shadow-ignore-shaped = ''
 
 # Specify a list of conditions of windows that should have no shadow.
-#
 # examples:
 #   shadow-exclude = "n:e:Notification";
-#
 # shadow-exclude = []
 shadow-exclude = [
   "name = 'Notification'",
@@ -627,81 +813,34 @@ shadow-exclude = [
   "class_g = 'Cairo-clock'",
   "_GTK_FRAME_EXTENTS@:c"
 ];
-
-# Specify a X geometry that describes the region in which shadow should not
-# be painted in, such as a dock window region. Use
 #    shadow-exclude-reg = "x10+0+0"
-# for example, if the 10 pixels on the bottom of the screen should not have shadows painted on.
-#
 # shadow-exclude-reg = ""
-
-# Crop shadow of a window fully on a particular Xinerama screen to the screen.
 # xinerama-shadow-crop = false
-
 
 #################################
 #           Fading              #
 #################################
 
-
-# Fade windows in/out when opening/closing and when opacity changes,
-#  unless no-fading-openclose is used.
-# fading = false
-fading = true
-
-# Opacity change between steps while fading in. (0.01 - 1.0, defaults to 0.028)
-# fade-in-step = 0.028
+fading = false
 fade-in-step = 0.03;
-
-# Opacity change between steps while fading out. (0.01 - 1.0, defaults to 0.03)
 # fade-out-step = 0.03
 fade-out-step = 0.03;
-
-# The time between steps in fade step, in milliseconds. (> 0, defaults to 10)
 # fade-delta = 10
-
-# Specify a list of conditions of windows that should not be faded.
 # fade-exclude = []
-
-# Do not fade on window open/close.
 # no-fading-openclose = false
-
-# Do not fade destroyed ARGB windows with WM frame. Workaround of bugs in Openbox, Fluxbox, etc.
 # no-fading-destroyed-argb = false
-
 
 #################################
 #   Transparency / Opacity      #
 #################################
 
-
-# Opacity of inactive windows. (0.1 - 1.0, defaults to 1.0)
-# inactive-opacity = 1
 inactive-opacity = 1.0;
-
-# Opacity of window titlebars and borders. (0.1 - 1.0, disabled by default)
-# frame-opacity = 1.0
 frame-opacity = 1.0;
-
-# Default opacity for dropdown menus and popup menus. (0.0 - 1.0, defaults to 1.0)
-# menu-opacity = 1.0
 menu-opacity = 1.0
-
-# Let inactive opacity set by -i override the '_NET_WM_OPACITY' values of windows.
-# inactive-opacity-override = true
 inactive-opacity-override = false;
-
-# Default opacity for active windows. (0.0 - 1.0, defaults to 1.0)
-# active-opacity = 1.0
-
-# Dim inactive windows. (0.0 - 1.0, defaults to 0.0)
-# inactive-dim = 0.0
-
-# Specify a list of conditions of windows that should always be considered focused.
-# focus-exclude = []
+active-opacity = 1.0
+inactive-dim = 0.0
 focus-exclude = [ "class_g = 'Cairo-clock'" ];
-
-# Use fixed inactive dim value, instead of adjusting according to window opacity.
 # inactive-dim-fixed = 1.0
 
 # Specify a list of opacity rules, in the format `PERCENT:PATTERN`,
@@ -716,41 +855,13 @@ focus-exclude = [ "class_g = 'Cairo-clock'" ];
 #     Background-Blurring       #
 #################################
 
-
-# Parameters for background blurring, see the *BLUR* section for more information.
 # blur-method =
 # blur-size = 12
-#
 # blur-deviation = false
-
-# Blur background of semi-transparent / ARGB windows.
-# Bad in performance, with driver-dependent behavior.
-# The name of the switch may change without prior notifications.
-#
 # blur-background = false
-
-# Blur background of windows when the window frame is not opaque.
-# Implies:
-#    blur-background
-# Bad in performance, with driver-dependent behavior. The name may change.
-#
 # blur-background-frame = false
-
-
-# Use fixed blur strength rather than adjusting according to window opacity.
 # blur-background-fixed = false
-
-
-# Specify the blur convolution kernel, with the following format:
-# example:
-#   blur-kern = "5,5,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1";
-#
 # blur-kern = ''
-blur-kern = "3x3box";
-
-
-# Exclude conditions for background blur.
-# blur-background-exclude = []
 blur-background-exclude = [
   "window_type = 'dock'",
   "window_type = 'desktop'",
@@ -766,12 +877,9 @@ blur-background-exclude = [
 
 # Specify the backend to use: `xrender`, `glx`, or `xr_glx_hybrid`.
 # `xrender` is the default one.
-#
-# backend = 'glx'
 backend = "xrender";
 
 # Enable/disable VSync.
-# vsync = false
 vsync = true
 
 # Enable remote control via D-Bus. See the *D-BUS API* section below for more details.
@@ -779,198 +887,59 @@ vsync = true
 
 # Try to detect WM windows (a non-override-redirect window with no
 # child that has 'WM_STATE') and mark them as active.
-#
-# mark-wmwin-focused = false
 mark-wmwin-focused = true;
 
 # Mark override-redirect windows that doesn't have a child window with 'WM_STATE' focused.
-# mark-ovredir-focused = false
 mark-ovredir-focused = true;
 
 # Try to detect windows with rounded corners and don't consider them
 # shaped windows. The accuracy is not very high, unfortunately.
-#
-# detect-rounded-corners = false
 detect-rounded-corners = false;
 
 # Detect '_NET_WM_OPACITY' on client windows, useful for window managers
 # not passing '_NET_WM_OPACITY' of client windows to frame windows.
-#
-# detect-client-opacity = false
 detect-client-opacity = true;
 
 # Specify refresh rate of the screen. If not specified or 0, picom will
 # try detecting this with X RandR extension.
-#
-# refresh-rate = 60
 refresh-rate = 0
-
-# Limit picom to repaint at most once every 1 / 'refresh_rate' second to
-# boost performance. This should not be used with
-#   vsync drm/opengl/opengl-oml
-# as they essentially does sw-opti's job already,
-# unless you wish to specify a lower refresh rate than the actual value.
-#
-# sw-opti =
-
-# Use EWMH '_NET_ACTIVE_WINDOW' to determine currently focused window,
-# rather than listening to 'FocusIn'/'FocusOut' event. Might have more accuracy,
-# provided that the WM supports it.
-#
-# use-ewmh-active-win = false
-
-# Unredirect all windows if a full-screen opaque window is detected,
-# to maximize performance for full-screen windows. Known to cause flickering
-# when redirecting/unredirecting windows.
-#
-# unredir-if-possible = false
-
-# Delay before unredirecting the window, in milliseconds. Defaults to 0.
-# unredir-if-possible-delay = 0
-
-# Conditions of windows that shouldn't be considered full-screen for unredirecting screen.
-# unredir-if-possible-exclude = []
 
 # Use 'WM_TRANSIENT_FOR' to group windows, and consider windows
 # in the same group focused at the same time.
-#
-# detect-transient = false
 detect-transient = true
 
 # Use 'WM_CLIENT_LEADER' to group windows, and consider windows in the same
 # group focused at the same time. 'WM_TRANSIENT_FOR' has higher priority if
 # detect-transient is enabled, too.
-#
-# detect-client-leader = false
 detect-client-leader = true
-
-# Resize damaged region by a specific number of pixels.
-# A positive value enlarges it while a negative one shrinks it.
-# If the value is positive, those additional pixels will not be actually painted
-# to screen, only used in blur calculation, and such. (Due to technical limitations,
-# with use-damage, those pixels will still be incorrectly painted to screen.)
-# Primarily used to fix the line corruption issues of blur,
-# in which case you should use the blur radius value here
-# (e.g. with a 3x3 kernel, you should use `--resize-damage 1`,
-# with a 5x5 one you use `--resize-damage 2`, and so on).
-# May or may not work with *--glx-no-stencil*. Shrinking doesn't function correctly.
-#
-# resize-damage = 1
-
-# Specify a list of conditions of windows that should be painted with inverted color.
-# Resource-hogging, and is not well tested.
-#
-# invert-color-include = []
-
-# GLX backend: Avoid using stencil buffer, useful if you don't have a stencil buffer.
-# Might cause incorrect opacity when rendering transparent content (but never
-# practically happened) and may not work with blur-background.
-# My tests show a 15% performance boost. Recommended.
-#
-# glx-no-stencil = false
-
-# GLX backend: Avoid rebinding pixmap on window damage.
-# Probably could improve performance on rapid window content changes,
-# but is known to break things on some drivers (LLVMpipe, xf86-video-intel, etc.).
-# Recommended if it works.
-#
-# glx-no-rebind-pixmap = false
 
 # Disable the use of damage information.
 # This cause the whole screen to be redrawn everytime, instead of the part of the screen
 # has actually changed. Potentially degrades the performance, but might fix some artifacts.
 # The opposing option is use-damage
-#
-# no-use-damage = false
 use-damage = true
 
 # Use X Sync fence to sync clients' draw calls, to make sure all draw
 # calls are finished before picom starts drawing. Needed on nvidia-drivers
 # with GLX backend for some users.
-#
 # xrender-sync-fence = false
-
-# GLX backend: Use specified GLSL fragment shader for rendering window contents.
-# See `compton-default-fshader-win.glsl` and `compton-fake-transparency-fshader-win.glsl`
-# in the source tree for examples.
-#
-# glx-fshader-win = ''
 
 # Force all windows to be painted with blending. Useful if you
 # have a glx-fshader-win that could turn opaque pixels transparent.
-#
 # force-win-blend = false
-
-# Do not use EWMH to detect fullscreen windows.
-# Reverts to checking if a window is fullscreen based only on its size and coordinates.
-#
-# no-ewmh-fullscreen = false
 
 # Dimming bright windows so their brightness doesn't exceed this set value.
 # Brightness of a window is estimated by averaging all pixels in the window,
 # so this could comes with a performance hit.
 # Setting this to 1.0 disables this behaviour. Requires --use-damage to be disabled. (default: 1.0)
-#
 # max-brightness = 1.0
 
 # Make transparent windows clip other windows like non-transparent windows do,
 # instead of blending on top of them.
-#
 # transparent-clipping = false
 
-# Set the log level. Possible values are:
-#  "trace", "debug", "info", "warn", "error"
-# in increasing level of importance. Case doesn't matter.
-# If using the "TRACE" log level, it's better to log into a file
-# using *--log-file*, since it can generate a huge stream of logs.
-#
-# log-level = "debug"
 log-level = "warn";
 
-# Set the log file.
-# If *--log-file* is never specified, logs will be written to stderr.
-# Otherwise, logs will to written to the given file, though some of the early
-# logs might still be written to the stderr.
-# When setting this option from the config file, it is recommended to use an absolute path.
-#
-# log-file = '/path/to/your/log/file'
-
-# Show all X errors (for debugging)
-# show-all-xerrors = false
-
-# Write process ID to a file.
-# write-pid-path = '/path/to/your/log/file'
-
-# Window type settings
-#
-# 'WINDOW_TYPE' is one of the 15 window types defined in EWMH standard:
-#     "unknown", "desktop", "dock", "toolbar", "menu", "utility",
-#     "splash", "dialog", "normal", "dropdown_menu", "popup_menu",
-#     "tooltip", "notification", "combo", and "dnd".
-#
-# Following per window-type options are available: ::
-#
-#   fade, shadow:::
-#     Controls window-type-specific shadow and fade settings.
-#
-#   opacity:::
-#     Controls default opacity of the window type.
-#
-#   focus:::
-#     Controls whether the window of this type is to be always considered focused.
-#     (By default, all window types except "normal" and "dialog" has this on.)
-#
-#   full-shadow:::
-#     Controls whether shadow is drawn under the parts of the window that you
-#     normally won't be able to see. Useful when the window has parts of it
-#     transparent, and you want shadows in those areas.
-#
-#   redir-ignore:::
-#     Controls whether this type of windows should cause screen to become
-#     redirected again after been unredirected. If you have unredir-if-possible
-#     set, and doesn't want certain window to cause unnecessary screen redirection,
-#     you can set this to `true`.
-#
 wintypes:
 {
   tooltip = { fade = false; shadow = false; opacity = 1; focus = true; full-shadow = false; };
@@ -999,72 +968,6 @@ map r rotate
 map zd recolor
 ```
 
-## Gtk
-
-Interface de usuário
-
-### Gtk 2
-
-- `~/.config/gtk-2.0/gtkrc`
-
-```conf tangle:~/.config/gtk-2.0/gtkrc
-include "/home/lucas/.gtkrc-2.0.mine"
-gtk-theme-name="Adwaita-dark"
-gtk-icon-theme-name="Papirus-Dark"
-gtk-font-name="Inconsolata 13"
-gtk-cursor-theme-name="Bluecurve"
-gtk-cursor-theme-size=0
-gtk-toolbar-style=GTK_TOOLBAR_ICONS
-gtk-toolbar-icon-size=GTK_ICON_SIZE_MENU
-gtk-button-images=1
-gtk-menu-images=1
-gtk-enable-event-sounds=1
-gtk-enable-input-feedback-sounds=1
-gtk-xft-antialias=1
-gtk-xft-hinting=1
-gtk-xft-hintstyle="hintfull"
-```
-
-### Gtk 3
-
-- `~/.config/gtk-3.0/settings.ini`
-
-```conf tangle:~/.config/gtk-3.0/settings.ini
-[Settings]
-gtk-theme-name=Adwaita-dark
-gtk-font-name=Inconsolata 13
-gtk-cursor-theme-name=Adwaita
-gtk-cursor-theme-size=0
-gtk-toolbar-style=GTK_TOOLBAR_ICONS
-gtk-toolbar-icon-size=GTK_ICON_SIZE_MENU
-gtk-button-images=1
-gtk-menu-images=1
-gtk-enable-event-sounds=1
-gtk-enable-input-feedback-sounds=1
-gtk-xft-antialias=1
-gtk-xft-hinting=1
-gtk-xft-hintstyle=hintfull
-gtk-icon-theme-name=Papirus-Dark
-gtk-application-prefer-dark-theme=true
-```
-
-- `~/.config/settings.ini`
-
-```conf tangle:~/.config/settings.ini
-[Settings]
-gtk-font-name=Inconsolata 13
-gtk-cursor-theme-size=0
-gtk-toolbar-style=GTK_TOOLBAR_BOTH
-gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
-gtk-button-images=1
-gtk-menu-images=1
-gtk-enable-event-sounds=1
-gtk-enable-input-feedback-sounds=1
-gtk-xft-antialias=1
-gtk-xft-hinting=1
-gtk-xft-hintstyle=hintfull
-```
-
 ## Dunst
 
 Daemon de notificação
@@ -1074,7 +977,6 @@ Daemon de notificação
 ```conf tangle:~/.config/dunst/dunstrc
 [global]
     ### Display ###
-
     # Which monitor should the notifications be displayed on.
     monitor = 0
 
@@ -1082,27 +984,10 @@ Daemon de notificação
     #   mouse: follow mouse pointer
     #   keyboard: follow window with keyboard focus
     #   none: don't follow anything
-    #
-    # "keyboard" needs a window manager that exports the
-    # _NET_ACTIVE_WINDOW property.
-    # This should be the case for almost all modern window managers.
-    #
-    # If this option is set to mouse or keyboard, the monitor option
-    # will be ignored.
     follow = mouse
 
     # The geometry of the window:
     #   [{width}]x{height}[+/-{x}+/-{y}]
-    # The geometry of the message window.
-    # The height is measured in number of notifications everything else
-    # in pixels.  If the width is omitted but the height is given
-    # ("-geometry x2"), the message window expands over the whole screen
-    # (dmenu-like).  If width is 0, the window expands to the longest
-    # message displayed.  A positive x is measured from the left, a
-    # negative from the right side of the screen.  Y is measured from
-    # the top and down respectively.
-    # The width can be negative.  In this case the actual width is the
-    # screen width minus the width defined in within the geometry option.
     geometry = "800x5-30+20"
 
     # Turn on the progess bar
@@ -1120,7 +1005,6 @@ Daemon de notificação
 
     # Set the maximum width for the progress bar
     progress_bar_max_width = 300
-
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
@@ -1172,42 +1056,11 @@ Daemon de notificação
     sort = yes
 
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
-    # for longer than idle_threshold seconds.
     # Set to 0 to disable.
-    # A client can set the 'transient' hint to bypass this. See the rules
-    # section for how to disable this if necessary
     idle_threshold = 120
 
-    ### Text ###
-
     font = Inconsolata 13
-
-    # The spacing between lines.  If the height is smaller than the
-    # font height, it will get raised to the font height.
     line_height = 1
-
-    # Possible values are:
-    # full: Allow a small subset of html markup in notifications:
-    #        <b>bold</b>
-    #        <i>italic</i>
-    #        <s>strikethrough</s>
-    #        <u>underline</u>
-    #
-    #        For a complete reference see
-    #        <https://developer.gnome.org/pango/stable/pango-Markup.html>.
-    #
-    # strip: This setting is provided for compatibility with some broken
-    #        clients that send markup even though it's not enabled on the
-    #        server. Dunst will try to strip the markup but the parsing is
-    #        simplistic so using this option outside of matching rules for
-    #        specific applications *IS GREATLY DISCOURAGED*.
-    #
-    # no:    Disable markup parsing, incoming notifications will be treated as
-    #        plain text. Dunst will not advertise that it has the body-markup
-    #        capability if this is set as a global setting.
-    #
-    # It's important to note that markup inside the format option will be parsed
-    # regardless of what this is set to.
     markup = full
 
     # The format of the message.  Possible variables are:
@@ -1223,24 +1076,19 @@ Daemon de notificação
     format = "<b>%s</b>\n%b"
 
     # Alignment of message text.
-    # Possible values are "left", "center" and "right".
     alignment = left
 
     # Vertical alignment of message text and icon.
-    # Possible values are "top", "center" and "bottom".
     vertical_alignment = center
 
     # Show age of message if message is older than show_age_threshold
-    # seconds.
     # Set to -1 to disable.
     show_age_threshold = 60
 
-    # Split notifications into multiple lines if they don't fit into
-    # geometry.
+    # Split notifications into multiple lines if they don't fit
     word_wrap = yes
 
     # When word_wrap is set to no, specify where to make an ellipsis in long lines.
-    # Possible values are "start", "middle" and "end".
     ellipsize = middle
 
     # Ignore newlines '\n' in notifications.
@@ -1255,8 +1103,6 @@ Daemon de notificação
     # Display indicators for URLs (U) and actions (A).
     show_indicators = yes
 
-    ### Icons ###
-
     # Align icons left/right/off
     icon_position = left
 
@@ -1270,8 +1116,6 @@ Daemon de notificação
 
     # Paths to default icons.
     icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
-
-    ### History ###
 
     # Should a notification popped up from history be sticky or timeout
     # as if it would normally do.
@@ -1361,46 +1205,14 @@ Daemon de notificação
     mouse_middle_click = do_action, close_current
     mouse_right_click = do_action, close_current
 
-# Experimental features that may or may not work correctly. Do not expect them
-# to have a consistent behaviour across releases.
+# Experimental features that may or may not work correctly.
 [experimental]
-    # Calculate the dpi to use on a per-monitor basis.
-    # If this setting is enabled the Xft.dpi value will be ignored and instead
-    # dunst will attempt to calculate an appropriate dpi value for each monitor
-    # using the resolution and physical size. This might be useful in setups
-    # where there are multiple screens with very different dpi values.
     per_monitor_dpi = false
 
 # The internal keyboard shortcut support in dunst is now considered deprecated
-# and should be replaced by dunstctl calls. You can use the configuration of your
-# WM or DE to bind these to shortcuts of your choice.
-# Check the dunstctl manual page for more info.
 [shortcuts]
 
-    # Shortcuts are specified as [modifier+][modifier+]...key
-    # Available modifiers are "ctrl", "mod1" (the alt-key), "mod2",
-    # "mod3" and "mod4" (windows-key).
-    # Xev might be helpful to find names for keys.
-
-    # Close notification. Equivalent dunstctl command:
-    # dunstctl close
-    # close = ctrl+space
-
-    # Close all notifications. Equivalent dunstctl command:
-    # dunstctl close-all
-    # close_all = ctrl+shift+space
-
-    # Redisplay last message(s). Equivalent dunstctl command:
-    # dunstctl history-pop
-    # history = ctrl+grave
-
-    # Context menu. Equivalent dunstctl command:
-    # dunstctl context
-    # context = ctrl+shift+period
-
 [urgency_low]
-    # IMPORTANT: colors have to be defined in quotation marks.
-    # Otherwise the "#" and following would be interpreted as a comment.
     background = "#000000"
     foreground = "#FFFFFF"
     timeout = 10
@@ -1421,145 +1233,4 @@ Daemon de notificação
     timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
     #icon = /path/to/icon
-
-# Every section that isn't one of the above is interpreted as a rules to
-# override settings for certain messages.
-#
-# Messages can be matched by
-#    appname (discouraged, see desktop_entry)
-#    body
-#    category
-#    desktop_entry
-#    icon
-#    match_transient
-#    msg_urgency
-#    stack_tag
-#    summary
-#
-# and you can override the
-#    background
-#    foreground
-#    format
-#    frame_color
-#    fullscreen
-#    new_icon
-#    set_stack_tag
-#    set_transient
-#    timeout
-#    urgency
-#
-# Shell-like globbing will get expanded.
-#
-# Instead of the appname filter, it's recommended to use the desktop_entry filter.
-# GLib based applications export their desktop-entry name. In comparison to the appname,
-# the desktop-entry won't get localized.
-#
-# SCRIPTING
-# You can specify a script that gets run when the rule matches by
-# setting the "script" option.
-# The script will be called as follows:
-#   script appname summary body icon urgency
-# where urgency can be "LOW", "NORMAL" or "CRITICAL".
-#
-# NOTE: if you don't want a notification to be displayed, set the format
-# to "".
-# NOTE: It might be helpful to run dunst -print in a terminal in order
-# to find fitting options for rules.
-
-# Disable the transient hint so that idle_threshold cannot be bypassed from the
-# client
-#[transient_disable]
-#    match_transient = yes
-#    set_transient = no
-#
-# Make the handling of transient notifications more strict by making them not
-# be placed in history.
-#[transient_history_ignore]
-#    match_transient = yes
-#    history_ignore = yes
-
-# fullscreen values
-# show: show the notifications, regardless if there is a fullscreen window opened
-# delay: displays the new notification, if there is no fullscreen window active
-#        If the notification is already drawn, it won't get undrawn.
-# pushback: same as delay, but when switching into fullscreen, the notification will get
-#           withdrawn from screen again and will get delayed like a new notification
-#[fullscreen_delay_everything]
-#    fullscreen = delay
-#[fullscreen_show_critical]
-#    msg_urgency = critical
-#    fullscreen = show
-
-#[espeak]
-#    summary = "*"
-#    script = dunst_espeak.sh
-
-#[script-test]
-#    summary = "*script*"
-#    script = dunst_test.sh
-
-#[ignore]
-#    # This notification will not be displayed
-#    summary = "foobar"
-#    format = ""
-
-#[history-ignore]
-#    # This notification will not be saved in history
-#    summary = "foobar"
-#    history_ignore = yes
-
-#[skip-display]
-#    # This notification will not be displayed, but will be included in the history
-#    summary = "foobar"
-#    skip_display = yes
-
-#[signed_on]
-#    appname = Pidgin
-#    summary = "*signed on*"
-#    urgency = low
-#
-#[signed_off]
-#    appname = Pidgin
-#    summary = *signed off*
-#    urgency = low
-#
-#[says]
-#    appname = Pidgin
-#    summary = *says*
-#    urgency = critical
-#
-#[twitter]
-#    appname = Pidgin
-#    summary = *twitter.com*
-#    urgency = normal
-#
-#[stack-volumes]
-#    appname = "some_volume_notifiers"
-#    set_stack_tag = "volume"
-#
-# vim: ft=cfg
-```
-
-## Paru
-
-Gerenciador de pacotes da **aur**, Trocado sudo pelo doas
-
-- `~/.config/paru/paru.conf`
-
-```conf tangle:~/.config/paru/paru.conf
-[bin]
-Sudo = /bin/doas
-```
-
-## Npm
-
-Gerenciador de pacotes do node.js, Trocados diretórios para limpar a \~
-
-- `~/.config/npm/npmrc`
-
-```conf tangle:~/.config/npm/npmrc
-prefix=${XDG_DATA_HOME}/npm
-cache=${XDG_CACHE_HOME}/npm
-tmp=${XDG_RUNTIME_DIR}/npm
-init-module=${XDG_CONFIG_HOME}/npm/config/npm-init.js
 ```

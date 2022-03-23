@@ -196,6 +196,7 @@ augroup RunCommandOnWrite
   autocmd BufWritePost ~/extras/extras.md !md-tangle -f %
   autocmd BufWritePost ~/extras/teclas.md !md-tangle -f %
   autocmd BufWritePost ~/extras/shells.md !md-tangle -f %
+  autocmd BufWritePost ~/extras/desktop.md !md-tangle -f %
 augroup END
 ]])
 -- Função para fechar e abrir sumario
@@ -239,7 +240,8 @@ keymap("n", "<esc><esc>", ":noh<CR>", {})
 -- Copiar na linha abaixo
 keymap("n", "P", ":norm o<CR>p", {})
 -- Ativa/Desativa o corretor ortográfico
-keymap("n", "ts", ":setlocal spell! spelllang=pt", {})
+keymap("n", "tt", ":setlocal spell! spelllang=pt<CR>", {})
+keymap("n", "te", ":setlocal spell! spelllang=en<CR>", {})
 -- Navega entre as divisórias
 keymap("n", "<leader><Tab>", ":wincmd w<CR>", nr)
 -- Salvar buffer

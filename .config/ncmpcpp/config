@@ -1,5 +1,3 @@
-# vim: filetype=conf
-
 ncmpcpp_directory = "~/.config/ncmpcpp"
 lyrics_directory = "~/.local/share/lyrics"
 mpd_music_dir = "~/media/musicas"

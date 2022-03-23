@@ -9,8 +9,7 @@ Blocos de código são salvos em seus arquivos usando [md-tangle](https://github
 -   [Emacs](#emacs)
 -   [Neovim](#neovim)
 -   [Shells](#shells)
--   [X11](#x11)
--   [Herbstluftwm](#herbstluftwm)
+-   [Desktop](#desktop)
 -   [Teclas](#teclas)
 -   [Qutebrowser](#qutebrowser)
     -   [Configuração](#configuração)
@@ -30,182 +29,9 @@ Blocos de código são salvos em seus arquivos usando [md-tangle](https://github
 
 [Todos os shells do sistema](https://github.com/LucasTavaresA/dotfiles/blob/main/extras/shells.md)
 
-## X11
+## Desktop
 
-Configuração do xorg
-
-- `~/.config/x11/xinitrc`
-
-```sh tangle:~/.config/x11/xinitrc
-#!/bin/sh
-
-# Mouse
-xsetroot -cursor_name left_ptr
-
-# Teclado
-setxkbmap -option caps:escape # grep -E "(ctrl|caps):" /usr/share/X11/xkb/rules/base.lst
-xset r rate 300 100 # acelera repetição de teclas
-
-# Clipmenu
-systemctl --user import-environment DISPLAY
-export CM_DIR="$HOME/code/shell/dmenuscripts/listas/clipmenu"
-clipmenud &
-
-# Protetor de tela
-xautolock -detectsleep -time 30 -locker "slock" -notify 30 -notifier "notify-send Slock -u critical -t 1800000 'BLOQUEANDO A TELA 30 SEGUNDOS'" &
-
-mpd &
-dunst &
-nitrogen --restore &
-nm-applet &
-xbanish &
-fluxgui &
-picom &
-
-if [ "$WM" = "herbstluftwm" ]; then
-    sxhkd -c "$HOME/.config/sxhkd/sxhkd_herbstluftwm" &
-    flags=" --locked"
-elif [ "$WM" = "dwm" ]; then
-    sxhkd -c "$HOME/.config/sxhkd/sxhkd_dwm" &
-    dwmblocks &
-elif [ "$WM" = "bspwm" ]; then
-    sxhkd -c "$HOME/.config/sxhkd/sxhkd_bspwm" &
-else
-    sxhkd -c "$HOME/.config/sxhkd/sxhkd_nowm" &
-fi
-
-if [ -n "$flags" ]; then
-    exec $WM$flags
-else
-    exec "$WM"
-fi
-```
-
-## Herbstluftwm
-
-Gerenciador de janelas
-
-- `~/.config/herbstluftwm/autostart`
-
-```bash tangle:~/.config/herbstluftwm/autostart
-#!/usr/bin/env bash
-
-pegar_erros() {
-    trap '' ERR
-    local frame=0 str
-    local stacktrace="Comando fechado com status $1\n\nStack:"
-    while str=$(caller $frame); do
-        stacktrace+="\nlinha $str"
-        frame=$((frame+1))
-    done
-    notify-send -u critical "Erro de configuração no hlwm" "$stacktrace"
-}
-set -o errtrace
-trap 'pegar_erros $?' ERR
-
-hc() {
-    herbstclient "$@"
-}
-
-primeira_vez_aberto() {
-    ! hc silent get_attr my_loaded 2>/dev/null
-}
-
-hc emit_hook reload
-
-# remove todas as teclas de atalho
-hc keyunbind --all
-hc mouseunbind --all
-
-# Atalhos do mouse
-hc mousebind Super-Button1 move
-hc mousebind Super-Button2 zoom
-hc mousebind Super-Button3 resize
-
-# Adiciona tags no primeiro iniciar
-if primeira_vez_aberto; then
-    tag_names=( {1..7} )
-    hc rename default "${tag_names[0]}" || true
-    for i in "${!tag_names[@]}"; do
-        hc add "${tag_names[$i]}"
-    done
-    hc detect_monitors
-fi
-tag_keys=( {1..7} 0 )
-tag_count=$(hc attr tags.count)
-for i in "${!tag_keys[@]}"; do
-    (( i >= tag_count )) && break
-    key="${tag_keys[$i]}"
-done
-
-hc attr theme.tiling.reset 1
-hc attr theme.floating.reset 1
-hc attr theme.active.color '#ffffff'
-hc attr theme.normal.color '#000000'
-hc attr theme.urgent.color '#ff0000'
-hc attr theme.inner_color '#000000'
-hc attr theme.floating.outer_color '#000000'
-hc attr theme.active.inner_color '#ffffff'
-hc attr theme.active.outer_color '#ffffff'
-hc attr theme.background_color '#000000'
-hc attr theme.inner_width 0
-hc attr theme.border_width 1
-hc attr theme.floating.border_width 1
-hc attr theme.floating.outer_width 0
-
-hc set frame_border_active_color '#00ff00'
-hc set frame_border_normal_color '#000000'
-hc set frame_bg_active_color '#111111'
-hc set frame_bg_normal_color '#000000'
-hc set auto_detect_panels true
-hc set default_frame_layout max
-hc set always_show_frame 0
-hc set frame_border_width 1
-hc set frame_bg_transparent 1
-hc set frame_bg_transparent 1
-hc set frame_transparent_width 0
-hc set frame_padding 0
-hc set frame_gap 0
-hc set smart_frame_surroundings 1
-hc set smart_window_surroundings 1
-hc set window_gap 0
-hc set focus_follows_mouse 0
-hc set raise_on_focus 1
-hc set mouse_recenter_gap 0
-hc set swap_monitors_to_get_tag 1
-hc set tree_style '╾│ ├└╼─┐'
-
-### Regras
-hc unrule -F
-hc rule focus=on # Focar novas janelas
-hc rule floatplacement=smart
-# Programas
-hc rule class="qutebrowser" tag=1
-hc rule class="Firefox" tag=1
-hc rule class="Emacs" tag=2
-hc rule class="nvim" tag=2
-hc rule class="mpv" tag=3
-hc rule class="Gimp" tag=4
-hc rule class="discord" tag=5
-hc rule class="TelegramDesktop" tag=5
-#hc rule class="" tag=6
-#hc rule class="" tag=7
-# Flutuantes
-hc rule class="ncmpcpp" floating=on floatplacement=center
-hc rule class="pulsemixer" floating=on floatplacement=center
-hc rule class="MEGAsync" floating=on floatplacement=center
-hc rule class="Transmission-gtk" floating=on floatplacement=center
-hc rule class="Galculator" floating=on floatplacement=center
-hc rule class="htop" floating=on floatplacement=center
-# Notificações, pop-ups, etc.
-hc rule class="qutebrowser" windowtype='_NET_WM_WINDOW_TYPE_UTILITY' floating=on
-hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on floatplacement=center
-hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
-hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
-hc rule class="Pinentry-gtk-2" floating=on floatplacement=center
-
-hc unlock
-```
+[Configurações do Xorg e diversos window managers](https://github.com/LucasTavaresA/dotfiles/blob/main/extras/desktop.md)
 
 ## Teclas
 
@@ -220,124 +46,68 @@ Navegador controlado majoritariamente pelo teclado inspirado no **vim**
 - `~/.config/qutebrowser/config.py`
 
 ```python tangle:~/.config/qutebrowser/config.py
-# Autogenerated config.py
-#
-# NOTE: config.py is intended for advanced users who are comfortable
-# with manually migrating the config file on qutebrowser upgrades. If
-# you prefer, you can also configure qutebrowser using the
-# :set/:bind/:config-* commands without having to write a config.py
-# file.
-#
-# Documentation:
-#   qute://help/configuring.html
-#   qute://help/settings.html
-
 # Carregar o autoconfig.yml
 config.load_autoconfig()
 
-# CONFIGURAÇÕES PADRÃO
-
-# Valid values:
-#   - all: Accept all cookies.
-#   - no-3rdparty: Accept cookies from the same origin only. This is known to break some sites, such as GMail.
-#   - no-unknown-3rdparty: Accept cookies from the same origin only, unless a cookie is already set for the domain. On QtWebEngine, this is the same as no-3rdparty.
-#   - never: Don't accept cookies at all.
+#### CONFIGURAÇÕES PADRÃO ####
 config.set('content.cookies.accept', 'all', 'chrome-devtools://*')
-# Valid values:
-#   - all: Accept all cookies.
-#   - no-3rdparty: Accept cookies from the same origin only. This is known to break some sites, such as GMail.
-#   - no-unknown-3rdparty: Accept cookies from the same origin only, unless a cookie is already set for the domain. On QtWebEngine, this is the same as no-3rdparty.
-#   - never: Don't accept cookies at all.
 config.set('content.cookies.accept', 'all', 'devtools://*')
-
-# Value to send in the `Accept-Language` header. Note that the value
-# read from JavaScript is always the global value.
 config.set('content.headers.accept_language', '', 'https://matchmaker.krunker.io/*')
-
-# User agent to send.
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}', 'https://web.whatsapp.com/')
-# User agent to send.
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:90.0) Gecko/20100101 Firefox/90.0', 'https://accounts.google.com/*')
-# User agent to send.
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99 Safari/537.36', 'https://*.slack.com/*')
-
-# Load images automatically in web pages.
 config.set('content.images', True, 'chrome-devtools://*')
-# Load images automatically in web pages.
 config.set('content.images', True, 'devtools://*')
-
-# Enable JavaScript.
 config.set('content.javascript.enabled', True, 'chrome-devtools://*')
-# Enable JavaScript.
 config.set('content.javascript.enabled', True, 'devtools://*')
-# Enable JavaScript.
 config.set('content.javascript.enabled', True, 'chrome://*/*')
-# Enable JavaScript.
 config.set('content.javascript.enabled', True, 'qute://*/*')
 
-# MINHAS CONFIGURAÇÕES
-
+#### MINHAS CONFIGURAÇÕES ####
 # Tela cheia limitada a janela do navegador
 config.set('content.fullscreen.window', True)
-
-# Mostra a barra de scroll quando procurando uma palavra
-config.set('scrolling.bar', 'when-searching')
-
-# Encolhe janela de compleção dependendo das opções
-config.set('completion.shrink', True)
-
 # Diminuiu javascript lento nos sites
 config.set('content.prefers_reduced_motion', True)
-
 # Vê pdfs no browser usando o pdfjs
 config.set('content.pdfjs', True)
-
 # Javascript desativado por padrão
 config.set('content.javascript.enabled', False)
-
 # Abre novas abas de fundo
 config.set('new_instance_open_target', 'window')
-
 # Não sai do modo de inserção automaticamente
 config.set('input.insert_mode.auto_leave', False)
 config.set('input.insert_mode.leave_on_load', False)
-
+# O que fazer caso a ultima pagina seja fechada
+config.set("tabs.last_close", "ignore")
+# Abre abas como janelas
+config.set("tabs.tabs_are_windows", True)
+# Confirma antes de sair
+config.set('confirm_quit', ["multiple-tabs"])
+# Muda ordem do menu de compleção
+config.set("completion.open_categories", ["bookmarks", "history", "filesystem"])
+# Vídeos não tocam automaticamente
+config.set("content.autoplay", False)
+# Mostra a barra de scroll quando procurando uma palavra
+config.set('scrolling.bar', 'when-searching')
+# Encolhe janela de completação dependendo das opções
+config.set('completion.shrink', True)
 # Barra escondida
 config.set("statusbar.show", "in-mode")
 config.set("tabs.show", "switching")
-
-# O que fazer caso a ultima pagina seja fechada
-config.set("tabs.last_close", "ignore")
-
-# Abre abas como janelas
-config.set("tabs.tabs_are_windows", True)
-
-# Confirma antes de sair
-config.set('confirm_quit', ["multiple-tabs"])
-
-# Muda ordem do menu de compleção
-config.set("completion.open_categories", ["bookmarks", "history", "filesystem"])
-
 # Formatação dos títulos das abas
 config.set("tabs.title.format", "{perc}{private}{current_title}")
-
-# Vídeos não tocam automaticamente
-config.set("content.autoplay", False)
-
 # Formatação de horários
 config.set('completion.timestamp_format', '%A %d/%m/%Y - %H:%M')
-
 # Corretor ortográfico
 config.set('spellcheck.languages', ["pt-BR", "en-US"])
-
 # Conteúdo da barra de status
 config.set('statusbar.widgets', ["keypress", "url", "progress"])
-
 # Posição da barra de status
 config.set('statusbar.position', 'top')
-
 # Tamanho da barra de compleção
 config.set('completion.height', '100%')
+# Editor
+c.editor.command = ['nvim', '{}']
 
 # Adblock
 config.set('content.blocking.method', 'both')
@@ -369,40 +139,11 @@ config.set("fileselect.single_file.command", ["st", "-e", "lf", "-selection-path
 config.set("fileselect.multiple_files.command", ["st", "-e", "lf", "-selection-path", "{}"])
 
 # Permitir notificações.
-# Valid values:
-#   - true
-#   - false
-#   - ask
 config.set('content.notifications.enabled', True, 'https://www.youtube.com/*')
 config.set('content.notifications.enabled', True, 'https://twitter.com/*')
 config.set('content.notifications.enabled', True, 'https://facebook.com/*')
 
-# Editor (and arguments) to use for the `edit-*` commands. The following
-# placeholders are defined:  * `{file}`: Filename of the file to be
-# edited. * `{line}`: Line in which the caret is found in the text. *
-# `{column}`: Column in which the caret is found in the text. *
-# `{line0}`: Same as `{line}`, but starting from index 0. * `{column0}`:
-# Same as `{column}`, but starting from index 0.
-c.editor.command = ['nvim', '{}']
-
-# Search engines which can be used via the address bar.  Maps a search
-# engine name (such as `DEFAULT`, or `ddg`) to a URL with a `{}`
-# placeholder. The placeholder will be replaced by the search term, use
-# `{{` and `}}` for literal `{`/`}` braces.  The following further
-# placeholds are defined to configure how special characters in the
-# search terms are replaced by safe characters (called 'quoting'):  *
-# `{}` and `{semiquoted}` quote everything except slashes; this is the
-# most   sensible choice for almost all search engines (for the search
-# term   `slash/and&amp` this placeholder expands to `slash/and%26amp`).
-# * `{quoted}` quotes all characters (for `slash/and&amp` this
-# placeholder   expands to `slash%2Fand%26amp`). * `{unquoted}` quotes
-# nothing (for `slash/and&amp` this placeholder   expands to
-# `slash/and&amp`). * `{0}` means the same as `{}`, but can be used
-# multiple times.  The search engine named `DEFAULT` is used when
-# `url.auto_search` is turned on and something else than a URL was
-# entered to be opened. Other search engines can be used by prepending
-# the search engine name to the search term, e.g. `:open google
-# qutebrowser`.
+# Ferramentas de pesquisa
 c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
                     ,  'yt':   'https://www.youtube.com/results?search_query={}'
                     ,  'r':    'https://www.reddit.com/search/?q={}'
@@ -594,53 +335,34 @@ Explorador de arquivos lf
 - `~/.config/lf/lfrc`
 
 ```sh tangle:~/.config/lf/lfrc
-# interpreter for shell commands
+# shell
 set shell sh
-
-# set '-eu' options for shell commands
-# These options are used to have safer shell commands. Option '-e' is used to
-# exit on error and option '-u' is used to give error for unset variables.
-# Option '-f' disables pathname expansion which can be useful when $f, $fs, and
-# $fx variables contain names with '*' or '?' characters. However, this option
-# is used selectively within individual commands as it can be limiting at
-# times.
 set shellopts '-eu'
-
-# set internal field separator (IFS) to "\n" for shell commands
-# This is useful to automatically split file names in $fs and $fx properly
-# since default file separator used in these variables (i.e. 'filesep' option)
-# is newline. You need to consider the values of these options and create your
-# commands accordingly.
-set ifs "\n"
-
 set period 1
 
+# novas linhas
+set ifs "\n"
 # arquivos ocultos
 set hidden on
-
 # ícones
 set icons on
-
 # informação mostrada do lado do arquivo
 set info "size"
-
 # previa de arquivos
 set previewer lf-previewer
 set cleaner lf-cleaner
-
 # fração das abas
 set ratios 1:2
-
+# da a volta nos items
 set wrapscroll on
-
 # informação no topo das abas
 set promptfmt "\033[32;1m\033[0m\033[34;1m%d\033[0m\033[1m%f\033[0m"
-
 # borda ao redor das abas
 set drawbox on
-
 # abre espaço na parte superior e inferior da tela
 set scrolloff 0
+
+# Comandos #
 
 cmd open ${{
     case $(file --mime-type "$(readlink -f $f)" -b) in
@@ -704,6 +426,8 @@ cmd chmod ${{
   lf -remote 'send reload'
   fi
 }}
+
+# Teclas #
 
 map m
 map o

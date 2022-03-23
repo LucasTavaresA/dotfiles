@@ -1,50 +1,31 @@
-# interpreter for shell commands
+# shell
 set shell sh
-
-# set '-eu' options for shell commands
-# These options are used to have safer shell commands. Option '-e' is used to
-# exit on error and option '-u' is used to give error for unset variables.
-# Option '-f' disables pathname expansion which can be useful when $f, $fs, and
-# $fx variables contain names with '*' or '?' characters. However, this option
-# is used selectively within individual commands as it can be limiting at
-# times.
 set shellopts '-eu'
-
-# set internal field separator (IFS) to "\n" for shell commands
-# This is useful to automatically split file names in $fs and $fx properly
-# since default file separator used in these variables (i.e. 'filesep' option)
-# is newline. You need to consider the values of these options and create your
-# commands accordingly.
-set ifs "\n"
-
 set period 1
 
+# novas linhas
+set ifs "\n"
 # arquivos ocultos
 set hidden on
-
 # ícones
 set icons on
-
 # informação mostrada do lado do arquivo
 set info "size"
-
 # previa de arquivos
 set previewer lf-previewer
 set cleaner lf-cleaner
-
 # fração das abas
 set ratios 1:2
-
+# da a volta nos items
 set wrapscroll on
-
 # informação no topo das abas
 set promptfmt "\033[32;1m\033[0m\033[34;1m%d\033[0m\033[1m%f\033[0m"
-
 # borda ao redor das abas
 set drawbox on
-
 # abre espaço na parte superior e inferior da tela
 set scrolloff 0
+
+# Comandos #
 
 cmd open ${{
     case $(file --mime-type "$(readlink -f $f)" -b) in
@@ -108,6 +89,8 @@ cmd chmod ${{
   lf -remote 'send reload'
   fi
 }}
+
+# Teclas #
 
 map m
 map o
