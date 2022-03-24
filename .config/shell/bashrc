@@ -2,6 +2,8 @@
 # Não executa o resto do bashrc
 [[ $- != *i* ]] && return
 
+export SHELL="bash"
+
 # Aliases
 alias n="neofetch"
 alias v="nvim"
@@ -146,6 +148,5 @@ ex ()
     echo "'$1' não é um arquivo valido"
   fi
 }
-
-# Inicia prompt do starship
-eval "$(starship init bash)"
+# Prompt
+PS1="\e[01;37m[\u@\h] \w\e[m \e[01;32m>\e[m"

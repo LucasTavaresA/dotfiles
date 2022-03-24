@@ -12,7 +12,6 @@ Configurações menos importantes
 -   [Mpd](#mpd)
 -   [Mimetypes](#mimetypes)
 -   [.gitignore](#gitignore)
--   [Starship](#starship)
 -   [Picom](#picom)
 -   [Zathura](#zathura)
 -   [Dunst](#dunst)
@@ -738,44 +737,6 @@ media/
 mnt/
 VirtualBox VMs/
 bkp/
-```
-
-## Starship
-
-Prompt de comandos
-
-- `~/.config/starship/config.toml`
-
-```toml tangle:~/.config/starship/config.toml
-format = """
-[┌┤](bold green) $directory$shell$status$git_status$username$hostname$cmd_duration$package$jobs$container[├](bold green)$fill
-[└](bold green)$character"""
-
-[character]
-format = "$symbol"
-success_symbol = "[](green)"
-error_symbol = "[X](bold red)"
-
-[shell]
-unknown_indicator = "unknown shell"
-zsh_indicator = ""
-style = "white bold"
-disabled = false # Ativa esse modulo
-
-[time]
-disabled = false # Ativa o relógio
-
-[line_break]
-disabled = true
-
-[directory]
-style = "bold #00ccFF"
-truncation_length = 4
-truncate_to_repo = false
-
-[fill]
-symbol = "─"
-style = "bold green"
 ```
 
 ## Picom

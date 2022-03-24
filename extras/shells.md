@@ -48,7 +48,7 @@ export XDG_RUNTIME_DIR="/run/user/$UID"
 export XDG_BIN_HOME="$HOME/.local/bin"
 
 # Window manager
-export WM="herbstluftwm"
+export WM="stumpwm"
 # Pass
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/pass"
 # Bat como o manpager
@@ -94,8 +94,6 @@ export GHCUP_INSTALL_BASE_PREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/"
 # Cabal
 export CABAL_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/cabal/config"
 export CABAL_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/cabal"
-# Starship
-export STARSHIP_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/starship/config.toml"
 # Android sdk
 export ANDROID_SDK_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/android"
 # Wine
@@ -337,8 +335,8 @@ alias ppq="paru -Q"
 alias ppqs="paru -Qs"
 alias pprns="paru -Rns"
 
-# Prompt do starship
-eval "$(starship init zsh)"
+# Prompt
+PS1="%B[%n@%m] %4~ %{$fg[green]%}>%{$reset_color%}%b"
 
 # Carrega plugins do zsh, deve ser o ultimo comando
 source $HOME/.config/shell/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
@@ -359,6 +357,8 @@ Shell usado pelo arch também muito usado em scripts, bashrc trocado de lugar co
 # Se não executando bash interativamente
 # Não executa o resto do bashrc
 [[ $- != *i* ]] && return
+
+export SHELL="bash"
 
 # Aliases
 alias n="neofetch"
@@ -504,7 +504,6 @@ ex ()
     echo "'$1' não é um arquivo valido"
   fi
 }
-
-# Inicia prompt do starship
-eval "$(starship init bash)"
+# Prompt
+PS1="\e[01;37m[\u@\h] \w\e[m \e[01;32m>\e[m"
 ```

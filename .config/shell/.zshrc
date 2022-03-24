@@ -184,8 +184,8 @@ alias ppq="paru -Q"
 alias ppqs="paru -Qs"
 alias pprns="paru -Rns"
 
-# Prompt do starship
-eval "$(starship init zsh)"
+# Prompt
+PS1="%B[%n@%m] %4~ %{$fg[green]%}>%{$reset_color%}%b"
 
 # Carrega plugins do zsh, deve ser o ultimo comando
 source $HOME/.config/shell/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
