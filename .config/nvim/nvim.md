@@ -260,7 +260,7 @@ vim.g.maplocalleader = " "
 keymap("n", "<esc><esc>", ":noh<CR>", {})
 -- copiar na linha abaixo
 keymap("n", "P", ":norm o<CR>p", {})
--- ativa/Desativa o corretor ortográfico
+-- ativa/desativa o corretor ortográfico
 keymap("n", "tt", ":setlocal spell! spelllang=pt<CR>", {})
 keymap("n", "te", ":setlocal spell! spelllang=en<CR>", {})
 -- navega entre as divisórias
@@ -279,7 +279,7 @@ keymap("n", "<C-A-Right>", ":vs<CR>", {})
 keymap("n", "<C-A-down>", ":sp<CR>", {})
 -- copiar buffer
 keymap("n", "cb", "ggVGy", nr)
--- ativa/Desativa números de linha
+-- ativa/desativa números de linha
 keymap("n", "tn", ":set number!<CR>", {})
 -- procura palavra no cursor
 keymap("n", "?", "*", {})
@@ -316,7 +316,7 @@ keymap("n", "<leader>pc", ":PaqClean<CR>", {})
 keymap("n", "<leader>es", ":UltiSnipsEdit<CR>", {})
 -- prevê arquivo markdown - markdown-preview
 keymap("n", "mp", ":MarkdownPreview<CR>", {})
--- ativa/Desativa a barra - litedfm
+-- ativa/desativa a barra - litedfm
 keymap("n", "tb", ":LiteDFMToggle<CR>", {})
 -- expande região selecionada - expand region
 keymap("n", "<S-up>", "<Plug>(expand_region_expand)", {})

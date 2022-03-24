@@ -90,7 +90,7 @@ cmd chmod ${{
   fi
 }}
 
-# Teclas #
+#### Teclas ####
 
 map m
 map o
@@ -111,7 +111,7 @@ map m mkdir
 map E extract
 map i !nsxiv .
 
-# Atalhos
+#### Atalhos ####
 map gC cd ~/.config
 map gcc cd ~/code/c
 map gcs cd ~/code/shell

@@ -14,165 +14,169 @@ Teclas usando sxhkd no herbstluftwm, dwm, bspwm e spectrwm
 - `~/.config/sxhkd/sxhkd_herbstluftwm`
 
 ```sxhkdrc tangle:~/.config/sxhkd/sxhkd_herbstluftwm
-# Abre e fecha scratchpads
+# abre e fecha scratchpads
 super + backslash
     st_scratchpad
 
-# Fecha janela
+# fecha janela
 super + q
     herbstclient close
 
-# Alterna tela cheia
+# alterna tela cheia
 super + f
     herbstclient fullscreen
 
-# Alterna janela flutuante
+# alterna janela flutuante
 super + w
     herbstclient attr clients.focus.floating toggle
 
-# Alterna entre as janelas
+# alterna entre as janelas
 super + Tab
     herbstclient cycle
 
-# Muda entre as janelas
+# muda entre as janelas
 super + {Up,Down,Left,Right}
     herbstclient focus {up,down,left,right}
 
-# Troca as janelas de posição
+# troca as janelas de posição
 super + shift + {Up,Down,Left,Right}
     herbstclient shift {up,down,left,right}
 
-# Muda de tags pulando tags vazias
+# muda de tags pulando tags vazias
 alt + {Left, Right}
     hlwm-tagswitch {prev, next}
 
-# Muda de tags
+# muda de tags
 super + alt + {Left, Right}
     herbstclient {use_index -1, use_index +1}
 
-# Muda janela de tag e a segue
+# muda janela de tag e a segue
 alt + shift + {Left, Right}
     herbstclient {move_index -1 && hlwm-tagswitch prev, move_index +1 && hlwm-tagswitch next}
 
-# Remove divisória
+# remove divisória
 super + shift + q
     herbstclient remove
 
-# Cria uma divisória
+# cria uma divisória
 ctrl + shift + {Left,Down,Up,Right}
     herbstclient split {left, bottom, top, right}
 
-# Muda o tamanho de frames
+# muda o tamanho de frames
 ctrl + {Left,Down,Up,Right}
     herbstclient resize {left +0.05,down +0.05,up +0.05,right +0.05}
 
-# Troca entre layouts pulando layouts que não mudam janelas de posição
+# troca entre layouts pulando layouts que não mudam janelas de posição
 super + Escape
     herbstclient or , and . compare tags.focus.curframe_wcount = 2                   \
                      . cycle_layout +1 vertical horizontal max vertical grid    \
                , cycle_layout +1
 
-# Ncmpcpp/Pulsemixer
+# ncmpcpp/pulsemixer
 super + {_,shift} + a
     st -g 120x30 -c {ncmpcpp -n ncmpcpp -e ncmpcpp,pulsemixer -n pulsemixer -e pulsemixer}
 
-# Pausa/Toca musica
+# pausa/toca musica
 super + space
     mpc toggle
 
-# Anterior/Proxima musica
+# anterior/proxima musica
 super + shift + {comma, period}
     mpc {prev,next} && musica notificar
 
-# Abaixar/Aumentar o volume e atualizar a barra
+# abaixar/aumentar o volume e atualizar a barra
 super + {comma, period, Down, Up}
     amixer -q set Master 5%{-,+,-,+}
 
-# St
+# st
 super + shift + Return
-    st
+    st & herbstclient use 2
 
-# Menu
+# menu
 Menu;Menu
     dmenu_run
 
-# Menu energia
+# menu energia
 Menu;Escape
     dmenu_sys
 
-# Editar
+# editar
 Menu;e
-    dmenu_edit
+    dmenu_edit && herbstclient use 2
 
-# Emojis
+# emojis
 Menu;E
     dmenu_emoji
 
-# Montar/Desmontar
+# montar/desmontar
 Menu;m
     dmenu_mont
 
-# Atalhos do sxhkd
+# atalhos do sxhkd
 Menu;slash
     dmenu_sxhkd
 
-# Shell History
+# shell History
 Menu;h
     dmenu_shhistory
 
-# Htop
+# htop
 Menu;H
     st -g 120x30 -c htop -n htop -e htop
 
-# Passmenu
+# passmenu
 Menu;p
     passmenu --type
 
-# Picom
+# picom
 Menu;P
     killall picom || picom
 
-# Fluxgui
+# fluxgui
 Menu;F
     killall fluxgui || fluxgui
 
-# Clipboard
+# clipboard
 Menu;c
     dmenu_clip
 
-# Calculadora
+# calculadora
 Menu;C
     galculator
 
-# Gimp
+# gimp
 Menu;g
-    gimp
+    gimp & herbstclient use 4
 
-# Transmission
+# transmission
 Menu;t
     transmission-gtk
 
-# Telegram
+# telegram
 Menu;T
-    telegram-desktop
+    telegram-desktop & herbstclient use 5
 
-# Discord
+# discord
 Menu;d
-    discord
+    discord & herbstclient use 5
 
-# Qutebrowser, pesquisa e favoritos
+# qutebrowser, pesquisa e favoritos
 Menu;q
-    dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml
+    dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml & herbstclient use 1
 
-# Anotações
+# anotações
 Menu;a
-    nvim ~/documentos/anotações.md
+    nvim ~/documentos/anotações.md & herbstclient use 2
 
-# Aliases
+# aliases
 Menu;A
     dmenu_aliases
 
-# Tira print
+# xephyr
+Menu;X
+    dmenu_xephyr & herbstclient use 7
+
+# tira print
 Print
     dmenu_print
 ```
@@ -182,7 +186,7 @@ Print
 - `~/.config/sxhkd/sxhkd_dwm`
 
 ```sxhkdrc tangle:~/.config/sxhkd/sxhkd_dwm
-# Ativa/Desativa a barra enquando super é segurado
+# ativa/desativa a barra enquando super é segurado
 Super_L + any
     dwmc togglebar
 ~@Super_L + any
@@ -192,35 +196,35 @@ Super_R + any
 ~@Super_R + any
     dwmc togglebar
 
-# Ativa/Desativa a barra
+# ativa/desativa a barra
 super + b
     dwmc togglebar
 
-# Muda o tamanho da janela
+# muda o tamanho da janela
 ctrl + super + {Left,Right}
     dwmc setmfact {-,+}0.05
 
-# Muda o tamanho da janela
+# muda o tamanho da janela
 ctrl + super + {Down,Up}
     dwmc setcfact {-,+}0.20
 
-# Muda entre as janelas
+# muda entre as janelas
 super + Tab
     dwmc focusstack +1
 
-# Muda de tag
+# muda de tag
 super + {Left, Right}
     dwmc {viewprev, viewnext}
 
-# Troca a janela de tag
+# troca a janela de tag
 super + shift {Left, Right}
   dwmc {tagtoprev, tagtonext}
 
-# Fecha uma janela
+# fecha uma janela
 super + shift + backslash
     dwmc killclient
 
-# Alterna janela flutuante
+# alterna janela flutuante
 super + w
     dwmc togglefloating
 
@@ -228,123 +232,127 @@ super + w
 super + Return
     dwmc inplacerotate +2
 
-# Troca entre layouts
+# troca entre layouts
 super + Escape
     dwmc layoutscroll +1
 
-# Ncmpcpp/Pulsemixer
+# ncmpcpp/pulsemixer
 super + {_,shift} + a
     st -g 100x30 -c {ncmpcpp -n ncmpcpp -e ncmpcpp,pulsemixer -n pulsemixer -e pulsemixer}
 
-# Pausa/Toca musica
+# pausa/toca musica
 super + space
     mpc toggle && pkill -RTMIN+11 dwmblocks
 
-# Anterior/Proxima musica
+# anterior/proxima musica
 super + shift + {comma, period}
     mpc {prev,next} && musica notificar && pkill -RTMIN+11 dwmblocks
 
-# Abaixar/Aumentar o volume e atualizar a barra
+# abaixar/aumentar o volume e atualizar a barra
 super + {comma, period, Down, Up}
     amixer -q set Master 5%{-,+,-,+} && pkill -RTMIN+9 dwmblocks
 
-# St
+# st
 super + shift + Return
     st
 
-# Aparece/Esconde o st
+# aparece/esconde o st
 super + backslash
     st_scratchpad
 
-# Torna a janela fixa em todas as tags
+# torna a janela fixa em todas as tags
 super + s
     dwmc togglesticky
 
-# Monocle
+# monocle
 super + f
     dwmc setmonocle 0
 
-# Menu
+# menu
 Menu;Menu
     dmenu_run
 
-# Menu energia
+# menu energia
 Menu;Escape
     dmenu_sys
 
-# Editar
+# editar
 Menu;e
     dmenu_edit
 
-# Emojis
+# emojis
 Menu;E
     dmenu_emoji
 
-# Montar/Desmontar
+# montar/desmontar
 Menu;m
     dmenu_mont
 
-# Atalhos do sxhkd
+# atalhos do sxhkd
 Menu;slash
     dmenu_sxhkd
 
-# Shell History
+# shell history
 Menu;h
     dmenu_shhistory
 
-# Htop
+# htop
 Menu;H
     st -g 100x30 -c htop -n htop -e htop
 
-# Passmenu
+# passmenu
 Menu;p
     passmenu --type
 
-# Picom
+# picom
 Menu;P
     killall picom || picom
 
-# Fluxgui
+# fluxgui
 Menu;F
     killall fluxgui || fluxgui
 
-# Clipboard
+# clipboard
 Menu;c
     dmenu_clip
 
-# Calculadora
+# calculadora
 Menu;C
     galculator
 
-# Gimp
+# gimp
 Menu;g
     gimp
 
-# Transmission
+# transmission
 Menu;t
     transmission-gtk
 
-# Telegram
+# telegram
 Menu;T
     telegram-desktop
 
-# Discord
+# discord
 Menu;d
     discord
 
-# Qutebrowser, pesquisa e favoritos
+# qutebrowser, pesquisa e favoritos
 Menu;q
     dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml
 
-# Anotações
+# anotações
 Menu;a
     nvim ~/documentos/anotações.md
 
-# Aliases
+# aliases
 Menu;A
     dmenu_aliases
 
-# Tira print
+# xephyr
+Menu;X
+    dmenu_xephyr
+
+# tira print
 Print
     dmenu_print
 ```
@@ -354,39 +362,39 @@ Print
 - `~/.config/sxhkd/sxhkd_bspwm`
 
 ```sxhkdrc tangle:~/.config/sxhkd/sxhkd_bspwm
-# Fecha janela
+# fecha janela
 super + shift + backslash
     bspc node -c
 
-# Troca janela selecionada pela maior janela
+# troca janela selecionada pela maior janela
 super + Return
     bspc node -s biggest.window
 
-# Troca entre layout monocle e tiled
+# troca entre layout monocle e tiled
 super + Escape
     bspc desktop -l next
 
-# Troca o foco para a janela anterior
+# troca o foco para a janela anterior
 super + Left
     bspc node -f prev.local.!hidden.window
 
-# Troca o foco para a proxima janela
+# troca o foco para a proxima janela
 super + {Right,Tab}
     bspc node -f next.local.!hidden.window
 
-# Alterna entre ou muda janela para um desktop
+# alterna entre ou muda janela para um desktop
 super + {_,shift + }{1-9,0}
     bspc {desktop -f,node -d} '^{1-9,10}'
 
-# Move janela para o espaço preselecionado
+# move janela para o espaço preselecionado
 super + ctrl + Return
     bspc node -n last.!automatic
 
-# Preseleciona uma direção
+# preseleciona uma direção
 super + ctrl + {Left,Down,Up,Right}
     bspc node -p {west,south,north,east}
 
-# Cancela seleção
+# cancela seleção
 ctrl + space
     bspc node -p cancel
 
@@ -401,123 +409,127 @@ ctrl + {Left,Down,Up,Right}
      bspc node @parent/first -z right +20 0; \
      bspc node @parent/second -z left +20 0}
 
-# Alterna entre janela flutuante
+# alterna entre janela flutuante
 super + t
     bspc node -t \~floating
 
-# Alterna tela cheia
+# alterna tela cheia
 Menu;f
     bspc node -t \~fullscreen
 
-# Ajusta proporção da janela selecionada
+# ajusta proporção da janela selecionada
 shift + Tab
     ajustar_tamanho.sh
 
-# Menu
+# menu
 Menu;Menu
     dmenu_menu
 
-# Menu energia
+# menu energia
 Menu;Escape
     dmenu_sys
 
-# Editar
+# editar
 Menu;e
     dmenu_edit
 
-# Emojis
+# emojis
 Menu;E
     dmenu_emoji
 
-# Ncmpcpp/Pulsemixer
+# ncmpcpp/pulsemixer
 super + {_,shift} + a
     st -g 100x30 -c {'ncmpcpp\,ncmpcpp' -e ncmpcpp,'pulsemixer\,pulsemixer' -e pulsemixer}
 
-# Pausa/Toca musica
+# pausa/toca musica
 super + space
     mpc toggle
 
-# Anterior/Proxima musica
+# anterior/proxima musica
 super + shift + {comma, period}
     mpc {prev,next} && musica notificar
 
-# Abaixar/Aumentar o volume e atualizar a barra
+# abaixar/aumentar o volume e atualizar a barra
 super + {comma, period}
     amixer -q set Master 5%{-,+}
 
-# St
+# st
 super + shift + Return
     st
 
-# Aparece/Esconde o st
+# aparece/esconde o st
 super + backslash
     st_scratchpad
 
-# Gimp
+# gimp
 Menu;g
     gimp
 
-# Clipboard
+# clipboard
 Menu;c
     dmenu_clip
 
-# Calculadora
+# calculadora
 Menu;C
     galculator
 
-# Transmission
+# transmission
 Menu;t
     transmission-gtk
 
-# Telegram
+# telegram
 Menu;T
     telegram-desktop
 
-# Discord
+# discord
 Menu;d
     discord
 
-# Shell History
+# shell history
 Menu;h
     dmenu_shhistory
 
-# Htop
+# htop
 Menu;H
     st -e htop
 
-# Passmenu
+# passmenu
 Menu;p
     passmenu --type
 
-# Picom
+# picom
 Menu;P
     killall picom || picom
 
-# Fluxgui
+# fluxgui
 Menu;F
     killall fluxgui || fluxgui
 
-# Montar/Desmontar
+# montar/desmontar
 Menu;m
     dmenu_mont
 
-# Teclas do sxhkd
+# teclas do sxhkd
 Menu;slash
     dmenu_sxhkd
 
-# Qutebrowser, pesquisa e favoritos
+# qutebrowser, pesquisa e favoritos
 Menu;q
     dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml
 
-# Anotações
+# anotações
 Menu;a
     nvim ~/documentos/anotações.md
 
-# Aliases
+# aliases
 Menu;A
     dmenu_aliases
 
-# Tira print
+# xephyr
+Menu;X
+    dmenu_xephyr
+
+# tira print
 Print
     dmenu_print
 ```
@@ -529,111 +541,115 @@ Caso o window manager não execute comandos
 - `~/.config/sxhkd/sxhkd_nowm`
 
 ```sxhkdrc tangle:~/.config/sxhkd/sxhkd_nowm
-# Abre e fecha scratchpads
+# abre e fecha scratchpads
 super + backslash
     st_scratchpad
 
-# Ncmpcpp/Pulsemixer
+# ncmpcpp/pulsemixer
 super + {_,shift} + a
     st -g 120x30 -c {ncmpcpp -n ncmpcpp -e ncmpcpp,pulsemixer -n pulsemixer -e pulsemixer}
 
-# Pausa/Toca musica
+# pausa/toca musica
 super + space
     mpc toggle
 
-# Anterior/Proxima musica
+# anterior/proxima musica
 super + shift + {comma, period}
     mpc {prev,next} && musica notificar
 
-# Abaixar/Aumentar o volume e atualizar a barra
+# abaixar/aumentar o volume e atualizar a barra
 super + {comma, period, Down, Up}
     amixer -q set Master 5%{-,+,-,+}
 
-# St
+# st
 super + shift + Return
     st
 
-# Menu
+# menu
 Menu;Menu
     dmenu_run
 
-# Menu energia
+# menu energia
 Menu;Escape
     dmenu_sys
 
-# Editar
+# editar
 Menu;e
     dmenu_edit
 
-# Emojis
+# emojis
 Menu;E
     dmenu_emoji
 
-# Montar/Desmontar
+# montar/desmontar
 Menu;m
     dmenu_mont
 
-# Atalhos do sxhkd
+# atalhos do sxhkd
 Menu;slash
     dmenu_sxhkd
 
-# Shell History
+# shell history
 Menu;h
     dmenu_shhistory
 
-# Htop
+# htop
 Menu;H
     st -g 120x30 -c htop -n htop -e htop
 
-# Passmenu
+# passmenu
 Menu;p
     passmenu --type
 
-# Picom
+# picom
 Menu;P
     killall picom || picom
 
-# Fluxgui
+# fluxgui
 Menu;F
     killall fluxgui || fluxgui
 
-# Clipboard
+# clipboard
 Menu;c
     dmenu_clip
 
-# Calculadora
+# calculadora
 Menu;C
     galculator
 
-# Gimp
+# gimp
 Menu;g
     gimp
 
-# Transmission
+# transmission
 Menu;t
     transmission-gtk
 
-# Telegram
+# telegram
 Menu;T
     telegram-desktop
 
-# Discord
+# discord
 Menu;d
     discord
 
-# Qutebrowser, pesquisa e favoritos
+# qutebrowser, pesquisa e favoritos
 Menu;q
     dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml
 
-# Anotações
+# anotações
 Menu;a
     nvim ~/documentos/anotações.md
 
-# Aliases
+# aliases
 Menu;A
     dmenu_aliases
 
-# Tira print
+# xephyr
+Menu;X
+    dmenu_xephyr
+
+# tira print
 Print
     dmenu_print
 ```

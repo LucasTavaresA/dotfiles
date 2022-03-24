@@ -1,7 +1,7 @@
-# Carregar o autoconfig.yml
+# carregar o autoconfig.yml
 config.load_autoconfig()
 
-#### CONFIGURAÇÕES PADRÃO ####
+#### Configurações padrão ####
 config.set('content.cookies.accept', 'all', 'chrome-devtools://*')
 config.set('content.cookies.accept', 'all', 'devtools://*')
 config.set('content.headers.accept_language', '', 'https://matchmaker.krunker.io/*')
@@ -15,53 +15,55 @@ config.set('content.javascript.enabled', True, 'devtools://*')
 config.set('content.javascript.enabled', True, 'chrome://*/*')
 config.set('content.javascript.enabled', True, 'qute://*/*')
 
-#### MINHAS CONFIGURAÇÕES ####
-# Tela cheia limitada a janela do navegador
+#### Minhas configurações ####
+# tela cheia limitada a janela do navegador
 config.set('content.fullscreen.window', True)
-# Diminuiu javascript lento nos sites
+# diminuiu javascript lento nos sites
 config.set('content.prefers_reduced_motion', True)
-# Vê pdfs no browser usando o pdfjs
+# vê pdfs no browser usando o pdfjs
 config.set('content.pdfjs', True)
-# Javascript desativado por padrão
+# javascript desativado por padrão
 config.set('content.javascript.enabled', False)
-# Abre novas abas de fundo
+# abre novas abas de fundo
 config.set('new_instance_open_target', 'window')
-# Não sai do modo de inserção automaticamente
+# salva a sessão automaticamente
+config.set('auto_save.session', True)
+# não sai do modo de inserção automaticamente
 config.set('input.insert_mode.auto_leave', False)
 config.set('input.insert_mode.leave_on_load', False)
-# O que fazer caso a ultima pagina seja fechada
+# o que fazer caso a ultima pagina seja fechada
 config.set("tabs.last_close", "ignore")
-# Abre abas como janelas
+# abre abas como janelas
 config.set("tabs.tabs_are_windows", True)
-# Confirma antes de sair
+# confirma antes de sair
 config.set('confirm_quit', ["multiple-tabs"])
-# Muda ordem do menu de compleção
+# muda ordem do menu de compleção
 config.set("completion.open_categories", ["bookmarks", "history", "filesystem"])
-# Vídeos não tocam automaticamente
+# vídeos não tocam automaticamente
 config.set("content.autoplay", False)
-# Mostra a barra de scroll quando procurando uma palavra
+# mostra a barra de scroll quando procurando uma palavra
 config.set('scrolling.bar', 'when-searching')
-# Encolhe janela de completação dependendo das opções
+# encolhe janela de completação dependendo das opções
 config.set('completion.shrink', True)
-# Barra escondida
+# barra escondida
 config.set("statusbar.show", "in-mode")
 config.set("tabs.show", "switching")
-# Formatação dos títulos das abas
+# formatação dos títulos das abas
 config.set("tabs.title.format", "{perc}{private}{current_title}")
-# Formatação de horários
+# formatação de horários
 config.set('completion.timestamp_format', '%A %d/%m/%Y - %H:%M')
-# Corretor ortográfico
+# corretor ortográfico
 config.set('spellcheck.languages', ["pt-BR", "en-US"])
-# Conteúdo da barra de status
+# conteúdo da barra de status
 config.set('statusbar.widgets', ["keypress", "url", "progress"])
-# Posição da barra de status
+# posição da barra de status
 config.set('statusbar.position', 'top')
-# Tamanho da barra de compleção
+# tamanho da barra de compleção
 config.set('completion.height', '100%')
-# Editor
+# editor
 c.editor.command = ['nvim', '{}']
 
-# Adblock
+#### Adblock ####
 config.set('content.blocking.method', 'both')
 c.content.blocking.adblock.lists = [
         'https://easylist.to/easylist/easylist.txt',
@@ -85,17 +87,17 @@ c.content.blocking.adblock.lists = [
         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt"
         ]
 
-# Usa o lf para mandar arquivos
+# usa o lf para mandar arquivos
 config.set("fileselect.handler", "external")
 config.set("fileselect.single_file.command", ["st", "-e", "lf", "-selection-path", "{}"])
 config.set("fileselect.multiple_files.command", ["st", "-e", "lf", "-selection-path", "{}"])
 
-# Permitir notificações.
+# permitir notificações.
 config.set('content.notifications.enabled', True, 'https://www.youtube.com/*')
 config.set('content.notifications.enabled', True, 'https://twitter.com/*')
 config.set('content.notifications.enabled', True, 'https://facebook.com/*')
 
-# Ferramentas de pesquisa
+#### Ferramentas de pesquisa ####
 c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
                     ,  'yt':   'https://www.youtube.com/results?search_query={}'
                     ,  'r':    'https://www.reddit.com/search/?q={}'
@@ -120,7 +122,7 @@ c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
                     ,  'wm':   'https://web.archive.org/web/*/{}'
                     }
 
-# ATALHOS
+#### Atalhos ####
 config.unbind('M')
 config.unbind('m')
 config.unbind('u')
@@ -136,36 +138,36 @@ config.bind('<Ctrl-Right>', 'tab-next')
 config.bind('<Ctrl-a>', 'back')
 config.bind('<Ctrl-d>', 'forward')
 config.bind('u', 'undo --window')
-# Atalho para assistir link com mpv
+# atalho para assistir link com mpv
 config.bind('zvw', 'hint links spawn mpv {hint-url}')
-# Baixar imagem selecionada
+# baixar imagem selecionada
 config.bind('zid', 'hint images download')
-# Baixar como video
+# baixar como video
 config.bind('zvd', 'hint links spawn st -c st_download -e yt {hint-url}')
-# Baixar como audio
+# baixar como audio
 config.bind('zad', 'hint links spawn st -c st_download -e yta {hint-url}')
-# Abre no firefox
+# abre no firefox
 config.bind('zf', 'hint links spawn firefox {url}')
-# Ativa/Desativa a barra
+# ativa/desativa a barra
 config.bind('zx', 'config-cycle statusbar.show always in-mode;; config-cycle tabs.show always switching')
-# Ativa/Desativa tema escuro
+# ativa/desativa tema escuro
 config.bind('zd', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/styles/dark.css ""')
-# Ativa/Desativa javascript para um site
+# ativa/desativa javascript para um site
 config.bind('zj', 'config-cycle -p -u *://*.{url:host}/* content.javascript.enabled ;; reload')
-# Ativa/Desativa adblocking para um site
+# ativa/desativa adblocking para um site
 config.bind('zb', 'config-cycle -p -u *://*.{url:host}/* content.blocking.enabled ;; reload')
-# Modo leitura
+# modo leitura
 config.bind('zr', 'spawn --userscript readability')
-# Traduz a pagina
+# traduz a pagina
 config.bind('ztp', 'spawn --userscript translate')
-# Traduz o texto selecionado
+# traduz o texto selecionado
 config.bind('zts', 'spawn --userscript translate --text')
-# Copia links
+# copia links
 config.bind('cl', 'hint links yank')
-# Copia trechos de código
+# copia trechos de código
 config.bind('cc', 'hint code userscript code_select.py')
 c.hints.selectors["code"] = [
-    # Seleciona code tags onde o parente não é uma tag pre
+    # seleciona code tags onde o parente não é uma tag pre
     ":not(pre) > code",
     "pre"
 ]
@@ -178,99 +180,97 @@ c.downloads.location.directory = '~/Downloads'
 c.url.default_page = 'https://www.google.com/'
 c.url.start_pages = 'https://www.google.com/'
 
-# CORES
-
-# Pedir modo escuro aos sites que o suportam
+#### CORES ####
+# pedir modo escuro aos sites que o suportam
 config.set('colors.webpage.preferred_color_scheme', 'dark')
-# Cor do texto da barra de compleção
+# cor do texto da barra de compleção
 c.colors.completion.fg = '#ffffff'
-# Cor de fundo da barra de compleção.
+# cor de fundo da barra de compleção.
 c.colors.completion.odd.bg = '#000000'
 c.colors.completion.even.bg = '#000000'
-# Cor do texto das categorias.
+# cor do texto das categorias.
 c.colors.completion.category.fg = '#ffffff'
-# Cor de fundo das categorias.
+# cor de fundo das categorias.
 c.colors.completion.category.bg = '#000000'
-# Cor da borda superior de categorias.
+# cor da borda superior de categorias.
 c.colors.completion.category.border.top = '#ffffff'
-# Cor da borda inferior de categorias.
+# cor da borda inferior de categorias.
 c.colors.completion.category.border.bottom = '#ffffff'
-# Cor de texto selecionado na barra de seleção
+# cor de texto selecionado na barra de seleção
 c.colors.completion.item.selected.fg = '#000000'
-# Cor de fundo de texto selecionado na barra de compleção
+# cor de fundo de texto selecionado na barra de compleção
 c.colors.completion.item.selected.bg = '#ffffff'
-# Cor do texto procurado quando selecionado na barra de compleção
+# cor do texto procurado quando selecionado na barra de compleção
 c.colors.completion.item.selected.match.fg = '#000000'
-# Cor de texto procurado na aba de compleção.
+# cor de texto procurado na aba de compleção.
 c.colors.completion.match.fg = '#ffff00'
-# Cor da barra de scroll na aba de compleção
+# cor da barra de scroll na aba de compleção
 c.colors.completion.scrollbar.fg = '#000000'
-# Cor de fundo da barra de download
+# cor de fundo da barra de download
 c.colors.downloads.bar.bg = '#000000'
-# Cor de fundo de downloads com erro
+# cor de fundo de downloads com erro
 c.colors.downloads.error.bg = '#ff0000'
-# Cor da fonte de indicadores de links
+# cor da fonte de indicadores de links
 c.colors.hints.fg = '#ffffff'
-# Cor de fundo de indicadores de links
+# cor de fundo de indicadores de links
 c.colors.hints.bg = '#000000'
-# Borda de indicadores de links
+# borda de indicadores de links
 config.set('hints.border', '1px solid #ffffff')
 config.set('hints.radius', 0)
-# Cor da fonte em partes procuradas
+# cor da fonte em partes procuradas
 c.colors.hints.match.fg = '#ff0000'
-# Cor de fundo de informações importantes
+# cor de fundo de informações importantes
 c.colors.messages.info.bg = '#000000'
-# Cor de fundo da barra de status
+# cor de fundo da barra de status
 c.colors.statusbar.normal.bg = '#000000'
-# Cor do texto da barra de status quando inserindo texto
+# cor do texto da barra de status quando inserindo texto
 c.colors.statusbar.insert.fg = '#ffffff'
-# Cor da barra de status quando inserindo texto
+# cor da barra de status quando inserindo texto
 c.colors.statusbar.insert.bg = '#008800'
-# Cor da barra de status no modo passthrough
+# cor da barra de status no modo passthrough
 c.colors.statusbar.passthrough.bg = '#000000'
-# Cor de fundo da barra de status quando digitando comandos
+# cor de fundo da barra de status quando digitando comandos
 c.colors.statusbar.command.bg = '#000000'
-# Cor do texto da barra de status quando em alerta
+# cor do texto da barra de status quando em alerta
 c.colors.statusbar.url.warn.fg = '#ff0000'
-# Cor de fundo da barra de abas abertas
+# cor de fundo da barra de abas abertas
 c.colors.tabs.bar.bg = '#000000'
-# Cor de fundo de abas não selecionadas
+# cor de fundo de abas não selecionadas
 c.colors.tabs.odd.bg = '#000000'
 c.colors.tabs.even.bg = '#000000'
-# Cor de fundo de abas selecionadas
+# cor de fundo de abas selecionadas
 c.colors.tabs.selected.odd.bg = '#333333'
 c.colors.tabs.selected.even.bg = '#333333'
-# Cor de fundo de abas fixadas não selecionadas
+# cor de fundo de abas fixadas não selecionadas
 c.colors.tabs.pinned.odd.bg = '#000000'
 c.colors.tabs.pinned.even.bg = '#000000'
-# Cor de fundo de abas fixadas selecionadas
+# cor de fundo de abas fixadas selecionadas
 c.colors.tabs.pinned.selected.odd.bg = '#333333'
 c.colors.tabs.pinned.selected.even.bg = '#333333'
-# Cor das fontes de abas não selecionadas
+# cor das fontes de abas não selecionadas
 c.colors.tabs.even.fg = '#ffffff'
 c.colors.tabs.odd.fg = '#ffffff'
 c.colors.tabs.pinned.even.fg = '#ffffff'
 c.colors.tabs.pinned.odd.fg = '#ffffff'
-# Cor das fontes de abas selecionadas
+# cor das fontes de abas selecionadas
 c.colors.tabs.pinned.selected.odd.fg = '#ffffff'
 c.colors.tabs.pinned.selected.even.fg = '#ffffff'
 c.colors.tabs.selected.even.fg = '#ffffff'
 c.colors.tabs.selected.odd.fg = '#ffffff'
-# Cor da borda do texto selecionado na barra de compleção
+# cor da borda do texto selecionado na barra de compleção
 c.colors.completion.item.selected.border.bottom = '#ffffff'
 c.colors.completion.item.selected.border.top = '#ffffff'
 
-# FONTES
-
-# Fonte padrão
+#### Fontes ####
+# fonte padrão
 c.fonts.default_family = '"monospace"'
-# Tamanho padrão das fontes
+# tamanho padrão das fontes
 c.fonts.default_size = '14px'
-# Fonte usada nas abas de completação de comandos.
+# fonte usada nas abas de completação de comandos.
 c.fonts.completion.entry = '14px "monospace"'
-# Fonte used for the debugging console.
+# fonte used for the debugging console.
 c.fonts.debug_console = '14px "monospace"'
-# Fonte usada nos prompts.
+# fonte usada nos prompts.
 c.fonts.prompts = 'default_size "monospace"'
-# Fonte usada na barra de status.
+# fonte usada na barra de status.
 c.fonts.statusbar = '14px "monospace"'

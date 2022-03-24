@@ -1,36 +1,36 @@
-# Fecha janela
+# fecha janela
 super + shift + backslash
     bspc node -c
 
-# Troca janela selecionada pela maior janela
+# troca janela selecionada pela maior janela
 super + Return
     bspc node -s biggest.window
 
-# Troca entre layout monocle e tiled
+# troca entre layout monocle e tiled
 super + Escape
     bspc desktop -l next
 
-# Troca o foco para a janela anterior
+# troca o foco para a janela anterior
 super + Left
     bspc node -f prev.local.!hidden.window
 
-# Troca o foco para a proxima janela
+# troca o foco para a proxima janela
 super + {Right,Tab}
     bspc node -f next.local.!hidden.window
 
-# Alterna entre ou muda janela para um desktop
+# alterna entre ou muda janela para um desktop
 super + {_,shift + }{1-9,0}
     bspc {desktop -f,node -d} '^{1-9,10}'
 
-# Move janela para o espaço preselecionado
+# move janela para o espaço preselecionado
 super + ctrl + Return
     bspc node -n last.!automatic
 
-# Preseleciona uma direção
+# preseleciona uma direção
 super + ctrl + {Left,Down,Up,Right}
     bspc node -p {west,south,north,east}
 
-# Cancela seleção
+# cancela seleção
 ctrl + space
     bspc node -p cancel
 
@@ -45,122 +45,126 @@ ctrl + {Left,Down,Up,Right}
      bspc node @parent/first -z right +20 0; \
      bspc node @parent/second -z left +20 0}
 
-# Alterna entre janela flutuante
+# alterna entre janela flutuante
 super + t
     bspc node -t \~floating
 
-# Alterna tela cheia
+# alterna tela cheia
 Menu;f
     bspc node -t \~fullscreen
 
-# Ajusta proporção da janela selecionada
+# ajusta proporção da janela selecionada
 shift + Tab
     ajustar_tamanho.sh
 
-# Menu
+# menu
 Menu;Menu
     dmenu_menu
 
-# Menu energia
+# menu energia
 Menu;Escape
     dmenu_sys
 
-# Editar
+# editar
 Menu;e
     dmenu_edit
 
-# Emojis
+# emojis
 Menu;E
     dmenu_emoji
 
-# Ncmpcpp/Pulsemixer
+# ncmpcpp/pulsemixer
 super + {_,shift} + a
     st -g 100x30 -c {'ncmpcpp\,ncmpcpp' -e ncmpcpp,'pulsemixer\,pulsemixer' -e pulsemixer}
 
-# Pausa/Toca musica
+# pausa/toca musica
 super + space
     mpc toggle
 
-# Anterior/Proxima musica
+# anterior/proxima musica
 super + shift + {comma, period}
     mpc {prev,next} && musica notificar
 
-# Abaixar/Aumentar o volume e atualizar a barra
+# abaixar/aumentar o volume e atualizar a barra
 super + {comma, period}
     amixer -q set Master 5%{-,+}
 
-# St
+# st
 super + shift + Return
     st
 
-# Aparece/Esconde o st
+# aparece/esconde o st
 super + backslash
     st_scratchpad
 
-# Gimp
+# gimp
 Menu;g
     gimp
 
-# Clipboard
+# clipboard
 Menu;c
     dmenu_clip
 
-# Calculadora
+# calculadora
 Menu;C
     galculator
 
-# Transmission
+# transmission
 Menu;t
     transmission-gtk
 
-# Telegram
+# telegram
 Menu;T
     telegram-desktop
 
-# Discord
+# discord
 Menu;d
     discord
 
-# Shell History
+# shell history
 Menu;h
     dmenu_shhistory
 
-# Htop
+# htop
 Menu;H
     st -e htop
 
-# Passmenu
+# passmenu
 Menu;p
     passmenu --type
 
-# Picom
+# picom
 Menu;P
     killall picom || picom
 
-# Fluxgui
+# fluxgui
 Menu;F
     killall fluxgui || fluxgui
 
-# Montar/Desmontar
+# montar/desmontar
 Menu;m
     dmenu_mont
 
-# Teclas do sxhkd
+# teclas do sxhkd
 Menu;slash
     dmenu_sxhkd
 
-# Qutebrowser, pesquisa e favoritos
+# qutebrowser, pesquisa e favoritos
 Menu;q
     dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml
 
-# Anotações
+# anotações
 Menu;a
     nvim ~/documentos/anotações.md
 
-# Aliases
+# aliases
 Menu;A
     dmenu_aliases
 
-# Tira print
+# xephyr
+Menu;X
+    dmenu_xephyr
+
+# tira print
 Print
     dmenu_print

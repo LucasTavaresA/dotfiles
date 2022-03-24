@@ -1,5 +1,5 @@
-## EXPORTS
-# Adiciona ícones no lf
+#### Exports ####
+# adiciona ícones no lf
 export LF_ICONS="di=📁:fi=📃:tw=🤝:st=:ow=📂:dt=📁:ln=⛓:or=❌:ex=🎯:*.txt=✍:*.mom=✍:*.me=✍:*.ms=✍:,hosts=:\
 *.hook=🪝:*.ttf=:*.otf=:*.woff=:*.woff2=:*.png=🖼:*.webp=🖼:*.ico=🖼:*.bmp=🖼:*.pbm=🖼:*.pgm=🖼:*.ppm=🖼:\
 *.tga=🖼:*.xbm=🖼:*.xpm=🖼:*.jpg=📸:*.jpe=📸:*.jpeg=📸:*.mjpg=📸:*.mjpeg=📸:*.gif=🖼:*.svg=🗺:*.svgz=🗺:\
@@ -20,8 +20,8 @@ export LF_ICONS="di=📁:fi=📃:tw=🤝:st=:ow=📂:dt=📁:ln=⛓:or=❌:ex
 *.py=:*.rb=:*.rs=:*.scala=:*.ts=:*.vim=:*.cmd=:*.ps1=:*.sh=:*.bash=:*.zsh=:*.fish=:,Makefile=:*.mk=:*.nix=:\
 "
 
-# Muda o local padrão de alguns dotfiles limpando a $HOME ou ~
-# Define diretórios com o padrão xdg
+# muda o local padrão de alguns dotfiles limpando a $HOME ou ~
+# define diretórios com o padrão xdg
 UID="$(id -u)" # Pega o id de usuário
 export HOME="/home/lucas"
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -30,73 +30,73 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_RUNTIME_DIR="/run/user/$UID"
 export XDG_BIN_HOME="$HOME/.local/bin"
 
-# Window manager
-export WM="stumpwm"
-# Pass
+# window manager
+export WM="herbstluftwm"
+# pass
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/pass"
-# Bat como o manpager
+# bat como o manpager
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-# Terminal
+# terminal
 export TERMINAL="st"
 export TERM="xterm-256color"
-# Navegador padrão
+# navegador padrão
 export BROWSER="qutebrowser"
-# Pager
+# pager
 export PAGER="less -R"
-# Faz o qt usar o tema do gtk2
+# faz o qt usar o tema do gtk2
 export QT_QPA_PLATFORMTHEME="gtk2"
-# Less
+# less
 export LESSHISTFILE="-"
-# Wget
+# wget
 export WGETRC="${XDG_DATA_HOME:-$HOME/.local/share}/wget/wgetrc"
-# XAuthority
+# xauthority
 export XAUTHORITY="${XDG_RUNTIME_DIR:-/run/user/$UID}/Xauthority"
-# Cargo
+# cargo
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
-# Omnisharp
+# omnisharp
 export OMNISHARPHOME="${XDG_DATA_HOME:-$HOME/.local/share}/omnisharp"
-# Nuget
+# nuget
 export NUGET_PACKAGES="${XDG_CACHE_HOME:-$HOME/.cache}/NuGetPackages"
-# Gnupg
+# gnupg
 export GNUPGHOME="$HOME/.gnupg"
-# Npm
+# npm
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc"
-# Terminfo
+# terminfo
 export TERMINFO="${XDG_DATA_HOME:-$HOME/.local/share}/terminfo"
-# Inputrc
+# inputrc
 export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/readline/inputrc"
-# Gtk 2
+# gtk 2
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc"
-# W3m
+# w3m
 export W3M_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/w3m"
-# Go
+# go
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
-# Ghcup
+# ghcup
 export GHCUP_USE_XDG_DIRS="1"
 export GHCUP_INSTALL_BASE_PREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/"
-# Cabal
+# cabal
 export CABAL_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/cabal/config"
 export CABAL_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/cabal"
-# Android sdk
+# android sdk
 export ANDROID_SDK_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/android"
-# Wine
+# wine
 export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
-# Fzf
+# fzf
 export FZF_ALT_C_COMMAND="find . -maxdepth 4 -type d | grep -v '^\./\.cache'"
 
-# Shell
+# shell
 export SHELL="dash"
-# Muda o local do zshrc
+# muda o local do zshrc
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/shell"
-# Muda o local do histórico
+# muda o local do histórico
 export HISTFILE="${XDG_CONFIG_HOME:-$HOME/.config}/shell/history"
-# Aumenta o tamanho limite do histórico
+# aumenta o tamanho limite do histórico
 export HISTSIZE=10000
 export HISTFILESIZE=10000
-# Ignora e deleta comandos duplicados no histórico
+# ignora e deleta comandos duplicados no histórico
 export HISTCONTROL=ignoredups:erasedups
 
-# Adiciona diretórios bin e scripts ao path
+# adiciona diretórios bin e scripts ao path
 export PATH="$GOPATH/bin:$PATH"
 export PATH="/usr/lib/jvm/java-11-openjdk/bin:$PATH"
 export PATH="$HOME/code/shell/dmenuscripts:$PATH"
@@ -108,18 +108,18 @@ export PATH="${XDG_CONFIG_HOME:-$HOME/.config}/emacs/bin:$PATH"
 export EMACSDIR="${XDG_CONFIG_HOME:-$HOME/.config}/emacs"
 export DOOMDIR="${XDG_CONFIG_HOME:-$HOME/.config}/doom"
 export DOOMLOCALDIR="${XDG_CONFIG_HOME:-$HOME/.config}/emacs/.local"
-# Editor no terminal
+# editor no terminal
 export EDITOR="nvim"
-# Editor com interface gráfica
+# editor com interface gráfica
 export VISUAL="nvim"
 
-# Usa o dmenu como autenticador GUI
+# usa o dmenu como autenticador GUI
 export SSH_ASKPASS="doas_askpass"
 export GIT_ASKPASS="doas_askpass"
 export SUDO_ASKPASS="$HOME/code/shell/dmenuscripts/dmenu_pass"
 export DOAS_ASKPASS="dmenu -fn Monospace-18 -c -cw 500 -P -p 🔑Senha:"
 
-# Localização para datas
+# localização para datas
 export LC_TIME="pt_BR.UTF-8"
 
 [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"

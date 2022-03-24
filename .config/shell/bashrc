@@ -1,10 +1,10 @@
-# Se não executando bash interativamente
-# Não executa o resto do bashrc
+# se não executando bash interativamente
+# não executa o resto do bashrc
 [[ $- != *i* ]] && return
 
 export SHELL="bash"
 
-# Aliases
+#### Aliases ####
 alias n="neofetch"
 alias v="nvim"
 alias vv="/usr/bin/nvim"
@@ -39,7 +39,7 @@ alias xp="xprop"
 alias xk="xkill"
 alias grep="grep --color -i"
 alias sys="doas systemctl"
-# Arquivos e Diretórios
+# arquivos e Diretórios
 alias l="lsd -l --group-dirs first"
 alias la="lsd -A --group-dirs first"
 alias lla="lsd -lA --group-dirs first"
@@ -58,7 +58,7 @@ alias md="mkdir -p"
 alias t="touch"
 alias mnt="doas mount"
 alias umnt="doas umount"
-# Git
+# git
 alias gi="git init"
 alias gc="git clone"
 alias gs="git status"
@@ -78,7 +78,7 @@ alias gr="git restore"
 alias grs="git restore --staged"
 alias grrs="git reset --soft"
 alias grrh="git reset --hard"
-# Pacman
+# pacman
 alias ps="doas pacman -S"
 alias psi="pacman -Si"
 alias pss="pacman -Ss"
@@ -87,7 +87,7 @@ alias pq="pacman -Q"
 alias pqs="pacman -Qs"
 alias prns="doas pacman -Rns"
 alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
-# Paru
+# paru
 alias pps="paru -S"
 alias ppsi="paru -Si"
 alias ppss="paru -Ss"
@@ -96,22 +96,22 @@ alias ppq="paru -Q"
 alias ppqs="paru -Qs"
 alias pprns="paru -Rns"
 
-# Ignora case-sensitivity quando completa comandos com tab
+# ignora case-sensitivity quando completa comandos com tab
 if [ ! -a $HOME/.config/readline/inputrc ]; then echo '$include /etc/inputrc' > $HOME/.config/readline/inputrc; fi
 echo 'set completion-ignore-case On' >> $HOME/.config/readline/inputrc
-# Corrige automaticamente erros ao usar o cd
+# corrige automaticamente erros ao usar o cd
 shopt -s cdspell
-# Salva comandos de múltiplas linhas como uma linha única
+# salva comandos de múltiplas linhas como uma linha única
 shopt -s cmdhist
 
-## FUNÇÕES
+#### Funções ####
 
-# Hersbstluftwm
+# hersbstluftwm
 hc() {
     herbstclient "$@"
 }
 
-# Previsão de imagens no lf
+# previsão de imagens no lf
 lf () {
     LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"
     LF_TEMPDIR="$LF_TEMPDIR" lf-run -last-dir-path="$LF_TEMPDIR/lastdir" "$@"
@@ -122,8 +122,8 @@ lf () {
     unset LF_TEMPDIR
 }
 
-### Facilita extrair arquivos
-# Exemplo: ex <arquivo>
+# facilita extrair arquivos
+# exemplo: ex <arquivo>
 ex ()
 {
   if [ -f "$1" ] ; then
@@ -148,5 +148,5 @@ ex ()
     echo "'$1' não é um arquivo valido"
   fi
 }
-# Prompt
+# prompt
 PS1="\e[01;37m[\u@\h] \w\e[m \e[01;32m>\e[m"

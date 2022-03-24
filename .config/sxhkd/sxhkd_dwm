@@ -1,4 +1,4 @@
-# Ativa/Desativa a barra enquando super é segurado
+# ativa/desativa a barra enquando super é segurado
 Super_L + any
     dwmc togglebar
 ~@Super_L + any
@@ -8,35 +8,35 @@ Super_R + any
 ~@Super_R + any
     dwmc togglebar
 
-# Ativa/Desativa a barra
+# ativa/desativa a barra
 super + b
     dwmc togglebar
 
-# Muda o tamanho da janela
+# muda o tamanho da janela
 ctrl + super + {Left,Right}
     dwmc setmfact {-,+}0.05
 
-# Muda o tamanho da janela
+# muda o tamanho da janela
 ctrl + super + {Down,Up}
     dwmc setcfact {-,+}0.20
 
-# Muda entre as janelas
+# muda entre as janelas
 super + Tab
     dwmc focusstack +1
 
-# Muda de tag
+# muda de tag
 super + {Left, Right}
     dwmc {viewprev, viewnext}
 
-# Troca a janela de tag
+# troca a janela de tag
 super + shift {Left, Right}
   dwmc {tagtoprev, tagtonext}
 
-# Fecha uma janela
+# fecha uma janela
 super + shift + backslash
     dwmc killclient
 
-# Alterna janela flutuante
+# alterna janela flutuante
 super + w
     dwmc togglefloating
 
@@ -44,122 +44,126 @@ super + w
 super + Return
     dwmc inplacerotate +2
 
-# Troca entre layouts
+# troca entre layouts
 super + Escape
     dwmc layoutscroll +1
 
-# Ncmpcpp/Pulsemixer
+# ncmpcpp/pulsemixer
 super + {_,shift} + a
     st -g 100x30 -c {ncmpcpp -n ncmpcpp -e ncmpcpp,pulsemixer -n pulsemixer -e pulsemixer}
 
-# Pausa/Toca musica
+# pausa/toca musica
 super + space
     mpc toggle && pkill -RTMIN+11 dwmblocks
 
-# Anterior/Proxima musica
+# anterior/proxima musica
 super + shift + {comma, period}
     mpc {prev,next} && musica notificar && pkill -RTMIN+11 dwmblocks
 
-# Abaixar/Aumentar o volume e atualizar a barra
+# abaixar/aumentar o volume e atualizar a barra
 super + {comma, period, Down, Up}
     amixer -q set Master 5%{-,+,-,+} && pkill -RTMIN+9 dwmblocks
 
-# St
+# st
 super + shift + Return
     st
 
-# Aparece/Esconde o st
+# aparece/esconde o st
 super + backslash
     st_scratchpad
 
-# Torna a janela fixa em todas as tags
+# torna a janela fixa em todas as tags
 super + s
     dwmc togglesticky
 
-# Monocle
+# monocle
 super + f
     dwmc setmonocle 0
 
-# Menu
+# menu
 Menu;Menu
     dmenu_run
 
-# Menu energia
+# menu energia
 Menu;Escape
     dmenu_sys
 
-# Editar
+# editar
 Menu;e
     dmenu_edit
 
-# Emojis
+# emojis
 Menu;E
     dmenu_emoji
 
-# Montar/Desmontar
+# montar/desmontar
 Menu;m
     dmenu_mont
 
-# Atalhos do sxhkd
+# atalhos do sxhkd
 Menu;slash
     dmenu_sxhkd
 
-# Shell History
+# shell history
 Menu;h
     dmenu_shhistory
 
-# Htop
+# htop
 Menu;H
     st -g 100x30 -c htop -n htop -e htop
 
-# Passmenu
+# passmenu
 Menu;p
     passmenu --type
 
-# Picom
+# picom
 Menu;P
     killall picom || picom
 
-# Fluxgui
+# fluxgui
 Menu;F
     killall fluxgui || fluxgui
 
-# Clipboard
+# clipboard
 Menu;c
     dmenu_clip
 
-# Calculadora
+# calculadora
 Menu;C
     galculator
 
-# Gimp
+# gimp
 Menu;g
     gimp
 
-# Transmission
+# transmission
 Menu;t
     transmission-gtk
 
-# Telegram
+# telegram
 Menu;T
     telegram-desktop
 
-# Discord
+# discord
 Menu;d
     discord
 
-# Qutebrowser, pesquisa e favoritos
+# qutebrowser, pesquisa e favoritos
 Menu;q
     dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml
 
-# Anotações
+# anotações
 Menu;a
     nvim ~/documentos/anotações.md
 
-# Aliases
+# aliases
 Menu;A
     dmenu_aliases
 
-# Tira print
+# xephyr
+Menu;X
+    dmenu_xephyr
+
+# tira print
 Print
     dmenu_print

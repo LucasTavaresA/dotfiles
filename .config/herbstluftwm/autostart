@@ -27,12 +27,12 @@ hc emit_hook reload
 hc keyunbind --all
 hc mouseunbind --all
 
-# Atalhos do mouse
+# atalhos do mouse
 hc mousebind Super-Button1 move
 hc mousebind Super-Button2 zoom
 hc mousebind Super-Button3 resize
 
-# Adiciona tags no primeiro iniciar
+# adiciona tags no primeiro iniciar
 if primeira_vez_aberto; then
     tag_names=( {1..7} )
     hc rename default "${tag_names[0]}" || true
@@ -85,29 +85,30 @@ hc set mouse_recenter_gap 0
 hc set swap_monitors_to_get_tag 1
 hc set tree_style '╾│ ├└╼─┐'
 
-### Regras
+#### Regras ####
 hc unrule -F
-hc rule focus=on # Focar novas janelas
+hc rule focus=on # focar novas janelas
 hc rule floatplacement=smart
-# Programas
+# programas
 hc rule class="qutebrowser" tag=1
 hc rule class="Firefox" tag=1
 hc rule class="Emacs" tag=2
 hc rule class="nvim" tag=2
+hc rule class="st-256colors" tag=2
 hc rule class="mpv" tag=3
 hc rule class="Gimp" tag=4
 hc rule class="discord" tag=5
 hc rule class="TelegramDesktop" tag=5
 #hc rule class="" tag=6
-#hc rule class="" tag=7
-# Flutuantes
+hc rule class="Xephyr" tag=7
+# flutuantes
 hc rule class="ncmpcpp" floating=on floatplacement=center
 hc rule class="pulsemixer" floating=on floatplacement=center
 hc rule class="MEGAsync" floating=on floatplacement=center
 hc rule class="Transmission-gtk" floating=on floatplacement=center
 hc rule class="Galculator" floating=on floatplacement=center
 hc rule class="htop" floating=on floatplacement=center
-# Notificações, pop-ups, etc.
+# notificações, pop-ups, etc.
 hc rule class="qutebrowser" windowtype='_NET_WM_WINDOW_TYPE_UTILITY' floating=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on floatplacement=center
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on

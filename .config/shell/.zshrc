@@ -1,26 +1,26 @@
-# Se não executando zsh interativamente
-# Não executa o resto do zshrc
+# se não executando zsh interativamente
+# não executa o resto do zshrc
 [[ $- != *i* ]] && return
 
-# EXPORTS
+#### Exports ####
 export SHELL="zsh"
-# Não adiciona esses itens ao histórico
+# não adiciona esses itens ao histórico
 export HISTORY_IGNORE="(ls|cd|pwd|exit|doas reboot|history|cd -|cd ..)"
 HISTFILE=~/.config/shell/history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt SHARE_HISTORY
 
-# Carrega cores
+# carrega cores
 autoload -U colors && colors
 
-# Ativa comentários na mesma linha de um comando
+# ativa comentários na mesma linha de um comando
 setopt interactive_comments
 
-# TECLAS
-# Modo emacs
+# Teclas
+# modo emacs
 bindkey -e
-# Modo vi
+# modo vi
 # bindkey -v
 bindkey "^?" backward-delete-char
 bindkey "^[[3~" delete-char
@@ -30,22 +30,25 @@ bindkey "^[[H"   beginning-of-line
 bindkey "^[[4~"   end-of-line
 bindkey -s "^[f" '^Ulf^M'
 
-# Completar comandos
+# completar comandos
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
-_comp_options+=(globdots)       # Incluir arquivos ocultos.
+_comp_options+=(globdots) # Incluir arquivos ocultos.
 
-## FUNÇÕES
+setopt autocd
+cdpath=($HOME $HOME/code/shell/ $HOME/media/)
 
-# Hersbstluftwm
+## Funções
+
+# hersbstluftwm
 hc() {
     herbstclient "$@"
 }
 
-# Previsão de imagens no lf
+# previsão de imagens no lf
 lf () {
     LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"
     LF_TEMPDIR="$LF_TEMPDIR" lf-run -last-dir-path="$LF_TEMPDIR/lastdir" "$@"
@@ -56,8 +59,8 @@ lf () {
     unset LF_TEMPDIR
 }
 
-# Facilita extrair arquivos
-# Exemplo: ex (arquivo).zip
+# facilita extrair arquivos
+# exemplo: ex (arquivo).zip
 SAVEIFS=$IFS
 IFS=$(echo -en "\n\b")
 function ex {
@@ -92,7 +95,7 @@ function ex {
 }
 IFS=$SAVEIFS
 
-# Aliases
+#### Aliases ####
 alias n="neofetch"
 alias v="nvim"
 alias vv="/usr/bin/nvim"
@@ -127,7 +130,7 @@ alias xp="xprop"
 alias xk="xkill"
 alias grep="grep --color -i"
 alias sys="doas systemctl"
-# Arquivos e Diretórios
+# arquivos e Diretórios
 alias l="lsd -l --group-dirs first"
 alias la="lsd -A --group-dirs first"
 alias lla="lsd -lA --group-dirs first"
@@ -146,7 +149,7 @@ alias md="mkdir -p"
 alias t="touch"
 alias mnt="doas mount"
 alias umnt="doas umount"
-# Git
+# git
 alias gi="git init"
 alias gc="git clone"
 alias gs="git status"
@@ -166,7 +169,7 @@ alias gr="git restore"
 alias grs="git restore --staged"
 alias grrs='git reset --soft'
 alias grrh='git reset --hard'
-# Pacman
+# pacman
 alias ps="doas pacman -S"
 alias psi="pacman -Si"
 alias pss="pacman -Ss"
@@ -175,7 +178,7 @@ alias pq="pacman -Q"
 alias pqs="pacman -Qs"
 alias prns="doas pacman -Rns"
 alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
-# Paru
+# paru
 alias pps="paru -S"
 alias ppsi="paru -Si"
 alias ppss="paru -Ss"
@@ -184,12 +187,13 @@ alias ppq="paru -Q"
 alias ppqs="paru -Qs"
 alias pprns="paru -Rns"
 
-# Prompt
+# prompt
 PS1="%B[%n@%m] %4~ %{$fg[green]%}>%{$reset_color%}%b"
 
-# Carrega plugins do zsh, deve ser o ultimo comando
+# carrega plugins do zsh, deve ser o ultimo comando
 source $HOME/.config/shell/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source $HOME/.config/shell/plugins/expand-all.zsh
+source $HOME/.config/shell/plugins/zsh-you-should-use.plugin.zsh
+source $HOME/.config/shell/plugins/zsh-auto-notify.zsh
 source $HOME/.config/shell/plugins/fzf.zsh
 source $HOME/.config/shell/plugins/keys-fzf.zsh
 bindkey  "^[d"   fzf-cd-widget

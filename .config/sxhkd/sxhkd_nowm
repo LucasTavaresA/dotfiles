@@ -1,107 +1,111 @@
-# Abre e fecha scratchpads
+# abre e fecha scratchpads
 super + backslash
     st_scratchpad
 
-# Ncmpcpp/Pulsemixer
+# ncmpcpp/pulsemixer
 super + {_,shift} + a
     st -g 120x30 -c {ncmpcpp -n ncmpcpp -e ncmpcpp,pulsemixer -n pulsemixer -e pulsemixer}
 
-# Pausa/Toca musica
+# pausa/toca musica
 super + space
     mpc toggle
 
-# Anterior/Proxima musica
+# anterior/proxima musica
 super + shift + {comma, period}
     mpc {prev,next} && musica notificar
 
-# Abaixar/Aumentar o volume e atualizar a barra
+# abaixar/aumentar o volume e atualizar a barra
 super + {comma, period, Down, Up}
     amixer -q set Master 5%{-,+,-,+}
 
-# St
+# st
 super + shift + Return
     st
 
-# Menu
+# menu
 Menu;Menu
     dmenu_run
 
-# Menu energia
+# menu energia
 Menu;Escape
     dmenu_sys
 
-# Editar
+# editar
 Menu;e
     dmenu_edit
 
-# Emojis
+# emojis
 Menu;E
     dmenu_emoji
 
-# Montar/Desmontar
+# montar/desmontar
 Menu;m
     dmenu_mont
 
-# Atalhos do sxhkd
+# atalhos do sxhkd
 Menu;slash
     dmenu_sxhkd
 
-# Shell History
+# shell history
 Menu;h
     dmenu_shhistory
 
-# Htop
+# htop
 Menu;H
     st -g 120x30 -c htop -n htop -e htop
 
-# Passmenu
+# passmenu
 Menu;p
     passmenu --type
 
-# Picom
+# picom
 Menu;P
     killall picom || picom
 
-# Fluxgui
+# fluxgui
 Menu;F
     killall fluxgui || fluxgui
 
-# Clipboard
+# clipboard
 Menu;c
     dmenu_clip
 
-# Calculadora
+# calculadora
 Menu;C
     galculator
 
-# Gimp
+# gimp
 Menu;g
     gimp
 
-# Transmission
+# transmission
 Menu;t
     transmission-gtk
 
-# Telegram
+# telegram
 Menu;T
     telegram-desktop
 
-# Discord
+# discord
 Menu;d
     discord
 
-# Qutebrowser, pesquisa e favoritos
+# qutebrowser, pesquisa e favoritos
 Menu;q
     dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml
 
-# Anotações
+# anotações
 Menu;a
     nvim ~/documentos/anotações.md
 
-# Aliases
+# aliases
 Menu;A
     dmenu_aliases
 
-# Tira print
+# xephyr
+Menu;X
+    dmenu_xephyr
+
+# tira print
 Print
     dmenu_print

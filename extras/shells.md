@@ -15,8 +15,8 @@ Usar o comando `chsh -s /bin/dash` para usar o dash como login shell, Profile tr
 - `~/.config/shell/profile`
 
 ```sh tangle:~/.config/shell/profile
-## EXPORTS
-# Adiciona ícones no lf
+#### Exports ####
+# adiciona ícones no lf
 export LF_ICONS="di=📁:fi=📃:tw=🤝:st=:ow=📂:dt=📁:ln=⛓:or=❌:ex=🎯:*.txt=✍:*.mom=✍:*.me=✍:*.ms=✍:,hosts=:\
 *.hook=🪝:*.ttf=:*.otf=:*.woff=:*.woff2=:*.png=🖼:*.webp=🖼:*.ico=🖼:*.bmp=🖼:*.pbm=🖼:*.pgm=🖼:*.ppm=🖼:\
 *.tga=🖼:*.xbm=🖼:*.xpm=🖼:*.jpg=📸:*.jpe=📸:*.jpeg=📸:*.mjpg=📸:*.mjpeg=📸:*.gif=🖼:*.svg=🗺:*.svgz=🗺:\
@@ -37,8 +37,8 @@ export LF_ICONS="di=📁:fi=📃:tw=🤝:st=:ow=📂:dt=📁:ln=⛓:or=❌:ex
 *.py=:*.rb=:*.rs=:*.scala=:*.ts=:*.vim=:*.cmd=:*.ps1=:*.sh=:*.bash=:*.zsh=:*.fish=:,Makefile=:*.mk=:*.nix=:\
 "
 
-# Muda o local padrão de alguns dotfiles limpando a $HOME ou ~
-# Define diretórios com o padrão xdg
+# muda o local padrão de alguns dotfiles limpando a $HOME ou ~
+# define diretórios com o padrão xdg
 UID="$(id -u)" # Pega o id de usuário
 export HOME="/home/lucas"
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -47,73 +47,73 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_RUNTIME_DIR="/run/user/$UID"
 export XDG_BIN_HOME="$HOME/.local/bin"
 
-# Window manager
-export WM="stumpwm"
-# Pass
+# window manager
+export WM="herbstluftwm"
+# pass
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/pass"
-# Bat como o manpager
+# bat como o manpager
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-# Terminal
+# terminal
 export TERMINAL="st"
 export TERM="xterm-256color"
-# Navegador padrão
+# navegador padrão
 export BROWSER="qutebrowser"
-# Pager
+# pager
 export PAGER="less -R"
-# Faz o qt usar o tema do gtk2
+# faz o qt usar o tema do gtk2
 export QT_QPA_PLATFORMTHEME="gtk2"
-# Less
+# less
 export LESSHISTFILE="-"
-# Wget
+# wget
 export WGETRC="${XDG_DATA_HOME:-$HOME/.local/share}/wget/wgetrc"
-# XAuthority
+# xauthority
 export XAUTHORITY="${XDG_RUNTIME_DIR:-/run/user/$UID}/Xauthority"
-# Cargo
+# cargo
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
-# Omnisharp
+# omnisharp
 export OMNISHARPHOME="${XDG_DATA_HOME:-$HOME/.local/share}/omnisharp"
-# Nuget
+# nuget
 export NUGET_PACKAGES="${XDG_CACHE_HOME:-$HOME/.cache}/NuGetPackages"
-# Gnupg
+# gnupg
 export GNUPGHOME="$HOME/.gnupg"
-# Npm
+# npm
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc"
-# Terminfo
+# terminfo
 export TERMINFO="${XDG_DATA_HOME:-$HOME/.local/share}/terminfo"
-# Inputrc
+# inputrc
 export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/readline/inputrc"
-# Gtk 2
+# gtk 2
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc"
-# W3m
+# w3m
 export W3M_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/w3m"
-# Go
+# go
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
-# Ghcup
+# ghcup
 export GHCUP_USE_XDG_DIRS="1"
 export GHCUP_INSTALL_BASE_PREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/"
-# Cabal
+# cabal
 export CABAL_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/cabal/config"
 export CABAL_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/cabal"
-# Android sdk
+# android sdk
 export ANDROID_SDK_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/android"
-# Wine
+# wine
 export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
-# Fzf
+# fzf
 export FZF_ALT_C_COMMAND="find . -maxdepth 4 -type d | grep -v '^\./\.cache'"
 
-# Shell
+# shell
 export SHELL="dash"
-# Muda o local do zshrc
+# muda o local do zshrc
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/shell"
-# Muda o local do histórico
+# muda o local do histórico
 export HISTFILE="${XDG_CONFIG_HOME:-$HOME/.config}/shell/history"
-# Aumenta o tamanho limite do histórico
+# aumenta o tamanho limite do histórico
 export HISTSIZE=10000
 export HISTFILESIZE=10000
-# Ignora e deleta comandos duplicados no histórico
+# ignora e deleta comandos duplicados no histórico
 export HISTCONTROL=ignoredups:erasedups
 
-# Adiciona diretórios bin e scripts ao path
+# adiciona diretórios bin e scripts ao path
 export PATH="$GOPATH/bin:$PATH"
 export PATH="/usr/lib/jvm/java-11-openjdk/bin:$PATH"
 export PATH="$HOME/code/shell/dmenuscripts:$PATH"
@@ -125,18 +125,18 @@ export PATH="${XDG_CONFIG_HOME:-$HOME/.config}/emacs/bin:$PATH"
 export EMACSDIR="${XDG_CONFIG_HOME:-$HOME/.config}/emacs"
 export DOOMDIR="${XDG_CONFIG_HOME:-$HOME/.config}/doom"
 export DOOMLOCALDIR="${XDG_CONFIG_HOME:-$HOME/.config}/emacs/.local"
-# Editor no terminal
+# editor no terminal
 export EDITOR="nvim"
-# Editor com interface gráfica
+# editor com interface gráfica
 export VISUAL="nvim"
 
-# Usa o dmenu como autenticador GUI
+# usa o dmenu como autenticador GUI
 export SSH_ASKPASS="doas_askpass"
 export GIT_ASKPASS="doas_askpass"
 export SUDO_ASKPASS="$HOME/code/shell/dmenuscripts/dmenu_pass"
 export DOAS_ASKPASS="dmenu -fn Monospace-18 -c -cw 500 -P -p 🔑Senha:"
 
-# Localização para datas
+# localização para datas
 export LC_TIME="pt_BR.UTF-8"
 
 [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
@@ -149,29 +149,29 @@ Shell interativo, Trocado de diretório pela variável **ZDOTDIR**
 - `~/.config/shell/.zshrc`
 
 ```zsh tangle:~/.config/shell/.zshrc
-# Se não executando zsh interativamente
-# Não executa o resto do zshrc
+# se não executando zsh interativamente
+# não executa o resto do zshrc
 [[ $- != *i* ]] && return
 
-# EXPORTS
+#### Exports ####
 export SHELL="zsh"
-# Não adiciona esses itens ao histórico
+# não adiciona esses itens ao histórico
 export HISTORY_IGNORE="(ls|cd|pwd|exit|doas reboot|history|cd -|cd ..)"
 HISTFILE=~/.config/shell/history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt SHARE_HISTORY
 
-# Carrega cores
+# carrega cores
 autoload -U colors && colors
 
-# Ativa comentários na mesma linha de um comando
+# ativa comentários na mesma linha de um comando
 setopt interactive_comments
 
-# TECLAS
-# Modo emacs
+# Teclas
+# modo emacs
 bindkey -e
-# Modo vi
+# modo vi
 # bindkey -v
 bindkey "^?" backward-delete-char
 bindkey "^[[3~" delete-char
@@ -181,22 +181,25 @@ bindkey "^[[H"   beginning-of-line
 bindkey "^[[4~"   end-of-line
 bindkey -s "^[f" '^Ulf^M'
 
-# Completar comandos
+# completar comandos
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
-_comp_options+=(globdots)       # Incluir arquivos ocultos.
+_comp_options+=(globdots) # Incluir arquivos ocultos.
 
-## FUNÇÕES
+setopt autocd
+cdpath=($HOME $HOME/code/shell/ $HOME/media/)
 
-# Hersbstluftwm
+## Funções
+
+# hersbstluftwm
 hc() {
     herbstclient "$@"
 }
 
-# Previsão de imagens no lf
+# previsão de imagens no lf
 lf () {
     LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"
     LF_TEMPDIR="$LF_TEMPDIR" lf-run -last-dir-path="$LF_TEMPDIR/lastdir" "$@"
@@ -207,8 +210,8 @@ lf () {
     unset LF_TEMPDIR
 }
 
-# Facilita extrair arquivos
-# Exemplo: ex (arquivo).zip
+# facilita extrair arquivos
+# exemplo: ex (arquivo).zip
 SAVEIFS=$IFS
 IFS=$(echo -en "\n\b")
 function ex {
@@ -243,7 +246,7 @@ function ex {
 }
 IFS=$SAVEIFS
 
-# Aliases
+#### Aliases ####
 alias n="neofetch"
 alias v="nvim"
 alias vv="/usr/bin/nvim"
@@ -278,7 +281,7 @@ alias xp="xprop"
 alias xk="xkill"
 alias grep="grep --color -i"
 alias sys="doas systemctl"
-# Arquivos e Diretórios
+# arquivos e Diretórios
 alias l="lsd -l --group-dirs first"
 alias la="lsd -A --group-dirs first"
 alias lla="lsd -lA --group-dirs first"
@@ -297,7 +300,7 @@ alias md="mkdir -p"
 alias t="touch"
 alias mnt="doas mount"
 alias umnt="doas umount"
-# Git
+# git
 alias gi="git init"
 alias gc="git clone"
 alias gs="git status"
@@ -317,7 +320,7 @@ alias gr="git restore"
 alias grs="git restore --staged"
 alias grrs='git reset --soft'
 alias grrh='git reset --hard'
-# Pacman
+# pacman
 alias ps="doas pacman -S"
 alias psi="pacman -Si"
 alias pss="pacman -Ss"
@@ -326,7 +329,7 @@ alias pq="pacman -Q"
 alias pqs="pacman -Qs"
 alias prns="doas pacman -Rns"
 alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
-# Paru
+# paru
 alias pps="paru -S"
 alias ppsi="paru -Si"
 alias ppss="paru -Ss"
@@ -335,12 +338,13 @@ alias ppq="paru -Q"
 alias ppqs="paru -Qs"
 alias pprns="paru -Rns"
 
-# Prompt
+# prompt
 PS1="%B[%n@%m] %4~ %{$fg[green]%}>%{$reset_color%}%b"
 
-# Carrega plugins do zsh, deve ser o ultimo comando
+# carrega plugins do zsh, deve ser o ultimo comando
 source $HOME/.config/shell/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source $HOME/.config/shell/plugins/expand-all.zsh
+source $HOME/.config/shell/plugins/zsh-you-should-use.plugin.zsh
+source $HOME/.config/shell/plugins/zsh-auto-notify.zsh
 source $HOME/.config/shell/plugins/fzf.zsh
 source $HOME/.config/shell/plugins/keys-fzf.zsh
 bindkey  "^[d"   fzf-cd-widget
@@ -354,13 +358,13 @@ Shell usado pelo arch também muito usado em scripts, bashrc trocado de lugar co
 - `~/.config/shell/bashrc`
 
 ```bash tangle:~/.config/shell/bashrc
-# Se não executando bash interativamente
-# Não executa o resto do bashrc
+# se não executando bash interativamente
+# não executa o resto do bashrc
 [[ $- != *i* ]] && return
 
 export SHELL="bash"
 
-# Aliases
+#### Aliases ####
 alias n="neofetch"
 alias v="nvim"
 alias vv="/usr/bin/nvim"
@@ -395,7 +399,7 @@ alias xp="xprop"
 alias xk="xkill"
 alias grep="grep --color -i"
 alias sys="doas systemctl"
-# Arquivos e Diretórios
+# arquivos e Diretórios
 alias l="lsd -l --group-dirs first"
 alias la="lsd -A --group-dirs first"
 alias lla="lsd -lA --group-dirs first"
@@ -414,7 +418,7 @@ alias md="mkdir -p"
 alias t="touch"
 alias mnt="doas mount"
 alias umnt="doas umount"
-# Git
+# git
 alias gi="git init"
 alias gc="git clone"
 alias gs="git status"
@@ -434,7 +438,7 @@ alias gr="git restore"
 alias grs="git restore --staged"
 alias grrs="git reset --soft"
 alias grrh="git reset --hard"
-# Pacman
+# pacman
 alias ps="doas pacman -S"
 alias psi="pacman -Si"
 alias pss="pacman -Ss"
@@ -443,7 +447,7 @@ alias pq="pacman -Q"
 alias pqs="pacman -Qs"
 alias prns="doas pacman -Rns"
 alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
-# Paru
+# paru
 alias pps="paru -S"
 alias ppsi="paru -Si"
 alias ppss="paru -Ss"
@@ -452,22 +456,22 @@ alias ppq="paru -Q"
 alias ppqs="paru -Qs"
 alias pprns="paru -Rns"
 
-# Ignora case-sensitivity quando completa comandos com tab
+# ignora case-sensitivity quando completa comandos com tab
 if [ ! -a $HOME/.config/readline/inputrc ]; then echo '$include /etc/inputrc' > $HOME/.config/readline/inputrc; fi
 echo 'set completion-ignore-case On' >> $HOME/.config/readline/inputrc
-# Corrige automaticamente erros ao usar o cd
+# corrige automaticamente erros ao usar o cd
 shopt -s cdspell
-# Salva comandos de múltiplas linhas como uma linha única
+# salva comandos de múltiplas linhas como uma linha única
 shopt -s cmdhist
 
-## FUNÇÕES
+#### Funções ####
 
-# Hersbstluftwm
+# hersbstluftwm
 hc() {
     herbstclient "$@"
 }
 
-# Previsão de imagens no lf
+# previsão de imagens no lf
 lf () {
     LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"
     LF_TEMPDIR="$LF_TEMPDIR" lf-run -last-dir-path="$LF_TEMPDIR/lastdir" "$@"
@@ -478,8 +482,8 @@ lf () {
     unset LF_TEMPDIR
 }
 
-### Facilita extrair arquivos
-# Exemplo: ex <arquivo>
+# facilita extrair arquivos
+# exemplo: ex <arquivo>
 ex ()
 {
   if [ -f "$1" ] ; then
@@ -504,6 +508,6 @@ ex ()
     echo "'$1' não é um arquivo valido"
   fi
 }
-# Prompt
+# prompt
 PS1="\e[01;37m[\u@\h] \w\e[m \e[01;32m>\e[m"
 ```
