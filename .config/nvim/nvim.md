@@ -2,6 +2,8 @@
 
 Configuração do neovim em lua
 
+- `~/.config/nvim/init.lua`
+
 ## Sumario
 
 - [Plugins](#plugins)
@@ -10,58 +12,71 @@ Configuração do neovim em lua
 
 ## Plugins
 
-```lua tangle:~/.config/nvim/init.lua
-require('packer').startup(function()
-    ---- Iniciar
-    -- Vim mais rápido
-    use 'lewis6991/impatient.nvim'
-    -- Gerenciador de pacotes
-    use 'wbthomason/packer.nvim'
+Usando o gerenciador de pacotes paq
 
-    ---- Aparência
-    -- Tema
-    use '~/.config/nvim/plugins/moonlight.nvim'
-    -- Esconde a barra
-    use '~/.config/nvim/plugins/lite-dfm'
+```lua tangle:~/.config/nvim/init.lua
+-- clona o paq caso a sua pasta não exista
+local path = vim.fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
+if vim.fn.empty(vim.fn.glob(path)) > 0 then
+    vim.fn.system {
+        'git',
+        'clone',
+        '--depth=1',
+        'https://github.com/savq/paq-nvim.git',
+        path
+    }
+end
+
+-- adiciona o paq aos pacotes do nvim
+vim.cmd('packadd paq-nvim')
+
+-- inicia o paq e seus pacotes
+local paq = require('paq')
+paq({
+    ---- Iniciar
+    -- vim mais rápido
+    "lewis6991/impatient.nvim";
+    -- gerenciador de pacotes
+    "savq/paq-nvim";
 
     ---- Miscelânea
-    -- Salva posição do cursor
-    use 'farmergreg/vim-lastplace'
-    -- Múltiplos cursores
-    use { 'mg979/vim-visual-multi', branch = 'master' }
-    -- Comenta linhas
-    use 'tpope/vim-commentary'
-    -- Troca/coloca aspas/parenteses
-    use 'tpope/vim-surround'
-    -- Expande região selecionada
-    use 'terryma/vim-expand-region'
-    -- Previsão de cores
-    use { 'norcalli/nvim-colorizer.lua', config = function() require('colorizer').setup() end }
-    -- Procura usando o fzf
-    use { 'junegunn/fzf', run = './install --bin', }
-    use 'junegunn/fzf.vim'
-    -- Procura linhas no buffer
-    use 'pelodelfuego/vim-swoop'
+    -- salva posição do cursor
+    "farmergreg/vim-lastplace";
+    -- múltiplos cursores
+    { "mg979/vim-visual-multi", branch = 'master' };
+    -- comenta linhas
+    "tpope/vim-commentary";
+    -- troca/coloca aspas/parenteses
+    "tpope/vim-surround";
+    -- expande região selecionada
+    "terryma/vim-expand-region";
+    -- previsão de cores
+    { "norcalli/nvim-colorizer.lua", config = function() require('colorizer').setup() end };
+    -- procura usando o fzf
+    { "junegunn/fzf", run = './install --bin', };
+    "junegunn/fzf.vim";
+    -- procura linhas no buffer
+    "pelodelfuego/vim-swoop";
 
     ---- Code
-    -- Indentação e indicação de sintaxe
-    use 'sheerun/vim-polyglot'
-    use 'nvim-treesitter/nvim-treesitter'
-    -- Fecha parenteses apertando enter
-    use 'rstacruz/vim-closer'
-    -- Indica diffs
-    use 'mhinz/vim-signify'
+    -- indentação e indicação de sintaxe
+    "sheerun/vim-polyglot";
+    "nvim-treesitter/nvim-treesitter";
+    -- fecha parenteses apertando enter
+    "rstacruz/vim-closer";
+    -- indica diffs
+    "mhinz/vim-signify";
     -- LSP
-    use 'neovim/nvim-lspconfig'
-    use 'williamboman/nvim-lsp-installer'
+    "neovim/nvim-lspconfig";
+    "williamboman/nvim-lsp-installer";
     -- sxhkd
-    use 'baskerville/vim-sxhkdrc'
+    "baskerville/vim-sxhkdrc";
     -- snippets
-    use 'SirVer/ultisnips'
-    use 'honza/vim-snippets'
-    -- Prever markdown
-    use {
-      'iamcco/markdown-preview.nvim',
+    "SirVer/ultisnips";
+    "honza/vim-snippets";
+    -- prever markdown
+    {
+      "iamcco/markdown-preview.nvim",
       run = function() vim.fn['mkdp#util#install']() end,
       ft = {'markdown', 'vimwiki'},
       cmd = { 'MarkdownPreview', 'MarkdownPreviewToggle' },
@@ -71,69 +86,75 @@ require('packer').startup(function()
           vim.g.mkdp_echo_preview_url = 1
         end,
       }
-    }
+    };
     -- tabelas em markdown
-    use 'dhruvasagar/vim-table-mode'
-    -- Json
-    use 'elzr/vim-json'
-end)
+    "dhruvasagar/vim-table-mode";
+    -- json
+    "elzr/vim-json";
+    -- previsão de output para REPL em Python, JavaScript, CoffeeScript, PHP, Lua, C++, TypeScript
+    -- -- "metakirby5/codi.vim";
+})
+
+-- carrega plugins locais
+vim.opt.runtimepath:append("~/.config/nvim/plugins/lite-dfm")
+vim.opt.runtimepath:append("~/.config/nvim/plugins/moonlight.nvim")
 
 ```
 
 ## Miscelânea
 
 ```lua tangle:~/.config/nvim/init.lua
----- vim
+---- Vim
 vim.cmd("filetype plugin on")
 vim.cmd("filetype indent on")
--- Mantem configurações de buffers
+-- mantem configurações de buffers
 vim.opt.hidden = true
--- Diminui recarregamentos da tela
+-- diminui recarregamentos da tela
 vim.opt.lazyredraw = true
--- Melhora suporte ao terminal
+-- melhora suporte ao terminal
 vim.opt.termguicolors = true
 
 ---- Arquivos
--- Desabilita swapfile
+-- desabilita swapfile
 vim.opt.swapfile = false
 
 ---- Tabs/Espaços
--- Limita tabs em 4 espaços
+-- limita tabs em 4 espaços
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
--- Troca tabs por espaços
+-- troca tabs por espaços
 vim.opt.expandtab = true
 
 ---- Miscelânea
--- Muda o titulo da janela
+-- muda o titulo da janela
 vim.opt.title = true
 vim.opt.titlestring = "nvim"
 vim.opt.titleold = "st"
--- Da a volta entre linhas
+-- da a volta entre linhas
 vim.opt.whichwrap = vim.opt.whichwrap + "<,>,h,l,[,]"
--- Ativa uso do mouse
+-- ativa uso do mouse
 vim.opt.mouse = "a"
--- Copiar e colar para o neovim
+-- copiar e colar para o neovim
 vim.cmd("autocmd InsertEnter * set cul")
 vim.cmd("autocmd InsertLeave * set nocul")
 vim.opt.clipboard:append { "unnamedplus" }
--- Atualiza o neovim mais rápido
+-- atualiza o neovim mais rápido
 vim.opt.updatetime = 100
--- Procura ignorando maiúsculas
+-- procura ignorando maiúsculas
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
--- Habilita a compleção de comandos
+-- habilita a compleção de comandos
 vim.opt.wildmode = { "longest", "list", "full" }
--- Divide a tela do lado e para baixo
+-- divide a tela do lado e para baixo
 vim.opt.splitbelow = true
 vim.opt.splitright = true
--- Não vai automaticamente para os itens pesquisados
+-- não vai automaticamente para os itens pesquisados
 vim.opt.incsearch = false
--- Linhas não dão a volta na tela
+-- linhas não dão a volta na tela
 vim.opt.wrap = false
--- Desativa comentar automaticamente a próxima linha
+-- desativa comentar automaticamente a próxima linha
 vim.cmd("autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
--- Automaticamente deleta todos os espaços em branco e novas linhas no salvamento do arquivo
+-- automaticamente deleta todos os espaços em branco e novas linhas no salvamento do arquivo
 vim.cmd [[ autocmd BufWritePre * let currPos = getpos('.') ]]
 vim.cmd [[ autocmd BufWritePre * %s/\s\+$//e ]]
 vim.cmd [[ autocmd BufWritePre * %s/\n\+\%$//e ]]
@@ -141,34 +162,34 @@ vim.cmd [[ autocmd BufWritePre *.[ch] %s/\%$/\r/e ]]
 vim.cmd [[ autocmd BufWritePre * cal cursor(currPos[1], currPos[2]) ]]
 
 ---- Aparência
--- Indicação de sintaxe
+-- indicação de sintaxe
 vim.cmd("syntax on")
--- Inicia sem a barra - LiteDFM
+-- inicia sem a barra - LiteDFM
 vim.cmd("autocmd VimEnter * LiteDFMToggle")
--- Tema - moonlight
+-- tema - moonlight
 vim.cmd("colorscheme moonlight")
--- Tema do visual multi
+-- tema do visual multi
 vim.g.VM_theme = "neon"
--- Indica linha selecionada no modo normal
+-- indica linha selecionada no modo normal
 vim.opt.cursorline = true
--- Define quando a barra superior aparece
+-- define quando a barra superior aparece
 vim.opt.showtabline = 0
--- Diminui tamanho da barra inferior
+-- diminui tamanho da barra inferior
 vim.opt.cmdheight = 1
--- Fundo escuro
+-- fundo escuro
 vim.opt.background = "dark"
--- Transparência
+-- transparência
 vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
 vim.cmd("hi EndOfBuffer guibg=NONE ctermbg=NONE")
 vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
--- Cor da linha atual
+-- cor da linha atual
 vim.cmd("hi CursorLine guibg=#333333")
 vim.cmd("autocmd InsertLeave * set cursorline")
--- Incida parenteses correspondente
+-- incida parenteses correspondente
 vim.cmd("hi! MatchParen cterm=NONE,bold gui=NONE,bold  guibg=NONE guifg=#ff0000")
 
 ---- Treesitter
--- Indentação e indicação de sintaxe
+-- indentação e indicação de sintaxe
 local configs = require'nvim-treesitter.configs'
 configs.setup {
   ensure_installed = "maintained", -- Apenas use parsers que são atualizados
@@ -179,7 +200,7 @@ configs.setup {
     enable = true, -- Indentação
   }
 }
--- Ativa folding do treesitter
+-- ativa folding do treesitter
 --vim.opt.foldmethod = "expr"
 --vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
@@ -187,7 +208,7 @@ configs.setup {
 vim.g.vim_markdown_frontmatter = 1  -- para formatar YAML
 vim.g.vim_markdown_toml_frontmatter = 1 -- para formatar TOML
 vim.g.vim_markdown_json_frontmatter = 1 -- para formatar JSON
--- Separa código em arquivos markdown ao salvar
+-- separa código em arquivos markdown ao salvar
 vim.cmd([[
 augroup RunCommandOnWrite
   autocmd!
@@ -199,7 +220,7 @@ augroup RunCommandOnWrite
   autocmd BufWritePost ~/extras/desktop.md !md-tangle -f %
 augroup END
 ]])
--- Função para fechar e abrir sumario
+-- função para fechar e abrir sumario
 vim.cmd([[
 function s:TocToggle()
     if index(["markdown", "qf"], &filetype) == -1
@@ -235,43 +256,43 @@ local keymap = vim.api.nvim_set_keymap
 local nr = { noremap = true }
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
--- Cancela indicação de palavras procuradas
+-- cancela indicação de palavras procuradas
 keymap("n", "<esc><esc>", ":noh<CR>", {})
--- Copiar na linha abaixo
+-- copiar na linha abaixo
 keymap("n", "P", ":norm o<CR>p", {})
--- Ativa/Desativa o corretor ortográfico
+-- ativa/Desativa o corretor ortográfico
 keymap("n", "tt", ":setlocal spell! spelllang=pt<CR>", {})
 keymap("n", "te", ":setlocal spell! spelllang=en<CR>", {})
--- Navega entre as divisórias
+-- navega entre as divisórias
 keymap("n", "<leader><Tab>", ":wincmd w<CR>", nr)
--- Salvar buffer
+-- salvar buffer
 keymap("n", "<leader>ww", ":w<CR>", {})
--- Sair e salvar
+-- sair e salvar
 keymap("n", "<leader>wq", ":wq!<CR>", {})
--- Fecha sem salvar
+-- fecha sem salvar
 keymap("n", "<leader>qq", ":q!<CR>", {})
--- Salvar e recarregar arquivo
+-- salvar e recarregar arquivo
 keymap("n", "<leader>wr", ":w<CR>:e<CR>", {})
--- Divide a tela do lado
+-- divide a tela do lado
 keymap("n", "<C-A-Right>", ":vs<CR>", {})
--- Divide a tela abaixo
+-- divide a tela abaixo
 keymap("n", "<C-A-down>", ":sp<CR>", {})
--- Copiar buffer
+-- copiar buffer
 keymap("n", "cb", "ggVGy", nr)
--- Ativa/Desativa números de linha
+-- ativa/Desativa números de linha
 keymap("n", "tn", ":set number!<CR>", {})
--- Procura palavra no cursor
+-- procura palavra no cursor
 keymap("n", "?", "*", {})
--- Abrir e Fechar Toc
+-- abrir e Fechar Toc
 keymap("n", "<A-Tab>", "<CR>:TocToggle<CR>", {})
--- Abre terminal no local do arquivo atual
+-- abre terminal no local do arquivo atual
 keymap("n", "<leader><return>", ":!sh -c 'cd %:p:h ; st' &<CR><CR>", {})
--- Centraliza cursor no modo normal
+-- centraliza cursor no modo normal
 keymap("n", "<Up>", "<Up>zz", {})
 keymap("n", "<down>", "<down>zz", {})
--- Executa um macro
+-- executa um macro
 keymap("n", "m", "@", {})
--- Marca/Desmarca caixas
+-- marca/desmarca caixas
 vim.cmd([[
 function Marcar()
     let l:line=getline('.')
@@ -287,17 +308,17 @@ autocmd FileType markdown nnoremap <silent> <leader><leader> :call Marcar()<CR>j
 ]])
 
 ---- Plugins
--- Atualiza plugins do packer - packer
-keymap("n", "<leader>ps", ":PackerSync<CR>", {})
--- Remove plugins não utilizados - packer
-keymap("n", "<leader>pc", ":PackerClean<CR>", {})
--- Editar snippets para o tipo de arquivo atual - ultisnips
+-- atualiza plugins do paq - paq
+keymap("n", "<leader>ps", ":PaqSync<CR>", {})
+-- remove plugins não utilizados - paq
+keymap("n", "<leader>pc", ":PaqClean<CR>", {})
+-- editar snippets para o tipo de arquivo atual - ultisnips
 keymap("n", "<leader>es", ":UltiSnipsEdit<CR>", {})
--- Prevê arquivo markdown - markdown-preview
+-- prevê arquivo markdown - markdown-preview
 keymap("n", "mp", ":MarkdownPreview<CR>", {})
--- Ativa/Desativa a barra - litedfm
+-- ativa/Desativa a barra - litedfm
 keymap("n", "tb", ":LiteDFMToggle<CR>", {})
--- Expande região selecionada - expand region
+-- expande região selecionada - expand region
 keymap("n", "<S-up>", "<Plug>(expand_region_expand)", {})
 keymap("n", "<S-down>", "<Plug>(expand_region_shrink)", {})
 keymap("v", "<S-up>", "<Plug>(expand_region_expand)", {})
@@ -305,32 +326,32 @@ keymap("v", "<S-down>", "<Plug>(expand_region_shrink)", {})
 -- Criar cursor na próxima palavra - visual multi
 keymap("n", "<C-s>", "<C-n>", {})
 keymap("v", "<C-s>", "<C-n>", {})
--- Pular cursor ate a próxima palavra - visual multi
+-- pular cursor ate a próxima palavra - visual multi
 keymap("n", "<A-s>", "q", {})
--- Criar cursor abaixo/acima - visual multi
+-- criar cursor abaixo/acima - visual multi
 keymap("n", "<leader><Up>", "<C-Up>", {})
 keymap("n", "<leader><Down>", "<C-Down>", {})
--- Procura linhas no buffer - swoop
+-- procura linhas no buffer - swoop
 keymap("n", ";", ":call Swoop()<CR>", {})
 keymap("v", ";", ":call SwoopSelection()<CR>", {})
--- Abre arquivos no diretório atual - fzf
+-- abre arquivos no diretório atual - fzf
 keymap("n", "ff", ":Files %:p:h<CR>", {})
--- Histórico de arquivos - fzf
+-- histórico de arquivos - fzf
 keymap("n", "fh", ":History<CR>", {})
--- Trocar de buffer - fzf
+-- trocar de buffer - fzf
 keymap("n", "<S-Tab>", ":Buffers<CR>", {})
--- Comentar linhas - vim comentary
+-- comentar linhas - vim comentary
 keymap("n", "cc", "gccj", {})
 keymap("v", "cc", "gc", {})
--- Ativa previsão de cores - nvimcolorizer
+-- ativa previsão de cores - nvimcolorizer
 keymap("n", "tc", ":ColorizerToggle<CR>", {})
--- Troca entre partes do snippet - ultisnips
+-- troca entre partes do snippet - ultisnips
 vim.g.UltiSnipsExpandTrigger = "<tab>"
 vim.g.UltiSnipsJumpForwardTrigger = "<tab>"
 vim.g.UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 
 ---- LSP
--- Lua
+-- lua
 keymap("n", "gd", ":lua vim.lsp.buf.definition()<cr>", {})
 keymap("n", "gD", ":lua vim.lsp.buf.declaration()<cr>", {})
 keymap("n", "gi", ":lua vim.lsp.buf.implementation()<cr>", {})
