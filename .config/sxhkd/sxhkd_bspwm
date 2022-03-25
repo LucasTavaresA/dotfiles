@@ -1,3 +1,5 @@
+#### BSPWM ####
+
 # fecha janela
 super + shift + backslash
     bspc node -c
@@ -57,114 +59,97 @@ Menu;f
 shift + Tab
     ajustar_tamanho.sh
 
-# menu
-Menu;Menu
-    dmenu_menu
+#### INDENPENDENTE ####
 
-# menu energia
-Menu;Escape
-    dmenu_sys
-
-# editar
-Menu;e
-    dmenu_edit
-
-# emojis
-Menu;E
-    dmenu_emoji
-
-# ncmpcpp/pulsemixer
-super + {_,shift} + a
-    st -g 100x30 -c {'ncmpcpp\,ncmpcpp' -e ncmpcpp,'pulsemixer\,pulsemixer' -e pulsemixer}
-
-# pausa/toca musica
-super + space
-    mpc toggle
-
-# anterior/proxima musica
-super + shift + {comma, period}
-    mpc {prev,next} && musica notificar
-
-# abaixar/aumentar o volume e atualizar a barra
-super + {comma, period}
-    amixer -q set Master 5%{-,+}
-
+# Terminal #
 # st
 super + shift + Return
     st
-
-# aparece/esconde o st
+# abre e fecha scratchpads
 super + backslash
     st_scratchpad
 
-# gimp
-Menu;g
-    gimp
+# Musica #
+# pausa/toca musica e atualiza a barra no dwm
+super + space
+    mpc toggle & [ "$WM" = "dwm" ] && pkill -RTMIN+11 dwmblocks
+# anterior/proxima musica e atualiza a barra no dwm
+super + shift + {comma, period}
+    mpc {prev,next} && musica notificar & [ "$WM" = "dwm" ] && pkill -RTMIN+11 dwmblocks
+# abaixar/aumentar o volume e atualiza a barra no dwm
+super + {comma, period, Down, Up}
+    amixer -q set Master 5%{-,+,-,+} & [ "$WM" = "dwm" ] && pkill -RTMIN+9 dwmblocks
+# ncmpcpp/pulsemixer
+super + {_,shift} + a
+    st -g 120x30 -c {ncmpcpp -n ncmpcpp -e ncmpcpp,pulsemixer -n pulsemixer -e pulsemixer}
 
-# clipboard
-Menu;c
-    dmenu_clip
-
-# calculadora
-Menu;C
-    galculator
-
-# transmission
-Menu;t
-    transmission-gtk
-
-# telegram
-Menu;T
-    telegram-desktop
-
-# discord
-Menu;d
-    discord
-
-# shell history
+# Dmenus #
+# dmenu_run
+Menu;Menu
+    dmenu_run
+# dmenu_sys
+Menu;Escape
+    dmenu_sys
+# dmenu_edit
+Menu;e
+    dmenu_edit && [ "$WM" = "herbstluftwm" ] && herbstclient use 2
+# dmenu_emoji
+Menu;E
+    dmenu_emoji
+# dmenu_mont
+Menu;m
+    dmenu_mont
+# dmenu_sxhkd
+Menu;slash
+    dmenu_sxhkd
+# dmenu_shhistory
 Menu;h
     dmenu_shhistory
-
-# htop
-Menu;H
-    st -e htop
-
 # passmenu
 Menu;p
     passmenu --type
+# dmenu_clip
+Menu;c
+    dmenu_clip
+# dmenu_qutebrowser
+Menu;q
+    dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml & [ "$WM" = "herbstluftwm" ] && herbstclient use 1
+# dmenu_aliases
+Menu;A
+    dmenu_aliases
+# dmenu_xephyr
+Menu;X
+    dmenu_xephyr & [ "$WM" = "herbstluftwm" ] && herbstclient use 7
+# dmenu_print
+Print
+    dmenu_print
 
+# Outros #
+# htop
+Menu;H
+    st -g 120x30 -c htop -n htop -e htop
 # picom
 Menu;P
     killall picom || picom
-
 # fluxgui
 Menu;F
     killall fluxgui || fluxgui
-
-# montar/desmontar
-Menu;m
-    dmenu_mont
-
-# teclas do sxhkd
-Menu;slash
-    dmenu_sxhkd
-
-# qutebrowser, pesquisa e favoritos
-Menu;q
-    dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml
-
+# calculadora
+Menu;C
+    galculator
+# gimp
+Menu;g
+    gimp & [ "$WM" = "herbstluftwm" ] && herbstclient use 4
+# transmission
+Menu;t
+    transmission-gtk
+# telegram
+Menu;T
+    telegram-desktop
+# discord
+Menu;d
+    discord
 # anotações
 Menu;a
     nvim ~/documentos/anotações.md
 
-# aliases
-Menu;A
-    dmenu_aliases
-
-# xephyr
-Menu;X
-    dmenu_xephyr
-
-# tira print
-Print
-    dmenu_print

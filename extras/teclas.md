@@ -14,9 +14,7 @@ Teclas usando sxhkd no herbstluftwm, dwm, bspwm e spectrwm
 - `~/.config/sxhkd/sxhkd_herbstluftwm`
 
 ```sxhkdrc tangle:~/.config/sxhkd/sxhkd_herbstluftwm
-# abre e fecha scratchpads
-super + backslash
-    st_scratchpad
+#### HERBSTLUFTWM ####
 
 # fecha janela
 super + q
@@ -72,113 +70,6 @@ super + Escape
                      . cycle_layout +1 vertical horizontal max vertical grid    \
                , cycle_layout +1
 
-# ncmpcpp/pulsemixer
-super + {_,shift} + a
-    st -g 120x30 -c {ncmpcpp -n ncmpcpp -e ncmpcpp,pulsemixer -n pulsemixer -e pulsemixer}
-
-# pausa/toca musica
-super + space
-    mpc toggle
-
-# anterior/proxima musica
-super + shift + {comma, period}
-    mpc {prev,next} && musica notificar
-
-# abaixar/aumentar o volume e atualizar a barra
-super + {comma, period, Down, Up}
-    amixer -q set Master 5%{-,+,-,+}
-
-# st
-super + shift + Return
-    st & herbstclient use 2
-
-# menu
-Menu;Menu
-    dmenu_run
-
-# menu energia
-Menu;Escape
-    dmenu_sys
-
-# editar
-Menu;e
-    dmenu_edit && herbstclient use 2
-
-# emojis
-Menu;E
-    dmenu_emoji
-
-# montar/desmontar
-Menu;m
-    dmenu_mont
-
-# atalhos do sxhkd
-Menu;slash
-    dmenu_sxhkd
-
-# shell History
-Menu;h
-    dmenu_shhistory
-
-# htop
-Menu;H
-    st -g 120x30 -c htop -n htop -e htop
-
-# passmenu
-Menu;p
-    passmenu --type
-
-# picom
-Menu;P
-    killall picom || picom
-
-# fluxgui
-Menu;F
-    killall fluxgui || fluxgui
-
-# clipboard
-Menu;c
-    dmenu_clip
-
-# calculadora
-Menu;C
-    galculator
-
-# gimp
-Menu;g
-    gimp & herbstclient use 4
-
-# transmission
-Menu;t
-    transmission-gtk
-
-# telegram
-Menu;T
-    telegram-desktop & herbstclient use 5
-
-# discord
-Menu;d
-    discord & herbstclient use 5
-
-# qutebrowser, pesquisa e favoritos
-Menu;q
-    dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml & herbstclient use 1
-
-# anotações
-Menu;a
-    nvim ~/documentos/anotações.md & herbstclient use 2
-
-# aliases
-Menu;A
-    dmenu_aliases
-
-# xephyr
-Menu;X
-    dmenu_xephyr & herbstclient use 7
-
-# tira print
-Print
-    dmenu_print
 ```
 
 ## Dwm
@@ -186,6 +77,8 @@ Print
 - `~/.config/sxhkd/sxhkd_dwm`
 
 ```sxhkdrc tangle:~/.config/sxhkd/sxhkd_dwm
+#### DWM ####
+
 # ativa/desativa a barra enquando super é segurado
 Super_L + any
     dwmc togglebar
@@ -218,7 +111,7 @@ super + {Left, Right}
 
 # troca a janela de tag
 super + shift {Left, Right}
-  dwmc {tagtoprev, tagtonext}
+    dwmc {tagtoprev, tagtonext}
 
 # fecha uma janela
 super + shift + backslash
@@ -236,30 +129,6 @@ super + Return
 super + Escape
     dwmc layoutscroll +1
 
-# ncmpcpp/pulsemixer
-super + {_,shift} + a
-    st -g 100x30 -c {ncmpcpp -n ncmpcpp -e ncmpcpp,pulsemixer -n pulsemixer -e pulsemixer}
-
-# pausa/toca musica
-super + space
-    mpc toggle && pkill -RTMIN+11 dwmblocks
-
-# anterior/proxima musica
-super + shift + {comma, period}
-    mpc {prev,next} && musica notificar && pkill -RTMIN+11 dwmblocks
-
-# abaixar/aumentar o volume e atualizar a barra
-super + {comma, period, Down, Up}
-    amixer -q set Master 5%{-,+,-,+} && pkill -RTMIN+9 dwmblocks
-
-# st
-super + shift + Return
-    st
-
-# aparece/esconde o st
-super + backslash
-    st_scratchpad
-
 # torna a janela fixa em todas as tags
 super + s
     dwmc togglesticky
@@ -268,93 +137,6 @@ super + s
 super + f
     dwmc setmonocle 0
 
-# menu
-Menu;Menu
-    dmenu_run
-
-# menu energia
-Menu;Escape
-    dmenu_sys
-
-# editar
-Menu;e
-    dmenu_edit
-
-# emojis
-Menu;E
-    dmenu_emoji
-
-# montar/desmontar
-Menu;m
-    dmenu_mont
-
-# atalhos do sxhkd
-Menu;slash
-    dmenu_sxhkd
-
-# shell history
-Menu;h
-    dmenu_shhistory
-
-# htop
-Menu;H
-    st -g 100x30 -c htop -n htop -e htop
-
-# passmenu
-Menu;p
-    passmenu --type
-
-# picom
-Menu;P
-    killall picom || picom
-
-# fluxgui
-Menu;F
-    killall fluxgui || fluxgui
-
-# clipboard
-Menu;c
-    dmenu_clip
-
-# calculadora
-Menu;C
-    galculator
-
-# gimp
-Menu;g
-    gimp
-
-# transmission
-Menu;t
-    transmission-gtk
-
-# telegram
-Menu;T
-    telegram-desktop
-
-# discord
-Menu;d
-    discord
-
-# qutebrowser, pesquisa e favoritos
-Menu;q
-    dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml
-
-# anotações
-Menu;a
-    nvim ~/documentos/anotações.md
-
-# aliases
-Menu;A
-    dmenu_aliases
-
-# xephyr
-Menu;X
-    dmenu_xephyr
-
-# tira print
-Print
-    dmenu_print
 ```
 
 ## Bspwm
@@ -362,6 +144,8 @@ Print
 - `~/.config/sxhkd/sxhkd_bspwm`
 
 ```sxhkdrc tangle:~/.config/sxhkd/sxhkd_bspwm
+#### BSPWM ####
+
 # fecha janela
 super + shift + backslash
     bspc node -c
@@ -421,235 +205,108 @@ Menu;f
 shift + Tab
     ajustar_tamanho.sh
 
-# menu
-Menu;Menu
-    dmenu_menu
-
-# menu energia
-Menu;Escape
-    dmenu_sys
-
-# editar
-Menu;e
-    dmenu_edit
-
-# emojis
-Menu;E
-    dmenu_emoji
-
-# ncmpcpp/pulsemixer
-super + {_,shift} + a
-    st -g 100x30 -c {'ncmpcpp\,ncmpcpp' -e ncmpcpp,'pulsemixer\,pulsemixer' -e pulsemixer}
-
-# pausa/toca musica
-super + space
-    mpc toggle
-
-# anterior/proxima musica
-super + shift + {comma, period}
-    mpc {prev,next} && musica notificar
-
-# abaixar/aumentar o volume e atualizar a barra
-super + {comma, period}
-    amixer -q set Master 5%{-,+}
-
-# st
-super + shift + Return
-    st
-
-# aparece/esconde o st
-super + backslash
-    st_scratchpad
-
-# gimp
-Menu;g
-    gimp
-
-# clipboard
-Menu;c
-    dmenu_clip
-
-# calculadora
-Menu;C
-    galculator
-
-# transmission
-Menu;t
-    transmission-gtk
-
-# telegram
-Menu;T
-    telegram-desktop
-
-# discord
-Menu;d
-    discord
-
-# shell history
-Menu;h
-    dmenu_shhistory
-
-# htop
-Menu;H
-    st -e htop
-
-# passmenu
-Menu;p
-    passmenu --type
-
-# picom
-Menu;P
-    killall picom || picom
-
-# fluxgui
-Menu;F
-    killall fluxgui || fluxgui
-
-# montar/desmontar
-Menu;m
-    dmenu_mont
-
-# teclas do sxhkd
-Menu;slash
-    dmenu_sxhkd
-
-# qutebrowser, pesquisa e favoritos
-Menu;q
-    dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml
-
-# anotações
-Menu;a
-    nvim ~/documentos/anotações.md
-
-# aliases
-Menu;A
-    dmenu_aliases
-
-# xephyr
-Menu;X
-    dmenu_xephyr
-
-# tira print
-Print
-    dmenu_print
 ```
 
-## Nowm
+## Independente
 
-Caso o window manager não execute comandos
+Teclas que funcionarão independente do window manager,
+algumas teclas detectam um WM e fazem uma ação nele como trocar para a sua tag e atualizar a barra
 
 - `~/.config/sxhkd/sxhkd_nowm`
 
-```sxhkdrc tangle:~/.config/sxhkd/sxhkd_nowm
+```sxhkdrc tangle:~/.config/sxhkd/sxhkd_nowm,~/.config/sxhkd/sxhkd_bspwm,~/.config/sxhkd/sxhkd_dwm,~/.config/sxhkd/sxhkd_herbstluftwm
+#### INDENPENDENTE ####
+
+# Terminal #
+# st
+super + shift + Return
+    st
 # abre e fecha scratchpads
 super + backslash
     st_scratchpad
 
+# Musica #
+# pausa/toca musica e atualiza a barra no dwm
+super + space
+    mpc toggle & [ "$WM" = "dwm" ] && pkill -RTMIN+11 dwmblocks
+# anterior/proxima musica e atualiza a barra no dwm
+super + shift + {comma, period}
+    mpc {prev,next} && musica notificar & [ "$WM" = "dwm" ] && pkill -RTMIN+11 dwmblocks
+# abaixar/aumentar o volume e atualiza a barra no dwm
+super + {comma, period, Down, Up}
+    amixer -q set Master 5%{-,+,-,+} & [ "$WM" = "dwm" ] && pkill -RTMIN+9 dwmblocks
 # ncmpcpp/pulsemixer
 super + {_,shift} + a
     st -g 120x30 -c {ncmpcpp -n ncmpcpp -e ncmpcpp,pulsemixer -n pulsemixer -e pulsemixer}
 
-# pausa/toca musica
-super + space
-    mpc toggle
-
-# anterior/proxima musica
-super + shift + {comma, period}
-    mpc {prev,next} && musica notificar
-
-# abaixar/aumentar o volume e atualizar a barra
-super + {comma, period, Down, Up}
-    amixer -q set Master 5%{-,+,-,+}
-
-# st
-super + shift + Return
-    st
-
-# menu
+# Dmenus #
+# dmenu_run
 Menu;Menu
     dmenu_run
-
-# menu energia
+# dmenu_sys
 Menu;Escape
     dmenu_sys
-
-# editar
+# dmenu_edit
 Menu;e
-    dmenu_edit
-
-# emojis
+    dmenu_edit && [ "$WM" = "herbstluftwm" ] && herbstclient use 2
+# dmenu_emoji
 Menu;E
     dmenu_emoji
-
-# montar/desmontar
+# dmenu_mont
 Menu;m
     dmenu_mont
-
-# atalhos do sxhkd
+# dmenu_sxhkd
 Menu;slash
     dmenu_sxhkd
-
-# shell history
+# dmenu_shhistory
 Menu;h
     dmenu_shhistory
-
-# htop
-Menu;H
-    st -g 120x30 -c htop -n htop -e htop
-
 # passmenu
 Menu;p
     passmenu --type
+# dmenu_clip
+Menu;c
+    dmenu_clip
+# dmenu_qutebrowser
+Menu;q
+    dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml & [ "$WM" = "herbstluftwm" ] && herbstclient use 1
+# dmenu_aliases
+Menu;A
+    dmenu_aliases
+# dmenu_xephyr
+Menu;X
+    dmenu_xephyr & [ "$WM" = "herbstluftwm" ] && herbstclient use 7
+# dmenu_print
+Print
+    dmenu_print
 
+# Outros #
+# htop
+Menu;H
+    st -g 120x30 -c htop -n htop -e htop
 # picom
 Menu;P
     killall picom || picom
-
 # fluxgui
 Menu;F
     killall fluxgui || fluxgui
-
-# clipboard
-Menu;c
-    dmenu_clip
-
 # calculadora
 Menu;C
     galculator
-
 # gimp
 Menu;g
-    gimp
-
+    gimp & [ "$WM" = "herbstluftwm" ] && herbstclient use 4
 # transmission
 Menu;t
     transmission-gtk
-
 # telegram
 Menu;T
     telegram-desktop
-
 # discord
 Menu;d
     discord
-
-# qutebrowser, pesquisa e favoritos
-Menu;q
-    dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml
-
 # anotações
 Menu;a
     nvim ~/documentos/anotações.md
 
-# aliases
-Menu;A
-    dmenu_aliases
-
-# xephyr
-Menu;X
-    dmenu_xephyr
-
-# tira print
-Print
-    dmenu_print
 ```
