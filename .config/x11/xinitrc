@@ -1,18 +1,19 @@
 #!/bin/sh
 
-# Mouse
+# mouse
 xsetroot -cursor_name left_ptr
 
-# Teclado
+# teclado
+# troca capslock por escape
 setxkbmap -option caps:escape # grep -E "(ctrl|caps):" /usr/share/X11/xkb/rules/base.lst
 xset r rate 300 100 # acelera repetição de teclas
 
-# Clipmenu
+# clipmenu
 systemctl --user import-environment DISPLAY
 export CM_DIR="$HOME/code/shell/dmenuscripts/listas/clipmenu"
 clipmenud &
 
-# Protetor de tela
+# protetor de tela
 xautolock -detectsleep -time 30 -locker "slock" -notify 30 -notifier "notify-send Slock -u critical -t 1800000 'BLOQUEANDO A TELA 30 SEGUNDOS'" &
 
 mpd &
@@ -21,7 +22,7 @@ nitrogen --restore &
 nm-applet &
 xbanish &
 fluxgui &
-picom &
+#picom &
 
 if [ "$WM" = "herbstluftwm" ]; then
     sxhkd -c "$HOME/.config/sxhkd/sxhkd_herbstluftwm" &
@@ -29,6 +30,8 @@ if [ "$WM" = "herbstluftwm" ]; then
 elif [ "$WM" = "dwm" ]; then
     sxhkd -c "$HOME/.config/sxhkd/sxhkd_dwm" &
     dwmblocks &
+elif [ "$WM" = "stumpwm" ]; then
+    sxhkd -c "$HOME/.config/sxhkd/sxhkd_stumpwm" &
 elif [ "$WM" = "bspwm" ]; then
     sxhkd -c "$HOME/.config/sxhkd/sxhkd_bspwm" &
 else

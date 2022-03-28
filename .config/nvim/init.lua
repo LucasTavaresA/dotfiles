@@ -42,6 +42,8 @@ paq({
     "pelodelfuego/vim-swoop";
 
     ---- Code
+    -- Escreve codigo com IA
+    "github/copilot.vim";
     -- indentação e indicação de sintaxe
     "sheerun/vim-polyglot";
     "nvim-treesitter/nvim-treesitter";
@@ -225,6 +227,19 @@ lsp_installer.on_server_ready(function(server)
   server:setup(opts)
 end)
 
+-- desativa o copilot ao iniciar
+vim.cmd("autocmd VimEnter * Copilot disable")
+-- função para fechar e abrir copilot - copilot
+vim.cmd([[
+function s:CopilotToggle()
+    if !get(g:, 'copilot_enabled', 1)
+        Copilot enable
+    else
+        Copilot disable
+    endif
+endfunction
+command CopilotToggle call s:CopilotToggle()
+]])
 local keymap = vim.api.nvim_set_keymap
 local nr = { noremap = true }
 vim.g.mapleader = " "
@@ -236,6 +251,8 @@ keymap("n", "P", ":norm o<CR>p", {})
 -- ativa/desativa o corretor ortográfico
 keymap("n", "tt", ":setlocal spell! spelllang=pt<CR>", {})
 keymap("n", "te", ":setlocal spell! spelllang=en<CR>", {})
+-- mudar o typo de arquivo
+keymap("n", "ft", ":set filetype=", {})
 -- navega entre as divisórias
 keymap("n", "<leader><Tab>", ":wincmd w<CR>", nr)
 -- salvar buffer
@@ -291,6 +308,8 @@ keymap("n", "<leader>es", ":UltiSnipsEdit<CR>", {})
 keymap("n", "mp", ":MarkdownPreview<CR>", {})
 -- ativa/desativa a barra - litedfm
 keymap("n", "tb", ":LiteDFMToggle<CR>", {})
+-- ativa o copilot - copilot
+keymap("n", "tC", ":CopilotToggle<CR>", {})
 -- expande região selecionada - expand region
 keymap("n", "<S-up>", "<Plug>(expand_region_expand)", {})
 keymap("n", "<S-down>", "<Plug>(expand_region_shrink)", {})

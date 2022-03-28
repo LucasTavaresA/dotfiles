@@ -34,14 +34,14 @@ hc mousebind Super-Button3 resize
 
 # adiciona tags no primeiro iniciar
 if primeira_vez_aberto; then
-    tag_names=( {1..7} )
+    tag_names=( {1..4} )
     hc rename default "${tag_names[0]}" || true
     for i in "${!tag_names[@]}"; do
         hc add "${tag_names[$i]}"
     done
     hc detect_monitors
 fi
-tag_keys=( {1..7} 0 )
+tag_keys=( {1..4} 0 )
 tag_count=$(hc attr tags.count)
 for i in "${!tag_keys[@]}"; do
     (( i >= tag_count )) && break
@@ -67,7 +67,7 @@ hc set frame_border_active_color '#00ff00'
 hc set frame_border_normal_color '#000000'
 hc set frame_bg_active_color '#111111'
 hc set frame_bg_normal_color '#000000'
-hc set auto_detect_panels true
+hc set auto_detect_panels false
 hc set default_frame_layout max
 hc set always_show_frame 0
 hc set frame_border_width 1
@@ -96,11 +96,10 @@ hc rule class="Emacs" tag=2
 hc rule class="nvim" tag=2
 hc rule class="st-256colors" tag=2
 hc rule class="mpv" tag=3
-hc rule class="Gimp" tag=4
-hc rule class="discord" tag=5
-hc rule class="TelegramDesktop" tag=5
-#hc rule class="" tag=6
-hc rule class="Xephyr" tag=7
+hc rule class="Gimp" tag=3
+hc rule class="Xephyr" tag=3
+hc rule class="discord" tag=4
+hc rule class="TelegramDesktop" tag=4
 # flutuantes
 hc rule class="ncmpcpp" floating=on floatplacement=center
 hc rule class="pulsemixer" floating=on floatplacement=center

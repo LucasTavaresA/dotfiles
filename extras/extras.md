@@ -703,6 +703,7 @@ Arquivos ignorados pelo git
 .config/galculator/
 .config/GIMP/
 .config/git/config
+.config/github-copilot/
 .config/libreoffice/
 .config/mpd/
 .config/ncmpcpp/error.log

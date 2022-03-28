@@ -1,57 +1,51 @@
-#### HERBSTLUFTWM ####
-# fecha janela
-super + q
-    herbstclient close
+#### STUMPWM ####
+# ativa/desativa a barra
+super + b
+    stumpish mode-line
 
-# alterna tela cheia
-super + f
-    herbstclient fullscreen
-
-# alterna janela flutuante
-super + w
-    herbstclient attr clients.focus.floating toggle
-
-# alterna entre as janelas
-super + Tab
-    herbstclient cycle
-
-# muda entre as janelas
-super + {Up,Down,Left,Right}
-    herbstclient focus {up,down,left,right}
-
-# troca as janelas de posição
-super + shift + {Up,Down,Left,Right}
-    herbstclient shift {up,down,left,right}
-
-# muda de tags pulando tags vazias
-alt + {Left, Right}
-    hlwm-tagswitch {prev, next}
-
-# muda de tags
-super + alt + {Left, Right}
-    herbstclient {use_index -1, use_index +1}
-
-# muda janela de tag e a segue
-alt + shift + {Left, Right}
-    herbstclient {move_index -1 && hlwm-tagswitch prev, move_index +1 && hlwm-tagswitch next}
-
-# remove divisória
+# remove frame
 super + shift + q
-    herbstclient remove
+    stumpish remove
 
-# cria uma divisória
-ctrl + shift + {Left,Down,Up,Right}
-    herbstclient split {left, bottom, top, right}
+# Muda de grupo
+super + {Left,Right}
+    stumpish g{prev,next}
+
+# Muda a janela de grupo
+super + shift + {Left,Right}
+    stumpish g{prev-with-window,next-with-window}
+
+# cria frame vertical/horizontal
+ctrl + super + {Down,Right}
+    stumpish {vsplit,hsplit}
 
 # muda o tamanho de frames
-ctrl + super + {Left,Down,Up,Right}
-    herbstclient resize {left +0.05,down +0.05,up +0.05,right +0.05}
+ctrl + shift {Up,Down,Left,Right}
+    stumpish resize-direction {up,down,left,right}
 
-# troca entre layouts pulando layouts que não mudam janelas de posição
-super + Escape
-    herbstclient or , and . compare tags.focus.curframe_wcount = 2                   \
-                     . cycle_layout +1 vertical horizontal max vertical grid    \
-               , cycle_layout +1
+# move o foco entre frames e leva o cursor ao frame
+super + {Up,Down,Left,Right}
+    stumpish my-mv {up,down,left,right}
+
+# move a janela
+super + shift {Up,Down,Left,Right}
+    stumpish move-window {up,down,left,right}
+
+# Proxima janela
+super + Tab
+    stumpish pull-hidden-next
+
+# fechar janela
+super + q
+    stumpish delete-window
+
+# janela flutuante
+super + w
+    stumpish alterna-flutuante
+
+# tela cheia
+super + f
+    stumpish fullscreen
 
 #### INDENPENDENTE ####
 # Terminal #

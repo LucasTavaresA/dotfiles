@@ -12,6 +12,7 @@
 .config/galculator/
 .config/GIMP/
 .config/git/config
+.config/github-copilot/
 .config/libreoffice/
 .config/mpd/
 .config/ncmpcpp/error.log
@@ -21,7 +22,8 @@
 .config/qutebrowser/autoconfig.yml
 .config/qutebrowser/bookmarks
 .config/qutebrowser/quickmarks
-.config/stumpwm/*log*
+.config/stumpwm/modules/
+.config/stumpwm/stumpwm-contrib/
 .config/transmission/
 .config/VirtualBox/
 .config/NuGet/

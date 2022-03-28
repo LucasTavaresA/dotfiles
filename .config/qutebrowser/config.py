@@ -17,7 +17,7 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 
 #### Minhas configurações ####
 # tela cheia limitada a janela do navegador
-config.set('content.fullscreen.window', True)
+#config.set('content.fullscreen.window', True)
 # diminuiu javascript lento nos sites
 config.set('content.prefers_reduced_motion', True)
 # vê pdfs no browser usando o pdfjs

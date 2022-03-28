@@ -1,5 +1,4 @@
 #### BSPWM ####
-
 # fecha janela
 super + shift + backslash
     bspc node -c
@@ -60,7 +59,6 @@ shift + Tab
     ajustar_tamanho.sh
 
 #### INDENPENDENTE ####
-
 # Terminal #
 # st
 super + shift + Return
@@ -118,7 +116,7 @@ Menu;q
 Menu;A
     dmenu_aliases
 # dmenu_xephyr
-Menu;X
+Menu;x
     dmenu_xephyr & [ "$WM" = "herbstluftwm" ] && herbstclient use 7
 # dmenu_print
 Print
@@ -137,18 +135,9 @@ Menu;F
 # calculadora
 Menu;C
     galculator
-# gimp
-Menu;g
-    gimp & [ "$WM" = "herbstluftwm" ] && herbstclient use 4
 # transmission
 Menu;t
     transmission-gtk
-# telegram
-Menu;T
-    telegram-desktop
-# discord
-Menu;d
-    discord
 # anotações
 Menu;a
     nvim ~/documentos/anotações.md

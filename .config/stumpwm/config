@@ -1,0 +1,215 @@
+;;; -*-  mode: lisp; -*-
+;; Módulos ;;
+;; não é necessário chamar módulos stumpwm:
+(in-package :stumpwm)
+;; quicklisp & sbcl
+(load "~/.config/sbcl/sbclrc")
+(add-to-load-path "~/.local/share/quicklisp/")
+;; módulos da comunidade
+;; git clone git@github.com:stumpwm/stumpwm-contrib.git ~/.config/stumpwm/stumpwm-contrib
+;; esse comando carrega todos os módulos em pastas e subpastas
+(init-load-path #p"~/.config/stumpwm/modules")
+;; systray
+(load-module "xembed")
+(load-module "stumptray")
+;; manipular janelas em todos os grupos
+(load-module "globalwindows")
+
+;; compleção e histórico de comandos
+;; git clone https://github.com/landakram/stumpwm-prescient ~/.config/stumpwm/modules/stumpwm-prescient
+(setf *input-window-gravity* :center
+      *message-window-input-gravity* :left)
+(setf *input-completion-show-empty* t)
+(load-module "stumpwm-prescient")
+(setf *input-refine-candidates-fn* 'stumpwm-prescient:refine-input)
+
+;; arquivos
+(defun arquivo-disponivel-p (arquivo)
+  "Retorna T, se o arquivo está disponível para leitura"
+  (handler-case
+      (with-open-file (f arquivo)
+        (read-line f))
+    (stream-error () nil)))
+(defun executavel-p (nome)
+  "Diz se NOME é executável"
+  (let ((which-out (string-trim '(#\  #\linefeed) (run-shell-command (concat "which " nome) t))))
+    (unless (string-equal "" which-out) which-out)))
+
+;; janelas flutuantes sempre visiveis
+(defun flutuante-p (janela)
+  "Retorna T se JANELA é flutuante e NIL caso contrario"
+  (typep janela 'stumpwm::float-window))
+(defun desativa-sempre-no-topo (janela) ()
+  "Desativa dada JANELA como sempre visível"
+  (let ((ontop-wins (group-on-top-windows (current-group))))
+    (setf (group-on-top-windows (current-group))
+          (remove janela ontop-wins))))
+(defun ativa-sempre-no-topo (janela) ()
+  "Ativa dada JANELA como sempre visível"
+  (let ((j janela)
+        (janelas (group-on-top-windows (current-group))))
+    (when j
+      (unless (find j janelas)
+        (push janela (group-on-top-windows (current-group)))))))
+(defcommand alterna-flutuante () ()
+  "Alterna entre janela fixa/flutuante e coloca sempre no topo"
+  (let ((jan    (current-window))
+        (grupo  (current-group)))
+    (cond
+      ((flutuante-p jan)
+       (desativa-sempre-no-topo jan)
+       (stumpwm::unfloat-window jan grupo))
+      (t (ativa-sempre-no-topo jan)
+      (stumpwm::float-window jan grupo)))))
+
+;; mostra e esconde janelas
+(defun window-menu-format (w)
+  (list (format-expand *window-formatters* *window-format* w) w))
+(defun window-from-menu (windows)
+  (when windows
+    (second (select-from-menu
+             (group-screen (window-group (car windows)))
+             (mapcar 'window-menu-format windows)
+             "Selecionar Janela: "))))
+(defun windows-in-group (group)
+  (group-windows (find group (screen-groups (current-screen))
+                       :key 'group-name :test 'equal)))
+(defcommand mostra () ()
+  (let* ((windows (windows-in-group ".Hidden"))
+         (window  (window-from-menu windows)))
+    (when window
+      (move-window-to-group window (current-group))
+      (stumpwm::pull-window window))))
+(defcommand esconde () ()
+  (stumpwm:run-commands "gmove .Hidden"))
+
+;; Tema ;;
+;; cores
+(setf *colors*
+      '("#ffffff"
+        "#ff0000"
+        "#00aa00"
+        "#ffff00"
+        "#0000ff"
+        "#ff99ff"
+        "#00ffbd"
+        "#ffffff"))
+(setf *default-bg-color* "#ff00ff")
+(update-color-map (current-screen))
+
+;; barra
+(setf *window-format* " %30t " ;; formato indicador de janela
+      *screen-mode-line-format* (list ;; formato da barra
+        "[%n] %W ^>" ;; grupo atual e janelas abertas
+        '(:eval (run-shell-command "musica semicones" t)) ;; nome da musica sendo tocada
+        " VOL:" '(:eval (run-shell-command "volume semicones" t)) ;; volume
+        " %d     ") ;; data
+      *time-modeline-string* "%a %d/%m/%Y - %H:%M" ;; formato da data
+      *mode-line-pad-y* 0
+      *mode-line-timeout* 1 ;; tempo de atualização da barra
+      *mode-line-border-color* "#ffffff"
+      *mode-line-background-color* (car *colors*)
+      *mode-line-foreground-color* (car (last *colors*)))
+;; ativa a barra !Apos tudo ser definido acima!
+(defun enable-mode-line-everywhere ()
+  (loop for screen in *screen-list* do
+    (loop for head in (screen-heads screen) do
+	    (enable-mode-line screen head t))))
+; ativa a barra em todos/um monitor
+;(enable-mode-line-everywhere)
+(enable-mode-line (current-screen) (current-head) t)
+(stumptray:stumptray)
+
+(set-font "-xos4-terminus-bold-*-*-*-14-*-*-*-*-*-*-*")
+
+;; prompts e caixas de dialogo
+(setf *message-window-gravity* :center
+      *window-border-style* :thin
+      *message-window-padding* 1
+      *maxsize-border-width* 1
+      *normal-border-width* 1
+      *transient-border-width* 1
+      stumpwm::*float-window-border* 1
+      stumpwm::*float-window-title-height* 1)
+
+;; Grupos e regras ;;
+;; remove todas as regras
+(clear-window-placement-rules)
+(grename "Browser")
+(gnewbg "Code")
+(gnewbg "Fullscreen")
+(gnewbg "Message")
+(gnewbg ".Hidden")
+
+(define-frame-preference "Browser"
+    (0 t t :class "qutebrowser")
+    (0 t t :class "firefox"))
+(define-frame-preference "Code"
+;(frame-number raise lock &key create restore dump-name class instance type role title)
+    (0 t t :class "nvim")
+    (0 t t :class "Emacs")
+    (1 t t :class "st-256color"))
+(define-frame-preference "Fullscreen"
+    (0 t t :class "mpv")
+    (0 t t :class "Gimp")
+    (0 t t :class "Xephyr"))
+(define-frame-preference "Message"
+    (0 t t :class "discord")
+    (0 t t :class "TelegramDesktop"))
+
+;; Miscelânea ;;
+(setf *mouse-focus-policy* :click)
+(setf *resize-increment* 25)
+(defvar *dynamic-group-master-split-ratio* 1/2)
+
+;; para rodar comandos do shell
+;;(run-shell-command "comando")
+
+;; troca de grupos globalmente
+(setf *run-or-raise-all-groups* t)
+
+;; integração com o emacs
+(defcommand emacs () () ; substitui o comando emacs padrão
+  "Inicia o emacs se o client não esta rodando e foca no emacs caso esteja rodando no grupo atual"
+  (run-or-raise "emacsclient -c -a 'emacs'" '(:class "Emacs")))
+;; trata divisórias do emacs como janelas do xorg
+(defun emacs-p (jan)
+  "T se JAN é emacs"
+  (when jan
+    (string-equal (window-class jan) "Emacs")))
+(defun eval-elisp (expressao)
+  "avalia uma string como emacs-lisp"
+  (run-shell-command (concat "emacsclient -e '" expressao "'") t))
+(defun emacs-winmove (direcao)
+  "executa a função do emacs winmove-DIRECTION onde direcao é uma string"
+  (eval-elisp (concat "(windmove-" direcao ")")))
+(defun melhor-move-focus (ogdir)
+  "Similar ao move-focus porem trata janelas do emacs como janelas Xorg"
+  (declare (type (member :up :down :left :right) ogdir))
+  (flet ((mv () (move-focus ogdir)))
+    (if (emacs-p (current-window))
+        (when
+            ;; Não tem uma janela emacs nessa direção
+            (= (length (emacs-winmove
+                        (string-downcase (string ogdir))))
+               1)
+          (mv))
+        (mv))))
+(defcommand my-mv (dir) ((:direction "Direção: "))
+  (when dir (melhor-move-focus dir)))
+
+(defcommand reload-config () ()
+  (load "~/.config/stumpwm/config"))
+
+;; Teclas ;;
+(set-prefix-key (kbd "C-space"))
+(define-key *groups-map* (kbd "d") "gnew-dynamic")
+(define-key *groups-map* (kbd "s") "gselect")
+(define-key *root-map* (kbd "C-space") "windowlist")
+(define-key *top-map* (kbd "s-ESC") "mostra")
+(define-key *top-map* (kbd "M-ESC") "esconde")
+
+;; Final ;;
+;; remove logs caso existam
+(uiop:delete-directory-tree (pathname "~/.stumpwm.d/") :validate t)
+

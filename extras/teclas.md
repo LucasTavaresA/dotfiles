@@ -6,6 +6,7 @@ Teclas usando sxhkd no herbstluftwm, dwm, bspwm e spectrwm
 
 -   [Herbstluftwm](#herbstluftwm)
 -   [Dwm](#dwm)
+-   [Stumpwm](#stumpwm)
 -   [Bspwm](#bspwm)
 -   [Nowm](#nowm)
 
@@ -15,7 +16,6 @@ Teclas usando sxhkd no herbstluftwm, dwm, bspwm e spectrwm
 
 ```sxhkdrc tangle:~/.config/sxhkd/sxhkd_herbstluftwm
 #### HERBSTLUFTWM ####
-
 # fecha janela
 super + q
     herbstclient close
@@ -61,7 +61,7 @@ ctrl + shift + {Left,Down,Up,Right}
     herbstclient split {left, bottom, top, right}
 
 # muda o tamanho de frames
-ctrl + {Left,Down,Up,Right}
+ctrl + super + {Left,Down,Up,Right}
     herbstclient resize {left +0.05,down +0.05,up +0.05,right +0.05}
 
 # troca entre layouts pulando layouts que não mudam janelas de posição
@@ -72,13 +72,68 @@ super + Escape
 
 ```
 
+## Stumpwm
+
+- `~/.config/sxhkd/sxhkd_stumpwm`
+
+```sxhkdrc tangle:~/.config/sxhkd/sxhkd_stumpwm
+#### STUMPWM ####
+# ativa/desativa a barra
+super + b
+    stumpish mode-line
+
+# remove frame
+super + shift + q
+    stumpish remove
+
+# Muda de grupo
+super + {Left,Right}
+    stumpish g{prev,next}
+
+# Muda a janela de grupo
+super + shift + {Left,Right}
+    stumpish g{prev-with-window,next-with-window}
+
+# cria frame vertical/horizontal
+ctrl + super + {Down,Right}
+    stumpish {vsplit,hsplit}
+
+# muda o tamanho de frames
+ctrl + shift {Up,Down,Left,Right}
+    stumpish resize-direction {up,down,left,right}
+
+# move o foco entre frames e leva o cursor ao frame
+super + {Up,Down,Left,Right}
+    stumpish my-mv {up,down,left,right}
+
+# move a janela
+super + shift {Up,Down,Left,Right}
+    stumpish move-window {up,down,left,right}
+
+# Proxima janela
+super + Tab
+    stumpish pull-hidden-next
+
+# fechar janela
+super + q
+    stumpish delete-window
+
+# janela flutuante
+super + w
+    stumpish alterna-flutuante
+
+# tela cheia
+super + f
+    stumpish fullscreen
+
+```
+
 ## Dwm
 
 - `~/.config/sxhkd/sxhkd_dwm`
 
 ```sxhkdrc tangle:~/.config/sxhkd/sxhkd_dwm
 #### DWM ####
-
 # ativa/desativa a barra enquando super é segurado
 Super_L + any
     dwmc togglebar
@@ -145,7 +200,6 @@ super + f
 
 ```sxhkdrc tangle:~/.config/sxhkd/sxhkd_bspwm
 #### BSPWM ####
-
 # fecha janela
 super + shift + backslash
     bspc node -c
@@ -214,9 +268,8 @@ algumas teclas detectam um WM e fazem uma ação nele como trocar para a sua tag
 
 - `~/.config/sxhkd/sxhkd_nowm`
 
-```sxhkdrc tangle:~/.config/sxhkd/sxhkd_nowm,~/.config/sxhkd/sxhkd_bspwm,~/.config/sxhkd/sxhkd_dwm,~/.config/sxhkd/sxhkd_herbstluftwm
+```sxhkdrc tangle:~/.config/sxhkd/sxhkd_nowm,~/.config/sxhkd/sxhkd_bspwm,~/.config/sxhkd/sxhkd_dwm,~/.config/sxhkd/sxhkd_stumpwm,~/.config/sxhkd/sxhkd_herbstluftwm
 #### INDENPENDENTE ####
-
 # Terminal #
 # st
 super + shift + Return
@@ -274,7 +327,7 @@ Menu;q
 Menu;A
     dmenu_aliases
 # dmenu_xephyr
-Menu;X
+Menu;x
     dmenu_xephyr & [ "$WM" = "herbstluftwm" ] && herbstclient use 7
 # dmenu_print
 Print
@@ -293,18 +346,9 @@ Menu;F
 # calculadora
 Menu;C
     galculator
-# gimp
-Menu;g
-    gimp & [ "$WM" = "herbstluftwm" ] && herbstclient use 4
 # transmission
 Menu;t
     transmission-gtk
-# telegram
-Menu;T
-    telegram-desktop
-# discord
-Menu;d
-    discord
 # anotações
 Menu;a
     nvim ~/documentos/anotações.md

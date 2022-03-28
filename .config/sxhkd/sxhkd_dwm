@@ -1,5 +1,4 @@
 #### DWM ####
-
 # ativa/desativa a barra enquando super é segurado
 Super_L + any
     dwmc togglebar
@@ -59,7 +58,6 @@ super + f
     dwmc setmonocle 0
 
 #### INDENPENDENTE ####
-
 # Terminal #
 # st
 super + shift + Return
@@ -117,7 +115,7 @@ Menu;q
 Menu;A
     dmenu_aliases
 # dmenu_xephyr
-Menu;X
+Menu;x
     dmenu_xephyr & [ "$WM" = "herbstluftwm" ] && herbstclient use 7
 # dmenu_print
 Print
@@ -136,18 +134,9 @@ Menu;F
 # calculadora
 Menu;C
     galculator
-# gimp
-Menu;g
-    gimp & [ "$WM" = "herbstluftwm" ] && herbstclient use 4
 # transmission
 Menu;t
     transmission-gtk
-# telegram
-Menu;T
-    telegram-desktop
-# discord
-Menu;d
-    discord
 # anotações
 Menu;a
     nvim ~/documentos/anotações.md
