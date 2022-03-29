@@ -6,10 +6,9 @@ export SHELL="bash"
 
 #### Aliases ####
 alias n="neofetch"
-alias v="nvim"
-alias vv="/usr/bin/nvim"
+alias v="/usr/bin/nvim"
+alias vv="nvim"
 alias h="htop"
-alias hc="herbstclient"
 alias ed="emacs --daemon"
 alias ek="emacsclient -e '(kill-emacs)'"
 alias ec="emacsclient -n -c"
@@ -107,7 +106,7 @@ shopt -s cmdhist
 #### Funções ####
 
 # hersbstluftwm
-hc() {
+hc () {
     herbstclient "$@"
 }
 
@@ -124,8 +123,7 @@ lf () {
 
 # facilita extrair arquivos
 # exemplo: ex <arquivo>
-ex ()
-{
+ex () {
   if [ -f "$1" ] ; then
     case $1 in
       *.tar.bz2)   tar xjf $1   ;;
@@ -148,5 +146,10 @@ ex ()
     echo "'$1' não é um arquivo valido"
   fi
 }
+
+vw () {
+    /usr/bin/nvim $(where $1)
+}
+
 # prompt
 PS1="\e[01;37m[\u@\h] \w\e[m \e[01;32m>\e[m"

@@ -143,7 +143,7 @@ hc set frame_bg_normal_color '#000000'
 hc set auto_detect_panels false
 hc set default_frame_layout max
 hc set always_show_frame 0
-hc set frame_border_width 1
+hc set frame_border_width 0
 hc set frame_bg_transparent 1
 hc set frame_bg_transparent 1
 hc set frame_transparent_width 0

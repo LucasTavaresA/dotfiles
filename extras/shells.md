@@ -126,7 +126,7 @@ export EMACSDIR="${XDG_CONFIG_HOME:-$HOME/.config}/emacs"
 export DOOMDIR="${XDG_CONFIG_HOME:-$HOME/.config}/doom"
 export DOOMLOCALDIR="${XDG_CONFIG_HOME:-$HOME/.config}/emacs/.local"
 # editor no terminal
-export EDITOR="nvim"
+export EDITOR="/usr/bin/nvim"
 # editor com interface gráfica
 export VISUAL="nvim"
 
@@ -192,66 +192,11 @@ _comp_options+=(globdots) # Incluir arquivos ocultos.
 setopt autocd
 cdpath=($HOME $HOME/code/shell/ $HOME/media/)
 
-## Funções
-
-# hersbstluftwm
-hc() {
-    herbstclient "$@"
-}
-
-# previsão de imagens no lf
-lf () {
-    LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"
-    LF_TEMPDIR="$LF_TEMPDIR" lf-run -last-dir-path="$LF_TEMPDIR/lastdir" "$@"
-    if [ "$(cat "$LF_TEMPDIR/cdtolastdir" 2>/dev/null)" = "1" ]; then
-    cd "$(cat "$LF_TEMPDIR/lastdir")"
-    fi
-    rm -r "$LF_TEMPDIR"
-    unset LF_TEMPDIR
-}
-
-# facilita extrair arquivos
-# exemplo: ex (arquivo).zip
-SAVEIFS=$IFS
-IFS=$(echo -en "\n\b")
-function ex {
-    for n in "$@"
-    do
-      if [ -f "$n" ] ; then
-          case "${n%,}" in
-            *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
-                         tar xvf "$n"       ;;
-            *.lzma)      unlzma ./"$n"      ;;
-            *.bz2)       bunzip2 ./"$n"     ;;
-            *.cbr|*.rar)       unrar x -ad ./"$n" ;;
-            *.gz)        gunzip ./"$n"      ;;
-            *.cbz|*.epub|*.zip)       unzip ./"$n"       ;;
-            *.z)         uncompress ./"$n"  ;;
-            *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
-                         7z x ./"$n"        ;;
-            *.xz)        unxz ./"$n"        ;;
-            *.exe)       cabextract ./"$n"  ;;
-            *.cpio)      cpio -id < ./"$n"  ;;
-            *.cba|*.ace)      unace x ./"$n"      ;;
-            *)
-                         echo "ex: '$n' - Método de arquivação desconhecido"
-                         return 1
-                         ;;
-          esac
-      else
-          echo "'$n' - Arquivo não existe"
-          return 1
-      fi
-    done
-}
-IFS=$SAVEIFS
-
 #### Aliases ####
 alias n="neofetch"
-alias v="nvim"
-alias vv="/usr/bin/nvim"
+alias v="/usr/bin/nvim"
+alias vv="nvim"
 alias h="htop"
-alias hc="herbstclient"
 alias ed="emacs --daemon"
 alias ek="emacsclient -e '(kill-emacs)'"
 alias ec="emacsclient -n -c"
@@ -338,6 +283,65 @@ alias ppq="paru -Q"
 alias ppqs="paru -Qs"
 alias pprns="paru -Rns"
 
+## Funções
+
+# localizar e editar arquivo
+vw () {
+    /usr/bin/nvim $(where $1)
+}
+
+# hersbstluftwm
+hc () {
+    herbstclient "$@"
+}
+
+# previsão de imagens no lf
+lf () {
+    LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"
+    LF_TEMPDIR="$LF_TEMPDIR" lf-run -last-dir-path="$LF_TEMPDIR/lastdir" "$@"
+    if [ "$(cat "$LF_TEMPDIR/cdtolastdir" 2>/dev/null)" = "1" ]; then
+    cd "$(cat "$LF_TEMPDIR/lastdir")"
+    fi
+    rm -r "$LF_TEMPDIR"
+    unset LF_TEMPDIR
+}
+
+# facilita extrair arquivos
+# exemplo: ex (arquivo).zip
+SAVEIFS=$IFS
+IFS=$(echo -en "\n\b")
+function ex {
+    for n in "$@"
+    do
+      if [ -f "$n" ] ; then
+          case "${n%,}" in
+            *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
+                         tar xvf "$n"       ;;
+            *.lzma)      unlzma ./"$n"      ;;
+            *.bz2)       bunzip2 ./"$n"     ;;
+            *.cbr|*.rar)       unrar x -ad ./"$n" ;;
+            *.gz)        gunzip ./"$n"      ;;
+            *.cbz|*.epub|*.zip)       unzip ./"$n"       ;;
+            *.z)         uncompress ./"$n"  ;;
+            *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
+                         7z x ./"$n"        ;;
+            *.xz)        unxz ./"$n"        ;;
+            *.exe)       cabextract ./"$n"  ;;
+            *.cpio)      cpio -id < ./"$n"  ;;
+            *.cba|*.ace)      unace x ./"$n"      ;;
+            *)
+                         echo "ex: '$n' - Método de arquivação desconhecido"
+                         return 1
+                         ;;
+          esac
+      else
+          echo "'$n' - Arquivo não existe"
+          return 1
+      fi
+    done
+}
+IFS=$SAVEIFS
+
 # prompt
 PS1="%B[%n@%m] %4~ %{$fg[green]%}>%{$reset_color%}%b"
 
@@ -366,10 +370,9 @@ export SHELL="bash"
 
 #### Aliases ####
 alias n="neofetch"
-alias v="nvim"
-alias vv="/usr/bin/nvim"
+alias v="/usr/bin/nvim"
+alias vv="nvim"
 alias h="htop"
-alias hc="herbstclient"
 alias ed="emacs --daemon"
 alias ek="emacsclient -e '(kill-emacs)'"
 alias ec="emacsclient -n -c"
@@ -467,7 +470,7 @@ shopt -s cmdhist
 #### Funções ####
 
 # hersbstluftwm
-hc() {
+hc () {
     herbstclient "$@"
 }
 
@@ -484,8 +487,7 @@ lf () {
 
 # facilita extrair arquivos
 # exemplo: ex <arquivo>
-ex ()
-{
+ex () {
   if [ -f "$1" ] ; then
     case $1 in
       *.tar.bz2)   tar xjf $1   ;;
@@ -508,6 +510,11 @@ ex ()
     echo "'$1' não é um arquivo valido"
   fi
 }
+
+vw () {
+    /usr/bin/nvim $(where $1)
+}
+
 # prompt
 PS1="\e[01;37m[\u@\h] \w\e[m \e[01;32m>\e[m"
 ```
