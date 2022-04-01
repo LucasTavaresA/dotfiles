@@ -713,7 +713,8 @@ Arquivos ignorados pelo git
 .config/qutebrowser/autoconfig.yml
 .config/qutebrowser/bookmarks
 .config/qutebrowser/quickmarks
-.config/stumpwm/*log*
+.config/stumpwm/modules/
+.config/stumpwm/stumpwm-contrib/
 .config/transmission/
 .config/VirtualBox/
 .config/NuGet/

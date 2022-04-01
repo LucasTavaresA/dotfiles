@@ -136,15 +136,14 @@ hc attr theme.border_width 1
 hc attr theme.floating.border_width 1
 hc attr theme.floating.outer_width 0
 
-hc set frame_border_active_color '#00ff00'
+hc set frame_border_active_color '#ffffff'
 hc set frame_border_normal_color '#000000'
 hc set frame_bg_active_color '#111111'
 hc set frame_bg_normal_color '#000000'
 hc set auto_detect_panels false
 hc set default_frame_layout max
 hc set always_show_frame 0
-hc set frame_border_width 0
-hc set frame_bg_transparent 1
+hc set frame_border_width 1
 hc set frame_bg_transparent 1
 hc set frame_transparent_width 0
 hc set frame_padding 0
@@ -167,7 +166,7 @@ hc rule class="qutebrowser" tag=1
 hc rule class="Firefox" tag=1
 hc rule class="Emacs" tag=2
 hc rule class="nvim" tag=2
-hc rule class="st-256colors" tag=2
+hc rule class="st-256color" tag=2
 hc rule class="mpv" tag=3
 hc rule class="Gimp" tag=3
 hc rule class="Xephyr" tag=3
@@ -187,7 +186,11 @@ hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 hc rule class="Pinentry-gtk-2" floating=on floatplacement=center
 
+polybar &
+# espera a barra carregar e esconde a barra
+sleep 2 && polybar-msg cmd hide
 hc unlock
+
 ```
 
 ## Stumpwm
@@ -197,28 +200,19 @@ hc unlock
 ```lisp tangle:~/.config/stumpwm/config
 ;;; -*-  mode: lisp; -*-
 ;; Módulos ;;
-;; não é necessário chamar módulos stumpwm:
+;; chamar módulos stumpwm:
 (in-package :stumpwm)
-;; quicklisp & sbcl
-(load "~/.config/sbcl/sbclrc")
-(add-to-load-path "~/.local/share/quicklisp/")
+
 ;; módulos da comunidade
 ;; git clone git@github.com:stumpwm/stumpwm-contrib.git ~/.config/stumpwm/stumpwm-contrib
 ;; esse comando carrega todos os módulos em pastas e subpastas
 (init-load-path #p"~/.config/stumpwm/modules")
-;; systray
-(load-module "xembed")
-(load-module "stumptray")
 ;; manipular janelas em todos os grupos
 (load-module "globalwindows")
 
-;; compleção e histórico de comandos
-;; git clone https://github.com/landakram/stumpwm-prescient ~/.config/stumpwm/modules/stumpwm-prescient
-(setf *input-window-gravity* :center
-      *message-window-input-gravity* :left)
-(setf *input-completion-show-empty* t)
-(load-module "stumpwm-prescient")
-(setf *input-refine-candidates-fn* 'stumpwm-prescient:refine-input)
+;; quicklisp & sbcl
+(load "~/.config/sbcl/sbclrc")
+(add-to-load-path "~/.local/share/quicklisp/")
 
 ;; arquivos
 (defun arquivo-disponivel-p (arquivo)
@@ -294,32 +288,8 @@ hc unlock
 (setf *default-bg-color* "#ff00ff")
 (update-color-map (current-screen))
 
-;; barra
-(setf *window-format* " %30t " ;; formato indicador de janela
-      *screen-mode-line-format* (list ;; formato da barra
-        "[%n] %W ^>" ;; grupo atual e janelas abertas
-        '(:eval (run-shell-command "musica semicones" t)) ;; nome da musica sendo tocada
-        " VOL:" '(:eval (run-shell-command "volume semicones" t)) ;; volume
-        " %d     ") ;; data
-      *time-modeline-string* "%a %d/%m/%Y - %H:%M" ;; formato da data
-      *mode-line-pad-y* 0
-      *mode-line-timeout* 1 ;; tempo de atualização da barra
-      *mode-line-border-color* "#ffffff"
-      *mode-line-background-color* (car *colors*)
-      *mode-line-foreground-color* (car (last *colors*)))
-;; ativa a barra !Apos tudo ser definido acima!
-(defun enable-mode-line-everywhere ()
-  (loop for screen in *screen-list* do
-    (loop for head in (screen-heads screen) do
-	    (enable-mode-line screen head t))))
-; ativa a barra em todos/um monitor
-;(enable-mode-line-everywhere)
-(enable-mode-line (current-screen) (current-head) t)
-(stumptray:stumptray)
-
-(set-font "-xos4-terminus-bold-*-*-*-14-*-*-*-*-*-*-*")
-
 ;; prompts e caixas de dialogo
+(set-font "-xos4-terminus-bold-*-*-*-14-*-*-*-*-*-*-*")
 (setf *message-window-gravity* :center
       *window-border-style* :thin
       *message-window-padding* 1
@@ -328,21 +298,24 @@ hc unlock
       *transient-border-width* 1
       stumpwm::*float-window-border* 1
       stumpwm::*float-window-title-height* 1)
+(setf *input-window-gravity* :center
+      *message-window-input-gravity* :left)
+(setf *input-completion-show-empty* t)
 
 ;; Grupos e regras ;;
-;; remove todas as regras
-(clear-window-placement-rules)
 (grename "Browser")
 (gnewbg "Code")
 (gnewbg "Fullscreen")
 (gnewbg "Message")
 (gnewbg ".Hidden")
 
+;; remove todas as regras
+(clear-window-placement-rules)
+;(frame-number raise lock &key create restore dump-name class instance type role title)
 (define-frame-preference "Browser"
     (0 t t :class "qutebrowser")
     (0 t t :class "firefox"))
 (define-frame-preference "Code"
-;(frame-number raise lock &key create restore dump-name class instance type role title)
     (0 t t :class "nvim")
     (0 t t :class "Emacs")
     (1 t t :class "st-256color"))
@@ -407,6 +380,9 @@ hc unlock
 (define-key *top-map* (kbd "M-ESC") "esconde")
 
 ;; Final ;;
+;(run-shell-command "polybar &")
+;; espera a barra carregar e esconde a barra
+;(run-shell-command "sleep 2 && polybar-msg cmd hide")
 ;; remove logs caso existam
 (uiop:delete-directory-tree (pathname "~/.stumpwm.d/") :validate t)
 
@@ -473,6 +449,11 @@ bspc rule -a VirtualBox Manager state=fullscreen
 bspc rule -a VirtualBox Machine state=fullscreen
 bspc rule -a :Zathura state=tiled
 bspc rule -a st_download state=floating rectangle=1000x700+0+0 center=true
+
+polybar &
+# espera a barra carregar e esconde a barra
+sleep 2 && polybar-msg cmd hide
+
 ```
 
 ## Spectrwm
@@ -482,7 +463,7 @@ Gerenciador de janelas spectrwm
 - `~/.config/spectrwm/spectrwm.conf`
 
 ```conf tangle:~/.config/spectrwm/spectrwm.conf
-workspace_limit   = 5
+workspace_limit   = 4
 focus_mode        = manual
 focus_close       = previous
 focus_close_wrap  = 1
@@ -499,7 +480,7 @@ color_focus_maximized   = rgb:ff/ff/ff
 color_unfocus           = rgb:00/00/00
 color_unfocus_maximized = rgb:00/00/00
 region_padding          = 0
-tile_gap                = 1
+tile_gap                = 0
 
 # região de contenção
 boundary_width = 50
@@ -509,7 +490,7 @@ disable_border = 1
 
 # barra
 bar_enabled               = 0
-bar_border_width          = 1
+bar_border_width          = 0
 bar_font_color_selected   = rgb:00/00/00
 bar_font                  = Fira Code:pixelsize=12:antialias=true
 bar_font_pua              = symbols nerd font:pixelsize=14:antialias=true
@@ -530,7 +511,7 @@ urgent_enabled            = 1
 urgent_collapse           = 1
 #bar_action                = baraction.sh
 bar_action_expand         = 0
-bar_enabled_ws[1]         = 1
+bar_enabled_ws[1]         = 0
 bar_border[1]             = rgb:00/00/00
 bar_border_unfocus[1]     = rgb:00/00/00
 bar_color[1]              = rgb:00/00/00
@@ -541,10 +522,9 @@ dialog_ratio      = 0.6
 
 # nome dos workspaces
 name          = ws[1]:Browse
-name          = ws[2]:Edit
-name          = ws[3]:Watch
-name          = ws[4]:Image
-name          = ws[5]:Message
+name          = ws[2]:Code
+name          = ws[3]:Fullscreen
+name          = ws[4]:Message
 
 # tecla mod
 modkey = Mod4
@@ -591,10 +571,12 @@ quirk[qutebrowser]     = WS[1]
 quirk[Firefox]         = WS[1]
 quirk[Emacs]           = WS[2]
 quirk[nvim]            = WS[2]
+quirk[st-256color]     = WS[2]
 quirk[mpv]             = WS[3]
-quirk[Gimp]            = WS[4]
-quirk[discord]         = WS[5]
-quirk[TelegramDesktop] = WS[5]
+quirk[Gimp]            = WS[3]
+quirk[Xephyr]          = WS[3]
+quirk[discord]         = WS[4]
+quirk[TelegramDesktop] = WS[4]
 # flutuantes
 quirk[ncmpcpp]          = FLOAT
 quirk[pulsemixer]       = FLOAT
@@ -614,6 +596,7 @@ quirk[XTerm:xterm]                       = XTERM_FONTADJ
 quirk[xine:Xine Window]                  = FLOAT + ANYWHERE
 quirk[Xitk:Xitk Combo]                   = FLOAT + ANYWHERE
 quirk[xine:xine Panel]                   = FLOAT + ANYWHERE
+quirk[polybar:Polybar]                   = FLOAT + ANYWHERE
 quirk[Xitk:Xine Window]                  = FLOAT + ANYWHERE
 quirk[xine:xine Video Fullscreen Window] = FULLSCREEN + FLOAT
 quirk[pcb:pcb]                           = FLOAT

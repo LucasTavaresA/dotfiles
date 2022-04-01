@@ -2,7 +2,7 @@
 # Terminal #
 # st
 super + shift + Return
-    st
+    st & [ "$WM" = "herbstluftwm" ] && herbstclient use 2
 # abre e fecha scratchpads
 super + backslash
     st_scratchpad
@@ -15,7 +15,7 @@ super + space
 super + shift + {comma, period}
     mpc {prev,next} && musica notificar & [ "$WM" = "dwm" ] && pkill -RTMIN+11 dwmblocks
 # abaixar/aumentar o volume e atualiza a barra no dwm
-super + {comma, period, Down, Up}
+super + {comma, period}
     amixer -q set Master 5%{-,+,-,+} & [ "$WM" = "dwm" ] && pkill -RTMIN+9 dwmblocks
 # ncmpcpp/pulsemixer
 super + {_,shift} + a
@@ -28,6 +28,9 @@ Menu;Menu
 # dmenu_sys
 Menu;Escape
     dmenu_sys
+# dmenu_wifi
+Menu;w
+    dmenu_wifi
 # dmenu_edit
 Menu;e
     dmenu_edit && [ "$WM" = "herbstluftwm" ] && herbstclient use 2
@@ -80,5 +83,5 @@ Menu;t
     transmission-gtk
 # anotações
 Menu;a
-    nvim ~/documentos/anotações.md
+    nvim ~/documentos/anotações.md & [ "$WM" = "herbstluftwm" ] && herbstclient use 2
 

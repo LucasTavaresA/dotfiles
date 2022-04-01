@@ -194,8 +194,8 @@ cdpath=($HOME $HOME/code/shell/ $HOME/media/)
 
 #### Aliases ####
 alias n="neofetch"
-alias v="/usr/bin/nvim"
-alias vv="nvim"
+alias v="nvim"
+alias vv="/usr/bin/nvim"
 alias h="htop"
 alias ed="emacs --daemon"
 alias ek="emacsclient -e '(kill-emacs)'"
@@ -287,7 +287,7 @@ alias pprns="paru -Rns"
 
 # localizar e editar arquivo
 vw () {
-    /usr/bin/nvim $(where $1)
+    nvim $(where $1)
 }
 
 # hersbstluftwm
@@ -302,7 +302,7 @@ lf () {
     if [ "$(cat "$LF_TEMPDIR/cdtolastdir" 2>/dev/null)" = "1" ]; then
     cd "$(cat "$LF_TEMPDIR/lastdir")"
     fi
-    rm -r "$LF_TEMPDIR"
+    \rm -r "$LF_TEMPDIR"
     unset LF_TEMPDIR
 }
 
@@ -370,8 +370,8 @@ export SHELL="bash"
 
 #### Aliases ####
 alias n="neofetch"
-alias v="/usr/bin/nvim"
-alias vv="nvim"
+alias v="nvim"
+alias vv="/usr/bin/nvim"
 alias h="htop"
 alias ed="emacs --daemon"
 alias ek="emacsclient -e '(kill-emacs)'"
@@ -511,8 +511,9 @@ ex () {
   fi
 }
 
+# localizar e editar arquivo
 vw () {
-    /usr/bin/nvim $(where $1)
+    nvim $(where $1)
 }
 
 # prompt

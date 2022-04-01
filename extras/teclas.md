@@ -30,27 +30,19 @@ super + w
 
 # alterna entre as janelas
 super + Tab
-    herbstclient cycle
-
-# muda entre as janelas
-super + {Up,Down,Left,Right}
-    herbstclient focus {up,down,left,right}
+    herbstclient cycle_all +1
 
 # troca as janelas de posição
 super + shift + {Up,Down,Left,Right}
     herbstclient shift {up,down,left,right}
 
-# muda de tags pulando tags vazias
-alt + {Left, Right}
-    hlwm-tagswitch {prev, next}
-
 # muda de tags
-super + alt + {Left, Right}
+super + {Left,Right}
     herbstclient {use_index -1, use_index +1}
 
 # muda janela de tag e a segue
-alt + shift + {Left, Right}
-    herbstclient {move_index -1 && hlwm-tagswitch prev, move_index +1 && hlwm-tagswitch next}
+super + alt + {Left,Right}
+    herbstclient {move_index -1 && herbstclient use_index -1,move_index +1 && herbstclient use_index +1}
 
 # remove divisória
 super + shift + q
@@ -70,6 +62,24 @@ super + Escape
                      . cycle_layout +1 vertical horizontal max vertical grid    \
                , cycle_layout +1
 
+# ativa/desativa a barra enquando super é segurado
+Super_L + any
+    polybar-msg cmd toggle
+~@Super_L + any
+    polybar-msg cmd toggle
+Super_R + any
+    polybar-msg cmd toggle
+~@Super_R + any
+    polybar-msg cmd toggle
+
+# ativa/desativa a barra
+super + b
+    polybar-msg cmd toggle
+
+# reinicia a barra
+Menu;b
+    polybar-msg cmd restart
+
 ```
 
 ## Stumpwm
@@ -78,10 +88,6 @@ super + Escape
 
 ```sxhkdrc tangle:~/.config/sxhkd/sxhkd_stumpwm
 #### STUMPWM ####
-# ativa/desativa a barra
-super + b
-    stumpish mode-line
-
 # remove frame
 super + shift + q
     stumpish remove
@@ -126,6 +132,24 @@ super + w
 super + f
     stumpish fullscreen
 
+# ativa/desativa a barra enquando super é segurado
+Super_L + any
+    polybar-msg cmd toggle
+~@Super_L + any
+    polybar-msg cmd toggle
+Super_R + any
+    polybar-msg cmd toggle
+~@Super_R + any
+    polybar-msg cmd toggle
+
+# ativa/desativa a barra
+super + b
+    polybar-msg cmd toggle
+
+# reinicia a barra
+Menu;b
+    polybar-msg cmd restart
+
 ```
 
 ## Dwm
@@ -134,16 +158,6 @@ super + f
 
 ```sxhkdrc tangle:~/.config/sxhkd/sxhkd_dwm
 #### DWM ####
-# ativa/desativa a barra enquando super é segurado
-Super_L + any
-    dwmc togglebar
-~@Super_L + any
-    dwmc togglebar
-Super_R + any
-    dwmc togglebar
-~@Super_R + any
-    dwmc togglebar
-
 # ativa/desativa a barra
 super + b
     dwmc togglebar
@@ -191,6 +205,16 @@ super + s
 # monocle
 super + f
     dwmc setmonocle 0
+
+# ativa/desativa a barra enquando super é segurado
+Super_L + any
+    dwmc togglebar
+~@Super_L + any
+    dwmc togglebar
+Super_R + any
+    dwmc togglebar
+~@Super_R + any
+    dwmc togglebar
 
 ```
 
@@ -259,12 +283,29 @@ Menu;f
 shift + Tab
     ajustar_tamanho.sh
 
+# ativa/desativa a barra enquando super é segurado
+Super_L + any
+    polybar-msg cmd toggle
+~@Super_L + any
+    polybar-msg cmd toggle
+Super_R + any
+    polybar-msg cmd toggle
+~@Super_R + any
+    polybar-msg cmd toggle
+
+# ativa/desativa a barra
+super + b
+    polybar-msg cmd toggle
+
+# reinicia a barra
+Menu;b
+    polybar-msg cmd restart
+
 ```
 
 ## Independente
 
 Teclas que funcionarão independente do window manager,
-algumas teclas detectam um WM e fazem uma ação nele como trocar para a sua tag e atualizar a barra
 
 - `~/.config/sxhkd/sxhkd_nowm`
 
@@ -273,7 +314,7 @@ algumas teclas detectam um WM e fazem uma ação nele como trocar para a sua tag
 # Terminal #
 # st
 super + shift + Return
-    st
+    st & [ "$WM" = "herbstluftwm" ] && herbstclient use 2
 # abre e fecha scratchpads
 super + backslash
     st_scratchpad
@@ -286,7 +327,7 @@ super + space
 super + shift + {comma, period}
     mpc {prev,next} && musica notificar & [ "$WM" = "dwm" ] && pkill -RTMIN+11 dwmblocks
 # abaixar/aumentar o volume e atualiza a barra no dwm
-super + {comma, period, Down, Up}
+super + {comma, period}
     amixer -q set Master 5%{-,+,-,+} & [ "$WM" = "dwm" ] && pkill -RTMIN+9 dwmblocks
 # ncmpcpp/pulsemixer
 super + {_,shift} + a
@@ -299,6 +340,9 @@ Menu;Menu
 # dmenu_sys
 Menu;Escape
     dmenu_sys
+# dmenu_wifi
+Menu;w
+    dmenu_wifi
 # dmenu_edit
 Menu;e
     dmenu_edit && [ "$WM" = "herbstluftwm" ] && herbstclient use 2
@@ -351,6 +395,6 @@ Menu;t
     transmission-gtk
 # anotações
 Menu;a
-    nvim ~/documentos/anotações.md
+    nvim ~/documentos/anotações.md & [ "$WM" = "herbstluftwm" ] && herbstclient use 2
 
 ```

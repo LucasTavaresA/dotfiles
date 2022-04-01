@@ -52,3 +52,8 @@ bspc rule -a VirtualBox Manager state=fullscreen
 bspc rule -a VirtualBox Machine state=fullscreen
 bspc rule -a :Zathura state=tiled
 bspc rule -a st_download state=floating rectangle=1000x700+0+0 center=true
+
+polybar &
+# espera a barra carregar e esconde a barra
+sleep 2 && polybar-msg cmd hide
+

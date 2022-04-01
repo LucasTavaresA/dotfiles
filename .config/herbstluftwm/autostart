@@ -63,15 +63,14 @@ hc attr theme.border_width 1
 hc attr theme.floating.border_width 1
 hc attr theme.floating.outer_width 0
 
-hc set frame_border_active_color '#00ff00'
+hc set frame_border_active_color '#ffffff'
 hc set frame_border_normal_color '#000000'
 hc set frame_bg_active_color '#111111'
 hc set frame_bg_normal_color '#000000'
 hc set auto_detect_panels false
 hc set default_frame_layout max
 hc set always_show_frame 0
-hc set frame_border_width 0
-hc set frame_bg_transparent 1
+hc set frame_border_width 1
 hc set frame_bg_transparent 1
 hc set frame_transparent_width 0
 hc set frame_padding 0
@@ -94,7 +93,7 @@ hc rule class="qutebrowser" tag=1
 hc rule class="Firefox" tag=1
 hc rule class="Emacs" tag=2
 hc rule class="nvim" tag=2
-hc rule class="st-256colors" tag=2
+hc rule class="st-256color" tag=2
 hc rule class="mpv" tag=3
 hc rule class="Gimp" tag=3
 hc rule class="Xephyr" tag=3
@@ -114,4 +113,8 @@ hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 hc rule class="Pinentry-gtk-2" floating=on floatplacement=center
 
+polybar &
+# espera a barra carregar e esconde a barra
+sleep 2 && polybar-msg cmd hide
 hc unlock
+

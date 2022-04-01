@@ -17,7 +17,7 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 
 #### Minhas configurações ####
 # tela cheia limitada a janela do navegador
-#config.set('content.fullscreen.window', True)
+config.set('content.fullscreen.window', True)
 # diminuiu javascript lento nos sites
 config.set('content.prefers_reduced_motion', True)
 # vê pdfs no browser usando o pdfjs
@@ -57,7 +57,7 @@ config.set('spellcheck.languages', ["pt-BR", "en-US"])
 # conteúdo da barra de status
 config.set('statusbar.widgets', ["keypress", "url", "progress"])
 # posição da barra de status
-config.set('statusbar.position', 'top')
+config.set('statusbar.position', 'bottom')
 # tamanho da barra de compleção
 config.set('completion.height', '100%')
 # editor

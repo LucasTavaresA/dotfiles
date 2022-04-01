@@ -6,8 +6,8 @@ export SHELL="bash"
 
 #### Aliases ####
 alias n="neofetch"
-alias v="/usr/bin/nvim"
-alias vv="nvim"
+alias v="nvim"
+alias vv="/usr/bin/nvim"
 alias h="htop"
 alias ed="emacs --daemon"
 alias ek="emacsclient -e '(kill-emacs)'"
@@ -147,8 +147,9 @@ ex () {
   fi
 }
 
+# localizar e editar arquivo
 vw () {
-    /usr/bin/nvim $(where $1)
+    nvim $(where $1)
 }
 
 # prompt
