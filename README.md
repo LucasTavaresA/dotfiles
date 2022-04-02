@@ -105,7 +105,7 @@ config.set('spellcheck.languages', ["pt-BR", "en-US"])
 # conteúdo da barra de status
 config.set('statusbar.widgets', ["keypress", "url", "progress"])
 # posição da barra de status
-config.set('statusbar.position', 'bottom')
+config.set('statusbar.position', 'top')
 # tamanho da barra de compleção
 config.set('completion.height', '100%')
 # editor

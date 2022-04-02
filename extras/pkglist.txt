@@ -71,6 +71,7 @@ catimg
 cblas
 cdparanoia
 celt
+ceph-libs
 checkbashisms
 chromaprint
 chromium-widevine
@@ -95,12 +96,14 @@ dbus-glib
 dbus-python
 dconf
 debootstrap
+dep
 desktop-file-utils
 device-mapper
 dhcpcd
 diffutils
 ding-libs
 discord
+dmenu
 dmraid
 dnsmasq
 dnssec-anchors
@@ -113,6 +116,7 @@ dotnet-targeting-pack
 double-conversion
 dtc
 dunst
+dwarffortress
 e2fsprogs
 elfutils
 elinks
@@ -128,6 +132,7 @@ f2fs-tools
 faad2
 fakeroot
 fd
+ffcall
 ffmpeg
 ffmpeg4.4
 ffmpegthumbnailer
@@ -185,6 +190,7 @@ gnu-free-fonts
 gnupg
 gnutls
 go
+go-bindata
 gobject-introspection
 gobject-introspection-runtime
 gparted
@@ -216,6 +222,7 @@ gtkmm3
 gtksourceview4
 gtkspell3
 gts
+gucharmap
 guile
 gumbo-parser
 gzip
@@ -280,6 +287,7 @@ haskell-haddock-library
 haskell-hashable
 haskell-hourglass
 haskell-hslua
+haskell-hslua-aeson
 haskell-hslua-classes
 haskell-hslua-core
 haskell-hslua-marshalling
@@ -301,6 +309,7 @@ haskell-jira-wiki-markup
 haskell-juicypixels
 haskell-lexer
 haskell-libyaml
+haskell-lpeg
 haskell-lua
 haskell-memory
 haskell-mime-types
@@ -309,6 +318,7 @@ haskell-network
 haskell-network-uri
 haskell-old-locale
 haskell-old-time
+haskell-pandoc-lua-marshal
 haskell-pandoc-types
 haskell-pem
 haskell-pretty-show
@@ -379,6 +389,7 @@ hwdata
 hwinfo
 hwloc
 hyphen
+i3-wm
 iana-etc
 icu
 ijs
@@ -698,6 +709,7 @@ lua
 lua51
 lua52
 lua53
+lua53-lpeg
 luajit
 lv2
 lvm2
@@ -717,6 +729,7 @@ man-pages
 md4c
 mdadm
 mediainfo
+megasync
 mesa
 meson
 metis
@@ -772,7 +785,7 @@ nss
 ntfs-3g
 numactl
 nuspell
-nvim-packer-git
+oath-toolkit
 omnisharp-roslyn
 oniguruma
 openal
@@ -832,6 +845,7 @@ perl-lwp-protocol-https
 perl-mailtools
 perl-net-http
 perl-net-ssleay
+perl-parse-yapp
 perl-timedate
 perl-try-tiny
 perl-uri
@@ -845,6 +859,7 @@ pipewire
 pixman
 pkgconf
 polkit
+polybar
 poppler
 poppler-data
 poppler-glib
@@ -885,7 +900,9 @@ python-future
 python-gobject
 python-greenlet
 python-html5lib
+python-i3ipc
 python-idna
+python-imagesize
 python-importlib-metadata
 python-jinja
 python-lxml
@@ -925,7 +942,16 @@ python-rich
 python-setuptools
 python-shiboken2
 python-six
+python-snowballstemmer
 python-soupsieve
+python-sphinx
+python-sphinx-alabaster-theme
+python-sphinxcontrib-applehelp
+python-sphinxcontrib-devhelp
+python-sphinxcontrib-htmlhelp
+python-sphinxcontrib-jsmath
+python-sphinxcontrib-qthelp
+python-sphinxcontrib-serializinghtml
 python-toml
 python-tomli
 python-tqdm
@@ -1006,11 +1032,14 @@ rtkit
 rubberband
 run-parts
 rust
+samba
 sbc
 sbcl
 sdl
 sdl2
 sdl2_image
+sdl_image
+sdl_ttf
 seabios
 sed
 semver
@@ -1028,6 +1057,7 @@ snappy
 socat
 sord
 sound-theme-freedesktop
+spectrwm
 speedtest-cli
 speex
 speexdsp
@@ -1038,7 +1068,7 @@ sqlite
 squashfs-tools
 sratom
 srt
-starship
+startup-notification
 strace
 stylelint
 suitesparse
@@ -1091,6 +1121,7 @@ tzdata
 uchardet
 udisks2
 ueberzug
+ufw
 unibilium
 unrar
 unzip
@@ -1139,6 +1170,7 @@ xcb-util-image
 xcb-util-keysyms
 xcb-util-renderutil
 xcb-util-wm
+xcb-util-xrm
 xclip
 xdg-dbus-proxy
 xdg-utils-handlr
@@ -1156,12 +1188,14 @@ xorg-fonts-encodings
 xorg-mkfontscale
 xorg-server
 xorg-server-common
+xorg-server-xephyr
 xorg-setxkbmap
 xorg-util-macros
 xorg-xauth
 xorg-xdpyinfo
 xorg-xev
 xorg-xfontsel
+xorg-xhost
 xorg-xinit
 xorg-xkbcomp
 xorg-xkill

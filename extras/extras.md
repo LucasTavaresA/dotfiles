@@ -723,6 +723,7 @@ Arquivos ignorados pelo git
 .config/shell/.zcompdump
 .config/shell/history
 .config/pam-gnupg
+.config/QtProject.conf
 .gnupg/
 .dotnet/
 .local/

@@ -41,6 +41,7 @@ nitrogen --restore &
 nm-applet &
 xbanish &
 fluxgui &
+megasync &
 #picom &
 
 if [ "$WM" = "herbstluftwm" ]; then

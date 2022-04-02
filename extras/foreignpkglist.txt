@@ -7,10 +7,10 @@ lf
 libxft-bgra
 mkinitcpio-numlock
 nerd-fonts-complete
-nvim-packer-git
 omnisharp-roslyn
 pam-gnupg
 paru
+polybar
 powder-toy
 rtags
 simple-mtpfs
