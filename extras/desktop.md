@@ -164,7 +164,7 @@ hc rule focus=on # focar novas janelas
 hc rule floatplacement=smart
 # programas
 hc rule class="qutebrowser" tag=1
-hc rule class="Firefox" tag=1
+hc rule class="firefox" tag=1
 hc rule class="Emacs" tag=2
 hc rule class="nvim" tag=2
 hc rule class="st-256color" tag=2
