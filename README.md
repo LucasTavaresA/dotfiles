@@ -345,8 +345,6 @@ set period 1
 set ifs "\n"
 # arquivos ocultos
 set hidden on
-# ícones
-set icons on
 # informação mostrada do lado do arquivo
 set info "size"
 # previa de arquivos
@@ -458,7 +456,7 @@ map gcw cd ~/code/webPages
 map gcu cd ~/code/unity
 
 map gd cd ~/documentos
-map gD cd ~/downloads
+map gD cd ~/Downloads
 map ge cd ~/extras
 map gj cd ~/jogos
 map gh cd ~
