@@ -101,6 +101,7 @@ config.set('content.notifications.enabled', True, 'https://facebook.com/*')
 #### Ferramentas de pesquisa ####
 c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
                     ,  'yt':   'https://www.youtube.com/results?search_query={}'
+                    ,  'od':   'https://odysee.com/search?q={}'
                     ,  'r':    'https://www.reddit.com/search/?q={}'
                     ,  'gh':   'https://github.com/search?q={}'
                     ,  'gl':   'https://gitlab.com/search?search={}'

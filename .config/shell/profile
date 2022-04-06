@@ -1,3 +1,6 @@
+# Usar o comando "chsh -s /bin/dash" para usar o dash como login shell
+# Profile trocado de lugar no meu fork (https://gitlab.com/LucasTavaresA/dash)
+
 #### Exports ####
 # muda o local padrão de alguns dotfiles limpando a $HOME ou ~
 # define diretórios com o padrão xdg
@@ -10,16 +13,12 @@ export XDG_RUNTIME_DIR="/run/user/$UID"
 export XDG_BIN_HOME="$HOME/.local/bin"
 # window manager
 export WM="herbstluftwm"
-
-# SYSTEMA #
+# systema
 export OS="$(uname -n)"
-# bat como o manpager
-if [ "$OS" = "linuxmint" ]; then
-    export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
-else
-    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-fi
 
+# bat como o manpager
+[ "$OS" = "linuxmint" ] && alias bat="batcat"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # pass
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/pass"
 # terminal

@@ -1,5 +1,6 @@
-# se não executando zsh interativamente
-# não executa o resto do zshrc
+# Trocado de diretório pela variável ZDOTDIR
+
+# se não executando zsh interativamente não executa o resto do zshrc
 [[ $- != *i* ]] && return
 
 #### Exports ####

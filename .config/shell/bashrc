@@ -1,3 +1,5 @@
+# bashrc trocado de lugar colocando ". local/do/bashrc" no final de "/etc/bash.bashrc"
+
 # se não executando bash interativamente
 # não executa o resto do bashrc
 [[ $- != *i* ]] && return

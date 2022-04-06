@@ -188,19 +188,7 @@ configs.setup {
 vim.g.vim_markdown_frontmatter = 1  -- para formatar YAML
 vim.g.vim_markdown_toml_frontmatter = 1 -- para formatar TOML
 vim.g.vim_markdown_json_frontmatter = 1 -- para formatar JSON
--- separa código em arquivos markdown ao salvar
-vim.cmd([[
-augroup RunCommandOnWrite
-  autocmd!
-  autocmd BufWritePost ~/.config/nvim/nvim.md !md-tangle -f %
-  autocmd BufWritePost ~/README.md !md-tangle -f %
-  autocmd BufWritePost ~/extras/extras.md !md-tangle -f %
-  autocmd BufWritePost ~/extras/teclas.md !md-tangle -f %
-  autocmd BufWritePost ~/extras/shells.md !md-tangle -f %
-  autocmd BufWritePost ~/extras/desktop.md !md-tangle -f %
-augroup END
-]])
--- função para fechar e abrir sumario
+-- função para fechar e abrir o sumario
 vim.cmd([[
 function s:TocToggle()
     if index(["markdown", "qf"], &filetype) == -1
@@ -208,10 +196,10 @@ function s:TocToggle()
     endif
 
     if get(getloclist(0, {'winid':0}), 'winid', 0)
-        " the location window is open
+        " caso esteja aberto
         lclose
     else
-        " the location window is closed
+        " caso fechado
         Toc
     endif
 endfunction

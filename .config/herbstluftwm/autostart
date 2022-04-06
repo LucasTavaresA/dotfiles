@@ -115,6 +115,5 @@ hc rule class="Pinentry-gtk-2" floating=on floatplacement=center
 
 polybar &
 # espera a barra carregar e esconde a barra
-sleep 2 && polybar-msg cmd hide
+sleep 5 && polybar-msg cmd hide
 hc unlock
-
