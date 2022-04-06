@@ -11,13 +11,12 @@ super + Return
 super + Escape
     bspc desktop -l next
 
-# troca o foco para a janela anterior
-super + Left
-    bspc node -f prev.local.!hidden.window
-
-# troca o foco para a proxima janela
-super + {Right,Tab}
-    bspc node -f next.local.!hidden.window
+# troca o foco entre as janelas
+super + {k,j,h,l}
+    bspc node -f {next.local.!hidden.window,\
+                  prev.local.!hidden.window,\
+                  prev.local.!hidden.window,\
+                  next.local.!hidden.window}
 
 # alterna entre ou muda janela para um desktop
 super + {_,shift + }{1-9,0}
@@ -28,21 +27,21 @@ super + ctrl + Return
     bspc node -n last.!automatic
 
 # preseleciona uma direção
-super + ctrl + {Left,Down,Up,Right}
-    bspc node -p {west,south,north,east}
+super + ctrl + {k,j,h,l}
+    bspc node -p {north,south,west,east}
 
 # cancela seleção
 ctrl + space
     bspc node -p cancel
 
 # muda o tamanho das janelas
-ctrl + {Left,Down,Up,Right}
-    {bspc node @parent/second -z left -20 0; \
-     bspc node @parent/first -z right -20 0, \
-     bspc node @parent/second -z top 0 +20; \
+ctrl + {k,j,h,l}
+    {bspc node @parent/second -z top 0 +20; \
      bspc node @parent/first -z bottom 0 +20, \
      bspc node @parent/first -z bottom 0 -20; \
      bspc node @parent/second -z top 0 -20, \
+     bspc node @parent/second -z left -20 0; \
+     bspc node @parent/first -z right -20 0,\
      bspc node @parent/first -z right +20 0; \
      bspc node @parent/second -z left +20 0}
 
@@ -80,21 +79,21 @@ Menu;b
 # Terminal #
 # st
 super + shift + Return
-    st & [ "$WM" = "herbstluftwm" ] && herbstclient use 2
+    st
 # abre e fecha scratchpads
 super + backslash
     st_scratchpad
 
 # Musica #
-# pausa/toca musica e atualiza a barra no dwm
+# pausa/toca musica
 super + space
-    mpc toggle & [ "$WM" = "dwm" ] && pkill -RTMIN+11 dwmblocks
-# anterior/proxima musica e atualiza a barra no dwm
+    mpc toggle
+# anterior/proxima musica
 super + shift + {comma, period}
-    mpc {prev,next} && musica notificar & [ "$WM" = "dwm" ] && pkill -RTMIN+11 dwmblocks
-# abaixar/aumentar o volume e atualiza a barra no dwm
+    mpc {prev,next} && musica notificar
+# abaixar/aumentar o volume
 super + {comma, period}
-    amixer -q set Master 5%{-,+,-,+} & [ "$WM" = "dwm" ] && pkill -RTMIN+9 dwmblocks
+    amixer -q set Master 5%{-,+,-,+}
 # ncmpcpp/pulsemixer
 super + {_,shift} + a
     st -g 120x30 -c {ncmpcpp -n ncmpcpp -e ncmpcpp,pulsemixer -n pulsemixer -e pulsemixer}
@@ -111,7 +110,7 @@ Menu;w
     dmenu_wifi
 # dmenu_edit
 Menu;e
-    dmenu_edit && [ "$WM" = "herbstluftwm" ] && herbstclient use 2
+    dmenu_edit
 # dmenu_emoji
 Menu;E
     dmenu_emoji
@@ -132,13 +131,13 @@ Menu;c
     dmenu_clip
 # dmenu_qutebrowser
 Menu;q
-    dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml & [ "$WM" = "herbstluftwm" ] && herbstclient use 1
+    dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml
 # dmenu_aliases
 Menu;A
     dmenu_aliases
 # dmenu_xephyr
 Menu;x
-    dmenu_xephyr & [ "$WM" = "herbstluftwm" ] && herbstclient use 7
+    dmenu_xephyr
 # dmenu_print
 Print
     dmenu_print
@@ -161,5 +160,4 @@ Menu;t
     transmission-gtk
 # anotações
 Menu;a
-    nvim ~/documentos/anotações.md & [ "$WM" = "herbstluftwm" ] && herbstclient use 2
-
+    nvim ~/documentos/anotações.md

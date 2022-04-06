@@ -15,29 +15,35 @@ super + w
 super + Tab
     herbstclient cycle_all +1
 
+# alterna entre as janelas e tags
+super + {k,j,h,l}
+    herbstclient focus {up || herbstclient use_index +1,\
+                        down || herbstclient use_index -1,\
+                        left || herbstclient use_index -1,\
+                        right || herbstclient use_index +1}
+
 # troca as janelas de posição
-super + shift + {Up,Down,Left,Right}
+super + shift + {k,j,h,l}
     herbstclient shift {up,down,left,right}
 
-# muda de tags
-super + {Left,Right}
-    herbstclient {use_index -1, use_index +1}
-
 # muda janela de tag e a segue
-super + alt + {Left,Right}
-    herbstclient {move_index -1 && herbstclient use_index -1,move_index +1 && herbstclient use_index +1}
-
-# remove divisória
-super + shift + q
-    herbstclient remove
+super + alt + {k,j,h,l}
+    herbstclient {move_index +1 && herbstclient use_index +1,\
+    move_index -1 && herbstclient use_index -1,\
+    move_index -1 && herbstclient use_index -1,\
+    move_index +1 && herbstclient use_index +1}
 
 # cria uma divisória
-ctrl + shift + {Left,Down,Up,Right}
-    herbstclient split {left, bottom, top, right}
+ctrl + shift + {k,j,h,l}
+    herbstclient split {top,bottom,left,right}
+
+# remove divisória
+ctrl + shift + q
+    herbstclient remove
 
 # muda o tamanho de frames
-ctrl + super + {Left,Down,Up,Right}
-    herbstclient resize {left +0.05,down +0.05,up +0.05,right +0.05}
+ctrl + super + {k,j,h,l}
+    herbstclient resize {up +0.05,down +0.05,left +0.05,right +0.05}
 
 # troca entre layouts pulando layouts que não mudam janelas de posição
 super + Escape
@@ -67,21 +73,21 @@ Menu;b
 # Terminal #
 # st
 super + shift + Return
-    st & [ "$WM" = "herbstluftwm" ] && herbstclient use 2
+    st && herbstclient use 2
 # abre e fecha scratchpads
 super + backslash
     st_scratchpad
 
 # Musica #
-# pausa/toca musica e atualiza a barra no dwm
+# pausa/toca musica
 super + space
-    mpc toggle & [ "$WM" = "dwm" ] && pkill -RTMIN+11 dwmblocks
-# anterior/proxima musica e atualiza a barra no dwm
+    mpc toggle
+# anterior/proxima musica
 super + shift + {comma, period}
-    mpc {prev,next} && musica notificar & [ "$WM" = "dwm" ] && pkill -RTMIN+11 dwmblocks
-# abaixar/aumentar o volume e atualiza a barra no dwm
+    mpc {prev,next} && musica notificar
+# abaixar/aumentar o volume
 super + {comma, period}
-    amixer -q set Master 5%{-,+,-,+} & [ "$WM" = "dwm" ] && pkill -RTMIN+9 dwmblocks
+    amixer -q set Master 5%{-,+,-,+}
 # ncmpcpp/pulsemixer
 super + {_,shift} + a
     st -g 120x30 -c {ncmpcpp -n ncmpcpp -e ncmpcpp,pulsemixer -n pulsemixer -e pulsemixer}
@@ -98,7 +104,7 @@ Menu;w
     dmenu_wifi
 # dmenu_edit
 Menu;e
-    dmenu_edit && [ "$WM" = "herbstluftwm" ] && herbstclient use 2
+    dmenu_edit && herbstclient use 2
 # dmenu_emoji
 Menu;E
     dmenu_emoji
@@ -119,13 +125,13 @@ Menu;c
     dmenu_clip
 # dmenu_qutebrowser
 Menu;q
-    dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml & [ "$WM" = "herbstluftwm" ] && herbstclient use 1
+    dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml && herbstclient use 1
 # dmenu_aliases
 Menu;A
     dmenu_aliases
 # dmenu_xephyr
 Menu;x
-    dmenu_xephyr & [ "$WM" = "herbstluftwm" ] && herbstclient use 7
+    dmenu_xephyr && herbstclient use 7
 # dmenu_print
 Print
     dmenu_print
@@ -148,5 +154,4 @@ Menu;t
     transmission-gtk
 # anotações
 Menu;a
-    nvim ~/documentos/anotações.md & [ "$WM" = "herbstluftwm" ] && herbstclient use 2
-
+    nvim ~/documentos/anotações.md && herbstclient use 2

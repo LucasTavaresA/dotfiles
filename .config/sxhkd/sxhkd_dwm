@@ -4,24 +4,24 @@ super + b
     dwmc togglebar
 
 # muda o tamanho da janela
-ctrl + super + {Left,Right}
-    dwmc setmfact {-,+}0.05
+ctrl + super + {k,j}
+    dwmc setcfact {+,-}0.20
 
 # muda o tamanho da janela
-ctrl + super + {Down,Up}
-    dwmc setcfact {-,+}0.20
+ctrl + super + {h,l}
+    dwmc setmfact {-,+}0.05
 
 # muda entre as janelas
 super + Tab
     dwmc focusstack +1
 
 # muda de tag
-super + {Left, Right}
-    dwmc {viewprev, viewnext}
+super + {h,l}
+    dwmc {viewprev,viewnext}
 
 # troca a janela de tag
-super + shift {Left, Right}
-    dwmc {tagtoprev, tagtonext}
+super + shift {h,l}
+    dwmc {tagtoprev,tagtonext}
 
 # fecha uma janela
 super + shift + backslash
@@ -61,7 +61,7 @@ Super_R + any
 # Terminal #
 # st
 super + shift + Return
-    st & [ "$WM" = "herbstluftwm" ] && herbstclient use 2
+    st
 # abre e fecha scratchpads
 super + backslash
     st_scratchpad
@@ -69,13 +69,13 @@ super + backslash
 # Musica #
 # pausa/toca musica e atualiza a barra no dwm
 super + space
-    mpc toggle & [ "$WM" = "dwm" ] && pkill -RTMIN+11 dwmblocks
+    mpc toggle && pkill -RTMIN+11 dwmblocks
 # anterior/proxima musica e atualiza a barra no dwm
 super + shift + {comma, period}
-    mpc {prev,next} && musica notificar & [ "$WM" = "dwm" ] && pkill -RTMIN+11 dwmblocks
+    mpc {prev,next} && musica notificar && pkill -RTMIN+11 dwmblocks
 # abaixar/aumentar o volume e atualiza a barra no dwm
 super + {comma, period}
-    amixer -q set Master 5%{-,+,-,+} & [ "$WM" = "dwm" ] && pkill -RTMIN+9 dwmblocks
+    amixer -q set Master 5%{-,+,-,+} && pkill -RTMIN+9 dwmblocks
 # ncmpcpp/pulsemixer
 super + {_,shift} + a
     st -g 120x30 -c {ncmpcpp -n ncmpcpp -e ncmpcpp,pulsemixer -n pulsemixer -e pulsemixer}
@@ -92,7 +92,7 @@ Menu;w
     dmenu_wifi
 # dmenu_edit
 Menu;e
-    dmenu_edit && [ "$WM" = "herbstluftwm" ] && herbstclient use 2
+    dmenu_edit
 # dmenu_emoji
 Menu;E
     dmenu_emoji
@@ -113,13 +113,13 @@ Menu;c
     dmenu_clip
 # dmenu_qutebrowser
 Menu;q
-    dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml & [ "$WM" = "herbstluftwm" ] && herbstclient use 1
+    dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml
 # dmenu_aliases
 Menu;A
     dmenu_aliases
 # dmenu_xephyr
 Menu;x
-    dmenu_xephyr & [ "$WM" = "herbstluftwm" ] && herbstclient use 7
+    dmenu_xephyr
 # dmenu_print
 Print
     dmenu_print
@@ -142,5 +142,4 @@ Menu;t
     transmission-gtk
 # anotações
 Menu;a
-    nvim ~/documentos/anotações.md & [ "$WM" = "herbstluftwm" ] && herbstclient use 2
-
+    nvim ~/documentos/anotações.md
