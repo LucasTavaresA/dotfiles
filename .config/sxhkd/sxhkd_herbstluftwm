@@ -62,7 +62,7 @@ ctrl + super + {k,j,h,l}
     herbstclient resize {up +0.05,down +0.05,left +0.05,right +0.05}
 
 # troca entre layouts pulando layouts que não mudam janelas de posição
-super + Escape
+super + {Escape,Menu}
     herbstclient or , and . compare tags.focus.curframe_wcount = 2                   \
                      . cycle_layout +1 vertical horizontal max vertical grid    \
                , cycle_layout +1

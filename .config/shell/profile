@@ -15,7 +15,15 @@ export XDG_BIN_HOME="$HOME/.local/bin"
 export WM="herbstluftwm"
 # systema
 export OS="$(uname -n)"
-
+# teclas no notebook
+if [ "$OS" = "linuxmint" ]; then
+    # alt + , = Escape
+    xmodmap -e "keycode 59 = comma less comma less Escape"
+    # alt + . = Tab
+    xmodmap -e "keycode 60 = period greater period greater Tab"
+    # alt + ; = "
+    xmodmap -e "keycode 61 = semicolon colon semicolon colon quotedbl"
+fi
 # bat como o manpager
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 [ "$OS" = "linuxmint" ] && export MANPAGER="sh -c 'col -bx | batcat -l man -p'"

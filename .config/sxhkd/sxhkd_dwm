@@ -44,7 +44,7 @@ super + Return
     dwmc inplacerotate +2
 
 # troca entre layouts
-super + Escape
+super + {Escape,Menu}
     dwmc layoutscroll +1
 
 # torna a janela fixa em todas as tags

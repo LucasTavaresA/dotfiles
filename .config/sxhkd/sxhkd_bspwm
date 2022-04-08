@@ -8,7 +8,7 @@ super + Return
     bspc node -s biggest.window
 
 # troca entre layout monocle e tiled
-super + Escape
+super + {Escape, Menu}
     bspc desktop -l next
 
 # troca o foco entre as janelas
