@@ -8,13 +8,13 @@ super + backslash
     st_scratchpad
 
 # Musica #
-# pausa/toca musica e atualiza a barra no dwm
+# pausa/toca musica
 super + space
-    mpc toggle
-# anterior/proxima musica e atualiza a barra no dwm
+    playerctl play-pause
+# anterior/proxima musica
 super + shift + {comma, period}
     mpc {prev,next} && musica notificar
-# abaixar/aumentar o volume e atualiza a barra no dwm
+# abaixar/aumentar o volume
 super + {comma, period}
     amixer -q set Master 5%{-,+,-,+}
 # ncmpcpp/pulsemixer

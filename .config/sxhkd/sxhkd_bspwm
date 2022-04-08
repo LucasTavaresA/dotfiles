@@ -103,7 +103,7 @@ super + backslash
 # Musica #
 # pausa/toca musica
 super + space
-    mpc toggle
+    playerctl play-pause
 # anterior/proxima musica
 super + shift + {comma, period}
     mpc {prev,next} && musica notificar

@@ -77,7 +77,7 @@ super + backslash
 # Musica #
 # pausa/toca musica e atualiza a barra no dwm
 super + space
-    mpc toggle && pkill -RTMIN+11 dwmblocks
+    playerctl play-pause && pkill -RTMIN+11 dwmblocks
 # anterior/proxima musica e atualiza a barra no dwm
 super + shift + {comma, period}
     mpc {prev,next} && musica notificar && pkill -RTMIN+11 dwmblocks
