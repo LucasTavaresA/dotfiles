@@ -181,15 +181,22 @@
 
 ;; Final ;;
 (defvar *OS* (uiop:getenv "OS"))
-(defun polybar ()
-    "Abre a polybar do sistema e a esconde"
+(defun iniciar ()
+    "Abre a programas no inicio do stumpwm"
     (cond ((string= *OS* "archlinux")
            (run-shell-command "polybar pc &")
            (run-shell-command "sleep 5 && polybar-msg cmd hide"))
           ((string= *OS* "linuxmint")
            (run-shell-command "polybar notebook &")
-           (run-shell-command "sleep 5 && polybar-msg cmd hide"))))
-(polybar)
+           (run-shell-command "sleep 5 && polybar-msg cmd hide")
+           ; Teclas no notebook
+           ; alt + , = Escape
+           (run-shell-command "xmodmap -e 'keycode 59 = comma less comma less Escape'")
+           ; alt + . = Tab
+           (run-shell-command "xmodmap -e 'keycode 60 = period greater period greater Tab'")
+           ; alt + ; = "
+           (run-shell-command "xmodmap -e 'keycode 61 = semicolon colon semicolon colon quotedbl'"))))
+(iniciar)
 
 ;; remove logs caso existam
 (uiop:delete-directory-tree (pathname "~/.stumpwm.d/") :validate t)

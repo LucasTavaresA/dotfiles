@@ -124,4 +124,14 @@ elif [ "$OS" = "archlinux" ]; then
     sleep 5 && polybar-msg cmd hide
 fi
 
+# teclas no notebook
+if [ "$OS" = "linuxmint" ]; then
+    # alt + , = Escape
+    xmodmap -e "keycode 59 = comma less comma less Escape"
+    # alt + . = Tab
+    xmodmap -e "keycode 60 = period greater period greater Tab"
+    # alt + ; = "
+    xmodmap -e "keycode 61 = semicolon colon semicolon colon quotedbl"
+fi
+
 hc unlock
