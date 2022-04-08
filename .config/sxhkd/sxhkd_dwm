@@ -4,10 +4,14 @@ super + b
     dwmc togglebar
 
 # muda o tamanho da janela
+ctrl + super + {Up,Down}
+    dwmc setcfact {+,-}0.20
 ctrl + super + {k,j}
     dwmc setcfact {+,-}0.20
 
 # muda o tamanho da janela
+ctrl + super + {Left,Right}
+    dwmc setmfact {-,+}0.05
 ctrl + super + {h,l}
     dwmc setmfact {-,+}0.05
 
@@ -16,10 +20,14 @@ super + Tab
     dwmc focusstack +1
 
 # muda de tag
+super + {Left,Right}
+    dwmc {viewprev,viewnext}
 super + {h,l}
     dwmc {viewprev,viewnext}
 
 # troca a janela de tag
+super + shift {Left,Right}
+    dwmc {tagtoprev,tagtonext}
 super + shift {h,l}
     dwmc {tagtoprev,tagtonext}
 

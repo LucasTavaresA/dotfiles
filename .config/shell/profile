@@ -87,6 +87,8 @@ export PATH="/usr/lib/jvm/java-11-openjdk/bin:$PATH"
 export PATH="$HOME/code/shell/dmenuscripts:$PATH"
 export PATH="$HOME/code/shell/scripts:$PATH"
 export PATH="${XDG_BIN_HOME:-$HOME/.local/bin}:$PATH"
+export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/cargo/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 # DOOM emacs
 export PATH="${XDG_CONFIG_HOME:-$HOME/.config}/emacs/bin:$PATH"

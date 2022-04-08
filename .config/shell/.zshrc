@@ -31,7 +31,7 @@ bindkey -a '^[[3~' delete-char
 bindkey "^X" execute-named-cmd
 bindkey "^[[H"   beginning-of-line
 bindkey "^[[4~"   end-of-line
-bindkey -s "^[f" '^Ulf^M'
+bindkey -s "^[f" '^Ulfm^M'
 
 # completar comandos
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
@@ -42,6 +42,7 @@ compinit
 _comp_options+=(globdots) # Incluir arquivos ocultos.
 
 #### Aliases ####
+alias lf="echo 'use alt+f'"
 alias n="neofetch"
 alias v="nvim"
 alias vv="/usr/bin/nvim"
@@ -158,7 +159,7 @@ hc () {
 }
 
 # previsão de imagens no lf
-lf () {
+lfm () {
     LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"
     LF_TEMPDIR="$LF_TEMPDIR" lf-run -last-dir-path="$LF_TEMPDIR/lastdir" "$@"
     if [ "$(cat "$LF_TEMPDIR/cdtolastdir" 2>/dev/null)" = "1" ]; then

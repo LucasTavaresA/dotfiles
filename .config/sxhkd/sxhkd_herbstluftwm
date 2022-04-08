@@ -16,6 +16,11 @@ super + Tab
     herbstclient cycle_all +1
 
 # alterna entre as janelas e tags
+super + {Up,Down,Left,Right}
+    herbstclient focus {up || herbstclient use_index +1,\
+                        down || herbstclient use_index -1,\
+                        left || herbstclient use_index -1,\
+                        right || herbstclient use_index +1}
 super + {k,j,h,l}
     herbstclient focus {up || herbstclient use_index +1,\
                         down || herbstclient use_index -1,\
@@ -23,10 +28,17 @@ super + {k,j,h,l}
                         right || herbstclient use_index +1}
 
 # troca as janelas de posição
+super + shift + {Up,Down,Left,Right}
+    herbstclient shift {up,down,left,right}
 super + shift + {k,j,h,l}
     herbstclient shift {up,down,left,right}
 
 # muda janela de tag e a segue
+super + alt + {Up,Down,Left,Right}
+    herbstclient {move_index +1 && herbstclient use_index +1,\
+    move_index -1 && herbstclient use_index -1,\
+    move_index -1 && herbstclient use_index -1,\
+    move_index +1 && herbstclient use_index +1}
 super + alt + {k,j,h,l}
     herbstclient {move_index +1 && herbstclient use_index +1,\
     move_index -1 && herbstclient use_index -1,\
@@ -34,14 +46,18 @@ super + alt + {k,j,h,l}
     move_index +1 && herbstclient use_index +1}
 
 # cria uma divisória
+ctrl + shift + {Up,Down,Left,Right}
+    herbstclient split {top,bottom,left,right}
 ctrl + shift + {k,j,h,l}
     herbstclient split {top,bottom,left,right}
 
 # remove divisória
-ctrl + shift + q
+super + shift + q
     herbstclient remove
 
 # muda o tamanho de frames
+ctrl + super + {Up,Down,Left,Right}
+    herbstclient resize {up +0.05,down +0.05,left +0.05,right +0.05}
 ctrl + super + {k,j,h,l}
     herbstclient resize {up +0.05,down +0.05,left +0.05,right +0.05}
 

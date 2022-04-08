@@ -12,6 +12,11 @@ super + Escape
     bspc desktop -l next
 
 # troca o foco entre as janelas
+super + {Up,Down,left,Right}
+    bspc node -f {next.local.!hidden.window,\
+                  prev.local.!hidden.window,\
+                  prev.local.!hidden.window,\
+                  next.local.!hidden.window}
 super + {k,j,h,l}
     bspc node -f {next.local.!hidden.window,\
                   prev.local.!hidden.window,\
@@ -27,6 +32,8 @@ super + ctrl + Return
     bspc node -n last.!automatic
 
 # preseleciona uma direção
+super + ctrl + {Up,Down,left,Right}
+    bspc node -p {north,south,west,east}
 super + ctrl + {k,j,h,l}
     bspc node -p {north,south,west,east}
 
@@ -35,6 +42,15 @@ ctrl + space
     bspc node -p cancel
 
 # muda o tamanho das janelas
+ctrl + {Up,Down,left,Right}
+    {bspc node @parent/second -z top 0 +20; \
+     bspc node @parent/first -z bottom 0 +20, \
+     bspc node @parent/first -z bottom 0 -20; \
+     bspc node @parent/second -z top 0 -20, \
+     bspc node @parent/second -z left -20 0; \
+     bspc node @parent/first -z right -20 0,\
+     bspc node @parent/first -z right +20 0; \
+     bspc node @parent/second -z left +20 0}
 ctrl + {k,j,h,l}
     {bspc node @parent/second -z top 0 +20; \
      bspc node @parent/first -z bottom 0 +20, \

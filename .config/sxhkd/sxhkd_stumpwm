@@ -4,26 +4,38 @@ super + shift + q
     stumpish remove
 
 # Muda de grupo
+super + {Left,Right}
+    stumpish g{prev,next}
 super + {h,l}
     stumpish g{prev,next}
 
 # Muda a janela de grupo
+super + shift + {Left,Right}
+    stumpish g{prev-with-window,next-with-window}
 super + shift + {h,l}
     stumpish g{prev-with-window,next-with-window}
 
 # cria frame vertical/horizontal
+ctrl + super + {Down,Right}
+    stumpish {vsplit,hsplit}
 ctrl + super + {j,l}
     stumpish {vsplit,hsplit}
 
 # muda o tamanho de frames
+ctrl + shift {Up,Down,Left,Right}
+    stumpish resize-direction {up,down,left,right}
 ctrl + shift {k,j,h,l}
     stumpish resize-direction {up,down,left,right}
 
 # move o foco entre frames e leva o cursor ao frame
+super + {Up,Down,Left,Right}
+    stumpish my-mv {up,down,left,right}
 super + {k,j,h,l}
     stumpish my-mv {up,down,left,right}
 
 # move a janela
+super + shift {Up,Down,Left,Right}
+    stumpish move-window {up,down,left,right}
 super + shift {k,j,h,l}
     stumpish move-window {up,down,left,right}
 
