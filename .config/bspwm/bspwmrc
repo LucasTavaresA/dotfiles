@@ -52,3 +52,14 @@ bspc rule -a VirtualBox Manager state=fullscreen
 bspc rule -a VirtualBox Machine state=fullscreen
 bspc rule -a :Zathura state=tiled
 bspc rule -a st_download state=floating rectangle=1000x700+0+0 center=true
+
+# polybar
+if [ "$OS" = "linuxmint" ]; then
+    polybar notebook &
+    # espera a barra carregar e esconde a barra
+    sleep 5 && polybar-msg cmd hide
+elif [ "$OS" = "archlinux" ]; then
+    polybar pc &
+    # espera a barra carregar e esconde a barra
+    sleep 5 && polybar-msg cmd hide
+fi

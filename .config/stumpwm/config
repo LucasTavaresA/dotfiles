@@ -180,8 +180,16 @@
 (define-key *top-map* (kbd "M-ESC") "esconde")
 
 ;; Final ;;
-;(run-shell-command "polybar &")
-;; espera a barra carregar e esconde a barra
-;(run-shell-command "sleep 2 && polybar-msg cmd hide")
+(defvar *OS* (uiop:getenv "OS"))
+(defun polybar ()
+    "Abre a polybar do sistema e a esconde"
+    (cond ((string= *OS* "archlinux")
+           (run-shell-command "polybar pc &")
+           (run-shell-command "sleep 5 && polybar-msg cmd hide"))
+          ((string= *OS* "linuxmint")
+           (run-shell-command "polybar notebook &")
+           (run-shell-command "sleep 5 && polybar-msg cmd hide"))))
+(polybar)
+
 ;; remove logs caso existam
 (uiop:delete-directory-tree (pathname "~/.stumpwm.d/") :validate t)

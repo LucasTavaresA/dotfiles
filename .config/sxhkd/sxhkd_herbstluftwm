@@ -89,7 +89,7 @@ Menu;b
 # Terminal #
 # st
 super + shift + Return
-    st && herbstclient use 2
+    st & herbstclient use 2
 # abre e fecha scratchpads
 super + backslash
     st_scratchpad

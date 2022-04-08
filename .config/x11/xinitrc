@@ -24,17 +24,6 @@ xbanish &
 fluxgui &
 #picom &
 
-# polybar
-if [ "$OS" = "linuxmint" ]; then
-    polybar notebook &
-    # espera a barra carregar e esconde a barra
-    sleep 5 && polybar-msg cmd hide
-elif [ "$OS" = "archlinux" ]; then
-    polybar pc &
-    # espera a barra carregar e esconde a barra
-    sleep 2 && polybar-msg cmd hide
-fi
-
 if [ "$WM" = "herbstluftwm" ]; then
     sxhkd -c "$HOME/.config/sxhkd/sxhkd_herbstluftwm" &
     flags=" --locked"
