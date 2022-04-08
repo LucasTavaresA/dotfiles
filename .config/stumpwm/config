@@ -185,4 +185,3 @@
 ;(run-shell-command "sleep 2 && polybar-msg cmd hide")
 ;; remove logs caso existam
 (uiop:delete-directory-tree (pathname "~/.stumpwm.d/") :validate t)
-

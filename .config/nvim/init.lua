@@ -303,6 +303,8 @@ keymap("n", "<S-Up>", "<Plug>(expand_region_expand)", {})
 keymap("n", "<S-Down>", "<Plug>(expand_region_shrink)", {})
 keymap("v", "<S-Up>", "<Plug>(expand_region_expand)", {})
 keymap("v", "<S-Down>", "<Plug>(expand_region_shrink)", {})
+keymap("i", "<S-Up>", "<esc><Plug>(expand_region_expand)", {})
+keymap("i", "<S-Down>", "<esc><Plug>(expand_region_shrink)", {})
 -- Criar cursor na próxima palavra - visual multi
 keymap("n", "<C-s>", "<C-n>", {})
 keymap("v", "<C-s>", "<C-n>", {})

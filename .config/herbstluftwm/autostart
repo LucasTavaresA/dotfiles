@@ -113,7 +113,4 @@ hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 hc rule class="Pinentry-gtk-2" floating=on floatplacement=center
 
-polybar &
-# espera a barra carregar e esconde a barra
-sleep 5 && polybar-msg cmd hide
 hc unlock
