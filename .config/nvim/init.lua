@@ -252,9 +252,9 @@ keymap("n", "<leader>qq", ":q!<CR>", {})
 -- salvar e recarregar arquivo
 keymap("n", "<leader>wr", ":w<CR>:e<CR>", {})
 -- divide a tela do lado
-keymap("n", "<C-A-Right>", ":vs<CR>", {})
+keymap("n", "<C-A-l>", ":vs<CR>", {})
 -- divide a tela abaixo
-keymap("n", "<C-A-down>", ":sp<CR>", {})
+keymap("n", "<C-A-j>", ":sp<CR>", {})
 -- copiar buffer
 keymap("n", "cb", "ggVGy", nr)
 -- ativa/desativa números de linha
@@ -266,8 +266,8 @@ keymap("n", "<A-Tab>", "<CR>:TocToggle<CR>", {})
 -- abre terminal no local do arquivo atual
 keymap("n", "<leader><return>", ":!sh -c 'cd %:p:h ; st' &<CR><CR>", {})
 -- centraliza cursor no modo normal
-keymap("n", "<Up>", "<Up>zz", {})
-keymap("n", "<down>", "<down>zz", {})
+keymap("n", "k", "kzz", {})
+keymap("n", "j", "jzz", {})
 -- executa um macro
 keymap("n", "m", "@", {})
 -- marca/desmarca caixas
@@ -299,18 +299,18 @@ keymap("n", "tb", ":LiteDFMToggle<CR>", {})
 -- ativa o copilot - copilot
 keymap("n", "tC", ":CopilotToggle<CR>", {})
 -- expande região selecionada - expand region
-keymap("n", "<S-up>", "<Plug>(expand_region_expand)", {})
-keymap("n", "<S-down>", "<Plug>(expand_region_shrink)", {})
-keymap("v", "<S-up>", "<Plug>(expand_region_expand)", {})
-keymap("v", "<S-down>", "<Plug>(expand_region_shrink)", {})
+keymap("n", "<S-k>", "<Plug>(expand_region_expand)", {})
+keymap("n", "<S-j>", "<Plug>(expand_region_shrink)", {})
+keymap("v", "<S-k>", "<Plug>(expand_region_expand)", {})
+keymap("v", "<S-j>", "<Plug>(expand_region_shrink)", {})
 -- Criar cursor na próxima palavra - visual multi
 keymap("n", "<C-s>", "<C-n>", {})
 keymap("v", "<C-s>", "<C-n>", {})
 -- pular cursor ate a próxima palavra - visual multi
 keymap("n", "<A-s>", "q", {})
 -- criar cursor abaixo/acima - visual multi
-keymap("n", "<leader><Up>", "<C-Up>", {})
-keymap("n", "<leader><Down>", "<C-Down>", {})
+keymap("n", "<leader>k", "<C-Up>", {})
+keymap("n", "<leader>j", "<C-Down>", {})
 -- procura linhas no buffer - swoop
 keymap("n", ";", ":call Swoop()<CR>", {})
 keymap("v", ";", ":call SwoopSelection()<CR>", {})

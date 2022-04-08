@@ -4,7 +4,9 @@
 # não executa o resto do bashrc
 [[ $- != *i* ]] && return
 
+#### Bash exports ####
 export SHELL="bash"
+export GIT_TTY=$(tty)
 
 #### Aliases ####
 alias n="neofetch"
@@ -79,23 +81,37 @@ alias gr="git restore"
 alias grs="git restore --staged"
 alias grrs="git reset --soft"
 alias grrh="git reset --hard"
-# pacman
-alias ps="doas pacman -S"
-alias psi="pacman -Si"
-alias pss="pacman -Ss"
-alias psyu="doas pacman -Syu"
-alias pq="pacman -Q"
-alias pqs="pacman -Qs"
-alias prns="doas pacman -Rns"
-alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
-# paru
-alias pps="paru -S"
-alias ppsi="paru -Si"
-alias ppss="paru -Ss"
-alias ppsyu="paru -Syu"
-alias ppq="paru -Q"
-alias ppqs="paru -Qs"
-alias pprns="paru -Rns"
+
+## aliases em systemas
+if [ "$OS" = "linuxmint" ]; then
+    # apt
+    alias bat="batcat"
+    alias as="sudo apt install"
+    alias asi="apt show"
+    alias ass="apt search"
+    alias asyu="sudo apt update && sudo apt upgrade"
+    alias aq="apt list --installed"
+    alias aqs="apt list --installed | grep --color -i"
+    alias arns="sudo apt remove"
+elif [ "$OS" = "archlinux" ]; then
+    # pacman
+    alias ps="doas pacman -S"
+    alias psi="pacman -Si"
+    alias pss="pacman -Ss"
+    alias psyu="doas pacman -Syu"
+    alias pq="pacman -Q"
+    alias pqs="pacman -Qs"
+    alias prns="doas pacman -Rns"
+    alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
+    # paru
+    alias pps="paru -S"
+    alias ppsi="paru -Si"
+    alias ppss="paru -Ss"
+    alias ppsyu="paru -Syu"
+    alias ppq="paru -Q"
+    alias ppqs="paru -Qs"
+    alias pprns="paru -Rns"
+fi
 
 # ignora case-sensitivity quando completa comandos com tab
 if [ ! -a $HOME/.config/readline/inputrc ]; then echo '$include /etc/inputrc' > $HOME/.config/readline/inputrc; fi
@@ -106,7 +122,6 @@ shopt -s cdspell
 shopt -s cmdhist
 
 #### Funções ####
-
 # hersbstluftwm
 hc () {
     herbstclient "$@"

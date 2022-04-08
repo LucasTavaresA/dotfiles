@@ -3,10 +3,12 @@
 # se não executando zsh interativamente não executa o resto do zshrc
 [[ $- != *i* ]] && return
 
-#### Exports ####
+#### Zsh exports ####
 export SHELL="zsh"
+export GIT_TTY=$TTY
 # não adiciona esses itens ao histórico
 export HISTORY_IGNORE="(ls|cd|pwd|exit|doas reboot|history|cd -|cd ..)"
+
 HISTFILE=~/.config/shell/history
 HISTSIZE=10000
 SAVEHIST=10000
@@ -38,9 +40,6 @@ zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots) # Incluir arquivos ocultos.
-
-setopt autocd
-cdpath=($HOME $HOME/code/shell/ $HOME/media/)
 
 #### Aliases ####
 alias n="neofetch"
@@ -115,26 +114,39 @@ alias gr="git restore"
 alias grs="git restore --staged"
 alias grrs='git reset --soft'
 alias grrh='git reset --hard'
-# pacman
-alias ps="doas pacman -S"
-alias psi="pacman -Si"
-alias pss="pacman -Ss"
-alias psyu="doas pacman -Syu"
-alias pq="pacman -Q"
-alias pqs="pacman -Qs"
-alias prns="doas pacman -Rns"
-alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
-# paru
-alias pps="paru -S"
-alias ppsi="paru -Si"
-alias ppss="paru -Ss"
-alias ppsyu="paru -Syu"
-alias ppq="paru -Q"
-alias ppqs="paru -Qs"
-alias pprns="paru -Rns"
+
+## aliases em systemas
+if [ "$OS" = "linuxmint" ]; then
+    # apt
+    alias bat="batcat"
+    alias as="sudo apt install"
+    alias asi="apt show"
+    alias ass="apt search"
+    alias asyu="sudo apt update && sudo apt upgrade"
+    alias aq="apt list --installed"
+    alias aqs="apt list --installed | grep --color -i"
+    alias arns="sudo apt remove"
+elif [ "$OS" = "archlinux" ]; then
+    # pacman
+    alias ps="doas pacman -S"
+    alias psi="pacman -Si"
+    alias pss="pacman -Ss"
+    alias psyu="doas pacman -Syu"
+    alias pq="pacman -Q"
+    alias pqs="pacman -Qs"
+    alias prns="doas pacman -Rns"
+    alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
+    # paru
+    alias pps="paru -S"
+    alias ppsi="paru -Si"
+    alias ppss="paru -Ss"
+    alias ppsyu="paru -Syu"
+    alias ppq="paru -Q"
+    alias ppqs="paru -Qs"
+    alias pprns="paru -Rns"
+fi
 
 ## Funções
-
 # localizar e editar arquivo
 vw () {
     nvim $(where $1)

@@ -17,8 +17,8 @@ export WM="herbstluftwm"
 export OS="$(uname -n)"
 
 # bat como o manpager
-[ "$OS" = "linuxmint" ] && alias bat="batcat"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+[ "$OS" = "linuxmint" ] && export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 # pass
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/pass"
 # terminal
