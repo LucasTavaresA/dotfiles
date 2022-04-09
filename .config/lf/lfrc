@@ -5,6 +5,8 @@ set period 1
 
 # novas linhas
 set ifs "\n"
+# icones
+set icons on
 # arquivos ocultos
 set hidden on
 # informação mostrada do lado do arquivo

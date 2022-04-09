@@ -1,3 +1,4 @@
+a52dec
 aalib
 abseil-cpp
 acl
@@ -81,6 +82,7 @@ clipnotify
 clucene
 cmake
 compiler-rt
+confuse
 coreutils
 cpio
 cryptsetup
@@ -122,6 +124,7 @@ elfutils
 elinks
 ell
 emacs
+enca
 enchant
 exfatprogs
 exiv2
@@ -129,6 +132,7 @@ expac
 expat
 expect
 f2fs-tools
+faac
 faad2
 fakeroot
 fd
@@ -225,6 +229,7 @@ gts
 gucharmap
 guile
 gumbo-parser
+gvfs
 gzip
 handlr-bin
 harfbuzz
@@ -399,6 +404,7 @@ imlib2
 iniparser
 intel-gmmlib
 intel-media-driver
+intltool
 iproute2
 iptables
 iputils
@@ -451,6 +457,7 @@ libb64
 libblockdev
 libbluray
 libbpf
+libbs2b
 libbsd
 libburn
 libbytesize
@@ -473,6 +480,7 @@ libdatrie
 libdbusmenu-glib
 libdbusmenu-gtk3
 libdbusmenu-qt5
+libdca
 libde265
 libdispatch
 libdrm
@@ -497,6 +505,7 @@ libffi
 libfontenc
 libfreeaptx
 libfreehand
+libftdi
 libgcrypt
 libgdiplus
 libgexiv2
@@ -549,6 +558,7 @@ libmodplug
 libmpc
 libmpcdec
 libmpdclient
+libmpeg2
 libmspub
 libmtp
 libmwaw
@@ -565,6 +575,7 @@ libnghttp2
 libnl
 libnm
 libnma
+libnma-common
 libnotify
 libnsl
 libnumbertext
@@ -631,6 +642,7 @@ libupnp
 liburcu
 liburing
 libusb
+libusb-compat
 libutempter
 libuv
 libva
@@ -684,6 +696,7 @@ libxss
 libxt
 libxtst
 libxv
+libxvmc
 libxxf86vm
 libyaml
 libyuv
@@ -696,6 +709,7 @@ linux
 linux-api-headers
 linux-firmware
 linux-firmware-whence
+lirc
 llvm
 llvm-libs
 lm_sensors
@@ -746,6 +760,7 @@ mpc
 mpd
 mpfr
 mpg123
+mplayer
 mpv
 msgpack-c
 mtdev
@@ -858,6 +873,7 @@ pinentry
 pipewire
 pixman
 pkgconf
+playerctl
 polkit
 polybar
 poppler
@@ -884,6 +900,7 @@ python-beaker
 python-beautifulsoup4
 python-cachecontrol
 python-cairo
+python-certifi
 python-cffi
 python-chardet
 python-colorama
@@ -1018,6 +1035,7 @@ rasqal
 rav1e
 re2
 readline
+recode
 redland
 reflector
 reiserfsprogs
@@ -1029,6 +1047,7 @@ rpcbind
 rsync
 rtags
 rtkit
+rtmpdump
 rubberband
 run-parts
 rust

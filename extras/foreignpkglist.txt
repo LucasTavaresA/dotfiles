@@ -1,6 +1,6 @@
-atool
 chromium-widevine
 fluxgui-git
+gnome-icon-theme
 handlr-bin
 hunspell-pt-br
 lf

@@ -24,9 +24,9 @@ fluxgui &
 #picom &
 
 if [ "$OS" = "archlinux" ]; then
+    playerctld daemon
     mpd &
     mpd-mpris &
-    playerctld daemon
 elif [ "$OS" = "linuxmint" ]; then
     playerctld daemon
 fi
