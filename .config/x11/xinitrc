@@ -22,15 +22,10 @@ nm-applet &
 xbanish &
 fluxgui &
 megasync &
+playerctld daemon
+mpd &
+mpd-mpris &
 #picom &
-
-if [ "$OS" = "archlinux" ]; then
-    playerctld daemon
-    mpd &
-    mpd-mpris &
-elif [ "$OS" = "linuxmint" ]; then
-    playerctld daemon
-fi
 
 if [ "$WM" = "herbstluftwm" ]; then
     sxhkd -c "$HOME/.config/sxhkd/sxhkd_herbstluftwm" &
@@ -46,6 +41,7 @@ else
     sxhkd -c "$HOME/.config/sxhkd/sxhkd_nowm" &
 fi
 
+checar_updates &
 if [ -n "$flags" ]; then
     exec $WM$flags
 else
