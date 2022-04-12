@@ -1,3 +1,4 @@
+----- PLUGINS -----
 -- clona o paq caso a sua pasta não exista
 local path = vim.fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
 if vim.fn.empty(vim.fn.glob(path)) > 0 then
@@ -16,13 +17,13 @@ vim.cmd('packadd paq-nvim')
 -- inicia o paq e seus pacotes
 local paq = require('paq')
 paq({
-    ---- Iniciar
+    --- Iniciar
     -- vim mais rápido
     "lewis6991/impatient.nvim";
     -- gerenciador de pacotes
     "savq/paq-nvim";
 
-    ---- Miscelânea
+    --- Miscelânea
     -- salva posição do cursor
     "farmergreg/vim-lastplace";
     -- múltiplos cursores
@@ -35,13 +36,17 @@ paq({
     "terryma/vim-expand-region";
     -- previsão de cores
     { "norcalli/nvim-colorizer.lua", config = function() require('colorizer').setup() end };
-    -- procura usando o fzf
+    -- procura arquivos usando fzf
     { "junegunn/fzf", run = './install --bin', };
     "junegunn/fzf.vim";
+    -- procura arquivos rapidamente
+    "ctrlpvim/ctrlp.vim";
     -- procura linhas no buffer
     "pelodelfuego/vim-swoop";
+    -- arvore de undos
+    "mbbill/undotree";
 
-    ---- Code
+    --- Code
     -- Escreve codigo com IA
     "github/copilot.vim";
     -- indentação e indicação de sintaxe
@@ -51,9 +56,33 @@ paq({
     "rstacruz/vim-closer";
     -- indica diffs
     "mhinz/vim-signify";
+    -- melhor visão de diffs
+    "nvim-lua/plenary.nvim";
+    "sindrets/diffview.nvim";
     -- LSP
     "neovim/nvim-lspconfig";
     "williamboman/nvim-lsp-installer";
+    -- buffer com erros no codigo
+    "kyazdani42/nvim-web-devicons";
+    { "folke/trouble.nvim",
+        requires = "kyazdani42/nvim-web-devicons",
+        config = function()
+        require("trouble").setup {
+            padding = false,
+            icons = false,
+            fold_open = "v",
+            fold_closed = ">",
+            indent_lines = false,
+            signs = {
+                error = "error",
+                warning = "warn",
+                hint = "hint",
+                information = "info"
+            },
+            use_diagnostic_signs = false
+        }
+      end
+    };
     -- sxhkd
     "baskerville/vim-sxhkdrc";
     -- snippets
@@ -77,14 +106,17 @@ paq({
     -- json
     "elzr/vim-json";
     -- previsão de output para REPL em Python, JavaScript, CoffeeScript, PHP, Lua, C++, TypeScript
-    -- -- "metakirby5/codi.vim";
+    -- "metakirby5/codi.vim";
+    -- debug de código
+    "puremourning/vimspector";
 })
 
 -- carrega plugins locais
 vim.opt.runtimepath:append("~/.config/nvim/plugins/lite-dfm")
 vim.opt.runtimepath:append("~/.config/nvim/plugins/moonlight.nvim")
 
----- Vim
+----- Configuração -----
+--- Vim
 vim.cmd("filetype plugin on")
 vim.cmd("filetype indent on")
 -- mantem configurações de buffers
@@ -94,22 +126,22 @@ vim.opt.lazyredraw = true
 -- melhora suporte ao terminal
 vim.opt.termguicolors = true
 
----- Arquivos
+--- Arquivos
 -- desabilita swapfile
 vim.opt.swapfile = false
 
----- Tabs/Espaços
+--- Tabs/Espaços
 -- limita tabs em 4 espaços
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 -- troca tabs por espaços
 vim.opt.expandtab = true
 
----- Miscelânea
+--- Miscelânea
 -- muda o titulo da janela
 vim.opt.title = true
 vim.opt.titlestring = "nvim"
-vim.opt.titleold = "st"
+vim.opt.titleold = "st-256color"
 -- da a volta entre linhas
 vim.opt.whichwrap = vim.opt.whichwrap + "<,>,h,l,[,]"
 -- ativa uso do mouse
@@ -128,6 +160,7 @@ vim.opt.wildmode = { "longest", "list", "full" }
 -- divide a tela do lado e para baixo
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+vim.opt.diffopt:append { "horizontal" }
 -- não vai automaticamente para os itens pesquisados
 vim.opt.incsearch = false
 -- linhas não dão a volta na tela
@@ -141,7 +174,7 @@ vim.cmd [[ autocmd BufWritePre * %s/\n\+\%$//e ]]
 vim.cmd [[ autocmd BufWritePre *.[ch] %s/\%$/\r/e ]]
 vim.cmd [[ autocmd BufWritePre * cal cursor(currPos[1], currPos[2]) ]]
 
----- Aparência
+--- Aparência
 -- indicação de sintaxe
 vim.cmd("syntax on")
 -- inicia sem a barra - LiteDFM
@@ -168,23 +201,23 @@ vim.cmd("autocmd InsertLeave * set cursorline")
 -- incida parenteses correspondente
 vim.cmd("hi! MatchParen cterm=NONE,bold gui=NONE,bold  guibg=NONE guifg=#ff0000")
 
----- Treesitter
+--- Treesitter
 -- indentação e indicação de sintaxe
 local configs = require'nvim-treesitter.configs'
 configs.setup {
-  ensure_installed = "maintained", -- Apenas use parsers que são atualizados
-  highlight = { -- Indicação de sintaxe
-    enable = true,
-  },
-  indent = {
-    enable = true, -- Indentação
-  }
+    ensure_installed = "all",
+    highlight = { -- Indicação de sintaxe
+        enable = true,
+    },
+    indent = {
+        enable = true, -- Indentação
+    }
 }
 -- ativa folding do treesitter
 --vim.opt.foldmethod = "expr"
 --vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
----- Markdown
+--- Markdown
 vim.g.vim_markdown_frontmatter = 1  -- para formatar YAML
 vim.g.vim_markdown_toml_frontmatter = 1 -- para formatar TOML
 vim.g.vim_markdown_json_frontmatter = 1 -- para formatar JSON
@@ -208,13 +241,23 @@ command TocToggle call s:TocToggle()
 -- tabelas em markdown
 vim.g.table_mode_corner = '|'
 
----- LSP
+--- LSP
 local lsp_installer = require("nvim-lsp-installer")
 lsp_installer.on_server_ready(function(server)
   local opts = {}
   server:setup(opts)
 end)
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics,
+    {
+        virtual_text = false,
+        signs = false,
+        update_in_insert = false,
+        underline = true,
+    }
+)
 
+--- Copilot
 -- desativa o copilot ao iniciar
 vim.cmd("autocmd VimEnter * Copilot disable")
 -- função para fechar e abrir copilot - copilot
@@ -228,6 +271,46 @@ function s:CopilotToggle()
 endfunction
 command CopilotToggle call s:CopilotToggle()
 ]])
+
+--- Ctrlp
+-- abre arquivos no repositório atual de acordo com o gitignore
+vim.cmd([[
+    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+]])
+
+--- vimspector
+vim.cmd([[
+    let g:vimspector_base_dir=expand( '$HOME/.config/nvim/data/vimspector' )
+]])
+
+--- diffview
+local cb = require'diffview.config'.diffview_callback
+require'diffview'.setup {
+    enhanced_diff_hl = true,
+    file_panel = {
+        position = "left",                  -- One of 'left', 'right', 'top', 'bottom'
+        width = 25,                        -- Only applies when position is 'top' or 'bottom'
+        listing_style = "list",             -- One of 'list' or 'tree'
+    },
+    file_history_panel = {
+        position = "bottom",
+        height = 15,
+        log_options = {
+            max_count = 256,      -- Limit the number of commits
+            follow = false,       -- Follow renames (only for single file)
+            all = false,          -- Include all refs under 'refs/' including HEAD
+            merges = false,       -- List only merge commits
+            no_merges = false,    -- List no merge commits
+            reverse = false,      -- List commits in reverse order
+        },
+    },
+    default_args = {
+        DiffviewOpen = {},
+        DiffviewFileHistory = {},
+    },
+}
+
+----- Teclas -----
 local keymap = vim.api.nvim_set_keymap
 local nr = { noremap = true }
 vim.g.mapleader = " "
@@ -242,7 +325,7 @@ keymap("n", "te", ":setlocal spell! spelllang=en<CR>", {})
 -- mudar o typo de arquivo
 keymap("n", "ft", ":set filetype=", {})
 -- navega entre as divisórias
-keymap("n", "<leader><Tab>", ":wincmd w<CR>", nr)
+keymap("n", "<A-Tab>", ":wincmd w<CR>", nr)
 -- salvar buffer
 keymap("n", "<leader>ww", ":w<CR>", {})
 -- sair e salvar
@@ -251,6 +334,8 @@ keymap("n", "<leader>wq", ":wq!<CR>", {})
 keymap("n", "<leader>qq", ":q!<CR>", {})
 -- salvar e recarregar arquivo
 keymap("n", "<leader>wr", ":w<CR>:e<CR>", {})
+-- abre ultima mensagem
+keymap("n", "<leader>m", ":message<CR>", {})
 -- divide a tela do lado
 keymap("n", "<C-A-Right>", ":vs<CR>", {})
 -- divide a tela abaixo
@@ -262,12 +347,9 @@ keymap("n", "tn", ":set number!<CR>", {})
 -- procura palavra no cursor
 keymap("n", "?", "*", {})
 -- abrir e Fechar Toc
-keymap("n", "<A-Tab>", "<CR>:TocToggle<CR>", {})
+keymap("n", "<leader><Tab>", "<CR>:TocToggle<CR>", {})
 -- abre terminal no local do arquivo atual
 keymap("n", "<leader><return>", ":!sh -c 'cd %:p:h ; st' &<CR><CR>", {})
--- centraliza cursor no modo normal
-keymap("n", "<Up>", "kzz", {})
-keymap("n", "<Down>", "jzz", {})
 -- executa um macro
 keymap("n", "m", "@", {})
 -- marca/desmarca caixas
@@ -285,13 +367,11 @@ endfunction
 autocmd FileType markdown nnoremap <silent> <leader><leader> :call Marcar()<CR>j
 ]])
 
----- Plugins
+--- Plugins
 -- atualiza plugins do paq - paq
 keymap("n", "<leader>ps", ":PaqSync<CR>", {})
 -- remove plugins não utilizados - paq
 keymap("n", "<leader>pc", ":PaqClean<CR>", {})
--- editar snippets para o tipo de arquivo atual - ultisnips
-keymap("n", "<leader>es", ":UltiSnipsEdit<CR>", {})
 -- prevê arquivo markdown - markdown-preview
 keymap("n", "mp", ":MarkdownPreview<CR>", {})
 -- ativa/desativa a barra - litedfm
@@ -316,32 +396,51 @@ keymap("n", "<leader><Down>", "<C-Down>", {})
 -- procura linhas no buffer - swoop
 keymap("n", ";", ":call Swoop()<CR>", {})
 keymap("v", ";", ":call SwoopSelection()<CR>", {})
--- abre arquivos no diretório atual - fzf
-keymap("n", "ff", ":Files %:p:h<CR>", {})
--- histórico de arquivos - fzf
-keymap("n", "fh", ":History<CR>", {})
--- trocar de buffer - fzf
-keymap("n", "<S-Tab>", ":Buffers<CR>", {})
+-- abre arquivos no repositório atual - ctrlp
+keymap("n", "ff", ":CtrlP<CR>", {})
+-- abre arquivos aberto recentemente - ctrlp
+keymap("n", "fh", ":CtrlPMRUFiles<CR>", {})
+-- trocar de buffer - ctrlp
+keymap("n", "<S-Tab>", ":CtrlPBuffer<CR>", {})
+-- abre arquivos na home - fzf
+keymap("n", "f~", ":Files ~<CR>", {})
 -- comentar linhas - vim comentary
 keymap("n", "cc", "gccj", {})
 keymap("v", "cc", "gc", {})
 -- ativa previsão de cores - nvimcolorizer
 keymap("n", "tc", ":ColorizerToggle<CR>", {})
+-- abrir e fechar o buffer de diagnostico - Trouble
+keymap("n", "td", ":TroubleToggle<CR>", {})
+-- abrir e fechar arvore de undos - undotree
+keymap("n", "tu", ":UndotreeToggle<CR>:UndotreeFocus<CR>", {})
+-- ve o diff do repositório atual - diffview
+keymap("n", "dv", ":DiffviewOpen<CR>", {})
+-- editar snippets para o tipo de arquivo atual - ultisnips
+keymap("n", "<leader>es", ":UltiSnipsEdit<CR>", {})
 -- troca entre partes do snippet - ultisnips
 vim.g.UltiSnipsExpandTrigger = "<tab>"
 vim.g.UltiSnipsJumpForwardTrigger = "<tab>"
 vim.g.UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 
----- LSP
+--- LSP
 -- lua
-keymap("n", "gd", ":lua vim.lsp.buf.definition()<cr>", {})
-keymap("n", "gD", ":lua vim.lsp.buf.declaration()<cr>", {})
-keymap("n", "gi", ":lua vim.lsp.buf.implementation()<cr>", {})
-keymap("n", "gw", ":lua vim.lsp.buf.document_symbol()<cr>", {})
-keymap("n", "gw", ":lua vim.lsp.buf.workspace_symbol()<cr>", {})
-keymap("n", "gr", ":lua vim.lsp.buf.references()<cr>", {})
-keymap("n", "gt", ":lua vim.lsp.buf.type_definition()<cr>", {})
-keymap("n", "K", ":lua vim.lsp.buf.hover()<cr>", {})
-keymap("n", "<c-k>", ":lua vim.lsp.buf.signature_help()<cr>", {})
-keymap("n", "<leader>af", ":lua vim.lsp.buf.code_action()<cr>", {})
-keymap("n", "<leader>rn", ":lua vim.lsp.buf.rename()<cr>", {})
+keymap("n", "gd", ":lua vim.lsp.buf.definition()<CR>", {})
+keymap("n", "gD", ":lua vim.lsp.buf.declaration()<CR>", {})
+keymap("n", "gi", ":lua vim.lsp.buf.implementation()<CR>", {})
+keymap("n", "gw", ":lua vim.lsp.buf.document_symbol()<CR>", {})
+keymap("n", "gw", ":lua vim.lsp.buf.workspace_symbol()<CR>", {})
+keymap("n", "gr", ":lua vim.lsp.buf.references()<CR>", {})
+keymap("n", "gt", ":lua vim.lsp.buf.type_definition()<CR>", {})
+keymap("n", "K", ":lua vim.lsp.buf.hover()<CR>", {})
+keymap("n", "<c-k>", ":lua vim.lsp.buf.signature_help()<CR>", {})
+keymap("n", "<leader>af", ":lua vim.lsp.buf.code_action()<CR>", {})
+keymap("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>", {})
+
+--- vimspector
+keymap("n", "Dd", ":call vimspector#Continue()<CR>", {})
+keymap("n", "Ds", ":call vimspector#Stop()<CR>", {})
+keymap("n", "Dr", ":call vimspector#Restart()<CR>", {})
+keymap("n", "DD", ":call vimspector#ToggleBreakpoint()<CR>", {})
+keymap("n", "D<Up>", ":call vimspector#StepOut()<CR>", {})
+keymap("n", "D<Right>", ":call vimspector#StepInto()<CR>", {})
+keymap("n", "D<Down>", ":call vimspector#StepOver()<CR>", {})

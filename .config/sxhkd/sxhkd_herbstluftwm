@@ -14,6 +14,8 @@ super + w
 # alterna entre as janelas
 super + Tab
     herbstclient cycle_all +1
+super + alt + period
+    herbstclient cycle_all +1
 
 # alterna entre as janelas e tags
 super + {Up,Down,Left,Right}
@@ -62,7 +64,11 @@ ctrl + super + {k,j,h,l}
     herbstclient resize {up +0.05,down +0.05,left +0.05,right +0.05}
 
 # troca entre layouts pulando layouts que não mudam janelas de posição
-super + {Escape,Menu}
+super + Escape
+    herbstclient or , and . compare tags.focus.curframe_wcount = 2                   \
+                     . cycle_layout +1 vertical horizontal max vertical grid    \
+               , cycle_layout +1
+super + alt + comma
     herbstclient or , and . compare tags.focus.curframe_wcount = 2                   \
                      . cycle_layout +1 vertical horizontal max vertical grid    \
                , cycle_layout +1
@@ -97,7 +103,7 @@ super + backslash
 # Musica #
 # pausa/toca musica
 super + space
-    playerctl play-pause
+    playerctl play-pause || mpc toggle
 # anterior/proxima musica
 super + shift + {comma, period}
     mpc {prev,next} && musica notificar

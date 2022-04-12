@@ -1,0 +1,45 @@
+{
+  "configurations": {
+    "launch - netcoredbg": {
+      "adapter": "netcoredbg",
+      "filetypes": [ "cs", "fsharp", "vbnet" ],
+      "configuration": {
+        "request": "launch",
+        "program": "${workspaceRoot}/bin/Debug/netcoreapp2.2/csharp.dll",
+        "args": [],
+        "stopAtEntry": true,
+        "cwd": "${workspaceRoot}",
+        "env": {}
+      }
+    },
+    "run": {
+      "adapter": "vscode-node",
+      "filetypes": [ "javascript", "typescript" ],
+      "configuration": {
+        "request": "launch",
+        "protocol": "auto",
+        "stopOnEntry": true,
+        "console": "integratedTerminal",
+        "program": "${workspaceRoot}/simple.js",
+        "cwd": "${workspaceRoot}"
+      }
+    },
+    "chrome": {
+      "adapter": "chrome",
+      "configuration": {
+        "request": "launch",
+        "url": "http://localhost:1234/",
+        "webRoot": "${workspaceRoot}/www"
+      }
+    },
+    "firefox": {
+      "adapter": "firefox",
+      "configuration": {
+        "request": "launch",
+        "url": "http://localhost:1234/",
+        "webRoot": "${workspaceRoot}/www",
+        "reAttach": true
+      }
+    }
+  }
+}
