@@ -25,7 +25,7 @@ megasync &
 playerctld daemon
 mpd &
 mpd-mpris &
-#picom &
+picom &
 
 if [ "$WM" = "herbstluftwm" ]; then
     sxhkd -c "$HOME/.config/sxhkd/sxhkd_herbstluftwm" &

@@ -13,6 +13,7 @@
 .config/GIMP/
 .config/git/config
 .config/github-copilot/
+.config/gtk-2.0/gtkfilechooser.ini
 .config/libreoffice/
 .config/mpd/
 .config/ncmpcpp/error.log
@@ -33,6 +34,7 @@
 .config/shell/.zcompdump
 .config/shell/history
 .config/shell/plugins/fast-syntax-highlighting
+.config/gtkfilechooser.ini
 .config/pam-gnupg
 .config/QtProject.conf
 .gnupg/

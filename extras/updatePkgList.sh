@@ -1,3 +1,2 @@
 #!/bin/sh
-
-pacman -Qqem > foreignpkglist.txt && pacman -Qq > pkglist.txt
+pacman -Qqem > "$HOME/extras/$PC-aurpkgs.txt" && pacman -Qqen > "$HOME/extras/$PC-nativepkgs.txt"

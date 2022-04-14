@@ -107,6 +107,7 @@ hc rule class="Transmission-gtk" floating=on floatplacement=center
 hc rule class="Galculator" floating=on floatplacement=center
 hc rule class="htop" floating=on floatplacement=center
 hc rule class="GParted" floating=on floatplacement=center
+hc rule class="Nitrogen" floating=on floatplacement=center
 # notificações, pop-ups, etc.
 hc rule class="qutebrowser" windowtype='_NET_WM_WINDOW_TYPE_UTILITY' floating=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on floatplacement=center

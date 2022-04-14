@@ -1,3 +1,4 @@
+aic94xx-firmware
 chromium-widevine
 fluxgui-git
 gnome-icon-theme
@@ -15,5 +16,8 @@ powder-toy
 rtags
 simple-mtpfs
 ttf-ms-fonts
+upd72020x-fw
+wd719x-firmware
 xbanish
 xdg-utils-handlr
+xorg-server1.19-xdmx-git

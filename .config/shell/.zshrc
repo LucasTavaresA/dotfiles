@@ -7,7 +7,7 @@
 export SHELL="zsh"
 export GIT_TTY=$TTY
 # não adiciona esses itens ao histórico
-export HISTORY_IGNORE="(ls|cd|pwd|exit|doas reboot|history|cd -|cd ..)"
+export HISTORY_IGNORE="(lsd|ls|cd|pwd|exit|doas reboot|history|cd -|cd ..)"
 
 HISTFILE=~/.config/shell/history
 HISTSIZE=10000
@@ -77,9 +77,8 @@ alias xk="xkill"
 alias grep="grep --color -i"
 alias sys="doas systemctl"
 # arquivos e Diretórios
-alias l="lsd -l --group-dirs first"
+alias l="lsd -lA --group-dirs first"
 alias la="lsd -A --group-dirs first"
-alias lla="lsd -lA --group-dirs first"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."

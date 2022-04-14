@@ -53,7 +53,7 @@ paq({
     "sheerun/vim-polyglot";
     "nvim-treesitter/nvim-treesitter";
     -- fecha parenteses apertando enter
-    "rstacruz/vim-closer";
+    "jiangmiao/auto-pairs";
     -- indica diffs
     "mhinz/vim-signify";
     -- melhor visão de diffs
@@ -200,6 +200,8 @@ vim.cmd("hi CursorLine guibg=#333333")
 vim.cmd("autocmd InsertLeave * set cursorline")
 -- incida parenteses correspondente
 vim.cmd("hi! MatchParen cterm=NONE,bold gui=NONE,bold  guibg=NONE guifg=#ff0000")
+-- não deleta pares automaticamente
+vim.g.AutoPairsMapBS = 0
 
 --- Treesitter
 -- indentação e indicação de sintaxe
