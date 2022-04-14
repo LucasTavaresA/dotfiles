@@ -34,10 +34,10 @@ export XDG_BIN_HOME="$HOME/.local/bin"
 # window manager
 export WM="herbstluftwm"
 # systema
-export OS="$(uname -n)"
+export PC="$(uname -n)"
 # bat como o manpager
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-[ "$OS" = "linuxmint" ] && export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
+[ "$PC" = "linuxmint" ] && export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 # pass
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/pass"
 # terminal

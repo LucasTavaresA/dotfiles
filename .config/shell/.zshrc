@@ -117,7 +117,7 @@ alias grrs='git reset --soft'
 alias grrh='git reset --hard'
 
 ## aliases em systemas
-if [ "$OS" = "linuxmint" ]; then
+if [ "$PC" = "linuxmint" ]; then
     # apt
     alias bat="batcat"
     alias as="sudo apt install"
@@ -127,7 +127,7 @@ if [ "$OS" = "linuxmint" ]; then
     alias aq="apt list --installed"
     alias aqs="apt list --installed | grep --color -i"
     alias arns="sudo apt remove"
-elif [ "$OS" = "archlinux" ]; then
+elif [ "$PC" = "archlinux" ] || [ "$PC" = "manjaro" ]; then
     # pacman
     alias ps="doas pacman -S"
     alias psi="pacman -Si"

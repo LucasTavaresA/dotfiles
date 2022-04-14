@@ -115,18 +115,18 @@ hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 hc rule class="Pinentry-gtk-2" floating=on floatplacement=center
 
 # polybar
-if [ "$OS" = "linuxmint" ]; then
+if [ "$PC" = "linuxmint" ]; then
     polybar notebook &
     # espera a barra carregar e esconde a barra
     sleep 5 && polybar-msg cmd hide
-elif [ "$OS" = "archlinux" ]; then
+elif [ "$PC" = "archlinux" ] || [ "$PC" = "manjaro" ]; then
     polybar pc &
     # espera a barra carregar e esconde a barra
     sleep 5 && polybar-msg cmd hide
 fi
 
 # teclas no notebook
-if [ "$OS" = "linuxmint" ]; then
+if [ "$PC" = "linuxmint" ] || [ "$PC" = "manjaro" ]; then
     # alt + , = Escape
     xmodmap -e "keycode 59 = comma less comma less Escape"
     # alt + . = Tab

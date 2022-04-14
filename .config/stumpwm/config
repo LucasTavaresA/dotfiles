@@ -180,13 +180,13 @@
 (define-key *top-map* (kbd "M-ESC") "esconde")
 
 ;; Final ;;
-(defvar *OS* (uiop:getenv "OS"))
+(defvar *PC* (uiop:getenv "PC"))
 (defun iniciar ()
     "Abre a programas no inicio do stumpwm"
-    (cond ((string= *OS* "archlinux")
+    (cond ((string= *PC* "archlinux")
            (run-shell-command "polybar pc &")
            (run-shell-command "sleep 5 && polybar-msg cmd hide"))
-          ((string= *OS* "linuxmint")
+          ((string= *PC* "linuxmint")
            (run-shell-command "polybar notebook &")
            (run-shell-command "sleep 5 && polybar-msg cmd hide")
            ; Teclas no notebook
