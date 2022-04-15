@@ -18,7 +18,7 @@
 .config/mpd/
 .config/ncmpcpp/error.log
 .config/nitrogen/
-.config/npm/
+.config/npm/_*
 .config/pulse/
 .config/qutebrowser/autoconfig.yml
 .config/qutebrowser/bookmarks
