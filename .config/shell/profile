@@ -35,6 +35,8 @@ export XDG_BIN_HOME="$HOME/.local/bin"
 export WM="herbstluftwm"
 # systema
 export PC="$(uname -n)"
+# onde procurar manpages
+export MANPATH="/usr/local/man:/usr/local/share/man:/usr/share/man:/usr/lib/jvm/default/man:/usr/lib/jvm/java-11-openjdk/man"
 # bat como o manpager
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 [ "$PC" = "linuxmint" ] && export MANPAGER="sh -c 'col -bx | batcat -l man -p'"

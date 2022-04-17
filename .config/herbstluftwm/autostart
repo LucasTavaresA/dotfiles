@@ -60,7 +60,7 @@ hc attr theme.active.outer_color '#ffffff'
 hc attr theme.background_color '#000000'
 hc attr theme.inner_width 0
 hc attr theme.border_width 1
-hc attr theme.floating.border_width 1
+hc attr theme.floating.border_width 3
 hc attr theme.floating.outer_width 0
 
 hc set frame_border_active_color '#ffffff'
@@ -69,6 +69,7 @@ hc set frame_bg_active_color '#111111'
 hc set frame_bg_normal_color '#000000'
 hc set auto_detect_panels false
 hc set default_frame_layout max
+hc set tabbed_max 1
 hc set always_show_frame 0
 hc set frame_border_width 1
 hc set frame_bg_transparent 1
@@ -87,7 +88,7 @@ hc set tree_style '╾│ ├└╼─┐'
 #### Regras ####
 hc unrule -F
 hc rule focus=on # focar novas janelas
-hc rule floatplacement=smart
+hc rule floatplacement=center
 # programas
 hc rule class="qutebrowser" tag=1
 hc rule class="firefox" tag=1

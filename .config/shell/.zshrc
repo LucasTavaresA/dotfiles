@@ -32,6 +32,7 @@ bindkey "^X" execute-named-cmd
 bindkey "^[[H"   beginning-of-line
 bindkey "^[[4~"   end-of-line
 bindkey -s "^[f" '^Ulfm^M'
+bindkey -s "^[m" '^Udmenu_man^M'
 
 # completar comandos
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
@@ -74,7 +75,7 @@ alias dnn="dotnet new"
 alias dns="dotnet-script"
 alias xp="xprop"
 alias xk="xkill"
-alias grep="grep --color -i"
+alias grep="grep --color -i -I"
 alias sys="doas systemctl"
 # arquivos e Diretórios
 alias l="lsd -lXA1 --group-dirs first"

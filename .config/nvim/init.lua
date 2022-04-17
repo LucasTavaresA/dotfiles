@@ -390,8 +390,6 @@ keymap("i", "<S-Down>", "<esc><Plug>(expand_region_shrink)", {})
 -- Criar cursor na próxima palavra - visual multi
 keymap("n", "<C-s>", "<C-n>", {})
 keymap("v", "<C-s>", "<C-n>", {})
--- pular cursor ate a próxima palavra - visual multi
-keymap("n", "<A-s>", "q", {})
 -- criar cursor abaixo/acima - visual multi
 keymap("n", "<leader><Up>", "<C-Up>", {})
 keymap("n", "<leader><Down>", "<C-Down>", {})

@@ -10,7 +10,7 @@ super + backslash
 # Musica #
 # pausa/toca musica
 super + space
-    playerctl play-pause
+    playerctl play-pause || mpc toggle
 # anterior/proxima musica
 super + shift + {comma, period}
     mpc {prev,next} && musica notificar
@@ -26,7 +26,7 @@ super + {_,shift} + a
 Menu;Menu
     dmenu_run
 # dmenu_sys
-Menu;Escape
+{Menu;Escape,XF86Launch2}
     dmenu_sys
 # dmenu_wifi
 Menu;w

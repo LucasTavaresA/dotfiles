@@ -48,9 +48,9 @@ super + alt + {k,j,h,l}
     move_index +1 && herbstclient use_index +1}
 
 # cria uma divisória
-ctrl + shift + {Up,Down,Left,Right}
+super + ctrl + shift + {Up,Down,Left,Right}
     herbstclient split {top,bottom,left,right}
-ctrl + shift + {k,j,h,l}
+super + ctrl + shift + {k,j,h,l}
     herbstclient split {top,bottom,left,right}
 
 # remove divisória
