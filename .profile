@@ -1,6 +1,3 @@
-# Usar o comando "chsh -s /bin/dash" para usar o dash como login shell
-# Profile trocado de lugar no meu fork (https://gitlab.com/LucasTavaresA/dash)
-
 #### Exports ####
 # adiciona ícones no lf
 export LF_ICONS="di=📁:fi=📃:tw=🤝:st=:ow=📂:dt=📁:ln=⛓:or=❌:ex=🎯:*.txt=✍:*.mom=✍:*.me=✍:*.ms=✍:,hosts=:\
@@ -91,7 +88,7 @@ export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
 export FZF_ALT_C_COMMAND="find . -maxdepth 4 -type d | grep -v '^\./\.cache'"
 
 # shell
-export SHELL="dash"
+# export SHELL="sh"
 # muda o local do zshrc
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/shell"
 # muda o local do histórico
