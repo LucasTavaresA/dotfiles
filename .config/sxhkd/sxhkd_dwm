@@ -86,7 +86,7 @@ super + {comma, period}
     amixer -q set Master 5%{-,+,-,+} && pkill -RTMIN+9 dwmblocks
 # ncmpcpp/pulsemixer
 super + {_,shift} + a
-    st -g 120x30 -c {ncmpcpp -n ncmpcpp -e ncmpcpp,pulsemixer -n pulsemixer -e pulsemixer}
+    st -c {ncmpcpp -n ncmpcpp -e ncmpcpp,pulsemixer -n pulsemixer -e pulsemixer}
 
 # Dmenus #
 # dmenu_run
@@ -135,7 +135,7 @@ Print
 # Outros #
 # htop
 Menu;H
-    st -g 120x30 -c htop -n htop -e htop
+    st -c htop -n htop -e htop
 # picom
 Menu;P
     killall picom || picom
