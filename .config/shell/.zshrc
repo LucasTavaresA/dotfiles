@@ -31,7 +31,7 @@ bindkey -a '^[[3~' delete-char
 bindkey "^X" execute-named-cmd
 bindkey "^[[H"   beginning-of-line
 bindkey "^[[4~"   end-of-line
-bindkey -s "^[f" '^Ulfm^M'
+bindkey -s "^[f" '^Ulf^M'
 bindkey -s "^[m" '^Udmenu_man^M'
 
 # completar comandos
@@ -43,7 +43,6 @@ compinit
 _comp_options+=(globdots) # Incluir arquivos ocultos.
 
 #### Aliases ####
-alias lf="echo 'use alt+f'"
 alias n="neofetch"
 alias v="nvim"
 alias vv="/usr/bin/nvim"
@@ -113,29 +112,28 @@ alias gpsf="git push -f"
 alias gpl="git pull"
 alias gr="git restore"
 alias grs="git restore --staged"
-alias grrs='git reset --soft'
-alias grrh='git reset --hard'
+alias grrs="git reset --soft"
+alias grrh="git reset --hard"
 
 ## aliases em systemas
-if [ "$PC" = "linuxmint" ]; then
-    # apt
-    alias bat="batcat"
-    alias as="sudo apt install"
-    alias asi="apt show"
-    alias ass="apt search"
-    alias asyu="sudo apt update && sudo apt upgrade"
-    alias aq="apt list --installed"
-    alias aqs="apt list --installed | grep --color -i"
-    alias arns="sudo apt remove"
+if [ "$PC" = "voidlinux" ]; then
+    # xbps
+    alias xs="$SUDO xbps-install -S"
+    alias xsi="xbps-query -R"
+    alias xss="xbps-query -Rs"
+    alias xsyu="$SUDO xbps-install -Su"
+    alias xq="xbps-query -l"
+    alias xqs="xbps-query -l | grep --color -i"
+    alias xrns="$SUDO xbps-remove -R"
 elif [ "$PC" = "archlinux" ] || [ "$PC" = "manjaro" ]; then
     # pacman
-    alias ps="doas pacman -S"
+    alias ps="$SUDO pacman -S"
     alias psi="pacman -Si"
     alias pss="pacman -Ss"
-    alias psyu="doas pacman -Syu"
+    alias psyu="$SUDO pacman -Syu"
     alias pq="pacman -Q"
     alias pqs="pacman -Qs"
-    alias prns="doas pacman -Rns"
+    alias prns="$SUDO pacman -Rns"
     alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
     # paru
     alias pps="paru -S"
@@ -145,6 +143,16 @@ elif [ "$PC" = "archlinux" ] || [ "$PC" = "manjaro" ]; then
     alias ppq="paru -Q"
     alias ppqs="paru -Qs"
     alias pprns="paru -Rns"
+elif [ "$PC" = "linuxmint" ]; then
+    # apt
+    alias bat="batcat"
+    alias as="$SUDO apt install"
+    alias asi="apt show"
+    alias ass="apt search"
+    alias asyu="$SUDO apt update && $SUDO apt upgrade"
+    alias aq="apt list --installed"
+    alias aqs="apt list --installed | grep --color -i"
+    alias arns="$SUDO apt remove"
 fi
 
 ## Funções
@@ -159,7 +167,7 @@ hc () {
 }
 
 # previsão de imagens no lf
-lfm () {
+lf () {
     LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"
     LF_TEMPDIR="$LF_TEMPDIR" lf-run -last-dir-path="$LF_TEMPDIR/lastdir" "$@"
     if [ "$(cat "$LF_TEMPDIR/cdtolastdir" 2>/dev/null)" = "1" ]; then
