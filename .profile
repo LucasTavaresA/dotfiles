@@ -35,7 +35,7 @@ export PC="$(uname -n)"
 # onde procurar manpages
 export MANPATH="/usr/local/man:/usr/local/share/man:/usr/share/man:/usr/lib/jvm/default/man:/usr/lib/jvm/java-11-openjdk/man"
 # bat como o manpager
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+[ ! "$PC" = "voidlinux" ] && export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 [ "$PC" = "linuxmint" ] && export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 # pass
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/pass"
@@ -54,6 +54,8 @@ export LESSHISTFILE="-"
 export WGETRC="${XDG_DATA_HOME:-$HOME/.local/share}/wget/wgetrc"
 # xauthority
 export XAUTHORITY="${XDG_RUNTIME_DIR:-/run/user/$UID}/Xauthority"
+# dbus
+export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$UID/bus"
 # cargo
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 # omnisharp
@@ -88,7 +90,7 @@ export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
 export FZF_ALT_C_COMMAND="find . -maxdepth 4 -type d | grep -v '^\./\.cache'"
 
 # shell
-# export SHELL="sh"
+export SHELL="sh"
 # muda o local do zshrc
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/shell"
 # muda o local do histórico
@@ -123,6 +125,9 @@ export SSH_ASKPASS="doas_askpass"
 export GIT_ASKPASS="doas_askpass"
 export SUDO_ASKPASS="$HOME/code/shell/dmenuscripts/dmenu_pass"
 export DOAS_ASKPASS="dmenu -fn Monospace-18 -c -cw 500 -P -p Senha:"
+# sudo/doas
+export SUDO="sudo"
+[ ! "$PC" = "voidlinux" ] && export SUDO="doas"
 
 # localização para datas
 export LC_TIME="pt_BR.UTF-8"
