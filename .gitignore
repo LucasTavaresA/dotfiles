@@ -1,5 +1,6 @@
 .cache/
 .config/cabal/
+.config/cheat/cheatsheets/
 .config/coc/
 .config/dconf/
 .config/discord/
