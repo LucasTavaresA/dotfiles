@@ -183,11 +183,8 @@
 (defvar *PC* (uiop:getenv "PC"))
 (defun iniciar ()
     "Abre a programas no inicio do stumpwm"
-    (cond ((string= *PC* "archlinux")
            (run-shell-command "polybar pc &")
-           (run-shell-command "sleep 5 && polybar-msg cmd hide"))
-          ((string= *PC* "linuxmint")
-           (run-shell-command "polybar notebook &")
+           ; espera a barra carregar e esconde a barra
            (run-shell-command "sleep 5 && polybar-msg cmd hide")
            ; Teclas no notebook
            ; alt + , = Escape
@@ -195,7 +192,7 @@
            ; alt + . = Tab
            (run-shell-command "xmodmap -e 'keycode 60 = period greater period greater Tab'")
            ; alt + ; = "
-           (run-shell-command "xmodmap -e 'keycode 61 = semicolon colon semicolon colon quotedbl'"))))
+           (run-shell-command "xmodmap -e 'keycode 61 = semicolon colon semicolon colon quotedbl'"))
 (iniciar)
 
 ;; remove logs caso existam

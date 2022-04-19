@@ -20,7 +20,6 @@ dunst &
 nitrogen --restore &
 nm-applet &
 xbanish &
-fluxgui &
 megasync &
 playerctld daemon
 mpd &

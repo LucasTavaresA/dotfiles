@@ -165,9 +165,9 @@ Menu;H
 # picom
 Menu;P
     killall picom || picom
-# fluxgui
-Menu;F
-    killall fluxgui || fluxgui
+# sct
+Menu;{f,F}
+    {sct,sct 2000}
 # calculadora
 Menu;C
     galculator

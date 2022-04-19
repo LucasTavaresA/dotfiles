@@ -54,22 +54,14 @@ bspc rule -a :Zathura state=tiled
 bspc rule -a st_download state=floating rectangle=1000x700+0+0 center=true
 
 # polybar
-if [ "$PC" = "linuxmint" ]; then
-    polybar notebook &
-    # espera a barra carregar e esconde a barra
-    sleep 5 && polybar-msg cmd hide
-elif [ "$PC" = "archlinux" ] || [ "$PC" = "manjaro" ]; then
-    polybar pc &
-    # espera a barra carregar e esconde a barra
-    sleep 5 && polybar-msg cmd hide
-fi
+polybar pc &
+# espera a barra carregar e esconde a barra
+sleep 5 && polybar-msg cmd hide
 
 # teclas no notebook
-if [ "$PC" = "linuxmint" ] || [ "$PC" = "manjaro" ]; then
-    # alt + , = Escape
-    xmodmap -e "keycode 59 = comma less comma less Escape"
-    # alt + . = Tab
-    xmodmap -e "keycode 60 = period greater period greater Tab"
-    # alt + ; = "
-    xmodmap -e "keycode 61 = semicolon colon semicolon colon quotedbl"
-fi
+# alt + , = Escape
+xmodmap -e "keycode 59 = comma less comma less Escape"
+# alt + . = Tab
+xmodmap -e "keycode 60 = period greater period greater Tab"
+# alt + ; = "
+xmodmap -e "keycode 61 = semicolon colon semicolon colon quotedbl"

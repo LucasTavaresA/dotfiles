@@ -125,9 +125,6 @@ export SSH_ASKPASS="doas_askpass"
 export GIT_ASKPASS="doas_askpass"
 export SUDO_ASKPASS="$HOME/code/shell/dmenuscripts/dmenu_pass"
 export DOAS_ASKPASS="dmenu -fn Monospace-18 -c -cw 500 -P -p Senha:"
-# sudo/doas
-export SUDO="sudo"
-[ ! "$PC" = "voidlinux" ] && export SUDO="doas"
 
 # localização para datas
 export LC_TIME="pt_BR.UTF-8"
