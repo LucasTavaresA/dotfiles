@@ -33,7 +33,7 @@
 .config/nvim/data/vimspector/gadgets/
 .config/shell/.zcompdump
 .config/shell/history
-.config/shell/plugins/fast-syntax-highlighting
+.config/shell/plugins/fsh
 .config/gtkfilechooser.ini
 .config/pam-gnupg
 .config/QtProject.conf

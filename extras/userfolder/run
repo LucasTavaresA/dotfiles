@@ -1,0 +1,3 @@
+#!/bin/sh
+mkdir /run/user/1000
+chown lucas:lucas /run/user/1000

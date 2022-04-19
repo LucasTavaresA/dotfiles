@@ -209,7 +209,7 @@ IFS=$SAVEIFS
 PS1="%B[%n@%m] %4~ %{$fg[green]%}>%{$reset_color%}%b"
 
 # carrega plugins do zsh, deve ser o ultimo comando
-source $HOME/.config/shell/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source $HOME/.config/shell/plugins/fsh/F-Sy-H.plugin.zsh
 source $HOME/.config/shell/plugins/zsh-you-should-use.plugin.zsh
 source $HOME/.config/shell/plugins/zsh-auto-notify.zsh
 source $HOME/.config/shell/plugins/fzf.zsh
