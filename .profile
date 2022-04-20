@@ -60,6 +60,8 @@ export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$UID/bus"
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 # omnisharp
 export OMNISHARPHOME="${XDG_DATA_HOME:-$HOME/.local/share}/omnisharp"
+# dotnet
+export DOTNET_ROOT="${XDG_DATA_HOME:-$HOME/.local/share}/dotnet"
 # nuget
 export NUGET_PACKAGES="${XDG_CACHE_HOME:-$HOME/.cache}/NuGetPackages"
 # gnupg
@@ -102,16 +104,16 @@ export HISTFILESIZE=10000
 export HISTCONTROL=ignoredups:erasedups
 
 # adiciona diretórios bin e scripts ao path
-export PATH="$GOPATH/bin:$PATH"
-export PATH="/usr/lib/jvm/java-11-openjdk/bin:$PATH"
+export PATH="$PATH:$GOPATH/bin"
+export PATH="$PATH:/usr/lib/jvm/java-11-openjdk/bin"
 export PATH="$HOME/code/shell/dmenuscripts:$PATH"
 export PATH="$HOME/code/shell/scripts:$PATH"
-export PATH="${XDG_BIN_HOME:-$HOME/.local/bin}:$PATH"
-export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/cargo/bin:$PATH"
-export PATH="$HOME/bin:$PATH"
-
+export PATH="$PATH:${XDG_BIN_HOME:-$HOME/.local/bin}"
+export PATH="$PATH:${XDG_DATA_HOME:-$HOME/.local/share}/cargo/bin"
+export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:${XDG_DATA_HOME:-$HOME/.local/share}/dotnet"
 # DOOM emacs
-export PATH="${XDG_CONFIG_HOME:-$HOME/.config}/emacs/bin:$PATH"
+export PATH="$PATH:${XDG_CONFIG_HOME:-$HOME/.config}/emacs/bin"
 export EMACSDIR="${XDG_CONFIG_HOME:-$HOME/.config}/emacs"
 export DOOMDIR="${XDG_CONFIG_HOME:-$HOME/.config}/doom"
 export DOOMLOCALDIR="${XDG_CONFIG_HOME:-$HOME/.config}/emacs/.local"
