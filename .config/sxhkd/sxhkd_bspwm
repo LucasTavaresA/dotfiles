@@ -103,7 +103,7 @@ super + backslash
 # Musica #
 # pausa/toca musica
 super + space
-    playerctl play-pause
+    playerctl play-pause || mpc toggle
 # anterior/proxima musica
 super + shift + {comma, period}
     mpc {prev,next} && musica notificar
@@ -119,7 +119,7 @@ super + {_,shift} + a
 Menu;Menu
     dmenu_run
 # dmenu_sys
-Menu;Escape
+{Menu;Escape,XF86Launch2}
     dmenu_sys
 # dmenu_wifi
 Menu;w
@@ -131,8 +131,11 @@ Menu;e
 Menu;E
     dmenu_emoji
 # dmenu_mont
-Menu;m
+Menu;M
     dmenu_mont
+# dmenu_man
+Menu;m
+    dmenu_man
 # dmenu_sxhkd
 Menu;slash
     dmenu_sxhkd
@@ -164,7 +167,7 @@ Menu;H
     st -c htop -n htop -e htop
 # picom
 Menu;P
-    killall picom || picom
+    pkill picom || picom
 # sct
 Menu;{f,F}
     {sct,sct 2000}

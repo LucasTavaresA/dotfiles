@@ -41,7 +41,6 @@ else
 fi
 
 checar_updates &
-# atualizar manpages
 dmenu_man update &
 
 if [ -n "$flags" ]; then

@@ -65,6 +65,7 @@ alias gi="git init"
 alias gc="git clone"
 alias gs="git status"
 alias gsr="git_status_recursivo"
+alias gpr="find . -mindepth 2 -maxdepth 2 | xargs -I{} git -C {} pull"
 alias gd="git diff"
 alias gds="git diff --staged"
 alias gl="git log --oneline"
@@ -84,13 +85,13 @@ alias grrh="git reset --hard"
 ## aliases em systemas
 if [ "$PC" = "voidlinux" ]; then
     # xbps
-    alias xs="doas xbps-install -S"
-    alias xsi="xbps-query -R"
-    alias xss="xbps-query -Rs"
-    alias xsyu="doas xbps-install -Su"
-    alias xq="xbps-query -l"
-    alias xqs="xbps-query -l | grep --color -i"
-    alias xrns="doas xbps-remove -R"
+    alias xis="doas xbps-install -S"
+    alias xqr="xbps-query -R"
+    alias xqrs="xbps-query -Rs"
+    alias xisu="doas xbps-install -Su"
+    alias xql="xbps-query -l"
+    alias xrr="doas xbps-remove -R"
+    alias xqp="xbps-query -p install-date -s '' | sort -k2 | column -t"
 elif [ "$PC" = "archlinux" ] || [ "$PC" = "manjaro" ]; then
     # pacman
     alias ps="doas pacman -S"
@@ -110,15 +111,14 @@ elif [ "$PC" = "archlinux" ] || [ "$PC" = "manjaro" ]; then
     alias ppqs="paru -Qs"
     alias pprns="paru -Rns"
 elif [ "$PC" = "linuxmint" ]; then
-    # apt
     alias bat="batcat"
-    alias as="doas apt install"
-    alias asi="apt show"
+    # apt
+    alias ai="doas apt install"
+    alias as="apt show"
     alias ass="apt search"
-    alias asyu="doas apt update && doas apt upgrade"
-    alias aq="apt list --installed"
-    alias aqs="apt list --installed | grep --color -i"
-    alias arns="doas apt remove"
+    alias auau="doas apt update && doas apt upgrade"
+    alias ali="apt list --installed"
+    alias ar="doas apt remove"
 fi
 
 # ignora case-sensitivity quando completa comandos com tab
