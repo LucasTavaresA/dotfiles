@@ -54,14 +54,18 @@ hc attr theme.active.color '#ffffff'
 hc attr theme.normal.color '#000000'
 hc attr theme.urgent.color '#ff0000'
 hc attr theme.inner_color '#000000'
-hc attr theme.floating.outer_color '#000000'
 hc attr theme.active.inner_color '#ffffff'
 hc attr theme.active.outer_color '#ffffff'
 hc attr theme.background_color '#000000'
 hc attr theme.inner_width 0
 hc attr theme.border_width 1
-hc attr theme.floating.border_width 3
-hc attr theme.floating.outer_width 0
+hc attr theme.floating.border_width 4
+hc attr theme.floating.inner_width 2
+hc attr theme.floating.outer_width 2
+hc attr theme.floating.outer_color '#000000'
+hc attr theme.floating.inner_color '#000000'
+hc attr theme.floating.active.inner_color '#ffffff'
+hc attr theme.floating.active.outer_color '#000000'
 
 hc set frame_border_active_color '#ffffff'
 hc set frame_border_normal_color '#000000'
