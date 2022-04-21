@@ -47,7 +47,7 @@ dunst
 dwarffortress
 elinks
 ell
-emacs
+emacs-nativecomp
 expac
 expect
 fakeroot
@@ -258,6 +258,7 @@ qt5-webglplugin
 qt5-webview
 qt5-x11extras
 qutebrowser
+ratpoison
 reflector
 rhash
 ripgrep
@@ -275,6 +276,7 @@ speedtest-cli
 stylelint
 sudo
 sxhkd
+syncthing
 telegram-desktop
 terminus-font
 testdisk
@@ -290,6 +292,7 @@ ttf-droid
 ttf-fira-code
 ttf-inconsolata
 ttf-indic-otf
+ttf-joypixels
 ttf-liberation
 ttf-linux-libertine
 ttf-ubuntu-font-family

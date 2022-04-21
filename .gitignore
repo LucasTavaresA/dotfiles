@@ -32,6 +32,7 @@
 .config/nvim/plugins/
 .config/nvim/plugin/
 .config/nvim/data/vimspector/gadgets/
+.config/syncthing/
 .config/shell/.zcompdump
 .config/shell/history
 .config/shell/plugins/fsh
@@ -52,7 +53,7 @@ documentos/
 Downloads/
 jogos/
 media/
-megasync/
+Sync/
 mnt/
 VirtualBox VMs/
 bkp/

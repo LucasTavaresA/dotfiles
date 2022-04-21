@@ -1,6 +1,6 @@
 aic94xx-firmware
+cheat
 chromium-widevine
-fluxgui-git
 gnome-icon-theme
 handlr-bin
 hunspell-pt-br
@@ -14,6 +14,7 @@ paru
 polybar
 powder-toy
 rtags
+sct
 simple-mtpfs
 ttf-ms-fonts
 upd72020x-fw
