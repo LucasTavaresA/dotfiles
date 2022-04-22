@@ -44,7 +44,7 @@ _comp_options+=(globdots) # Incluir arquivos ocultos.
 #### Aliases ####
 alias n="neofetch"
 alias v="nvim"
-alias vv="/usr/bin/nvim"
+alias vv="st -e nvim"
 alias h="htop"
 alias ed="emacs --daemon"
 alias ek="emacsclient -e '(kill-emacs)'"
@@ -97,7 +97,6 @@ alias umnt="doas umount"
 alias gi="git init"
 alias gc="git clone"
 alias gs="git status"
-alias gsr="git_status_recursivo"
 alias gpr="find . -mindepth 2 -maxdepth 2 | xargs -I{} git -C {} pull"
 alias gd="git diff"
 alias gds="git diff --staged"
@@ -170,10 +169,25 @@ lf () {
     LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"
     LF_TEMPDIR="$LF_TEMPDIR" lf-run -last-dir-path="$LF_TEMPDIR/lastdir" "$@"
     if [ "$(cat "$LF_TEMPDIR/cdtolastdir" 2>/dev/null)" = "1" ]; then
-    cd "$(cat "$LF_TEMPDIR/lastdir")"
+        cd "$(cat "$LF_TEMPDIR/lastdir")"
     fi
     \rm -r "$LF_TEMPDIR"
     unset LF_TEMPDIR
+}
+
+# git status recursivo
+gsr () {
+    status_ops="$*"
+    find . -name '.git' \
+        | while read -r repo
+    do
+        repo=${repo%".git"}
+        (git -C "$repo" status -s \
+            | grep -q -v "^\$" \
+            && echo -e "\n\033[1m${repo}\033[m" \
+            && git -C "$repo" status $status_ops) \
+            || true
+    done
 }
 
 # facilita extrair arquivos

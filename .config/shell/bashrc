@@ -11,7 +11,7 @@ export GIT_TTY=$(tty)
 #### Aliases ####
 alias n="neofetch"
 alias v="nvim"
-alias vv="/usr/bin/nvim"
+alias vv="st -e nvim"
 alias h="htop"
 alias ed="emacs --daemon"
 alias ek="emacsclient -e '(kill-emacs)'"

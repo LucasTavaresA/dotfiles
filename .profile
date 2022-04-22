@@ -118,9 +118,9 @@ export EMACSDIR="${XDG_CONFIG_HOME:-$HOME/.config}/emacs"
 export DOOMDIR="${XDG_CONFIG_HOME:-$HOME/.config}/doom"
 export DOOMLOCALDIR="${XDG_CONFIG_HOME:-$HOME/.config}/emacs/.local"
 # editor no terminal
-export EDITOR="/usr/bin/nvim"
+export EDITOR="nvim"
 # editor com interface gráfica
-export VISUAL="nvim"
+export VISUAL="st -e nvim"
 
 # usa o dmenu como autenticador GUI
 export SSH_ASKPASS="doas_askpass"
