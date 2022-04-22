@@ -28,7 +28,7 @@ picom &
 
 if [ "$WM" = "herbstluftwm" ]; then
     sxhkd -c "$HOME/.config/sxhkd/sxhkd_herbstluftwm" &
-    flags=" --locked"
+    flags=" --locked -c '$HOME/.config/herbstluftwm/autostart'"
 elif [ "$WM" = "dwm" ]; then
     sxhkd -c "$HOME/.config/sxhkd/sxhkd_dwm" &
     dwmblocks &
