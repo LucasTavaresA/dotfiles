@@ -85,7 +85,7 @@ alias grrs="git reset --soft"
 alias grrh="git reset --hard"
 
 ## aliases em systemas
-if [ "$PC" = "voidlinux" ]; then
+if [ "$OS" = "voidlinux" ]; then
     # xbps
     alias xis="doas xbps-install -S"
     alias xqr="xbps-query -R"
@@ -94,7 +94,7 @@ if [ "$PC" = "voidlinux" ]; then
     alias xql="xbps-query -l"
     alias xrr="doas xbps-remove -R"
     alias xqp="xbps-query -p install-date -s '' | sort -k2 | column -t"
-elif [ "$PC" = "archlinux" ] || [ "$PC" = "manjaro" ]; then
+elif [ "$OS" = "archlinux" ] || [ "$OS" = "manjaro" ]; then
     # pacman
     alias ps="doas pacman -S"
     alias psi="pacman -Si"
@@ -112,7 +112,7 @@ elif [ "$PC" = "archlinux" ] || [ "$PC" = "manjaro" ]; then
     alias ppq="paru -Q"
     alias ppqs="paru -Qs"
     alias pprns="paru -Rns"
-elif [ "$PC" = "linuxmint" ]; then
+elif [ "$OS" = "linuxmint" ]; then
     alias bat="batcat"
     # apt
     alias ai="doas apt install"

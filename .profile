@@ -31,12 +31,18 @@ export XDG_BIN_HOME="$HOME/.local/bin"
 # window manager
 export WM="herbstluftwm"
 # systema
-export PC="$(uname -n)"
+export HOSTNAME="$(uname -n)"
+case $HOSTNAME in
+    *voidlinux*) export OS="voidlinux" ;;
+    *archlinux*) export OS="archlinux" ;;
+    *manjaro*) export OS="manjaro" ;;
+    *linuxmint*) export OS="linuxmint" ;;
+esac
 # onde procurar manpages
 export MANPATH="/usr/local/man:/usr/local/share/man:/usr/share/man:/usr/lib/jvm/default/man:/usr/lib/jvm/java-11-openjdk/man"
 # bat como o manpager
-[ ! "$PC" = "voidlinux" ] && export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-[ "$PC" = "linuxmint" ] && export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
+[ ! "$OS" = "voidlinux" ] && export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+[ "$OS" = "linuxmint" ] && export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 # pass
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/pass"
 # terminal

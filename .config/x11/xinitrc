@@ -1,7 +1,5 @@
 #!/bin/sh
 
-dbus-run-session &
-
 # mouse
 xsetroot -cursor_name left_ptr
 
@@ -32,7 +30,7 @@ dmenu_man update &
 
 if [ "$WM" = "herbstluftwm" ]; then
     sxhkd -c "$HOME/.config/sxhkd/sxhkd_herbstluftwm" &
-    flags=" --locked -c '$HOME/.config/herbstluftwm/autostart'"
+    flags=" --locked"
 elif [ "$WM" = "dwm" ]; then
     sxhkd -c "$HOME/.config/sxhkd/sxhkd_dwm" &
     dwmblocks &
