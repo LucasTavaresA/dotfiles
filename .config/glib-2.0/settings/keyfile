@@ -1,0 +1,7 @@
+[org/gnome/desktop/interface]
+gtk-theme='Dracula'
+
+icon-theme='Dracula'
+
+[org/gnome/desktop/wm/preferences]
+theme='Dracula'
