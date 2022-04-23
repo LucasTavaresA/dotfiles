@@ -9,6 +9,7 @@ export SHELL="bash"
 export GIT_TTY=$(tty)
 
 #### Aliases ####
+alias as="alias | grep --color -i"
 alias n="neofetch"
 alias v="nvim"
 alias vv="st -e nvim"

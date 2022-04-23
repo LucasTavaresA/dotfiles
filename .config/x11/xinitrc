@@ -1,5 +1,7 @@
 #!/bin/sh
 
+dbus-run-session &
+
 # mouse
 xsetroot -cursor_name left_ptr
 
@@ -25,6 +27,8 @@ playerctld daemon
 mpd &
 mpd-mpris &
 picom &
+checar_updates &
+dmenu_man update &
 
 if [ "$WM" = "herbstluftwm" ]; then
     sxhkd -c "$HOME/.config/sxhkd/sxhkd_herbstluftwm" &
@@ -39,9 +43,6 @@ elif [ "$WM" = "bspwm" ]; then
 else
     sxhkd -c "$HOME/.config/sxhkd/sxhkd_nowm" &
 fi
-
-checar_updates &
-dmenu_man update &
 
 if [ -n "$flags" ]; then
     exec $WM$flags

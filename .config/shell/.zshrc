@@ -42,6 +42,7 @@ compinit
 _comp_options+=(globdots) # Incluir arquivos ocultos.
 
 #### Aliases ####
+alias as="alias | grep --color -i"
 alias n="neofetch"
 alias v="nvim"
 alias vv="st -e nvim"
