@@ -52,8 +52,8 @@ export TERM="xterm-256color"
 export BROWSER="qutebrowser"
 # pager
 export PAGER="less -R"
-# faz o qt usar o tema do gtk2
-export QT_QPA_PLATFORMTHEME="gtk2"
+# faz o qt usar o tema do qt5ct
+export QT_QPA_PLATFORMTHEME="qt5ct"
 # less
 export LESSHISTFILE="-"
 # wget
@@ -94,6 +94,8 @@ export CABAL_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/cabal"
 export ANDROID_SDK_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/android"
 # wine
 export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
+# ls colors
+export LS_COLORS=""
 # fzf
 export FZF_ALT_C_COMMAND="find . -maxdepth 4 -type d | grep -v '^\./\.cache'"
 

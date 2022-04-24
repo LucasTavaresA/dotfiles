@@ -9,7 +9,7 @@ Esse repositório tem configurações que funcionam em qualquer distro linux, En
 
 **Comandos começando com $ podem ser executados com qualquer usuário, Comandos com # necessitam de superusuário**
 
-**Em comandos tudo que é escrito como "<exemplo>" deve ser substituído por alguma informação**
+**Em comandos tudo que é escrito como "\<exemplo\>" deve ser substituído por alguma informação**
 
 ### Sumário
 
@@ -24,7 +24,7 @@ Esse repositório tem configurações que funcionam em qualquer distro linux, En
 - [Serviços](#serviços)
 - [Drivers](#drivers)
 - [Xorg](#xorg)
-- [Tema Dracula](#tema-dracula)
+- [Tema Drácula](#tema-dracula)
 - [Compilar](#compilar)
 
 ### Criar mídia de instalação
@@ -34,19 +34,19 @@ ou verifique por um dispositivo removível usando `dmesg`
 
 **Tenha certeza de que o dispositivo não esta montado**
 
-Apague tudo no dispositivo usando `wipefs`, Tenha certeza de que "<dispositivo>" não é uma partição
+Apague tudo no dispositivo usando `wipefs`, Tenha certeza de que \<dispositivo\> não é uma partição
 
 ```
 # wipefs --all <dispositivo>
 ```
 
-Copie a mídia de instalação para o "<dispositivo>" usando `dd`
+Copie a mídia de instalação para o \<dispositivo\> usando `dd`
 
 ```
 # dd bs=4M if=<Local/da/iso> of=<dispositivo>
 ```
 
-Para ter certeza que tudo foi transferido antes de desconectar o "<dispositivo>"
+Para ter certeza que tudo foi transferido antes de desconectar o "\<dispositivo\>"
 
 ```
 $ sync
@@ -64,7 +64,7 @@ Método sempre varia, você pode usar o `cfdisk`, `gparted`, etc.
 
 **Caso sua conexão de internet seja wifi a configure usando `wpa_supplicant` antes de prosseguir**
 
-Faça login como `root` usando a senha padrão `voidlinux`, Inicie o instalado usando `void-installer`
+Faça login como `root` usando a senha padrão `voidlinux`, Inicie o instalador usando `void-installer`
 
 - Teclado: `br-abnt2`
 - Internet: `dhcp` apenas confirme
@@ -192,18 +192,22 @@ Instale os pacotes `gsettings-desktop-schemas`, `curl` e `unzip`
 
 ```
 # git clone https://github.com/dracula/gtk.git /usr/share/themes/Dracula
-# gsettings set org.gnome.desktop.interface gtk-theme "Dracula"
-# gsettings set org.gnome.desktop.wm.preferences theme "Dracula"
+$ gsettings set org.gnome.desktop.interface gtk-theme "Dracula"
+$ gsettings set org.gnome.desktop.wm.preferences theme "Dracula"
 ```
 
-E instale o pacote de icones
+E instale o pacote de ícones
 
 ```
-# curl -fLO https://github.com/dracula/gtk/files/5214870/Dracula.zip
-# unzip Dracula.zip
+$ curl -fLO https://github.com/dracula/gtk/files/5214870/Dracula.zip
+$ unzip Dracula.zip
 # mv Dracula /usr/share/icons/
-# gsettings set org.gnome.desktop.interface icon-theme "Dracula"
+$ gsettings set org.gnome.desktop.interface icon-theme "Dracula"
 ```
+
+- qt5
+
+Instale o pacote `qt5ct` e ajuste o tema
 
 ### Xorg
 
