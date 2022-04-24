@@ -188,6 +188,12 @@ Serviço que cria a pasta temporária do usuário
 
 Instale o pacote `xf86-video-nouveau`
 
+#### Cheatsheets
+
+```
+# git clone git@github.com:cheat/cheatsheets.git /usr/share/cheat/cheatsheets/community
+```
+
 #### Tema
 
 - Gtk Drácula
