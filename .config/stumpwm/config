@@ -180,7 +180,7 @@
 (define-key *top-map* (kbd "M-ESC") "esconde")
 
 ;; Final ;;
-(defvar *PC* (uiop:getenv "PC"))
+(defvar *OS* (uiop:getenv "OS"))
 (defun iniciar ()
     "Abre a programas no inicio do stumpwm"
            (run-shell-command "polybar pc &")

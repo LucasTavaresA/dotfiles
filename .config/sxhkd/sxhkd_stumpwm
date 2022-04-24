@@ -158,7 +158,7 @@ Menu;C
     galculator
 # transmission
 Menu;t
-    transmission-gtk
+    transmission-qt
 # anotações
 Menu;a
-    nvim ~/documentos/anotações.md
+    $VISUAL ~/documentos/anotações.md
