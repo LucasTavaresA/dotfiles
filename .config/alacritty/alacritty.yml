@@ -53,7 +53,7 @@ font:
     family: Fira Code
     style: Italic
   bold_italic:
-    family: Inconsolata
+    family: Hermit
     style: Bold Italic
   size: 12.0
   #offset:

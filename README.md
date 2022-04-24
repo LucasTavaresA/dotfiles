@@ -188,27 +188,23 @@ Serviço que cria a pasta temporária do usuário
 
 Instale o pacote `xf86-video-nouveau`
 
-#### Tema Dracula
+#### Tema
 
-- Gtk
+- Gtk Drácula
 
 ```
 # xbps-install -S gsettings-desktop-schemas, curl e unzip
 # git clone https://github.com/dracula/gtk.git /usr/share/themes/Dracula
+# cp -rf /usr/share/themes/Dracula/kde/cursors/Dracula-cursors /usr/share/icons/Dracula-cursors
 $ gsettings set org.gnome.desktop.interface gtk-theme "Dracula"
 $ gsettings set org.gnome.desktop.wm.preferences theme "Dracula"
-```
-
-Ícones
-
-```
 $ curl -fLO https://github.com/dracula/gtk/files/5214870/Dracula.zip
 $ unzip Dracula.zip
 # mv Dracula /usr/share/icons/
 $ gsettings set org.gnome.desktop.interface icon-theme "Dracula"
 ```
 
-- qt5
+- qt5 Drácula
 
 Instale o qt5ct o abra e ajuste o tema
 
@@ -216,7 +212,7 @@ Instale o qt5ct o abra e ajuste o tema
 # xbps-install -S qt5ct
 ```
 
-- qt
+- qt Drácula
 
 ```
 # xbps-install -S kvantum cmake extra-cmake-modules kdecoration qt5-declarative qt5-x11extras
@@ -228,6 +224,17 @@ $ cp sddm ~/.local/share/sddm
 ```
 
 Abra o kvantummanager e o configure
+
+- Emojis ttf-joypixels
+
+```
+# xbps-install -S zstd tar
+$ curl -fLO https://america.mirror.pkgbuild.com/community/os/x86_64/ttf-joypixels-6.6.0-2-any.pkg.tar.zst
+$ unzstd ttf-joypixels-6.6.0-2-any.pkg.tar.zst
+$ mkdir ttf-joypixels
+$ tar -xf ttf-joypixels-6.6.0-2-any.pkg.tar -C ttf-joypixels
+# mv ttf-joypixels/usr/share/fonts/joypixels/ /usr/share/fonts/
+```
 
 #### Xorg
 

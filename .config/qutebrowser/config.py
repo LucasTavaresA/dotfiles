@@ -265,14 +265,14 @@ c.colors.completion.item.selected.border.top = '#ffffff'
 
 #### Fontes ####
 # fonte padrão
-c.fonts.default_family = '"monospace"'
+c.fonts.default_family = '"Hermit"'
 # tamanho padrão das fontes
-c.fonts.default_size = '14px'
+c.fonts.default_size = '12px'
 # fonte usada nas abas de completação de comandos.
-c.fonts.completion.entry = '14px "monospace"'
+c.fonts.completion.entry = '12px "Hermit"'
 # fonte used for the debugging console.
-c.fonts.debug_console = '14px "monospace"'
+c.fonts.debug_console = '12px "Hermit"'
 # fonte usada nos prompts.
-c.fonts.prompts = 'default_size "monospace"'
+c.fonts.prompts = 'default_size "Hermit"'
 # fonte usada na barra de status.
-c.fonts.statusbar = '14px "monospace"'
+c.fonts.statusbar = '12px "Hermit"'
