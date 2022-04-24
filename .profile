@@ -33,10 +33,10 @@ export WM="herbstluftwm"
 # systema
 export HOSTNAME="$(uname -n)"
 case $HOSTNAME in
-    *voidlinux*) export OS="voidlinux" ;;
-    *archlinux*) export OS="archlinux" ;;
-    *manjaro*) export OS="manjaro" ;;
-    *linuxmint*) export OS="linuxmint" ;;
+    *"voidlinux"*) export OS="voidlinux" ;;
+    *"archlinux"*) export OS="archlinux" ;;
+    *"manjaro"*) export OS="manjaro" ;;
+    *"linuxmint"*) export OS="linuxmint" ;;
 esac
 # onde procurar manpages
 export MANPATH="/usr/local/man:/usr/local/share/man:/usr/share/man:/usr/lib/jvm/default/man:/usr/lib/jvm/java-11-openjdk/man"
