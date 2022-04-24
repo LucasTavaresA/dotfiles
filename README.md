@@ -13,21 +13,27 @@ Esse repositório tem configurações que funcionam em qualquer distro linux, En
 
 ### Sumário
 
-- [Criar mídia de instalação](#criar-mídia-de-instalação)
-- [Particione o disco](#particione-o-disco)
-- [Instalação do voidlinux](#instalação-do-voidlinux)
+- [Preparação](#preparação)
+    - [Criar mídia de instalação](#criar-mídia-de-instalação)
+    - [Particione o disco](#particione-o-disco)
+- [Instalação](#instalação)
 - [Pós-instalação](#pós-instalação)
     - [Repositórios](#repositórios)
+    - [Clonar esse repositório](#clonar-esse-repositório)
     - [Superusuário](#superusuário)
+    - [Hosts](#hosts)
     - [Microcode](#microcode)
     - [Shell](#shell)
-- [Serviços](#serviços)
-- [Drivers](#drivers)
-- [Xorg](#xorg)
-- [Tema Drácula](#tema-dracula)
-- [Compilar](#compilar)
+    - [Programas](#programas)
+    - [Serviços](#serviços)
+    - [Drivers](#drivers)
+    - [Tema Drácula](#tema-drácula)
+    - [Xorg](#xorg)
+    - [Compilar](#compilar)
 
-### Criar mídia de instalação
+### Preparação
+
+#### Criar mídia de instalação
 
 Verifique qual é o dispositivo para fazer a mídia de instalação usando `lsblk`, Dependendo do sistema use `fdisk -l`
 ou verifique por um dispositivo removível usando `dmesg`
@@ -52,7 +58,7 @@ Para ter certeza que tudo foi transferido antes de desconectar o "\<dispositivo\
 $ sync
 ```
 
-### Particione o disco
+#### Particione o disco
 
 Método sempre varia, você pode usar o `cfdisk`, `gparted`, etc.
 
@@ -60,7 +66,7 @@ Método sempre varia, você pode usar o `cfdisk`, `gparted`, etc.
 
 **Uma Partição swap deve ter o dobro de tamanho em relação a sua quantidade de memoria, Com no máximo 8GB**
 
-### Instalação do voidlinux
+### Instalação
 
 **Caso sua conexão de internet seja wifi a configure usando `wpa_supplicant` antes de prosseguir**
 
@@ -83,7 +89,7 @@ Faça login como `root` usando a senha padrão `voidlinux`, Inicie o instalador 
 
 #### Repositórios
 
-**Antes de fazer qualquer coisa atualize os repositórios**
+**Antes de fazer qualquer coisa atualize os pacotes e repositórios**
 
 ```
 # xbps-install -Su
@@ -94,26 +100,36 @@ Faça login como `root` usando a senha padrão `voidlinux`, Inicie o instalador 
 - Ative o repositório não-livre/32-bits instalando o pacote `void-repo-multilib-nonfree`
 - Ative o repositório debug instalando o pacote `void-repo-debug`
 
-**Atualize os repositórios novamente**
+**Atualize novamente**
+
+#### Clonar esse repositório
+
+```
+# xbps-install -S git
+$ git clone https://github.com/lucastavaresa/dotfiles
+```
+
+- Transfira os arquivos para `~`
 
 #### Superusuário
 
 - Instale o `opendoas`
-- Configure o doas editando o arquivo `/etc/doas.conf`
 
 ```
-permit persist keepenv root
-permit persist keepenv :wheel
-permit nopass lucas cmd xbps-install args -S
+# cp ~/extras/doas.conf /etc/doas.conf
 ```
 
-- `sudo` é uma dependência do sistema, o torne ignorável adicionando essa linha a um arquivo `/etc/xbps.d/*.conf`
+- `sudo` é uma dependência do sistema, o torne ignorável criando um arquivo `/etc/xbps.d/*.conf`
 
 ```
 ignorepkg=sudo
 ```
 
 - Remova o `sudo`
+
+#### Hosts
+
+Copie `~/extras/hosts` para `/etc/hosts` e modifique de acordo com o hostname
 
 #### Microcode
 
@@ -126,31 +142,20 @@ ignorepkg=sudo
 
 Troque o shell do seu usuário `chsh -s /bin/sh`
 
-#### Clonar esse repositório
-
-- Instale o pacote `git`
-
-```
-$ git clone https://github.com/lucastavaresa/dotfiles
-```
-
-- Transfira os arquivos para a $HOME
-
 #### Programas
 
-Instale todos os programas necessários em $HOME/extras/voidlinux-pkgs.txt
+Instale todos os programas necessários em `~/extras/voidlinux-pkgs.txt`
 
 ```
-# xbps-install -S $(cat extras/voidlinux-pkgs.txt)
+# xbps-install -S $(cat ~/extras/voidlinux-pkgs.txt)
 ```
 
 #### Serviços
 
 - Syslog
 
-Instale o pacote `socklog-void` e ative os serviços `socklog-unix` e `nanoklogd`
-
 ```
+# xbps-install -S socklog-void
 # ln -s /etc/sv/socklog-unix /var/service/
 # ln -s /etc/sv/nanoklogd /var/service/
 ```
@@ -163,10 +168,9 @@ Instale o pacote `socklog-void` e ative os serviços `socklog-unix` e `nanoklogd
 
 - dbus
 
-Instale o pacote `dbus` e ative o serviço `dbus`
-
 ```
-# cp $HOME/extras/voidservices/dbus /etc/sv/dbus/run
+# xbps-install -S dbus
+# cp ~/extras/voidservices/dbus /etc/sv/dbus/run
 # ln -s /etc/sv/dbus /var/service/
 ```
 
@@ -176,7 +180,7 @@ Serviço que cria a pasta temporária do usuário
 
 ```
 # mkdir /etc/sv/userfolder
-# cp $HOME/extras/voidservices/userfolder /etc/sv/userfolder/run
+# cp ~/extras/voidservices/userfolder /etc/sv/userfolder/run
 # ln -s /etc/sv/userfolder /var/service/
 ```
 
@@ -184,19 +188,18 @@ Serviço que cria a pasta temporária do usuário
 
 Instale o pacote `xf86-video-nouveau`
 
-### Tema Dracula
+#### Tema Dracula
 
 - Gtk
 
-Instale os pacotes `gsettings-desktop-schemas`, `curl` e `unzip`
-
 ```
+# xbps-install -S gsettings-desktop-schemas, curl e unzip
 # git clone https://github.com/dracula/gtk.git /usr/share/themes/Dracula
 $ gsettings set org.gnome.desktop.interface gtk-theme "Dracula"
 $ gsettings set org.gnome.desktop.wm.preferences theme "Dracula"
 ```
 
-E instale o pacote de ícones
+Ícones
 
 ```
 $ curl -fLO https://github.com/dracula/gtk/files/5214870/Dracula.zip
@@ -207,31 +210,99 @@ $ gsettings set org.gnome.desktop.interface icon-theme "Dracula"
 
 - qt5
 
-Instale o pacote `qt5ct` e ajuste o tema
+Instale o qt5ct o abra e ajuste o tema
 
-### Xorg
+```
+# xbps-install -S qt5ct
+```
+
+- qt
+
+```
+# xbps-install -S kvantum cmake extra-cmake-modules kdecoration qt5-declarative qt5-x11extras
+$ git clone https://github.com/nopain2110/Yet-another-dracula.git
+$ cd Yet-another-dracula/Yet-another-dracula
+$ cp color-schemes ~/.local/share/color-schemes
+$ cp plasma ~/.local/share/plasma
+$ cp sddm ~/.local/share/sddm
+```
+
+Abra o kvantummanager e o configure
+
+#### Xorg
 
 - Instale o pacote `xorg-minimal`
 - Configure o teclado brasileiro
 
 ```
 # mkdir /etc/X11/xorg.conf.d/
-# cp $HOME/extras/00-keyboard.conf /etc/X11/xorg.conf.d/
+# cp ~/extras/00-keyboard.conf /etc/X11/xorg.conf.d/
 ```
 
-### Compilar
+#### Compilar
+
+```
+$ mkdir code
+$ mkdir code/c/
+```
+
+- compile libxft-bgra
+
+```
+# xbps-install xorg-util-macros autoconf automake libtool
+$ cd code/c/
+$ git clone https://github.com/uditkarode/libxft-bgra
+$ cd libxft-bgra
+# sh autogen.sh --sysconfdir=/etc --prefix=/usr --mandir=/usr/share/man
+# make install
+```
 
 - compile o st
-    Dependencias: `make`, `pkg-config`, `gcc`, `fontconfig-devel`, `harfbuzz`, `harfbuzz-devel` e `libXft-devel`
+
+```
+# xbps-install -S make pkg-config gcc fontconfig-devel harfbuzz harfbuzz-devel libXft-devel
+$ cd ..
+$ git clone https://github.com/lucastavaresa/st
+$ cd st
+# make install
+```
 
 - compile o dmenu
-    Dependencias: `libXinerama-devel`
+
+```
+# xbps-install -S libXinerama-devel
+$ cd ..
+$ git clone https://github.com/lucastavaresa/dmenu
+$ cd dmenu
+# make install
+```
 
 - compile o nsxiv
-    Dependencias: `imLib2-devel`, `libwebp-devel`, `libexif-devel`,
+
+```
+# xbps-install -S imLib2-devel libwebp-devel libexif-devel
+$ cd ..
+$ git clone https://gitlab.com/lucastavaresa/nsxiv
+$ cd nsxiv
+# make install
+```
 
 - compile o slock
-    Dependencias: `libXrandr-devel`
+
+```
+# xbps-install -S libXrandr-devel
+$ cd ..
+$ git clone https://gitlab.com/lucastavaresa/slock
+$ cd slock
+# make install
+```
 
 - compile o svkbd
-    Dependencias: `libXtst-devel`
+
+```
+# xbps-install -S libXtst-devel
+$ cd ..
+$ git clone https://gitlab.com/lucastavaresa/svkbd
+$ cd svkbd
+# make install
+```
