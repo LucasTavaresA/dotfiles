@@ -140,7 +140,9 @@ Copie `~/extras/hosts` para `/etc/hosts` e modifique de acordo com o hostname
 
 #### Shell
 
-Troque o shell do seu usuário `chsh -s /bin/sh`
+- Troque o shell do seu usuário `chsh -s /bin/sh`
+
+- Coloque `. $HOME/.config/shell/bashrc` no final de `/etc/bash/bashrc`
 
 #### Programas
 

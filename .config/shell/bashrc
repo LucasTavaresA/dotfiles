@@ -65,8 +65,6 @@ alias umnt="doas umount"
 alias gi="git init"
 alias gc="git clone"
 alias gs="git status"
-alias gsr="git_status_recursivo"
-alias gpr="find . -mindepth 2 -maxdepth 2 | xargs -I{} git -C {} pull"
 alias gd="git diff"
 alias gds="git diff --staged"
 alias gl="git log --oneline"
@@ -179,5 +177,25 @@ vw () {
     nvim $(where $1)
 }
 
+# git status recursivo
+gsr () {
+    status_ops="$*"
+    find . -name '.git' \
+        | while read -r repo
+    do
+        repo=${repo%".git"}
+        (git -C "$repo" status -s \
+            | grep -q -v "^\$" \
+            && echo -e "\n\033[1m${repo}\033[m" \
+            && git -C "$repo" status $status_ops) \
+            || true
+    done
+}
+
+# git pull recursivo
+gpr () {
+    find . -mindepth $1 -maxdepth $1 | xargs -I{} git -C {} pull
+}
+
 # prompt
-PS1="\e[01;37m[\u@\h] \w\e[m \e[01;32m>\e[m"
+PS1="\e[01;37m[\u] \w\e[m \e[01;32m>\e[m"

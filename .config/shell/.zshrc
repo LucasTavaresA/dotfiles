@@ -98,7 +98,6 @@ alias umnt="doas umount"
 alias gi="git init"
 alias gc="git clone"
 alias gs="git status"
-alias gpr="find . -mindepth 2 -maxdepth 2 | xargs -I{} git -C {} pull"
 alias gd="git diff"
 alias gds="git diff --staged"
 alias gl="git log --oneline"
@@ -192,6 +191,11 @@ gsr () {
     done
 }
 
+# git pull recursivo
+gpr () {
+    find . -mindepth $1 -maxdepth $1 | xargs -I{} git -C {} pull
+}
+
 # facilita extrair arquivos
 # exemplo: ex (arquivo).zip
 SAVEIFS=$IFS
@@ -229,7 +233,7 @@ function ex {
 IFS=$SAVEIFS
 
 # prompt
-PS1="%B[%n@%m] %4~ %{$fg[green]%}>%{$reset_color%}%b"
+PS1="%B[%n] %4~ %{$fg[green]%}>%{$reset_color%}%b"
 
 # carrega plugins do zsh, deve ser o ultimo comando
 source $HOME/.config/shell/plugins/fsh/F-Sy-H.plugin.zsh
