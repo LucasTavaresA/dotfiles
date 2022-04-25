@@ -21,6 +21,7 @@
 .config/nitrogen/
 .config/npm/_*
 .config/pulse/
+.config/QSyncthingTray/
 .config/qutebrowser/autoconfig.yml
 .config/qutebrowser/bookmarks
 .config/qutebrowser/quickmarks
