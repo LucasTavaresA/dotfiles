@@ -124,7 +124,7 @@ Menu;w
     dmenu_wifi
 # dmenu_edit
 Menu;e
-    dmenu_edit && herbstclient use 2
+    dmenu_edit & herbstclient use 2
 # dmenu_emoji
 Menu;E
     dmenu_emoji
@@ -148,13 +148,13 @@ Menu;c
     dmenu_clip
 # dmenu_qutebrowser
 Menu;q
-    dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml && herbstclient use 1
+    dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml & herbstclient use 1
 # dmenu_aliases
 Menu;A
     dmenu_aliases
 # dmenu_xephyr
 Menu;x
-    dmenu_xephyr && herbstclient use 3
+    dmenu_xephyr & herbstclient use 3
 # dmenu_print
 Print
     dmenu_print

@@ -76,6 +76,7 @@ alias xp="xprop"
 alias xk="xkill"
 alias grep="grep --color -i -I"
 alias sys="doas systemctl"
+[ "$OS" = "voidlinux" ] && alias sys="doas sv"
 # arquivos e Diretórios
 alias l="lsd -lXA1 --group-dirs first"
 alias la="lsd -AX1 --group-dirs first"
@@ -115,7 +116,7 @@ alias grs="git restore --staged"
 alias grrs="git reset --soft"
 alias grrh="git reset --hard"
 
-## aliases em systemas
+## aliases em sistemas
 if [ "$OS" = "voidlinux" ]; then
     # xbps
     alias xis="doas xbps-install -S"

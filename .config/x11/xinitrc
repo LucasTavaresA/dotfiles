@@ -11,8 +11,8 @@ setxkbmap -option caps:escape # grep -E "(ctrl|caps):" /usr/share/X11/xkb/rules/
 xset r rate 300 100 # acelera repetição de teclas
 
 # clipmenu
-systemctl --user import-environment DISPLAY
-export CM_DIR="$HOME/code/shell/dmenuscripts/listas/clipmenu"
+mkdir .cache/clipmenu
+export CM_DIR="$HOME/.cache/clipmenu"
 clipmenud &
 
 # protetor de tela
@@ -23,7 +23,6 @@ nitrogen --restore &
 nm-applet &
 xbanish &
 syncthing &
-QSyncthingTray &
 playerctld daemon
 mpd &
 mpd-mpris &

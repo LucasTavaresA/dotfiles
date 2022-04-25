@@ -124,6 +124,7 @@ hc rule class="Pinentry-gtk-2" floating=on floatplacement=center
 polybar pc &
 # espera a barra carregar e esconde a barra
 sleep 5 && polybar-msg cmd hide
+QSyncthingTray &
 
 # teclas no notebook
 # alt + , = Escape

@@ -186,6 +186,7 @@
            (run-shell-command "polybar pc &")
            ; espera a barra carregar e esconde a barra
            (run-shell-command "sleep 5 && polybar-msg cmd hide")
+           (run-shell-command "QSyncthingTray &")
            ; Teclas no notebook
            ; alt + , = Escape
            (run-shell-command "xmodmap -e 'keycode 59 = comma less comma less Escape'")

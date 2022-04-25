@@ -256,6 +256,14 @@ $ tar -xf ttf-joypixels-6.6.0-2-any.pkg.tar -C ttf-joypixels
 
 #### Compilar
 
+- Baixe o clipmenud
+
+```
+# xbps-install clipnotify xsel
+$ git clone git@github.com:cdown/clipmenu.git
+$ mv clipmenu/clip* .local/bin
+```
+
 - compile libxft-bgra
 
 ```
