@@ -177,4 +177,4 @@ Menu;t
     transmission-qt
 # anotações
 Menu;a
-    $VISUAL ~/documentos/anotações.md && herbstclient use 2
+    $VISUAL ~/documentos/anotações.md & herbstclient use 2
