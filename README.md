@@ -106,7 +106,7 @@ Faça login como `root` usando a senha padrão `voidlinux`, Inicie o instalador 
 
 ```
 # xbps-install -S git
-$ git clone https://github.com/lucastavaresa/dotfiles
+$ git clone --recurse-submodules https://github.com/lucastavaresa/dotfiles
 ```
 
 - Transfira os arquivos para `~`
@@ -256,16 +256,10 @@ $ tar -xf ttf-joypixels-6.6.0-2-any.pkg.tar -C ttf-joypixels
 
 #### Compilar
 
-```
-$ mkdir code
-$ mkdir code/c/
-```
-
 - compile libxft-bgra
 
 ```
 # xbps-install xorg-util-macros autoconf automake libtool
-$ cd code/c/
 $ git clone https://github.com/uditkarode/libxft-bgra
 $ cd libxft-bgra
 # sh autogen.sh --sysconfdir=/etc --prefix=/usr --mandir=/usr/share/man
@@ -276,9 +270,7 @@ $ cd libxft-bgra
 
 ```
 # xbps-install -S make pkg-config gcc fontconfig-devel harfbuzz harfbuzz-devel libXft-devel
-$ cd ..
-$ git clone https://github.com/lucastavaresa/st
-$ cd st
+$ cd code/st
 # make install
 ```
 
@@ -286,9 +278,7 @@ $ cd st
 
 ```
 # xbps-install -S libXinerama-devel
-$ cd ..
-$ git clone https://github.com/lucastavaresa/dmenu
-$ cd dmenu
+$ cd ../dmenu
 # make install
 ```
 
@@ -296,9 +286,7 @@ $ cd dmenu
 
 ```
 # xbps-install -S imLib2-devel libwebp-devel libexif-devel
-$ cd ..
-$ git clone https://gitlab.com/lucastavaresa/nsxiv
-$ cd nsxiv
+$ cd ../nsxiv
 # make install
 ```
 
@@ -306,9 +294,7 @@ $ cd nsxiv
 
 ```
 # xbps-install -S libXrandr-devel
-$ cd ..
-$ git clone https://gitlab.com/lucastavaresa/slock
-$ cd slock
+$ cd ../slock
 # make install
 ```
 
@@ -316,8 +302,6 @@ $ cd slock
 
 ```
 # xbps-install -S libXtst-devel
-$ cd ..
-$ git clone https://gitlab.com/lucastavaresa/svkbd
-$ cd svkbd
+$ cd ../svkbd
 # make install
 ```

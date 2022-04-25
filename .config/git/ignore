@@ -29,7 +29,7 @@
 .config/transmission/
 .config/VirtualBox/
 .config/NuGet/
-.config/nvim/plugins/
+.config/nvim/plugins/paq
 .config/nvim/plugin/
 .config/nvim/data/vimspector/gadgets/
 .config/syncthing/
@@ -48,7 +48,10 @@
 .pki/
 .ssh/
 .templateengine/
-code/
+code/python
+code/csharp
+code/webpages
+code/unity
 documentos/
 Downloads/
 jogos/
