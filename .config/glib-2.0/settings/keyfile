@@ -5,3 +5,17 @@ icon-theme='Dracula'
 
 [org/gnome/desktop/wm/preferences]
 theme='Dracula'
+
+[org/gtk/settings/file-chooser]
+window-position=(176, 97)
+window-size=(921, 519)
+date-format='regular'
+location-mode='path-bar'
+show-hidden=true
+show-size-column=true
+show-type-column=true
+sidebar-width=218
+sort-column='name'
+sort-directories-first=true
+sort-order='ascending'
+type-format='category'

@@ -118,6 +118,7 @@ alias grrh="git reset --hard"
 
 ## aliases em sistemas
 if [ "$OS" = "voidlinux" ]; then
+    alias xs="./xbps-src"
     # xbps
     alias xis="doas xbps-install -S"
     alias xqrs="xbps-query -Rs"

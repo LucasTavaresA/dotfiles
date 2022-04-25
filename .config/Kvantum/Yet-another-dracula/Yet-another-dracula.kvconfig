@@ -10,7 +10,7 @@ group_toolbar_buttons=false
 toolbar_item_spacing=1
 toolbar_interior_spacing=3
 spread_progressbar=true
-composite=true
+composite=false
 menu_shadow_depth=5
 menu_separator_height=6
 tooltip_shadow_depth=6
@@ -30,7 +30,7 @@ toolbutton_style=1
 double_click=false
 translucent_windows=false
 blurring=false
-popup_blurring=true
+popup_blurring=false
 vertical_spin_indicators=false
 spin_button_width=32
 fill_rubberband=false
@@ -51,7 +51,7 @@ joined_inactive_tabs=false
 layout_spacing=6
 layout_margin=9
 scrollbar_in_view=true
-transient_scrollbar=true
+transient_scrollbar=false
 transient_groove=false
 submenu_overlap=0
 tooltip_delay=-1
@@ -71,6 +71,7 @@ dialog_button_layout=0
 intensity=1.00
 saturation=1.00
 shadowless_popup=false
+drag_from_buttons=false
 
 [GeneralColors]
 window.color=#1e1f29
@@ -94,11 +95,11 @@ link.visited.color=#ff79c6
 progress.indicator.text.color=#aaaaac
 
 [Hacks]
-transparent_ktitle_label=true
-transparent_dolphin_view=true
-transparent_pcmanfm_sidepane=true
-blur_translucent=true
-transparent_menutitle=true
+transparent_ktitle_label=false
+transparent_dolphin_view=false
+transparent_pcmanfm_sidepane=false
+blur_translucent=false
+transparent_menutitle=false
 respect_darkness=true
 kcapacitybar_as_progressbar=true
 force_size_grip=true
@@ -116,6 +117,9 @@ opaque_colors=false
 kinetic_scrolling=false
 scroll_jump_workaround=false
 centered_forms=false
+blur_only_active_window=true
+noninteger_translucency=false
+style_vertical_toolbars=false
 
 [PanelButtonCommand]
 frame=true
