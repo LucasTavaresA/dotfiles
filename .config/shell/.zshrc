@@ -5,7 +5,7 @@
 
 #### Zsh exports ####
 export SHELL="zsh"
-export GIT_TTY=$TTY
+export GPG_TTY=$TTY
 # não adiciona esses itens ao histórico
 export HISTORY_IGNORE="(lsd|ls|cd|pwd|exit|doas reboot|history|cd -|cd ..)"
 
@@ -119,12 +119,20 @@ alias grrh="git reset --hard"
 if [ "$OS" = "voidlinux" ]; then
     # xbps
     alias xis="doas xbps-install -S"
-    alias xqr="xbps-query -R"
     alias xqrs="xbps-query -Rs"
     alias xisu="doas xbps-install -Su"
     alias xql="xbps-query -l"
+    alias xqlg="xbps-query -l | grep --color -i"
     alias xrr="doas xbps-remove -R"
-    alias xqp="xbps-query -p install-date -s '' | sort -k2 | column -t"
+    # xtools
+    alias chroot="xchroot"
+    alias xg="xgrep"
+    alias xh="xhog"
+    alias xil="xilog"
+    alias xl="xlocate -S && xlocate"
+    alias xls="xls"
+    alias xm="xmandoc"
+    alias xqr="xq -R"
 elif [ "$OS" = "archlinux" ] || [ "$OS" = "manjaro" ]; then
     # pacman
     alias ps="doas pacman -S"

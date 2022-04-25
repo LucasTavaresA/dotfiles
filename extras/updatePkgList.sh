@@ -1,3 +1,3 @@
 #!/bin/sh
-[ "$OS" = "voidlinux" ] && xpkg -m > "$HOME/extras/voidlinux-pkgs.txt"
-[ "$OS" = "archlinux" ] && pacman -Qqem > "$HOME/extras/$PC-aurpkgs.txt" && pacman -Qqen > "$HOME/extras/$PC-nativepkgs.txt"
+[ "$OS" = "voidlinux" ] && xpkg -m > "$HOME/extras/$HOSTNAME-pkgs.txt"
+[ "$OS" = "archlinux" ] && pacman -Qqem > "$HOME/extras/$HOSTNAME-aurpkgs.txt" && pacman -Qqen > "$HOME/extras/$HOSTNAME-nativepkgs.txt"
