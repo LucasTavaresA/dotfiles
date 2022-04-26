@@ -96,46 +96,40 @@ super + {comma, period}
 super + {_,shift} + a
     st -c {ncmpcpp -n ncmpcpp -e ncmpcpp,pulsemixer -n pulsemixer -e pulsemixer}
 
-# Dmenus #
+# Menus #
+# fzf_emoji
+Menu;E
+    st -c fzf -n fzf -e fzf_emojis
+# fzf_man
+Menu;m
+    st -e fzf_man
+# fzf_sxhkd
+Menu;slash
+    st -c fzf -n fzf -e fzf_sxhkd
+# fzf_clip
+Menu;c
+    st -c fzf -n fzf -e fzf_clip
+# passmenu
+Menu;p
+    passmenu --type
 # dmenu_run
 Menu;Menu
     dmenu_run
 # dmenu_sys
 {Menu;Escape,XF86Launch2}
     dmenu_sys
+# dmenu_mont
+Menu;M
+    dmenu_mont
 # dmenu_wifi
 Menu;w
     dmenu_wifi
 # dmenu_edit
 Menu;e
     dmenu_edit
-# dmenu_emoji
-Menu;E
-    dmenu_emoji
-# dmenu_mont
-Menu;M
-    dmenu_mont
-# dmenu_man
-Menu;m
-    dmenu_man
-# dmenu_sxhkd
-Menu;slash
-    dmenu_sxhkd
-# dmenu_shhistory
-Menu;h
-    dmenu_shhistory
-# passmenu
-Menu;p
-    passmenu --type
-# dmenu_clip
-Menu;c
-    dmenu_clip
 # dmenu_qutebrowser
 Menu;q
-    dmenu_qutebrowser ~/code/shell/dmenuscripts/listas/favoritos.yaml
-# dmenu_aliases
-Menu;A
-    dmenu_aliases
+    dmenu_qutebrowser ~/code/shell/listas/favoritos.yaml
 # dmenu_xephyr
 Menu;x
     dmenu_xephyr
@@ -145,7 +139,7 @@ Print
 
 # Outros #
 # htop
-Menu;H
+Menu;h
     st -c htop -n htop -e htop
 # picom
 Menu;P

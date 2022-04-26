@@ -105,6 +105,7 @@ hc rule class="Xephyr" tag=3
 hc rule class="discord" tag=4
 hc rule class="TelegramDesktop" tag=4
 # flutuantes
+hc rule class="fzf" floating=on floatplacement=center
 hc rule class="ncmpcpp" floating=on floatplacement=center
 hc rule class="pulsemixer" floating=on floatplacement=center
 hc rule class="MEGAsync" floating=on floatplacement=center
@@ -118,7 +119,7 @@ hc rule class="qutebrowser" windowtype='_NET_WM_WINDOW_TYPE_UTILITY' floating=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on floatplacement=center
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
-hc rule class="Pinentry-gtk-2" floating=on floatplacement=center
+hc rule class="pinentry-qt" floating=on floatplacement=center
 
 # polybar
 polybar pc &

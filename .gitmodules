@@ -7,12 +7,6 @@
 [submodule "code/c/dwm"]
 	path = code/c/dwm
 	url = git@github.com:lucastavaresa/dwm.git
-[submodule "code/shell/dmenuscripts"]
-	path = code/shell/dmenuscripts
-	url = git@github.com:lucastavaresa/dmenuscripts.git
-[submodule "code/shell/scripts"]
-	path = code/shell/scripts
-	url = git@github.com:lucastavaresa/scripts.git
 [submodule "code/c/dwmblocks"]
 	path = code/c/dwmblocks
 	url = git@github.com:lucastavaresa/dwmblocks.git
@@ -31,3 +25,6 @@
 [submodule "code/c/nsxiv"]
 	path = code/c/nsxiv
 	url = git@gitlab.com:lucastavaresa/nsxiv.git
+[submodule "code/shell"]
+	path = code/shell
+	url = git@github.com:lucastavaresa/scripts.git

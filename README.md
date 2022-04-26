@@ -264,6 +264,14 @@ $ git clone git@github.com:cdown/clipmenu.git
 $ mv clipmenu/clip* .local/bin
 ```
 
+- compile o devour
+
+```
+$ git clone https://github.com/salman-abedin/devour.git
+$ cd devour
+# make install
+```
+
 - compile libxft-bgra
 
 ```
@@ -278,7 +286,7 @@ $ cd libxft-bgra
 
 ```
 # xbps-install -S make pkg-config gcc fontconfig-devel harfbuzz harfbuzz-devel libXft-devel
-$ cd code/st
+$ cd code/c/st
 # make install
 ```
 
