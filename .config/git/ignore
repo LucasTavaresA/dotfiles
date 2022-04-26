@@ -49,6 +49,7 @@
 .pki/
 .ssh/
 .templateengine/
+.trash/
 code/python
 code/csharp
 code/webpages

@@ -50,10 +50,19 @@ cmd delete ${{
     [ $ans = "y" ] && rm -rf -- $fx
 }}
 
+cmd trash ${{
+    clear; tput cup $(($(tput lines)/3)); tput bold
+    set -f
+    printf "%s\n\t" "$fx"
+    printf "deletar?[y/N]"
+    read ans
+    [ $ans = "y" ] && mv -f -- $fx ~/.trash
+}}
+
 cmd mkdir ${{
-  printf "Nome do diretório: "
-  read ans
-  mkdir $ans
+    printf "Nome do diretório: "
+    read ans
+    mkdir $ans
 }}
 
 cmd extract ${{
@@ -62,16 +71,16 @@ cmd extract ${{
     printf "%s\n\t" "$fx"
     printf "extrair?[y/N]"
     read ans
-    [ $ans = "y" ] && aunpack $fx
+    [ $ans = "y" ] && ex $fx
 }}
 
 cmd mkfile ${{
-  printf "Nome do arquivo: "
-  read ans
-  if [ $ans != "" ]; then
-  touch $ans
-  echo " " > $ans
-  fi
+    printf "Nome do arquivo: "
+    read ans
+    if [ $ans != "" ]; then
+    touch $ans
+    echo " " > $ans
+    fi
 }}
 
 cmd chmod ${{
@@ -81,13 +90,13 @@ cmd chmod ${{
     printf "tornar executavel?[y/N]"
     read ans
     if [ $ans = "y" ]; then
-  for file in "$fx"
-  do
-     chmod +x $file
-  done
+    for file in "$fx"
+    do
+        chmod +x $file
+    done
 
-  lf -remote 'send reload'
-  fi
+    lf -remote 'send reload'
+    fi
 }}
 
 #### Teclas ####
@@ -103,16 +112,16 @@ map f
 cmd open-with %"$@" $fx
 map o push :open-with<space>
 
-map <delete> delete
+map <delete> trash
 map t mkfile
 map c chmod
 map C clear
 map m mkdir
-map E extract
+map e extract
 map i !nsxiv .
 
 #### Atalhos ####
-map gC cd ~/.config
+map g. cd ~/.config
 map gcc cd ~/code/c
 map gcs cd ~/code/shell
 map gcS cd ~/code/csharp

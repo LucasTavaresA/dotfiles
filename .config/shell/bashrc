@@ -45,8 +45,8 @@ alias grep="grep --color -i -I"
 alias sys="doas systemctl"
 [ "$OS" = "voidlinux" ] && alias sys="doas sv"
 # arquivos e Diretórios
-alias l="lsd -lXA1 --group-dirs first"
-alias la="lsd -AX1 --group-dirs first"
+alias l="lsd -AX1 --group-dirs first"
+alias la="lsd -lXA1 --group-dirs first"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -55,8 +55,8 @@ alias u="doas updatedb"
 alias ch="chmod +x"
 alias cp="cp -ri"
 alias mv="mv -i"
-alias rm="rm -rI"
-alias rmf="rm -rf"
+alias rm="lixo"
+alias rml="lixo limpar"
 alias ln="ln -i"
 alias md="mkdir -p"
 alias t="touch"
@@ -140,6 +140,28 @@ shopt -s cdspell
 shopt -s cmdhist
 
 #### Funções ####
+# lixeira
+lixo () {
+    [ ! -d ~/.trash ] && mkdir ~/.trash
+    [ ! -d ~/.cache ] && mkdir ~/.cache
+    if [ "$1" = "limpar" ]; then
+        \rm -rf ~/.trash/*
+        \rm -rf ~/.trash/.*
+        \rm -f .cache/lixo
+        return
+    fi
+    mv -f "$@" ~/.trash
+    if [ -e ~/.cache/lixo ]; then
+        quantia=$(cat ~/.cache/lixo)
+        quantia=$((quantia+1))
+        echo $quantia > ~/.cache/lixo
+        [ $(cat ~/.cache/lixo) -gt 5 ] && echo "Limpe a sua lixeira!" && notify-send -u critical "Lixeira" "Limpe a sua lixeira!" && return
+    else
+        touch ~/.cache/lixo
+        echo 1 > ~/.cache/lixo
+    fi
+}
+
 # hersbstluftwm
 hc () {
     herbstclient "$@"
