@@ -243,14 +243,14 @@ c.colors.tabs.bar.bg = '#000000'
 c.colors.tabs.odd.bg = '#000000'
 c.colors.tabs.even.bg = '#000000'
 # cor de fundo de abas selecionadas
-c.colors.tabs.selected.odd.bg = '#333333'
-c.colors.tabs.selected.even.bg = '#333333'
+c.colors.tabs.selected.odd.bg = '#000000'
+c.colors.tabs.selected.even.bg = '#000000'
 # cor de fundo de abas fixadas não selecionadas
 c.colors.tabs.pinned.odd.bg = '#000000'
 c.colors.tabs.pinned.even.bg = '#000000'
 # cor de fundo de abas fixadas selecionadas
-c.colors.tabs.pinned.selected.odd.bg = '#333333'
-c.colors.tabs.pinned.selected.even.bg = '#333333'
+c.colors.tabs.pinned.selected.odd.bg = '#000000'
+c.colors.tabs.pinned.selected.even.bg = '#000000'
 # cor das fontes de abas não selecionadas
 c.colors.tabs.even.fg = '#ffffff'
 c.colors.tabs.odd.fg = '#ffffff'
