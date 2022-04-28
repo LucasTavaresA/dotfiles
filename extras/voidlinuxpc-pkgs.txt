@@ -49,6 +49,7 @@ gparted
 grub
 gsettings-desktop-schemas
 gst-libav
+gst-plugins-bad1
 gst-plugins-good1
 gst-plugins-ugly1
 gtk2fontsel
@@ -111,6 +112,7 @@ patchutils
 pciutils-devel
 pdf.js
 picom
+pinentry-qt
 pinentry-tty
 pkg-config
 pkgconf
@@ -171,6 +173,7 @@ xorg-minimal
 xorg-server-xephyr
 xorg-util-macros
 xprop
+xrandr
 xrdb
 xsel
 xset

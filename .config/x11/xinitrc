@@ -5,11 +5,6 @@ xrdb -load $HOME/.config/x11/xresources &
 # mouse
 xsetroot -cursor_name left_ptr
 
-# teclado
-# troca capslock por escape
-setxkbmap -option caps:escape # grep -E "(ctrl|caps):" /usr/share/X11/xkb/rules/base.lst
-xset r rate 300 100 # acelera repetição de teclas
-
 # clipmenu
 mkdir .cache/clipmenu
 export CM_DIR="$HOME/.cache/clipmenu"
@@ -31,7 +26,6 @@ checar_updates &
 fzf_man update &
 
 if [ "$WM" = "herbstluftwm" ]; then
-    sxhkd -c "$HOME/.config/sxhkd/sxhkd_herbstluftwm" &
     flags=" --locked"
 elif [ "$WM" = "dwm" ]; then
     sxhkd -c "$HOME/.config/sxhkd/sxhkd_dwm" &

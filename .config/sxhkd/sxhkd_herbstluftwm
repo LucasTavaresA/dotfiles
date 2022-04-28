@@ -34,15 +34,11 @@ super + shift + {k,j,h,l}
     herbstclient shift {up,down,left,right}
 
 # muda janela de tag e a segue
-super + alt + {Up,Down,Left,Right}
-    herbstclient {move_index +1 && herbstclient use_index +1,\
-    move_index -1 && herbstclient use_index -1,\
-    move_index -1 && herbstclient use_index -1,\
+super + alt + {Left,Right}
+    herbstclient {move_index -1 && herbstclient use_index -1,\
     move_index +1 && herbstclient use_index +1}
-super + alt + {k,j,h,l}
-    herbstclient {move_index +1 && herbstclient use_index +1,\
-    move_index -1 && herbstclient use_index -1,\
-    move_index -1 && herbstclient use_index -1,\
+super + alt + {h,l}
+    herbstclient {move_index -1 && herbstclient use_index -1,\
     move_index +1 && herbstclient use_index +1}
 
 # cria uma divisória
@@ -93,7 +89,7 @@ Menu;b
 # Terminal #
 # st
 super + shift + Return
-    st & herbstclient use 2
+    st
 # abre e fecha scratchpads
 super + backslash
     st_scratchpad
@@ -107,7 +103,7 @@ super + shift + {comma, period}
     mpc {prev,next} && musica notificar
 # abaixar/aumentar o volume
 super + {comma, period}
-    amixer -q set Master 5%{-,+,-,+}
+    amixer -q set Master 5%{-,+}
 # ncmpcpp/pulsemixer
 super + {_,shift} + a
     st -c {ncmpcpp -n ncmpcpp -e ncmpcpp,pulsemixer -n pulsemixer -e pulsemixer}
@@ -142,13 +138,13 @@ Menu;w
     dmenu_wifi
 # dmenu_edit
 Menu;e
-    dmenu_edit & herbstclient use 2
+    dmenu_edit
 # dmenu_qutebrowser
 Menu;q
-    dmenu_qutebrowser ~/code/shell/listas/favoritos.yaml & herbstclient use 1
+    dmenu_qutebrowser ~/code/shell/listas/favoritos.yaml
 # dmenu_xephyr
 Menu;x
-    dmenu_xephyr & herbstclient use 3
+    dmenu_xephyr
 # dmenu_print
 Print
     dmenu_print
@@ -171,4 +167,4 @@ Menu;t
     transmission-qt
 # anotações
 Menu;a
-    $VISUAL ~/documentos/anotações.md & herbstclient use 2
+    $VISUAL ~/documentos/anotações.md
