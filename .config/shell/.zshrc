@@ -28,10 +28,8 @@ bindkey -e
 bindkey "^?" backward-delete-char
 bindkey "^[[3~" delete-char
 bindkey -a '^[[3~' delete-char
-bindkey "^X" execute-named-cmd
 bindkey "^[[H"   beginning-of-line
 bindkey "^[[4~"   end-of-line
-bindkey -s "^[f" '^Ulf^M'
 
 # completar comandos
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
@@ -175,7 +173,13 @@ lixo () {
         \rm -f .cache/lixo
         return
     fi
-    mv -f "$@" ~/.trash
+    substituir () {
+        for arquivo in "$@"
+        do
+            mv -f $arquivo ~/.trash >/dev/null 2>&1 || nome=${arquivo##*/} && \rm -rf ~/.trash/$nome && mv -f $arquivo ~/.trash
+        done
+    }
+    mv -f "$@" ~/.trash >/dev/null 2>&1 || substituir "$@"
     if [ -e ~/.cache/lixo ]; then
         quantia=$(cat ~/.cache/lixo)
         quantia=$((quantia+1))

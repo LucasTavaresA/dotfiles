@@ -124,7 +124,6 @@ hc keybind Alt-h spawn st -c htop -n htop -e htop
 hc keybind Alt-Shift-p spawn hlwm_control picom
 hc keybind Alt-f spawn sct
 hc keybind Alt-Shift-f spawn sct 2000
-hc keybind Mod4-c spawn galculator
 hc keybind Alt-t spawn transmission-qt
 hc keybind Alt-a spawn $VISUAL ~/documentos/anotações.md
 # Musica
@@ -137,12 +136,12 @@ hc keybind Mod4-Shift-comma and . spawn mpc prev . spawn musica notificar
 hc keybind Mod4-Shift-period and . spawn mpc next . spawn musica notificar
 # Menus
 hc keybind Menu spawn dmenu_run info
-hc keybind Alt-s spawn dmenu_sys
+hc keybind Mod4-s spawn dmenu_sys
 hc keybind Alt-q spawn dmenu_qutebrowser ~/code/shell/listas/favoritos.yaml
 hc keybind Alt-e spawn dmenu_edit
 hc keybind Alt-w spawn dmenu_wifi
 hc keybind Alt-x spawn dmenu_xephyr
-hc keybind Alt-c spawn st -c fzf -n fzf -e fzf_clip
+hc keybind Mod4-c spawn st -c fzf -n fzf -e fzf_clip
 hc keybind Alt-p spawn passmenu --type
 hc keybind Alt-m spawn st -e fzf_man
 hc keybind Alt-Shift-m spawn dmenu_mont
