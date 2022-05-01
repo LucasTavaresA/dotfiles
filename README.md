@@ -144,6 +144,12 @@ Copie `~/extras/hosts` para `/etc/hosts` e modifique de acordo com o hostname
 
 - Coloque `. $HOME/.config/shell/bashrc` no final de `/etc/bash/bashrc`
 
+#### Locale **apenas glibc**
+
+- Descomente as linhas necessárias em `/etc/default/libc-locales` e force reconfiguração `xbps-reconfigure -f glibc-locales`
+
+- Mude o valor de `LANG=xxxx` e `LC_TIME=xxxx` em `/etc/locale.conf`
+
 #### Programas
 
 Instale todos os programas necessários em `~/extras/voidlinux-pkgs.txt`
@@ -193,7 +199,7 @@ Instale o pacote `xf86-video-nouveau`
 #### Cheatsheets
 
 ```
-# git clone git@github.com:cheat/cheatsheets.git /usr/share/cheat/cheatsheets/community
+# git clone https://github.com/cheat/cheatsheets /usr/share/cheat/cheatsheets/community
 ```
 
 #### Tema
@@ -201,7 +207,7 @@ Instale o pacote `xf86-video-nouveau`
 - Gtk Drácula
 
 ```
-# xbps-install -S gsettings-desktop-schemas, curl e unzip
+# xbps-install -S gsettings-desktop-schemas curl unzip
 # git clone https://github.com/dracula/gtk.git /usr/share/themes/Dracula
 # cp -rf /usr/share/themes/Dracula/kde/cursors/Dracula-cursors /usr/share/icons/Dracula-cursors
 $ gsettings set org.gnome.desktop.interface gtk-theme "Dracula"
@@ -260,7 +266,7 @@ $ tar -xf ttf-joypixels-6.6.0-2-any.pkg.tar -C ttf-joypixels
 
 ```
 # xbps-install clipnotify xsel
-$ git clone git@github.com:cdown/clipmenu.git
+$ git clone https://github.com/cdown/clipmenu.git
 $ mv clipmenu/clip* .local/bin
 ```
 

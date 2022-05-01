@@ -79,10 +79,8 @@ libtool
 libwebp-devel
 llvm
 lsd
-lvm2
 maim
 make
-mdadm
 mediainfo
 mesa-dri
 mesa-vaapi
@@ -117,12 +115,14 @@ patch
 patchutils
 pdf.js
 picom
+pinentry-qt
 pinentry-tty
 pkg-config
 pkgconf
 playerctl
 plocate
 polybar
+psmisc
 pulseaudio
 pulsemixer
 python3-adblock
@@ -184,6 +184,7 @@ xorg-fonts
 xorg-minimal
 xorg-util-macros
 xprop
+xrandr
 xrdb
 xsel
 xset
@@ -196,6 +197,5 @@ zathura
 zathura-cb
 zathura-djvu
 zathura-pdf-mupdf
-zenity
 zsh
 zstd
