@@ -48,6 +48,7 @@ alias h="htop"
 alias ed="emacs --daemon"
 alias ek="emacsclient -e '(kill-emacs)'"
 alias ec="emacsclient -n -c"
+alias et="emacsclient -nw"
 alias e="emacs"
 alias copy="xclip -selection clipboard"
 alias sudo="doas"
@@ -193,7 +194,7 @@ lixo () {
 
 # localizar e editar arquivo
 vw () {
-    nvim $(where $1)
+    emacsclient -n -c $(where $1)
 }
 
 # hersbstluftwm

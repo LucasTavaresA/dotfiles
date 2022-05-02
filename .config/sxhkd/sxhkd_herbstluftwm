@@ -139,9 +139,9 @@ Menu;w
 # dmenu_edit
 Menu;e
     dmenu_edit
-# dmenu_qutebrowser
+# dmenu_browser
 Menu;q
-    dmenu_qutebrowser ~/code/shell/listas/favoritos.yaml
+    dmenu_browser ~/code/shell/listas/favoritos.yaml
 # dmenu_xephyr
 Menu;x
     dmenu_xephyr

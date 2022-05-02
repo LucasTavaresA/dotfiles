@@ -24,6 +24,7 @@ mpd-mpris &
 picom &
 checar_updates &
 fzf_man update &
+emacs --daemon &
 
 if [ "$WM" = "herbstluftwm" ]; then
     flags=" --locked"

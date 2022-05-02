@@ -49,7 +49,7 @@ export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/pass"
 export TERMINAL="st"
 export TERM="xterm-256color"
 # navegador padrão
-export BROWSER="qutebrowser"
+export BROWSER="chromium"
 # pager
 export PAGER="less -R"
 # faz o qt usar o tema do qt5ct
@@ -125,9 +125,9 @@ export EMACSDIR="${XDG_CONFIG_HOME:-$HOME/.config}/emacs"
 export DOOMDIR="${XDG_CONFIG_HOME:-$HOME/.config}/doom"
 export DOOMLOCALDIR="${XDG_CONFIG_HOME:-$HOME/.config}/emacs/.local"
 # editor no terminal
-export EDITOR="nvim"
+export EDITOR="emacsclient -nw -a 'nvim'"
 # editor com interface gráfica
-export VISUAL="st -e nvim"
+export VISUAL="emacsclient -n -c -a 'st -e nvim'"
 
 # usa o dmenu como autenticador GUI
 export SSH_ASKPASS="doas_askpass"

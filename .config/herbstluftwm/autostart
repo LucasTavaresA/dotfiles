@@ -125,7 +125,7 @@ hc keybind Alt-Shift-p spawn hlwm_control picom
 hc keybind Alt-f spawn sct
 hc keybind Alt-Shift-f spawn sct 2000
 hc keybind Alt-t spawn transmission-qt
-hc keybind Alt-a spawn $VISUAL ~/documentos/anotações.md
+hc keybind Alt-a spawn st -e $EDITOR ~/documentos/anotações.md
 # Musica
 hc keybind Mod4-a spawn st -c ncmpcpp -n ncmpcpp -e ncmpcpp
 hc keybind Mod4-Shift-a spawn st -c pulsemixer -n pulsemixer -e pulsemixer
@@ -137,10 +137,10 @@ hc keybind Mod4-Shift-period and . spawn mpc next . spawn musica notificar
 # Menus
 hc keybind Menu spawn dmenu_run info
 hc keybind Mod4-s spawn dmenu_sys
-hc keybind Alt-q spawn dmenu_qutebrowser ~/code/shell/listas/favoritos.yaml
-hc keybind Alt-e spawn dmenu_edit
+hc keybind Alt-q spawn dmenu_browser ~/code/shell/listas/favoritos.yaml
+hc keybind Mod4-o spawn dmenu_pesquisar
+hc keybind Mod4-e spawn dmenu_edit
 hc keybind Alt-w spawn dmenu_wifi
-hc keybind Alt-x spawn dmenu_xephyr
 hc keybind Mod4-c spawn st -c fzf -n fzf -e fzf_clip
 hc keybind Alt-p spawn passmenu --type
 hc keybind Alt-m spawn st -e fzf_man
@@ -194,6 +194,7 @@ hc unrule -F
 hc rule focus=on # focar novas janelas
 hc rule floatplacement=center
 # programas
+hc rule class="Chromium" tag=1 switchtag=on
 hc rule class="qutebrowser" tag=1 switchtag=on
 hc rule class="firefox" tag=1 switchtag=on
 hc rule class="Emacs" tag=2 switchtag=on
