@@ -4,12 +4,11 @@ Esse repositório tem configurações que funcionam em qualquer distro linux, En
 
 ## Guia de instalação do meu setup do voidlinux
 
-**Esse guia não é necessariamente feito para te ajudar a fazer uma instalação do voidlinux mais sim para me ajudar a reinstalar o meu setup,
-é recomendado você mesmo instalar e configurar o sistema do zero usando a [Documentação do voidlinux](https://docs.voidlinux.org/)**
+**Esse guia não é necessariamente feito para te ajudar a fazer uma instalação do voidlinux mais sim para me ajudar a reinstalar o meu setup, é recomendado você mesmo instalar e configurar o sistema do zero usando a [Documentação do voidlinux](https://docs.voidlinux.org/)**
 
-**Comandos começando com $ podem ser executados com qualquer usuário, Comandos com # necessitam de superusuário**
+**Comandos começando com \$ podem ser executados com qualquer usuário, Comandos com # necessitam de superusuário**
 
-**Em comandos tudo que é escrito como "\<exemplo\>" deve ser substituído por alguma informação**
+**Em comandos tudo que é escrito como \<exemplo\> deve ser substituído por alguma informação**
 
 ### Sumário
 
@@ -286,6 +285,8 @@ $ git clone https://github.com/uditkarode/libxft-bgra
 $ cd libxft-bgra
 # sh autogen.sh --sysconfdir=/etc --prefix=/usr --mandir=/usr/share/man
 # make install
+$ cd src/.libs
+# cp libXft.a libXft.la libXft.lai libXft.so libXft.so.2 libXft.so.2.3.3 /usr/lib/
 ```
 
 - compile o st

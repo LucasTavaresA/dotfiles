@@ -1,10 +1,12 @@
 .cache/
 .config/cabal/
 .config/cheat/cheatsheets/
+.config/chromium/
 .config/coc/
 .config/dconf/
 .config/discord/
 .config/emacs/
+.config/doom/spaceway-theme/
 .config/doom/themes/
 .config/doom/yasnippet-snippets/
 .config/doom/init.el

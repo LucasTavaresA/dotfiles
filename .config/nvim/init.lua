@@ -109,11 +109,12 @@ paq({
     -- "metakirby5/codi.vim";
     -- debug de código
     "puremourning/vimspector";
+    "gavinok/spaceway.vim";
 })
 
 -- carrega plugins locais
 vim.opt.runtimepath:append("~/.config/nvim/plugins/lite-dfm")
-vim.opt.runtimepath:append("~/.config/nvim/plugins/moonlight.nvim")
+-- vim.opt.runtimepath:append("~/.config/nvim/plugins/moonlight.nvim")
 
 ----- Configuração -----
 --- Vim
@@ -180,7 +181,7 @@ vim.cmd("syntax on")
 -- inicia sem a barra - LiteDFM
 vim.cmd("autocmd VimEnter * LiteDFMToggle")
 -- tema - moonlight
-vim.cmd("colorscheme moonlight")
+vim.cmd("colorscheme spaceway")
 -- tema do visual multi
 vim.g.VM_theme = "neon"
 -- indica linha selecionada no modo normal
