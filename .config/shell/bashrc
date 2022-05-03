@@ -146,6 +146,7 @@ lixo () {
     [ ! -d ~/.trash ] && mkdir ~/.trash
     [ ! -d ~/.cache ] && mkdir ~/.cache
     if [ "$1" = "limpar" ]; then
+        lsd -lA ~/.trash/
         \rm -rf ~/.trash/*
         \rm -rf ~/.trash/.*
         \rm -f .cache/lixo
