@@ -46,7 +46,7 @@ Você pode usar =gd= para ver como é implementado
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        hydra
        ;;indent-guides     ; highlighted indent columns
-       ;;(ligatures +fira)         ; ligatures and symbols to make your code pretty again
+       (ligatures +fira)         ; ligatures and symbols to make your code pretty again
        ;;minimap           ; show a map of the code on the side
        ;;modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink cursor line after big motions
@@ -119,7 +119,7 @@ Você pode usar =gd= para ver como é implementado
 
        :os
        (:if IS-MAC macos)  ; improve compatibility with macOS
-       ;;tty               ; improve the terminal Emacs experience
+       tty               ; improve the terminal Emacs experience
 
        :lang
        ;;agda              ; types of types of types of types...
@@ -149,7 +149,7 @@ Você pode usar =gd= para ver como é implementado
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ; a language you can depend on
        json              ; At least it ain't XML
-       (java +lsp)       ; the poster child for carpal tunnel syndrome
+       ;;(java +lsp)       ; the poster child for carpal tunnel syndrome
        javascript        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
@@ -159,7 +159,7 @@ Você pode usar =gd= para ver como é implementado
        lua               ; one-based indices? one-based indices
        markdown          ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
-       ;;nix               ; I hereby declare "nix geht mehr!"
+       nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
        org               ; organize your plain life in plain text
        ;;php               ; perl's insecure younger brother
@@ -174,7 +174,7 @@ Você pode usar =gd= para ver como é implementado
        ;;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        ;;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
-       ;;(scheme +guile)   ; a fully conniving family of lisps
+       (scheme +guile)   ; a fully conniving family of lisps
        sh                ; she sells {ba,z,fi}sh shells on the C xor
        ;;sml
        ;;solidity          ; do you need a blockchain? No.
@@ -193,7 +193,7 @@ Você pode usar =gd= para ver como é implementado
        ;;calendar
        ;;emms
        ;;everywhere        ; *leave* Emacs!? You must be joking
-       ;;irc               ; how neckbeards socialize
+       irc               ; how neckbeards socialize
        ;;(rss +org)        ; emacs as an RSS reader
        ;;twitter           ; twitter client https://twitter.com/vnought
 
@@ -233,8 +233,8 @@ Para desabilitar um *pacote-do-doom* use =(package! pacote-do-doom :disable t)=
 (package! org-appear)
 
 ;; Meu fork do doom-themes-solarized-dark
-(package! doom-themes
-  :recipe (:local-repo "~/.config/doom/themes/"))
+;; (package! doom-themes
+  ;; :recipe (:local-repo "~/.config/doom/themes/"))
 
 ;; Meu fork do yasnippet-snippets
 (package! yasnippet-snippets
@@ -246,6 +246,9 @@ Para desabilitar um *pacote-do-doom* use =(package! pacote-do-doom :disable t)=
 ;; Correção ortográfica
 (package! flyspell)
 (package! flyspell-popup)
+
+(package! spaceway-theme
+  :recipe (:local-repo "~/.config/doom/spaceway-theme"))
 
 #+end_src
 * Configuração
@@ -268,13 +271,13 @@ Você pode usar =gd= para ver como é implementado
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; Fonte
-(setq doom-font (font-spec :family "Fira Code Retina" :size 16))
+(setq doom-font (font-spec :family "Fira Code" :size 16))
 
 ;; Desativa a modeline
 (setq-default mode-line-format nil)
 
 ;; Carregar um tema com `doom-theme' ou `load-theme'
-(setq doom-theme 'doom-moonlight)
+(setq doom-theme 'spaceway)
 
 ;; Desabilita numero de linhas
 (setq display-line-numbers-type nil)
@@ -290,6 +293,9 @@ Você pode usar =gd= para ver como é implementado
 #+end_src
 ** Miscelânea
 #+begin_src emacs-lisp :tangle ./config.el
+;; Não considera `$HOME` a raiz de todos os projetos
+(after! projectile (setq projectile-project-root-files-bottom-up (remove
+            ".git" projectile-project-root-files-bottom-up)))
 
 ;; Controle de projetos
 (use-package! projectile
@@ -297,6 +303,10 @@ Você pode usar =gd= para ver como é implementado
   (when (file-directory-p "~/code/")
     (setq projectile-project-search-path '("~/code/c/" "~/code/csharp/" "~/code/shell/" "~/code/unity/" "~/code/webpages/" "~/.config/doom/")))
   (setq projectile-switch-project-action #'projectile-dired))
+
+;; undotree não salva backups
+(with-eval-after-load 'undo-tree
+  (setq undo-tree-auto-save-history nil))
 
 ;; Para GPG, email, clientes, templates e snippets
 (setq user-full-name "Lucas Tavares"
@@ -315,7 +325,7 @@ Você pode usar =gd= para ver como é implementado
 ;; Terminal do systema
 (setq terminal-here-linux-terminal-command 'st)
 
-;; Da a volta na tela para a proxima linha
+;; Cursor da a volta na tela para a proxima linha
 (setq-default evil-cross-lines t)
 
 ;; Tamanho dos tabs
@@ -360,7 +370,7 @@ Você pode usar =gd= para ver como é implementado
 ;; Modo simples para o sxhkd
 (define-generic-mode sxhkd-mode
   '(?#)
-  '("alt" "Escape" "super" "bspc" "dwmc" "ctrl" "space" "shift" "Return" "Menu" "backslash" "slash" "comma" "period" "Tab" "Left" "Right" "Up" "Down" "Print") nil
+  '("alt" "Escape" "super" "bspc" "dwmc" "herbstclient" "stumpish" "ctrl" "space" "shift" "Return" "Menu" "backslash" "slash" "comma" "period" "Tab" "Left" "Right" "Up" "Down" "Print") nil
   '("sxhkdrc") nil
   "Modo simples para o sxhkd.")
 #+end_src
@@ -379,6 +389,8 @@ Você pode usar =gd= para ver como é implementado
 ;; Macros
 (fset 'comentar-e-descer-linha
    (kmacro-lambda-form [?\C-x ?\C-\; down] 0 "%d"))
+(fset 'copiar-buffer
+   (kmacro-lambda-form [?g ?g ?v ?G ?y] 0 "%d"))
 
 ;; Desabilita teclas
 (with-eval-after-load "org"
@@ -400,7 +412,7 @@ Você pode usar =gd= para ver como é implementado
 (define-key evil-motion-state-map ":" '+vertico/search-symbol-at-point)
 (define-key evil-normal-state-map ";" '+default/search-buffer)
 ;; Prefixadas com espaço
-(define-key doom-leader-map (kbd "c b") 'doom/copy-buffer-contents)
+(define-key doom-leader-map (kbd "c b") 'copiar-buffer)
 (define-key doom-leader-map (kbd "e r") 'eval-region)
 (define-key doom-leader-map (kbd "s s") 'flyspell-mode)
 (define-key doom-leader-map (kbd "s b") 'flyspell-buffer)
@@ -418,7 +430,10 @@ Você pode usar =gd= para ver como é implementado
 (define-key doom-leader-map (kbd "q q") 'kill-buffer-and-window)
 (define-key doom-leader-map (kbd "RET") 'terminal-here-launch)
 (define-key doom-leader-map (kbd "SPC") 'org-toggle-checkbox)
-(define-key doom-leader-map (kbd "TAB") 'other-window)
+(define-key doom-leader-map (kbd "<up>") 'windmove-up)
+(define-key doom-leader-map (kbd "<down>") 'windmove-down)
+(define-key doom-leader-map (kbd "<left>") 'windmove-left)
+(define-key doom-leader-map (kbd "<right>") 'windmove-right)
 ;; Move entre partes da mesma linha
 (define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
 (define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
@@ -484,7 +499,7 @@ Você pode usar =gd= para ver como é implementado
 (setq org-src-fontify-natively t
       org-src-tab-acts-natively t
       org-confirm-babel-evaluate nil ;; Não pergunta antes de avaliar
-      org-ellipsis " "
+      org-ellipsis " v"
       org-hide-emphasis-markers t ;; Esconde marcação
       org-edit-src-content-indentation 0) ;; Indentação nos blocos de código
 
