@@ -177,7 +177,6 @@ Instale todos os programas necessários em `~/extras/voidlinux-pkgs.txt`
 
 ```
 # xbps-install -S dbus
-# cp ~/extras/voidservices/dbus /etc/sv/dbus/run
 # ln -s /etc/sv/dbus /var/service/
 ```
 
@@ -193,7 +192,10 @@ Serviço que cria a pasta temporária do usuário
 
 #### Drivers
 
-Instale o pacote `xf86-video-nouveau`
+Para placas nvidia antigas instale o pacote `xf86-video-nouveau`
+
+Para placas amd `xbps-install -S linux-firmware-amd mesa-dri vulkan-loader mesa-vulkan-radeon amdvlk mesa-vaapi mesa-vdpau`,
+para placas mais novas instale `xf86-video-amdgpu` para placas mais antigas `xf86-video-ati`
 
 #### Cheatsheets
 
@@ -264,7 +266,7 @@ $ tar -xf ttf-joypixels-6.6.0-2-any.pkg.tar -C ttf-joypixels
 - Baixe o clipmenud
 
 ```
-# xbps-install clipnotify xsel
+# xbps-install -S clipnotify xsel
 $ git clone https://github.com/cdown/clipmenu.git
 $ mv clipmenu/clip* .local/bin
 ```
@@ -280,19 +282,19 @@ $ cd devour
 - compile libxft-bgra
 
 ```
-# xbps-install xorg-util-macros autoconf automake libtool
+# xbps-install -S xorg-util-macros autoconf automake libtool
 $ git clone https://github.com/uditkarode/libxft-bgra
 $ cd libxft-bgra
 # sh autogen.sh --sysconfdir=/etc --prefix=/usr --mandir=/usr/share/man
 # make install
 $ cd src/.libs
-# cp libXft.a libXft.la libXft.lai libXft.so libXft.so.2 libXft.so.2.3.3 /usr/lib/
+# cp libXft* /usr/lib/
 ```
 
 - compile o st
 
 ```
-# xbps-install -S make pkg-config gcc fontconfig-devel harfbuzz harfbuzz-devel libXft-devel
+# xbps-install -S make pkg-config gcc fontconfig-devel harfbuzz-devel libXft-devel
 $ cd code/c/st
 # make install
 ```
@@ -308,7 +310,7 @@ $ cd ../dmenu
 - compile o nsxiv
 
 ```
-# xbps-install -S imLib2-devel libwebp-devel libexif-devel
+# xbps-install -S imlib2-devel libwebp-devel libexif-devel
 $ cd ../nsxiv
 # make install
 ```
