@@ -9,9 +9,6 @@
 .config/doom/spaceway-theme/
 .config/doom/themes/
 .config/doom/yasnippet-snippets/
-.config/doom/init.el
-.config/doom/packages.el
-.config/doom/config.el
 .config/galculator/
 .config/GIMP/
 .config/git/config

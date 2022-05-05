@@ -125,7 +125,7 @@ hc keybind Alt-Shift-p spawn hlwm_control picom
 hc keybind Alt-f spawn sct
 hc keybind Alt-Shift-f spawn sct 2000
 hc keybind Alt-t spawn transmission-qt
-hc keybind Alt-a spawn st -e $EDITOR ~/documentos/anotações.md
+hc keybind Alt-a spawn emacsclient -n -c -a 'st -e nvim' ~/documentos/anotações.md
 # Musica
 hc keybind Mod4-a spawn st -c ncmpcpp -n ncmpcpp -e ncmpcpp
 hc keybind Mod4-Shift-a spawn st -c pulsemixer -n pulsemixer -e pulsemixer
