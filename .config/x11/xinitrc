@@ -1,6 +1,6 @@
 #!/bin/sh
 
-xrdb -load $HOME/.config/x11/xresources &
+xrdb -load "$HOME/.config/x11/xresources" &
 
 # mouse
 xsetroot -cursor_name left_ptr

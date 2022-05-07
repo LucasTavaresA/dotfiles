@@ -129,7 +129,6 @@
 (define-key evil-motion-state-map "?" 'evil-ex-search-word-forward)
 (define-key evil-motion-state-map ":" '+vertico/search-symbol-at-point)
 (define-key evil-normal-state-map ";" '+default/search-buffer)
-(define-key evil-normal-state-map "c" 'comentar-e-descer-linha)
 ;; Prefixadas com espaço
 (define-key doom-leader-map (kbd "c b") 'copiar-buffer)
 (define-key doom-leader-map (kbd "e r") 'eval-region)

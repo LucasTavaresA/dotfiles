@@ -37,6 +37,7 @@ flac
 font-firacode
 font-hermit-otf
 fontconfig-devel
+fonts-croscore-ttf
 fzf
 galculator-gtk2
 gcc
@@ -83,6 +84,7 @@ libwebp-devel
 libxml2-devel
 llvm
 lsd
+lxappearance
 maim
 make
 mediainfo
