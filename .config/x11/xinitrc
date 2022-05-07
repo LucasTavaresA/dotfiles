@@ -15,7 +15,6 @@ clipmenud &
 
 dunst &
 nitrogen --restore &
-nm-applet &
 xbanish &
 syncthing &
 playerctld daemon

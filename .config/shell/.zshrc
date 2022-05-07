@@ -196,7 +196,7 @@ lixo () {
 
 # localizar e editar arquivo
 vw () {
-    emacsclient -n -c $(where $1)
+    nvim $(where $1)
 }
 
 # previsão de imagens no lf
