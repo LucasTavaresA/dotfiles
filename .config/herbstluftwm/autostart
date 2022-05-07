@@ -37,7 +37,7 @@ hc mousebind Super-Button3 resize
 
 # adiciona tags no primeiro iniciar
 if primeira_vez_aberto; then
-    hc set default_frame_layout max
+    hc set default_frame_layout vertical
     hc set_layout max
     tag_names=( {1..4} )
     hc rename default "${tag_names[0]}" || true
@@ -196,7 +196,7 @@ hc rule floatplacement=center
 # programas
 hc rule class="Chromium" tag=1 switchtag=on
 hc rule class="qutebrowser" tag=1 switchtag=on
-hc rule class="firefox" tag=1 switchtag=on
+hc rule class="Firefox" tag=1 switchtag=on
 hc rule class="Emacs" tag=2 switchtag=on
 hc rule class="nvim" tag=2 switchtag=on
 hc rule class="st-256color" tag=2 switchtag=on
@@ -216,6 +216,7 @@ hc rule class="htop" floating=on floatplacement=center
 hc rule class="GParted" floating=on floatplacement=center
 hc rule class="Nitrogen" floating=on floatplacement=center
 hc rule class="pinentry-qt" floating=on floatplacement=center
+hc rule instance="Places" floating=on floatplacement=center
 # notificações, pop-ups, etc.
 hc rule class="qutebrowser" windowtype='_NET_WM_WINDOW_TYPE_UTILITY' floating=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on floatplacement=center

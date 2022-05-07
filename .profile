@@ -49,7 +49,7 @@ export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/pass"
 export TERMINAL="st"
 export TERM="xterm-256color"
 # navegador padrão
-export BROWSER="chromium"
+export BROWSER="firefox"
 # pager
 export PAGER="less -R"
 # faz o qt usar o tema do qt5ct
