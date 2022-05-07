@@ -33,6 +33,7 @@ export WM="herbstluftwm"
 # systema
 export HOSTNAME="$(uname -n)"
 case $HOSTNAME in
+    *"artixlinux"*) export OS="artixlinux" ;;
     *"voidlinux"*) export OS="voidlinux" ;;
     *"archlinux"*) export OS="archlinux" ;;
     *"manjaro"*) export OS="manjaro" ;;

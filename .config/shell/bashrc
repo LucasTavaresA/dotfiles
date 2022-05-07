@@ -103,7 +103,7 @@ if [ "$OS" = "voidlinux" ]; then
     alias xls="xls"
     alias xm="xmandoc"
     alias xqr="xq -R"
-elif [ "$OS" = "archlinux" ] || [ "$OS" = "manjaro" ]; then
+elif [ "$OS" = "artixlinux" ] || [ "$OS" = "archlinux" ] || [ "$OS" = "manjaro" ]; then
     # pacman
     alias ps="doas pacman -S"
     alias psi="pacman -Si"
