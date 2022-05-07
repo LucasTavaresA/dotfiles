@@ -16,9 +16,8 @@ alias vv="st -e nvim"
 alias h="htop"
 alias ed="emacs --daemon"
 alias ek="emacsclient -e '(kill-emacs)'"
-alias ec="emacsclient -n -c"
 alias et="emacsclient -nw"
-alias e="emacs"
+alias e="emacsclient -n -c"
 alias copy="xclip -selection clipboard"
 alias sudo="doas"
 alias ping="ping google.com"
@@ -83,6 +82,7 @@ alias gr="git restore"
 alias grs="git restore --staged"
 alias grrs="git reset --soft"
 alias grrh="git reset --hard"
+alias gg="git grep -i -I -n --break --heading -p"
 
 ## aliases em sistemas
 if [ "$OS" = "voidlinux" ]; then

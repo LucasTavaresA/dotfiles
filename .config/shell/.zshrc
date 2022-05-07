@@ -40,6 +40,7 @@ compinit
 _comp_options+=(globdots) # Incluir arquivos ocultos.
 
 #### Aliases ####
+alias hc="herbstclient"
 alias as="alias | grep --color -i"
 alias n="neofetch"
 alias v="nvim"
@@ -47,9 +48,8 @@ alias vv="st -e nvim"
 alias h="htop"
 alias ed="emacs --daemon"
 alias ek="emacsclient -e '(kill-emacs)'"
-alias ec="emacsclient -n -c"
 alias et="emacsclient -nw"
-alias e="emacs"
+alias e="emacsclient -n -c"
 alias copy="xclip -selection clipboard"
 alias sudo="doas"
 alias ping="ping google.com"
@@ -114,6 +114,7 @@ alias gr="git restore"
 alias grs="git restore --staged"
 alias grrs="git reset --soft"
 alias grrh="git reset --hard"
+alias gg="git grep -i -I -n --break --heading -p"
 
 ## aliases em sistemas
 if [ "$OS" = "voidlinux" ]; then
@@ -198,11 +199,6 @@ vw () {
     emacsclient -n -c $(where $1)
 }
 
-# hersbstluftwm
-hc () {
-    herbstclient "$@"
-}
-
 # previsão de imagens no lf
 lf () {
     LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"
@@ -275,7 +271,8 @@ PS1="%B[%n] %4~ %{$fg[green]%}>%{$reset_color%}%b"
 
 # carrega plugins do zsh, deve ser o ultimo comando
 source $HOME/.config/shell/plugins/fsh/F-Sy-H.plugin.zsh
-source $HOME/.config/shell/plugins/zsh-you-should-use.plugin.zsh
+source $HOME/.config/shell/plugins/zsh-expand-all.zsh
+ZSH_EXPAND_ALL_DISABLE=word
 source $HOME/.config/shell/plugins/zsh-auto-notify.zsh
 source $HOME/.config/shell/plugins/fzf.zsh
 source $HOME/.config/shell/plugins/keys-fzf.zsh
