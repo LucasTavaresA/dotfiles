@@ -61,8 +61,6 @@ export LESSHISTFILE="-"
 export WGETRC="${XDG_DATA_HOME:-$HOME/.local/share}/wget/wgetrc"
 # xauthority
 export XAUTHORITY="${XDG_RUNTIME_DIR:-/run/user/$UID}/Xauthority"
-# dbus
-export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$UID/bus"
 # cargo
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 # omnisharp
