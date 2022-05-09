@@ -30,6 +30,8 @@ bindkey "^[[3~" delete-char
 bindkey -a '^[[3~' delete-char
 bindkey "^[[H"   beginning-of-line
 bindkey "^[[4~"   end-of-line
+bindkey "^H"   backward-char
+bindkey "^L"   forward-char
 
 # completar comandos
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'

@@ -38,7 +38,7 @@ hc mousebind Super-Button3 resize
 # adiciona tags no primeiro iniciar
 if primeira_vez_aberto; then
     hc set default_frame_layout vertical
-    hc set_layout max
+    hc set_layout vertical
     tag_names=( {1..4} )
     hc rename default "${tag_names[0]}" || true
     for i in "${!tag_names[@]}"; do
@@ -160,12 +160,12 @@ hc attr theme.background_color '#000000'
 hc attr theme.inner_width 0
 hc attr theme.border_width 1
 hc attr theme.floating.border_width 4
-hc attr theme.floating.inner_width 2
-hc attr theme.floating.outer_width 2
-hc attr theme.floating.outer_color '#000000'
+hc attr theme.floating.inner_width 3
+hc attr theme.floating.outer_width 1
+hc attr theme.floating.outer_color '#ffffff'
 hc attr theme.floating.inner_color '#000000'
 hc attr theme.floating.active.inner_color '#ffffff'
-hc attr theme.floating.active.outer_color '#000000'
+hc attr theme.floating.active.outer_color '#ffffff'
 
 hc set frame_border_active_color '#ffffff'
 hc set frame_border_normal_color '#000000'
@@ -197,6 +197,7 @@ hc rule floatplacement=center
 hc rule class="Chromium" tag=1 switchtag=on
 hc rule class="qutebrowser" tag=1 switchtag=on
 hc rule class="Firefox" tag=1 switchtag=on
+hc rule class="firefox" tag=1 switchtag=on
 hc rule class="Emacs" tag=2 switchtag=on
 hc rule class="nvim" tag=2 switchtag=on
 hc rule class="st-256color" tag=2 switchtag=on
