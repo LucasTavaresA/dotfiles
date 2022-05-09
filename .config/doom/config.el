@@ -99,10 +99,20 @@
   "Modo simples para o sxhkd.")
 
 ;; Funções
-;; Abre/Fecha header atual
 (defun orgm/org-cycle-current-headline ()
+  "Abre e fecha a header atual"
   (interactive)
   (org-cycle-internal-local))
+(defun salvar-e-fechar-tudo ()
+  "Salva, fecha todos os buffers e a janela."
+  (interactive)
+  (call-interactively 'save-buffer)
+  (call-interactively 'doom/kill-all-buffers)
+  (call-interactively 'evil-quit))
+(defun fechar-tudo ()
+  "Fecha todos os buffers e a janela"
+  (call-interactively 'doom/kill-all-buffers)
+  (call-interactively 'evil-quit))
 
 ;; Macros
 (fset 'comentar-e-descer-linha
@@ -121,6 +131,7 @@
   (define-key org-mode-map (kbd "<C-S-up>") nil))
 (define-key evil-normal-state-map (kbd "<C-tab>") nil)
 (define-key evil-normal-state-map (kbd "M-d") nil)
+(define-key evil-normal-state-map (kbd "m") nil)
 (define-key evil-visual-state-map (kbd "<C-tab>") nil)
 (define-key evil-motion-state-map (kbd ";") nil)
 (define-key flyspell-mode-map (kbd "C-M-i") nil)
@@ -144,8 +155,8 @@
 (define-key doom-leader-map (kbd "U") 'undo-tree-visualize)
 (define-key doom-leader-map (kbd "b t") 'org-babel-tangle)
 (define-key doom-leader-map (kbd "w w") 'save-buffer)
-(define-key doom-leader-map (kbd "w q") 'doom/save-and-kill-buffer)
-(define-key doom-leader-map (kbd "q q") 'kill-buffer-and-window)
+(define-key doom-leader-map (kbd "w q") 'salvar-e-fechar-tudo)
+(define-key doom-leader-map (kbd "q q") 'fechar-tudo)
 (define-key doom-leader-map (kbd "RET") 'terminal-here-launch)
 (define-key doom-leader-map (kbd "<up>") 'windmove-up)
 (define-key doom-leader-map (kbd "<down>") 'windmove-down)
@@ -156,6 +167,7 @@
 (define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
 (define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
 (define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
+(define-key evil-normal-state-map (kbd "m") 'evil-execute-macro)
 ;; Globais
 (global-set-key (kbd "C-c C-c") 'comentar-e-descer-linha)
 (global-set-key (kbd "C-s") 'evil-mc-make-all-cursors)
