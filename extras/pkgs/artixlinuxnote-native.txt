@@ -1,5 +1,3 @@
-acpi
-acpid
 adobe-source-han-sans-cn-fonts
 adobe-source-han-sans-jp-fonts
 adobe-source-han-sans-kr-fonts
@@ -34,7 +32,6 @@ discord
 docx2txt
 dotnet-sdk
 dunst
-efibootmgr
 elogind-runit
 emacs-nativecomp
 enchant
@@ -63,6 +60,7 @@ git-delta
 gnome-epub-thumbnailer
 gnome-themes-extra
 gnome-tweaks
+gopls
 gparted
 grep
 groff
@@ -91,11 +89,14 @@ kdecoration
 kpackage
 kvantum
 kwidgetsaddons
+lib32-libva-mesa-driver
 lib32-mesa
+lib32-mesa-vdpau
 libertinus-font
 libnotify
 libreoffice-still
 libtool
+libva-mesa-driver
 linux
 linux-firmware
 linux-firmware-bnx2x
@@ -132,7 +133,6 @@ nuspell
 opendoas
 openssh
 opusfile
-os-prober
 otf-hermit
 p7zip
 pacman
@@ -148,12 +148,12 @@ pulseaudio
 pulseaudio-alsa
 pulsemixer
 python-adblock
+python-nose
+python-pipenv
 python-pynvim
-qrencode
 qt5-x11extras
 qt5ct
 qutebrowser
-reflector
 ripgrep
 rsync
 runit
@@ -161,7 +161,6 @@ sbcl
 sed
 shellcheck
 slop
-stylelint
 syncthing
 telegram-desktop
 terminus-font
@@ -188,7 +187,6 @@ ueberzug
 ungoogled-chromium
 unrar
 unzip
-usbutils
 vulkan-radeon
 w3m
 wget
@@ -211,6 +209,7 @@ xorg-xhost
 xorg-xinit
 xorg-xkill
 xorg-xsetroot
+xorg-xwininfo
 youtube-dl
 yt-dlp
 zathura
