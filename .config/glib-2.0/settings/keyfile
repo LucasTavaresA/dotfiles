@@ -1,10 +1,10 @@
 [org/gnome/desktop/interface]
-gtk-theme='Dracula'
+gtk-theme='Catppuccin-blue'
 
-icon-theme='Dracula'
+icon-theme='Papirus-Dark'
 
 [org/gnome/desktop/wm/preferences]
-theme='Dracula'
+theme='Catppuccin-blue'
 
 [org/gtk/settings/file-chooser]
 window-position=(176, 97)
