@@ -103,6 +103,7 @@ linux-firmware-qcom
 linux-firmware-qlogic
 lsd
 lua
+lxappearance
 m4
 maim
 make
@@ -131,6 +132,7 @@ opusfile
 otf-hermit
 p7zip
 pacman
+papirus-icon-theme
 pass
 patch
 patchutils
@@ -178,7 +180,6 @@ ttf-linux-libertine
 ttf-opensans
 ttf-ubuntu-font-family
 ueberzug
-ungoogled-chromium
 unrar
 unzip
 w3m
