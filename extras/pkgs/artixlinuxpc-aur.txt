@@ -1,5 +1,4 @@
 aic94xx-firmware
-catppuccin-grub-theme-git
 catppuccin-gtk-theme
 cheat
 chromium-widevine

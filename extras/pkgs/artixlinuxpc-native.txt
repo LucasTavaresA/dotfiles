@@ -5,6 +5,7 @@ adobe-source-sans-fonts
 alsa-firmware
 alsa-utils
 artix-archlinux-support
+artix-grub-theme
 aspell
 aspell-en
 aspell-pt
