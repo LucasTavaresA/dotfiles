@@ -118,6 +118,7 @@ hc keybind Mod4-Ctrl-j resize down +0.05
 hc keybind Mod4-Ctrl-h resize left +0.05
 hc keybind Mod4-Ctrl-l resize right +0.05
 # Aplicações
+hc keybind Mod4-b spawn polybar-msg cmd toggle
 hc keybind Mod4-Shift-Return spawn st
 hc keybind Mod4-backslash spawn st_scratchpad
 hc keybind Alt-h spawn st -c htop -n htop -e htop
@@ -225,9 +226,9 @@ hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 
 # polybar
-# polybar pc &
+pidof polybar >/dev/null || polybar &
 # espera a barra carregar e esconde a barra
-# sleep 5 && polybar-msg cmd hide
+sleep 5 && polybar-msg cmd hide
 
 # troca capslock por escape
 setxkbmap -option caps:escape # grep -E "(ctrl|caps):" /usr/share/X11/xkb/rules/base.lst
