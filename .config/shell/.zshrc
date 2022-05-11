@@ -269,7 +269,7 @@ function ex {
 IFS=$SAVEIFS
 
 # prompt
-PS1="%B[%n] %4~ %{$fg[green]%}>%{$reset_color%}%b"
+#PS1="%B[%n] %4~ %{$fg[green]%}>%{$reset_color%}%b"
 
 # carrega plugins do zsh, deve ser o ultimo comando
 source $HOME/.config/shell/plugins/fsh/F-Sy-H.plugin.zsh
@@ -280,3 +280,5 @@ source $HOME/.config/shell/plugins/fzf.zsh
 source $HOME/.config/shell/plugins/keys-fzf.zsh
 bindkey  "^[d"   fzf-cd-widget
 bindkey  "^[s"   fzf-history-widget
+
+eval "$(starship init zsh)"
