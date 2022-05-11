@@ -39,23 +39,22 @@ window:
 
 #scrolling:
   #history: 10000
-
   #multiplier: 3
 
 font:
   normal:
-    family: Fira Code
+    family: Terminus
     style: Regular
   bold:
-    family: Fira Code
+    family: Terminus
     style: Bold
   italic:
-    family: Fira Code
+    family: Iosevka Term
     style: Italic
   bold_italic:
-    family: Hermit
+    family: Iosevka Term
     style: Bold Italic
-  size: 12.0
+  size: 14.0
   #offset:
   #  x: 0
   #  y: 0

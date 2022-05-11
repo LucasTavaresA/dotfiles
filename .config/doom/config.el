@@ -1,7 +1,15 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; Fonte
-(setq doom-font (font-spec :family "Fira Code" :size 16))
+(setq doom-font (font-spec :family "Terminus" :size 18)
+      doom-variable-pitch-font (font-spec :family "Ubuntu" :size 18)
+      doom-big-font (font-spec :family "Terminus" :size 24))
+(custom-set-faces!
+  '(font-lock-comment-face :family "Iosevka Term" :slant italic))
+
+;; Transparencia - emacs 29
+;;(set-frame-parameter (selected-frame) 'alpha-background 85)
+;;(add-to-list 'default-frame-alist '(alpha-background . 85))
 
 ;; Desativa a modeline
 (setq-default mode-line-format nil)
@@ -111,6 +119,7 @@
   (call-interactively 'evil-quit))
 (defun fechar-tudo ()
   "Fecha todos os buffers e a janela"
+  (interactive)
   (call-interactively 'doom/kill-all-buffers)
   (call-interactively 'evil-quit))
 
@@ -146,12 +155,13 @@
 (define-key doom-leader-map (kbd "s s") 'flyspell-mode)
 (define-key doom-leader-map (kbd "s b") 'flyspell-buffer)
 (define-key doom-leader-map (kbd "h l") 'hl-line-mode)
-(define-key doom-leader-map (kbd "k") 'kill-buffer)
 (define-key doom-leader-map (kbd "l") 'org-insert-link)
 (define-key doom-leader-map (kbd "L") 'log/toggle-command-window)
 (define-key doom-leader-map (kbd "n") 'neotree-toggle)
 (define-key doom-leader-map (kbd "P") 'projectile-command-map)
 (define-key doom-leader-map (kbd "r") 'rainbow-mode)
+(define-key doom-leader-map (kbd "k") 'kill-current-buffer)
+(define-key doom-leader-map (kbd "K") 'kill-some-buffers)
 (define-key doom-leader-map (kbd "U") 'undo-tree-visualize)
 (define-key doom-leader-map (kbd "b t") 'org-babel-tangle)
 (define-key doom-leader-map (kbd "w w") 'save-buffer)

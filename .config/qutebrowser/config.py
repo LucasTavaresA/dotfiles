@@ -267,14 +267,14 @@ c.colors.completion.item.selected.border.top = '#ffffff'
 
 #### Fontes ####
 # fonte padrão
-c.fonts.default_family = '"Hermit"'
+c.fonts.default_family = '"Terminus"'
 # tamanho padrão das fontes
-c.fonts.default_size = '12px'
+c.fonts.default_size = '16px'
 # fonte usada nas abas de completação de comandos.
-c.fonts.completion.entry = '12px "Hermit"'
+c.fonts.completion.entry = '16px "Terminus"'
 # fonte used for the debugging console.
-c.fonts.debug_console = '12px "Hermit"'
+c.fonts.debug_console = '16px "Terminus"'
 # fonte usada nos prompts.
-c.fonts.prompts = 'default_size "Hermit"'
+c.fonts.prompts = 'default_size "Terminus"'
 # fonte usada na barra de status.
-c.fonts.statusbar = '12px "Hermit"'
+c.fonts.statusbar = '16px "Terminus"'

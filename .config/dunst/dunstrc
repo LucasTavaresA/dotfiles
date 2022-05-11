@@ -82,7 +82,7 @@
     # Set to 0 to disable.
     idle_threshold = 120
 
-    font = Hermit 12
+    font = Terminus 14
     line_height = 1
     markup = full
 
