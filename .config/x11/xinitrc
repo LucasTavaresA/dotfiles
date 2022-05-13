@@ -30,8 +30,6 @@ if [ "$WM" = "herbstluftwm" ]; then
 elif [ "$WM" = "dwm" ]; then
     sxhkd -c "$HOME/.config/sxhkd/sxhkd_dwm" &
     dwmblocks &
-elif [ "$WM" = "stumpwm" ]; then
-    sxhkd -c "$HOME/.config/sxhkd/sxhkd_stumpwm" &
 elif [ "$WM" = "bspwm" ]; then
     sxhkd -c "$HOME/.config/sxhkd/sxhkd_bspwm" &
 else

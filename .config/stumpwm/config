@@ -7,12 +7,29 @@
 ;; git clone git@github.com:stumpwm/stumpwm-contrib.git ~/.config/stumpwm/stumpwm-contrib
 ;; esse comando carrega todos os módulos em pastas e subpastas
 (init-load-path #p"~/.config/stumpwm/modules")
-;; manipular janelas em todos os grupos
-(load-module "globalwindows")
-
 ;; quicklisp & sbcl
 (load "~/.config/sbcl/sbclrc")
-(add-to-load-path "~/.local/share/quicklisp/")
+(add-to-load-path "~/quicklisp/")
+(load "~/quicklisp/setup.lisp")
+;; systray
+(load-module "xembed")
+(load-module "stumptray")
+;; manipular janelas em todos os grupos
+(load-module "globalwindows")
+;; compleção e histórico de comandos
+;; git clone https://github.com/landakram/stumpwm-prescient ~/.config/stumpwm/modules/stumpwm-prescient
+(setf *input-window-gravity* :center
+      *message-window-input-gravity* :left)
+(setf *input-completion-show-empty* t)
+(load-module "stumpwm-prescient")
+(setf *input-refine-candidates-fn* 'stumpwm-prescient:refine-input)
+;; mpd
+(load-module "mpd")
+(mpd::mpd-connect)
+;; disco
+(ql:quickload "cl-diskspace")
+(ql:quickload "cl-mount-info") ;; apenas linux
+(load-module "disk")
 
 ;; arquivos
 (defun arquivo-disponivel-p (arquivo)
@@ -53,31 +70,18 @@
       (t (ativa-sempre-no-topo jan)
       (stumpwm::float-window jan grupo)))))
 
-;; mostra e esconde janelas
-(defun window-menu-format (w)
-  (list (format-expand *window-formatters* *window-format* w) w))
-(defun window-from-menu (windows)
-  (when windows
-    (second (select-from-menu
-             (group-screen (window-group (car windows)))
-             (mapcar 'window-menu-format windows)
-             "Selecionar Janela: "))))
-(defun windows-in-group (group)
-  (group-windows (find group (screen-groups (current-screen))
-                       :key 'group-name :test 'equal)))
-(defcommand mostra () ()
-  (let* ((windows (windows-in-group ".Hidden"))
-         (window  (window-from-menu windows)))
-    (when window
-      (move-window-to-group window (current-group))
-      (stumpwm::pull-window window))))
-(defcommand esconde () ()
-  (stumpwm:run-commands "gmove .Hidden"))
+(defun unix-cat (file)
+  (string-trim '(#\newline)
+         (with-output-to-string (s)
+     (with-open-file (stream file)
+       (loop for l = (read-line stream nil)
+       until (null l)
+       do (format s "~a~%" l))))))
 
 ;; Tema ;;
 ;; cores
 (setf *colors*
-      '("#ffffff"
+      '("#000000"
         "#ff0000"
         "#00aa00"
         "#ffff00"
@@ -88,19 +92,44 @@
 (setf *default-bg-color* "#ff00ff")
 (update-color-map (current-screen))
 
+;; barra
+(setf *window-format* " %30t " ;; formato indicador de janela
+      mpd::*mpd-modeline-fmt* "%t"
+      disk::*disk-usage-paths* (list "/" "/home")
+      disk::*disk-modeline-fmt* "%m: %p"
+      *screen-mode-line-format* (list ;; formato da barra
+        "[%n] %W^>" ;; grupo atual e janelas abertas
+        "%m" ;; musica tocando
+        "   VOL:" '(:eval (run-shell-command "volume semicones" t)) ;; volume
+        "   %D" ;; disco
+        "   %d       ") ;; data
+      *time-modeline-string* "%a %d/%m/%Y - %H:%M" ;; formato da data
+      *mode-line-pad-y* 0
+      *mode-line-timeout* 1 ;; tempo de atualização da barra
+      *mode-line-border-color* "#ffffff"
+      *mode-line-background-color* (car *colors*)
+      *mode-line-foreground-color* (car (last *colors*)))
+;; ativa a barra !Apos tudo ser definido acima!
+(defun enable-mode-line-everywhere ()
+  (loop for screen in *screen-list* do
+    (loop for head in (screen-heads screen) do
+      (enable-mode-line screen head t))))
+; ativa a barra em todos os monitores
+;(enable-mode-line-everywhere)
+(enable-mode-line (current-screen) (current-head) t)
+(stumptray:stumptray)
+
 ;; prompts e caixas de dialogo
-(set-font "-xos4-terminus-bold-*-*-*-14-*-*-*-*-*-*-*")
+(set-font "-*-terminus-*-*-*-*-14-*-*-*-*-*-*-*")
 (setf *message-window-gravity* :center
       *window-border-style* :thin
       *message-window-padding* 1
       *maxsize-border-width* 1
       *normal-border-width* 1
       *transient-border-width* 1
+      *maximum-completions* 40
       stumpwm::*float-window-border* 1
       stumpwm::*float-window-title-height* 1)
-(setf *input-window-gravity* :center
-      *message-window-input-gravity* :left)
-(setf *input-completion-show-empty* t)
 
 ;; Grupos e regras ;;
 (grename "Browser")
@@ -114,6 +143,7 @@
 ;(frame-number raise lock &key create restore dump-name class instance type role title)
 (define-frame-preference "Browser"
     (0 t t :class "qutebrowser")
+    (0 t t :class "Firefox")
     (0 t t :class "firefox"))
 (define-frame-preference "Code"
     (0 t t :class "nvim")
@@ -131,9 +161,7 @@
 (setf *mouse-focus-policy* :click)
 (setf *resize-increment* 25)
 (defvar *dynamic-group-master-split-ratio* 1/2)
-
-;; para rodar comandos do shell
-;;(run-shell-command "comando")
+(which-key-mode)
 
 ;; troca de grupos globalmente
 (setf *run-or-raise-all-groups* t)
@@ -159,7 +187,6 @@
   (flet ((mv () (move-focus ogdir)))
     (if (emacs-p (current-window))
         (when
-            ;; Não tem uma janela emacs nessa direção
             (= (length (emacs-winmove
                         (string-downcase (string ogdir))))
                1)
@@ -171,22 +198,97 @@
 (defcommand reload-config () ()
   (load "~/.config/stumpwm/config"))
 
+(defcommand atualizar-barra () ()
+  (stumpwm:mode-line)
+  (stumptray:stumptray))
+
 ;; Teclas ;;
+(define-key *top-map* (kbd "SunPrint_Screen") "exec dmenu_print")
+;; C-Space
 (set-prefix-key (kbd "C-space"))
+(define-key *root-map* (kbd "C-space") "windowlist")
+;; C-Space g
 (define-key *groups-map* (kbd "d") "gnew-dynamic")
 (define-key *groups-map* (kbd "s") "gselect")
-(define-key *root-map* (kbd "C-space") "windowlist")
-(define-key *top-map* (kbd "s-ESC") "mostra")
-(define-key *top-map* (kbd "M-ESC") "esconde")
+;; Menu key
+(defvar *Menu-key* (make-sparse-keymap))
+(define-key *Menu-key* (kbd "Menu") "exec dmenu_run")
+(define-key *Menu-key* (kbd "ESC") "exec dmenu_sys")
+(define-key *Menu-key* (kbd "e") "exec dmenu_edit")
+(define-key *Menu-key* (kbd "b") "exec dmenu_browser")
+(define-key *Menu-key* (kbd "M") "exec dmenu_mont")
+(define-key *Menu-key* (kbd "p") "exec passmenu --type")
+(define-key *Menu-key* (kbd "w") "exec dmenu_wifi")
+(define-key *Menu-key* (kbd "x") "exec dmenu_xephyr")
+(define-key *Menu-key* (kbd "c") "exec st -c fzf -n fzf -e fzf_clip")
+(define-key *Menu-key* (kbd "E") "exec st -c fzf -n fzf -e fzf_emojis")
+(define-key *Menu-key* (kbd "m") "exec st -c fzf -n fzf -e fzf_man")
+(define-key *Menu-key* (kbd "h") "exec st -c htop -n htop -e htop")
+(define-key *Menu-key* (kbd "p") "exec pkill picom || picom")
+(define-key *Menu-key* (kbd "s") "exec sct")
+(define-key *Menu-key* (kbd "S") "exec sct 2000")
+(define-key *Menu-key* (kbd "t") "exec transmission-qt")
+(define-key *Menu-key* (kbd "a") "exec emacsclient -n -c -a 's -e nvim' ~/documentos/anotações.md")
+(define-key *top-map* (kbd "Menu") '*Menu-key*)
+;; Stumpwm
+(define-key *top-map* (kbd "s-q") "delete-window")
+(define-key *top-map* (kbd "s-w") "alterna-flutuante")
+(define-key *top-map* (kbd "s-f") "fullscreen")
+(define-key *top-map* (kbd "s-Tab") "pull-hidden-next")
+(define-key *top-map* (kbd "s-b") "atualizar-barra")
+(define-key *top-map* (kbd "s-S-Return") "exec st")
+(define-key *top-map* (kbd "s-\\") "exec st_scratchpad")
+(define-key *top-map* (kbd "s-SPC") "exec playerctl play-pause || mpc toggle")
+(define-key *top-map* (kbd "s-<") "exec mpc prev && musica notificar")
+(define-key *top-map* (kbd "s->") "exec mpc next && musica notificar")
+(define-key *top-map* (kbd "s-,") "exec amixer -q set Master 5%-")
+(define-key *top-map* (kbd "s-.") "exec amixer -q set Master 5%+")
+(define-key *top-map* (kbd "s-a") "exec st -c ncmpcpp -n ncmpcpp -e ncmpcpp")
+(define-key *top-map* (kbd "s-A") "exec st -c pulsemixer -n pulsemixer -e pulsemixer")
+(define-key *top-map* (kbd "s-Q") "remove")
+(define-key *top-map* (kbd "M-Left") "gprev")
+(define-key *top-map* (kbd "M-Right") "gnext")
+(define-key *top-map* (kbd "M-s-Left") "gprev-with-window")
+(define-key *top-map* (kbd "M-s-Right") "gnext-with-window")
+(define-key *top-map* (kbd "M-h") "gprev")
+(define-key *top-map* (kbd "M-l") "gnext")
+(define-key *top-map* (kbd "M-s-H") "gprev-wth-window")
+(define-key *top-map* (kbd "M-s-L") "gnext-wth-window")
+(define-key *top-map* (kbd "C-S-s-Down") "vsplit")
+(define-key *top-map* (kbd "C-S-s-Right") "hsplit")
+(define-key *top-map* (kbd "C-S-s-j") "vsplit")
+(define-key *top-map* (kbd "C-S-s-l") "hsplit")
+(define-key *top-map* (kbd "C-s-Up") "resize-direction up")
+(define-key *top-map* (kbd "C-s-Down") "resize-direction down")
+(define-key *top-map* (kbd "C-s-Left") "resize-direction left")
+(define-key *top-map* (kbd "C-s-Right") "resize-direction right")
+(define-key *top-map* (kbd "C-s-k") "resize-direction up")
+(define-key *top-map* (kbd "C-s-j") "resize-direction down")
+(define-key *top-map* (kbd "C-s-h") "resize-direction left")
+(define-key *top-map* (kbd "C-s-l") "resize-direction right")
+(define-key *top-map* (kbd "s-Up") "my-mv up")
+(define-key *top-map* (kbd "s-Down") "my-mv down")
+(define-key *top-map* (kbd "s-Left") "my-mv left")
+(define-key *top-map* (kbd "s-Right") "my-mv right")
+(define-key *top-map* (kbd "s-k") "my-mv up")
+(define-key *top-map* (kbd "s-j") "my-mv down")
+(define-key *top-map* (kbd "s-h") "my-mv left")
+(define-key *top-map* (kbd "s-l") "my-mv right")
+(define-key *top-map* (kbd "S-s-Up") "move-window up")
+(define-key *top-map* (kbd "S-s-Down") "move-window down")
+(define-key *top-map* (kbd "S-s-Left") "move-window left")
+(define-key *top-map* (kbd "S-s-Right") "move-window right")
+(define-key *top-map* (kbd "s-K") "move-window up")
+(define-key *top-map* (kbd "s-J") "move-window down")
+(define-key *top-map* (kbd "s-H") "move-window left")
+(define-key *top-map* (kbd "s-L") "move-window right")
 
 ;; Final ;;
 (defvar *OS* (uiop:getenv "OS"))
 (defun iniciar ()
     "Abre a programas no inicio do stumpwm"
-           (run-shell-command "polybar pc &")
-           ; espera a barra carregar e esconde a barra
-           (run-shell-command "sleep 5 && polybar-msg cmd hide")
-           (run-shell-command "QSyncthingTray &")
+           (run-shell-command "setxkbmap -option caps:escape")
+           (run-shell-command "xset r rate 300 100")
            ; Teclas no notebook
            ; alt + , = Escape
            (run-shell-command "xmodmap -e 'keycode 59 = comma less comma less Escape'")

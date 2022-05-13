@@ -29,7 +29,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_RUNTIME_DIR="/run/user/$UID"
 export XDG_BIN_HOME="$HOME/.local/bin"
 # window manager
-export WM="herbstluftwm"
+export WM="stumpwm"
 # systema
 export HOSTNAME="$(uname -n)"
 case $HOSTNAME in
@@ -132,7 +132,7 @@ export VISUAL="emacsclient -n -c -a 'st -e nvim'"
 export SSH_ASKPASS="doas_askpass"
 export GIT_ASKPASS="doas_askpass"
 export SUDO_ASKPASS="$HOME/code/shell/dmenu_pass"
-export DOAS_ASKPASS="dmenu -fn Monospace-18 -c -cw 500 -P -p Senha:"
+export DOAS_ASKPASS="dmenu -fn Terminus-18 -c -cw 500 -P -p Senha:"
 
 # localização para datas
 export LC_TIME="pt_BR.UTF-8"

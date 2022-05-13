@@ -63,3 +63,4 @@ mnt/
 VirtualBox VMs/
 bkp/
 bin/
+quicklisp/
