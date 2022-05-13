@@ -136,17 +136,17 @@ hc keybind Mod4-period spawn amixer -q set Master 5%+
 hc keybind Mod4-Shift-comma and . spawn mpc prev . spawn musica notificar
 hc keybind Mod4-Shift-period and . spawn mpc next . spawn musica notificar
 # Menus
-hc keybind Menu spawn dmenu_run info
+hc keybind Menu spawn dmenu_run
 hc keybind Mod4-s spawn dmenu_sys
-hc keybind Alt-q spawn dmenu_browser ~/code/shell/listas/favoritos.yaml
+hc keybind Alt-q spawn dmenu_browser
 hc keybind Mod4-o spawn dmenu_pesquisar
 hc keybind Mod4-e spawn dmenu_edit
 hc keybind Alt-w spawn dmenu_wifi
 hc keybind Mod4-c spawn st -c fzf -n fzf -e fzf_clip
 hc keybind Alt-p spawn passmenu --type
-hc keybind Alt-m spawn st -e fzf_man
+hc keybind Alt-m spawn st -c fzf -n fzf -e fzf_man
 hc keybind Alt-Shift-m spawn dmenu_mont
-hc keybind Alt-Shift-e spawn st -c fzf -n fzf fzf_emojis
+hc keybind Alt-Shift-e spawn st -c fzf -n fzf -e fzf_emojis
 hc keybind Print spawn dmenu_print
 
 hc attr theme.tiling.reset 1

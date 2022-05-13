@@ -55,7 +55,7 @@ Menu;e
     dmenu_edit
 # dmenu_browser
 Menu;q
-    dmenu_browser ~/code/shell/listas/favoritos.yaml
+    dmenu_browser
 # dmenu_xephyr
 Menu;x
     dmenu_xephyr

@@ -18,6 +18,7 @@ bat
 bc
 binutils
 bison
+btrfs-progs
 catdoc
 catimg
 checkbashisms
@@ -142,6 +143,7 @@ picom
 pkgconf
 playerctl
 plocate
+polybar
 pulseaudio
 pulseaudio-alsa
 pulsemixer
@@ -160,6 +162,7 @@ sbcl
 sed
 shellcheck
 slop
+starship
 syncthing
 telegram-desktop
 terminus-font
@@ -210,4 +213,5 @@ zathura
 zathura-cb
 zathura-djvu
 zathura-pdf-mupdf
+zip
 zsh
