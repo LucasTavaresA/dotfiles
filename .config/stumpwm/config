@@ -118,7 +118,7 @@
   (load "~/.config/stumpwm/config"))
 
 (defcommand atualizar-barra () ()
-  "Atauliza a barra e a systray"
+  "Atualiza a barra e a systray"
   (stumpwm:mode-line)
   (stumptray:stumptray))
 
@@ -130,7 +130,10 @@
       *run-or-raise-all-groups* t) ; muda de grupos ao abrir programas
 
 ;; Tema ;;
+(set-font "-*-terminus-*-*-*-*-14-*-*-*-*-*-*-*")
 ;; cores
+(set-focus-color "#ffffff")
+(set-unfocus-color "#000000")
 (set-float-focus-color "#ffffff")
 (set-float-unfocus-color "#ffffff")
 (setf *colors*
@@ -142,7 +145,17 @@
         "#ff99ff"
         "#00ffbd"
         "#ffffff")
-      *default-bg-color* "#000000")
+      *default-bg-color* "#000000"
+      ;; prompts e caixas de dialogo
+      *message-window-gravity* :center
+      *window-border-style* :thick
+      *message-window-padding* 1
+      *maxsize-border-width* 1
+      *normal-border-width* 1
+      *transient-border-width* 1
+      *maximum-completions* 40
+      stumpwm::*float-window-border* 3
+      stumpwm::*float-window-title-height* 3)
 (update-color-map (current-screen))
 
 ;; barra
@@ -177,18 +190,6 @@
   (loop for screen in *screen-list* do
     (loop for head in (screen-heads screen) do
       (enable-mode-line screen head t))))
-
-;; prompts e caixas de dialogo
-(set-font "-*-terminus-*-*-*-*-14-*-*-*-*-*-*-*")
-(setf *message-window-gravity* :center
-      *window-border-style* :thick
-      *message-window-padding* 1
-      *maxsize-border-width* 1
-      *normal-border-width* 1
-      *transient-border-width* 1
-      *maximum-completions* 40
-      stumpwm::*float-window-border* 3
-      stumpwm::*float-window-title-height* 3)
 
 ;; Grupos e regras ;;
 (when *initializing*
@@ -295,10 +296,9 @@
 
 (when *initializing*
   (defvar *OS* (uiop:getenv "OS"))
-  ;; ativa a barra em todos os monitores
   ;(enable-mode-line-everywhere)
-  (enable-mode-line (current-screen) (current-head) t)
-  (stumptray:stumptray)
+  ;(enable-mode-line (current-screen) (current-head) t)
+  ;(stumptray:stumptray)
   (which-key-mode)
   (run-shell-command "setxkbmap -option caps:escape")
   (run-shell-command "xset r rate 300 100")
