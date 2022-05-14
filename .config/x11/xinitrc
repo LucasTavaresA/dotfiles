@@ -1,29 +1,26 @@
 #!/bin/sh
 
-xrdb -load "$HOME/.config/x11/xresources" &
-
-# mouse
-xsetroot -cursor_name left_ptr
-
-# clipmenu
+# miscelânea
+# xautolock -detectsleep -time 30 -locker "slock" -notify 30 -notifier "notify-send Slock -u critical -t 1800000 'BLOQUEANDO A TELA 30 SEGUNDOS'" &
 mkdir .cache/clipmenu
 export CM_DIR="$HOME/.cache/clipmenu"
 clipmenud &
-
-# protetor de tela
-# xautolock -detectsleep -time 30 -locker "slock" -notify 30 -notifier "notify-send Slock -u critical -t 1800000 'BLOQUEANDO A TELA 30 SEGUNDOS'" &
-
-dunst &
-nitrogen --restore &
-xbanish &
-syncthing &
-playerctld daemon
-mpd &
-mpd-mpris &
-picom &
-checar_updates &
+pidof dunst || dunst &
+pidof xbanish || xbanish &
+pidof syncthing || syncthing &
+pidof emacs || doom_reset &
 fzf_man update &
-emacs --daemon &
+# musica
+pidof playerctld || playerctld daemon &
+pidof mpd || mpd &
+pidof mpd-mpris || mpd-mpris &
+# aparencia
+pidof picom || picom &
+nitrogen --restore &
+xsetroot -cursor_name left_ptr
+xrdb -load "$HOME/.config/x11/xresources" &
+# sistema
+checar_updates &
 
 if [ "$WM" = "herbstluftwm" ]; then
     flags=" --locked"
