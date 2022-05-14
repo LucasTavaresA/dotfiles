@@ -27,6 +27,7 @@ checkbashisms
 clang
 clipmenu
 dash
+dbus-broker
 dhcpcd
 dhcpcd-runit
 discord
@@ -147,6 +148,7 @@ picom
 pkgconf
 playerctl
 plocate
+polybar
 pulseaudio
 pulseaudio-alsa
 pulsemixer
@@ -163,6 +165,7 @@ sbcl
 sed
 shellcheck
 slop
+starship
 syncthing
 telegram-desktop
 terminus-font

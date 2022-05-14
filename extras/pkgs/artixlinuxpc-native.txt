@@ -25,6 +25,7 @@ checkbashisms
 clipmenu
 clipnotify
 dash
+dbus-broker
 dhcpcd
 dhcpcd-runit
 discord

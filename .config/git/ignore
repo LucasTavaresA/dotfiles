@@ -24,8 +24,6 @@
 .config/qutebrowser/autoconfig.yml
 .config/qutebrowser/bookmarks
 .config/qutebrowser/quickmarks
-.config/stumpwm/modules/
-.config/stumpwm/stumpwm-contrib/
 .config/transmission/
 .config/VirtualBox/
 .config/NuGet/

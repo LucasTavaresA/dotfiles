@@ -28,3 +28,9 @@
 [submodule "code/shell"]
 	path = code/shell
 	url = git@github.com:lucastavaresa/scripts.git
+[submodule ".config/stumpwm/modules/contrib"]
+	path = .config/stumpwm/modules/contrib
+	url = https://github.com/stumpwm/stumpwm-contrib
+[submodule ".config/stumpwm/modules/stumpwm-prescient"]
+	path = .config/stumpwm/modules/stumpwm-prescient
+	url = https://github.com/landakram/stumpwm-prescient
