@@ -44,6 +44,10 @@
     (unless (string-equal "" which-out) which-out)))
 
 ;; janelas flutuantes sempre visiveis
+(defun centralizar-janela ()
+  (float-window-move-resize
+   (current-window)
+    :x 120 :y 50 :width 1000 :height 600))
 (defun flutuante-p (janela)
   "Retorna T se JANELA é flutuante e NIL caso contrario"
   (typep janela 'stumpwm::float-window))
@@ -68,7 +72,8 @@
        (desativa-sempre-no-topo jan)
        (stumpwm::unfloat-window jan grupo))
       (t (ativa-sempre-no-topo jan)
-      (stumpwm::float-window jan grupo)))))
+      (stumpwm::float-window jan grupo)
+      (centralizar-janela)))))
 
 (defun unix-cat (file)
   "Funciona como o programa cat"
@@ -118,13 +123,16 @@
   (stumptray:stumptray))
 
 ;; Miscelânea ;;
+(set-normal-gravity :center)
+(set-transient-gravity :center)
 (setf *mouse-focus-policy* :click
       *resize-increment* 25
-      *run-or-raise-all-groups* t ; muda de grupos ao abrir programas
-)
+      *run-or-raise-all-groups* t) ; muda de grupos ao abrir programas
 
 ;; Tema ;;
 ;; cores
+(set-float-focus-color "#ffffff")
+(set-float-unfocus-color "#ffffff")
 (setf *colors*
       '("#000000"
         "#ff0000"
@@ -139,6 +147,8 @@
 
 ;; barra
 (setf *window-format* " %15c " ;; formato indicador de janela
+      mpd::*mpd-status-fmt* ""
+      mpd::*mpd-current-song-fmt* ""
       mpd::*mpd-modeline-fmt* "  %L  "
       disk::*disk-usage-paths* (list "/" "/home")
       disk::*disk-modeline-fmt* "%m: %p"
@@ -177,8 +187,8 @@
       *normal-border-width* 1
       *transient-border-width* 1
       *maximum-completions* 40
-      stumpwm::*float-window-border* 1
-      stumpwm::*float-window-title-height* 1)
+      stumpwm::*float-window-border* 3
+      stumpwm::*float-window-title-height* 3)
 
 ;; Grupos e regras ;;
 (when *initializing*
@@ -186,8 +196,7 @@
   (gnewbg "Code")
   (gnewbg "Fullscreen")
   (gnewbg "Message")
-  (gnewbg ".Hidden")
-)
+  (gnewbg ".Hidden"))
 
 ;; remove todas as regras
 (clear-window-placement-rules)
@@ -221,6 +230,7 @@
 ;; Menu
 (defvar *Menu-map* (make-sparse-keymap))
 (define-key *Menu-map* (kbd "Menu") "exec dmenu_run")
+(define-key *Menu-map* (kbd "r") "loadrc")
 (define-key *Menu-map* (kbd "ESC") "exec dmenu_sys")
 (define-key *Menu-map* (kbd "e") "exec dmenu_edit")
 (define-key *Menu-map* (kbd "b") "exec dmenu_browser")
@@ -228,10 +238,10 @@
 (define-key *Menu-map* (kbd "p") "exec passmenu --type")
 (define-key *Menu-map* (kbd "w") "exec dmenu_wifi")
 (define-key *Menu-map* (kbd "x") "exec dmenu_xephyr")
-(define-key *Menu-map* (kbd "c") "exec st -c centered -n centered -e fzf_clip")
-(define-key *Menu-map* (kbd "E") "exec st -c centered -n centered -e fzf_emojis")
-(define-key *Menu-map* (kbd "m") "exec st -c centered -n centered -e fzf_man")
-(define-key *Menu-map* (kbd "h") "exec st -c centered -n centered -e htop")
+(define-key *Menu-map* (kbd "c") "exec st -e fzf_clip")
+(define-key *Menu-map* (kbd "E") "exec st -e fzf_emojis")
+(define-key *Menu-map* (kbd "m") "exec st -e fzf_man")
+(define-key *Menu-map* (kbd "h") "exec st -e htop")
 (define-key *Menu-map* (kbd "P") "exec pkill picom || picom")
 (define-key *Menu-map* (kbd "s") "exec sct")
 (define-key *Menu-map* (kbd "S") "exec sct 2000")
@@ -251,8 +261,8 @@
 (define-key *top-map* (kbd "s->") "exec mpc next && musica notificar")
 (define-key *top-map* (kbd "s-,") "exec amixer -q set Master 5%-")
 (define-key *top-map* (kbd "s-.") "exec amixer -q set Master 5%+")
-(define-key *top-map* (kbd "s-a") "exec st -c centered -n centered -e ncmpcpp")
-(define-key *top-map* (kbd "s-A") "exec st -c centered -n centered -e pulsemixer")
+(define-key *top-map* (kbd "s-a") "exec st -e ncmpcpp")
+(define-key *top-map* (kbd "s-A") "exec st -e pulsemixer")
 (define-key *top-map* (kbd "s-Q") "remove")
 (define-key *top-map* (kbd "M-Left") "gprev")
 (define-key *top-map* (kbd "M-Right") "gnext")
@@ -300,5 +310,4 @@
   ; alt + ; = "
   (run-shell-command "xmodmap -e 'keycode 61 = semicolon colon semicolon colon quotedbl'")
   ;; remove logs
-  (uiop:delete-directory-tree (pathname "~/.stumpwm.d/") :validate t)
-)
+  (uiop:delete-directory-tree (pathname "~/.stumpwm.d/") :validate t))
