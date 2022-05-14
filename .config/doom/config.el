@@ -128,6 +128,10 @@
    (kmacro-lambda-form [?\C-x ?\C-\; down] 0 "%d"))
 (fset 'copiar-buffer
    (kmacro-lambda-form [?g ?g ?v ?G ?y] 0 "%d"))
+(fset 'colar-abaixo
+   (kmacro-lambda-form [?o ?\M-v escape right] 0 "%d"))
+(fset 'colar-acima
+   (kmacro-lambda-form [?O ?\M-v escape right] 0 "%d"))
 
 ;; Desabilita teclas
 (with-eval-after-load "org"
@@ -141,6 +145,8 @@
 (define-key evil-normal-state-map (kbd "<C-tab>") nil)
 (define-key evil-normal-state-map (kbd "M-d") nil)
 (define-key evil-normal-state-map (kbd "m") nil)
+(define-key evil-normal-state-map (kbd "p") nil)
+(define-key evil-normal-state-map (kbd "P") nil)
 (define-key evil-visual-state-map (kbd "<C-tab>") nil)
 (define-key evil-motion-state-map (kbd ";") nil)
 (define-key flyspell-mode-map (kbd "C-M-i") nil)
@@ -178,6 +184,9 @@
 (define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
 (define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
 (define-key evil-normal-state-map (kbd "m") 'evil-execute-macro)
+(define-key evil-normal-state-map (kbd "p") 'colar-abaixo)
+(define-key evil-normal-state-map (kbd "P") 'colar-acima)
+
 ;; Globais
 (global-set-key (kbd "C-c C-c") 'comentar-e-descer-linha)
 (global-set-key (kbd "C-s") 'evil-mc-make-all-cursors)
@@ -186,7 +195,7 @@
 (global-set-key (kbd "<C-down>") 'evil-mc-skip-and-goto-next-match)
 (global-set-key (kbd "<C-up>") 'evil-mc-skip-and-goto-prev-match)
 (global-set-key (kbd "M-c") 'evil-yank)
-(global-set-key (kbd "M-v") 'evil-paste-before)
+(global-set-key (kbd "M-v") 'evil-paste-after)
 (global-set-key (kbd "M-d") 'org-babel-demarcate-block)
 (global-set-key (kbd "C-M-i") 'orgm/org-cycle-current-headline)
 (global-set-key (kbd "<S-up>") 'er/expand-region)
