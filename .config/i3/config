@@ -1,0 +1,169 @@
+## I3 ##
+mouse_warping output
+focus_follows_mouse no
+floating_minimum_size 500 x 300
+floating_maximum_size 1000 x 600
+default_orientation vertical
+workspace_layout tabbed
+title_align center
+focus_wrapping no
+focus_on_window_activation focus
+## Aparência ##
+font pango:Terminus 12
+# bordas
+smart_borders on
+hide_edge_borders on
+for_window [all] border pixel 1
+default_border pixel 1
+default_floating_border pixel 1
+hide_edge_borders none
+# cores
+# classe              borda  fundo  texto   indicador child_border
+client.focused          #ffffff #000000 #ffffff #ffffff    #ffffff
+client.focused_inactive #000000 #000000 #ffffff #000000    #000000
+client.unfocused        #000000 #000000 #ffffff #000000    #000000
+client.urgent           #ff0000 #000000 #ffffff #ff0000    #ff0000
+client.placeholder      #555555 #555555 #ffffff #555555    #555555
+client.background       #ffffff
+## Regras ##
+for_window [all] title_window_icon on
+for_window [class="^float$"] floating enable
+for_window [class="^Firefox$"] focus
+for_window [class="^firefox$"] focus
+for_window [class="^qutebrowser$"] focus
+for_window [class="^Chromium$"] focus
+for_window [class="^st-256color$"] focus
+for_window [class="^Emacs$"] focus
+for_window [class="^nvim$"] focus
+for_window [class="^mpv$"] focus
+for_window [class="^Gimp$"] focus
+for_window [class="^Xephyr$"] focus
+for_window [class="^discord$"] focus
+for_window [class="^TelegramDesktop$"] focus
+assign [class="^Firefox$"] "1:Browser"
+assign [class="^firefox$"] "1:Browser"
+assign [class="^qutebrowser$"] "1:Browser"
+assign [class="^Chromium$"] "1:Browser"
+assign [class="^st-256color$"] "2:Code"
+assign [class="^Emacs$"] "2:Code"
+assign [class="^nvim$"] "2:Code"
+assign [class="^mpv$"] "3:Fullscreen"
+assign [class="^Gimp$"] "3:Fullscreen"
+assign [class="^Xephyr$"] "3:Fullscreen"
+assign [class="^discord$"] "4:Message"
+assign [class="^TelegramDesktop$"] "4:Message"
+## Teclas ##
+set $mod Mod4
+floating_modifier $mod
+# sinal para atualizar a barra
+set $refresh_i3status killall -SIGUSR1 i3status
+# menu
+mode "Menu" {
+    bindsym Escape mode "default"
+    bindsym Menu exec dmenu_run ; mode "default"
+    bindsym w exec dmenu_wifi ; mode "default"
+    bindsym x exec dmenu_xephyr ; mode "default"
+    bindsym c exec st -c float -e fzf_clip ; mode "default"
+    bindsym h exec st -c float -e htop ; mode "default"
+    bindsym t exec transmission-qt ; mode "default"
+    bindsym a exec emacsclient -n -c -a 's -e nvim' ~/documentos/anotações.md ; mode "default"
+    bindsym b exec dmenu_browser ; mode "default"
+    bindsym Shift+b exec $refresh_i3status ; mode "default"
+    bindsym r reload
+    bindsym Shift+r restart
+    bindsym Shift+q exit
+    bindsym p exec passmenu --type ; mode "default"
+    bindsym Shift+p exec pkill picom || picom ; mode "default"
+    bindsym s exec sct ; mode "default"
+    bindsym Shift+s exec sct 2000 ; mode "default"
+    bindsym e exec dmenu_edit ; mode "default"
+    bindsym Shift+e exec st -c float -e fzf_emojis ; mode "default"
+    bindsym m exec st -c float -e fzf_man ; mode "default"
+    bindsym Shift+m exec dmenu_mont ; mode "default"
+}
+bindsym Menu mode "Menu"
+# resize mode
+mode "resize" {
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+# programas
+bindsym Print exec dmenu_print
+bindsym $mod+Shift+Return exec i3-sensible-terminal
+# i3
+bindsym $mod+q kill
+bindsym $mod+a layout tabbed
+bindsym $mod+s layout toggle split
+bindsym $mod+w floating toggle
+bindsym $mod+f fullscreen toggle
+bindsym $mod+b bar hidden_state toggle
+# setas/vimkeys
+bindsym $mod+Up focus up
+bindsym $mod+Down focus down
+bindsym $mod+Left focus left
+bindsym $mod+Right focus right
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Right move right
+bindsym Mod1+Left workspace prev
+bindsym Mod1+Right workspace next
+bindsym $mod+k focus up
+bindsym $mod+j focus down
+bindsym $mod+h focus left
+bindsym $mod+l focus right
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+l move right
+bindsym Mod1+h workspace next
+bindsym Mod1+l workspace prev
+# workspaces
+set $ws1 "1:Browser"
+set $ws2 "2:Code"
+set $ws3 "3:Fullscreen"
+set $ws4 "4:Message"
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+Shift+1 move window to workspace number $ws1
+bindsym $mod+Shift+2 move window to workspace number $ws2
+bindsym $mod+Shift+3 move window to workspace number $ws3
+bindsym $mod+Shift+4 move window to workspace number $ws4
+## Iniciar ##
+exec --no-startup-id dex --autostart --environment i3
+exec setxkbmap -option caps:escape
+exec xset r rate 300 100
+exec xmodmap -e 'keycode 59 = comma less comma less Escape'
+exec xmodmap -e 'keycode 60 = period greater period greater Tab'
+exec xmodmap -e 'keycode 61 = semicolon colon semicolon colon quotedbl'
+# Barra
+bar {
+    i3bar_command i3bar --transparency
+    colors {
+        background #00000085
+        statusline #ffffffff
+        separator #ffffffff
+        focused_workspace #ffffffff #ffffffff #00000085
+        inactive_workspace #00000085 #00000085 #ffffffff
+        urgent_workspace #ff0000ff #ff0000ff #00000085
+    }
+    strip_workspace_numbers yes
+    position top
+    height 18
+    mode hide
+        hidden_state hide
+        modifier Mod4
+        status_command i3blocks
+}
