@@ -6,7 +6,6 @@
 (package! terminal-here)
 (package! command-log-mode)
 (package! vimrc-mode)
-(package! undo-tree)
 (package! org-make-toc)
 ;; Correção ortográfica
 (package! flyspell)

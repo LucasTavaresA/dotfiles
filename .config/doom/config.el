@@ -25,8 +25,7 @@
 (setq display-line-numbers-type nil)
 
 ;; Desativa indicação de linha atual
-(global-hl-line-mode nil)
-(remove-hook! (prog-mode text-mode conf-mode special-mode) #'hl-line-mode)
+(remove-hook 'doom-first-buffer-hook #'global-hl-line-mode)
 
 ;; Formato e cor dos cursor em diferentes modos
 (setq evil-emacs-state-cursor    '("#ffff00" box))
