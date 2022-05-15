@@ -3,9 +3,13 @@
 ;; Fonte
 (setq doom-font (font-spec :family "Terminus" :size 18)
       doom-variable-pitch-font (font-spec :family "Ubuntu" :size 18)
-      doom-big-font (font-spec :family "Terminus" :size 24))
+      doom-big-font (font-spec :family "Terminus" :size 22))
+(after! doom-themes
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t))
 (custom-set-faces!
-  '(font-lock-comment-face :family "Iosevka Term" :slant italic))
+  '(font-lock-comment-face :family "SauceCodePro Nerd Font Mono" :slant italic)
+  '(font-lock-keyword-face :family "SauceCodePro Nerd Font Mono" :slant italic))
 
 ;; Transparencia - emacs 29
 ;;(set-frame-parameter (selected-frame) 'alpha-background 85)
@@ -19,6 +23,10 @@
 
 ;; Desabilita numero de linhas
 (setq display-line-numbers-type nil)
+
+;; Desativa indicação de linha atual
+(global-hl-line-mode nil)
+(remove-hook! (prog-mode text-mode conf-mode special-mode) #'hl-line-mode)
 
 ;; Formato e cor dos cursor em diferentes modos
 (setq evil-emacs-state-cursor    '("#ffff00" box))
@@ -127,11 +135,9 @@
 (fset 'comentar-e-descer-linha
    (kmacro-lambda-form [?\C-x ?\C-\; down] 0 "%d"))
 (fset 'copiar-buffer
-   (kmacro-lambda-form [?g ?g ?v ?G ?y] 0 "%d"))
+   (kmacro-lambda-form [?g ?g ?V ?G ?y] 0 "%d"))
 (fset 'colar-abaixo
-   (kmacro-lambda-form [?o ?\M-v escape right] 0 "%d"))
-(fset 'colar-acima
-   (kmacro-lambda-form [?O ?\M-v escape right] 0 "%d"))
+   (kmacro-lambda-form [?o ?\M-v] 0 "%d"))
 
 ;; Desabilita teclas
 (with-eval-after-load "org"
@@ -145,7 +151,6 @@
 (define-key evil-normal-state-map (kbd "<C-tab>") nil)
 (define-key evil-normal-state-map (kbd "M-d") nil)
 (define-key evil-normal-state-map (kbd "m") nil)
-(define-key evil-normal-state-map (kbd "p") nil)
 (define-key evil-normal-state-map (kbd "P") nil)
 (define-key evil-visual-state-map (kbd "<C-tab>") nil)
 (define-key evil-motion-state-map (kbd ";") nil)
@@ -155,21 +160,23 @@
 (define-key evil-motion-state-map "?" 'evil-ex-search-word-forward)
 (define-key evil-motion-state-map ":" '+vertico/search-symbol-at-point)
 (define-key evil-normal-state-map ";" '+default/search-buffer)
+;; toggles
+(define-key doom-leader-toggle-map (kbd "l") 'toggle-truncate-lines)
+(define-key doom-leader-toggle-map (kbd "n") 'doom/toggle-line-numbers)
+(define-key doom-leader-toggle-map (kbd "h") 'hl-line-mode)
+(define-key doom-leader-toggle-map (kbd "c") 'log/toggle-command-window)
+(define-key doom-leader-toggle-map (kbd "r") 'rainbow-mode)
 ;; Prefixadas com espaço
-(define-key doom-leader-map (kbd "c b") 'copiar-buffer)
+(define-key doom-leader-map (kbd "b c") 'copiar-buffer)
 (define-key doom-leader-map (kbd "e r") 'eval-region)
-(define-key doom-leader-map (kbd "s s") 'flyspell-mode)
-(define-key doom-leader-map (kbd "s b") 'flyspell-buffer)
-(define-key doom-leader-map (kbd "h l") 'hl-line-mode)
-(define-key doom-leader-map (kbd "l") 'org-insert-link)
-(define-key doom-leader-map (kbd "L") 'log/toggle-command-window)
+(define-key doom-leader-map (kbd "b s") 'flyspell-buffer)
+(define-key doom-leader-map (kbd "o l") 'org-insert-link)
+(define-key doom-leader-map (kbd "o t") 'org-babel-tangle)
 (define-key doom-leader-map (kbd "n") 'neotree-toggle)
 (define-key doom-leader-map (kbd "P") 'projectile-command-map)
-(define-key doom-leader-map (kbd "r") 'rainbow-mode)
 (define-key doom-leader-map (kbd "k") 'kill-current-buffer)
 (define-key doom-leader-map (kbd "K") 'kill-some-buffers)
-(define-key doom-leader-map (kbd "U") 'undo-tree-visualize)
-(define-key doom-leader-map (kbd "b t") 'org-babel-tangle)
+(define-key doom-leader-map (kbd "u") 'undo-tree-visualize)
 (define-key doom-leader-map (kbd "w w") 'save-buffer)
 (define-key doom-leader-map (kbd "w q") 'salvar-e-fechar-tudo)
 (define-key doom-leader-map (kbd "q q") 'fechar-tudo)
@@ -184,9 +191,7 @@
 (define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
 (define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
 (define-key evil-normal-state-map (kbd "m") 'evil-execute-macro)
-(define-key evil-normal-state-map (kbd "p") 'colar-abaixo)
-(define-key evil-normal-state-map (kbd "P") 'colar-acima)
-
+(define-key evil-normal-state-map (kbd "P") 'colar-abaixo)
 ;; Globais
 (global-set-key (kbd "C-c C-c") 'comentar-e-descer-linha)
 (global-set-key (kbd "C-s") 'evil-mc-make-all-cursors)
@@ -244,7 +249,7 @@
 (setq org-src-fontify-natively t
       org-src-tab-acts-natively t
       org-confirm-babel-evaluate nil ;; Não pergunta antes de avaliar
-      org-ellipsis " v"
+      org-ellipsis " "
       org-hide-emphasis-markers t ;; Esconde marcação
       org-edit-src-content-indentation 0) ;; Indentação nos blocos de código
 
