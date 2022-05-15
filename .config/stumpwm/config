@@ -31,18 +31,6 @@
 (load-module "disk")
 
 ;; Funções, comandos, etc. ;;
-(defun arquivo-disponivel-p (arquivo)
-  "Retorna T, se o ARQUIVO está disponível para leitura"
-  (handler-case
-      (with-open-file (f arquivo)
-        (read-line f))
-    (stream-error () nil)))
-
-(defun executavel-p (nome)
-  "Diz se NOME é executável"
-  (let ((which-out (string-trim '(#\  #\linefeed) (run-shell-command (concat "which " nome) t))))
-    (unless (string-equal "" which-out) which-out)))
-
 ;; janelas flutuantes sempre visiveis
 (defun centralizar-janela ()
   (float-window-move-resize
@@ -75,15 +63,6 @@
       (stumpwm::float-window jan grupo)
       (centralizar-janela)))))
 
-(defun unix-cat (file)
-  "Funciona como o programa cat"
-  (string-trim '(#\newline)
-         (with-output-to-string (s)
-     (with-open-file (stream file)
-       (loop for l = (read-line stream nil)
-       until (null l)
-       do (format s "~a~%" l))))))
-
 ;; integração com o emacs
 (defcommand emacs () () ; substitui o comando emacs padrão
   "Inicia o emacs se o client não esta rodando e foca no emacs caso esteja rodando no grupo atual"
@@ -113,6 +92,40 @@
 (defcommand my-mv (dir) ((:direction "Direção: "))
   (when dir (melhor-move-focus dir)))
 
+(defun arquivo-disponivel-p (arquivo)
+  "Retorna T, se o ARQUIVO está disponível para leitura"
+  (handler-case
+      (with-open-file (f arquivo)
+        (read-line f))
+    (stream-error () nil)))
+
+(defun executavel-p (nome)
+  "Diz se NOME é executável"
+  (let ((which-out (string-trim '(#\  #\linefeed) (run-shell-command (concat "which " nome) t))))
+    (unless (string-equal "" which-out) which-out)))
+
+(defun shift-windows-forward (frames win)
+  "Troca todas as janelas de frame em ciclo."
+  (when frames
+    (let ((frame (car frames)))
+      (shift-windows-forward (cdr frames)
+                             (stumpwm::frame-window frame))
+      (when win
+        (stumpwm::pull-window win frame)))))
+(defcommand rotate-windows () ()
+  (let* ((frames (stumpwm::head-frames (current-group) (current-head)))
+         (win (stumpwm::frame-window (car (last frames)))))
+    (shift-windows-forward frames win)))
+
+(defun unix-cat (file)
+  "Funciona como o programa cat"
+  (string-trim '(#\newline)
+         (with-output-to-string (s)
+     (with-open-file (stream file)
+       (loop for l = (read-line stream nil)
+       until (null l)
+       do (format s "~a~%" l))))))
+
 (defcommand reload-config () ()
   "Recarrega a configuração com o stumpish"
   (load "~/.config/stumpwm/config"))
@@ -124,6 +137,7 @@
 
 ;; Miscelânea ;;
 (set-normal-gravity :center)
+(set-maxsize-gravity :center)
 (set-transient-gravity :center)
 (setf *mouse-focus-policy* :click
       *resize-increment* 25
@@ -132,7 +146,11 @@
 ;; Tema ;;
 (set-font "-*-terminus-*-*-*-*-14-*-*-*-*-*-*-*")
 ;; cores
+(set-fg-color "#ffffff")
+(set-bg-color "#000000")
+(set-border-color "#ffffff")
 (set-focus-color "#ffffff")
+(set-win-bg-color "#000000")
 (set-unfocus-color "#000000")
 (set-float-focus-color "#ffffff")
 (set-float-unfocus-color "#ffffff")
@@ -155,7 +173,10 @@
       *transient-border-width* 1
       *maximum-completions* 40
       stumpwm::*float-window-border* 3
-      stumpwm::*float-window-title-height* 3)
+      stumpwm::*float-window-title-height* 3
+      *startup-message* NIL
+      *suppress-abort-messages* t
+      *shell-program* "/bin/sh")
 (update-color-map (current-screen))
 
 ;; barra
@@ -219,7 +240,7 @@
     (0 t t :class "TelegramDesktop"))
 
 ;; Teclas ;;
-(define-key *top-map* (kbd "SunPrint_Screen") "exec dmenu_print")
+(define-key *top-map* (kbd "SunPrint_Screen") "exec print_dmenu")
 ;; C-Space
 (set-prefix-key (kbd "C-space"))
 (define-key *root-map* (kbd "C-space") "global-windowlist")
@@ -265,6 +286,7 @@
 (define-key *top-map* (kbd "s-a") "exec st -e ncmpcpp")
 (define-key *top-map* (kbd "s-A") "exec st -e pulsemixer")
 (define-key *top-map* (kbd "s-Q") "remove")
+;; Setas/vimkeys
 (define-key *top-map* (kbd "M-Left") "gprev")
 (define-key *top-map* (kbd "M-Right") "gnext")
 (define-key *top-map* (kbd "M-s-Left") "gprev-with-window")
