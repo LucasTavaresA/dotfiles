@@ -168,6 +168,7 @@
 ;; Prefixadas com espaço
 (define-key doom-leader-map (kbd "b c") 'copiar-buffer)
 (define-key doom-leader-map (kbd "e r") 'eval-region)
+(define-key doom-leader-map (kbd "e e") 'erc-tls)
 (define-key doom-leader-map (kbd "b s") 'flyspell-buffer)
 (define-key doom-leader-map (kbd "o l") 'org-insert-link)
 (define-key doom-leader-map (kbd "o t") 'org-babel-tangle)
@@ -207,6 +208,20 @@
 (global-set-key (kbd "<C-tab>") 'next-buffer)
 (global-set-key (kbd "<C-M-right>") 'evil-window-vsplit)
 (global-set-key (kbd "<C-M-down>") 'evil-window-split)
+
+;; erc
+(setq erc-prompt (lambda () (concat "[" (buffer-name) "]"))
+      erc-server "irc.libera.chat"
+      erc-nick "lucas_tavares"
+      erc-user-full-name "Lucas Tavares"
+      erc-track-shorten-start 24
+      erc-autojoin-channels-alist '(("irc.libera.chat" "#unixtube" "#stumpwm"))
+      erc-kill-buffer-on-part t
+      erc-fill-column 100
+      erc-fill-function 'erc-fill-static
+      erc-fill-static-center 20
+      erc-auto-query 'bury ;; reconecta a canais irc de fundo
+      )
 
 ;; Popup que retorna comandos sendo usados
 (use-package! command-log-mode
