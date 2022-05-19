@@ -23,8 +23,8 @@
 (load-module "stumpwm-prescient")
 (setf *input-refine-candidates-fn* 'stumpwm-prescient:refine-input)
 ;; mpd
-(load-module "mpd")
-(mpd::mpd-connect)
+;;(load-module "mpd")
+;;(mpd::mpd-connect)
 ;; disco
 (ql:quickload "cl-diskspace")
 (ql:quickload "cl-mount-info") ;; apenas linux
@@ -180,10 +180,10 @@
 (update-color-map (current-screen))
 
 ;; barra
-(setf *window-format* " %15c " ;; formato indicador de janela
-      mpd::*mpd-status-fmt* ""
-      mpd::*mpd-current-song-fmt* ""
-      mpd::*mpd-modeline-fmt* "  %L  "
+(setf *window-format* " %15t " ;; formato indicador de janela
+      ;;mpd::*mpd-status-fmt* ""
+      ;;mpd::*mpd-current-song-fmt* ""
+      ;;mpd::*mpd-modeline-fmt* " %L  "
       disk::*disk-usage-paths* (list "/" "/home")
       disk::*disk-modeline-fmt* "%m: %p"
       stumptray::*tray-cursor-thickness* 0
@@ -193,15 +193,16 @@
       stumptray::*tray-hiwin-background* "#000000"
       stumptray::*tray-cursor-color* "#000000"
       *screen-mode-line-format* (list ;; formato da barra
-        "[%n] %W^>" ;; grupo atual
-        '(:eval (run-shell-command "musica tocando" t)) ;; musica
-        "%m" ;; estado do mpd
-        '(:eval (run-shell-command "volume semicones" t)) ;; volume
-        "   %D" ;; disco
-        "   %d     ") ;; data
+        "[%n] %W^>" ;; grupo atual e janelas
+        '(:eval (unix-cat "~/.cache/barra"))
+        ;;"%m" ;; estado do mpd
+        "       %D" ;; disco
+        "       %d     " ;; data
+      )
       *time-modeline-string* "%a %d/%m/%Y - %H:%M" ;; formato da data
+      *group-format* "%s %t"
       *mode-line-pad-y* 0
-      *mode-line-timeout* 5 ;; tempo de atualização da barra
+      *mode-line-timeout* 1 ;; tempo de atualização da barra
       *mode-line-border-color* "#ffffff"
       *mode-line-border-width* 0
       *mode-line-background-color* (car *colors*)
@@ -211,6 +212,12 @@
   (loop for screen in *screen-list* do
     (loop for head in (screen-heads screen) do
       (enable-mode-line screen head t))))
+
+;; (defun grupo-atual (to-frame from-frame)
+;;   "popup"
+;;   (groups))
+
+;; (add-hook *focus-group-hook* 'grupo-atual)
 
 ;; Grupos e regras ;;
 (when *initializing*
@@ -254,8 +261,10 @@
 (define-key *Menu-map* (kbd "Menu") "exec dmenu_run")
 (define-key *Menu-map* (kbd "r") "loadrc")
 (define-key *Menu-map* (kbd "ESC") "exec dmenu_sys")
+(define-key *Menu-map* (kbd "XF86Launch2") "exec dmenu_sys")
 (define-key *Menu-map* (kbd "e") "exec dmenu_edit")
 (define-key *Menu-map* (kbd "b") "exec dmenu_browser")
+(define-key *Menu-map* (kbd "f") "exec firefox")
 (define-key *Menu-map* (kbd "M") "exec dmenu_mont")
 (define-key *Menu-map* (kbd "p") "exec passmenu --type")
 (define-key *Menu-map* (kbd "w") "exec dmenu_wifi")
@@ -269,12 +278,14 @@
 (define-key *Menu-map* (kbd "S") "exec sct 2000")
 (define-key *Menu-map* (kbd "t") "exec transmission-qt")
 (define-key *Menu-map* (kbd "a") "exec emacsclient -n -c -a 's -e nvim' ~/documentos/anotações.md")
+(define-key *Menu-map* (kbd ";") "colon")
+(define-key *Menu-map* (kbd ":") "eval")
 (define-key *top-map* (kbd "Menu") '*Menu-map*)
 ;; Stumpwm
 (define-key *top-map* (kbd "s-q") "delete-window")
 (define-key *top-map* (kbd "s-w") "alterna-flutuante")
 (define-key *top-map* (kbd "s-f") "fullscreen")
-(define-key *top-map* (kbd "s-Tab") "next")
+(define-key *top-map* (kbd "s-Tab") "next-in-frame")
 (define-key *top-map* (kbd "s-b") "atualizar-barra")
 (define-key *top-map* (kbd "s-S-Return") "exec st")
 (define-key *top-map* (kbd "s-\\") "exec st_scratchpad")
@@ -317,11 +328,12 @@
 (define-key *top-map* (kbd "s-L") "move-window right")
 
 (when *initializing*
-  (defvar *OS* (uiop:getenv "OS"))
+  ;(defvar *OS* (uiop:getenv "OS"))
   ;(enable-mode-line-everywhere)
-  ;(enable-mode-line (current-screen) (current-head) t)
-  ;(stumptray:stumptray)
+  (enable-mode-line (current-screen) (current-head) t)
+  (stumptray:stumptray)
   (which-key-mode)
+  (run-shell-command "stumpwm_barra")
   (run-shell-command "setxkbmap -option caps:escape")
   (run-shell-command "xset r rate 300 100")
   ; Teclas no notebook
