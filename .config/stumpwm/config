@@ -126,14 +126,32 @@
        until (null l)
        do (format s "~a~%" l))))))
 
+(defun enable-mode-line-everywhere ()
+  "Ativa a barra em todos os monitores"
+  (loop for screen in *screen-list* do
+    (loop for head in (screen-heads screen) do
+      (enable-mode-line screen head t))))
+
 (defcommand reload-config () ()
   "Recarrega a configuração com o stumpish"
   (load "~/.config/stumpwm/config"))
 
-(defcommand atualizar-barra () ()
-  "Atualiza a barra e a systray"
-  (stumpwm:mode-line)
-  (stumptray:stumptray))
+;; Hooks ;;
+(remove-all-hooks *focus-group-hook*)
+(remove-all-hooks *focus-window-hook*)
+
+;; alterna stumptray junto com a barra
+(stumptray:add-mode-line-hooks)
+
+(defun grupo-atual (current-group last-group)
+  "popup mostrando os grupos e indicando o grupo selecionado"
+  (message (group-name current-group)))
+(add-hook *focus-group-hook* 'grupo-atual)
+
+(defun janela-atual (to-frame from-frame)
+    "popup mostrando as janelas na head e indicando a janela selecionada"
+    (run-commands "windows"))
+(add-hook *focus-window-hook* 'janela-atual)
 
 ;; Miscelânea ;;
 (set-normal-gravity :center)
@@ -142,6 +160,8 @@
 (setf *mouse-focus-policy* :click
       *resize-increment* 25
       *run-or-raise-all-groups* t) ; muda de grupos ao abrir programas
+(setq *suppress-echo-timeout* nil
+      *timeout-wait* 1)
 
 ;; Tema ;;
 (set-font "-*-terminus-*-*-*-*-14-*-*-*-*-*-*-*")
@@ -180,7 +200,7 @@
 (update-color-map (current-screen))
 
 ;; barra
-(setf *window-format* " %15t " ;; formato indicador de janela
+(setf *window-format* " %25t " ;; formato indicador de janela
       ;;mpd::*mpd-status-fmt* ""
       ;;mpd::*mpd-current-song-fmt* ""
       ;;mpd::*mpd-modeline-fmt* " %L  "
@@ -193,10 +213,11 @@
       stumptray::*tray-hiwin-background* "#000000"
       stumptray::*tray-cursor-color* "#000000"
       *screen-mode-line-format* (list ;; formato da barra
-        "[%n] %W^>" ;; grupo atual e janelas
+        ;;"[%n] %W" ;; grupo atual e janelas
         '(:eval (unix-cat "~/.cache/barra"))
         ;;"%m" ;; estado do mpd
         "       %D" ;; disco
+        "^>" ;; move o resto para a direita
         "       %d     " ;; data
       )
       *time-modeline-string* "%a %d/%m/%Y - %H:%M" ;; formato da data
@@ -207,17 +228,6 @@
       *mode-line-border-width* 0
       *mode-line-background-color* (car *colors*)
       *mode-line-foreground-color* (car (last *colors*)))
-(defun enable-mode-line-everywhere ()
-  "Ativa a barra em todos os monitores"
-  (loop for screen in *screen-list* do
-    (loop for head in (screen-heads screen) do
-      (enable-mode-line screen head t))))
-
-;; (defun grupo-atual (to-frame from-frame)
-;;   "popup"
-;;   (groups))
-
-;; (add-hook *focus-group-hook* 'grupo-atual)
 
 ;; Grupos e regras ;;
 (when *initializing*
@@ -285,8 +295,8 @@
 (define-key *top-map* (kbd "s-q") "delete-window")
 (define-key *top-map* (kbd "s-w") "alterna-flutuante")
 (define-key *top-map* (kbd "s-f") "fullscreen")
-(define-key *top-map* (kbd "s-Tab") "next-in-frame")
-(define-key *top-map* (kbd "s-b") "atualizar-barra")
+(define-key *top-map* (kbd "s-Tab") "pull-hidden-next")
+(define-key *top-map* (kbd "s-b") "mode-line")
 (define-key *top-map* (kbd "s-S-Return") "exec st")
 (define-key *top-map* (kbd "s-\\") "exec st_scratchpad")
 (define-key *top-map* (kbd "s-SPC") "exec playerctl play-pause || mpc toggle")
@@ -331,7 +341,6 @@
   ;(defvar *OS* (uiop:getenv "OS"))
   ;(enable-mode-line-everywhere)
   (enable-mode-line (current-screen) (current-head) t)
-  (stumptray:stumptray)
   (which-key-mode)
   (run-shell-command "stumpwm_barra")
   (run-shell-command "setxkbmap -option caps:escape")
