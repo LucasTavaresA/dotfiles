@@ -60,6 +60,7 @@
 
 ;; Avisa e pergunta se quer recarregar o arquivo caso ele tenha mudado em disco
 (global-auto-revert-mode)
+(setq global-auto-revert-non-file-buffers t)
 
 ;; Terminal do systema
 (setq terminal-here-linux-terminal-command 'st)
@@ -155,20 +156,23 @@
 (define-key evil-motion-state-map (kbd ";") nil)
 (define-key flyspell-mode-map (kbd "C-M-i") nil)
 
-;; Define
+;; Define teclas
 (define-key evil-motion-state-map "?" 'evil-ex-search-word-forward)
 (define-key evil-motion-state-map ":" '+vertico/search-symbol-at-point)
 (define-key evil-normal-state-map ";" '+default/search-buffer)
-;; toggles
+;; SPC t
 (define-key doom-leader-toggle-map (kbd "l") 'toggle-truncate-lines)
 (define-key doom-leader-toggle-map (kbd "n") 'doom/toggle-line-numbers)
 (define-key doom-leader-toggle-map (kbd "h") 'hl-line-mode)
 (define-key doom-leader-toggle-map (kbd "c") 'log/toggle-command-window)
 (define-key doom-leader-toggle-map (kbd "r") 'rainbow-mode)
-;; Prefixadas com espaço
-(define-key doom-leader-map (kbd "b c") 'copiar-buffer)
+;; SPC
+(define-key doom-leader-map (kbd "e b") 'eval-buffer)
+(define-key doom-leader-map (kbd "e d") 'eval-defun)
+(define-key doom-leader-map (kbd "e l") 'eval-last-sexp)
 (define-key doom-leader-map (kbd "e r") 'eval-region)
 (define-key doom-leader-map (kbd "e e") 'erc-tls)
+(define-key doom-leader-map (kbd "b c") 'copiabuffer)
 (define-key doom-leader-map (kbd "b s") 'flyspell-buffer)
 (define-key doom-leader-map (kbd "o l") 'org-insert-link)
 (define-key doom-leader-map (kbd "o t") 'org-babel-tangle)
@@ -223,6 +227,13 @@
       erc-auto-query 'bury ;; reconecta a canais irc de fundo
       )
 
+;; neotree
+(after! neotree
+  (setq neo-smart-open t
+        neo-window-fixed-size nil))
+(after! doom-themes
+  (setq doom-neotree-enable-variable-pitch t))
+
 ;; Popup que retorna comandos sendo usados
 (use-package! command-log-mode
   :after posframe)
@@ -253,28 +264,21 @@
             :internal-border-color "#ffffff"
             :override-parameters '((parent-frame . nil)))))))
 
-;; Trocar listas com hífens por pontos
-(font-lock-add-keywords 'org-mode
-                        '(("^ *\\([-]\\) "
-                           (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
-
-(require 'org-indent)
-
-(setq org-src-fontify-natively t
-      org-src-tab-acts-natively t
-      org-confirm-babel-evaluate nil ;; Não pergunta antes de avaliar
-      org-ellipsis " "
-      org-hide-emphasis-markers t ;; Esconde marcação
-      org-edit-src-content-indentation 0) ;; Indentação nos blocos de código
-
-;; Orgmode mais rápido
+;; Orgmode ;;
 (after! org
-  ;; (define-key doom-leader-map (kbd "SPC") 'org-toggle-checkbox)
-  (setq org-fontify-quote-and-verse-blocks nil
-        org-fontify-whole-heading-line nil
-        org-hide-leading-stars nil
-        org-startup-indented nil))
-
+  (setq org-ellipsis "  "
+        org-superstar-headline-bullets-list '("◉" "●" "○" "◆" "●" "○" "◆")
+        org-superstar-item-bullet-alist '((?+ . ?➤) (?- . ?✦))
+        org-hide-emphasis-markers t
+        org-src-fontify-natively t
+        org-src-tab-acts-natively t
+        org-startup-indented nil
+        org-hide-leading-stars t
+        org-confirm-babel-evaluate nil ; Não pergunta antes de avaliar
+        org-edit-src-content-indentation 0 ; Indentação nos blocos de código
+        org-table-convert-region-max-lines 20000)
+)
+(require 'org-indent)
 ;; Snippets para templates de código
 (require 'org-tempo)
 
@@ -289,7 +293,6 @@
 (add-to-list 'org-structure-template-alist '("json" . "src json"))
 (add-to-list 'org-structure-template-alist '("conf" . "src conf"))
 (add-to-list 'org-structure-template-alist '("vim" . "src vimrc"))
-
 (push '("conf-unix" . conf-unix) org-src-lang-modes)
 
 ;; Cria sumarios automaticamente
