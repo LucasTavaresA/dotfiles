@@ -115,19 +115,19 @@
 
 ;; Funções
 (defun orgm/org-cycle-current-headline ()
-  "Abre e fecha a header atual"
+  "Abre e fecha a header atual."
   (interactive)
   (org-cycle-internal-local))
 (defun salvar-e-fechar-tudo ()
-  "Salva, fecha todos os buffers e a janela."
+  "Salva, fecha o buffer e a janela."
   (interactive)
   (call-interactively 'save-buffer)
-  (call-interactively 'doom/kill-all-buffers)
+  (call-interactively 'kill-current-buffer)
   (call-interactively 'evil-quit))
 (defun fechar-tudo ()
-  "Fecha todos os buffers e a janela"
+  "Fecha o buffer e a janela sem salvar."
   (interactive)
-  (call-interactively 'doom/kill-all-buffers)
+  (call-interactively 'kill-current-buffer)
   (call-interactively 'evil-quit))
 
 ;; Macros
@@ -295,10 +295,6 @@
 ;; Cria sumarios automaticamente
 (use-package! org-make-toc
   :hook (org-mode . org-make-toc-mode))
-
-;; Mostra marcação quando necessário
-(use-package! org-appear
-  :hook (org-mode . org-appear-mode))
 
 ;; Pergunta se quer separar apos salvar arquivos org
 (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook (lambda ()(if (y-or-n-p "Tangle?")(org-babel-tangle))) nil t)))
