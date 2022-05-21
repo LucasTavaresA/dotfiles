@@ -96,7 +96,7 @@ export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
 # ls colors
 export LS_COLORS=""
 # fzf
-export FZF_ALT_C_COMMAND="find . -maxdepth 4 -type d | grep -v '^\./\.cache'"
+export FZF_ALT_C_COMMAND="fd --base-directory $HOME -H -I -d 4 -t d -E '*cache*' -E '*git*'"
 
 # shell
 export SHELL="sh"
