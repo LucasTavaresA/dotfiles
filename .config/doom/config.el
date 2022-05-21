@@ -1,42 +1,50 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;; Fonte
+;; fonte
 (setq doom-font (font-spec :family "Terminus" :size 18)
       doom-variable-pitch-font (font-spec :family "Ubuntu" :size 18)
-      doom-big-font (font-spec :family "Terminus" :size 22))
+      doom-big-font (font-spec :family "Terminus" :size 24))
 (after! doom-themes
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t))
 (custom-set-faces!
   '(font-lock-comment-face :family "SauceCodePro Nerd Font Mono" :slant italic)
-  '(font-lock-keyword-face :family "SauceCodePro Nerd Font Mono" :slant italic))
+  '(font-lock-doc-face :family "SauceCodePro Nerd Font Mono" :slant italic)
+  '(font-lock-warning-face :family "SauceCodePro Nerd Font Mono" :slant italic))
 
-;; Transparencia - emacs 29
+;; transparencia - emacs 29
 ;;(set-frame-parameter (selected-frame) 'alpha-background 85)
 ;;(add-to-list 'default-frame-alist '(alpha-background . 85))
 
-;; Desativa a modeline
+;; desativa a modeline
 (setq-default mode-line-format nil)
 
-;; Carregar um tema com `doom-theme' ou `load-theme'
+;; previne flickering
+(add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
+
+;; compleção mais lenta
+(after! company
+  (setq company-idle-delay 0.5))
+
+;; carregar um tema com `doom-theme' ou `load-theme'
 (setq doom-theme 'spaceway)
 
-;; Desabilita numero de linhas
+;; desabilita numero de linhas
 (setq display-line-numbers-type nil)
 
-;; Desativa indicação de linha atual
+;; desativa indicação de linha atual
 (remove-hook 'doom-first-buffer-hook #'global-hl-line-mode)
 
-;; Formato e cor dos cursor em diferentes modos
+;; formato e cor dos cursor em diferentes modos
 (setq evil-emacs-state-cursor    '("#ffff00" box))
 (setq evil-normal-state-cursor   '("#ffffff" box))
 (setq evil-operator-state-cursor '("#ebcb8b" hollow))
 (setq evil-visual-state-cursor   '("#ffffff" box))
 (setq evil-insert-state-cursor   '("#ffffff" (bar . 2)))
-(setq evil-replace-state-cursor  '("#ff0000" (hbar . 4)))
+(setq evil-replace-state-cursor  '("#ff0000" box))
 (setq evil-motion-state-cursor   '("#ad8beb" box))
 
-;; Controle de projetos
+;; controle de projetos
 (use-package! projectile
   :init
   (when (file-directory-p "~/code/")
@@ -47,33 +55,33 @@
 (with-eval-after-load 'undo-tree
   (setq undo-tree-auto-save-history nil))
 
-;; Para GPG, email, clientes, templates e snippets
+;; para GPG, email, clientes, templates e snippets
 (setq user-full-name "Lucas Tavares"
       user-mail-address "tavares.lassuncao@gmail.com")
 
-;; Muda systema de desfazer para o undo-tree
+;; muda systema de desfazer para o undo-tree
 (global-undo-tree-mode)
 (evil-set-undo-system 'undo-tree)
 
-;; Barra pisca em alertas
+;; barra pisca em alertas
 (setq visible-bell t)
 
-;; Avisa e pergunta se quer recarregar o arquivo caso ele tenha mudado em disco
+;; avisa e pergunta se quer recarregar o arquivo caso ele tenha mudado em disco
 (global-auto-revert-mode)
 (setq global-auto-revert-non-file-buffers t)
 
-;; Terminal do systema
+;; terminal do systema
 (setq terminal-here-linux-terminal-command 'st)
 
-;; Cursor da a volta na tela para a proxima linha
+;; cursor da a volta na tela para a proxima linha
 (setq-default evil-cross-lines t)
 
-;; Tamanho dos tabs
+;; tamanho dos tabs
 (setq-default tab-width 4)
 (setq-default evil-shift-width tab-width)
 (setq-default indent-tabs-mode nil)
 
-;; Correção ortográfica
+;; correção ortográfica
 (use-package! flyspell
   :defer t
   :config
@@ -86,35 +94,36 @@
 (setq flyspell-sort-corrections nil) ; Não organizar correções por ordem alfabetica
 (setq flyspell-issue-message-flag nil) ; Não mandar mensagens para cada palavra errada
 (with-eval-after-load "ispell"
-  ;; Uma lingua padrão deve ser configurada embora outras linguas sejam adicionadas mais abaixo
+  ;; uma lingua padrão deve ser configurada embora outras linguas sejam adicionadas mais abaixo
   (setenv "LANG" "pt_BR.UTF-8")          ; lingua padrão
   (setq ispell-program-name "hunspell")  ; ferramenta uilizada
   (setq ispell-dictionary "pt_BR,en_US") ; lista de linguas
   (ispell-set-spellchecker-params)       ; isso deve ser chamado antes de adicionar multi dicionários
   (ispell-hunspell-add-multi-dic "pt_BR,en_US")
-  ;; Local do dicionario pessoal, caso não definida novas palavras são adicionadas ao .hunspell_pt_BR
+  ;; local do dicionario pessoal, caso não definida novas palavras são adicionadas ao .hunspell_pt_BR
   (setq ispell-personal-dictionary "~/.config/hunspell/hunspell_personal"))
-;; Não  carrega dicionario pessoal caso ele não exista
+;; não  carrega dicionario pessoal caso ele não exista
 (unless (file-exists-p ispell-personal-dictionary)
   (write-region "" nil ispell-personal-dictionary nil 0))
 
-;; Desabilita funções incomodantes do lsp
+;; desabilita funções incomodantes do lsp
 (after! lsp-mode
   (setq lsp-enable-symbol-highlighting nil))
 (after! lsp-ui
-  (setq lsp-ui-sideline-enable nil))
+  (setq lsp-ui-sideline-enable nil
+        lsp-ui-doc-enable nil)) ; desabilita docstrings, use `K'
 
-;; Adiciona o modo vimrc
+;; adiciona o modo vimrc
 (add-to-list 'auto-mode-alist '("\\.vim\\(rc\\)?\\'" . vimrc-mode))
 
-;; Modo simples para o sxhkd
+;; modo simples para o sxhkd
 (define-generic-mode sxhkd-mode
   '(?#)
   '("alt" "Escape" "super" "bspc" "dwmc" "herbstclient" "stumpish" "ctrl" "space" "shift" "Return" "Menu" "backslash" "slash" "comma" "period" "Tab" "Left" "Right" "Up" "Down" "Print") nil
   '("sxhkdrc") nil
   "Modo simples para o sxhkd.")
 
-;; Funções
+;; funções
 (defun orgm/org-cycle-current-headline ()
   "Abre e fecha a header atual."
   (interactive)
@@ -131,7 +140,7 @@
   (call-interactively 'kill-current-buffer)
   (call-interactively 'evil-quit))
 
-;; Macros
+;; macros
 (fset 'comentar-e-descer-linha
    (kmacro-lambda-form [?\C-x ?\C-\; down] 0 "%d"))
 (fset 'copiar-buffer
@@ -139,7 +148,7 @@
 (fset 'colar-abaixo
    (kmacro-lambda-form [?o ?\M-v] 0 "%d"))
 
-;; Desabilita teclas
+;; desabilita teclas
 (with-eval-after-load "org"
   (define-key org-mode-map (kbd "<M-up>") nil)
   (define-key org-mode-map (kbd "<M-down>") nil)
@@ -156,7 +165,7 @@
 (define-key evil-motion-state-map (kbd ";") nil)
 (define-key flyspell-mode-map (kbd "C-M-i") nil)
 
-;; Define teclas
+;; define teclas
 (define-key evil-motion-state-map "?" 'evil-ex-search-word-forward)
 (define-key evil-motion-state-map ":" '+vertico/search-symbol-at-point)
 (define-key evil-normal-state-map ";" '+default/search-buffer)
@@ -189,14 +198,14 @@
 (define-key doom-leader-map (kbd "<down>") 'windmove-down)
 (define-key doom-leader-map (kbd "<left>") 'windmove-left)
 (define-key doom-leader-map (kbd "<right>") 'windmove-right)
-;; Move entre partes da mesma linha
+;; move entre partes da mesma linha
 (define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
 (define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
 (define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
 (define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
 (define-key evil-normal-state-map (kbd "m") 'evil-execute-macro)
 (define-key evil-normal-state-map (kbd "P") 'colar-abaixo)
-;; Globais
+;; globais
 (global-set-key (kbd "C-c C-c") 'comentar-e-descer-linha)
 (global-set-key (kbd "C-s") 'evil-mc-make-all-cursors)
 (global-set-key (kbd "<C-S-down>") 'evil-mc-make-and-goto-next-match)
@@ -223,9 +232,8 @@
       erc-kill-buffer-on-part t
       erc-fill-column 100
       erc-fill-function 'erc-fill-static
-      erc-fill-static-center 20
-      erc-auto-query 'bury ;; reconecta a canais irc de fundo
-      )
+      erc-auto-query 'bury ; reconecta a canais irc de fundo
+      erc-fill-static-center 20)
 
 ;; neotree
 (after! neotree
@@ -234,7 +242,7 @@
 (after! doom-themes
   (setq doom-neotree-enable-variable-pitch t))
 
-;; Popup que retorna comandos sendo usados
+;; popup que retorna comandos sendo usados
 (use-package! command-log-mode
   :after posframe)
 
@@ -264,6 +272,16 @@
             :internal-border-color "#ffffff"
             :override-parameters '((parent-frame . nil)))))))
 
+;; Markdown ;;
+;; headers variam de tamanho
+(custom-set-faces
+  '(markdown-header-face ((t (:inherit font-lock-function-name-face :weight bold :family "variable-pitch"))))
+  '(markdown-header-face-1 ((t (:inherit markdown-header-face :height 1.1))))
+  '(markdown-header-face-2 ((t (:inherit markdown-header-face :height 0.95))))
+  '(markdown-header-face-3 ((t (:inherit markdown-header-face :height 0.9))))
+  '(markdown-header-face-4 ((t (:inherit markdown-header-face :height 0.9))))
+  '(markdown-header-face-5 ((t (:inherit markdown-header-face :height 0.9)))))
+
 ;; Orgmode ;;
 (after! org
   (setq org-ellipsis "  "
@@ -276,10 +294,24 @@
         org-hide-leading-stars t
         org-confirm-babel-evaluate nil ; Não pergunta antes de avaliar
         org-edit-src-content-indentation 0 ; Indentação nos blocos de código
-        org-table-convert-region-max-lines 20000)
-)
+        org-table-convert-region-max-lines 20000))
+
+(defun lt/org-fonts ()
+    "Define o tamanho de fontes orgmode"
+        ;; headers variam de tamanho
+        (dolist (face '((org-level-1 . 1.1)
+                        (org-level-2 . 1.0)
+                        (org-level-3 . 1.0)
+                        (org-level-4 . 1.1)
+                        (org-level-5 . 1.0)
+                        (org-level-6 . 1.0)
+                        (org-level-7 . 1.0)
+                        (org-level-8 . 1.0)))
+                (set-face-attribute (car face) nil :font "Ubuntu" :weight 'regular :height (cdr face))))
+(add-hook 'org-mode-hook 'lt/org-fonts)
+
 (require 'org-indent)
-;; Snippets para templates de código
+;; snippets para templates de código
 (require 'org-tempo)
 
 (add-to-list 'org-structure-template-alist '("sh" . "src sh"))
@@ -295,9 +327,10 @@
 (add-to-list 'org-structure-template-alist '("vim" . "src vimrc"))
 (push '("conf-unix" . conf-unix) org-src-lang-modes)
 
-;; Cria sumarios automaticamente
+
+;; cria sumarios automaticamente
 (use-package! org-make-toc
   :hook (org-mode . org-make-toc-mode))
 
-;; Pergunta se quer separar apos salvar arquivos org
+;; pergunta se quer separar apos salvar arquivos org
 (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook (lambda ()(if (y-or-n-p "Tangle?")(org-babel-tangle))) nil t)))
