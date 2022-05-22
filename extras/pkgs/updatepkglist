@@ -1,6 +1,6 @@
 #!/bin/sh
 if [ "$OS" = "artixlinux" ] || [ "$OS" = "archlinux" ] || [ "$OS" = "manjaro" ]; then
-    pacman -Qqe > "$HOME/extras/pkgs/$HOSTNAME.txt"
+    pacman -Qqe > "/home/lucas/extras/pkgs/$HOSTNAME.txt"
 elif [ "$OS" = "voidlinux" ]; then
     xpkg -m > "$HOME/extras/pkgs/$HOSTNAME.txt"
 fi

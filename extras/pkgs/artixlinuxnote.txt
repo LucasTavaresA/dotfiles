@@ -17,6 +17,7 @@ aspnet-runtime
 aspnet-targeting-pack
 autoconf
 automake
+barrier
 base
 bat
 bc

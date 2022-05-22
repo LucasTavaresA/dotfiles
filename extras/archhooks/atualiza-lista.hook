@@ -1,0 +1,10 @@
+[Trigger]
+Type = Package
+Operation = Install
+Operation = Remove
+Target = *
+
+[Action]
+Description = Atualizando lista de pacotes...
+When = PostTransaction
+Exec = /home/lucas/extras/pkgs/updatepkglist
