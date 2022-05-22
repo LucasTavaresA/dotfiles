@@ -4,6 +4,7 @@
 .config/chromium/
 .config/coc/
 .config/dconf/
+.config/Debauchee/
 .config/discord/
 .config/emacs/
 .config/doom/spaceway-theme/

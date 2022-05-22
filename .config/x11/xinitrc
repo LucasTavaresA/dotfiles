@@ -9,6 +9,7 @@ pidof dunst || dunst &
 pidof xbanish || xbanish &
 pidof syncthing || syncthing &
 pidof emacs || doom_reset &
+pidof barrier || barrier &
 fzf_man update &
 # musica
 pidof playerctld || playerctld daemon &
