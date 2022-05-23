@@ -27,7 +27,7 @@
   (setq company-idle-delay 0.5))
 
 ;; carregar um tema com `doom-theme' ou `load-theme'
-(setq doom-theme 'spaceway)
+(setq doom-theme 'blinding-dark)
 
 ;; desabilita numero de linhas
 (setq display-line-numbers-type nil)
@@ -181,7 +181,7 @@
 (define-key doom-leader-map (kbd "e l") 'eval-last-sexp)
 (define-key doom-leader-map (kbd "e r") 'eval-region)
 (define-key doom-leader-map (kbd "e e") 'erc-tls)
-(define-key doom-leader-map (kbd "b c") 'copiabuffer)
+(define-key doom-leader-map (kbd "b c") 'copia-buffer)
 (define-key doom-leader-map (kbd "b s") 'flyspell-buffer)
 (define-key doom-leader-map (kbd "o l") 'org-insert-link)
 (define-key doom-leader-map (kbd "o t") 'org-babel-tangle)

@@ -1,36 +1,39 @@
 [submodule "code/c/st"]
 	path = code/c/st
-	url = git@github.com:lucastavaresa/st.git
+	url = https://github.com/lucastavaresa/st.git
 [submodule "code/c/dmenu"]
 	path = code/c/dmenu
-	url = git@github.com:lucastavaresa/dmenu.git
+	url = https://github.com/lucastavaresa/dmenu.git
 [submodule "code/c/dwm"]
 	path = code/c/dwm
-	url = git@github.com:lucastavaresa/dwm.git
+	url = https://github.com/lucastavaresa/dwm.git
 [submodule "code/c/dwmblocks"]
 	path = code/c/dwmblocks
-	url = git@github.com:lucastavaresa/dwmblocks.git
+	url = https://github.com/lucastavaresa/dwmblocks.git
 [submodule ".config/nvim/plugins/moonlight.nvim"]
 	path = .config/nvim/plugins/moonlight.nvim
-	url = git@github.com:lucastavaresa/moonlight.nvim.git
+	url = https://github.com/lucastavaresa/moonlight.nvim.git
 [submodule ".config/nvim/plugins/lite-dfm"]
 	path = .config/nvim/plugins/lite-dfm
-	url = git@gitlab.com:lucastavaresa/lite-dfm.git
+	url = https://gitlab.com/lucastavaresa/lite-dfm.git
 [submodule "code/c/svkbd"]
 	path = code/c/svkbd
-	url = git@gitlab.com:lucastavaresa/svkbd.git
+	url = https://gitlab.com/lucastavaresa/svkbd.git
 [submodule "code/c/slock"]
 	path = code/c/slock
-	url = git@gitlab.com:lucastavaresa/slock.git
+	url = https://gitlab.com/lucastavaresa/slock.git
 [submodule "code/c/nsxiv"]
 	path = code/c/nsxiv
-	url = git@gitlab.com:lucastavaresa/nsxiv.git
+	url = https://gitlab.com/lucastavaresa/nsxiv.git
 [submodule "code/shell"]
 	path = code/shell
-	url = git@github.com:lucastavaresa/scripts.git
+	url = https://github.com/lucastavaresa/scripts.git
 [submodule ".config/stumpwm/modules/contrib"]
 	path = .config/stumpwm/modules/contrib
 	url = https://github.com/stumpwm/stumpwm-contrib
 [submodule ".config/stumpwm/modules/stumpwm-prescient"]
 	path = .config/stumpwm/modules/stumpwm-prescient
 	url = https://github.com/landakram/stumpwm-prescient
+[submodule ".config/doom/blinding-dark-theme"]
+	path = .config/doom/blinding-dark-theme
+	url = https://github.com/lucastavaresa/blinding-dark-theme
