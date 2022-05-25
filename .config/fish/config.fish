@@ -6,6 +6,11 @@ if status is-interactive
     set -x GPG_TTY (tty)
     set fzf_fd_opts --base-directory $HOME -H -I -d 4 -t d -E '*cache*' -E '*git*'
     set fzf_git_log_opts --preview-window=bottom
+    set fish_color_normal white
+    set fish_color_autosuggestion '#444444'
+    set fish_color_command green
+    set fish_color_error '#ff0000'
+    set fish_color_param cyan
 
     ## Plugins ##
     if test ! -e $HOME/.config/fish/fish_plugins
