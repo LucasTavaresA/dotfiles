@@ -55,6 +55,7 @@ ffmpegthumbnailer
 file
 findutils
 firefox
+fish
 flex
 fzf
 galculator
@@ -86,6 +87,7 @@ htop
 hunspell
 hunspell-en_us
 hunspell-pt-br
+imagemagick
 imlib
 imlib2
 java-environment-common
@@ -158,6 +160,7 @@ pass
 patch
 patchutils
 pdfjs
+perl-image-exiftool
 picom
 pkgconf
 playerctl
@@ -182,6 +185,7 @@ shellcheck
 simple-mtpfs
 slop
 starship
+stpv-git
 syncthing
 telegram-desktop
 terminus-font
@@ -241,4 +245,3 @@ zathura
 zathura-cb
 zathura-djvu
 zathura-pdf-mupdf
-zsh

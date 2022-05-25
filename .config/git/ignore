@@ -7,6 +7,11 @@
 .config/Debauchee/
 .config/discord/
 .config/emacs/
+.config/fish/completions/
+.config/fish/conf.d/
+.config/fish/functions/
+.config/fish/fish_plugins
+.config/fish/fish_variables
 .config/doom/spaceway-theme/
 .config/doom/themes/
 .config/doom/yasnippet-snippets/
