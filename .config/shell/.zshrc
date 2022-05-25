@@ -41,6 +41,70 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots) # Incluir arquivos ocultos.
 
+## Funções
+# localizar e editar arquivo
+ea () {
+    arquivo=$(fd -H -I -d 4 -t f -E '*cache*' -E '*git*' | fzf)
+    if [ -n "$arquivo" ]; then
+        eval $VISUAL $arquivo
+    fi
+}
+
+# git status recursivo
+gsr () {
+    for repo in $(fd -H -I -E "*cache*" -E "*.local*" -E "*.config/emacs*" | grep --color -i -I --color -i -I "/.git\$");
+    do
+        repo=$(echo $repo | sed 's/\/.git$//')
+        cols=$(tput cols)
+        i=0
+        while [ $i -lt $cols ]; do
+            echo -n "─"
+            i=$((i+1))
+        done
+        if git status $repo | grep nothing > /dev/null; then
+            printf "\033[96m\033[1m%s\033[0m\n" "$repo"
+        else
+            printf "\033[96m\033[1m%s\033[0m\n" "$repo"
+            git status $repo
+        fi
+    done
+}
+
+# facilita extrair arquivos
+# exemplo: ex (arquivo).zip
+ex () {
+    for arquivo in "$@"
+    do
+        if [ -f "$arquivo" ]; then
+            case "$arquivo" in
+                "*.7z|*.arj|*.cab|*.cb7|*.chm|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar") \
+                                      7z x "$arquivo"        ;;
+                "*.bz2")              bunzip2 "$arquivo"     ;;
+                "*.cba|*.ace")        unace x "$arquivo"     ;;
+                "*.cbr")              unrar x -ad "$arquivo" ;;
+                "*.cbt|*.txz")        tar xvf "$arquivo"     ;;
+                "*.cbz|*.epub|*.zip") unzip "$arquivo"       ;;
+                "*.cpio")             cpio -id < "$arquivo"  ;;
+                "*.deb")              ar x "$arquivo"        ;;
+                "*.exe")              cabextract "$arquivo"  ;;
+                "*.gz")               gunzip "$arquivo"      ;;
+                "*.lzma")             unlzma "$arquivo"      ;;
+                "*.rar")              unrar x "$arquivo"     ;;
+                "*.tar.bz2|*.tbz2")   tar xjf "$arquivo"     ;;
+                "*.tar.gz|*.tgz")     tar xzf "$arquivo"     ;;
+                "*.tar.xz|*.tar")     tar xf "$arquivo"      ;;
+                "*.tar.zst")          unzstd "$arquivo"      ;;
+                "*.xz")               unxz "$arquivo"        ;;
+                "*.Z|*.z")            uncompress "$arquivo"  ;;
+                *)           echo "$arquivo não pode ser extraído com ex()!" && return 1 ;;
+            esac
+        else
+            echo "$arquivo arquivo não existe!"
+            return 1
+        fi
+    done
+}
+
 #### Aliases ####
 alias hc="herbstclient"
 alias as="alias | grep --color -i"
@@ -89,8 +153,8 @@ alias u="doas updatedb"
 alias ch="chmod +x"
 alias cp="cp -ri"
 alias mv="mv -i"
-alias rm="lixo"
-alias rml="lixo limpar"
+alias lx="lixo"
+alias lxl="lixo limpar"
 alias ln="ln -i"
 alias md="mkdir -p"
 alias t="touch"
@@ -122,25 +186,7 @@ alias grrh="git reset --hard"
 alias gg="git grep -i -I -n --break --heading -p"
 
 ## aliases em sistemas
-if [ "$OS" = "voidlinux" ]; then
-    alias xs="./xbps-src"
-    # xbps
-    alias xis="doas xbps-install -S"
-    alias xqrs="xbps-query -Rs"
-    alias xisu="doas xbps-install -Su"
-    alias xql="xbps-query -l"
-    alias xqlg="xbps-query -l | grep --color -i"
-    alias xrr="doas xbps-remove -R"
-    # xtools
-    alias chroot="xchroot"
-    alias xg="xgrep"
-    alias xh="xhog"
-    alias xil="xilog"
-    alias xl="xlocate -S && xlocate"
-    alias xls="xls"
-    alias xm="xmandoc"
-    alias xqr="xq -R"
-elif [ "$OS" = "artixlinux" ] || [ "$OS" = "archlinux" ] || [ "$OS" = "manjaro" ]; then
+if [ "$OS" = "artixlinux" ] || [ "$OS" = "archlinux" ] || [ "$OS" = "manjaro" ]; then
     # pacman
     alias ps="doas pacman --color always -S"
     alias psi="pacman --color always -Si"
@@ -162,6 +208,23 @@ elif [ "$OS" = "artixlinux" ] || [ "$OS" = "archlinux" ] || [ "$OS" = "manjaro" 
     alias ppqs="paru --color always -Qs"
     alias ppfyl="paru --color always -Fyl"
     alias pprns="paru --color always -Rns"
+elif [ "$OS" = "voidlinux" ]; then
+    alias xs="./xbps-src"
+    # xbps
+    alias xis="doas xbps-install -S"
+    alias xqrs="xbps-query -Rs"
+    alias xisu="doas xbps-install -Su"
+    alias xql="xbps-query -l"
+    alias xqlg="xbps-query -l | grep --color -i"
+    alias xrr="doas xbps-remove -R"
+    # xtools
+    alias chroot="xchroot"
+    alias xg="xgrep"
+    alias xh="xhog"
+    alias xil="xilog"
+    alias xl="xlocate -S && xlocate"
+    alias xm="xmandoc"
+    alias xqr="xq -R"
 elif [ "$OS" = "linuxmint" ]; then
     alias bat="batcat"
     # apt
@@ -173,111 +236,6 @@ elif [ "$OS" = "linuxmint" ]; then
     alias ar="doas apt remove"
 fi
 
-## Funções
-# lixeira
-lixo () {
-    [ ! -d ~/.trash ] && mkdir ~/.trash
-    [ ! -d ~/.cache ] && mkdir ~/.cache
-    if [ "$1" = "limpar" ]; then
-        lsd -lA ~/.trash/
-        \rm -rf ~/.trash/*
-        \rm -rf ~/.trash/.*
-        \rm -f .cache/lixo
-        return
-    fi
-    substituir () {
-        for arquivo in "$@"
-        do
-            mv -f $arquivo ~/.trash >/dev/null 2>&1 || nome=${arquivo##*/} && \rm -rf ~/.trash/$nome && mv -f $arquivo ~/.trash
-        done
-    }
-    mv -f "$@" ~/.trash >/dev/null 2>&1 || substituir "$@"
-    if [ -e ~/.cache/lixo ]; then
-        quantia=$(cat ~/.cache/lixo)
-        quantia=$((quantia+1))
-        echo $quantia > ~/.cache/lixo
-        [ $(cat ~/.cache/lixo) -gt 5 ] && echo "Limpe a sua lixeira!" && notify-send -u critical "Lixeira" "Limpe a sua lixeira!" && return
-    else
-        touch ~/.cache/lixo
-        echo 1 > ~/.cache/lixo
-    fi
-}
-
-# localizar e editar arquivo
-vw () {
-    nvim $(where $1)
-}
-
-# previsão de imagens no lf
-lf () {
-    LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"
-    LF_TEMPDIR="$LF_TEMPDIR" lf-run -last-dir-path="$LF_TEMPDIR/lastdir" "$@"
-    if [ "$(cat "$LF_TEMPDIR/cdtolastdir" 2>/dev/null)" = "1" ]; then
-        cd "$(cat "$LF_TEMPDIR/lastdir")"
-    fi
-    \rm -r "$LF_TEMPDIR"
-    unset LF_TEMPDIR
-}
-
-# git status recursivo
-gsr () {
-    status_ops="$*"
-    find . -name '.git' \
-        | while read -r repo
-    do
-        repo=${repo%".git"}
-        (git -C "$repo" status -s \
-            | grep -q -v "^\$" \
-            && echo -e "\n\033[1m${repo}\033[m" \
-            && git -C "$repo" status $status_ops) \
-            || true
-    done
-}
-
-# git pull recursivo
-gpr () {
-    find . -mindepth $1 -maxdepth $1 | xargs -I{} git -C {} pull
-}
-
-# facilita extrair arquivos
-# exemplo: ex (arquivo).zip
-SAVEIFS=$IFS
-IFS=$(echo -en "\n\b")
-function ex {
-    for n in "$@"
-    do
-      if [ -f "$n" ] ; then
-          case "${n%,}" in
-            *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
-                         tar xvf "$n"       ;;
-            *.lzma)      unlzma ./"$n"      ;;
-            *.bz2)       bunzip2 ./"$n"     ;;
-            *.cbr|*.rar)       unrar x -ad ./"$n" ;;
-            *.gz)        gunzip ./"$n"      ;;
-            *.cbz|*.epub|*.zip)       unzip ./"$n"       ;;
-            *.z)         uncompress ./"$n"  ;;
-            *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
-                         7z x ./"$n"        ;;
-            *.xz)        unxz ./"$n"        ;;
-            *.exe)       cabextract ./"$n"  ;;
-            *.cpio)      cpio -id < ./"$n"  ;;
-            *.cba|*.ace)      unace x ./"$n"      ;;
-            *)
-                         echo "ex: '$n' - Método de arquivação desconhecido"
-                         return 1
-                         ;;
-          esac
-      else
-          echo "'$n' - Arquivo não existe"
-          return 1
-      fi
-    done
-}
-IFS=$SAVEIFS
-
-# prompt
-#PS1="%B[%n] %4~ %{$fg[green]%}>%{$reset_color%}%b"
-
 # carrega plugins do zsh, deve ser o ultimo comando
 source $HOME/.config/shell/plugins/fsh/F-Sy-H.plugin.zsh
 source $HOME/.config/shell/plugins/zsh-expand-all.zsh
@@ -288,4 +246,6 @@ source $HOME/.config/shell/plugins/keys-fzf.zsh
 bindkey  "^[d"   fzf-cd-widget
 bindkey  "^[s"   fzf-history-widget
 
+# prompt
+#PS1="%B[%n] %4~ %{$fg[green]%}>%{$reset_color%}%b"
 eval "$(starship init zsh)"
