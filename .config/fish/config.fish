@@ -7,6 +7,14 @@ if status is-interactive
     set fzf_fd_opts --base-directory $HOME -H -I -d 4 -t d -E '*cache*' -E '*git*'
     set fzf_git_log_opts --preview-window=bottom
 
+    ## Plugins ##
+    if test ! -e $HOME/.config/fish/fish_plugins
+        echo "Installing fisher! 🎣"
+        curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+        echo "Installing fzf! 🔍"
+        fisher install PatrickF1/fzf.fish
+    end
+
     ## Teclas ##
     # teclas emacs/vi
     function fish_user_key_bindings
