@@ -142,12 +142,12 @@
 (defun grupo-atual (current-group last-group)
   "popup mostrando os grupos e indicando o grupo selecionado"
   (message (group-name current-group)))
-(add-hook *focus-group-hook* 'grupo-atual)
+;; (add-hook *focus-group-hook* 'grupo-atual)
 
 (defun janela-atual (to-frame from-frame)
     "popup mostrando as janelas na head e indicando a janela selecionada"
     (run-commands "windows"))
-(add-hook *focus-window-hook* 'janela-atual)
+;; (add-hook *focus-window-hook* 'janela-atual)
 
 ;; Miscelânea ;;
 (set-normal-gravity :center)
@@ -228,22 +228,25 @@
 ;; Grupos e regras ;;
 (when *initializing*
   (grename "Browser")
-  (gnewbg "Code")
+  ;(gnewbg "Code")
   (gnewbg "Fullscreen")
   (gnewbg "Message")
   (gnewbg ".Hidden"))
 
 ;; remove todas as regras
 (clear-window-placement-rules)
+(define-fullscreen-in-frame-rule firefox-rule (win)
+  (when (classed-p win "firefox")
+    (classed-p win "firefox")))
 ;(frame-number raise lock &key create restore dump-name class instance type role title)
 (define-frame-preference "Browser"
     (0 t t :class "qutebrowser")
     (0 t t :class "Firefox")
-    (0 t t :class "firefox"))
-(define-frame-preference "Code"
+    (0 t t :class "firefox")
     (0 t t :class "nvim")
     (0 t t :class "Emacs")
     (1 t t :class "st-256color"))
+;; (define-frame-preference "Code"
 (define-frame-preference "Fullscreen"
     (0 t t :class "mpv")
     (0 t t :class "Gimp")
@@ -337,7 +340,7 @@
 (when *initializing*
   ;(defvar *OS* (uiop:getenv "OS"))
   ;(enable-mode-line-everywhere)
-  (enable-mode-line (current-screen) (current-head) t)
+  ;(enable-mode-line (current-screen) (current-head) t)
   (which-key-mode)
   (run-shell-command "stumpwm_barra")
   (run-shell-command "setxkbmap -option caps:escape")
