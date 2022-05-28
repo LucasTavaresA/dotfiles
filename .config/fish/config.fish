@@ -26,7 +26,7 @@ if status is-interactive
         # fish_default_key_bindings
         fish_vi_key_bindings
         # fzf
-        fzf_configure_bindings --history=\es --directory=\ed --git_log=\ea --variables=\cv --processes=\e\cP
+        fzf_configure_bindings --history=\es --directory=\ed --git_log=\ew --variables=\cv --processes=\e\cP
     end
 
     ## funções ##

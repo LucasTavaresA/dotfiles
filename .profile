@@ -29,7 +29,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_RUNTIME_DIR="/run/user/$UID"
 export XDG_BIN_HOME="$HOME/.local/bin"
 # window manager
-export WM="stumpwm"
+export WM="herbstluftwm"
 # systema
 export HOSTNAME="$(uname -n)"
 case $HOSTNAME in
