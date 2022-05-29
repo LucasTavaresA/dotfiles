@@ -1,0 +1,28 @@
+## Aparencia ##
+background 0.1 0.1 0.1
+configure_message font -*-*-terminus-*-*--18-*-*-*-*-*-*-*
+configure_message fg_color 1.0 1.0 1.0 1.0
+configure_message bg_color 0.0 0.0 0.0 0.0
+configure_message display_time 4
+
+## Teclas ##
+definekey top L-S-Return exec st
+definekey top L-S-q close
+definekey top A-q quit
+definekey top L-Tab next
+# direcionais
+definekey top L-Up focusup
+definekey top L-Down focusdown
+definekey top L-Left focusleft
+definekey top L-Right focusright
+definekey top C-L-Down hsplit
+definekey top C-L-Right vsplit
+# vimkeys
+definekey top L-k focusup
+definekey top L-j focusdown
+definekey top L-h focusleft
+definekey top L-l focusright
+definekey top C-L-j hsplit
+definekey top C-L-l vsplit
+
+message "Carregada configuracao"
