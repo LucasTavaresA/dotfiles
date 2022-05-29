@@ -1,0 +1,81 @@
+#-*- Mode: Ratpoisonrc -*-
+startup_message off
+set wingravity c
+set bargravity c
+set framemsgwait 1
+set warp 1
+set msgwait 1
+exec /usr/bin/rpws init 4 -k
+
+unmanage panel
+unmanage polybar
+set padding 0 14 0 0
+
+set winliststyle row
+set winfmt [%n] %s %t
+set winname class
+addhook switchwin info [%n] %t
+addhook switchframe info [%n] %t
+
+## Aparência ##
+set border 0
+set font "Terminus-14"
+set fgcolor white
+set bgcolor black
+set fwcolor white
+set bwcolor black
+
+### Teclas ###
+## C-Space ##
+escape C-space
+definekey root C-space meta
+definekey root Return exec st
+definekey root Q quit
+definekey root R restart
+definekey root H tmpwm herbstluftwm --locked
+definekey root f exec notify-send "Abrindo" "$BROWSER" && firefox
+definekey root b exec polybar-msg cmd toggle
+## top ##
+definekey top Print exec dmenu_print
+definekey top s-backslash exec st_scratchpad
+definekey top s-q delete
+definekey top s-Q remove
+definekey top s-Tab next
+# direcionais
+definekey top s-Up focusup
+definekey top s-Down focusdown
+definekey top s-Left focusleft
+definekey top s-Right focusright
+definekey top M-Left exec rpws prev
+definekey top M-Right exec rpws next
+definekey top S-s-Up exchangeup
+definekey top S-s-Down exchangedown
+definekey top S-s-Left exchangeleft
+definekey top S-s-Right exchangeright
+definekey top C-s-Down vsplit
+definekey top C-s-Right hsplit
+# vimkeys
+definekey top s-k focusup
+definekey top s-j focusdown
+definekey top s-h focusleft
+definekey top s-l focusright
+definekey top s-K exchangeup
+definekey top s-J exchangedown
+definekey top s-H exchangeleft
+definekey top s-L exchangeright
+definekey top C-s-j vsplit
+definekey top C-s-l hsplit
+
+exec pidof polybar >/dev/null || polybar &
+exec setxkbmap -option caps:escape # grep -E "(ctrl|caps):" /usr/share/X11/xkb/rules/base.lst
+exec xset r rate 300 100 # acelera repetição de teclas
+
+# teclas no notebook
+# alt + , = Escape
+exec xmodmap -e "keycode 59 = comma less comma less Escape"
+# alt + . = Tab
+exec xmodmap -e "keycode 60 = period greater period greater Tab"
+# alt + ; = "
+exec xmodmap -e "keycode 61 = semicolon colon semicolon colon quotedbl"
+
+echo "Carregada configuração!"

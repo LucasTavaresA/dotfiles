@@ -209,6 +209,7 @@ ueberzug
 unrar
 unzip
 upd72020x-fw
+ventoy-bin
 w3m
 wd719x-firmware
 wget

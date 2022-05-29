@@ -28,6 +28,8 @@ if [ "$WM" = "herbstluftwm" ]; then
 elif [ "$WM" = "dwm" ]; then
     sxhkd -c "$HOME/.config/sxhkd/sxhkd_dwm" &
     dwmblocks &
+elif [ "$WM" = "ratpoison" ]; then
+    flags=" -f $HOME/.config/ratpoison/config"
 elif [ "$WM" = "bspwm" ]; then
     sxhkd -c "$HOME/.config/sxhkd/sxhkd_bspwm" &
 else

@@ -194,10 +194,6 @@
 (define-key doom-leader-map (kbd "w q") 'salvar-e-fechar-tudo)
 (define-key doom-leader-map (kbd "q q") 'fechar-tudo)
 (define-key doom-leader-map (kbd "RET") 'terminal-here-launch)
-(define-key doom-leader-map (kbd "<up>") 'windmove-up)
-(define-key doom-leader-map (kbd "<down>") 'windmove-down)
-(define-key doom-leader-map (kbd "<left>") 'windmove-left)
-(define-key doom-leader-map (kbd "<right>") 'windmove-right)
 ;; move entre partes da mesma linha
 (define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
 (define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)

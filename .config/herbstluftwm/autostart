@@ -147,7 +147,7 @@ hc keybind Mod4-e spawn st -c fzf -n fzf -e fzf_edit
 hc keybind Mod4-c spawn st -c fzf -n fzf -e fzf_clip
 hc keybind Alt-m spawn st -c fzf -n fzf -e fzf_man
 hc keybind Alt-Shift-e spawn st -c fzf -n fzf -e fzf_emojis
-hc keybind Print spawn st -c fzf -n fzf -e fzf_print
+hc keybind Print spawn dmenu_print
 
 hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
