@@ -18,6 +18,10 @@ if status is-interactive
         curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
         echo "Installing fzf! 🔍"
         fisher install PatrickF1/fzf.fish
+        echo "Installing done! ✅"
+        fisher install franciscolourenco/done
+        echo "Installing abbrevition-tips!"
+        fisher install gazorby/fish-abbreviation-tips
     end
 
     ## Teclas ##
