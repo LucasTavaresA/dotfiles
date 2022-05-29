@@ -137,4 +137,10 @@ export DOAS_ASKPASS="dmenu -fn Terminus-18 -c -cw 500 -P -p Senha:"
 # localização para datas
 export LC_TIME="pt_BR.UTF-8"
 
-[ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
+if [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1; then
+    exec startx "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
+elif [ "$WM" = "cagebreak" ] && [ "$(tty)" = "/dev/tty1" ]; then
+    exec cagebreak
+else
+    fish
+fi
