@@ -13,6 +13,7 @@
 .config/fish/fish_plugins
 .config/fish/fish_variables
 .config/doom/spaceway-theme/
+.config/doom/blinding-dark-theme/
 .config/doom/themes/
 .config/doom/yasnippet-snippets/
 .config/galculator/
@@ -33,7 +34,7 @@
 .config/transmission/
 .config/VirtualBox/
 .config/NuGet/
-.config/nvim/plugins/paq
+.config/nvim/plugins/
 .config/nvim/plugin/
 .config/nvim/data/vimspector/gadgets/
 .config/syncthing/
@@ -53,11 +54,7 @@
 .ssh/
 .templateengine/
 .trash/
-code/python
-code/csharp
-code/webpages
-code/unity
-code/void-packages
+code/
 documentos/
 Downloads/
 jogos/
