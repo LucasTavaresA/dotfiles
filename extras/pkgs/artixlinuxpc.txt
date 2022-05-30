@@ -171,7 +171,6 @@ python-pynvim
 python-pytest
 qt5-x11extras
 qt5ct
-qutebrowser
 ripgrep
 rsync
 rtags
@@ -184,6 +183,7 @@ simple-mtpfs
 slop
 starship
 stpv-git
+sx
 syncthing
 telegram-desktop
 terminus-font

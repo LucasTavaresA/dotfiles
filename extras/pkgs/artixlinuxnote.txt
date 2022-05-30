@@ -186,6 +186,7 @@ simple-mtpfs
 slop
 starship
 stpv-git
+sx
 syncthing
 telegram-desktop
 terminus-font
