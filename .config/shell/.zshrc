@@ -44,7 +44,7 @@ _comp_options+=(globdots) # Incluir arquivos ocultos.
 ## Funções
 # localizar e editar arquivo
 ea () {
-    arquivo=$(fd -H -I -d 4 -t f -E '*cache*' -E '*git*' | fzf)
+    arquivo=$(locate -Ai "$argv" | fzf)
     if [ -n "$arquivo" ]; then
         eval $VISUAL $arquivo
     fi

@@ -36,7 +36,7 @@ if status is-interactive
     ## funções ##
     # localizar e editar arquivo
     function ea
-        set arquivo (fd -H -I -d 4 -t f -E '*cache*' -E '*git*' | fzf)
+        set arquivo (locate -Ai "$argv" | fzf)
         if test -n "$arquivo"
            eval $VISUAL $arquivo
         end
@@ -96,6 +96,9 @@ if status is-interactive
     end
 
     ## Abbr ##
+    abbr -a -g f fmz
+    abbr -a -g rmf rm -rf
+    abbr -a -g df df -hT --total -x tmpfs -x devtmpfs
     abbr -a -g hc herbstclient
     abbr -a -g as "abbr | grep --color -i"
     abbr -a -g n neofetch
