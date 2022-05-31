@@ -190,6 +190,7 @@
 (define-key doom-leader-map (kbd "k") 'kill-current-buffer)
 (define-key doom-leader-map (kbd "K") 'kill-some-buffers)
 (define-key doom-leader-map (kbd "u") 'undo-tree-visualize)
+(define-key doom-leader-map (kbd "w f") 'write-file)
 (define-key doom-leader-map (kbd "w w") 'save-buffer)
 (define-key doom-leader-map (kbd "w q") 'salvar-e-fechar-tudo)
 (define-key doom-leader-map (kbd "q q") 'fechar-tudo)
@@ -215,7 +216,8 @@
 (global-set-key (kbd "C-M-i") 'orgm/org-cycle-current-headline)
 (global-set-key (kbd "<S-up>") 'er/expand-region)
 (global-set-key (kbd "<S-down>") 'er/contract-region)
-(global-set-key (kbd "<C-tab>") 'next-buffer)
+(global-set-key (kbd "<M-tab>") 'next-buffer)
+(global-set-key (kbd "<C-tab>") 'evil-window-next)
 (global-set-key (kbd "<C-M-right>") 'evil-window-vsplit)
 (global-set-key (kbd "<C-M-down>") 'evil-window-split)
 

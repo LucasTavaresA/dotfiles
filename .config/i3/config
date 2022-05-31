@@ -66,7 +66,7 @@ mode "Menu" {
     bindsym c exec st -c float -e fzf_clip ; mode "default"
     bindsym h exec st -c float -e htop ; mode "default"
     bindsym t exec transmission-qt ; mode "default"
-    bindsym a exec emacsclient -n -c -a 's -e nvim' ~/documentos/anotações.md ; mode "default"
+    bindsym a exec emacsclient -n -c -a 'st -e nvim' ~/documentos/anotações.md ; mode "default"
     bindsym b exec dmenu_browser ; mode "default"
     bindsym Shift+b exec $refresh_i3status ; mode "default"
     bindsym r reload

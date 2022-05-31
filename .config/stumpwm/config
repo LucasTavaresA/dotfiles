@@ -286,7 +286,7 @@
 (define-key *Menu-map* (kbd "s") "exec sct")
 (define-key *Menu-map* (kbd "S") "exec sct 2000")
 (define-key *Menu-map* (kbd "t") "exec transmission-qt")
-(define-key *Menu-map* (kbd "a") "exec emacsclient -n -c -a 's -e nvim' ~/documentos/anotações.org")
+(define-key *Menu-map* (kbd "a") "exec emacsclient -n -c -a 'st -e nvim' ~/documentos/anotações.org")
 (define-key *Menu-map* (kbd ";") "colon")
 (define-key *Menu-map* (kbd ":") "eval")
 (define-key *Menu-map* (kbd "!") "exec")

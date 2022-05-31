@@ -121,7 +121,7 @@ hc keybind Mod4-Ctrl-Shift-h resize left +0.05
 hc keybind Mod4-Ctrl-Shift-l resize right +0.05
 # Aplicações
 hc keybind Mod1-b spawn polybar-msg cmd toggle
-hc keybind Mod4-Shift-Return spawn st
+hc keybind Mod4-Shift-backslash spawn st
 hc keybind Mod4-backslash spawn st_scratchpad
 hc keybind Alt-h spawn st -c htop -n htop -e htop
 hc keybind Alt-Shift-p spawn hlwm_control picom

@@ -148,6 +148,7 @@ opusfile
 otf-hermit
 p7zip
 pacman
+pacman-contrib
 pam-gnupg
 papirus-icon-theme
 paru

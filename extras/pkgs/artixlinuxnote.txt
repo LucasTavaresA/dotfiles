@@ -31,7 +31,6 @@ checkbashisms
 chromium-widevine
 clang
 clipmenu
-cmatrix
 dash
 dbus-broker
 dhcpcd
@@ -153,6 +152,7 @@ opusfile
 otf-hermit
 p7zip
 pacman
+pacman-contrib
 pam-gnupg
 papirus-icon-theme
 paru

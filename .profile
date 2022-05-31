@@ -123,8 +123,10 @@ export PATH="$PATH:${XDG_CONFIG_HOME:-$HOME/.config}/emacs/bin"
 export EMACSDIR="${XDG_CONFIG_HOME:-$HOME/.config}/emacs"
 export DOOMDIR="${XDG_CONFIG_HOME:-$HOME/.config}/doom"
 export DOOMLOCALDIR="${XDG_CONFIG_HOME:-$HOME/.config}/emacs/.local"
+# diffprogram
+export DIFFPROG="nvim -d"
 # editor no terminal
-export EDITOR="emacsclient -nw -a 'nvim'"
+export EDITOR="emacsclient -t -a 'nvim'"
 # editor com interface gráfica
 export VISUAL="emacsclient -n -c -a 'st -e nvim'"
 
