@@ -1,6 +1,7 @@
 # caso esteja em uma sessão interativa
 if status is-interactive
     ## Fish ##
+    # set fish_trace 1 # ativa modo debug
     set -U fish_greeting # desativa mensagem ao iniciar
     set -x SHELL "fish"
     set -x GPG_TTY (tty)
@@ -39,6 +40,14 @@ if status is-interactive
         set arquivo (locate -Ai "$argv" | fzf)
         if test -n "$arquivo"
            eval $VISUAL $arquivo
+        end
+    end
+
+    # localizar e editar executavel
+    function ee
+        set executavel (whereis -b "$argv" | cut -d' ' -f2)
+        if test -x "$executavel"
+           eval $VISUAL $executavel
         end
     end
 
@@ -96,8 +105,6 @@ if status is-interactive
     end
 
     ## Abbr ##
-    abbr -a -g f fmz
-    abbr -a -g rmf rm -rf
     abbr -a -g df df -hT --total -x tmpfs -x devtmpfs
     abbr -a -g hc herbstclient
     abbr -a -g as "abbr | grep --color -i"
@@ -107,8 +114,8 @@ if status is-interactive
     abbr -a -g h htop
     abbr -a -g ed emacs --daemon
     abbr -a -g ek "emacsclient -e '(kill-emacs)'"
-    abbr -a -g et emacsclient -nw
-    abbr -a -g e emacsclient -n -c
+    abbr -a -g et emacsclient -t -a 'nvim'
+    abbr -a -g e emacsclient -n -c -a 'st -e nvim'
     abbr -a -g copy xclip -selection clipboard
     abbr -a -g sudo doas
     abbr -a -g ping ping google.com
@@ -132,10 +139,14 @@ if status is-interactive
     abbr -a -g dns dotnet-script
     abbr -a -g xp xprop
     abbr -a -g xk xkill
-    abbr -a -g grep grep --color -i -I
     abbr -a -g sys doas systemctl
     test "$OS" = "voidlinux"; and abbr -a -g sys doas sv
     # arquivos e Diretórios
+    abbr -a -g f fmz
+    abbr -a -g rm lixo
+    abbr -a -g rml lixo limpar
+    abbr -a -g rmf rm -rf
+    abbr -a -g grep grep --color -i -I
     abbr -a -g l lsd -AX1 --group-dirs first
     abbr -a -g la lsd -lXA1 --group-dirs first
     abbr -a -g .. "cd .."
@@ -146,8 +157,6 @@ if status is-interactive
     abbr -a -g ch chmod +x
     abbr -a -g cp cp -ri
     abbr -a -g mv mv -i
-    abbr -a -g lx lixo
-    abbr -a -g lxl lixo limpar
     abbr -a -g ln ln -i
     abbr -a -g md mkdir -p
     abbr -a -g t touch

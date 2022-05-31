@@ -44,9 +44,17 @@ _comp_options+=(globdots) # Incluir arquivos ocultos.
 ## Funções
 # localizar e editar arquivo
 ea () {
-    arquivo=$(locate -Ai "$argv" | fzf)
+    arquivo=$(locate -Ai "$@" | fzf)
     if [ -n "$arquivo" ]; then
         eval $VISUAL $arquivo
+    fi
+}
+
+# localizar e editar executavel
+ee () {
+    executavel=$(whereis -b "$@" | cut -d' ' -f2)
+    if [ -x "$executavel" ]; then
+        eval $VISUAL $executavel
     fi
 }
 
@@ -114,8 +122,8 @@ alias vv="st -e nvim"
 alias h="htop"
 alias ed="emacs --daemon"
 alias ek="emacsclient -e '(kill-emacs)'"
-alias et="emacsclient -nw"
-alias e="emacsclient -n -c"
+alias et="emacsclient -t -a 'nvim'"
+alias e="emacsclient -n -c -a 'st -e nvim'"
 alias copy="xclip -selection clipboard"
 alias sudo="doas"
 alias ping="ping google.com"
@@ -139,10 +147,14 @@ alias dnn="dotnet new"
 alias dns="dotnet-script"
 alias xp="xprop"
 alias xk="xkill"
-alias grep="grep --color -i -I"
 alias sys="doas systemctl"
 [ "$OS" = "voidlinux" ] && alias sys="doas sv"
 # arquivos e Diretórios
+alias grep="grep --color -i -I"
+alias f="fmz"
+alias rm="lixo"
+alias rml="lixo limpar"
+alias rmf="rm -rf"
 alias l="lsd -AX1 --group-dirs first"
 alias la="lsd -lXA1 --group-dirs first"
 alias ..="cd .."
@@ -153,8 +165,6 @@ alias u="doas updatedb"
 alias ch="chmod +x"
 alias cp="cp -ri"
 alias mv="mv -i"
-alias lx="lixo"
-alias lxl="lixo limpar"
 alias ln="ln -i"
 alias md="mkdir -p"
 alias t="touch"
