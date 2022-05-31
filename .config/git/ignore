@@ -34,13 +34,12 @@
 .config/transmission/
 .config/VirtualBox/
 .config/NuGet/
-.config/nvim/plugins/
+.config/nvim/plugins/paq
 .config/nvim/plugin/
 .config/nvim/data/vimspector/gadgets/
 .config/syncthing/
 .config/shell/.zcompdump
 .config/shell/history
-.config/shell/plugins/fsh
 .config/gtkfilechooser.ini
 .config/pam-gnupg
 .config/QtProject.conf
@@ -54,7 +53,10 @@
 .ssh/
 .templateengine/
 .trash/
-code/
+code/csharp/
+code/python/
+code/unity/
+code/web/
 documentos/
 Downloads/
 jogos/

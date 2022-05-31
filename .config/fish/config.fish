@@ -114,8 +114,8 @@ if status is-interactive
     abbr -a -g h htop
     abbr -a -g ed emacs --daemon
     abbr -a -g ek "emacsclient -e '(kill-emacs)'"
-    abbr -a -g et emacsclient -t -a 'nvim'
-    abbr -a -g e emacsclient -n -c -a 'st -e nvim'
+    abbr -a -g et "emacsclient -t -a 'nvim'"
+    abbr -a -g e "emacsclient -n -c -a 'st -e nvim'"
     abbr -a -g copy xclip -selection clipboard
     abbr -a -g sudo doas
     abbr -a -g ping ping google.com
@@ -166,6 +166,7 @@ if status is-interactive
     abbr -a -g gi git init
     abbr -a -g gc git clone
     abbr -a -g gs git status
+    abbr -a -g gsa git submodule add https://github.com/
     abbr -a -g gd git diff
     abbr -a -g gds git diff --staged
     abbr -a -g gl git log --oneline
@@ -182,7 +183,9 @@ if status is-interactive
     abbr -a -g gpl git pull
     abbr -a -g gf git fetch
     abbr -a -g gr git restore
+    abbr -a -g grv git remote -v
     abbr -a -g grs git restore --staged
+    abbr -a -g grsu git remote set-url origin
     abbr -a -g grrs git reset --soft
     abbr -a -g grrh git reset --hard
     abbr -a -g gg git grep -i -I -n --break --heading -p

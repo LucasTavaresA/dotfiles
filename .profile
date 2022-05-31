@@ -113,7 +113,7 @@ export HISTCONTROL=ignoredups:erasedups
 # adiciona diretórios bin e scripts ao path
 export PATH="$PATH:$GOPATH/bin"
 export PATH="$PATH:/usr/lib/jvm/java-11-openjdk/bin"
-export PATH="$HOME/code/shell:$PATH"
+export PATH="$HOME/code/shellscripts:$PATH"
 export PATH="$PATH:${XDG_BIN_HOME:-$HOME/.local/bin}"
 export PATH="$PATH:${XDG_DATA_HOME:-$HOME/.local/share}/cargo/bin"
 export PATH="$PATH:$HOME/bin"
@@ -133,7 +133,7 @@ export VISUAL="emacsclient -n -c -a 'st -e nvim'"
 # usa o dmenu como autenticador GUI
 export SSH_ASKPASS="doas_askpass"
 export GIT_ASKPASS="doas_askpass"
-export SUDO_ASKPASS="$HOME/code/shell/dmenu_pass"
+export SUDO_ASKPASS="$HOME/code/shellscripts/dmenu_pass"
 export DOAS_ASKPASS="dmenu -fn Terminus-18 -c -cw 500 -P -p Senha:"
 
 # localização para datas

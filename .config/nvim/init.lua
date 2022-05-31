@@ -114,7 +114,6 @@ paq({
 
 -- carrega plugins locais
 vim.opt.runtimepath:append("~/.config/nvim/plugins/lite-dfm")
--- vim.opt.runtimepath:append("~/.config/nvim/plugins/moonlight.nvim")
 
 ----- Configuração -----
 --- Vim

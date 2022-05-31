@@ -50,9 +50,6 @@
 ;; Local ;;
 ; (package! blinding-dark-theme
 ;   :recipe (:local-repo "~/.config/doom/blinding-dark-theme"))
-;; Meu fork do yasnippet-snippets
-(package! yasnippet-snippets
-  :recipe (:local-repo "~/.config/doom/yasnippet-snippets"))
 
 ;; Desativado ;;
 (package! evil-snipe :disable t)

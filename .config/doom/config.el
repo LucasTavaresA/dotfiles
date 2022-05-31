@@ -48,7 +48,7 @@
 (use-package! projectile
   :init
   (when (file-directory-p "~/code/")
-    (setq projectile-project-search-path '("~/code/c/" "~/code/csharp/" "~/code/shell/" "~/code/unity/" "~/code/webpages/" "~/.config/doom/")))
+    (setq projectile-project-search-path '("~/code/c/" "~/code/csharp/" "~/code/shellscripts/" "~/code/unity/" "~/code/webpages/" "~/.config/doom/")))
   (setq projectile-switch-project-action #'projectile-dired))
 
 ;; undotree não salva backups
