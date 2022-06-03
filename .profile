@@ -23,6 +23,7 @@ export LF_ICONS="di=📁:fi=📃:tw=🤝:st=:ow=📂:dt=📁:ln=⛓:or=❌:ex
 # define diretórios com o padrão xdg
 UID="$(id -u)" # Pega o id de usuário
 export HOME="/home/lucas"
+export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -70,7 +71,7 @@ export DOTNET_ROOT="${XDG_DATA_HOME:-$HOME/.local/share}/dotnet"
 # nuget
 export NUGET_PACKAGES="${XDG_CACHE_HOME:-$HOME/.cache}/NuGetPackages"
 # gnupg
-export GNUPGHOME="$HOME/.gnupg"
+export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
 # npm
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc"
 # terminfo
