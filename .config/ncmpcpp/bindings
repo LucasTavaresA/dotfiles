@@ -4,6 +4,8 @@ def_key "end"
   move_end
 def_key "right"
   enter_directory
+def_key "l"
+  enter_directory
 def_key "enter"
   toggle_output
 def_key "enter"
@@ -16,9 +18,17 @@ def_key "delete"
   delete_browser_items
 def_key "delete"
   delete_stored_playlist
+def_key "k"
+  scroll_up
+def_key "j"
+  scroll_down
 def_key "right"
   next_column
+def_key "l"
+  next_column
 def_key "left"
+  previous_column
+def_key "h"
   previous_column
 def_key ":"
   execute_command
@@ -34,9 +44,15 @@ def_key "<"
   previous
 def_key "left"
   jump_to_parent_directory
+def_key "h"
+  jump_to_parent_directory
 def_key "right"
   seek_forward
+def_key "l"
+  seek_forward
 def_key "left"
+  seek_backward
+def_key "h"
   seek_backward
 def_key "e"
   edit_song
@@ -57,7 +73,13 @@ def_key "A"
 def_key "shift-up"
   select_item
   scroll_up
+def_key "shift-k"
+  select_item
+  scroll_up
 def_key "shift-down"
+  select_item
+  scroll_down
+def_key "shift-j"
   select_item
   scroll_down
 def_key "S"
