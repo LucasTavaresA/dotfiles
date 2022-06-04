@@ -194,6 +194,7 @@ hc set snap_gap 0
 hc unrule -F
 hc rule focus=on # focar novas janelas
 hc rule floatplacement=center
+hc rule class="fullscreen" fullscreen=on
 # programas
 hc rule class="Chromium" tag=1 switchtag=on
 hc rule class="qutebrowser" tag=1 switchtag=on

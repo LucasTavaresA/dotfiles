@@ -3,10 +3,10 @@ adobe-source-han-sans-jp-fonts
 adobe-source-han-sans-kr-fonts
 adobe-source-sans-fonts
 aic94xx-firmware
+alacritty
 alsa-firmware
 alsa-utils
 artix-archlinux-support
-artix-grub-theme
 aspell
 aspell-en
 aspell-pt
@@ -20,6 +20,7 @@ bat
 bc
 binutils
 bison
+bridge-utils
 btrfs-progs
 catdoc
 catimg
@@ -34,6 +35,7 @@ dbus-broker
 dhcpcd
 dhcpcd-runit
 discord
+dnsmasq
 docx2txt
 dotnet-sdk
 dunst
@@ -63,6 +65,7 @@ gettext
 gimp
 git
 git-delta
+glow
 gnome-epub-thumbnailer
 gnome-tweaks
 gopls
@@ -70,6 +73,7 @@ gparted
 grep
 groff
 grub
+grub2-theme-fallout-git
 gtk2fontsel
 gtkspell3
 gucharmap
@@ -105,6 +109,7 @@ libnotify
 libreoffice-still
 libtool
 libva-mesa-driver
+libvirt-runit
 libxft-bgra
 linux
 linux-firmware
@@ -142,6 +147,7 @@ noto-fonts-cjk
 noto-fonts-emoji
 noto-fonts-extra
 nuspell
+openbsd-netcat
 opendoas
 openssh
 opusfile
@@ -170,6 +176,7 @@ python-nose
 python-pipenv
 python-pynvim
 python-pytest
+qemu
 qt5-x11extras
 qt5ct
 ripgrep
@@ -210,7 +217,10 @@ ueberzug
 unrar
 unzip
 upd72020x-fw
+vde2
 ventoy-bin
+virt-manager
+virt-viewer
 w3m
 wd719x-firmware
 wget
