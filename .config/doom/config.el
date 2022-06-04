@@ -162,13 +162,14 @@
 (define-key evil-normal-state-map (kbd "m") nil)
 (define-key evil-normal-state-map (kbd "P") nil)
 (define-key evil-visual-state-map (kbd "<C-tab>") nil)
-(define-key evil-motion-state-map (kbd ";") nil)
+(define-key evil-motion-state-map (kbd "|") nil)
+(define-key evil-motion-state-map (kbd "\\") nil)
 (define-key flyspell-mode-map (kbd "C-M-i") nil)
 
 ;; define teclas
 (define-key evil-motion-state-map "?" 'evil-ex-search-word-forward)
-(define-key evil-motion-state-map ":" '+vertico/search-symbol-at-point)
-(define-key evil-normal-state-map ";" '+default/search-buffer)
+(define-key evil-motion-state-map "|" '+vertico/search-symbol-at-point)
+(define-key evil-normal-state-map "\\" '+default/search-buffer)
 ;; SPC t
 (define-key doom-leader-toggle-map (kbd "l") 'toggle-truncate-lines)
 (define-key doom-leader-toggle-map (kbd "n") 'doom/toggle-line-numbers)
@@ -195,6 +196,10 @@
 (define-key doom-leader-map (kbd "w q") 'salvar-e-fechar-tudo)
 (define-key doom-leader-map (kbd "q q") 'fechar-tudo)
 (define-key doom-leader-map (kbd "RET") 'terminal-here-launch)
+(define-key doom-leader-map (kbd "<up>") 'windmove-up)
+(define-key doom-leader-map (kbd "<down>") 'windmove-down)
+(define-key doom-leader-map (kbd "<left>") 'windmove-left)
+(define-key doom-leader-map (kbd "<right>") 'windmove-right)
 ;; move entre partes da mesma linha
 (define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
 (define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
@@ -216,13 +221,12 @@
 (global-set-key (kbd "C-M-i") 'orgm/org-cycle-current-headline)
 (global-set-key (kbd "<S-up>") 'er/expand-region)
 (global-set-key (kbd "<S-down>") 'er/contract-region)
-(global-set-key (kbd "<M-tab>") 'next-buffer)
-(global-set-key (kbd "<C-tab>") 'evil-window-next)
+(global-set-key (kbd "<C-tab>") 'next-buffer)
 (global-set-key (kbd "<C-M-right>") 'evil-window-vsplit)
 (global-set-key (kbd "<C-M-down>") 'evil-window-split)
 
 ;; erc
-(setq erc-prompt (lambda () (concat "[" (buffer-name) "]"))
+(setq erc-prompt (lambda () (concat (buffer-name) ">"))
       erc-server "irc.libera.chat"
       erc-nick "lucas_tavares"
       erc-user-full-name "Lucas Tavares"

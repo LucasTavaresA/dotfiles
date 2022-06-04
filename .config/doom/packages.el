@@ -48,8 +48,8 @@
 (package! flyspell)
 (package! flyspell-popup)
 ;; Local ;;
-; (package! blinding-dark-theme
-;   :recipe (:local-repo "~/.config/doom/blinding-dark-theme"))
+;; (package! blinding-dark-theme
+  ;; :recipe (:local-repo "~/.config/doom/blinding-dark-theme"))
 
 ;; Desativado ;;
 (package! evil-snipe :disable t)
