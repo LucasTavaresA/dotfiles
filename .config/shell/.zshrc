@@ -46,7 +46,7 @@ _comp_options+=(globdots) # Incluir arquivos ocultos.
 ea () {
     arquivo=$(locate -Ai "$@" | fzf)
     if [ -n "$arquivo" ]; then
-        eval $VISUAL $arquivo
+        eval $VISUAL "$arquivo"
     fi
 }
 
@@ -54,7 +54,7 @@ ea () {
 ee () {
     executavel=$(whereis -b "$@" | cut -d' ' -f2)
     if [ -x "$executavel" ]; then
-        eval $VISUAL $executavel
+        eval $VISUAL "$executavel"
     fi
 }
 
@@ -118,12 +118,12 @@ alias hc="herbstclient"
 alias as="alias | grep --color -i"
 alias n="neofetch"
 alias v="nvim"
-alias vv="st -e nvim"
+alias vv="term_open nvim -e"
 alias h="htop"
 alias ed="emacs --daemon"
 alias ek="emacsclient -e '(kill-emacs)'"
 alias et="emacsclient -t -a 'nvim'"
-alias e="emacsclient -n -c -a 'st -e nvim'"
+alias e="emacsclient -n -c -a 'term_open nvim -e'"
 alias copy="xclip -selection clipboard"
 alias sudo="doas"
 alias ping="ping google.com"

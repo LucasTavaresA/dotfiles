@@ -70,8 +70,8 @@
 (global-auto-revert-mode)
 (setq global-auto-revert-non-file-buffers t)
 
-;; terminal do systema
-(setq terminal-here-linux-terminal-command 'st)
+;; terminal do sistema
+(setq terminal-here-linux-terminal-command 'alacritty)
 
 ;; cursor da a volta na tela para a proxima linha
 (setq-default evil-cross-lines t)

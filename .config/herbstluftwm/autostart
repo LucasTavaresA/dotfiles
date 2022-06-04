@@ -121,17 +121,17 @@ hc keybind Mod4-Ctrl-Shift-h resize left +0.05
 hc keybind Mod4-Ctrl-Shift-l resize right +0.05
 # Aplicações
 hc keybind Mod1-b spawn polybar-msg cmd toggle
-hc keybind Mod4-Shift-backslash spawn st
-hc keybind Mod4-backslash spawn st_scratchpad
-hc keybind Alt-h spawn st -c htop -n htop -e htop
+hc keybind Mod4-Shift-backslash spawn term_open
+hc keybind Mod4-backslash spawn term_scratchpad
+hc keybind Alt-h spawn term_open htop htop htop
 hc keybind Alt-Shift-p spawn hlwm_control picom
 hc keybind Alt-f spawn sct
 hc keybind Alt-Shift-f spawn sct 2000
 hc keybind Alt-t spawn transmission-qt
-hc keybind Alt-a spawn emacsclient -n -c -a 'st -e nvim' ~/documentos/anotações.org
+hc keybind Alt-a spawn emacsclient -n -c -a 'term_open nvim -e' ~/documentos/anotações.org
 # Musica
-hc keybind Mod4-a spawn st -c ncmpcpp -n ncmpcpp -e ncmpcpp
-hc keybind Mod4-Shift-a spawn st -c pulsemixer -n pulsemixer -e pulsemixer
+hc keybind Mod4-a spawn term_open ncmpcpp ncmpcpp ncmpcpp
+hc keybind Mod4-Shift-a spawn term_open pulsemixer pulsemixer pulsemixer
 hc keybind Mod4-space or . spawn playerctl play-pause . spawn mpc toggle
 hc keybind Mod4-comma spawn amixer -q set Master 5%-
 hc keybind Mod4-period spawn amixer -q set Master 5%+
@@ -142,11 +142,11 @@ hc keybind Menu spawn dmenu_run
 hc keybind Alt-q spawn dmenu_browser
 hc keybind Alt-Shift-m spawn dmenu_mont
 hc keybind Alt-p spawn passmenu --type
-hc keybind Mod4-s spawn st -c fzf -n fzf -e fzf_sys
-hc keybind Mod4-e spawn st -c fzf -n fzf -e fzf_edit
-hc keybind Mod4-c spawn st -c fzf -n fzf -e fzf_clip
-hc keybind Alt-m spawn st -c fzf -n fzf -e fzf_man
-hc keybind Alt-Shift-e spawn st -c fzf -n fzf -e fzf_emojis
+hc keybind Mod4-s spawn term_open fzf fzf fzf_sys
+hc keybind Mod4-e spawn term_open fzf fzf fzf_edit
+hc keybind Mod4-c spawn term_open fzf fzf fzf_clip
+hc keybind Alt-m spawn term_open fzf fzf fzf_man
+hc keybind Alt-Shift-e spawn term_open fzf fzf fzf_emojis
 hc keybind Print spawn dmenu_print
 
 hc attr theme.tiling.reset 1
@@ -202,6 +202,7 @@ hc rule class="firefox" tag=1 switchtag=on
 hc rule class="Emacs" tag=2 switchtag=on
 hc rule class="nvim" tag=2 switchtag=on
 hc rule class="st-256color" tag=2 switchtag=on
+hc rule class="alacritty" tag=2 switchtag=on
 hc rule class="mpv" tag=3 switchtag=on
 hc rule class="Gimp" tag=3 switchtag=on
 hc rule class="Xephyr" tag=3 switchtag=on
@@ -209,6 +210,7 @@ hc rule class="discord" tag=4 switchtag=on
 hc rule class="TelegramDesktop" tag=4 switchtag=on
 # flutuantes
 hc rule class="fzf" floating=on floatplacement=center
+hc rule class="float" floating=on floatplacement=center
 hc rule class="ncmpcpp" floating=on floatplacement=center
 hc rule class="pulsemixer" floating=on floatplacement=center
 hc rule class="MEGAsync" floating=on floatplacement=center

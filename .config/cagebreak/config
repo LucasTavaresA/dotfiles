@@ -6,7 +6,7 @@ configure_message bg_color 0.0 0.0 0.0 0.0
 configure_message display_time 4
 
 ## Teclas ##
-definekey top L-S-Return exec st
+definekey top L-S-Return exec term_open
 definekey top L-S-q close
 definekey top A-q quit
 definekey top L-Tab next

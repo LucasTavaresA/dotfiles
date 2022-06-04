@@ -6,7 +6,7 @@ env:
 
 window:
   dimensions:
-    columns: 150
+    columns: 130
     lines: 50
 
   #position:
@@ -23,17 +23,17 @@ window:
   decorations: none
 
   # Background opacity
-  opacity: 0.7
+  opacity: 0.8
 
   startup_mode: Maximized
 
-  title: Alacritty
+  title: alacritty
 
   dynamic_title: true
 
   class:
-    instance: Alacritty
-    general: Alacritty
+    instance: alacritty
+    general: alacritty
 
   # gtk_theme_variant: None
 

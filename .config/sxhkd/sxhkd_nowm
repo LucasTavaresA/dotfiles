@@ -1,11 +1,10 @@
 #### INDENPENDENTE ####
 # Terminal #
-# st
 super + shift + Return
-    st
+    term_open
 # abre e fecha scratchpads
 super + backslash
-    st_scratchpad
+    term_scratchpad
 
 # Musica #
 # pausa/toca musica
@@ -16,25 +15,24 @@ super + shift + {comma, period}
     mpc {prev,next} && musica notificar
 # abaixar/aumentar o volume
 super + {comma, period}
-    amixer -q set Master 5%{-,+,-,+}
+    amixer -q set Master 5%{-,+}
 # ncmpcpp/pulsemixer
 super + {_,shift} + a
-    st -c {ncmpcpp -n ncmpcpp -e ncmpcpp,pulsemixer -n pulsemixer -e pulsemixer}
-
+    term_open {ncmpcpp ncmpcpp ncmpcpp,pulsemixer pulsemixer pulsemixer}
 
 # Menus #
 # fzf_emoji
 Menu;E
-    st -c fzf -n fzf -e fzf_emojis
+    term_open fzf fzf fzf_emojis
 # fzf_man
 Menu;m
-    st -e fzf_man
+    term_open fzf fzf fzf_man
 # fzf_sxhkd
 Menu;slash
-    st -c fzf -n fzf -e fzf_sxhkd
+    term_open fzf fzf fzf_sxhkd
 # fzf_clip
 Menu;c
-    st -c fzf -n fzf -e fzf_clip
+    term_open fzf fzf fzf_clip
 # passmenu
 Menu;p
     passmenu --type
@@ -66,7 +64,7 @@ Print
 # Outros #
 # htop
 Menu;h
-    st -c htop -n htop -e htop
+    term_open htop htop htop
 # picom
 Menu;P
     pkill picom || picom

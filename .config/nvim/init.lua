@@ -141,7 +141,7 @@ vim.opt.expandtab = true
 -- muda o titulo da janela
 vim.opt.title = true
 vim.opt.titlestring = "nvim"
-vim.opt.titleold = "st-256color"
+vim.opt.titleold = "alacritty"
 -- da a volta entre linhas
 vim.opt.whichwrap = vim.opt.whichwrap + "<,>,h,l,[,]"
 -- ativa uso do mouse
@@ -351,7 +351,7 @@ keymap("n", "?", "*", {})
 -- abrir e Fechar Toc
 keymap("n", "<leader><Tab>", "<CR>:TocToggle<CR>", {})
 -- abre terminal no local do arquivo atual
-keymap("n", "<leader><return>", ":!sh -c 'cd %:p:h ; st' &<CR><CR>", {})
+keymap("n", "<leader><return>", ":!sh -c 'cd %:p:h ; term_open' &<CR><CR>", {})
 -- executa um macro
 keymap("n", "m", "@", {})
 -- marca/desmarca caixas

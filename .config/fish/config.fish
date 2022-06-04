@@ -39,7 +39,7 @@ if status is-interactive
     function ea
         set arquivo (locate -Ai "$argv" | fzf)
         if test -n "$arquivo"
-           eval $VISUAL $arquivo
+           eval $VISUAL "$arquivo"
         end
     end
 
@@ -47,7 +47,7 @@ if status is-interactive
     function ee
         set executavel (whereis -b "$argv" | cut -d' ' -f2)
         if test -x "$executavel"
-           eval $VISUAL $executavel
+           eval $VISUAL "$executavel"
         end
     end
 
@@ -110,12 +110,12 @@ if status is-interactive
     abbr -a -g as "abbr | grep --color -i"
     abbr -a -g n neofetch
     abbr -a -g v nvim
-    abbr -a -g vv st -e nvim
+    abbr -a -g vv term_open nvim -e
     abbr -a -g h htop
     abbr -a -g ed emacs --daemon
     abbr -a -g ek "emacsclient -e '(kill-emacs)'"
     abbr -a -g et "emacsclient -t -a 'nvim'"
-    abbr -a -g e "emacsclient -n -c -a 'st -e nvim'"
+    abbr -a -g e "emacsclient -n -c -a 'term_open nvim -e'"
     abbr -a -g copy xclip -selection clipboard
     abbr -a -g sudo doas
     abbr -a -g ping ping google.com

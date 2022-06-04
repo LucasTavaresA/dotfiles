@@ -9,7 +9,6 @@ alsa-utils
 amd-ucode
 amdvlk
 artix-archlinux-support
-artix-grub-theme
 aspell
 aspell-en
 aspell-pt
@@ -73,6 +72,7 @@ gparted
 grep
 groff
 grub
+grub2-theme-fallout-git
 gtk-engine-murrine
 gtk2fontsel
 gtkspell3

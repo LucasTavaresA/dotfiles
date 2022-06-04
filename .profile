@@ -1,24 +1,25 @@
 #### Exports ####
 # adiciona ícones no lf
-export LF_ICONS="di=📁:fi=📃:tw=🤝:st=:ow=📂:dt=📁:ln=⛓:or=❌:ex=🎯:*.txt=✍:*.mom=✍:*.me=✍:*.ms=✍:,hosts=:\
-*.hook=🪝:*.ttf=:*.otf=:*.woff=:*.woff2=:*.png=🖼:*.webp=🖼:*.ico=🖼:*.bmp=🖼:*.pbm=🖼:*.pgm=🖼:*.ppm=🖼:\
+export LF_ICONS="di=:fi=🗒️:tw=🤝:st=:ow=📂:dt=📁:ln=:or=❌:ex=🎯:*.txt=🗒:*.mom=🗒:*.me=🗒️:*.ms=🗒:,*hosts=:\
+*.hook=🪝:*.ttf=:*.otf=:*.woff=:*.woff2=:*.png=🖼:*.webp=🖼:*.ico=🖼:*.bmp=🖼:*.pbm=🖼:*.pgm=🖼:*.ppm=🖼:\
 *.tga=🖼:*.xbm=🖼:*.xpm=🖼:*.jpg=📸:*.jpe=📸:*.jpeg=📸:*.mjpg=📸:*.mjpeg=📸:*.gif=🖼:*.svg=🗺:*.svgz=🗺:\
 *.mng=🗺:*.pcx=🗺:*.tif=🖼:*.tiff=🖼:*.xwd=🖼:*.yuv=🖼:*.gl=🖼:*.dl=🖼:*.cgm=🖼:*.emf=🖼:*.xcf=🖌:*.html=🌎:\
-*.xml=📰:*.qt=📰:*.yml=:*.toml=:*.ini=:,config=:*.conf=:*.cfg=:*.config=:,.gitignore=:*.gpg=🔒:\
+*.xml=📰:*.qt=📰:*.yml=:*.toml=:*.ini=:*.conf=:*.cfg=:*.config=:*.git=:*.gitignore=:*.gitmodules=:*.gpg=🔒:\
 *.css=🎨:*.dic=📖:*.pdf=📚:*.djvu=📚:*.epub=📚:*.csv=📓:*.xlsx=📓:*.xspf=📓:*.tex=📜:*.md=📘:*.org=🦄:*.r=📊:\
 *.R=📊:*.rmd=📊:*.Rmd=📊:*.m=📊:*.mp3=🎵:*.opus=🎵:*.ogg=🎵:*.m4a=🎵:*.midi=🎵:*.mid=🎵:*.aac=🎵:*.au=🎵:\
 *.mka=🎵:*.mpc=🎵:*.ra=🎵:*.oga=🎵:*.spx=🎵:*.flac=🎼:*.wav=🎼:*.asf=🎥:*.rm=🎥:*.rmvb=🎥:*.flc=🎥:*.mkv=🎥:\
 *.m2v=🎥:*.mp4=🎥:*.webm=🎥:*.mpeg=🎥:*.avi=🎥:*.mov=🎥:*.mpg=🎥:*.wmv=🎥:*.m4b=🎥:*.flv=🎥:*.ogm=🎥:*.m4v=🎥:\
-*.mp4v=🎥:*.vob=🎥:*.nuv=🎥:*.fli=🎥:*.ogv=🎥:*.ogx=🎥:*.zip=📦:*.rar=📦:*.7z=📦:*.tar.gz=📦:*.tar=📦:*.tgz=📦:*.arc=📦:\
+*.mp4v=🎥:*.vob=🎥:*.nuv=🎥:*.fli=🎥:*.ogv=🎥:*.ogx=🎥:*.zip=:*.rar=📦:*.7z=📦:*.tar.gz=📦:*.tar=📦:*.tgz=📦:*.arc=📦:\
 *.arj=📦:*.taz=📦:*.lha=📦:*.lz4=📦:*.lzh=📦:*.lzma=📦:*.tlz=📦:*.txz=📦:*.tzo=📦:*.t7z=📦:*.z=📦:*.dz=📦:*.gz=📦:\
 *.lrz=📦:*.lz=📦:*.lzo=📦:*.xz=📦:*.zst=📦:*.tzst=📦:*.bz2=📦:*.bz=📦:*.tbz=📦:*.tbz2=📦:*.tz=📦:*.deb=📦:*.rpm=📦:\
 *.war=📦:*.ear=📦:*.sar=📦:*.alz=📦:*.ace=📦:*.zoo=📦:*.cpio=📦:*.rz=📦:*.cab=📦:*.wim=📦:*.swm=📦:*.dwm=📦:*.esd=📦:\
 *.sqlite=:*.db=:*.rom=🎮:*.nds=🎮:*.z64=🎮:*.v64=🎮:*.n64=🎮:*.gba=🎮:*.nes=🎮:*.gdi=🎮:*.1=ℹ:*.nfo=ℹ:*.info=ℹ:\
 *.log=📙:*.bin=🎯:*.exe=🎯:*.dll=🎯:*.iso=📀:*.img=📀:*.vdi=📀:*.bib=🎓:*.ged=👪:*.part=💔:*.torrent=🔽:*.jar=♨:\
-*.java=♨:*.el=:*.csproj=:*.sln=:*.cs=:*.c=:*.cpp=:*.cc=:*.clj=:*.coffee=:*.d=:*.dart=:*.erl=:\
+*.java=♨:*.el=():*.lisp=():*.csproj=:*.sln=:*.cs=:*.c=:*.cpp=:*.cc=:*.clj=:*.coffee=:*.d=:*.dart=:*.erl=:\
 *.exs=:*.fs=:*.go=:*.h=:*.hh=:*.hpp=:*.hs=:*.jl=:*.js=:*.json=:*.lua=:*.php=:*.pl=:*.pro=:\
-*.py=:*.rb=:*.rs=:*.scala=:*.ts=:*.vim=:*.cmd=:*.ps1=:*.sh=:*.bash=:*.zsh=:*.fish=:,Makefile=:*.mk=:*.nix=:\
-"
+*.py=:*.rb=:*.rs=:*.scala=:*.ts=:*.vim=:*.cmd=>:*.ps1=>:*.sh=\$:*.bash=\$:*.zsh=\$:*.profile=\$:*.fish=🐟:\
+*.mk=🔨:*.nix=:*.vimrc=:*.viminfo="
+
 # muda o local padrão de alguns dotfiles limpando a $HOME ou ~
 # define diretórios com o padrão xdg
 UID="$(id -u)" # Pega o id de usuário
@@ -48,7 +49,7 @@ export MANPATH="/usr/local/man:/usr/local/share/man:/usr/share/man:/usr/lib/jvm/
 # pass
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/pass"
 # terminal
-export TERMINAL="st"
+export TERMINAL="alacritty"
 export TERM="xterm-256color"
 # navegador padrão
 export BROWSER="firefox"
@@ -129,7 +130,7 @@ export DIFFPROG="nvim -d"
 # editor no terminal
 export EDITOR="emacsclient -t -a 'nvim'"
 # editor com interface gráfica
-export VISUAL="emacsclient -n -c -a 'st -e nvim'"
+export VISUAL="emacsclient -n -c -a 'term_open nvim -e'"
 
 # usa o dmenu como autenticador GUI
 export SSH_ASKPASS="doas_askpass"

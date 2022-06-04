@@ -29,7 +29,7 @@ set bwcolor black
 ## C-Space ##
 escape C-space
 definekey root C-space meta
-definekey root Return exec st
+definekey root Return exec term_open
 definekey root Q quit
 definekey root R restart
 definekey root H tmpwm herbstluftwm --locked
@@ -37,7 +37,7 @@ definekey root f exec notify-send "Abrindo" "$BROWSER" && firefox
 definekey root b exec polybar-msg cmd toggle
 ## top ##
 definekey top Print exec dmenu_print
-definekey top s-backslash exec st_scratchpad
+definekey top s-backslash exec term_scratchpad
 definekey top s-q delete
 definekey top s-Q remove
 definekey top s-Tab next

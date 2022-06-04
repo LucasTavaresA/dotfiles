@@ -34,8 +34,7 @@ cmd open ${{
         application/vnd.openxmlformats-officedocument.wordprocessingml.document) libreoffice $f ;;
         image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) zathura $fx ;;
         application/pdf|application/vnd*|application/epub*) zathura $fx ;;
-        application/pgp-encrypted) eval $VISUAL $fx ;;
-        text/*) eval $VISUAL $fx ;;
+        text/*) emacsclient -c -a 'term_open nvim -e' $fx ;;
         audio/*) mpv -no-video $fx ;;
         image/*) nsxiv . ;;
         video/*) mpv $fx ;;

@@ -1,7 +1,7 @@
 [Added Associations]
 x-scheme-handler/tg=userapp-Telegram Desktop-EJM1D1.desktop;
 x-scheme-handler/magnet=transmission-gtk.desktop;
-x-scheme-handler/terminal=st.desktop;
+x-scheme-handler/terminal=Alacritty.desktop;
 application/x.bittorrent=transmission-gtk.desktop;
 application/x-troff-man=nvim.desktop;
 application/x-executable=nvim.desktop;
