@@ -117,6 +117,7 @@ ex () {
 alias hc="herbstclient"
 alias as="alias | grep --color -i"
 alias n="neofetch"
+alias fm="fzf_man"
 alias v="nvim"
 alias vv="term_open nvim -e"
 alias h="htop"
@@ -208,7 +209,7 @@ if [ "$OS" = "artixlinux" ] || [ "$OS" = "archlinux" ] || [ "$OS" = "manjaro" ];
     alias pq="pacman --color always -Q"
     alias pqi="pacman --color always -Qi"
     alias pqs="pacman --color always -Qs"
-    alias pfyl="pacman --color always -Fyl"
+    alias pfyl="doas pacman --color always -Fyl"
     alias prns="doas pacman --color always -Rns"
     alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
     # paru

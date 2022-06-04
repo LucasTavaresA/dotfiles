@@ -6,6 +6,7 @@ aic94xx-firmware
 alacritty
 alsa-firmware
 alsa-utils
+arch-wiki-man
 artix-archlinux-support
 aspell
 aspell-en

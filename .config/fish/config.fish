@@ -107,6 +107,7 @@ if status is-interactive
     ## Abbr ##
     abbr -a -g df df -hT --total -x tmpfs -x devtmpfs
     abbr -a -g hc herbstclient
+    abbr -a -g fm fzf_man
     abbr -a -g as "abbr | grep --color -i"
     abbr -a -g n neofetch
     abbr -a -g v nvim
@@ -200,7 +201,7 @@ if status is-interactive
         abbr -a -g pq pacman --color always -Q
         abbr -a -g pqi pacman --color always -Qi
         abbr -a -g pqs pacman --color always -Qs
-        abbr -a -g pfyl pacman --color always -Fyl
+        abbr -a -g pfyl doas pacman --color always -Fyl
         abbr -a -g prns doas pacman --color always -Rns
         abbr -a -g exp "expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
         # paru
