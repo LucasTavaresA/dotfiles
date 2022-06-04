@@ -80,8 +80,7 @@ mode "Menu" {
     bindsym Shift+s exec sct 2000 ; mode "default"
     bindsym e exec dmenu_edit ; mode "default"
     bindsym Shift+e exec term_open float float fzf_emojis; mode "default"
-    bindsym m exec term_open float float fzf_man; mode "default"
-    bindsym Shift+m exec dmenu_mont ; mode "default"
+    bindsym m exec dmenu_mont ; mode "default"
 }
 bindsym Menu mode "Menu"
 # resize mode

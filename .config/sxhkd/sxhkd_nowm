@@ -24,9 +24,6 @@ super + {_,shift} + a
 # fzf_emoji
 Menu;E
     term_open fzf fzf fzf_emojis
-# fzf_man
-Menu;m
-    term_open fzf fzf fzf_man
 # fzf_sxhkd
 Menu;slash
     term_open fzf fzf fzf_sxhkd
@@ -43,7 +40,7 @@ Menu;Menu
 {Menu;Escape,XF86Launch2}
     dmenu_sys
 # dmenu_mont
-Menu;M
+Menu;m
     dmenu_mont
 # dmenu_wifi
 Menu;w
