@@ -75,36 +75,50 @@ colors:
 
   # Normal colors
   normal:
-    black:   '#222222'
-    red:     '#FF0000'
-    green:   '#00FF00'
-    yellow:  '#FFFF00'
-    blue:    '#0052FF'
-    magenta: '#9A4EAE'
-    cyan:    '#20B2AA'
-    white:   '#CCCCCC'
+    black:   '#000000'
+    red:     '#ff0000'
+    green:   '#00bb00'
+    yellow:  '#ffff00'
+    blue:    '#0000ff'
+    magenta: '#bb00ff'
+    cyan:    '#00ffff'
+    white:   '#ffffff'
 
   # Bright colors
   bright:
-    black:   '#696969'
-    red:     '#FF2400'
-    green:   '#03C03C'
-    yellow:  '#FDFF00'
-    blue:    '#007FFF'
-    magenta: '#FF1493'
-    cyan:    '#00CCCC'
-    white:   '#FFFAFA'
+    black:   '#222222'
+    red:     '#ff0000'
+    green:   '#00ff00'
+    yellow:  '#ffff00'
+    blue:    '#0080ff'
+    magenta: '#ff00ff'
+    cyan:    '#00ffff'
+    white:   '#ffffff'
 
-  #search:
-    #matches:
-    #  foreground: '#000000'
-    #  background: '#ffffff'
-    #focused_match:
-    #  foreground: '#ffffff'
-    #  background: '#000000'
-    #bar:
-    #  background: '#c5c8c6'
-    #  foreground: '#1d1f21'
+  # Dim colors
+
+  # If the dim colors are not set, they will be calculated automatically based
+  # on the `normal` colors.
+  dim:
+    black:   '#000000'
+    red:     '#ff0000'
+    green:   '#00ff00'
+    yellow:  '#ffff00'
+    blue:    '#0000ff'
+    magenta: '#ff00ff'
+    cyan:    '#00ffff'
+    white:   '#ffffff'
+
+  search:
+    matches:
+      foreground: '#ffff00'
+      background: '#000000'
+    focused_match:
+      foreground: '#000000'
+      background: '#ffff00'
+    bar:
+      background: '#000000'
+      foreground: '#ffffff'
 
 # Blood_Moon Theme END --------------------------------------------------
 
