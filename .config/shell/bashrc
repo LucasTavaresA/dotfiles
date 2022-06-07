@@ -94,6 +94,12 @@ ex () {
 }
 
 #### Aliases ####
+alias pkill="pkill -i"
+alias pgrep="pgrep -i -a"
+alias df="df -hT --total -x tmpfs -x devtmpfs"
+alias tep="tpe trans -s pt -l en"
+alias tpe="tpe trans -s pt -l en"
+alias fm="fzf_man"
 alias as="alias | grep --color -i"
 alias n="neofetch"
 alias fm="fzf_man"
@@ -111,7 +117,6 @@ alias p="patch -p1 <"
 alias pr="patch -R <"
 alias yt="yt-dlp"
 alias yta="yt-dlp -x --audio-format mp3"
-alias pk="pkill"
 alias mi="make install"
 alias mu="make uninstall"
 alias dh="doom help"
@@ -131,7 +136,6 @@ alias sys="doas systemctl"
 [ "$OS" = "voidlinux" ] && alias sys="doas sv"
 # arquivos e Diretórios
 alias grep="grep --color -i -I"
-alias f="fmz"
 alias rm="lixo"
 alias rml="lixo limpar"
 alias rmf="rm -rf"

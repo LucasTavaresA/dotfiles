@@ -105,7 +105,11 @@ if status is-interactive
     end
 
     ## Abbr ##
+    abbr -a -g pkill pkill -i
+    abbr -a -g pgrep pgrep -i -a
     abbr -a -g df df -hT --total -x tmpfs -x devtmpfs
+    abbr -a -g tep trans -s en -l pt
+    abbr -a -g tpe trans -s pt -l en
     abbr -a -g hc herbstclient
     abbr -a -g fm fzf_man
     abbr -a -g as "abbr | grep --color -i"
@@ -124,7 +128,6 @@ if status is-interactive
     abbr -a -g pr "patch -R <"
     abbr -a -g yt yt-dlp
     abbr -a -g yta yt-dlp -x --audio-format mp3
-    abbr -a -g pk pkill
     abbr -a -g mi make install
     abbr -a -g mu make uninstall
     abbr -a -g dh doom help
@@ -143,7 +146,6 @@ if status is-interactive
     abbr -a -g sys doas systemctl
     test "$OS" = "voidlinux"; and abbr -a -g sys doas sv
     # arquivos e Diretórios
-    abbr -a -g f fmz
     abbr -a -g rm lixo
     abbr -a -g rml lixo limpar
     abbr -a -g rmf rm -rf
