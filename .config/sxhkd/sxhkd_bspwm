@@ -111,18 +111,18 @@ super + {comma, period}
     amixer -q set Master 5%{-,+}
 # ncmpcpp/pulsemixer
 super + {_,shift} + a
-    term_open {ncmpcpp ncmpcpp ncmpcpp,pulsemixer pulsemixer pulsemixer}
+    term_open -a {ncmpcpp ncmpcpp,pulsemixer pulsemixer}
 
 # Menus #
 # fzf_emoji
 Menu;E
-    term_open fzf fzf fzf_emojis
+    term_open -a fzf fzf_emojis
 # fzf_sxhkd
 Menu;slash
-    term_open fzf fzf fzf_sxhkd
+    term_open -a fzf fzf_sxhkd
 # fzf_clip
 Menu;c
-    term_open fzf fzf fzf_clip
+    term_open -a fzf fzf_clip
 # passmenu
 Menu;p
     passmenu --type
@@ -154,7 +154,7 @@ Print
 # Outros #
 # htop
 Menu;h
-    term_open htop htop htop
+    term_open -a htop htop
 # picom
 Menu;P
     pkill picom || picom

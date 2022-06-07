@@ -90,8 +90,8 @@ c.content.blocking.adblock.lists = [
 
 # usa o lf para mandar arquivos
 config.set("fileselect.handler", "external")
-config.set("fileselect.single_file.command", ["term_open", "float", "float", "lf", "-e", "-selection-path", "{}"])
-config.set("fileselect.multiple_files.command", ["term_open", "float", "float", "lf", "-e", "-selection-path", "{}"])
+config.set("fileselect.single_file.command", ["term_open", "-a", "float", "lf", "-selection-path", "{}"])
+config.set("fileselect.multiple_files.command", ["term_open", "-a", "float", "lf", "-selection-path", "{}"])
 
 # permitir notificações.
 config.set('content.notifications.enabled', True, 'https://www.youtube.com/*')
@@ -147,9 +147,9 @@ config.bind('zvw', 'hint links spawn mpv {hint-url}')
 # baixar imagem selecionada
 config.bind('zid', 'hint images download')
 # baixar como video
-config.bind('zvd', 'hint links spawn term_open float float -e yt {hint-url}')
+config.bind('zvd', 'hint links spawn term_open -a float yt {hint-url}')
 # baixar como audio
-config.bind('zad', 'hint links spawn term_open float float -e yta {hint-url}')
+config.bind('zad', 'hint links spawn term_open -a float yta {hint-url}')
 # abre no firefox
 config.bind('zf', 'hint links spawn firefox {url}')
 # ativa/desativa a barra

@@ -1,22 +1,22 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # miscelânea
 # xautolock -detectsleep -time 30 -locker "slock" -notify 30 -notifier "notify-send Slock -u critical -t 1800000 'BLOQUEANDO A TELA 30 SEGUNDOS'" &
 mkdir .cache/clipmenu
 export CM_DIR="$HOME/.cache/clipmenu"
 clipmenud &
-pidof dunst || dunst &
-pidof xbanish || xbanish &
-pidof syncthing || syncthing &
-pidof emacs || doom_reset &
-pidof barrier || barrier &
+pgrep dunst || dunst &
+pgrep xbanish || xbanish &
+pgrep syncthing || syncthing &
+pgrep emacs || doom_reset &
+pgrep barrier || barrier &
 fzf_man update &
 # musica
-pidof playerctld || playerctld daemon &
-pidof mpd || mpd &
-pidof mpd-mpris || mpd-mpris &
+pgrep playerctld || playerctld daemon &
+pgrep mpd || mpd &
+pgrep mpDris2 || mpDris2 --music-dir="$HOME/media/musicas/" &
 # aparencia
-pidof picom || picom &
+pgrep picom || picom &
 nitrogen --restore &
 xsetroot -cursor_name left_ptr
 xrdb -load "$HOME/.config/x11/xresources" &
