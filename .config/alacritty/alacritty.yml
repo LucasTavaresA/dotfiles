@@ -6,8 +6,8 @@ env:
 
 window:
   dimensions:
-    columns: 130
-    lines: 50
+    columns: 120
+    lines: 30
 
   #position:
     #x: 0
@@ -25,7 +25,7 @@ window:
   # Background opacity
   opacity: 0.8
 
-  startup_mode: Maximized
+  startup_mode: Windowed
 
   title: alacritty
 
