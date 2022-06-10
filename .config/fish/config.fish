@@ -192,6 +192,7 @@ if status is-interactive
     abbr -a -g grrs git reset --soft
     abbr -a -g grrh git reset --hard
     abbr -a -g gg git grep -i -I -n --break --heading -p
+    abbr -a -g ggs git grep -i -I -n --break --heading -p -8
 
     ## Abbrs em sistemas
     if test "$OS" = "artixlinux"; or test "$OS" = "archlinux"; or test "$OS" = "manjaro";

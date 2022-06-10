@@ -202,6 +202,7 @@ alias grsu="git remote set-url origin"
 alias grrs="git reset --soft"
 alias grrh="git reset --hard"
 alias gg="git grep -i -I -n --break --heading -p"
+alias ggs="git grep -i -I -n --break --heading -p -8"
 
 ## aliases em sistemas
 if [ "$OS" = "artixlinux" ] || [ "$OS" = "archlinux" ] || [ "$OS" = "manjaro" ]; then

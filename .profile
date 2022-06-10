@@ -32,6 +32,20 @@ export XDG_RUNTIME_DIR="/run/user/$UID"
 export XDG_BIN_HOME="$HOME/.local/bin"
 # window manager
 export WM="herbstluftwm"
+# Wayland
+if [ "$WM" = "dwl" ] || [ "$WM" = "cagebreak" ]; then
+    export XDG_SESSION_TYPE=wayland
+    export MOZ_ENABLE_WAYLAND=1
+    export QT_QPA_PLATFORM=wayland-egl
+    export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+    export SDL_VIDEODRIVER=wayland
+    export _JAVA_AWT_WM_NONREPARENTING=1
+fi
+# terminal
+export TERMINAL="st"
+export TERM="xterm-256color"
+# navegador padrão
+export BROWSER="firefox"
 # systema
 export HOSTNAME="$(uname -n)"
 case $HOSTNAME in
@@ -48,11 +62,6 @@ export MANPATH="/usr/local/man:/usr/local/share/man:/usr/share/man:/usr/lib/jvm/
 [ "$OS" = "linuxmint" ] && export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 # pass
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/pass"
-# terminal
-export TERMINAL="alacritty"
-export TERM="xterm-256color"
-# navegador padrão
-export BROWSER="firefox"
 # pager
 export PAGER="less -R"
 # faz o qt usar o tema do qt5ct
@@ -81,6 +90,7 @@ export TERMINFO="${XDG_DATA_HOME:-$HOME/.local/share}/terminfo"
 export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/readline/inputrc"
 # gtk 2
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc"
+export GTK_THEME="Catppuccin-blue"
 # w3m
 export W3M_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/w3m"
 # go
@@ -130,7 +140,7 @@ export DIFFPROG="nvim -d"
 # editor no terminal
 export EDITOR="emacsclient -t -a 'nvim'"
 # editor com interface gráfica
-export VISUAL="emacsclient -n -c -a 'term_open nvim -e'"
+export VISUAL="emacsclient -n -c -a 'term_open nvim'"
 
 # usa o dmenu como autenticador GUI
 export SSH_ASKPASS="doas_askpass"
@@ -141,10 +151,14 @@ export DOAS_ASKPASS="dmenu -fn Terminus-18 -c -cw 500 -P -p Senha:"
 # localização para datas
 export LC_TIME="pt_BR.UTF-8"
 
-if [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1; then
-    exec sx sh "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
+[ "$HOSTNAME" = *"note"* ] && export LIBGL_ALWAYS_SOFTWARE=1
+
+if [ "$WM" = "dwl" ] && [ "$(tty)" = "/dev/tty1" ]; then
+    dbus-run-session dwl -s "${XDG_CONFIG_HOME:-$HOME/.config}/dwl/dwlrc"
 elif [ "$WM" = "cagebreak" ] && [ "$(tty)" = "/dev/tty1" ]; then
     exec cagebreak
+elif [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1; then
+    exec sx sh "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
 else
     fish
 fi

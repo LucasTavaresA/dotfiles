@@ -65,12 +65,8 @@ hc keybind Mod4-w spawn hlwm_control estado flutuante
 hc keybind Mod4-Tab cycle_all +1
 hc keybind Mod4-Alt-period cycle_all +1
 # troca entre layouts pulando layouts que não mudam janelas de posição
-hc keybind Mod4-Escape or , and . compare tags.focus.curframe_wcount = 2                   \
-                     . cycle_layout +1 vertical horizontal max vertical grid    \
-               , cycle_layout +1
-hc keybind Mod4-Alt-comma or , and . compare tags.focus.curframe_wcount = 2                   \
-                     . cycle_layout +1 vertical horizontal max vertical grid    \
-               , cycle_layout +1
+hc keybind Mod4-Escape or , and . compare tags.focus.curframe_wcount = 2 . cycle_layout +1 vertical horizontal max vertical grid , cycle_layout +1
+hc keybind Mod4-Alt-comma or , and . compare tags.focus.curframe_wcount = 2 . cycle_layout +1 vertical horizontal max vertical grid , cycle_layout +1
 # Direcionais
 # troca foco de janela e tag
 hc keybind Mod4-Up focus up
@@ -133,10 +129,10 @@ hc keybind Alt-a spawn emacsclient -n -c -a 'term_open nvim' ~/documentos/anota�
 hc keybind Mod4-a spawn term_open -a ncmpcpp ncmpcpp
 hc keybind Mod4-Shift-a spawn term_open -a pulsemixer pulsemixer
 hc keybind Mod4-space or . spawn playerctl play-pause . spawn mpc toggle
-hc keybind Mod4-comma spawn amixer -q set Master 5%-
-hc keybind Mod4-period spawn amixer -q set Master 5%+
-hc keybind Mod4-Shift-comma and . spawn mpc prev . spawn musica notificar
-hc keybind Mod4-Shift-period and . spawn mpc next . spawn musica notificar
+hc keybind Mod4-comma spawn pactl set-sink-volume @DEFAULT_SINK@ -5%
+hc keybind Mod4-period spawn pactl set-sink-volume @DEFAULT_SINK@ +5%
+hc keybind Mod4-Shift-comma spawn musica ante notificar
+hc keybind Mod4-Shift-period spawn musica prox notificar
 # Menus
 hc keybind Menu spawn dmenu_run
 hc keybind Alt-q spawn dmenu_browser

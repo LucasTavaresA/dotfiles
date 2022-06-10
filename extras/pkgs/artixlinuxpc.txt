@@ -134,7 +134,7 @@ mesa-vdpau
 mono
 mpc
 mpd
-mpd-mpris
+mpdris2
 mplayer
 mpv
 mpv-mpris
@@ -177,7 +177,7 @@ python-nose
 python-pipenv
 python-pynvim
 python-pytest
-qemu
+qemu-desktop
 qt5-x11extras
 qt5ct
 ripgrep
