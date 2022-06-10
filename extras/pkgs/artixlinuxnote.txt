@@ -9,6 +9,7 @@ alsa-plugins
 alsa-utils
 amd-ucode
 amdvlk
+arch-wiki-man
 artix-archlinux-support
 aspell
 aspell-en
