@@ -253,3 +253,4 @@ zathura-cb
 zathura-djvu
 zathura-pdf-mupdf
 zip
+zoxide

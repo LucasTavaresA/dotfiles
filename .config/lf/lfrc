@@ -28,6 +28,15 @@ set drawbox on
 set scrolloff 0
 
 # Comandos #
+cmd z %{{
+    result="$(zoxide query --exclude "${PWD}" -- "$1")"
+    lf -remote "send ${id} cd '${result}'"
+}}
+
+cmd zi ${{
+    result="$(zoxide query -i -- "$1")"
+    lf -remote "send ${id} cd '${result}'"
+}}
 
 cmd open ${{
     case $(file --mime-type "$(readlink -f $f)" -b) in
@@ -120,6 +129,8 @@ map C clear
 map m mkdir
 map e extract
 map i !nsxiv .
+map zz push :z<space>
+map zi push :zi<space>
 
 #### Atalhos ####
 map g. cd ~/.config

@@ -14,6 +14,8 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt SHARE_HISTORY
 
+eval "$(zoxide init zsh)"
+
 # carrega cores
 autoload -U colors && colors
 
@@ -114,12 +116,12 @@ ex () {
 }
 
 #### Aliases ####
+alias cd="z"
 alias pkill="pkill -i"
 alias pgrep="pgrep -i -a"
 alias df="df -hT --total -x tmpfs -x devtmpfs"
 alias tep="tpe trans -s pt -l en"
 alias tpe="tpe trans -s pt -l en"
-alias fm="fzf_man"
 alias fm="fzf_man"
 alias hc="herbstclient"
 alias as="alias | grep --color -i"
@@ -256,7 +258,7 @@ elif [ "$OS" = "linuxmint" ]; then
 fi
 
 # carrega plugins do zsh, deve ser o ultimo comando
-source $HOME/.config/shell/plugins/fsh/F-Sy-H.plugin.zsh
+source $HOME/.config/shell/plugins/fsh/fast-syntax-highlighting.plugin.zsh
 source $HOME/.config/shell/plugins/zsh-expand-all.zsh
 ZSH_EXPAND_ALL_DISABLE=word
 source $HOME/.config/shell/plugins/zsh-auto-notify.zsh

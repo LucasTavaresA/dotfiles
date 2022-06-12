@@ -16,6 +16,8 @@ shopt -s cdspell
 # salva comandos de múltiplas linhas como uma linha única
 shopt -s cmdhist
 
+eval "$(zoxide init bash)"
+
 #### Funções ####
 # hersbstluftwm
 hc () {
@@ -94,6 +96,7 @@ ex () {
 }
 
 #### Aliases ####
+alias cd="z"
 alias pkill="pkill -i"
 alias pgrep="pgrep -i -a"
 alias df="df -hT --total -x tmpfs -x devtmpfs"
@@ -102,7 +105,6 @@ alias tpe="tpe trans -s pt -l en"
 alias fm="fzf_man"
 alias as="alias | grep --color -i"
 alias n="neofetch"
-alias fm="fzf_man"
 alias v="nvim"
 alias vv="term_open -s nvim"
 alias h="htop"

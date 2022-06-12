@@ -13,6 +13,8 @@ if status is-interactive
     set fish_color_error '#ff0000'
     set fish_color_param cyan
 
+    zoxide init fish | source
+
     ## Plugins ##
     if test ! -e $HOME/.config/fish/fish_plugins
         echo "Installing fisher! 🎣"
@@ -105,6 +107,7 @@ if status is-interactive
     end
 
     ## Abbr ##
+    abbr -a -g cd z
     abbr -a -g pkill pkill -i
     abbr -a -g pgrep pgrep -i -a
     abbr -a -g df df -hT --total -x tmpfs -x devtmpfs

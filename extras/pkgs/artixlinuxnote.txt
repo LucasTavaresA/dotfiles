@@ -135,7 +135,7 @@ mesa-vdpau
 mono
 mpc
 mpd
-mpd-mpris
+mpdris2
 mplayer
 mpv
 mpv-mpris
@@ -249,3 +249,4 @@ zathura
 zathura-cb
 zathura-djvu
 zathura-pdf-mupdf
+zoxide
