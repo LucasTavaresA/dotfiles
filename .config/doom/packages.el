@@ -38,12 +38,17 @@
 
 ;; Popups
 (package! posframe)
+;; Miscelânea
 (package! terminal-here)
 (package! command-log-mode)
+;; Code
 (package! vimrc-mode)
-(package! org-make-toc)
+;; Tema
 (package! blinding-dark-theme
   :recipe (:host github :repo "lucastavaresa/blinding-dark-theme"))
+;; Orgmode
+(package! org-make-toc)
+(package! org-auto-tangle)
 ;; Correção ortográfica
 (package! flyspell)
 (package! flyspell-popup)

@@ -297,7 +297,7 @@
         org-hide-leading-stars t
         org-confirm-babel-evaluate nil ; Não pergunta antes de avaliar
         org-edit-src-content-indentation 0 ; Indentação nos blocos de código
-        org-table-convert-region-max-lines 20000))
+        org-table-convert-region-max-lines 20000)
 
 (defun lt/org-fonts ()
     "Define o tamanho de fontes orgmode"
@@ -312,6 +312,11 @@
                         (org-level-8 . 1.0)))
                 (set-face-attribute (car face) nil :font "Ubuntu" :weight 'regular :height (cdr face))))
 (add-hook 'org-mode-hook 'lt/org-fonts)
+
+(use-package! org-auto-tangle
+  :defer t
+  :hook (org-mode . org-auto-tangle-mode)
+  :config (setq org-auto-tangle-default t))
 
 (require 'org-indent)
 ;; snippets para templates de código
@@ -330,10 +335,6 @@
 (add-to-list 'org-structure-template-alist '("vim" . "src vimrc"))
 (push '("conf-unix" . conf-unix) org-src-lang-modes)
 
-
 ;; cria sumarios automaticamente
 (use-package! org-make-toc
-  :hook (org-mode . org-make-toc-mode))
-
-;; pergunta se quer separar apos salvar arquivos org
-(add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook (lambda ()(if (y-or-n-p "Tangle?")(org-babel-tangle))) nil t)))
+  :hook (org-mode . org-make-toc-mode)))
