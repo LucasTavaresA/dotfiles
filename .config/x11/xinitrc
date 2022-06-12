@@ -15,7 +15,7 @@ fzf_man update &
 pgrep -i -f playerctld || playerctld daemon &
 pgrep -i -f mpd || mpd &
 pgrep -i -f mpDris2 || mpDris2 --music-dir="$HOME/media/musicas/" &
-pgrep -i -f mpd || mpc update &
+mpc update &
 # aparencia
 pgrep -i -f picom || picom &
 nitrogen --restore &

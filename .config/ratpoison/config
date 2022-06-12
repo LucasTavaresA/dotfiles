@@ -66,7 +66,7 @@ definekey top s-L exchangeright
 definekey top C-s-j vsplit
 definekey top C-s-l hsplit
 
-exec pidof polybar >/dev/null || polybar &
+exec pgrep -i -f polybar >/dev/null || polybar &
 exec setxkbmap -option caps:escape # grep -E "(ctrl|caps):" /usr/share/X11/xkb/rules/base.lst
 exec xset r rate 300 100 # acelera repetição de teclas
 

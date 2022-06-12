@@ -61,6 +61,8 @@ hc keybind Release-Super_L spawn polybar-msg cmd hide
 hc keybind Mod4-q close
 hc keybind Mod4-Shift-q remove
 hc keybind Mod4-f spawn hlwm_control estado telacheia
+# fake fullscreen
+hc keybind Mod4-Alt-f chain , attr clients.focus.ewmhrequests off , attr clients.focus.ewmhnotify on , attr clients.focus.fullscreen on , attr clients.focus.ewmhnotify off , set_attr clients.focus.fullscreen off , set_attr clients.focus.ewmhnotify on , sprintf CMD 'sleep 2 ; herbstclient attr clients.%s.ewmhrequests on' clients.focus.winid spawn bash -c CMD
 hc keybind Mod4-w spawn hlwm_control estado flutuante
 hc keybind Mod4-Tab cycle_all +1
 hc keybind Mod4-Alt-period cycle_all +1
@@ -116,32 +118,32 @@ hc keybind Mod4-Ctrl-Shift-j resize down +0.05
 hc keybind Mod4-Ctrl-Shift-h resize left +0.05
 hc keybind Mod4-Ctrl-Shift-l resize right +0.05
 # Aplicações
-hc keybind Mod1-b spawn polybar-msg cmd toggle
 hc keybind Mod4-Shift-backslash spawn term_open
 hc keybind Mod4-backslash spawn term_scratchpad
-hc keybind Alt-h spawn term_open -a htop htop
+hc keybind Alt-b spawn polybar-msg cmd toggle
+hc keybind Alt-h spawn term_open -a float htop
 hc keybind Alt-Shift-p spawn hlwm_control picom
-hc keybind Alt-f spawn sct
-hc keybind Alt-Shift-f spawn sct 2000
+hc keybind Alt-s spawn sct
+hc keybind Alt-Shift-s spawn sct 2000
 hc keybind Alt-t spawn transmission-qt
 hc keybind Alt-a spawn emacsclient -n -c -a 'term_open nvim' ~/documentos/anotações.org
+hc keybind Alt-f spawn emacsclient -n -c -a 'term_open nvim' ~/documentos/favoritos.org
 # Musica
-hc keybind Mod4-a spawn term_open -a ncmpcpp ncmpcpp
-hc keybind Mod4-Shift-a spawn term_open -a pulsemixer pulsemixer
+hc keybind Mod4-a spawn term_open -a float ncmpcpp
+hc keybind Mod4-Shift-a spawn term_open -a float pulsemixer
 hc keybind Mod4-space or . spawn playerctl play-pause . spawn mpc toggle
 hc keybind Mod4-comma spawn pactl set-sink-volume @DEFAULT_SINK@ -5%
 hc keybind Mod4-period spawn pactl set-sink-volume @DEFAULT_SINK@ +5%
-hc keybind Mod4-Shift-comma spawn musica ante notificar
-hc keybind Mod4-Shift-period spawn musica prox notificar
+hc keybind Mod4-Shift-comma spawn musica ante
+hc keybind Mod4-Shift-period spawn musica prox
 # Menus
 hc keybind Menu spawn dmenu_run
-hc keybind Alt-q spawn dmenu_browser
 hc keybind Alt-m spawn dmenu_mont
 hc keybind Alt-p spawn passmenu --type
-hc keybind Mod4-s spawn term_open -a fzf fzf_sys
-hc keybind Mod4-e spawn term_open -a fzf fzf_edit
-hc keybind Mod4-c spawn term_open -a fzf fzf_clip
-hc keybind Alt-Shift-e spawn term_open -a fzf fzf_emojis
+hc keybind Alt-q spawn term_open -a center fzf_sys
+hc keybind Mod4-c spawn term_open -a center fzf_clip
+hc keybind Alt-e spawn term_open -a center fzf_edit
+hc keybind Alt-Shift-e spawn term_open -a center fzf_emojis
 hc keybind Print spawn dmenu_print
 
 hc attr theme.tiling.reset 1
@@ -198,6 +200,7 @@ hc rule class="firefox" tag=1 switchtag=on
 hc rule class="Emacs" tag=2 switchtag=on
 hc rule class="nvim" tag=2 switchtag=on
 hc rule class="st-256color" tag=2 switchtag=on
+hc rule class="St" tag=2 switchtag=on
 hc rule class="alacritty" tag=2 switchtag=on
 hc rule class="mpv" tag=3 switchtag=on
 hc rule class="Gimp" tag=3 switchtag=on
@@ -205,14 +208,11 @@ hc rule class="Xephyr" tag=3 switchtag=on
 hc rule class="discord" tag=4 switchtag=on
 hc rule class="TelegramDesktop" tag=4 switchtag=on
 # flutuantes
-hc rule class="fzf" floating=on floatplacement=center
-hc rule class="float" floating=on floatplacement=center
-hc rule class="ncmpcpp" floating=on floatplacement=center
-hc rule class="pulsemixer" floating=on floatplacement=center
+hc rule class="center" floating=on floatplacement=center floating_geometry=300x200
+hc rule class="float" floating=on floatplacement=center floating_geometry=1000x600
 hc rule class="MEGAsync" floating=on floatplacement=center
 hc rule class="transmission" floating=on floatplacement=center
 hc rule class="Galculator" floating=on floatplacement=center
-hc rule class="htop" floating=on floatplacement=center
 hc rule class="GParted" floating=on floatplacement=center
 hc rule class="Nitrogen" floating=on floatplacement=center
 hc rule class="pinentry-qt" floating=on floatplacement=center
@@ -224,7 +224,7 @@ hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 
 # polybar
-pidof polybar >/dev/null || polybar &
+pgrep -i -f polybar || polybar &
 # espera a barra carregar e esconde a barra
 sleep 5 && polybar-msg cmd hide
 
