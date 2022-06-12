@@ -4,20 +4,20 @@
 # xautolock -detectsleep -time 30 -locker "slock" -notify 30 -notifier "notify-send Slock -u critical -t 1800000 'BLOQUEANDO A TELA 30 SEGUNDOS'" &
 mkdir .cache/clipmenu
 export CM_DIR="$HOME/.cache/clipmenu"
-pgrep -i -f clipmenu || clipmenud &
-pgrep -i -f dunst || dunst &
-pgrep -i -f xbanish || xbanish &
-pgrep -i -f syncthing || syncthing &
-pgrep -i -f emacs || doom_reset &
-pgrep -i -f barrier || barrier &
+clipmenud &
+dunst &
+xbanish &
+pgrep -x syncthing || syncthing &
+pgrep -x emacs || doom_reset &
+barrier &
 fzf_man update &
 # musica
-pgrep -i -f playerctld || playerctld daemon &
-pgrep -i -f mpd || mpd &
-pgrep -i -f mpDris2 || mpDris2 --music-dir="$HOME/media/musicas/" &
+pgrep -x mpd || mpd &
+mpDris2 --music-dir="$HOME/media/musicas/" &
+playerctld daemon &
 mpc update &
 # aparencia
-pgrep -i -f picom || picom &
+picom &
 nitrogen --restore &
 xsetroot -cursor_name left_ptr
 xrdb -load "$HOME/.config/x11/xresources" &

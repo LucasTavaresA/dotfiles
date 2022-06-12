@@ -141,6 +141,7 @@ hc keybind Menu spawn dmenu_run
 hc keybind Alt-m spawn dmenu_mont
 hc keybind Alt-p spawn passmenu --type
 hc keybind Alt-q spawn term_open -a center fzf_sys
+hc keybind Alt-o spawn dmenu_pesquisar
 hc keybind Mod4-c spawn term_open -a center fzf_clip
 hc keybind Alt-e spawn term_open -a center fzf_edit
 hc keybind Alt-Shift-e spawn term_open -a center fzf_emojis
