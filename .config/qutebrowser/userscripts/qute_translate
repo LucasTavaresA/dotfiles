@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+notify-send "Translate:" "$(trans -tl en -b "${QUTE_SELECTED_TEXT}")"

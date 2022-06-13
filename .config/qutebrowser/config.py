@@ -140,6 +140,10 @@ config.unbind('q')
 config.unbind('<Shift-H>')
 config.unbind('<Shift-L>')
 
+config.bind('<Up>', 'move-to-prev-line', mode='caret')
+config.bind('<Down>', 'move-to-next-line', mode='caret')
+config.bind('<Left>', 'move-to-prev-char', mode='caret')
+config.bind('<Right>', 'move-to-next-char', mode='caret')
 config.bind('<Ctrl-Tab>', 'tab-next')
 config.bind('<Ctrl-Left>', 'tab-prev')
 config.bind('<Ctrl-Right>', 'tab-next')
@@ -168,8 +172,11 @@ config.bind('qb', 'config-cycle -p -u *://*.{url:host}/* content.blocking.enable
 config.bind('qr', 'spawn --userscript readability')
 # traduz a pagina
 config.bind('tp', 'spawn --userscript translate')
-# traduz o texto selecionado
-config.bind('ts', 'spawn --userscript translate --text')
+# traduz o texto selecionado no google translate
+config.bind('tt', 'spawn --userscript translate --text')
+# traduz o texto selecionado em uma notificação
+# dependencias: translate-shell
+config.bind('ts','spawn --userscript qute_translate')
 # pop-up com tradução do japonês
 # dependencias: pyqt5, python-xlib, wheel, jamdict, jamdict-data
 config.bind('tj', 'spawn --userscript yomichad --no-kanji')
