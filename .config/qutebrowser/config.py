@@ -1,6 +1,10 @@
 # carregar o autoconfig.yml
 config.load_autoconfig()
 
+# Reinicia as stylecheets
+import subprocess
+subprocess.call(['python3', '~/.config/qutebrowser/userscripts/rebuild-qutebrowser-grease-styles.py'])
+
 #### Configurações padrão ####
 config.set('content.cookies.accept', 'all', 'chrome-devtools://*')
 config.set('content.cookies.accept', 'all', 'devtools://*')
@@ -26,15 +30,15 @@ config.set('content.pdfjs', True)
 config.set('content.javascript.enabled', False)
 # abre novas abas de fundo
 config.set('new_instance_open_target', 'window')
+# abre abas como janelas
+config.set("tabs.tabs_are_windows", True)
 # salva a sessão automaticamente
 config.set('auto_save.session', True)
 # não sai do modo de inserção automaticamente
-config.set('input.insert_mode.auto_leave', False)
-config.set('input.insert_mode.leave_on_load', False)
+config.set('input.insert_mode.auto_leave', True)
+config.set('input.insert_mode.leave_on_load', True)
 # o que fazer caso a ultima pagina seja fechada
 config.set("tabs.last_close", "ignore")
-# abre abas como janelas
-config.set("tabs.tabs_are_windows", True)
 # confirma antes de sair
 config.set('confirm_quit', ["multiple-tabs"])
 # muda ordem do menu de compleção
@@ -62,7 +66,7 @@ c.tabs.position = "top"
 # tamanho da barra de compleção
 config.set('completion.height', '100%')
 # editor
-c.editor.command = ['nvim', '{}']
+c.editor.command = ["emacsclient", "-c", "-a", "'term_open nvim'", "{}"]
 
 #### Adblock ####
 config.set('content.blocking.method', 'both')
@@ -143,29 +147,32 @@ config.bind('<Ctrl-a>', 'back')
 config.bind('<Ctrl-d>', 'forward')
 config.bind('u', 'undo --window')
 # atalho para assistir link com mpv
-config.bind('zvw', 'hint links spawn mpv {hint-url}')
-# baixar imagem selecionada
-config.bind('zid', 'hint images download')
+config.bind('qvw', 'hint links spawn mpv {hint-url}')
 # baixar como video
-config.bind('zvd', 'hint links spawn term_open -a float yt {hint-url}')
+config.bind('qvd', 'hint links spawn term_open -a float yt {hint-url}')
+# baixar imagem selecionada
+config.bind('qid', 'hint images download')
 # baixar como audio
-config.bind('zad', 'hint links spawn term_open -a float yta {hint-url}')
+config.bind('qad', 'hint links spawn term_open -a float yta {hint-url}')
 # abre no firefox
-config.bind('zf', 'hint links spawn firefox {url}')
+config.bind('qf', 'hint links spawn firefox {url}')
 # ativa/desativa a barra
-config.bind('zx', 'config-cycle statusbar.show always in-mode;; config-cycle tabs.show always switching')
+config.bind('qq', 'config-cycle statusbar.show always in-mode;; config-cycle tabs.show always switching')
 # ativa/desativa tema escuro
-config.bind('zd', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/styles/dark.css ""')
+config.bind('qd', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/styles/dark.css ~/.config/qutebrowser/styles/custom-solarized-dark.css')
 # ativa/desativa javascript para um site
-config.bind('zj', 'config-cycle -p -u *://*.{url:host}/* content.javascript.enabled ;; reload')
+config.bind('qj', 'config-cycle -p -u *://*.{url:host}/* content.javascript.enabled ;; reload')
 # ativa/desativa adblocking para um site
-config.bind('zb', 'config-cycle -p -u *://*.{url:host}/* content.blocking.enabled ;; reload')
+config.bind('qb', 'config-cycle -p -u *://*.{url:host}/* content.blocking.enabled ;; reload')
 # modo leitura
-config.bind('zr', 'spawn --userscript readability')
+config.bind('qr', 'spawn --userscript readability')
 # traduz a pagina
-config.bind('ztp', 'spawn --userscript translate')
+config.bind('tp', 'spawn --userscript translate')
 # traduz o texto selecionado
-config.bind('zts', 'spawn --userscript translate --text')
+config.bind('ts', 'spawn --userscript translate --text')
+# pop-up com tradução do japonês
+# dependencias: pyqt5, python-xlib, wheel, jamdict, jamdict-data
+config.bind('tj', 'spawn --userscript yomichad --no-kanji')
 # copia links
 config.bind('cl', 'hint links yank')
 # copia trechos de código

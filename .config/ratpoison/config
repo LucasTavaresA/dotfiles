@@ -33,7 +33,7 @@ definekey root Return exec term_open
 definekey root Q quit
 definekey root R restart
 definekey root H tmpwm herbstluftwm --locked
-definekey root f exec notify-send "Abrindo" "$BROWSER" && firefox
+definekey root f exec notify-send "Abrindo" "$BROWSER" && qutebrowser
 definekey root b exec polybar-msg cmd toggle
 ## top ##
 definekey top Print exec dmenu_print

@@ -1,3 +1,4 @@
+*__pycache__*
 .cache/
 .config/cabal/
 .config/cheat/cheatsheets/
@@ -27,8 +28,10 @@
 .config/npm/_*
 .config/pulse/
 .config/QSyncthingTray/
+.config/qutebrowser/greasemonkey/
+.config/qutebrowser/bookmarks/
 .config/qutebrowser/autoconfig.yml
-.config/qutebrowser/bookmarks
+.config/qutebrowser/stylemap.py
 .config/qutebrowser/quickmarks
 .config/transmission/
 .config/VirtualBox/

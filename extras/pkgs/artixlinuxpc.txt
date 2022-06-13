@@ -180,6 +180,7 @@ python-pytest
 qemu-desktop
 qt5-x11extras
 qt5ct
+qutebrowser
 ripgrep
 rsync
 rtags

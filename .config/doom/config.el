@@ -59,6 +59,8 @@
 (setq user-full-name "Lucas Tavares"
       user-mail-address "tavares.lassuncao@gmail.com")
 
+(setq yas-snippet-dirs "~/.config/doom/snippets")
+
 ;; muda systema de desfazer para o undo-tree
 (global-undo-tree-mode)
 (evil-set-undo-system 'undo-tree)

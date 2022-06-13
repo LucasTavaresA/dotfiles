@@ -275,6 +275,7 @@
 (define-key *Menu-map* (kbd "e") "exec term_open -a fzf fzf_edit")
 (define-key *Menu-map* (kbd "b") "exec dmenu_browser")
 (define-key *Menu-map* (kbd "f") "exec firefox")
+(define-key *Menu-map* (kbd "q") "exec qutebrowser")
 (define-key *Menu-map* (kbd "m") "exec dmenu_mont")
 (define-key *Menu-map* (kbd "p") "exec passmenu --type")
 (define-key *Menu-map* (kbd "w") "exec term_open -a fzf fzf_wifi")
