@@ -21,6 +21,14 @@ picom &
 nitrogen --restore &
 xsetroot -cursor_name left_ptr
 xrdb -load "$HOME/.config/x11/xresources" &
+# teclado
+# troca capslock por escape
+setxkbmap -option caps:escape_shifted_capslock # grep escape /usr/share/X11/xkb/rules/base.lst
+xset r rate 300 100 # acelera repetição de teclas
+# teclas no notebook
+xmodmap -e "keycode 59 = comma less comma less Escape"             # alt + , = Escape
+xmodmap -e "keycode 60 = period greater period greater Tab"        # alt + . = Tab
+xmodmap -e "keycode 61 = semicolon colon semicolon colon quotedbl" # alt + ; = "
 # sistema
 checar_updates &
 
