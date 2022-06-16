@@ -154,11 +154,11 @@ export LC_TIME="pt_BR.UTF-8"
 [ "$HOSTNAME" = *"note"* ] && export LIBGL_ALWAYS_SOFTWARE=1
 
 if [ "$WM" = "dwl" ] && [ "$(tty)" = "/dev/tty1" ]; then
-    dbus-run-session dwl -s "${XDG_CONFIG_HOME:-$HOME/.config}/dwl/dwlrc"
+    exec dbus-run-session dwl -s "${XDG_CONFIG_HOME:-$HOME/.config}/dwl/dwlrc"
 elif [ "$WM" = "cagebreak" ] && [ "$(tty)" = "/dev/tty1" ]; then
     exec cagebreak
 elif [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1; then
     exec sx sh "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
 else
-    fish
+    exec fish
 fi

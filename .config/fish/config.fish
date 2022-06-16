@@ -53,6 +53,11 @@ if status is-interactive
         end
     end
 
+    # Abre um processo e o separa
+    function dis
+        $argv >/dev/null 2>&1 &;disown
+    end
+
     # git status recursivo
     function gsr
         for repo in (fd -H -I -E "*cache*" -E "*.local*" -E "*.config/emacs*" | grep --color -i -I --color -i -I "/.git\$")

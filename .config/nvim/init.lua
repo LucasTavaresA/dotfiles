@@ -360,13 +360,14 @@ function Marcar()
     let l:line=getline('.')
     let l:curs=winsaveview()
     if l:line=~?'\s*-\s*\[\s*\].*'
-        s/\[.\]/[x]/
-    elseif l:line=~?'\s*-\s*\[x\].*'
-        s/\[x\]/[ ]/
+        s/\[.\]/[X]/
+    elseif l:line=~?'\s*-\s*\[X\].*'
+        s/\[X\]/[ ]/
     endif
     call winrestview(l:curs)
 endfunction
 autocmd FileType markdown nnoremap <silent> <leader><leader> :call Marcar()<CR>j
+autocmd FileType org nnoremap <silent> <leader><leader> :call Marcar()<CR>j
 ]])
 
 --- Plugins

@@ -1,4 +1,5 @@
-*__pycache__*
+*cache*
+*log*
 .cache/
 .config/cabal/
 .config/cheat/cheatsheets/
@@ -13,14 +14,16 @@
 .config/fish/functions/
 .config/fish/fish_plugins
 .config/fish/fish_variables
-.config/doom/spaceway-theme/
-.config/doom/themes/
-.config/doom/yasnippet-snippets/
+.config/doom/blinding-dark-theme/
+.config/doom/awesome-tray/
 .config/galculator/
 .config/GIMP/
 .config/git/config
 .config/github-copilot/
 .config/gtk-2.0/gtkfilechooser.ini
+.config/hexchat/scrollback/
+.config/hexchat/servlist.conf
+.config/hexchat/chanopt.conf
 .config/libreoffice/
 .config/mpd/
 .config/ncmpcpp/error.log
