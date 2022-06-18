@@ -3,7 +3,7 @@ config.load_autoconfig()
 
 # Reinicia as stylecheets
 import subprocess
-subprocess.call(['python3', '~/.config/qutebrowser/userscripts/rebuild-qutebrowser-grease-styles.py'])
+subprocess.call(['python3', '.config/qutebrowser/userscripts/rebuild-qutebrowser-grease-styles.py'])
 
 #### Configurações padrão ####
 config.set('content.cookies.accept', 'all', 'chrome-devtools://*')

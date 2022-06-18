@@ -34,6 +34,3 @@
 [submodule ".config/nvim/plugins/lite-dfm"]
 	path = .config/nvim/plugins/lite-dfm
 	url = https://gitlab.com/lucastavaresa/lite-dfm.git
-[submodule ".config/doom/blinding-dark-theme"]
-	path = .config/doom/blinding-dark-theme
-	url = https://github.com/lucastavaresa/blinding-dark-theme
