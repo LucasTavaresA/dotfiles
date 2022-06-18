@@ -82,12 +82,18 @@ def_key "shift-down"
 def_key "shift-j"
   select_item
   scroll_down
-def_key "S"
+def_key "s"
   save_playlist
 def_key "z"
   toggle_interface
 def_key "!"
   toggle_separators_between_albums
+def_key "C"
+  toggle_consume
+def_key "R"
+  toggle_random
+def_key "S"
+  shuffle
 def_key "q"
   quit
 def_key "f"
