@@ -140,50 +140,56 @@ config.unbind('q')
 config.unbind('<Shift-H>')
 config.unbind('<Shift-L>')
 
-config.bind('<Up>', 'move-to-prev-line', mode='caret')
-config.bind('<Down>', 'move-to-next-line', mode='caret')
-config.bind('<Left>', 'move-to-prev-char', mode='caret')
-config.bind('<Right>', 'move-to-next-char', mode='caret')
-config.bind('<Ctrl-Tab>', 'tab-next')
-config.bind('<Ctrl-Left>', 'tab-prev')
-config.bind('<Ctrl-Right>', 'tab-next')
-config.bind('<Ctrl-a>', 'back')
-config.bind('<Ctrl-d>', 'forward')
-config.bind('u', 'undo --window')
-# atalho para assistir link com mpv
-config.bind('qvw', 'hint links spawn mpv {hint-url}')
-# baixar como video
-config.bind('qvd', 'hint links spawn term_open -a float yt {hint-url}')
-# baixar imagem selecionada
-config.bind('qid', 'hint images download')
-# baixar como audio
-config.bind('qad', 'hint links spawn term_open -a float yta {hint-url}')
-# abre no firefox
-config.bind('qf', 'hint links spawn firefox {url}')
-# ativa/desativa a barra
-config.bind('qq', 'config-cycle statusbar.show always in-mode;; config-cycle tabs.show always switching')
-# ativa/desativa tema escuro
-config.bind('qd', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/styles/dark.css ~/.config/qutebrowser/styles/custom-solarized-dark.css')
-# ativa/desativa javascript para um site
-config.bind('qj', 'config-cycle -p -u *://*.{url:host}/* content.javascript.enabled ;; reload')
-# ativa/desativa adblocking para um site
-config.bind('qb', 'config-cycle -p -u *://*.{url:host}/* content.blocking.enabled ;; reload')
-# modo leitura
-config.bind('qr', 'spawn --userscript readability')
-# traduz a pagina
-config.bind('tp', 'spawn --userscript translate')
-# traduz o texto selecionado no google translate
-config.bind('tt', 'spawn --userscript translate --text')
-# traduz o texto selecionado em uma notificação
-# dependencias: translate-shell
-config.bind('ts','spawn --userscript qute_translate')
-# pop-up com tradução do japonês
-# dependencias: pyqt5, python-xlib, wheel, jamdict, jamdict-data
-config.bind('tj', 'spawn --userscript yomichad --no-kanji')
-# copia links
-config.bind('cl', 'hint links yank')
-# copia trechos de código
-config.bind('cc', 'hint code userscript code_select.py')
+config.bind("<Up>", "move-to-prev-line", mode='caret')
+config.bind("<Down>", "move-to-next-line", mode='caret')
+config.bind("<Left>", "move-to-prev-char", mode='caret')
+config.bind("<Right>", "move-to-next-char", mode='caret')
+bindings = {
+    "<Ctrl-Tab>": "tab-next",
+    "<Ctrl-Left>": "tab-prev",
+    "<Ctrl-Right>": "tab-next",
+    "<Ctrl-a>": "back",
+    "<Ctrl-d>": "forward",
+    "u": "undo --window",
+    # atalho para assistir link com mpv
+    "qvw": "hint links spawn mpv {hint-url}",
+    # baixar como video
+    "qvd": "hint links spawn term_open -a float yt {hint-url}",
+    # baixar imagem selecionada
+    "qid": "hint images download",
+    # baixar como audio
+    "qad": "hint links spawn term_open -a float yta {hint-url}",
+    # abre no firefox
+    "qf": "hint links spawn firefox {url}",
+    # ativa/desativa a barra
+    "qq": "config-cycle statusbar.show always in-mode;; config-cycle tabs.show always switching",
+    # ativa/desativa tema escuro
+    "qd": "config-cycle content.user_stylesheets ~/.config/qutebrowser/styles/dark.css ~/.config/qutebrowser/styles/custom-solarized-dark.css",
+    # ativa/desativa javascript para um site
+    "qj": "config-cycle -p -u *://*.{url:host}/* content.javascript.enabled ;; reload",
+    # ativa/desativa adblocking para um site
+    "qb": "config-cycle -p -u *://*.{url:host}/* content.blocking.enabled ;; reload",
+    # modo leitura
+    "qr": "spawn --userscript readability",
+    # traduz a pagina
+    "tp": "spawn --userscript translate",
+    # traduz o texto selecionado no google translate
+    "tt": "spawn --userscript translate --text",
+    # traduz o texto selecionado em uma notificação
+    # dependencias: translate-shell
+    "ts":"spawn --userscript qute_translate",
+    # pop-up com tradução do japonês
+    # dependencias: pyqt5, python-xlib, wheel, jamdict, jamdict-data
+    "tj": "spawn --userscript yomichad --no-kanji",
+    # copia links
+    "cl": "hint links yank",
+    # copia trechos de código
+    "cc": "hint code userscript code_select.py",
+}
+
+for key, bind in bindings.items():
+    config.bind(key, bind)
+
 c.hints.selectors["code"] = [
     # seleciona code tags onde o parente não é uma tag pre
     ":not(pre) > code",
