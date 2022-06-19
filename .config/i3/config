@@ -75,7 +75,7 @@ mode "Menu" {
     bindsym Shift+r restart
     bindsym Shift+q exit
     bindsym p exec passmenu --type ; mode "default"
-    bindsym Shift+p exec pkill picom || picom ; mode "default"
+    bindsym Shift+p exec pkill -x picom || picom -b --unredir-if-possible --backend xr_glx_hybrid --vsync --use-damage --glx-no-stencil ; mode "default"
     bindsym s exec sct ; mode "default"
     bindsym Shift+s exec sct 2000 ; mode "default"
     bindsym e exec dmenu_edit ; mode "default"

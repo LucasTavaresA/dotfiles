@@ -64,7 +64,7 @@ Menu;h
     term_open -a htop htop
 # picom
 Menu;P
-    pkill picom || picom
+    pkill -x picom || picom -b --unredir-if-possible --backend xr_glx_hybrid --vsync --use-damage --glx-no-stencil
 # sct
 Menu;{f,F}
     {sct,sct 2000}
