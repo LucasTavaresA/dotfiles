@@ -18,7 +18,6 @@
 .config/galculator/
 .config/GIMP/
 .config/git/config
-.config/github-copilot/
 .config/gtk-2.0/gtkfilechooser.ini
 .config/hexchat/scrollback/
 .config/hexchat/servlist.conf

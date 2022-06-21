@@ -47,8 +47,6 @@ paq({
     "mbbill/undotree";
 
     --- Code
-    -- Escreve codigo com IA
-    "github/copilot.vim";
     -- indentação e indicação de sintaxe
     "sheerun/vim-polyglot";
     "nvim-treesitter/nvim-treesitter";
@@ -259,21 +257,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     }
 )
 
---- Copilot
--- desativa o copilot ao iniciar
-vim.cmd("autocmd VimEnter * Copilot disable")
--- função para fechar e abrir copilot - copilot
-vim.cmd([[
-function s:CopilotToggle()
-    if !get(g:, 'copilot_enabled', 1)
-        Copilot enable
-    else
-        Copilot disable
-    endif
-endfunction
-command CopilotToggle call s:CopilotToggle()
-]])
-
 --- Ctrlp
 -- abre arquivos no repositório atual de acordo com o gitignore
 vim.cmd([[
@@ -379,8 +362,6 @@ keymap("n", "<leader>pc", ":PaqClean<CR>", {})
 keymap("n", "mp", ":MarkdownPreview<CR>", {})
 -- ativa/desativa a barra - litedfm
 keymap("n", "tb", ":LiteDFMToggle<CR>", {})
--- ativa o copilot - copilot
-keymap("n", "tC", ":CopilotToggle<CR>", {})
 -- expande região selecionada - expand region
 keymap("n", "<S-Up>", "<Plug>(expand_region_expand)", {})
 keymap("n", "<S-Down>", "<Plug>(expand_region_shrink)", {})
