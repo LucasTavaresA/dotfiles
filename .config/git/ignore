@@ -19,9 +19,7 @@
 .config/GIMP/
 .config/git/config
 .config/gtk-2.0/gtkfilechooser.ini
-.config/hexchat/scrollback/
-.config/hexchat/servlist.conf
-.config/hexchat/chanopt.conf
+.config/hexchat/
 .config/libreoffice/
 .config/mpd/
 .config/ncmpcpp/error.log

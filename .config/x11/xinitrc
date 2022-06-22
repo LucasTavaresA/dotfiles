@@ -10,7 +10,6 @@ xbanish &
 pgrep -x syncthing || syncthing &
 pgrep -x emacs || doom_reset &
 barrier &
-hexchat --minimize=2 &
 fzf_man update &
 # musica
 pgrep -x mpd || mpd &

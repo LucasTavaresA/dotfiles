@@ -228,5 +228,6 @@ hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 # polybar
 # espera a barra carregar e esconde a barra
 polybar && polybar-msg cmd hide &
+hexchat --minimize=2 &
 
 hc unlock
