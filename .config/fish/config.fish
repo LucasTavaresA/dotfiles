@@ -33,7 +33,7 @@ if status is-interactive
         # fish_default_key_bindings
         fish_vi_key_bindings
         # fzf
-        fzf_configure_bindings --history=\cS --directory=\cD --git_log=\cA --variables=\cV --processes=\cX
+        fzf_configure_bindings --history=\cS --git_log=\cA --variables=\cV --processes=\cX
     end
 
     ## funções ##
@@ -47,7 +47,7 @@ if status is-interactive
 
     # localizar e editar executavel
     function ee
-        set executavel (whereis -b "$argv" | cut -d' ' -f2)
+        set executavel (fd . $PATH | fzf)
         if test -x "$executavel"
            eval $VISUAL "$executavel"
         end
@@ -60,7 +60,7 @@ if status is-interactive
 
     # git status recursivo
     function gsr
-        for repo in (fd -H -I -E "*cache*" -E "*.local*" -E "*.config/emacs*" | grep --color -i -I --color -i -I "/.git\$")
+        for repo in (fd -H -I -E "*cache*" -E "*.local*" -E "*.config/emacs*" | grep --color -iI "/.git\$")
             set repo (echo $repo | sed 's/\/.git$//')
             set cols (tput cols)
             set i 0
@@ -113,8 +113,8 @@ if status is-interactive
 
     ## Abbr ##
     abbr -a -g cd z
-    abbr -a -g pkill pkill -i
-    abbr -a -g pgrep pgrep -i -a
+    abbr -a -g pk pkill -i
+    abbr -a -g pg pgrep -ia
     abbr -a -g df df -hT --total -x tmpfs -x devtmpfs
     abbr -a -g tep trans -s en -l pt
     abbr -a -g tpe trans -s pt -l en
@@ -156,8 +156,7 @@ if status is-interactive
     # arquivos e Diretórios
     abbr -a -g rm lixo
     abbr -a -g rml lixo limpar
-    abbr -a -g rmf rm -rf
-    abbr -a -g grep grep --color -i -I
+    abbr -a -g g grep --color -iIn
     abbr -a -g l lsd -AX1 --group-dirs first
     abbr -a -g la lsd -lXA1 --group-dirs first
     abbr -a -g .. "cd .."
@@ -199,8 +198,8 @@ if status is-interactive
     abbr -a -g grsu git remote set-url origin
     abbr -a -g grrs git reset --soft
     abbr -a -g grrh git reset --hard
-    abbr -a -g gg git grep -i -I -n --break --heading -p
-    abbr -a -g ggs git grep -i -I -n --break --heading -p -8
+    abbr -a -g gg git grep -iInp --break --heading
+    abbr -a -g ggs git grep -iInp --break --heading -8
 
     ## Abbrs em sistemas
     if test "$OS" = "artixlinux"; or test "$OS" = "archlinux"; or test "$OS" = "manjaro";

@@ -54,7 +54,7 @@ ea () {
 
 # localizar e editar executavel
 ee () {
-    executavel=$(whereis -b "$@" | cut -d' ' -f2)
+    executavel=$(dmenu_path | fzf)
     if [ -x "$executavel" ]; then
         eval $VISUAL "$executavel"
     fi
@@ -62,7 +62,7 @@ ee () {
 
 # git status recursivo
 gsr () {
-    for repo in $(fd -H -I -E "*cache*" -E "*.local*" -E "*.config/emacs*" | grep --color -i -I --color -i -I "/.git\$");
+    for repo in $(fd -H -I -E "*cache*" -E "*.local*" -E "*.config/emacs*" | grep --color -iI "/.git\$");
     do
         repo=$(echo $repo | sed 's/\/.git$//')
         cols=$(tput cols)
@@ -117,8 +117,8 @@ ex () {
 
 #### Aliases ####
 alias cd="z"
-alias pkill="pkill -i"
-alias pgrep="pgrep -i -a"
+alias pk="pkill -i"
+alias pg="pgrep -ia"
 alias df="df -hT --total -x tmpfs -x devtmpfs"
 alias tep="tpe trans -s pt -l en"
 alias tpe="tpe trans -s pt -l en"
@@ -158,10 +158,9 @@ alias xk="xkill"
 alias sys="doas systemctl"
 [ "$OS" = "voidlinux" ] && alias sys="doas sv"
 # arquivos e Diretórios
-alias grep="grep --color -i -I"
+alias g="grep --color -iIn"
 alias rm="lixo"
 alias rml="lixo limpar"
-alias rmf="rm -rf"
 alias l="lsd -AX1 --group-dirs first"
 alias la="lsd -lXA1 --group-dirs first"
 alias ..="cd .."
@@ -203,8 +202,8 @@ alias grs="git restore --staged"
 alias grsu="git remote set-url origin"
 alias grrs="git reset --soft"
 alias grrh="git reset --hard"
-alias gg="git grep -i -I -n --break --heading -p"
-alias ggs="git grep -i -I -n --break --heading -p -8"
+alias gg="git grep -iInp --break --heading"
+alias ggs="git grep -iInp --break --heading -8"
 
 ## aliases em sistemas
 if [ "$OS" = "artixlinux" ] || [ "$OS" = "archlinux" ] || [ "$OS" = "manjaro" ]; then
