@@ -19,10 +19,6 @@ pegar_erros() {
 set -o errtrace
 trap 'pegar_erros $?' ERR
 
-primeira_vez_aberto() {
-    ! hc silent get_attr my_loaded 2>/dev/null
-}
-
 ############
 #  Teclas  #
 ############
@@ -36,7 +32,7 @@ hc mousebind Super-Button2 zoom
 hc mousebind Super-Button3 resize
 
 # adiciona tags no primeiro iniciar
-if primeira_vez_aberto; then
+if hc silent new_attr bool my_create_tags; then
     hc set default_frame_layout max
     hc set_layout max
     tag_names=( {1..4} )
@@ -60,10 +56,10 @@ hc keybind Super_L spawn polybar-msg cmd show
 hc keybind Release-Super_L spawn polybar-msg cmd hide
 hc keybind Mod4-q close
 hc keybind Mod4-Shift-q remove
-hc keybind Mod4-f spawn hlwm_control estado telacheia
+hc keybind Mod4-f and . attr clients.focus.floating off . attr clients.focus.fullscreen toggle
 # fake fullscreen
 hc keybind Mod4-Alt-f chain , attr clients.focus.ewmhrequests off , attr clients.focus.ewmhnotify on , attr clients.focus.fullscreen on , attr clients.focus.ewmhnotify off , set_attr clients.focus.fullscreen off , set_attr clients.focus.ewmhnotify on , sprintf CMD 'sleep 2 ; herbstclient attr clients.%s.ewmhrequests on' clients.focus.winid spawn bash -c CMD
-hc keybind Mod4-w spawn hlwm_control estado flutuante
+hc keybind Mod4-w and . attr clients.focus.fullscreen off . attr clients.focus.floating toggle
 hc keybind Mod4-Tab cycle_all +1
 hc keybind Mod4-Alt-period cycle_all +1
 # troca entre layouts pulando layouts que não mudam janelas de posição
@@ -122,7 +118,7 @@ hc keybind Mod4-Shift-backslash spawn term_open
 hc keybind Mod4-backslash spawn term_scratchpad
 hc keybind Alt-b spawn polybar-msg cmd toggle
 hc keybind Alt-h spawn term_open -a float htop
-hc keybind Alt-Shift-p spawn hlwm_control picom
+hc keybind Alt-Shift-p spawn sh -c 'pkill -x picom || picom -b --unredir-if-possible --backend xr_glx_hybrid --vsync --use-damage --glx-no-stencil'
 hc keybind Alt-s spawn sct
 hc keybind Alt-Shift-s spawn sct 2000
 hc keybind Alt-t spawn transmission-qt
@@ -164,7 +160,7 @@ hc attr theme.floating.outer_width 1
 hc attr theme.floating.outer_color '#ffffff'
 hc attr theme.floating.inner_color '#000000'
 hc attr theme.floating.active.inner_color '#ffffff'
-hc attr theme.floating.active.outer_color '#ffffff'
+hc attr theme.floating.active.outer_color '#000000'
 
 hc set frame_border_active_color '#ffffff'
 hc set frame_border_normal_color '#000000'
@@ -225,9 +221,9 @@ hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on flo
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 
-# polybar
-# espera a barra carregar e esconde a barra
-polybar && polybar-msg cmd hide &
-hexchat --minimize=2 &
+if hc silent new_attr bool my_open_apps; then
+    polybar &
+    hexchat --minimize=2 &
+fi
 
 hc unlock
