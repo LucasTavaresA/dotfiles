@@ -52,7 +52,6 @@
 .pki/
 .ssh/
 .templateengine/
-.trash/
 code/csharp/
 code/python/
 code/unity/

@@ -66,7 +66,7 @@ cmd trash ${{
     printf "%s\n\t" "$fx"
     printf "deletar?[y/N]"
     read ans
-    [ $ans = "y" ] && mv -f -- $fx ~/.trash
+    [ $ans = "y" ] && mv -f -- $fx ~/.local/share/trash
 }}
 
 cmd mkdir ${{
