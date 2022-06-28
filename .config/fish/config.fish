@@ -135,7 +135,8 @@ if status is-interactive
     abbr -a -g p "patch -p1 <"
     abbr -a -g pr "patch -R <"
     abbr -a -g yt yt-dlp
-    abbr -a -g yta yt-dlp -x --audio-format mp3
+    abbr -a -g yta yt-dlp -x
+    abbr -a -g ytw streamlink
     abbr -a -g mi make install
     abbr -a -g mu make uninstall
     abbr -a -g dh doom help

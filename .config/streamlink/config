@@ -1,0 +1,5 @@
+player=mpv --cache=yes --demuxer-max-bytes=2048Kib
+title="{author} - {title}"
+player-no-close
+stream-sorting-excludes=<480p
+default-stream=720p

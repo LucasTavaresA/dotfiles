@@ -40,6 +40,7 @@ discord
 docx2txt
 dotnet-sdk
 dunst
+efibootmgr
 elogind-runit
 emacs-nativecomp
 enchant
@@ -83,6 +84,7 @@ gucharmap
 gzip
 handlr
 herbstluftwm
+hexchat
 highlight
 hspell
 htop
@@ -152,6 +154,7 @@ nuspell
 opendoas
 openssh
 opusfile
+os-prober
 otf-hermit
 p7zip
 pacman
@@ -178,6 +181,7 @@ python-pipenv
 python-pynvim
 qt5-x11extras
 qt5ct
+qutebrowser
 ripgrep
 rsync
 runit
@@ -189,6 +193,7 @@ simple-mtpfs
 slop
 starship
 stpv-git
+streamlink
 sx
 syncthing
 telegram-desktop

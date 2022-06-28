@@ -194,6 +194,7 @@ simple-mtpfs
 slop
 starship
 stpv-git
+streamlink
 sx
 syncthing
 telegram-desktop
