@@ -273,20 +273,34 @@ local cb = require'diffview.config'.diffview_callback
 require'diffview'.setup {
     enhanced_diff_hl = true,
     file_panel = {
-        position = "left",                  -- One of 'left', 'right', 'top', 'bottom'
-        width = 25,                        -- Only applies when position is 'top' or 'bottom'
-        listing_style = "list",             -- One of 'list' or 'tree'
+        win_config = {
+            position = "left",                  -- One of 'left', 'right', 'top', 'bottom'
+            width = 25,                         -- Only applies when position is 'top' or 'bottom'
+            listing_style = "list",             -- One of 'list' or 'tree'
+        },
     },
     file_history_panel = {
-        position = "bottom",
-        height = 15,
+        win_config = {
+            position = "bottom",
+            height = 15,
+        },
         log_options = {
-            max_count = 256,      -- Limit the number of commits
-            follow = false,       -- Follow renames (only for single file)
-            all = false,          -- Include all refs under 'refs/' including HEAD
-            merges = false,       -- List only merge commits
-            no_merges = false,    -- List no merge commits
-            reverse = false,      -- List commits in reverse order
+            single_file = {
+                max_count = 256,      -- Limit the number of commits
+                follow = false,       -- Follow renames (only for single file)
+                all = false,          -- Include all refs under 'refs/' including HEAD
+                merges = false,       -- List only merge commits
+                no_merges = false,    -- List no merge commits
+                reverse = false,      -- List commits in reverse order
+            },
+            multiple_files = {
+                max_count = 256,      -- Limit the number of commits
+                follow = false,       -- Follow renames (only for single file)
+                all = false,          -- Include all refs under 'refs/' including HEAD
+                merges = false,       -- List only merge commits
+                no_merges = false,    -- List no merge commits
+                reverse = false,      -- List commits in reverse order
+            },
         },
     },
     default_args = {
