@@ -25,6 +25,7 @@
 .config/nitrogen/
 .config/npm/_*
 .config/pulse/
+.config/rational-emacs/var/
 .config/QSyncthingTray/
 .config/qutebrowser/greasemonkey/
 .config/qutebrowser/bookmarks/
