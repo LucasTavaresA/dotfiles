@@ -4,6 +4,9 @@
 (setq package-enable-at-startup nil)
 
 ;;; Aparencia
+;; desativa a modeline
+(setq-default mode-line-format nil)
+(setq mode-line-format nil)
 ;; fontes
 (set-face-attribute 'default nil :family "Terminus" :height 140)
 (set-face-attribute 'variable-pitch nil :family "Ubuntu" :weight 'light)

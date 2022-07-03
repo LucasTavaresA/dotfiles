@@ -85,15 +85,17 @@
 ;; desativa barra piscando
 (setq visible-bell       nil
       ring-bell-function #'ignore)
-;; diretório de snippets
-(setq yas-snippet-dirs '("~/.config/rational-emacs/snippets"))
-;; para GPG, email, clientes, templates e snippets
+;; desativa previsão consult
+(setq consult-preview-key nil)
+;; para GPG, email, clientes, templates
 (setq user-full-name "Lucas Tavares"
       user-mail-address "tavares.lassuncao@gmail.com")
 ;; undotree não salva backups
 (with-eval-after-load 'undo-tree
   (setq undo-tree-auto-save-history nil))
 (with-eval-after-load 'evil
+  ;; evil search mais parecido com o do vim
+  (evil-select-search-module 'evil-search-module 'evil-search)
   (setq evil-split-window-below t  ; foca em novas splits
         evil-vsplit-window-right t
         evil-want-Y-yank-to-eol t
@@ -153,7 +155,7 @@
     :straight t
     :hook (org-mode . org-auto-tangle-mode)
     :config (setq org-auto-tangle-default nil))
-  ;; snippets para templates de código
+  ;; templates de código
   (require 'org-tempo)
   (add-to-list 'org-structure-template-alist '("sh" . "src sh"))
   (add-to-list 'org-structure-template-alist '("bash" . "src bash"))
@@ -211,6 +213,19 @@
         ([backtab] . corfu-previous))
   :init
   (global-corfu-mode))
+;; templates
+(use-package tempel
+  :straight t
+  :config
+  (setq tempel-path "/home/lucas/.config/rational-emacs/templates")
+  :init
+  ;; Setup completion at point
+  (defun tempel-setup-capf ()
+    (setq-local completion-at-point-functions
+                (cons #'tempel-expand
+                      completion-at-point-functions)))
+  (add-hook 'prog-mode-hook 'tempel-setup-capf)
+  (add-hook 'text-mode-hook 'tempel-setup-capf))
 (use-package evil-surround
   :straight t
   :config
@@ -380,15 +395,17 @@ replacing its contents."
 (define-key t-map (kbd "l") 'toggle-truncate-lines)
 (define-key t-map (kbd "h") 'hl-line-mode)
 (define-key t-map (kbd "f") 'flyspell-mode)
+(define-key t-map (kbd "t") (lambda () (interactive) (find-file "~/.config/rational-emacs/templates")))
 ;; evil-motion-state-map
 (define-key evil-motion-state-map (kbd "SPC") 'spc-map)
 (define-key evil-motion-state-map "?" (lambda () (interactive) (evil-ex-search-word-forward nil (thing-at-point 'symbol))))
 (define-key evil-motion-state-map "|" (lambda () (interactive) (consult-line (thing-at-point 'symbol))))
-(define-key evil-normal-state-map "\\" 'consult-line)
+(define-key evil-motion-state-map (kbd "E") 'completion-at-point)
 ;; evil-normal-state-map
 (define-key evil-normal-state-map (kbd "m") 'evil-execute-macro)
 (define-key evil-normal-state-map (kbd "p") '+evil/alt-paste)
 (define-key evil-normal-state-map (kbd "P") 'evil-collection-unimpaired-paste-below)
+(define-key evil-normal-state-map "\\" 'consult-line)
 ;; minibuffer
 (define-key minibuffer-local-map (kbd "C-d") 'embark-act)
 (define-key minibuffer-local-map (kbd "C-<tab>") #'vertico-next)
@@ -396,6 +413,7 @@ replacing its contents."
 ;; corfu popups
 (define-key corfu-map (kbd "<up>") 'evil-previous-line)
 (define-key corfu-map (kbd "<down>") 'evil-next-line)
+(define-key corfu-map (kbd "E") 'tempel-expand)
 ;; evil-mc
 (define-key evil-mc-cursors-map (kbd "ESC") 'evil-mc-undo-all-cursors)
 ;; global
@@ -441,7 +459,7 @@ replacing its contents."
     "Abre e fecha a header atual."
     (interactive)
     (org-cycle-internal-local))
-  (global-set-key (kbd "C-<tab>") 'orgm/org-cycle-current-headline)
+  (global-set-key (kbd "C-M-i") 'orgm/org-cycle-current-headline)
   (global-set-key (kbd "M-d") 'org-babel-demarcate-block))
 
 ;;; Correção ortográfica
