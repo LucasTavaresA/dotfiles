@@ -46,7 +46,7 @@ config.set("completion.open_categories", ["bookmarks", "history", "filesystem"])
 # vídeos não tocam automaticamente
 config.set("content.autoplay", False)
 # mostra a barra de scroll quando procurando uma palavra
-config.set('scrolling.bar', 'when-searching')
+config.set('scrolling.bar', 'overlay')
 # encolhe janela de completação dependendo das opções
 config.set('completion.shrink', True)
 # barra escondida
@@ -144,6 +144,13 @@ config.bind("<Up>", "move-to-prev-line", mode='caret')
 config.bind("<Down>", "move-to-next-line", mode='caret')
 config.bind("<Left>", "move-to-prev-char", mode='caret')
 config.bind("<Right>", "move-to-next-char", mode='caret')
+# previne bug https://github.com/qutebrowser/qutebrowser/issues/2236
+config.bind('o', 'set statusbar.show always;; set-cmd-text -s :open')
+config.bind('O', 'set statusbar.show always;; set-cmd-text -s :open -t')
+config.bind(':', 'set statusbar.show always;; set-cmd-text :')
+config.bind('<Escape>', 'mode-enter normal;; set statusbar.show in-mode', mode='command')
+config.bind('<Return>', 'command-accept;; set statusbar.show in-mode', mode='command')
+config.bind('/', 'set statusbar.show always;; set-cmd-text /')
 bindings = {
     "<Ctrl-Tab>": "tab-next",
     "<Ctrl-Left>": "tab-prev",
@@ -185,6 +192,8 @@ bindings = {
     "cl": "hint links yank",
     # copia trechos de código
     "cc": "hint code userscript code_select.py",
+    # copia links para um arquivo
+    "z": "hint links spawn sh -c 'printf %s\\\\n \"$1\" >> ~/copied.txt' _ {hint-url}",
 }
 
 for key, bind in bindings.items():
