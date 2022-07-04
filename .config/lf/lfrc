@@ -63,10 +63,13 @@ cmd delete ${{
 cmd trash ${{
     clear; tput cup $(($(tput lines)/3)); tput bold
     set -f
+    quantia=$(cat "$HOME/.cache/lixo")
     printf "%s\n\t" "$fx"
     printf "deletar?[y/N]"
     read ans
-    [ $ans = "y" ] && mv -f -- $fx ~/.local/share/trash
+    [ $ans = "y" ] && mv -f -- $fx ~/.local/share/trash && quantia=$((quantia+1))
+    [ "$quantia" -gt "5" ] && \
+        echo "Limpe a sua lixeira!" && notify-send -u critical "Lixeira" "Limpe a sua lixeira!"
 }}
 
 cmd mkdir ${{
@@ -123,6 +126,7 @@ cmd open-with %"$@" $fx
 map o push :open-with<space>
 
 map <delete> trash
+map <backspace2> trash
 map t mkfile
 map c chmod
 map C clear
