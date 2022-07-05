@@ -15,9 +15,22 @@ lisp-mode emacs-lisp-mode
 (ilamb "(lambda (" p ")" n> r> ")")
 (lamb "(lambda (" p ")" n> r> ")")
 
+csharp-mode
+
+(ee "Environment.Exit(" p ");")
+(cw "Console.Write(" p ");")
+(cwl "Console.WriteLine(" p ");")
+(cr "Console.Read(" p ");")
+(crl "Console.ReadLine(" p ");")
+(if "if (" p ") {\n" p > "\n}")
+(ife "if (" p ") {\n" p > "\n} else if (" p ") {\n" p > "\n}")
+(for "for (" p ";" p ";" p ") {\n" p > "\n}")
+(fore "foreach (" p ") {\n" p > "\n}")
+(main "namespace " p " {\n" > "static class " p " {\n" > "static void Main(string[] args) {\n" > "\n}" > "\n}" > "\n}")
+
 emacs-lisp-mode
 
-(pkg "(use-package "p > n":straight t)")
+(pkg "(use-package " p > n ":straight t)")
 (aload ";;;###autoload")
 (ilamb "(lambda (" p ") (" p ")" n> r> ")")
 (alias "(defalias '" p " '" p ")")
@@ -57,13 +70,17 @@ org-mode
 (comment "#+begin_comment" n> r> n> "#+end_comment")
 (verse "#+begin_verse" n> r> n> "#+end_verse")
 (src "#+begin_src " p n> r> n> "#+end_src" :post (org-edit-src-code))
-(elisp "#+begin_src emacs-lisp" n> r> n "#+end_src" :post (org-edit-src-code))
+(el "#+begin_src emacs-lisp" n> r> n "#+end_src" :post (org-edit-src-code))
 (lisp "#+begin_src lisp" n> r> n "#+end_src" :post (org-edit-src-code))
 (html "#+begin_src html" n> r> n "#+end_src" :post (org-edit-src-code))
 (css "#+begin_src css" n> r> n "#+end_src" :post (org-edit-src-code))
 (sh "#+begin_src shell-script" n> r> n "#+end_src" :post (org-edit-src-code))
+(zsh "#+begin_src zsh" n> r> n "#+end_src" :post (org-edit-src-code))
+(bash "#+begin_src bash" n> r> n "#+end_src" :post (org-edit-src-code))
 (c "#+begin_src c" n> r> n "#+end_src" :post (org-edit-src-code))
 (py "#+begin_src python" n> r> n "#+end_src" :post (org-edit-src-code))
+(conf "#+begin_src conf" n> r> n "#+end_src" :post (org-edit-src-code))
+(vim "#+begin_src vim" n> r> n "#+end_src" :post (org-edit-src-code))
 
 ;; Local Variables:
 ;; mode: lisp-data

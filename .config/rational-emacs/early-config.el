@@ -1,21 +1,25 @@
 ;;; early-config.el --- My early rational init       -*- lexical-binding: t; -*-
-;;; Straight
+;;; Pacotes
 ;; desabilitar package.el
 (setq package-enable-at-startup nil)
 
 ;;; Aparencia
+;; desativa gui
+(tooltip-mode -1)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+;; remove fringes
+(set-fringe-mode 0)
 ;; desativa a modeline
 (setq-default mode-line-format nil)
 (setq mode-line-format nil)
 ;; fontes
 (set-face-attribute 'default nil :family "Terminus" :height 140)
 (set-face-attribute 'variable-pitch nil :family "Ubuntu" :weight 'light)
-(set-face-attribute 'font-lock-comment-face nil :family "SauceCodePro Nerd Font Mono" :slant 'italic)
-(set-face-attribute 'font-lock-function-name-face nil :family "SauceCodePro Nerd Font Mono" :slant 'italic)
-(set-face-attribute 'font-lock-variable-name-face nil :family "SauceCodePro Nerd Font Mono" :slant 'italic)
-(with-eval-after-load 'doom-themes
-  (setq doom-themes-enable-bold t
-        doom-themes-enable-italic t))
+(set-face-attribute 'font-lock-comment-face nil :family "SauceCodePro Nerd Font Mono" :slant 'italic :height 130)
+(set-face-attribute 'font-lock-function-name-face nil :family "SauceCodePro Nerd Font Mono" :slant 'italic :height 130)
+(set-face-attribute 'font-lock-variable-name-face nil :family "SauceCodePro Nerd Font Mono" :slant 'italic :height 130)
 ;; markdown headers variam de tamanho
 (custom-set-faces
  '(markdown-header-face ((t (:inherit variable-pitch :weight bold :family "variable-pitch"))))

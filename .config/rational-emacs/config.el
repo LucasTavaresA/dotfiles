@@ -26,76 +26,12 @@
 ;; Modulos
 (require 'rational-defaults)
 (require 'rational-editing)
-(require 'rational-evil)
-;; necessario para carregar o rational-completion
-(add-to-list 'load-path (expand-file-name "straight/build/vertico/extensions" straight-base-dir))
-(require 'rational-completion)
-(require 'rational-ide)
-(require 'rational-lisp)
-(require 'rational-org)
-(require 'rational-python)
-
-;;; Miscelanea
-(use-package git-gutter-fringe
-  :straight t
-  :config
-  (set-face-foreground 'git-gutter-fr:modified "#ff0")
-  (set-face-foreground 'git-gutter-fr:added    "#090")
-  (set-face-foreground 'git-gutter-fr:deleted  "#f00")
-  (setq-default left-fringe-width  2)
-  (setq-default right-fringe-width 2)
-  (fringe-helper-define 'git-gutter-fr:added nil
-    "XXXXXXXXX"
-    "XXXXXXXXX"
-    "XXXXXXXXX"
-    "XXXXXXXXX"
-    "XXXXXXXXX"
-    "XXXXXXXXX"
-    "XXXXXXXXX"
-    "XXXXXXXXX")
-
-  (fringe-helper-define 'git-gutter-fr:deleted nil
-    "XXXXXXXXX"
-    "XXXXXXXXX"
-    "XXXXXXXXX"
-    "XXXXXXXXX"
-    "XXXXXXXXX"
-    "XXXXXXXXX"
-    "XXXXXXXXX"
-    "XXXXXXXXX")
-
-  (fringe-helper-define 'git-gutter-fr:modified nil
-    "XXXXXXXXX"
-    "XXXXXXXXX"
-    "XXXXXXXXX"
-    "XXXXXXXXX"
-    "XXXXXXXXX"
-    "XXXXXXXXX"
-    "XXXXXXXXX"
-    "XXXXXXXXX")
-  :init (global-git-gutter-mode))
-(use-package rainbow-mode
-  :straight t)
-(use-package terminal-here
-  :straight t
-  :config (setq terminal-here-linux-terminal-command 'st))
-;; salva posição nos arquivos
-(setq save-place-file "~/.config/rational-emacs/var/save-place")
-(save-place-mode 1)
-;; desativa barra piscando
-(setq visible-bell       nil
-      ring-bell-function #'ignore)
-;; desativa previsão consult
-(setq consult-preview-key nil)
-;; para GPG, email, clientes, templates
-(setq user-full-name "Lucas Tavares"
-      user-mail-address "tavares.lassuncao@gmail.com")
-;; undotree não salva backups
-(with-eval-after-load 'undo-tree
-  (setq undo-tree-auto-save-history nil))
 (with-eval-after-load 'evil
-  ;; evil search mais parecido com o do vim
   (evil-select-search-module 'evil-search-module 'evil-search)
+  (setq-default evil-cross-lines t ; da a volta para a proxima linha
+                tab-width 4
+                evil-shift-width tab-width
+                indent-tabs-mode nil)
   (setq evil-split-window-below t  ; foca em novas splits
         evil-vsplit-window-right t
         evil-want-Y-yank-to-eol t
@@ -108,28 +44,65 @@
         evil-insert-state-cursor   '("#ffffff" (bar . 2))
         evil-replace-state-cursor  '("#ff0000" box)
         evil-motion-state-cursor   '("#ad8beb" box)))
+;; undotree não salva backups
+(with-eval-after-load 'undo-tree
+  (setq undo-tree-auto-save-history nil))
+(require 'rational-evil)
+;; necessario para carregar o rational-completion
+(add-to-list 'load-path (expand-file-name "straight/build/vertico/extensions" straight-base-dir))
+(require 'rational-completion)
+(require 'rational-ide)
+(require 'rational-lisp)
+(require 'rational-org)
+(require 'rational-python)
+
+;;; Miscelanea
+;; quebra paragrafos de acordo com as palavras
+(global-visual-line-mode +1)
+;; salva posição nos arquivos
+(setq save-place-file "~/.config/rational-emacs/var/save-place")
+(save-place-mode 1)
+;; desativa barra piscando
+(setq visible-bell       nil
+      ring-bell-function #'ignore)
+;; distancia de onde o scroll começa
+(customize-set-variable 'scroll-margin 1)
+(customize-set-variable 'scroll-conservatively 0)
+;; para GPG, email, clientes, templates
+(setq user-full-name "Lucas Tavares"
+      user-mail-address "tavares.lassuncao@gmail.com")
+(use-package which-key
+  :straight t
+  :init (which-key-mode))
+(use-package rainbow-mode
+  :straight t)
+(use-package terminal-here
+  :straight t
+  :config (setq terminal-here-linux-terminal-command 'st))
+;; desativa previsão consult
+(setq consult-preview-key nil)
 ;; vai ate definições de codigo, ex: `gd'
 (use-package dumb-jump
-  :straight t)
-(add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+  :straight t
+  :init (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
 ;; melhora buffers de ajuda
 (use-package helpful
-  :straight t)
-(require 'helpful)
-(define-key helpful-mode-map [remap revert-buffer] #'helpful-update)
-(global-set-key [remap describe-command] #'helpful-command)
-(global-set-key [remap describe-function] #'helpful-callable)
-(global-set-key [remap describe-key] #'helpful-key)
-(global-set-key [remap describe-symbol] #'helpful-symbol)
-(global-set-key [remap describe-variable] #'helpful-variable)
+  :straight t
+  :config
+  (define-key helpful-mode-map [remap revert-buffer] #'helpful-update)
+  (global-set-key [remap describe-command] #'helpful-command)
+  (global-set-key [remap describe-function] #'helpful-callable)
+  (global-set-key [remap describe-key] #'helpful-key)
+  (global-set-key [remap describe-symbol] #'helpful-symbol)
+  (global-set-key [remap describe-variable] #'helpful-variable))
 ;; adiciona exemplos em buffers de ajuda
 (use-package elisp-demos
-  :straight t)
-(require 'elisp-demos)
-(advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update)
+  :straight t
+  :init (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update))
 
 ;;; Linguagens
-;; modo simples para o sxhkd
+(add-hook 'prog-mode-hook 'prettify-symbols-mode)
+;; sxhkd
 (define-generic-mode sxhkd-mode
   '(?#)
   '("alt" "Escape" "super" "bspc" "dwmc" "herbstclient" "stumpish" "ctrl" "space" "shift" "Return" "Menu" "backslash" "slash" "comma" "period" "Tab" "Left" "Right" "Up" "Down" "Print") nil
@@ -143,31 +116,52 @@
 (use-package markdown-toc
   :straight t
   :after (markdown-mode))
+;; lsp
+(use-package eglot
+  :hook
+  (html-mode . eglot-ensure)
+  (csharp-mode . eglot-ensure)
+  (c-mode . eglot-ensure)
+  (python-mode . eglot-ensure)
+  (js-mode . eglot-ensure))
+;; csharp
+(use-package csharp-mode
+  :straight t
+  :config (add-to-list 'aggressive-indent-excluded-modes 'csharp-mode)
+  :mode ("\\.cs\\'" . csharp-mode))
+(use-package csproj-mode
+  :mode ("\\.csproj\\'" . csproj-mode)
+  :straight t)
+(use-package sln-mode
+  :mode ("\\.sln\\'" . sln-mode)
+  :straight t)
+;; css
+(use-package css-eldoc
+  :straight t
+  :hook (css-mode . turn-on-css-eldoc))
 
 ;;; Orgmode
 (with-eval-after-load 'org
-  (require 'org-indent)
   (use-package org-starless
     :straight (org-starless :type git :host github :repo "toncherami/org-starless")
     :hook (org-mode . org-starless-mode))
+  ;; Trocar listas com hífens por pontos
+  (font-lock-add-keywords 'org-mode
+                          '(("^ *\\([-]\\) "
+                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
   ;; tangle automatico
   (use-package org-auto-tangle
     :straight t
     :hook (org-mode . org-auto-tangle-mode)
     :config (setq org-auto-tangle-default nil))
-  ;; templates de código
-  (require 'org-tempo)
-  (add-to-list 'org-structure-template-alist '("sh" . "src sh"))
-  (add-to-list 'org-structure-template-alist '("bash" . "src bash"))
-  (add-to-list 'org-structure-template-alist '("zsh" . "src zsh"))
-  (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
-  (add-to-list 'org-structure-template-alist '("li" . "src lisp"))
-  (add-to-list 'org-structure-template-alist '("py" . "src python"))
-  (add-to-list 'org-structure-template-alist '("go" . "src go"))
-  (add-to-list 'org-structure-template-alist '("yaml" . "src yaml"))
-  (add-to-list 'org-structure-template-alist '("json" . "src json"))
-  (add-to-list 'org-structure-template-alist '("conf" . "src conf"))
-  (add-to-list 'org-structure-template-alist '("vim" . "src vimrc"))
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (js . t)
+     (shell . t)
+     (python . t)
+     (org . t)
+     (C . t)))
   (push '("conf-unix" . conf-unix) org-src-lang-modes)
   ;; cria sumarios automaticamente
   (use-package org-make-toc
@@ -186,13 +180,12 @@
                     (org-level-8 . 0.9)))
       (set-face-attribute (car face) nil :font "Ubuntu" :weight 'regular :height (cdr face))))
   (add-hook 'org-mode-hook 'orgm/org-fonts)
-  (add-hook 'org-mode-hook 'org-indent-mode)
   (setq org-ellipsis "  "
         org-startup-folded 'content
         org-hide-emphasis-markers t
         org-src-fontify-natively t  ; formatação em codigo fonte
         org-src-tab-acts-natively t ; tab em codigo fonte
-        org-startup-indented nil
+        org-startup-indented t      ; carrega o org-indent ao iniciar
         org-confirm-babel-evaluate nil
         org-hide-leading-stars t           ; mostra asteriscos das headers
         org-edit-src-content-indentation 2 ; Indentação nos blocos de código
@@ -204,22 +197,14 @@
   :custom
   (corfu-auto-delay 1)
   (corfu-cycle t)
-  (corfu-preselect-first nil) ;; Preseleção de candidato
-  :bind
-  (:map corfu-map
-        ("TAB" . corfu-next)
-        ([tab] . corfu-next)
-        ("S-TAB" . corfu-previous)
-        ([backtab] . corfu-previous))
-  :init
-  (global-corfu-mode))
+  (corfu-preselect-first nil)
+  :config (set-face-attribute 'corfu-current nil :background "#007")
+  :init (global-corfu-mode))
 ;; templates
 (use-package tempel
   :straight t
-  :config
-  (setq tempel-path "/home/lucas/.config/rational-emacs/templates")
+  :config (setq tempel-path "/home/lucas/.config/rational-emacs/templates")
   :init
-  ;; Setup completion at point
   (defun tempel-setup-capf ()
     (setq-local completion-at-point-functions
                 (cons #'tempel-expand
@@ -228,8 +213,7 @@
   (add-hook 'text-mode-hook 'tempel-setup-capf))
 (use-package evil-surround
   :straight t
-  :config
-  (global-evil-surround-mode 1))
+  :init (global-evil-surround-mode))
 (use-package evil-mc
   :straight t
   :init (global-evil-mc-mode))
@@ -240,12 +224,15 @@
 (use-package aggressive-indent
   :straight t
   :init (global-aggressive-indent-mode))
-(setq-default evil-cross-lines t ; da a volta para a proxima linha
-              tab-width 4
-              evil-shift-width tab-width
-              indent-tabs-mode nil)
 
 ;;; Aparencia
+;; fontes de diferentes tamanhos
+(variable-pitch-mode 1)
+;; ativa indicação de spaços e tabs em código
+(setq whitespace-style '(face tabs spaces space-mark trailing space-before-tab indentation
+                              empty space-after-tab tab-mark missing-newline-at-eof))
+(global-whitespace-mode +1)
+(set-face-attribute 'whitespace-space nil :background "#000" :foreground "#333")
 ;; modeline
 (use-package awesome-tray
   :straight (awesome-tray :type git :host github :repo "manateelazycat/awesome-tray")
@@ -255,50 +242,74 @@
         awesome-tray-file-path-full-dirname-levels 1
         awesome-tray-file-path-truncate-dirname-levels 3
         awesome-tray-separator ""
-        awesome-tray-essential-modules '("git" " " "location" "  " "file-path")
-        awesome-tray-active-modules    '("git" " " "location" "  " "file-path"))
+        awesome-tray-essential-modules '("buffer-read-only" "  " "git" " " "location" "  ")
+        awesome-tray-active-modules    '("buffer-read-only" "  " "git" " " "location" "  " "file-path"))
   :init (awesome-tray-mode))
 (use-package hide-mode-line
   :straight t
   :init (global-hide-mode-line-mode))
 ;; tema
-(use-package doom-themes
-  :straight t)
-(load-theme 'doom-outrun-electric t)
-(set-face-attribute 'default nil :background "#000")
-(set-face-attribute 'default nil :foreground "#fff")
-(set-face-attribute 'region nil :background "#007")
-(set-face-attribute 'corfu-current nil :background "#007")
-;; fonte
-(variable-pitch-mode 1)
-;; ativa indicação de indentação em código
-(setq whitespace-style '(face tabs spaces space-mark trailing space-before-tab big-indent
-                              indentation empty space-after-tab tab-mark missing-newline-at-eof))
-(global-whitespace-mode +1)
+(use-package emacs
+  :init
+  (setq modus-themes-vivendi-color-overrides '((fg-comment-yellow . "#009900")
+                                               (green . "#ffff00"))
+        modus-themes-italic-constructs t
+        modus-themes-bold-constructs t
+        modus-themes-variable-pitch-ui t
+        modus-themes-markup '(italic bold)
+        modus-themes-syntax '(yellow-comments green-strings)
+        modus-themes-paren-match '(bold intense)
+        modus-themes-links '(neutral-underline)
+        modus-themes-box-buttons '(flat)
+        modus-themes-prompts '(intense bold)
+        modus-themes-completions '((matches . (extrabold))
+                                   (selection . (semibold accented))
+                                   (popup . (accented intense)))
+        modus-themes-org-blocks 'gray-background
+        modus-themes-headings
+        '((1 . (variable-pitch background variable-pitch))
+          (2 . (variable-pitch rainbow))
+          (t . (variable-pitch semibold))))
+  (set-face-attribute 'default nil :background "#000" :foreground "#fff")
+  (set-face-attribute 'region nil :background "#007")
+  :config (load-theme 'modus-vivendi))
+;; Indica profundidade de parenteses
+(use-package rainbow-delimiters
+  :straight t
+  :config
+  ;; gradiente gerado usando: https://colordesigner.io/gradient-generator
+  (set-face-attribute 'rainbow-delimiters-depth-1-face nil :foreground "#333333")
+  (set-face-attribute 'rainbow-delimiters-depth-2-face nil :foreground "#4e4e4e")
+  (set-face-attribute 'rainbow-delimiters-depth-3-face nil :foreground "#a2a2a2")
+  (set-face-attribute 'rainbow-delimiters-depth-4-face nil :foreground "#ffffff")
+  (set-face-attribute 'rainbow-delimiters-depth-5-face nil :foreground "#a2a2a2")
+  (set-face-attribute 'rainbow-delimiters-depth-6-face nil :foreground "#4e4e4e")
+  (set-face-attribute 'rainbow-delimiters-depth-7-face nil :foreground "#333333")
+  (set-face-attribute 'rainbow-delimiters-depth-8-face nil :foreground "#ffffff")
+  (set-face-attribute 'rainbow-delimiters-depth-9-face nil :foreground "#a2a2a2")
+  :hook (prog-mode . rainbow-delimiters-mode))
 ;; indicação visual quando muda o foco
 (require 'pulse)
 (set-face-attribute 'pulse-highlight-start-face nil :background "#00f")
-(defun pulse-line (&rest _)
-  "Pulse the current line."
+(defun pulsar-linha (&rest _)
+  "Pulsa a linha atual."
   (pulse-momentary-highlight-one-line (point)))
 (dolist (command '(scroll-up-command scroll-down-command
                                      recenter-top-bottom other-window))
-  (advice-add command :after #'pulse-line))
+  (advice-add command :after #'pulsar-linha))
 
 ;;; Funções
-(defun +evil/alt-paste ()
-  "Call `evil-paste-after' but invert `evil-kill-on-visual-paste'.
-By default, this replaces the selection with what's in the clipboard without
-replacing its contents."
+(defun evil-colar ()
+  "Chama `evil-paste-after' porem inverte `evil-kill-on-visual-paste'.
+
+isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no modo de inserção."
   (interactive)
   (let ((evil-kill-on-visual-paste (not evil-kill-on-visual-paste)))
-    (call-interactively #'evil-paste-after)))
+    (if (evil-insert-state-p)
+        (call-interactively #'evil-paste-before)
+      (call-interactively #'evil-paste-after))))
 
 ;;; Teclas
-;; which-key
-(use-package which-key
-  :straight t
-  :init (which-key-mode))
 ;; spc-map
 (defalias 'spc-map (make-sparse-keymap))
 (defvar spc-map (symbol-function 'spc-map))
@@ -315,11 +326,14 @@ replacing its contents."
 (define-key spc-map (kbd "k") 'kill-current-buffer)
 (define-key spc-map (kbd "K") 'kill-some-buffers)
 (define-key spc-map (kbd "u") 'undo-tree-visualize)
+(define-key spc-map (kbd "c") 'list-colors-display)
 (define-key spc-map (kbd "RET") 'terminal-here)
 (define-key spc-map (kbd "<up>") 'windmove-up)
 (define-key spc-map (kbd "<down>") 'windmove-down)
 (define-key spc-map (kbd "<left>") 'windmove-left)
 (define-key spc-map (kbd "<right>") 'windmove-right)
+(define-key spc-map (kbd "<next>") #'flymake-goto-next-error)
+(define-key spc-map (kbd "<prior>") #'flymake-goto-prev-error)
 (fset 'copiar-buffer
       (kmacro-lambda-form [?g ?g ?V ?G ?y] 0 "%d"))
 (define-key spc-map (kbd "b c") 'copiar-buffer)
@@ -352,44 +366,41 @@ replacing its contents."
 (define-key h-map (kbd "F") 'describe-face)
 (define-key h-map (kbd "c") 'describe-command)
 ;; SPC t
-(defun alterna-numero-de-linhas ()
-  "alterna visibilidade do numero de linhas."
-  (interactive)
-  (defvar estado display-line-numbers)
-  (if display-line-numbers
-      (setq display-line-numbers nil)
-    (setq display-line-numbers t)))
-(define-key t-map (kbd "n") 'alterna-numero-de-linhas)
+(define-key t-map (kbd "n") (lambda () (interactive)
+                              (if display-line-numbers
+                                  (setq display-line-numbers nil)
+                                (setq display-line-numbers t))))
 ;; popup que retorna comandos sendo usados
 (use-package posframe
   :straight t)
 (use-package command-log-mode
+  :after (posframe)
   :straight t
-  :after posframe)
-(setq log/command-window-frame nil)
-(defun log/toggle-command-window ()
-  (interactive)
-  (if log/command-window-frame
+  :config
+  (setq log/command-window-frame nil)
+  (defun log/toggle-command-window ()
+    (interactive)
+    (if log/command-window-frame
+        (progn
+          (posframe-delete-frame clm/command-log-buffer)
+          (setq log/command-window-frame nil))
       (progn
-        (posframe-delete-frame clm/command-log-buffer)
-        (setq log/command-window-frame nil))
-    (progn
-      (command-log-mode t)
-      (with-current-buffer
-          (setq clm/command-log-buffer
-                (get-buffer-create " *command-log*"))
-        (text-scale-set -1))
-      (setq log/command-window-frame
-            (posframe-show
-             clm/command-log-buffer
-             :position `(,(- (x-display-pixel-width) 590) . 15)
-             :width 50
-             :height 15
-             :min-width 50
-             :min-height 15
-             :internal-border-width 1
-             :internal-border-color "#BA45A3"
-             :override-parameters '((parent-frame . nil)))))))
+        (command-log-mode t)
+        (with-current-buffer
+            (setq clm/command-log-buffer
+                  (get-buffer-create " *command-log*"))
+          (text-scale-set -1))
+        (setq log/command-window-frame
+              (posframe-show
+               clm/command-log-buffer
+               :position `(,(- (x-display-pixel-width) 590) . 15)
+               :width 50
+               :height 15
+               :min-width 50
+               :min-height 15
+               :internal-border-width 1
+               :internal-border-color "#BA45A3"
+               :override-parameters '((parent-frame . nil))))))))
 (define-key t-map (kbd "c") 'log/toggle-command-window)
 (define-key t-map (kbd "r") 'rainbow-mode)
 (define-key t-map (kbd "l") 'toggle-truncate-lines)
@@ -401,16 +412,26 @@ replacing its contents."
 (define-key evil-motion-state-map "?" (lambda () (interactive) (evil-ex-search-word-forward nil (thing-at-point 'symbol))))
 (define-key evil-motion-state-map "|" (lambda () (interactive) (consult-line (thing-at-point 'symbol))))
 (define-key evil-motion-state-map (kbd "E") 'completion-at-point)
+(define-key evil-motion-state-map (kbd "K") 'helpful-at-point)
 ;; evil-normal-state-map
+(define-key evil-normal-state-map (kbd "z =") 'flyspell-popup-correct)
 (define-key evil-normal-state-map (kbd "m") 'evil-execute-macro)
-(define-key evil-normal-state-map (kbd "p") '+evil/alt-paste)
+(define-key evil-normal-state-map (kbd "p") 'evil-colar)
 (define-key evil-normal-state-map (kbd "P") 'evil-collection-unimpaired-paste-below)
 (define-key evil-normal-state-map "\\" 'consult-line)
+;; evil-visual-state-map
+(define-key evil-visual-state-map (kbd "z =") 'flyspell-popup-correct)
 ;; minibuffer
 (define-key minibuffer-local-map (kbd "C-d") 'embark-act)
 (define-key minibuffer-local-map (kbd "C-<tab>") #'vertico-next)
 (define-key minibuffer-local-map (kbd "<backtab>") #'vertico-previous)
+;; tempel-map
+(define-key tempel-map (kbd "<backtab>") 'tempel-next)
 ;; corfu popups
+(define-key corfu-map (kbd "TAB") 'corfu-next)
+(define-key corfu-map (kbd "<tab>") 'corfu-next)
+(define-key corfu-map (kbd "S-TAB") 'corfu-previous)
+(define-key corfu-map (kbd "<backtab>") 'corfu-previous)
 (define-key corfu-map (kbd "<up>") 'evil-previous-line)
 (define-key corfu-map (kbd "<down>") 'evil-next-line)
 (define-key corfu-map (kbd "E") 'tempel-expand)
@@ -423,7 +444,7 @@ replacing its contents."
 (global-set-key (kbd "C-<tab>") 'consult-buffer)
 (global-set-key (kbd "C-s") 'evil-mc-make-all-cursors)
 (global-set-key (kbd "M-c") 'evil-yank)
-(global-set-key (kbd "M-v") '+evil/alt-paste)
+(global-set-key (kbd "M-v") 'evil-colar)
 (global-set-key (kbd "<C-S-down>") 'evil-mc-make-and-goto-next-match)
 (global-set-key (kbd "<C-down>") 'evil-mc-skip-and-goto-next-match)
 (global-set-key (kbd "<C-S-up>") 'evil-mc-make-and-goto-prev-match)
@@ -472,23 +493,24 @@ replacing its contents."
   (add-to-list 'ispell-skip-region-alist '("^#\\+BEGIN_SRC" . "^#\\+END_SRC"))
   (add-to-list 'ispell-skip-region-alist '("^#\\+BEGIN_EXPORT" . "^#\\+END_EXPORT"))
   (add-to-list 'ispell-skip-region-alist '("^#\\+BEGIN_EXPORT" . "^#\\+END_EXPORT"))
-  (add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:")))
-(setq flyspell-sort-corrections nil) ; Não organizar correções por ordem alfabetica
-(setq flyspell-issue-message-flag nil) ; Não mandar mensagens para cada palavra errada
+  (add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
+  (setq flyspell-sort-corrections nil    ; Não organizar correções por ordem alfabetica
+        flyspell-issue-message-flag nil) ; Não mandar mensagens para cada palavra errada
+  :hook (org-mode . flyspell-mode) (markdown-mode . flyspell-mode))
 (with-eval-after-load "ispell"
-  ;; uma lingua padrão deve ser configurada embora outras linguas sejam adicionadas mais abaixo
-  (setenv "LANG" "pt_BR.UTF-8")          ; lingua padrão
-  (setq ispell-program-name "hunspell")  ; ferramenta uilizada
-  (setq ispell-dictionary "pt_BR,en_US") ; lista de linguas
-  (ispell-set-spellchecker-params)       ; isso deve ser chamado antes de adicionar multi dicionários
-  (ispell-hunspell-add-multi-dic "pt_BR,en_US")
-  ;; local do dicionario pessoal, caso não definida novas palavras são adicionadas ao .hunspell_pt_BR
-  (setq ispell-personal-dictionary "~/.config/hunspell/hunspell_personal"))
-;; não  carrega dicionario pessoal caso ele não exista
+  ;; a lingua padrão deve ser configurada depois mais linguas são adicionadas
+  (setenv "LANG" "pt_BR.UTF-8") ; lingua padrão
+  (setq ispell-program-name "hunspell"
+        ispell-personal-dictionary "~/.config/hunspell/hunspell_personal"
+        ispell-dictionary "pt_BR,en_US")
+  (ispell-set-spellchecker-params) ; deve ser chamado antes de adicionar multi dicionários
+  (ispell-hunspell-add-multi-dic "pt_BR,en_US"))
+;; não carrega dicionario pessoal caso ele não exista
 (unless (file-exists-p ispell-personal-dictionary)
   (write-region "" nil ispell-personal-dictionary nil 0))
 (use-package flyspell-popup
-  :straight t)
+  :straight t
+  :after (flyspell))
 
 ;;; Fecha popups e modos com esc
 ;; retirado do doom-emacs
