@@ -26,34 +26,6 @@
 ;; Modulos
 (require 'rational-defaults)
 (require 'rational-editing)
-(with-eval-after-load 'evil
-  (evil-select-search-module 'evil-search-module 'evil-search)
-  (setq-default evil-cross-lines t ; da a volta para a proxima linha
-                tab-width 4
-                evil-shift-width tab-width
-                indent-tabs-mode nil)
-  (setq evil-split-window-below t  ; foca em novas splits
-        evil-vsplit-window-right t
-        evil-want-Y-yank-to-eol t
-        evil-want-fine-undo t      ; desfazer em passos menores
-        ;; formato e cor do cursor em diferentes modos
-        evil-emacs-state-cursor    '("#ffff00" box)
-        evil-normal-state-cursor   '("#ffffff" box)
-        evil-operator-state-cursor '("#ebcb8b" hollow)
-        evil-visual-state-cursor   '("#ffffff" box)
-        evil-insert-state-cursor   '("#ffffff" (bar . 2))
-        evil-replace-state-cursor  '("#ff0000" box)
-        evil-motion-state-cursor   '("#ad8beb" box)))
-;; undotree não salva backups
-(with-eval-after-load 'undo-tree
-  (setq undo-tree-auto-save-history nil))
-(require 'rational-evil)
-;; necessario para carregar o rational-completion
-(add-to-list 'load-path (expand-file-name "straight/build/vertico/extensions" straight-base-dir))
-(require 'rational-completion)
-(require 'rational-ide)
-(require 'rational-lisp)
-(require 'rational-python)
 
 ;;; Miscelanea
 ;; quebra paragrafos de acordo com as palavras
@@ -65,8 +37,8 @@
 (setq visible-bell       nil
       ring-bell-function #'ignore)
 ;; distancia de onde o scroll começa
-(customize-set-variable 'scroll-margin 1)
-(customize-set-variable 'scroll-conservatively 0)
+(setq scroll-margin 1
+      scroll-conservatively 0)
 ;; para GPG, email, clientes, templates
 (setq user-full-name "Lucas Tavares"
       user-mail-address "tavares.lassuncao@gmail.com")
@@ -98,6 +70,148 @@
 (use-package elisp-demos
   :straight t
   :init (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update))
+
+;;; Aparencia
+;; fontes de diferentes tamanhos
+(variable-pitch-mode 1)
+;; ativa indicação de spaços e tabs em código
+(setq whitespace-style '(face tabs spaces space-mark trailing space-before-tab indentation
+                              empty space-after-tab tab-mark missing-newline-at-eof))
+(global-whitespace-mode +1)
+(set-face-attribute 'whitespace-space nil :background "#000" :foreground "#333")
+;; modeline
+(use-package awesome-tray
+  :straight (awesome-tray :type git :host github :repo "manateelazycat/awesome-tray")
+  :config
+  (setq awesome-tray-git-format "%b %s"
+        awesome-tray-file-path-show-filename t
+        awesome-tray-file-path-full-dirname-levels 1
+        awesome-tray-file-path-truncate-dirname-levels 3
+        awesome-tray-separator ""
+        awesome-tray-essential-modules '("buffer-read-only" "  " "git" " " "location" "  ")
+        awesome-tray-active-modules    '("buffer-read-only" "  " "git" " " "location" "  " "file-path"))
+  :init (awesome-tray-mode))
+(use-package hide-mode-line
+  :straight t
+  :init (global-hide-mode-line-mode))
+;; tema
+(use-package emacs
+  :init
+  (setq modus-themes-vivendi-color-overrides '((fg-comment-yellow . "#009900")
+                                               (green . "#ffff00"))
+        modus-themes-italic-constructs t
+        modus-themes-bold-constructs t
+        modus-themes-variable-pitch-ui t
+        modus-themes-markup '(italic bold)
+        modus-themes-syntax '(yellow-comments green-strings)
+        modus-themes-paren-match '(bold intense)
+        modus-themes-links '(neutral-underline)
+        modus-themes-box-buttons '(flat)
+        modus-themes-prompts '(intense bold)
+        modus-themes-completions '((matches . (extrabold))
+                                   (selection . (semibold accented))
+                                   (popup . (accented intense)))
+        modus-themes-org-blocks 'gray-background
+        modus-themes-headings
+        '((1 . (variable-pitch background variable-pitch))
+          (2 . (variable-pitch rainbow))
+          (t . (variable-pitch semibold))))
+  (set-face-attribute 'default nil :background "#000" :foreground "#fff")
+  (set-face-attribute 'region nil :background "#007")
+  :config (load-theme 'modus-vivendi))
+;; Indica profundidade de parenteses
+(use-package rainbow-delimiters
+  :straight t
+  :config
+  ;; gradiente gerado usando: https://colordesigner.io/gradient-generator
+  (set-face-attribute 'rainbow-delimiters-depth-1-face nil :foreground "#333333")
+  (set-face-attribute 'rainbow-delimiters-depth-2-face nil :foreground "#4e4e4e")
+  (set-face-attribute 'rainbow-delimiters-depth-3-face nil :foreground "#a2a2a2")
+  (set-face-attribute 'rainbow-delimiters-depth-4-face nil :foreground "#ffffff")
+  (set-face-attribute 'rainbow-delimiters-depth-5-face nil :foreground "#a2a2a2")
+  (set-face-attribute 'rainbow-delimiters-depth-6-face nil :foreground "#4e4e4e")
+  (set-face-attribute 'rainbow-delimiters-depth-7-face nil :foreground "#333333")
+  (set-face-attribute 'rainbow-delimiters-depth-8-face nil :foreground "#ffffff")
+  (set-face-attribute 'rainbow-delimiters-depth-9-face nil :foreground "#a2a2a2")
+  :hook (prog-mode . rainbow-delimiters-mode))
+;; indicação visual quando muda o foco
+(require 'pulse)
+(set-face-attribute 'pulse-highlight-start-face nil :background "#00f")
+(defun pulsar-linha (&rest _)
+  "Pulsa a linha atual."
+  (pulse-momentary-highlight-one-line (point)))
+(dolist (command '(scroll-up-command scroll-down-command
+                                     recenter-top-bottom other-window))
+  (advice-add command :after #'pulsar-linha))
+
+;;; evil
+(use-package evil
+  :straight t
+  :config (evil-select-search-module 'evil-search-module 'evil-search)
+  :init
+  (setq-default evil-cross-lines t ; da a volta para a proxima linha
+                tab-width 4
+                evil-shift-width tab-width
+                indent-tabs-mode nil)
+  (setq evil-respect-visual-line-mode t
+        evil-undo-system 'undo-tree
+        evil-split-window-below t  ; foca em novas splits
+        evil-vsplit-window-right t
+        evil-want-Y-yank-to-eol t
+        evil-want-fine-undo t      ; desfazer em passos menores
+        ;; formato e cor do cursor em diferentes modos
+        evil-emacs-state-cursor    '("#ffff00" box)
+        evil-normal-state-cursor   '("#ffffff" box)
+        evil-operator-state-cursor '("#ebcb8b" hollow)
+        evil-visual-state-cursor   '("#ffffff" box)
+        evil-insert-state-cursor   '("#ffffff" (bar . 2))
+        evil-replace-state-cursor  '("#ff0000" box)
+        evil-motion-state-cursor   '("#ad8beb" box)
+        evil-want-keybinding nil)
+  (evil-mode 1))
+(use-package undo-tree
+  :straight t
+  :after (evil)
+  :config (setq undo-tree-auto-save-history nil)
+  :init (global-undo-tree-mode))
+(use-package evil-collection
+  :straight t
+  :after (evil)
+  :init (evil-collection-init))
+(use-package evil-nerd-commenter
+  :straight t
+  :after (evil)
+  :init (evilnc-default-hotkeys))
+(use-package evil-surround
+  :straight t
+  :after (evil)
+  :init (global-evil-surround-mode))
+(use-package evil-mc
+  :straight t
+  :after (evil)
+  :init (global-evil-mc-mode))
+;; funções
+(defun evil-colar ()
+  "Chama `evil-paste-after' porem inverte `evil-kill-on-visual-paste'.
+
+isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no modo de inserção."
+  (interactive)
+  (let ((evil-kill-on-visual-paste (not evil-kill-on-visual-paste)))
+    (if (evil-insert-state-p)
+        (call-interactively #'evil-paste-before)
+      (call-interactively #'evil-paste-after))))
+;; Garantir iniciar certos modos no modo emacs
+(dolist (mode '(custom-mode
+                eshell-mode
+                term-mode))
+  (add-to-list 'evil-emacs-state-modes mode))
+
+;; necessario para carregar o rational-completion
+(add-to-list 'load-path (expand-file-name "straight/build/vertico/extensions" straight-base-dir))
+(require 'rational-completion)
+(require 'rational-ide)
+(require 'rational-lisp)
+(require 'rational-python)
 
 ;;; Linguagens
 (add-hook 'prog-mode-hook 'prettify-symbols-mode)
@@ -234,12 +348,6 @@
                       completion-at-point-functions)))
   (add-hook 'prog-mode-hook 'tempel-setup-capf)
   (add-hook 'text-mode-hook 'tempel-setup-capf))
-(use-package evil-surround
-  :straight t
-  :init (global-evil-surround-mode))
-(use-package evil-mc
-  :straight t
-  :init (global-evil-mc-mode))
 (use-package expand-region
   :straight t)
 (use-package drag-stuff
@@ -247,90 +355,6 @@
 (use-package aggressive-indent
   :straight t
   :init (global-aggressive-indent-mode))
-
-;;; Aparencia
-;; fontes de diferentes tamanhos
-(variable-pitch-mode 1)
-;; ativa indicação de spaços e tabs em código
-(setq whitespace-style '(face tabs spaces space-mark trailing space-before-tab indentation
-                              empty space-after-tab tab-mark missing-newline-at-eof))
-(global-whitespace-mode +1)
-(set-face-attribute 'whitespace-space nil :background "#000" :foreground "#333")
-;; modeline
-(use-package awesome-tray
-  :straight (awesome-tray :type git :host github :repo "manateelazycat/awesome-tray")
-  :config
-  (setq awesome-tray-git-format "%b %s"
-        awesome-tray-file-path-show-filename t
-        awesome-tray-file-path-full-dirname-levels 1
-        awesome-tray-file-path-truncate-dirname-levels 3
-        awesome-tray-separator ""
-        awesome-tray-essential-modules '("buffer-read-only" "  " "git" " " "location" "  ")
-        awesome-tray-active-modules    '("buffer-read-only" "  " "git" " " "location" "  " "file-path"))
-  :init (awesome-tray-mode))
-(use-package hide-mode-line
-  :straight t
-  :init (global-hide-mode-line-mode))
-;; tema
-(use-package emacs
-  :init
-  (setq modus-themes-vivendi-color-overrides '((fg-comment-yellow . "#009900")
-                                               (green . "#ffff00"))
-        modus-themes-italic-constructs t
-        modus-themes-bold-constructs t
-        modus-themes-variable-pitch-ui t
-        modus-themes-markup '(italic bold)
-        modus-themes-syntax '(yellow-comments green-strings)
-        modus-themes-paren-match '(bold intense)
-        modus-themes-links '(neutral-underline)
-        modus-themes-box-buttons '(flat)
-        modus-themes-prompts '(intense bold)
-        modus-themes-completions '((matches . (extrabold))
-                                   (selection . (semibold accented))
-                                   (popup . (accented intense)))
-        modus-themes-org-blocks 'gray-background
-        modus-themes-headings
-        '((1 . (variable-pitch background variable-pitch))
-          (2 . (variable-pitch rainbow))
-          (t . (variable-pitch semibold))))
-  (set-face-attribute 'default nil :background "#000" :foreground "#fff")
-  (set-face-attribute 'region nil :background "#007")
-  :config (load-theme 'modus-vivendi))
-;; Indica profundidade de parenteses
-(use-package rainbow-delimiters
-  :straight t
-  :config
-  ;; gradiente gerado usando: https://colordesigner.io/gradient-generator
-  (set-face-attribute 'rainbow-delimiters-depth-1-face nil :foreground "#333333")
-  (set-face-attribute 'rainbow-delimiters-depth-2-face nil :foreground "#4e4e4e")
-  (set-face-attribute 'rainbow-delimiters-depth-3-face nil :foreground "#a2a2a2")
-  (set-face-attribute 'rainbow-delimiters-depth-4-face nil :foreground "#ffffff")
-  (set-face-attribute 'rainbow-delimiters-depth-5-face nil :foreground "#a2a2a2")
-  (set-face-attribute 'rainbow-delimiters-depth-6-face nil :foreground "#4e4e4e")
-  (set-face-attribute 'rainbow-delimiters-depth-7-face nil :foreground "#333333")
-  (set-face-attribute 'rainbow-delimiters-depth-8-face nil :foreground "#ffffff")
-  (set-face-attribute 'rainbow-delimiters-depth-9-face nil :foreground "#a2a2a2")
-  :hook (prog-mode . rainbow-delimiters-mode))
-;; indicação visual quando muda o foco
-(require 'pulse)
-(set-face-attribute 'pulse-highlight-start-face nil :background "#00f")
-(defun pulsar-linha (&rest _)
-  "Pulsa a linha atual."
-  (pulse-momentary-highlight-one-line (point)))
-(dolist (command '(scroll-up-command scroll-down-command
-                                     recenter-top-bottom other-window))
-  (advice-add command :after #'pulsar-linha))
-
-;;; Funções
-(defun evil-colar ()
-  "Chama `evil-paste-after' porem inverte `evil-kill-on-visual-paste'.
-
-isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no modo de inserção."
-  (interactive)
-  (let ((evil-kill-on-visual-paste (not evil-kill-on-visual-paste)))
-    (if (evil-insert-state-p)
-        (call-interactively #'evil-paste-before)
-      (call-interactively #'evil-paste-after))))
 
 ;;; Teclas
 ;; spc-map
@@ -430,7 +454,14 @@ isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no mo
 (define-key t-map (kbd "h") 'hl-line-mode)
 (define-key t-map (kbd "f") 'flyspell-mode)
 (define-key t-map (kbd "t") (lambda () (interactive) (find-file "~/.config/rational-emacs/templates")))
+;; evil-global-set-key
+;; Use visual line motions mesmo fora de buffers no visual-line-mode
+(evil-global-set-key 'motion "j" 'evil-next-visual-line)
+(evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+;; evil-insert-state-map
+(define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
 ;; evil-motion-state-map
+(define-key evil-motion-state-map (kbd "RET") 'org-toggle-checkbox)
 (define-key evil-motion-state-map (kbd "SPC") 'spc-map)
 (define-key evil-motion-state-map "?" (lambda () (interactive) (evil-ex-search-word-forward nil (thing-at-point 'symbol))))
 (define-key evil-motion-state-map "|" (lambda () (interactive) (consult-line (thing-at-point 'symbol))))
@@ -444,6 +475,8 @@ isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no mo
 (define-key evil-normal-state-map "\\" 'consult-line)
 ;; evil-visual-state-map
 (define-key evil-visual-state-map (kbd "z =") 'flyspell-popup-correct)
+;; evil-mc
+(define-key evil-mc-cursors-map (kbd "ESC") 'evil-mc-undo-all-cursors)
 ;; minibuffer
 (define-key minibuffer-local-map (kbd "C-d") 'embark-act)
 (define-key minibuffer-local-map (kbd "C-<tab>") #'vertico-next)
@@ -458,8 +491,6 @@ isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no mo
 (define-key corfu-map (kbd "<up>") 'evil-previous-line)
 (define-key corfu-map (kbd "<down>") 'evil-next-line)
 (define-key corfu-map (kbd "E") 'tempel-expand)
-;; evil-mc
-(define-key evil-mc-cursors-map (kbd "ESC") 'evil-mc-undo-all-cursors)
 ;; global
 (fset 'comentar-e-descer-linha
       (kmacro-lambda-form [?, ?, ?, down] 0 "%d"))
@@ -496,8 +527,6 @@ isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no mo
   (define-key spc-map (kbd "v v") 'consult-org-heading)
   (define-key spc-map (kbd "l") 'org-insert-link)
   (define-key spc-map (kbd "b t") 'org-babel-tangle)
-  ;; evil-motion-state-map
-  (define-key evil-motion-state-map (kbd "RET") 'org-toggle-checkbox)
   ;; globais
   (defun orgm/org-cycle-current-headline ()
     "Abre e fecha a header atual."
