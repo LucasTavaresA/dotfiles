@@ -24,21 +24,35 @@
 (straight-use-package 'use-package)
 
 ;; Modulos
-(require 'rational-defaults)
 (require 'rational-editing)
 
 ;;; Miscelanea
-;; quebra paragrafos de acordo com as palavras
-(global-visual-line-mode +1)
-;; salva posição nos arquivos
+(setq consult-preview-key nil) ; desativa previsão consult
+(setq use-short-answers t) ; apenas confirmações com "y" e "n"
+;; reverte buffer caso haja mudanças externas no arquivo
+(setq global-auto-revert-non-file-buffers t)
+(global-auto-revert-mode 1)
+;; ativa lembrar arquivos recentes
+(add-hook 'after-init-hook #'recentf-mode)
+(setq recentf-save-file (expand-file-name "recentf" "/home/lucas/.config/rational-emacs/var/"))
+(setq kill-do-not-save-duplicates t) ; não salva duplicadas ao copiar
+(setq auto-window-vscroll nil ; diminui o stuttering do scroll
+      fast-but-imprecise-scrolling t
+      scroll-margin 1 ; distancia de onde o scroll começa
+      scroll-conservatively 0
+      scroll-preserve-screen-position t)
+(global-so-long-mode 1) ; melhora supporte para arquivos com linhas longas
+(global-visual-line-mode +1) ; quebra paragrafos de acordo com as palavras
+;; torna arquivos com shebang (#!) executaveis quando salvados
+(add-hook 'after-save-hook #'executable-make-buffer-file-executable-if-script-p)
+;; salva posição nos arquivos e historico de comandos
 (setq save-place-file "~/.config/rational-emacs/var/save-place")
 (save-place-mode 1)
+(savehist-mode 1)
+(setq savehist-file (expand-file-name "history" "/home/lucas/.config/rational-emacs/var/"))
 ;; desativa barra piscando
 (setq visible-bell       nil
       ring-bell-function #'ignore)
-;; distancia de onde o scroll começa
-(setq scroll-margin 1
-      scroll-conservatively 0)
 ;; para GPG, email, clientes, templates
 (setq user-full-name "Lucas Tavares"
       user-mail-address "tavares.lassuncao@gmail.com")
@@ -50,13 +64,9 @@
 (use-package terminal-here
   :straight t
   :config (setq terminal-here-linux-terminal-command 'st))
-;; desativa previsão consult
-(setq consult-preview-key nil)
-;; vai ate definições de codigo, ex: `gd'
-(use-package dumb-jump
+(use-package dumb-jump ; vai ate definições de codigo usando `gd'
   :straight t
   :init (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
-;; melhora buffers de ajuda
 (use-package helpful
   :straight t
   :config
@@ -66,7 +76,6 @@
   (global-set-key [remap describe-key] #'helpful-key)
   (global-set-key [remap describe-symbol] #'helpful-symbol)
   (global-set-key [remap describe-variable] #'helpful-variable))
-;; adiciona exemplos em buffers de ajuda
 (use-package elisp-demos
   :straight t
   :init (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update))
