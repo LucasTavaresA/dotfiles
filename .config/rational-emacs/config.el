@@ -26,7 +26,6 @@
 
 ;;; Miscelanea
 (setq whitespace-action '(cleanup auto-cleanup) ; remove espaços inuteis ao salvar
-      consult-preview-key nil ; desativa previsão consult
       use-short-answers t ; apenas confirmações com "y" e "n"
       kill-do-not-save-duplicates t ; não salva duplicadas ao copiar
       auto-window-vscroll nil ; diminui o stuttering do scroll
@@ -187,13 +186,56 @@ isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no mo
       (call-interactively #'evil-paste-after))))
 ;; Garantir iniciar certos modos no modo emacs
 (dolist (mode '(custom-mode
-        eshell-mode
-        term-mode))
+                eshell-mode
+                term-mode))
   (add-to-list 'evil-emacs-state-modes mode))
 
-;; necessario para carregar o rational-completion
-(add-to-list 'load-path (expand-file-name "straight/build/vertico/extensions" straight-base-dir))
-(require 'rational-completion)
+;;; compleção
+;; ui
+(use-package vertico
+  :config (setq vertico-cycle t)
+  :init (vertico-mode))
+;; descrições
+(use-package marginalia
+  :config (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
+  :init (marginalia-mode))
+;; varias funções no minibuffer
+(use-package consult
+  :config
+  (setq completion-in-region-function #'consult-completion-in-region
+        consult-preview-key nil)) ; desativa previsão consult
+;; organiza items
+(use-package orderless
+  :config
+  (setq completion-styles '(orderless)
+        completion-category-overrides '((file (styles . (partial-completion))))))
+;; ações em minibuffers
+(use-package embark
+  :config
+  (setq prefix-help-command #'embark-prefix-help-command)
+  (global-set-key [remap describe-bindings] #'embark-bindings))
+(use-package embark-consult)
+;; popup
+(use-package corfu
+  :custom
+  (corfu-auto t)
+  (corfu-auto-delay 0.5)
+  (corfu-cycle t)
+  (corfu-preselect-first nil)
+  (corfu-echo-documentation 0.25)
+  :config (set-face-attribute 'corfu-current nil :background "#007")
+  :init (global-corfu-mode))
+(use-package corfu-doc
+  :hook (corfu-mode . corfu-doc-mode))
+;; adiciona tipos de compleções
+(use-package cape
+  :init
+  (add-to-list 'completion-at-point-functions #'cape-file)
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  ;; compleçao não-intrusiva
+  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
+  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify))
+
 (require 'rational-ide)
 (require 'rational-lisp)
 (require 'rational-python)
@@ -305,13 +347,6 @@ isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no mo
   :hook (org-mode . org-make-toc-mode))
 
 ;;; Edição
-(use-package corfu
-  :custom
-  (corfu-auto-delay 0.5)
-  (corfu-cycle t)
-  (corfu-preselect-first nil)
-  :init (global-corfu-mode)
-  :config (set-face-attribute 'corfu-current nil :background "#007"))
 ;; templates
 (use-package tempel
   :init
