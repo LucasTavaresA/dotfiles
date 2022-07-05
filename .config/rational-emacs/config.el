@@ -74,6 +74,7 @@
   :config (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update))
 
 ;;; Aparencia
+(add-hook 'prog-mode-hook 'prettify-symbols-mode)
 ;; fontes de diferentes tamanhos
 (variable-pitch-mode 1)
 ;; ativa indicação de spaços e tabs em código
@@ -235,11 +236,45 @@ isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no mo
   (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
   (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify))
 
-(require 'rational-lisp)
 (require 'rational-python)
 
 ;;; Linguagens
-(add-hook 'prog-mode-hook 'prettify-symbols-mode)
+(use-package aggressive-indent
+  :init (global-aggressive-indent-mode))
+;; lsp
+(use-package eglot
+  :hook
+  (html-mode . eglot-ensure)
+  (csharp-mode . eglot-ensure)
+  (c-mode . eglot-ensure)
+  (lisp-mode . eglot-ensure)
+  (scheme-mode . eglot-ensure)
+  (clojure-mode . eglot-ensure)
+  (python-mode . eglot-ensure)
+  (js-mode . eglot-ensure)
+  :config (setq eglot-autoshutdown t))
+;; common lisp
+(use-package sly
+  :config
+  (use-package sly-asdf)
+  (use-package sly-quicklisp)
+  (use-package sly-repl-ansi-color)
+  (setq inferior-lisp-program "/usr/bin/sbcl")
+  (require 'sly-quicklisp)
+  (require 'sly-repl-ansi-color)
+  (require 'sly-asdf)
+  :init (add-hook 'lisp-mode-hook #'sly-editing-mode))
+;; csharp
+(use-package csharp-mode
+  :config (add-to-list 'aggressive-indent-excluded-modes 'csharp-mode)
+  :mode ("\\.cs\\'" . csharp-mode))
+(use-package csproj-mode
+  :mode ("\\.csproj\\'" . csproj-mode))
+(use-package sln-mode
+  :mode ("\\.sln\\'" . sln-mode))
+;; css
+(use-package css-eldoc
+  :hook (css-mode . turn-on-css-eldoc))
 ;; sxhkd
 (define-generic-mode sxhkd-mode
   '(?#)
@@ -262,60 +297,37 @@ isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no mo
 (use-package markdown-toc
   :after (markdown-mode)
   :hook (gfm-mode . markdown-toc))
-;; lsp
-(use-package eglot
-  :hook
-  (html-mode . eglot-ensure)
-  (csharp-mode . eglot-ensure)
-  (c-mode . eglot-ensure)
-  (lisp-mode . eglot-ensure)
-  (scheme-mode . eglot-ensure)
-  (clojure-mode . eglot-ensure)
-  (python-mode . eglot-ensure)
-  (js-mode . eglot-ensure)
-  :config (setq eglot-autoshutdown t))
-;; csharp
-(use-package csharp-mode
-  :config (add-to-list 'aggressive-indent-excluded-modes 'csharp-mode)
-  :mode ("\\.cs\\'" . csharp-mode))
-(use-package csproj-mode
-  :mode ("\\.csproj\\'" . csproj-mode))
-(use-package sln-mode
-  :mode ("\\.sln\\'" . sln-mode))
-;; css
-(use-package css-eldoc
-  :hook (css-mode . turn-on-css-eldoc))
 
 ;;; Orgmode
 (with-eval-after-load 'org
   (setq org-ellipsis "  "
-    org-startup-folded 'content
-    org-return-follows-link t
-    org-mouse-1-follows-link t
-    org-descriptive-links t
-    org-hide-emphasis-markers t
-    org-src-fontify-natively t  ; formatação em codigo fonte
-    org-src-tab-acts-natively t ; tab em codigo fonte
-    org-startup-indented t      ; carrega o org-indent ao iniciar
-    org-confirm-babel-evaluate nil
-    org-hide-leading-stars t           ; mostra asteriscos das headers
-    org-edit-src-content-indentation 2 ; Indentação nos blocos de código
-    org-table-convert-region-max-lines 20000)
+        org-startup-folded 'content
+        org-return-follows-link t
+        org-mouse-1-follows-link t
+        org-descriptive-links t
+        org-hide-emphasis-markers t
+        org-src-fontify-natively t  ; formatação em codigo fonte
+        org-src-tab-acts-natively t ; tab em codigo fonte
+        org-startup-indented t      ; carrega o org-indent ao iniciar
+        org-confirm-babel-evaluate nil
+        org-hide-leading-stars t           ; mostra asteriscos das headers
+        org-edit-src-content-indentation 2 ; Indentação nos blocos de código
+        org-table-convert-region-max-lines 20000)
   ;; esconde marcação
   (add-hook 'org-mode-hook 'org-appear-mode)
   ;; desativa auto-pairing de "<" em org-mode
   (add-hook 'org-mode-hook (lambda ()
-                 (setq-local electric-pair-inhibit-predicate
-                     `(lambda (c)
-                        (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))
+                             (setq-local electric-pair-inhibit-predicate
+                                         `(lambda (c)
+                                            (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))
   ;; remove asteriscos de headings
   (font-lock-add-keywords 'org-mode `(("^\\(\\*+ \\)\\s-*\\S-"
-                       (1 (put-text-property (match-beginning 1) (match-end 1) 'invisible t)
-                      nil))))
+                                       (1 (put-text-property (match-beginning 1) (match-end 1) 'invisible t)
+                                          nil))))
   ;; Trocar listas com hífens por pontos
   (font-lock-add-keywords 'org-mode
-              '(("^ *\\([-]\\) "
-                 (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+                          '(("^ *\\([-]\\) "
+                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
   ;; ativa blocos em varias linguagens
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -328,13 +340,13 @@ isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no mo
   (push '("conf-unix" . conf-unix) org-src-lang-modes)
   ;; headers variam de tamanho
   (dolist (face '((org-level-1 . 1.3)
-          (org-level-2 . 1.1)
-          (org-level-3 . 1.0)
-          (org-level-4 . 0.9)
-          (org-level-5 . 0.9)
-          (org-level-6 . 0.9)
-          (org-level-7 . 0.9)
-          (org-level-8 . 0.9)))
+                  (org-level-2 . 1.1)
+                  (org-level-3 . 1.0)
+                  (org-level-4 . 0.9)
+                  (org-level-5 . 0.9)
+                  (org-level-6 . 0.9)
+                  (org-level-7 . 0.9)
+                  (org-level-8 . 0.9)))
     (set-face-attribute (car face) nil :font "Ubuntu" :weight 'regular :height (cdr face))))
 (use-package org-appear
   :after (org))
@@ -361,8 +373,6 @@ isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no mo
   :config (setq tempel-path "/home/lucas/.config/rational-emacs/templates"))
 (use-package expand-region)
 (use-package drag-stuff)
-(use-package aggressive-indent
-  :init (global-aggressive-indent-mode))
 
 ;;; Teclas
 ;; spc-map
