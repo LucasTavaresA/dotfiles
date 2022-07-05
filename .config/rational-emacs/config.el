@@ -53,7 +53,6 @@
 (require 'rational-completion)
 (require 'rational-ide)
 (require 'rational-lisp)
-(require 'rational-org)
 (require 'rational-python)
 
 ;;; Miscelanea
@@ -112,10 +111,20 @@
 (use-package markdown-mode
   :straight t
   :mode ("\\.md\\'" . gfm-mode)
+  :config
+  ;; remove asteriscos de headings
+  (font-lock-add-keywords 'gfm-mode `(("^\\(\\#+ \\)\\s-#\\S-"
+                                       (1 (put-text-property (match-beginning 1) (match-end 1) 'invisible t)
+                                          nil))))
+  ;; Trocar listas com hífens por pontos
+  (font-lock-add-keywords 'gfm-mode
+                          '(("^ *\\([-]\\) "
+                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
   :init (setq markdown-command "multimarkdown"))
 (use-package markdown-toc
   :straight t
-  :after (markdown-mode))
+  :after (markdown-mode)
+  :hook (gfm-mode . markdown-toc))
 ;; lsp
 (use-package eglot
   :hook
@@ -142,18 +151,35 @@
 
 ;;; Orgmode
 (with-eval-after-load 'org
-  (use-package org-starless
-    :straight (org-starless :type git :host github :repo "toncherami/org-starless")
-    :hook (org-mode . org-starless-mode))
+  (setq org-ellipsis "  "
+        org-startup-folded 'content
+        org-return-follows-link t
+        org-mouse-1-follows-link t
+        org-descriptive-links t
+        org-hide-emphasis-markers t
+        org-src-fontify-natively t  ; formatação em codigo fonte
+        org-src-tab-acts-natively t ; tab em codigo fonte
+        org-startup-indented t      ; carrega o org-indent ao iniciar
+        org-confirm-babel-evaluate nil
+        org-hide-leading-stars t           ; mostra asteriscos das headers
+        org-edit-src-content-indentation 2 ; Indentação nos blocos de código
+        org-table-convert-region-max-lines 20000)
+  ;; esconde marcação
+  (add-hook 'org-mode-hook 'org-appear-mode)
+  ;; desativa auto-pairing de "<" em org-mode
+  (add-hook 'org-mode-hook (lambda ()
+                             (setq-local electric-pair-inhibit-predicate
+                                         `(lambda (c)
+                                            (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))
+  ;; remove asteriscos de headings
+  (font-lock-add-keywords 'org-mode `(("^\\(\\*+ \\)\\s-*\\S-"
+                                       (1 (put-text-property (match-beginning 1) (match-end 1) 'invisible t)
+                                          nil))))
   ;; Trocar listas com hífens por pontos
   (font-lock-add-keywords 'org-mode
                           '(("^ *\\([-]\\) "
                              (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
-  ;; tangle automatico
-  (use-package org-auto-tangle
-    :straight t
-    :hook (org-mode . org-auto-tangle-mode)
-    :config (setq org-auto-tangle-default nil))
+  ;; ativa blocos em varias linguagens
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((emacs-lisp . t)
@@ -163,33 +189,30 @@
      (org . t)
      (C . t)))
   (push '("conf-unix" . conf-unix) org-src-lang-modes)
-  ;; cria sumarios automaticamente
-  (use-package org-make-toc
-    :straight t
-    :hook (org-mode . org-make-toc-mode))
   ;; headers variam de tamanho
-  (defun orgm/org-fonts ()
-    "Define o tamanho de fontes orgmode"
-    (dolist (face '((org-level-1 . 1.3)
-                    (org-level-2 . 1.1)
-                    (org-level-3 . 1.0)
-                    (org-level-4 . 0.9)
-                    (org-level-5 . 0.9)
-                    (org-level-6 . 0.9)
-                    (org-level-7 . 0.9)
-                    (org-level-8 . 0.9)))
-      (set-face-attribute (car face) nil :font "Ubuntu" :weight 'regular :height (cdr face))))
-  (add-hook 'org-mode-hook 'orgm/org-fonts)
-  (setq org-ellipsis "  "
-        org-startup-folded 'content
-        org-hide-emphasis-markers t
-        org-src-fontify-natively t  ; formatação em codigo fonte
-        org-src-tab-acts-natively t ; tab em codigo fonte
-        org-startup-indented t      ; carrega o org-indent ao iniciar
-        org-confirm-babel-evaluate nil
-        org-hide-leading-stars t           ; mostra asteriscos das headers
-        org-edit-src-content-indentation 2 ; Indentação nos blocos de código
-        org-table-convert-region-max-lines 20000))
+  (dolist (face '((org-level-1 . 1.3)
+                  (org-level-2 . 1.1)
+                  (org-level-3 . 1.0)
+                  (org-level-4 . 0.9)
+                  (org-level-5 . 0.9)
+                  (org-level-6 . 0.9)
+                  (org-level-7 . 0.9)
+                  (org-level-8 . 0.9)))
+    (set-face-attribute (car face) nil :font "Ubuntu" :weight 'regular :height (cdr face))))
+(use-package org-appear
+  :straight t
+  :after (org))
+;; tangle automatico
+(use-package org-auto-tangle
+  :straight t
+  :after (org)
+  :hook (org-mode . org-auto-tangle-mode)
+  :config (setq org-auto-tangle-default nil))
+;; cria sumarios automaticamente
+(use-package org-make-toc
+  :straight t
+  :after (org)
+  :hook (org-mode . org-make-toc-mode))
 
 ;;; Edição
 (use-package corfu
@@ -456,7 +479,7 @@ isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no mo
 (global-set-key (kbd "<M-up>") 'drag-stuff-up)
 (global-set-key (kbd "<M-down>") 'drag-stuff-down)
 ;; markdown
-(with-eval-after-load 'markdown-mode
+(with-eval-after-load 'gfm-mode
   (define-key spc-map (kbd "l") 'markdown-insert-link))
 ;; orgmode
 (with-eval-after-load 'org
@@ -496,7 +519,7 @@ isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no mo
   (add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
   (setq flyspell-sort-corrections nil    ; Não organizar correções por ordem alfabetica
         flyspell-issue-message-flag nil) ; Não mandar mensagens para cada palavra errada
-  :hook (org-mode . flyspell-mode) (markdown-mode . flyspell-mode))
+  :hook (org-mode . flyspell-mode) (gfm-mode . flyspell-mode) (markdown-mode . flyspell-mode))
 (with-eval-after-load "ispell"
   ;; a lingua padrão deve ser configurada depois mais linguas são adicionadas
   (setenv "LANG" "pt_BR.UTF-8") ; lingua padrão
