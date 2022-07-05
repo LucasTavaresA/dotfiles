@@ -24,24 +24,24 @@
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
 
-;; Modulos
-(require 'rational-editing)
-
 ;;; Miscelanea
-(setq consult-preview-key nil) ; desativa previsão consult
-(setq use-short-answers t) ; apenas confirmações com "y" e "n"
+(setq whitespace-action '(cleanup auto-cleanup) ; remove espaços inuteis ao salvar
+      consult-preview-key nil ; desativa previsão consult
+      use-short-answers t ; apenas confirmações com "y" e "n"
+      kill-do-not-save-duplicates t ; não salva duplicadas ao copiar
+      auto-window-vscroll nil ; diminui o stuttering do scroll
+      fast-but-imprecise-scrolling t
+      scroll-margin 1 ; distancia de onde o scroll começa
+      scroll-conservatively 0
+      scroll-preserve-screen-position t)
+(electric-pair-mode 1) ; auto-inserir "{}()[]"
+(show-paren-mode 1)    ; indica parenteses
 ;; reverte buffer caso haja mudanças externas no arquivo
 (setq global-auto-revert-non-file-buffers t)
 (global-auto-revert-mode 1)
 ;; ativa lembrar arquivos recentes
 (add-hook 'after-init-hook #'recentf-mode)
 (setq recentf-save-file (expand-file-name "recentf" "/home/lucas/.config/rational-emacs/var/"))
-(setq kill-do-not-save-duplicates t) ; não salva duplicadas ao copiar
-(setq auto-window-vscroll nil ; diminui o stuttering do scroll
-      fast-but-imprecise-scrolling t
-      scroll-margin 1 ; distancia de onde o scroll começa
-      scroll-conservatively 0
-      scroll-preserve-screen-position t)
 (global-so-long-mode 1) ; melhora supporte para arquivos com linhas longas
 (global-visual-line-mode +1) ; quebra paragrafos de acordo com as palavras
 ;; torna arquivos com shebang (#!) executaveis quando salvados
