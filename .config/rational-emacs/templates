@@ -30,7 +30,7 @@ csharp-mode
 
 emacs-lisp-mode
 
-(pkg "(use-package " p > n ":straight t)")
+(pkg "(use-package " p > n ")")
 (aload ";;;###autoload")
 (ilamb "(lambda (" p ") (" p ")" n> r> ")")
 (alias "(defalias '" p " '" p ")")

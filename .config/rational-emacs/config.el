@@ -32,7 +32,12 @@
       fast-but-imprecise-scrolling t
       scroll-margin 1 ; distancia de onde o scroll começa
       scroll-conservatively 0
-      scroll-preserve-screen-position t)
+      scroll-preserve-screen-position t
+      visible-bell       nil ; desativa barra piscando
+      ring-bell-function #'ignore
+      ;; para GPG, email, clientes, templates
+      user-full-name "Lucas Tavares"
+      user-mail-address "tavares.lassuncao@gmail.com")
 (electric-pair-mode 1) ; auto-inserir "{}()[]"
 (show-paren-mode 1)    ; indica parenteses
 ;; reverte buffer caso haja mudanças externas no arquivo
@@ -50,12 +55,6 @@
 (save-place-mode 1)
 (savehist-mode 1)
 (setq savehist-file (expand-file-name "history" "/home/lucas/.config/rational-emacs/var/"))
-;; desativa barra piscando
-(setq visible-bell       nil
-      ring-bell-function #'ignore)
-;; para GPG, email, clientes, templates
-(setq user-full-name "Lucas Tavares"
-      user-mail-address "tavares.lassuncao@gmail.com")
 (use-package which-key
   :init (which-key-mode))
 (use-package rainbow-mode)
@@ -236,7 +235,6 @@ isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no mo
   (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
   (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify))
 
-(require 'rational-ide)
 (require 'rational-lisp)
 (require 'rational-python)
 
@@ -270,8 +268,12 @@ isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no mo
   (html-mode . eglot-ensure)
   (csharp-mode . eglot-ensure)
   (c-mode . eglot-ensure)
+  (lisp-mode . eglot-ensure)
+  (scheme-mode . eglot-ensure)
+  (clojure-mode . eglot-ensure)
   (python-mode . eglot-ensure)
-  (js-mode . eglot-ensure))
+  (js-mode . eglot-ensure)
+  :config (setq eglot-autoshutdown t))
 ;; csharp
 (use-package csharp-mode
   :config (add-to-list 'aggressive-indent-excluded-modes 'csharp-mode)
