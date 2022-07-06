@@ -1,5 +1,10 @@
 ;;; early-init.el -*- lexical-binding: t; -*-
 (toggle-debug-on-error)
+;; tempo para iniciar
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (message "Emacs carregado em %s."
+                     (emacs-init-time))))
 
 ;; aumenta a taxa de coleta de lixo para iniciar mais rápido
 ;; o padrão são 800 kilobytes, medido em bytes

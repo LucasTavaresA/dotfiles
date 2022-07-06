@@ -1,31 +1,17 @@
 ;;; init.el -*- lexical-binding: t; -*-
-;; tempo para iniciar
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (message "Emacs carregado em %s."
-                     (emacs-init-time))))
-
 ;; adiciona pasta modules ao load-path
 (add-to-list 'load-path (expand-file-name "modulos/" user-emacs-directory))
-
-;; especialmente necessário no windows
-(set-default-coding-systems 'utf-8)
-
-(setq large-file-warning-threshold 100000000)
-
-;; checa systema
-(defconst IS-LINUX   (eq system-type 'gnu/linux))
-(defconst IS-MAC     (eq system-type 'darwin))
-(defconst IS-BSD     (or IS-MAC (eq system-type 'berkeley-unix)))
-(defconst IS-WINDOWS (memq system-type '(cygwin windows-nt ms-dos)))
-
+;; define pastas var e etc
 (defvar config-etc-directory (expand-file-name "etc/" user-emacs-directory))
 (defvar config-var-directory (expand-file-name "var/" user-emacs-directory))
 (mkdir config-etc-directory t)
 (mkdir config-var-directory t)
 
-;; aumenta pausas para coleta de lixo
-(setq gc-cons-threshold (* 2 1000 1000))
+;; checagens de systema
+(defconst IS-LINUX   (eq system-type 'gnu/linux))
+(defconst IS-MAC     (eq system-type 'darwin))
+(defconst IS-BSD     (or IS-MAC (eq system-type 'berkeley-unix)))
+(defconst IS-WINDOWS (memq system-type '(cygwin windows-nt ms-dos)))
 
 ;;; Straight
 ;; boostrap straight.el
@@ -43,9 +29,11 @@
   (load bootstrap-file nil 'nomessage))
 ;; instala use-package
 (straight-use-package 'use-package)
-(setq straight-use-package-by-default t)
+(setq straight-use-package-by-default t) ; usa :straight t por padrão
 
 ;;; Miscelanea
+;; necessário no windows
+(set-default-coding-systems 'utf-8)
 ;; backups
 (setq backup-by-copying t
       delete-old-versions t
@@ -63,6 +51,7 @@
       scroll-preserve-screen-position t
       visible-bell       nil ; desativa barra piscando
       ring-bell-function #'ignore
+      large-file-warning-threshold 100000000
       ;; para GPG, email, clientes, templates
       user-full-name "Lucas Tavares"
       user-mail-address "tavares.lassuncao@gmail.com")
@@ -74,16 +63,16 @@
 (global-auto-revert-mode 1)
 ;; ativa lembrar arquivos recentes
 (add-hook 'after-init-hook #'recentf-mode)
-(setq recentf-save-file (expand-file-name "recentf" "/home/lucas/.config/emacs/var/"))
+(setq recentf-save-file (expand-file-name "recentf" config-var-directory))
 (global-so-long-mode 1) ; melhora supporte para arquivos com linhas longas
 (global-visual-line-mode +1) ; quebra paragrafos de acordo com as palavras
 ;; torna arquivos com shebang (#!) executaveis quando salvados
 (add-hook 'after-save-hook #'executable-make-buffer-file-executable-if-script-p)
 ;; salva posição nos arquivos e historico de comandos
-(setq save-place-file "~/.config/emacs/var/save-place")
+(setq save-place-file (expand-file-name "save-place" config-var-directory))
 (save-place-mode 1)
 (savehist-mode 1)
-(setq savehist-file (expand-file-name "history" "/home/lucas/.config/emacs/var/"))
+(setq savehist-file (expand-file-name "history" config-var-directory))
 (use-package which-key
   :init (which-key-mode))
 (use-package rainbow-mode)
@@ -114,9 +103,13 @@
 ;; fontes
 (set-face-attribute 'default nil :family "Terminus" :height 140)
 (set-face-attribute 'variable-pitch nil :family "Ubuntu" :weight 'light)
-(set-face-attribute 'font-lock-comment-face nil :family "SauceCodePro Nerd Font Mono" :slant 'italic :height 130)
-(set-face-attribute 'font-lock-function-name-face nil :family "SauceCodePro Nerd Font Mono" :slant 'italic :height 130)
-(set-face-attribute 'font-lock-variable-name-face nil :family "SauceCodePro Nerd Font Mono" :slant 'italic :height 130)
+(set-face-attribute 'font-lock-string-face nil :foreground "#ffff00")
+(set-face-attribute 'font-lock-comment-face nil :family "SauceCodePro Nerd Font Mono"
+                    :slant 'italic :height 130 :foreground "#009900")
+(set-face-attribute 'font-lock-function-name-face nil :family "SauceCodePro Nerd Font Mono"
+                    :slant 'italic :height 130)
+(set-face-attribute 'font-lock-variable-name-face nil :family "SauceCodePro Nerd Font Mono"
+                    :slant 'italic :height 130)
 ;; fontes de diferentes tamanhos
 (variable-pitch-mode 1)
 ;; ativa indicação de spaços e tabs em código
@@ -140,32 +133,17 @@
 (use-package hide-mode-line
   :init (global-hide-mode-line-mode))
 ;; tema
-(use-package emacs
-  :init
-  (setq modus-themes-vivendi-color-overrides '((fg-comment-yellow . "#009900")
-                                               (green . "#ffff00"))
-        modus-themes-italic-constructs t
-        modus-themes-bold-constructs t
-        modus-themes-variable-pitch-ui t
-        modus-themes-markup '(italic bold)
-        modus-themes-syntax '(yellow-comments green-strings)
-        modus-themes-paren-match '(bold intense)
-        modus-themes-links '(neutral-underline)
-        modus-themes-box-buttons '(flat)
-        modus-themes-prompts '(intense bold)
-        modus-themes-completions '((matches . (extrabold))
-                                   (selection . (semibold accented))
-                                   (popup . (accented intense)))
-        modus-themes-org-blocks 'gray-background
-        modus-themes-headings '((1 . (variable-pitch background variable-pitch))
-                                (2 . (variable-pitch rainbow))
-                                (t . (variable-pitch semibold))))
+(use-package doom-themes
+  :init (load-theme 'doom-outrun-electric t)
+  :config
   (set-face-attribute 'default nil :background "#000" :foreground "#fff")
-  (set-face-attribute 'region nil :background "#007")
-  :config (load-theme 'modus-vivendi))
-;; Indica profundidade de parenteses
-(use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
+  (set-face-attribute 'region nil :background "#00f"))
+;; indica profundidade de acordo com o tema
+(use-package prism
+  :straight (prism :type git :host github :repo "alphapapa/prism.el")
+  :hook
+  (python-mode . prism-whitespace-mode)
+  (prog-mode . prism-mode))
 ;; indicação visual quando muda o foco
 (require 'pulse)
 (set-face-attribute 'pulse-highlight-start-face nil :background "#00f")
@@ -297,16 +275,16 @@ isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no mo
   (js-mode . eglot-ensure)
   :config (setq eglot-autoshutdown t))
 ;; common lisp
+(use-package sly-asdf)
+(use-package sly-quicklisp)
+(use-package sly-repl-ansi-color)
 (use-package sly
+  :init (add-hook 'lisp-mode-hook #'sly-editing-mode)
   :config
-  (use-package sly-asdf)
-  (use-package sly-quicklisp)
-  (use-package sly-repl-ansi-color)
   (setq inferior-lisp-program "/usr/bin/sbcl")
   (require 'sly-quicklisp)
   (require 'sly-repl-ansi-color)
-  (require 'sly-asdf)
-  :init (add-hook 'lisp-mode-hook #'sly-editing-mode))
+  (require 'sly-asdf))
 ;; csharp
 (use-package csharp-mode
   :config (add-to-list 'aggressive-indent-excluded-modes 'csharp-mode)
@@ -696,3 +674,6 @@ all hooks after it are ignored.")
                      (evil-normal-state-p)))))
 ;; Turn on Evil Escape
 (evil-escape-mode 1)
+
+;; aumenta pausas para coleta de lixo
+(setq gc-cons-threshold (* 2 1000 1000))
