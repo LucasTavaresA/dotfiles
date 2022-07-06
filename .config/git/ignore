@@ -8,7 +8,9 @@
 .config/dconf/
 .config/Debauchee/
 .config/discord/
-.config/emacs/
+.config/emacs/straight/
+.config/emacs/backups/
+.config/emacs/var/
 .config/fish/completions/
 .config/fish/conf.d/
 .config/fish/functions/

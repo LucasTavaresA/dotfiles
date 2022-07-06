@@ -1,6 +1,31 @@
-;;; config.el --- My rational-emacs config -*- lexical-binding: t; -*-
-;;; Ativa debug em erros
-(toggle-debug-on-error)
+;;; init.el -*- lexical-binding: t; -*-
+;; tempo para iniciar
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (message "Emacs carregado em %s."
+                     (emacs-init-time))))
+
+;; adiciona pasta modules ao load-path
+(add-to-list 'load-path (expand-file-name "modulos/" user-emacs-directory))
+
+;; especialmente necessário no windows
+(set-default-coding-systems 'utf-8)
+
+(setq large-file-warning-threshold 100000000)
+
+;; checa systema
+(defconst IS-LINUX   (eq system-type 'gnu/linux))
+(defconst IS-MAC     (eq system-type 'darwin))
+(defconst IS-BSD     (or IS-MAC (eq system-type 'berkeley-unix)))
+(defconst IS-WINDOWS (memq system-type '(cygwin windows-nt ms-dos)))
+
+(defvar config-etc-directory (expand-file-name "etc/" user-emacs-directory))
+(defvar config-var-directory (expand-file-name "var/" user-emacs-directory))
+(mkdir config-etc-directory t)
+(mkdir config-var-directory t)
+
+;; aumenta pausas para coleta de lixo
+(setq gc-cons-threshold (* 2 1000 1000))
 
 ;;; Straight
 ;; boostrap straight.el
@@ -10,21 +35,24 @@
       (bootstrap-version 5))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
-    (url-retrieve-synchronously
-     "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-     'silent 'inhibit-cookies)
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
-;; substitui macro do package.el
-(defmacro rational-package-install-package (package)
-  "Install PACKAGE using straight"
-  `(straight-use-package ,package))
 ;; instala use-package
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
 
 ;;; Miscelanea
+;; backups
+(setq backup-by-copying t
+      delete-old-versions t
+      version-control t
+      kept-new-versions 5
+      backup-directory-alist `(("." . ,(expand-file-name "backups/" user-emacs-directory)))
+      kept-old-versions 2)
 (setq whitespace-action '(cleanup auto-cleanup) ; remove espaços inuteis ao salvar
       use-short-answers t ; apenas confirmações com "y" e "n"
       kill-do-not-save-duplicates t ; não salva duplicadas ao copiar
@@ -40,21 +68,22 @@
       user-mail-address "tavares.lassuncao@gmail.com")
 (electric-pair-mode 1) ; auto-inserir "{}()[]"
 (show-paren-mode 1)    ; indica parenteses
+(auto-insert-mode)     ; insere headers automaticamente
 ;; reverte buffer caso haja mudanças externas no arquivo
 (setq global-auto-revert-non-file-buffers t)
 (global-auto-revert-mode 1)
 ;; ativa lembrar arquivos recentes
 (add-hook 'after-init-hook #'recentf-mode)
-(setq recentf-save-file (expand-file-name "recentf" "/home/lucas/.config/rational-emacs/var/"))
+(setq recentf-save-file (expand-file-name "recentf" "/home/lucas/.config/emacs/var/"))
 (global-so-long-mode 1) ; melhora supporte para arquivos com linhas longas
 (global-visual-line-mode +1) ; quebra paragrafos de acordo com as palavras
 ;; torna arquivos com shebang (#!) executaveis quando salvados
 (add-hook 'after-save-hook #'executable-make-buffer-file-executable-if-script-p)
 ;; salva posição nos arquivos e historico de comandos
-(setq save-place-file "~/.config/rational-emacs/var/save-place")
+(setq save-place-file "~/.config/emacs/var/save-place")
 (save-place-mode 1)
 (savehist-mode 1)
-(setq savehist-file (expand-file-name "history" "/home/lucas/.config/rational-emacs/var/"))
+(setq savehist-file (expand-file-name "history" "/home/lucas/.config/emacs/var/"))
 (use-package which-key
   :init (which-key-mode))
 (use-package rainbow-mode)
@@ -74,12 +103,25 @@
   :config (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update))
 
 ;;; Aparencia
+;; symbolos em prog-mode
 (add-hook 'prog-mode-hook 'prettify-symbols-mode)
+;; divisoria entre janelas
+(setq window-divider-default-places t
+      window-divider-default-bottom-width 1
+      window-divider-default-right-width 1)
+(set-face-attribute 'window-divider nil :foreground "#fff")
+(window-divider-mode 1)
+;; fontes
+(set-face-attribute 'default nil :family "Terminus" :height 140)
+(set-face-attribute 'variable-pitch nil :family "Ubuntu" :weight 'light)
+(set-face-attribute 'font-lock-comment-face nil :family "SauceCodePro Nerd Font Mono" :slant 'italic :height 130)
+(set-face-attribute 'font-lock-function-name-face nil :family "SauceCodePro Nerd Font Mono" :slant 'italic :height 130)
+(set-face-attribute 'font-lock-variable-name-face nil :family "SauceCodePro Nerd Font Mono" :slant 'italic :height 130)
 ;; fontes de diferentes tamanhos
 (variable-pitch-mode 1)
 ;; ativa indicação de spaços e tabs em código
 (setq whitespace-style '(face tabs spaces space-mark trailing space-before-tab indentation
-                  empty space-after-tab tab-mark missing-newline-at-eof))
+                              empty space-after-tab tab-mark missing-newline-at-eof))
 (global-whitespace-mode +1)
 (set-face-attribute 'whitespace-space nil :background "#000" :foreground "#333")
 ;; modeline
@@ -92,9 +134,9 @@
         awesome-tray-file-path-full-dirname-levels 1
         awesome-tray-info-padding-right 1
         awesome-tray-file-path-truncate-dirname-levels 3
-        awesome-tray-separator ""
-        awesome-tray-essential-modules '("buffer-read-only" "  " "git" " " "location")
-        awesome-tray-active-modules    '("buffer-read-only" "  " "git" " " "location" "  " "file-path")))
+        awesome-tray-separator "  "
+        awesome-tray-essential-modules '("buffer-read-only" "git" "location")
+        awesome-tray-active-modules    '("buffer-read-only" "git" "location" "file-path")))
 (use-package hide-mode-line
   :init (global-hide-mode-line-mode))
 ;; tema
@@ -131,7 +173,7 @@
   "Pulsa a linha atual."
   (pulse-momentary-highlight-one-line (point)))
 (dolist (command '(scroll-up-command scroll-down-command
-                     recenter-top-bottom other-window))
+             recenter-top-bottom other-window))
   (advice-add command :after #'pulsar-linha))
 
 ;;; evil
@@ -182,7 +224,7 @@ isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no mo
   (interactive)
   (let ((evil-kill-on-visual-paste (not evil-kill-on-visual-paste)))
     (if (evil-insert-state-p)
-    (call-interactively #'evil-paste-before)
+        (call-interactively #'evil-paste-before)
       (call-interactively #'evil-paste-after))))
 ;; Garantir iniciar certos modos no modo emacs
 (dolist (mode '(custom-mode
@@ -223,7 +265,9 @@ isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no mo
   (corfu-cycle t)
   (corfu-preselect-first nil)
   (corfu-echo-documentation 0.25)
-  :config (set-face-attribute 'corfu-current nil :background "#007")
+  :config
+  (set-face-attribute 'corfu-current nil :background "#007")
+  (set-face-attribute 'corfu-default nil :background "#000")
   :init (global-corfu-mode))
 (use-package corfu-doc
   :hook (corfu-mode . corfu-doc-mode))
@@ -236,9 +280,8 @@ isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no mo
   (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
   (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify))
 
-(require 'rational-python)
-
 ;;; Linguagens
+(require 'eldoc)
 (use-package aggressive-indent
   :init (global-aggressive-indent-mode))
 ;; lsp
@@ -283,20 +326,23 @@ isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no mo
   "Modo simples para o sxhkd.")
 ;; markdown
 (use-package markdown-mode
-  :mode ("\\.md\\'" . gfm-mode)
-  :init (setq markdown-command "multimarkdown")
-  :config
-  ;; remove asteriscos de headings
-  (font-lock-add-keywords 'gfm-mode `(("^\\(\\#+ \\)\\s-#\\S-"
-                                       (1 (put-text-property (match-beginning 1) (match-end 1) 'invisible t)
-                                          nil))))
+  :init
+  ;; headers variam de tamanho
+  (custom-set-faces
+   '(markdown-header-face ((t (:inherit variable-pitch :weight bold :family "variable-pitch"))))
+   '(markdown-header-face-1 ((t (:inherit markdown-header-face :height 1.3))))
+   '(markdown-header-face-2 ((t (:inherit markdown-header-face :height 1.1))))
+   '(markdown-header-face-3 ((t (:inherit markdown-header-face :height 1.0))))
+   '(markdown-header-face-4 ((t (:inherit markdown-header-face :height 0.9))))
+   '(markdown-header-face-5 ((t (:inherit markdown-header-face :height 0.9)))))
   ;; Trocar listas com hífens por pontos
   (font-lock-add-keywords 'gfm-mode
                           '(("^ *\\([-]\\) "
-                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•")))))))
+                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+  :mode ("\\.md\\'" . gfm-mode))
 (use-package markdown-toc
-  :after (markdown-mode)
-  :hook (gfm-mode . markdown-toc))
+  :after (gfm-mode markdown-mode)
+  :hook ((gfm-mode markdown-mode) . markdown-toc))
 
 ;;; Orgmode
 (with-eval-after-load 'org
@@ -370,7 +416,7 @@ isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no mo
                       completion-at-point-functions)))
   (add-hook 'prog-mode-hook 'tempel-setup-capf)
   (add-hook 'text-mode-hook 'tempel-setup-capf)
-  :config (setq tempel-path "/home/lucas/.config/rational-emacs/templates"))
+  :config (setq tempel-path "/home/lucas/.config/emacs/templates"))
 (use-package expand-region)
 (use-package drag-stuff)
 
@@ -432,9 +478,9 @@ isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no mo
 (define-key h-map (kbd "c") 'describe-command)
 ;; SPC t
 (define-key t-map (kbd "n") (lambda () (interactive)
-                  (if display-line-numbers
-                  (setq display-line-numbers nil)
-                (setq display-line-numbers t))))
+                              (if display-line-numbers
+                                  (setq display-line-numbers nil)
+                                (setq display-line-numbers t))))
 ;; popup que retorna comandos sendo usados
 (use-package posframe)
 (use-package command-log-mode
@@ -444,32 +490,32 @@ isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no mo
   (defun log/toggle-command-window ()
     (interactive)
     (if log/command-window-frame
-    (progn
-      (posframe-delete-frame clm/command-log-buffer)
-      (setq log/command-window-frame nil))
+        (progn
+          (posframe-delete-frame clm/command-log-buffer)
+          (setq log/command-window-frame nil))
       (progn
-    (command-log-mode t)
-    (with-current-buffer
-        (setq clm/command-log-buffer
-          (get-buffer-create " *command-log*"))
-      (text-scale-set -1))
-    (setq log/command-window-frame
-          (posframe-show
-           clm/command-log-buffer
-           :position `(,(- (x-display-pixel-width) 590) . 15)
-           :width 50
-           :height 15
-           :min-width 50
-           :min-height 15
-           :internal-border-width 1
-           :internal-border-color "#BA45A3"
-           :override-parameters '((parent-frame . nil))))))))
+        (command-log-mode t)
+        (with-current-buffer
+            (setq clm/command-log-buffer
+                  (get-buffer-create " *command-log*"))
+          (text-scale-set -1))
+        (setq log/command-window-frame
+              (posframe-show
+               clm/command-log-buffer
+               :position `(,(- (x-display-pixel-width) 590) . 15)
+               :width 50
+               :height 15
+               :min-width 50
+               :min-height 15
+               :internal-border-width 1
+               :internal-border-color "#BA45A3"
+               :override-parameters '((parent-frame . nil))))))))
 (define-key t-map (kbd "c") 'log/toggle-command-window)
 (define-key t-map (kbd "r") 'rainbow-mode)
 (define-key t-map (kbd "l") 'toggle-truncate-lines)
 (define-key t-map (kbd "h") 'hl-line-mode)
 (define-key t-map (kbd "f") 'flyspell-mode)
-(define-key t-map (kbd "t") (lambda () (interactive) (find-file "~/.config/rational-emacs/templates")))
+(define-key t-map (kbd "t") (lambda () (interactive) (find-file "~/.config/emacs/templates")))
 ;; evil-global-set-key
 ;; Use visual line motions mesmo fora de buffers no visual-line-mode
 (evil-global-set-key 'motion "j" 'evil-next-visual-line)
@@ -563,14 +609,14 @@ isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no mo
   (add-to-list 'ispell-skip-region-alist '("^#\\+BEGIN_EXPORT" . "^#\\+END_EXPORT"))
   (add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
   (setq flyspell-sort-corrections nil    ; Não organizar correções por ordem alfabetica
-    flyspell-issue-message-flag nil) ; Não mandar mensagens para cada palavra errada
+        flyspell-issue-message-flag nil) ; Não mandar mensagens para cada palavra errada
   :hook (org-mode . flyspell-mode) (gfm-mode . flyspell-mode) (markdown-mode . flyspell-mode))
 (with-eval-after-load "ispell"
   ;; a lingua padrão deve ser configurada depois mais linguas são adicionadas
   (setenv "LANG" "pt_BR.UTF-8") ; lingua padrão
   (setq ispell-program-name "hunspell"
-    ispell-personal-dictionary "~/.config/hunspell/hunspell_personal"
-    ispell-dictionary "pt_BR,en_US")
+        ispell-personal-dictionary "~/.config/hunspell/hunspell_personal"
+        ispell-dictionary "pt_BR,en_US")
   (ispell-set-spellchecker-params) ; deve ser chamado antes de adicionar multi dicionários
   (ispell-hunspell-add-multi-dic "pt_BR,en_US"))
 ;; não carrega dicionario pessoal caso ele não exista
@@ -589,50 +635,50 @@ all hooks after it are ignored.")
   "Run `rational-escape-hook'."
   (interactive (list 'interactive))
   (cond ((minibuffer-window-active-p (minibuffer-window))
-     ;; quit the minibuffer if open.
-     (when interactive
-       (setq this-command 'abort-recursive-edit))
-     (abort-recursive-edit))
-    ;; Run all escape hooks. If any returns non-nil, then stop there.
-    ((run-hook-with-args-until-success 'rational-escape-hook))
-    ;; don't abort macros
-    ((or defining-kbd-macro executing-kbd-macro) nil)
-    ;; Back to the default
-    ((unwind-protect (keyboard-quit)
-       (when interactive
-         (setq this-command 'keyboard-quit))))))
+         ;; quit the minibuffer if open.
+         (when interactive
+           (setq this-command 'abort-recursive-edit))
+         (abort-recursive-edit))
+        ;; Run all escape hooks. If any returns non-nil, then stop there.
+        ((run-hook-with-args-until-success 'rational-escape-hook))
+        ;; don't abort macros
+        ((or defining-kbd-macro executing-kbd-macro) nil)
+        ;; Back to the default
+        ((unwind-protect (keyboard-quit)
+           (when interactive
+             (setq this-command 'keyboard-quit))))))
 (global-set-key [remap keyboard-quit] #'rational-escape)
 (dolist (fn '((backward-kill-word)
-          (company-complete-common . evil-mc-execute-default-complete)
-          ;; :editor evil
-          (evil-delete-back-to-indentation . evil-mc-execute-default-call)
-          (evil-escape . evil-mc-execute-default-evil-normal-state)  ; C-g
-          (evil-numbers/inc-at-pt-incremental)
-          (evil-numbers/dec-at-pt-incremental)
-          (evil-digit-argument-or-evil-beginning-of-visual-line
-           (:default . evil-mc-execute-default-call)
-           (visual . evil-mc-execute-visual-call))
-          ;; :tools eval
-          (+eval:replace-region . +multiple-cursors-execute-default-operator-fn)
-          ;; :lang org
-          (evil-org-delete . evil-mc-execute-default-evil-delete))))
+              (company-complete-common . evil-mc-execute-default-complete)
+              ;; :editor evil
+              (evil-delete-back-to-indentation . evil-mc-execute-default-call)
+              (evil-escape . evil-mc-execute-default-evil-normal-state)  ; C-g
+              (evil-numbers/inc-at-pt-incremental)
+              (evil-numbers/dec-at-pt-incremental)
+              (evil-digit-argument-or-evil-beginning-of-visual-line
+               (:default . evil-mc-execute-default-call)
+               (visual . evil-mc-execute-visual-call))
+              ;; :tools eval
+              (+eval:replace-region . +multiple-cursors-execute-default-operator-fn)
+              ;; :lang org
+              (evil-org-delete . evil-mc-execute-default-evil-delete))))
 (add-hook 'rational-escape-hook
-      (defun +multiple-cursors-escape-multiple-cursors-h ()
-        "Clear evil-mc cursors and restore state."
-        (when (evil-mc-has-cursors-p)
-          (evil-mc-undo-all-cursors)
-          (evil-mc-resume-cursors)
-          t)))
+          (defun +multiple-cursors-escape-multiple-cursors-h ()
+            "Clear evil-mc cursors and restore state."
+            (when (evil-mc-has-cursors-p)
+              (evil-mc-undo-all-cursors)
+              (evil-mc-resume-cursors)
+              t)))
 (defun +evil-escape-a (&rest _)
   "Call `rational-escape' if `evil-force-normal-state' is called interactively."
   (when (called-interactively-p 'any)
     (call-interactively #'rational-escape)))
 (add-hook 'rational-escape-hook
-      (defun +evil-disable-ex-highlights-h ()
-        "Disable ex search buffer highlights."
-        (when (evil-ex-hl-active-p 'evil-ex-search)
-          (evil-ex-nohighlight)
-          t)))
+          (defun +evil-disable-ex-highlights-h ()
+            "Disable ex search buffer highlights."
+            (when (evil-ex-hl-active-p 'evil-ex-search)
+              (evil-ex-nohighlight)
+              t)))
 ;; Make ESC (from normal mode) the universal escaper. See `rational-escape-hook'.
 (advice-add #'evil-force-normal-state :after #'+evil-escape-a)
 (setq evil-escape-excluded-states '(normal visual multiedit emacs motion)
@@ -644,9 +690,9 @@ all hooks after it are ignored.")
 ;; unless we have `evil-collection-setup-minibuffer' enabled, in which case we
 ;; want the same behavior in insert mode as we do in normal buffers.
 (add-hook 'evil-escape-inhibit-functions
-      (defun +evil-inhibit-escape-in-minibuffer-fn ()
-        (and (minibufferp)
-         (or (not (bound-and-true-p evil-collection-setup-minibuffer))
-             (evil-normal-state-p)))))
+          (defun +evil-inhibit-escape-in-minibuffer-fn ()
+            (and (minibufferp)
+                 (or (not (bound-and-true-p evil-collection-setup-minibuffer))
+                     (evil-normal-state-p)))))
 ;; Turn on Evil Escape
 (evil-escape-mode 1)
