@@ -7,12 +7,15 @@
 
 ;; necessário no windows
 (set-default-coding-systems 'utf-8)
+;; backups
 (setq backup-by-copying t
       delete-old-versions t
       version-control t
       kept-new-versions 5
       backup-directory-alist `(("." . ,(expand-file-name "backups/" user-emacs-directory)))
       kept-old-versions 2
+      ;; autosaves
+      auto-save-file-name-transforms `((".*" ,config-var-directory t))
       ;; custom.el
       custom-file (expand-file-name "custom.el" user-emacs-directory)
       large-file-warning-threshold 100000000 ; considera 100MB> um arquivo grande
