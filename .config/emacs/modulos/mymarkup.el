@@ -44,7 +44,7 @@
                   (org-level-6 . 0.9)
                   (org-level-7 . 0.9)
                   (org-level-8 . 0.9)))
-    (set-face-attribute (car face) nil :font "Ubuntu" :weight 'regular :height (cdr face))))
+    (set-face-attribute (car face) nil :font "Ubuntu" :weight 'regular :height (cdr face) :background nil)))
 ;; esconde marcação
 (use-package org-appear
   :after (org)
