@@ -5,20 +5,18 @@
 (defconst IS-BSD     (or IS-MAC (eq system-type 'berkeley-unix)))
 (defconst IS-WINDOWS (memq system-type '(cygwin windows-nt ms-dos)))
 
+;; mover arquvos para pastas apropriadas
+(use-package no-littering)
+(require 'recentf)
+(setq custom-file (no-littering-expand-etc-file-name "custom.el"))
+;; ativa lembrar arquivos recentes
+(add-hook 'after-init-hook #'recentf-mode)
+(add-to-list 'recentf-exclude no-littering-var-directory)
+(add-to-list 'recentf-exclude no-littering-etc-directory)
+
 ;; necessário no windows
 (set-default-coding-systems 'utf-8)
-;; backups
-(setq backup-by-copying t
-      delete-old-versions t
-      version-control t
-      kept-new-versions 5
-      backup-directory-alist `(("." . ,(expand-file-name "backups/" user-emacs-directory)))
-      kept-old-versions 2
-      ;; autosaves
-      auto-save-file-name-transforms `((".*" ,config-var-directory t))
-      ;; custom.el
-      custom-file (expand-file-name "custom.el" user-emacs-directory)
-      large-file-warning-threshold 100000000 ; considera 100MB> um arquivo grande
+(setq large-file-warning-threshold 100000000 ; considera 100MB> um arquivo grande
       whitespace-action nil ; desativa limpeza de espaços ao salvar
       use-short-answers t ; apenas confirmações com "y" e "n"
       kill-do-not-save-duplicates t ; não salva duplicadas ao copiar
@@ -36,17 +34,12 @@
 ;; reverte buffer caso haja mudanças externas no arquivo
 (setq global-auto-revert-non-file-buffers t)
 (global-auto-revert-mode 1)
-;; ativa lembrar arquivos recentes
-(add-hook 'after-init-hook #'recentf-mode)
-(setq recentf-save-file (expand-file-name "recentf" config-var-directory))
 ;; torna arquivos com shebang (#!) executáveis quando salvados
 (add-hook 'after-save-hook #'executable-make-buffer-file-executable-if-script-p)
 ;; salva posição nos arquivos
-(setq save-place-file (expand-file-name "save-place" config-var-directory))
 (save-place-mode 1)
 ;; salva histórico de comandos
 (savehist-mode 1)
-(setq savehist-file (expand-file-name "history" config-var-directory))
 (global-so-long-mode 1) ; melhora suporte para arquivos com linhas longas
 (global-visual-line-mode +1) ; quebra parágrafos de acordo com as palavras
 (electric-pair-mode 1) ; auto-inserir "{}()[]"

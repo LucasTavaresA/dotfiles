@@ -9,7 +9,7 @@
                       completion-at-point-functions)))
   (add-hook 'prog-mode-hook 'tempel-setup-capf)
   (add-hook 'text-mode-hook 'tempel-setup-capf)
-  :config (setq tempel-path "/home/lucas/.config/emacs/templates"))
+  :config (setq tempel-path "/home/lucas/.config/emacs/etc/templates"))
 ;; expande região selecionada
 (use-package expand-region)
 ;; move linhas

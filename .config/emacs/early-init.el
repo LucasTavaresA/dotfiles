@@ -9,12 +9,6 @@
             (message "Emacs carregado em %s."
                      (emacs-init-time))))
 
-;; define pastas var e etc
-(defvar config-etc-directory (expand-file-name "etc/" user-emacs-directory))
-(defvar config-var-directory (expand-file-name "var/" user-emacs-directory))
-(mkdir config-etc-directory t)
-(mkdir config-var-directory t)
-
 ;;; Compilação nativa
 (when (featurep 'native-compile)
   ;; silencia avisos de compilação
