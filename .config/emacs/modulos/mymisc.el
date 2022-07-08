@@ -57,7 +57,13 @@
   :init (which-key-mode)
   :config
   (setq which-key-idle-delay 0.5))
-
+;; indica diffs
+(use-package git-gutter
+  :init (global-git-gutter-mode)
+  :config
+  (set-face-foreground 'git-gutter:modified "yellow")
+  (set-face-foreground 'git-gutter:added    "green")
+  (set-face-foreground 'git-gutter:deleted  "red"))
 ;;; mostra cores `#fff'
 (use-package rainbow-mode)
 ;; abre um terminal no diretório atual
