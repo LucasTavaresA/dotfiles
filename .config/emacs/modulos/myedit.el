@@ -14,6 +14,11 @@
 (use-package expand-region)
 ;; move linhas
 (use-package drag-stuff)
+;; funções
+(defun copiar-buffer ()
+  "Copia todo o buffer"
+  (interactive)
+  (clipboard-kill-ring-save (point-min) (point-max)))
 
 ;;; Evil
 (use-package evil
@@ -61,8 +66,7 @@
 (use-package evil-mc
   :after (evil)
   :init (global-evil-mc-mode))
-
-;;; Funções
+;; Funções
 (defun evil-colar ()
   "Chama `evil-paste-after' porem inverte `evil-kill-on-visual-paste'.
 

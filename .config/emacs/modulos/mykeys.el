@@ -17,8 +17,6 @@
 (define-key spc-map (kbd "<right>") 'windmove-right)
 (define-key spc-map (kbd "<next>") #'flymake-goto-next-error)
 (define-key spc-map (kbd "<prior>") #'flymake-goto-prev-error)
-(fset 'copiar-buffer
-      (kmacro-lambda-form [?g ?g ?V ?G ?y] 0 "%d"))
 (define-key spc-map (kbd "b c") 'copiar-buffer)
 (define-key spc-map (kbd "b b") 'consult-bookmark)
 (define-key spc-map (kbd "b m") 'bookmark-set)
