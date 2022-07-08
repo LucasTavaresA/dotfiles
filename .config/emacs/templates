@@ -30,6 +30,10 @@ csharp-mode
 
 emacs-lisp-mode
 
+(mod ";;; my" p ".el -*- lexical-binding: t; -*-\n
+\n
+(provide 'my" p ")" > "
+;;; my" p ".el ends here")
 (pkg "(use-package " p > n ")")
 (aload ";;;###autoload")
 (ilamb "(lambda (" p ") (" p ")" n> r> ")")

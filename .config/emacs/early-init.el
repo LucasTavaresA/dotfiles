@@ -1,17 +1,19 @@
-;;; early-init.el -*- lexical-binding: t; -*-
-(toggle-debug-on-error)
+:;;; early-init.el -*- lexical-binding: t; -*-
+;; aumenta a taxa de coleta de lixo para iniciar mais rápido
+;; o padrão são 800 kilobytes, medido em bytes
+(setq gc-cons-threshold (* 50 1000 1000))
+
 ;; tempo para iniciar
 (add-hook 'emacs-startup-hook
           (lambda ()
             (message "Emacs carregado em %s."
                      (emacs-init-time))))
 
-;; aumenta a taxa de coleta de lixo para iniciar mais rápido
-;; o padrão são 800 kilobytes, medido em bytes
-(setq gc-cons-threshold (* 50 1000 1000))
-
-;; prefere verções mais recentes de pacotes
-(setq load-prefer-newer t)
+;; define pastas var e etc
+(defvar config-etc-directory (expand-file-name "etc/" user-emacs-directory))
+(defvar config-var-directory (expand-file-name "var/" user-emacs-directory))
+(mkdir config-etc-directory t)
+(mkdir config-var-directory t)
 
 ;;; Compilação nativa
 (when (featurep 'native-compile)
@@ -26,7 +28,6 @@
         (add-to-list 'native-comp-eln-load-path (convert-standard-filename (expand-file-name "var/eln-cache/" user-emacs-directory)))
       (startup-redirect-eln-cache (convert-standard-filename (expand-file-name "var/eln-cache/" user-emacs-directory)))))
   (add-to-list 'native-comp-eln-load-path (expand-file-name "eln-cache/" user-emacs-directory)))
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
 ;;; Aparencia
 (setq inhibit-startup-message t)
@@ -36,14 +37,13 @@
 (scroll-bar-mode -1)
 (push '(mouse-color . "white") default-frame-alist)
 (push '(vertical-scroll-bars) default-frame-alist)
-(set-fringe-mode 0)
-;; previne flickering
-(add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
 ;; tema padrão para evitar tela branca ao iniciar
 (load-theme 'modus-vivendi t)
 ;; desativa a modeline
 (setq-default mode-line-format nil)
 (setq mode-line-format nil)
+;; previne flickering
+(add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
 ;; maximizar janela
 (set-frame-parameter (selected-frame) 'fullscreen 'maximized)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
