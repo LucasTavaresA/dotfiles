@@ -20,6 +20,11 @@ config.set('content.javascript.enabled', True, 'chrome://*/*')
 config.set('content.javascript.enabled', True, 'qute://*/*')
 
 #### Minhas configurações ####
+import os
+if os.getenv('HOSTNAME') == 'artixlinuxpc':
+    config.set('qt.force_software_rendering', 'qt-quick')
+if os.getenv('HOSTNAME') == 'artixlinuxnote':
+    config.set('qt.force_software_rendering', 'software-opengl')
 # tela cheia limitada a janela do navegador
 config.set('content.fullscreen.window', True)
 # diminuiu javascript lento nos sites
@@ -158,16 +163,16 @@ bindings = {
     "<Ctrl-a>": "back",
     "<Ctrl-d>": "forward",
     "u": "undo --window",
-    # atalho para assistir link com mpv
-    "qvw": "hint links spawn mpv {hint-url}",
-    # baixar como video
-    "qvd": "hint links spawn term_open -a float yt {hint-url}",
-    # baixar imagem selecionada
+    # atalho para assistir link
+    "qvw": "hint links spawn streamlink {hint-url}",
+    # baixar video
+    "qvd": "hint links spawn term_open -a float streamlink -o video.ts {hint-url} 720p",
+    # baixar imagem
     "qid": "hint images download",
-    # baixar como audio
-    "qad": "hint links spawn term_open -a float yta {hint-url}",
-    # abre no firefox
-    "qf": "hint links spawn firefox {url}",
+    # baixar audio
+    "qad": "hint links spawn term_open -a float yt-dlp -x {hint-url}",
+    # abre pagina no firefox
+    "qf": "spawn firefox {url}",
     # ativa/desativa a barra
     "qq": "config-cycle statusbar.show always in-mode;; config-cycle tabs.show always switching",
     # ativa/desativa tema escuro
