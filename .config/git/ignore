@@ -8,6 +8,7 @@
 .config/dconf/
 .config/Debauchee/
 .config/discord/
+.config/emacs/auto-save-list/
 .config/emacs/straight/
 .config/emacs/backups/
 .config/emacs/var/
