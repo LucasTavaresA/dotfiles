@@ -32,6 +32,7 @@
      (js . t)
      (shell . t)
      (python . t)
+     (makefile . t)
      (org . t)
      (C . t)))
   (push '("conf-unix" . conf-unix) org-src-lang-modes)
