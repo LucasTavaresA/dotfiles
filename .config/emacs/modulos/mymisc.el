@@ -51,7 +51,10 @@
 
 ;; lista possíveis teclas de atalho
 (use-package which-key
-  :init (which-key-mode))
+  :init (which-key-mode)
+  :config
+  (setq which-key-idle-delay 0.5))
+
 ;;; mostra cores `#fff'
 (use-package rainbow-mode)
 ;; abre um terminal no diretório atual
