@@ -116,6 +116,10 @@
 (global-set-key (kbd "C-s") 'evil-mc-make-all-cursors)
 (global-set-key (kbd "M-c") 'evil-yank)
 (global-set-key (kbd "M-v") 'evil-colar)
+(global-set-key (kbd "M-d") 'org-babel-demarcate-block)
+(global-set-key (kbd "C-=") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+(global-set-key (kbd "C-0") 'text-scale-adjust)
 (global-set-key (kbd "<C-S-down>") 'evil-mc-make-and-goto-next-match)
 (global-set-key (kbd "<C-down>") 'evil-mc-skip-and-goto-next-match)
 (global-set-key (kbd "<C-S-up>") 'evil-mc-make-and-goto-prev-match)
@@ -126,7 +130,6 @@
 (global-set-key (kbd "<C-M-down>") 'evil-window-split)
 (global-set-key (kbd "<M-up>") 'drag-stuff-up)
 (global-set-key (kbd "<M-down>") 'drag-stuff-down)
-(global-set-key (kbd "M-d") 'org-babel-demarcate-block)
 ;; org-mode-map
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "<M-up>") nil)
