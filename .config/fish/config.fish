@@ -207,7 +207,7 @@ if status is-interactive
     abbr -a -g gap git add -p
     abbr -a -g gcm git_confirm commit
     abbr -a -g gca git_confirm commit-amend-no-edit
-    abbr -a -g gcae git_confirm commit-amend
+    abbr -a -g gcam git_confirm commit-amend
     abbr -a -g gco git checkout
     abbr -a -g gps git_confirm push
     abbr -a -g gpsf git_confirm push-f
