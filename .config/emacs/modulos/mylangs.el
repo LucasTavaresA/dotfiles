@@ -41,5 +41,20 @@
 (use-package css-eldoc
   :hook (css-mode . turn-on-css-eldoc))
 
+;;; Shellscript
+(defun aval-buffer ()
+  "Avalia buffer dependendo do major-mode."
+  (interactive)
+  (cond ((string= major-mode "sh-mode") (shell-command (buffer-string)))
+        (t (eval-buffer))))
+
+(defun aval-region (start end)
+  "Avalia região dependendo do major-mode."
+  (interactive "r")
+  (if (use-region-p)
+      (let ((regionp (buffer-substring start end)))
+        (cond ((string= major-mode "sh-mode") (shell-command regionp))
+              (t (eval-region start end t))))))
+
 (provide 'mylangs)
 ;;; mylangs.el ends here
