@@ -2,6 +2,7 @@
 ;;; Org mode
 (use-package org
   :defer t
+  :hook (org-mode . aumenta-fonte)
   :init
   (setq org-ellipsis "  "
         org-startup-folded 'content
@@ -76,6 +77,7 @@
   (font-lock-add-keywords 'gfm-mode
                           '(("^ *\\([-]\\) "
                              (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+  :hook ((gfm-mode markdown-mode) . aumenta-fonte)
   :config
   (dolist (face '((markdown-header-face-1 . 1.3)
                   (markdown-header-face-2 . 1.1)
@@ -108,6 +110,10 @@
   (interactive)
   (cond ((string= major-mode "org-mode") (consult-org-heading))
         (t (consult-outline))))
+
+(defun aumenta-fonte ()
+  "Aumenta o tamanho da fonte."
+  (text-scale-set 2))
 
 (provide 'mymarkup)
 ;;; mymarkup.el ends here
