@@ -95,8 +95,8 @@ ex () {
     done
 }
 
-git_confirm () {
-     case "$1" in
+git_confirma () {
+    case "$1" in
         "push")                  git_cmd="git push" ;;
         "push-f")                git_cmd="git push -f" ;;
         "pull")                  git_cmd="git pull" ;;
@@ -118,8 +118,16 @@ git_confirm () {
     fi
 }
 
+criar_script () {
+    lang=$1
+    arquivo=$2
+    printf "#!/usr/bin/env $lang\n${*:3}" > $arquivo
+}
+
 #### Aliases ####
 alias cd="z"
+alias cs="criar_script"
+alias css="criar_script sh script.sh"
 alias pk="pkill -i"
 alias pg="pgrep -ia"
 alias df="df -hT --total -x tmpfs -x devtmpfs"
@@ -189,20 +197,20 @@ alias gl="git log --oneline"
 alias ga="git add"
 alias gaf="git add -f"
 alias gap="git add -p"
-alias gcm="git_confirm commit"
-alias gcam="git_confirm commit-amend"
-alias gca="git_confirm commit-amend-no-edit"
+alias gcm="git_confirma commit"
+alias gcam="git_confirma commit-amend"
+alias gca="git_confirma commit-amend-no-edit"
 alias gco="git checkout"
-alias gps="git_confirm push"
-alias gpsf="git_confirm push-f"
-alias gpl="git_confirm pull"
-alias gf="git_confirm fetch"
-alias gr="git_confirm restore"
+alias gps="git_confirma push"
+alias gpsf="git_confirma push-f"
+alias gpl="git_confirma pull"
+alias gf="git_confirma fetch"
+alias gr="git_confirma restore"
 alias grv="git remote -v"
-alias grs="git_confirm restore-staged"
-alias grsu="git_confirm remote-set-url-origin"
-alias grrs="git_confirm reset-soft"
-alias grrh="git_confirm reset-hard"
+alias grs="git_confirma restore-staged"
+alias grsu="git_confirma remote-set-url-origin"
+alias grrs="git_confirma reset-soft"
+alias grrh="git_confirma reset-hard"
 alias gg="git grep -iInp --break --heading"
 alias ggs="git grep -iInp --break --heading -8"
 

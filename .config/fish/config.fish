@@ -111,7 +111,7 @@ if status is-interactive
         end
     end
 
-    function git_confirm
+    function git_confirma
         switch "$argv[1]"
             case "push"; set git_cmd "git push"
             case "push-f"; set git_cmd "git push -f"
@@ -133,8 +133,13 @@ if status is-interactive
         end
     end
 
+    function criar_script
+        printf "#!/usr/bin/env $argv[1]\n$argv[3..-1]" > $argv[2]
+    end
+    
     ## Abbr ##
     abbr -a -g cd z
+    abbr -a -g cs criar_script sh script.sh
     abbr -a -g pk pkill -i
     abbr -a -g pg pgrep -ia
     abbr -a -g df df -hT --total -x tmpfs -x devtmpfs
@@ -205,20 +210,20 @@ if status is-interactive
     abbr -a -g ga git add
     abbr -a -g gaf git add -f
     abbr -a -g gap git add -p
-    abbr -a -g gcm git_confirm commit
-    abbr -a -g gca git_confirm commit-amend-no-edit
-    abbr -a -g gcam git_confirm commit-amend
+    abbr -a -g gcm git_confirma commit
+    abbr -a -g gca git_confirma commit-amend-no-edit
+    abbr -a -g gcam git_confirma commit-amend
     abbr -a -g gco git checkout
-    abbr -a -g gps git_confirm push
-    abbr -a -g gpsf git_confirm push-f
-    abbr -a -g gpl git_confirm pull
-    abbr -a -g gf git_confirm fetch
-    abbr -a -g gr git_confirm restore
+    abbr -a -g gps git_confirma push
+    abbr -a -g gpsf git_confirma push-f
+    abbr -a -g gpl git_confirma pull
+    abbr -a -g gf git_confirma fetch
+    abbr -a -g gr git_confirma restore
     abbr -a -g grv git remote -v
-    abbr -a -g grs git_confirm restore-staged
-    abbr -a -g grsu git_confirm remote-set-url-origin
-    abbr -a -g grrs git_confirm reset-soft
-    abbr -a -g grrh git_confirm reset-hard
+    abbr -a -g grs git_confirma restore-staged
+    abbr -a -g grsu git_confirma remote-set-url-origin
+    abbr -a -g grrs git_confirma reset-soft
+    abbr -a -g grrh git_confirma reset-hard
     abbr -a -g gg git grep -iInp --break --heading
     abbr -a -g ggs git grep -iInp --break --heading -8
 
