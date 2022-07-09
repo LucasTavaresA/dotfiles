@@ -52,6 +52,11 @@
   (set-face-attribute 'font-lock-builtin-face nil :family "SauceCodePro Nerd Font Mono" :height 130)
   (variable-pitch-mode 1))
 
+;;; Clareia buffer sem foco
+(use-package auto-dim-other-buffers
+  :init (auto-dim-other-buffers-mode)
+  (set-face-attribute 'auto-dim-other-buffers-face nil :background "#080808"))
+
 ;;; Indicação visual
 (require 'pulse)
 (set-face-attribute 'pulse-highlight-start-face nil :background "#00f")
