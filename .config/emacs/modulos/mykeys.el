@@ -36,6 +36,12 @@
 (define-key spc-map (kbd "w w") 'save-buffer)
 (define-key spc-map (kbd "w q") 'evil-save-and-quit)
 (define-key spc-map (kbd "q q") 'evil-quit)
+;; SPC c
+;; c-map
+(defalias 'c-map (make-sparse-keymap))
+(defvar c-map (symbol-function 'c-map))
+(define-key spc-map (kbd "c") 'c-map)
+(define-key c-map (kbd "c") 'compile)
 ;; SPC h
 ;; h-map
 (defalias 'h-map (make-sparse-keymap))
