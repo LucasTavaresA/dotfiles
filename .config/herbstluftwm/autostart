@@ -4,6 +4,10 @@ hc() {
     herbstclient "$@"
 }
 
+hck() {
+    herbstclient keybind "$@"
+}
+
 hc emit_hook reload
 
 pegar_erros() {
@@ -47,101 +51,104 @@ tag_count=$(hc attr tags.count)
 for i in "${!tag_keys[@]}"; do
     (( i >= tag_count )) && break
     key="${tag_keys[$i]}"
-    hc keybind "Mod4-$key" use_index "$i"
-    hc keybind "Mod4-Shift-$key" move_index "$i"
+    hck "Mod4-$key" use_index "$i"
+    hck "Mod4-Shift-$key" move_index "$i"
 done
 
 # Herbstluftwm
-hc keybind Super_L spawn polybar-msg cmd show
-hc keybind Release-Super_L spawn polybar-msg cmd hide
-hc keybind Mod4-q close
-hc keybind Mod4-Shift-q remove
-hc keybind Mod4-f and . attr clients.focus.floating off . attr clients.focus.fullscreen toggle
+hck Super_L spawn polybar-msg cmd show
+hck Release-Super_L spawn polybar-msg cmd hide
+hck Mod4-q close
+hck Mod4-Shift-q remove
+hck Mod4-f and . attr clients.focus.floating off . attr clients.focus.fullscreen toggle
 # fake fullscreen
-hc keybind Mod4-Alt-f chain , attr clients.focus.ewmhrequests off , attr clients.focus.ewmhnotify on , attr clients.focus.fullscreen on , attr clients.focus.ewmhnotify off , set_attr clients.focus.fullscreen off , set_attr clients.focus.ewmhnotify on , sprintf CMD 'sleep 2 ; herbstclient attr clients.%s.ewmhrequests on' clients.focus.winid spawn bash -c CMD
-hc keybind Mod4-w and . attr clients.focus.fullscreen off . attr clients.focus.floating toggle
-hc keybind Mod4-Tab cycle_all +1
-hc keybind Mod4-Alt-period cycle_all +1
+hck Mod4-Alt-f chain , attr clients.focus.ewmhrequests off , attr clients.focus.ewmhnotify on , attr clients.focus.fullscreen on , attr clients.focus.ewmhnotify off , set_attr clients.focus.fullscreen off , set_attr clients.focus.ewmhnotify on , sprintf CMD 'sleep 2 ; herbstclient attr clients.%s.ewmhrequests on' clients.focus.winid spawn bash -c CMD
+hck Mod4-w and . attr clients.focus.fullscreen off . attr clients.focus.floating toggle
+hck Mod4-Tab cycle_all +1
+hck Mod4-Alt-period cycle_all +1
 # troca entre layouts pulando layouts que não mudam janelas de posição
-hc keybind Mod4-Escape or , and . compare tags.focus.curframe_wcount = 2 . cycle_layout +1 vertical horizontal max vertical grid , cycle_layout +1
-hc keybind Mod4-Alt-comma or , and . compare tags.focus.curframe_wcount = 2 . cycle_layout +1 vertical horizontal max vertical grid , cycle_layout +1
+hck Mod4-Escape or , and . compare tags.focus.curframe_wcount = 2 . cycle_layout +1 vertical horizontal max vertical grid , cycle_layout +1
+hck Mod4-Alt-comma or , and . compare tags.focus.curframe_wcount = 2 . cycle_layout +1 vertical horizontal max vertical grid , cycle_layout +1
 # Direcionais
 # troca foco de janela e tag
-hc keybind Mod4-Up focus up
-hc keybind Mod4-Down focus down
-hc keybind Mod4-Left or . focus left . use_index -1
-hc keybind Mod4-Right or . focus right . use_index +1
+hck Mod4-Up focus up
+hck Mod4-Down focus down
+hck Mod4-Left or . focus left . use_index -1
+hck Mod4-Right or . focus right . use_index +1
 # troca posição da janela
-hc keybind Mod4-Shift-Up shift up
-hc keybind Mod4-Shift-Down shift down
-hc keybind Mod4-Shift-Left shift left
-hc keybind Mod4-Shift-Right shift right
+hck Mod4-Shift-Up shift up
+hck Mod4-Shift-Down shift down
+hck Mod4-Shift-Left shift left
+hck Mod4-Shift-Right shift right
 # troca janela de tag e a segue
-hc keybind Mod4-Alt-Left and . move_index -1 . use_index -1
-hc keybind Mod4-Alt-Right and . move_index +1 . use_index +1
+hck Mod4-Alt-Left and . move_index -1 . use_index -1
+hck Mod4-Alt-Right and . move_index +1 . use_index +1
 # cria divisória
-hc keybind Mod4-Ctrl-Up split top
-hc keybind Mod4-Ctrl-Down split bottom
-hc keybind Mod4-Ctrl-Left split left
-hc keybind Mod4-Ctrl-Right split right
+hck Mod4-Ctrl-Up split top
+hck Mod4-Ctrl-Down split bottom
+hck Mod4-Ctrl-Left split left
+hck Mod4-Ctrl-Right split right
 # muda o tamanho da divisória
-hc keybind Mod4-Ctrl-Shift-Up resize up +0.05
-hc keybind Mod4-Ctrl-Shift-Down resize down +0.05
-hc keybind Mod4-Ctrl-Shift-Left resize left +0.05
-hc keybind Mod4-Ctrl-Shift-Right resize right +0.05
+hck Mod4-Ctrl-Shift-Up resize up +0.05
+hck Mod4-Ctrl-Shift-Down resize down +0.05
+hck Mod4-Ctrl-Shift-Left resize left +0.05
+hck Mod4-Ctrl-Shift-Right resize right +0.05
 # Vimkeys
 # troca foco de janela e tag
-hc keybind Mod4-k focus up
-hc keybind Mod4-j focus down
-hc keybind Mod4-h or . focus left . use_index -1
-hc keybind Mod4-l or . focus right . use_index +1
+hck Mod4-k focus up
+hck Mod4-j focus down
+hck Mod4-h or . focus left . use_index -1
+hck Mod4-l or . focus right . use_index +1
 # troca posição da janela
-hc keybind Mod4-Shift-k shift up
-hc keybind Mod4-Shift-j shift down
-hc keybind Mod4-Shift-h shift left
-hc keybind Mod4-Shift-l shift right
+hck Mod4-Shift-k shift up
+hck Mod4-Shift-j shift down
+hck Mod4-Shift-h shift left
+hck Mod4-Shift-l shift right
 # troca janela de tag e a segue
-hc keybind Mod4-Alt-h and . move_index -1 . use_index -1
-hc keybind Mod4-Alt-l and . move_index +1 . use_index +1
+hck Mod4-Alt-h and . move_index -1 . use_index -1
+hck Mod4-Alt-l and . move_index +1 . use_index +1
 # cria divisória
-hc keybind Mod4-Ctrl-k split top
-hc keybind Mod4-Ctrl-j split bottom
-hc keybind Mod4-Ctrl-h split left
-hc keybind Mod4-Ctrl-l split right
+hck Mod4-Ctrl-k split top
+hck Mod4-Ctrl-j split bottom
+hck Mod4-Ctrl-h split left
+hck Mod4-Ctrl-l split right
 # muda o tamanho da divisória
-hc keybind Mod4-Ctrl-Shift-k resize up +0.05
-hc keybind Mod4-Ctrl-Shift-j resize down +0.05
-hc keybind Mod4-Ctrl-Shift-h resize left +0.05
-hc keybind Mod4-Ctrl-Shift-l resize right +0.05
+hck Mod4-Ctrl-Shift-k resize up +0.05
+hck Mod4-Ctrl-Shift-j resize down +0.05
+hck Mod4-Ctrl-Shift-h resize left +0.05
+hck Mod4-Ctrl-Shift-l resize right +0.05
 # Aplicações
-hc keybind Mod4-Shift-backslash spawn term_open
-hc keybind Mod4-backslash spawn term_scratchpad
-hc keybind Alt-b spawn polybar-msg cmd toggle
-hc keybind Alt-h spawn term_open -a float htop
-hc keybind Alt-Shift-p spawn sh -c 'pkill -x picom || picom -b --unredir-if-possible --backend xr_glx_hybrid --vsync --use-damage --glx-no-stencil'
-hc keybind Alt-s spawn sct
-hc keybind Alt-Shift-s spawn sct 2000
-hc keybind Alt-t spawn transmission-qt
-hc keybind Alt-a spawn emacsclient -n -c -a 'term_open nvim' ~/documentos/anotações.org
-hc keybind Alt-f spawn emacsclient -n -c -a 'term_open nvim' ~/documentos/favoritos.org
+hck Mod4-Shift-backslash spawn term_open
+hck Mod4-backslash spawn term_scratchpad
+hck Alt-b spawn polybar-msg cmd toggle
+hck Alt-h spawn term_open -a float htop
+hck Alt-Shift-p spawn sh -c 'pkill -x picom || picom -b --unredir-if-possible --backend xr_glx_hybrid --vsync --use-damage --glx-no-stencil'
+hck Alt-s spawn sct
+hck Alt-Shift-s spawn sct 2000
+hck Alt-t spawn transmission-qt
+hck Alt-a spawn emacsclient -n -c -a 'term_open nvim' ~/documentos/anotações.org
+hck Alt-f spawn emacsclient -n -c -a 'term_open nvim' ~/documentos/favoritos.org
 # Musica
-hc keybind Mod4-a spawn term_open -a float ncmpcpp
-hc keybind Mod4-Shift-a spawn term_open -a float pulsemixer
-hc keybind Mod4-space or . spawn playerctl play-pause . spawn mpc toggle
-hc keybind Mod4-comma spawn pactl set-sink-volume @DEFAULT_SINK@ -5%
-hc keybind Mod4-period spawn pactl set-sink-volume @DEFAULT_SINK@ +5%
-hc keybind Mod4-Shift-comma spawn musica ante
-hc keybind Mod4-Shift-period spawn musica prox
+hck Mod4-a spawn term_open -a float ncmpcpp
+hck Mod4-Shift-a spawn term_open -a float pulsemixer
+hck Mod4-space or . spawn playerctl play-pause . spawn mpc toggle
+hck XF86AudioPlay or . spawn playerctl play-pause . spawn mpc toggle
+hck Mod4-comma spawn pactl set-sink-volume @DEFAULT_SINK@ -5%
+hck Mod4-period spawn pactl set-sink-volume @DEFAULT_SINK@ +5%
+hck XF86AudioLowerVolume spawn pactl set-sink-volume @DEFAULT_SINK@ -5%
+hck XF86AudioRaiseVolume spawn pactl set-sink-volume @DEFAULT_SINK@ +5%
+hck Mod4-Shift-comma spawn musica ante
+hck Mod4-Shift-period spawn musica prox
 # Menus
-hc keybind Menu spawn dmenu_run
-hc keybind Alt-m spawn dmenu_mont
-hc keybind Alt-p spawn passmenu --type
-hc keybind Alt-q spawn term_open -a center fzf_sys
-hc keybind Alt-o spawn dmenu_pesquisar
-hc keybind Mod4-c spawn term_open -a center fzf_clip
-hc keybind Alt-e spawn term_open -a center fzf_edit
-hc keybind Alt-Shift-e spawn term_open -a center fzf_emojis
-hc keybind Print spawn dmenu_print
+hck Menu spawn dmenu_run
+hck Alt-m spawn dmenu_mont
+hck Alt-p spawn passmenu --type
+hck Alt-q spawn term_open -a center fzf_sys
+hck Alt-o spawn dmenu_pesquisar
+hck Mod4-c spawn term_open -a center fzf_clip
+hck Alt-e spawn term_open -a center fzf_edit
+hck Alt-Shift-e spawn term_open -a center fzf_emojis
+hck Print spawn dmenu_print
 
 hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
@@ -162,7 +169,7 @@ hc attr theme.floating.inner_color '#000000'
 hc attr theme.floating.active.inner_color '#ffffff'
 hc attr theme.floating.active.outer_color '#000000'
 
-hc set frame_border_active_color '#ffffff'
+hc set frame_border_active_color '#009900'
 hc set frame_border_normal_color '#000000'
 hc set frame_bg_active_color '#111111'
 hc set frame_bg_normal_color '#000000'
