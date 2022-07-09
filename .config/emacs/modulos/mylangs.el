@@ -41,7 +41,10 @@
 (use-package css-eldoc
   :hook (css-mode . turn-on-css-eldoc))
 
-;;; Shellscript
+;;; Fish
+(use-package fish-mode)
+
+;;; Funções
 (defun aval-buffer ()
   "Avalia buffer dependendo do major-mode."
   (interactive)
