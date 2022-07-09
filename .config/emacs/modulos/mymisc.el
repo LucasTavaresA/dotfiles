@@ -14,6 +14,11 @@
 (add-to-list 'recentf-exclude no-littering-var-directory)
 (add-to-list 'recentf-exclude no-littering-etc-directory)
 
+;; shell
+(setq-default explicit-shell-file-name "/bin/sh"
+              shell-file-name "/bin/sh")
+;; torna arquivos com shebang (#!) executáveis quando salvados
+(add-hook 'after-save-hook #'executable-make-buffer-file-executable-if-script-p)
 ;; necessário no windows
 (set-default-coding-systems 'utf-8)
 (setq large-file-warning-threshold 100000000 ; considera 100MB> um arquivo grande
@@ -34,8 +39,6 @@
 ;; reverte buffer caso haja mudanças externas no arquivo
 (setq global-auto-revert-non-file-buffers t)
 (global-auto-revert-mode 1)
-;; torna arquivos com shebang (#!) executáveis quando salvados
-(add-hook 'after-save-hook #'executable-make-buffer-file-executable-if-script-p)
 ;; salva posição nos arquivos
 (save-place-mode 1)
 ;; salva histórico de comandos
