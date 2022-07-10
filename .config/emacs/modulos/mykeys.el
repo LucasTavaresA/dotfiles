@@ -8,8 +8,6 @@
 (define-key spc-map (kbd "K") 'kill-some-buffers)
 (define-key spc-map (kbd "l") 'inserir-link)
 (define-key spc-map (kbd "u") 'undo-tree-visualize)
-(define-key spc-map (kbd "c") 'list-colors-display)
-(define-key spc-map (kbd "m") 'markdown-toggle-markup-hiding)
 (define-key spc-map (kbd "RET") 'terminal-here)
 (define-key spc-map (kbd "<up>") 'windmove-up)
 (define-key spc-map (kbd "<down>") 'windmove-down)
@@ -22,9 +20,6 @@
 (define-key spc-map (kbd "b m") 'bookmark-set)
 (define-key spc-map (kbd "b r") 'bookmark-delete)
 (define-key spc-map (kbd "b t") 'org-babel-tangle)
-(define-key spc-map (kbd "e e") 'eval-defun)
-(define-key spc-map (kbd "e b") 'aval-buffer)
-(define-key spc-map (kbd "e r") 'aval-region)
 (define-key spc-map (kbd "f b") 'flyspell-buffer)
 (define-key spc-map (kbd "f f") 'find-file)
 (define-key spc-map (kbd "f F") 'consult-find)
@@ -70,8 +65,17 @@
 (define-key t-map (kbd "h") 'hl-line-mode)
 (define-key t-map (kbd "f") 'flyspell-mode)
 (define-key t-map (kbd "F") 'flymake-mode)
-(define-key t-map (kbd "e") 'edebug-mode)
-(define-key t-map (kbd "t") (lambda () (interactive) (find-file "~/.config/emacs/templates")))
+(define-key t-map (kbd "m") 'markdown-toggle-markup-hiding)
+;; e-map
+(defalias 'e-map (make-sparse-keymap))
+(defvar e-map (symbol-function 'e-map))
+(define-key spc-map (kbd "e") 'e-map)
+;; SPC e
+(define-key e-map (kbd "t") (lambda () (interactive) (find-file "~/.config/emacs/templates")))
+(define-key e-map (kbd "e") 'eval-defun)
+(define-key e-map (kbd "b") 'aval-buffer)
+(define-key e-map (kbd "r") 'aval-region)
+(define-key e-map (kbd "E") 'edebug-mode)
 ;; evil-global-set-key
 ;; Use visual line motions mesmo fora de buffers no visual-line-mode
 (evil-global-set-key 'motion "j" 'evil-next-visual-line)
