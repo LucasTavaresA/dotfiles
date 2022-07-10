@@ -35,6 +35,7 @@ dash
 dbus-broker
 dhcpcd
 dhcpcd-runit
+difftastic
 discord
 dnsmasq
 docx2txt
@@ -65,7 +66,6 @@ gdu
 gettext
 gimp
 git
-git-delta
 glow
 gnome-epub-thumbnailer
 gnome-tweaks
@@ -149,6 +149,7 @@ noto-fonts-cjk
 noto-fonts-emoji
 noto-fonts-extra
 nuspell
+omnisharp-roslyn
 openbsd-netcat
 opendoas
 openssh
