@@ -69,6 +69,8 @@
 (define-key t-map (kbd "l") 'toggle-truncate-lines)
 (define-key t-map (kbd "h") 'hl-line-mode)
 (define-key t-map (kbd "f") 'flyspell-mode)
+(define-key t-map (kbd "F") 'flymake-mode)
+(define-key t-map (kbd "e") 'edebug-mode)
 (define-key t-map (kbd "t") (lambda () (interactive) (find-file "~/.config/emacs/templates")))
 ;; evil-global-set-key
 ;; Use visual line motions mesmo fora de buffers no visual-line-mode
@@ -106,6 +108,8 @@
 (define-key corfu-map (kbd "<up>") 'evil-previous-line)
 (define-key corfu-map (kbd "<down>") 'evil-next-line)
 (define-key corfu-map (kbd "E") 'tempel-expand)
+;; edebug-mode-map
+(define-key edebug-mode-map (kbd "Q") 'edebug-mode)
 ;; global
 (fset 'comentar-e-descer-linha
       (kmacro-lambda-form [?, ?c ?i down] 0 "%d"))
