@@ -132,6 +132,7 @@
 (global-set-key (kbd "<C-M-down>") 'evil-window-split)
 (global-set-key (kbd "<M-up>") 'drag-stuff-up)
 (global-set-key (kbd "<M-down>") 'drag-stuff-down)
+(global-set-key (kbd "C-SPC") 'popper-toggle-latest)
 ;; org-mode-map
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "<M-up>") nil)

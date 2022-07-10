@@ -50,6 +50,32 @@
 (electric-pair-mode 1) ; auto-inserir "{}()[]"
 (show-paren-mode 1) ; indica parenteses
 
+;;; Lida com buffers incomodantes
+(use-package popper
+  :init
+  (setq popper-reference-buffers
+        '("\\*Messages\\*"
+          "\\*Warnings\\*"
+          "\\*scratch\\*"
+          "\\*xref\\*"
+          "\\*Backtrace\\*"
+          "*Flymake diagnostics.*"
+          "\\*eldoc\\*"
+          "\\*compilation\\*"
+          "\\*rustic-"
+          "^*tex"
+          "\\*Ement Notifications\\*"
+          "Output\\*$"
+          "\\*Async Shell Command\\*"
+          "\\*Dtache Shell Command\\*"
+          "\\*mu4e-update\\*"
+          "\\*GDB.*out\\*"
+          help-mode
+          helpful-mode
+          compilation-mode))
+  (setq popper-window-height 15)
+  (popper-mode +1))
+
 ;; lista possíveis teclas de atalho
 (use-package which-key
   :init (which-key-mode)
