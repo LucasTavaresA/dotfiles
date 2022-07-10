@@ -10,7 +10,7 @@
   (add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
   (setq flyspell-sort-corrections nil    ; Não organizar correções por ordem alfabetica
         flyspell-issue-message-flag nil) ; Não mandar mensagens para cada palavra errada
-  :hook ((org-mode gfm-mode markdown-mode) . flyspell-mode))
+  :hook ((nroff-mode mu4e-compose-mode mail-mode git-commit-mode org-mode gfm-mode markdown-mode) . flyspell-mode))
 
 (with-eval-after-load "ispell"
   ;; a lingua padrão deve ser configurada depois mais linguas são adicionadas
