@@ -77,7 +77,8 @@
   (font-lock-add-keywords 'gfm-mode
                           '(("^ *\\([-]\\) "
                              (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
-  :hook ((gfm-mode markdown-mode) . aumenta-fonte)
+  :hook (((gfm-mode markdown-mode) . aumenta-fonte)
+         ((gfm-mode markdown-mode) . markdown-esconde-marcação))
   :config
   (dolist (face '((markdown-header-face-1 . 1.3)
                   (markdown-header-face-2 . 1.1)
@@ -114,6 +115,10 @@
 (defun aumenta-fonte ()
   "Aumenta o tamanho da fonte."
   (text-scale-set 2))
+
+(defun markdown-esconde-marcação ()
+  "Esconde marcação em markdown."
+  (markdown-toggle-markup-hiding))
 
 (provide 'mymarkup)
 ;;; mymarkup.el ends here
