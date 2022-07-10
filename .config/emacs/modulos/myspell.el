@@ -25,9 +25,5 @@
 (unless (file-exists-p ispell-personal-dictionary)
   (write-region "" nil ispell-personal-dictionary nil 0))
 
-;; popup
-(use-package flyspell-popup
-  :after (flyspell))
-
 (provide 'myspell)
 ;;; myspell.el ends here
