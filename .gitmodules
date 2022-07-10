@@ -34,6 +34,3 @@
 [submodule ".config/nvim/plugins/lite-dfm"]
 	path = .config/nvim/plugins/lite-dfm
 	url = https://gitlab.com/lucastavaresa/lite-dfm.git
-[submodule ".config/doom/awesome-tray"]
-	path = .config/doom/awesome-tray
-	url = https://github.com/lucastavaresa/awesome-tray

@@ -8,7 +8,7 @@ clipmenud &
 dunst &
 xbanish &
 pgrep -x syncthing || syncthing &
-pgrep -x emacs || doom_reset &
+pgrep -x emacs || emacs --daemon &
 barrier &
 fzf_man update &
 # musica
