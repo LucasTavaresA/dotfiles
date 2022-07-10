@@ -8,7 +8,7 @@
   (add-to-list 'ispell-skip-region-alist '("^#\\+BEGIN_EXPORT" . "^#\\+END_EXPORT"))
   (add-to-list 'ispell-skip-region-alist '("^#\\+BEGIN_EXPORT" . "^#\\+END_EXPORT"))
   (add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
-  (setq flyspell-sort-corrections nil    ; Não organizar correções por ordem alfabetica
+  (setq flyspell-sort-corrections nil    ; Não organizar correções por ordem alfabetiza
         flyspell-issue-message-flag nil) ; Não mandar mensagens para cada palavra errada
   :hook ((nroff-mode mu4e-compose-mode mail-mode git-commit-mode org-mode gfm-mode markdown-mode) . flyspell-mode))
 

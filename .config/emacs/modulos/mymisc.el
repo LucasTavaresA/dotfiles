@@ -1,11 +1,11 @@
 ;;; mymisc.el -*- lexical-binding: t; -*-
-;; checagens de sistema
+;;; checagens de sistema
 (defconst IS-LINUX   (eq system-type 'gnu/linux))
 (defconst IS-MAC     (eq system-type 'darwin))
 (defconst IS-BSD     (or IS-MAC (eq system-type 'berkeley-unix)))
 (defconst IS-WINDOWS (memq system-type '(cygwin windows-nt ms-dos)))
 
-;; mover arquvos para pastas apropriadas
+;;; mover arquios para pastas apropriadas
 (use-package no-littering)
 (require 'recentf)
 (setq custom-file (no-littering-expand-etc-file-name "custom.el"))
@@ -14,11 +14,13 @@
 (add-to-list 'recentf-exclude no-littering-var-directory)
 (add-to-list 'recentf-exclude no-littering-etc-directory)
 
-;; shell
+;;; shell
 (setq-default explicit-shell-file-name "/bin/sh"
               shell-file-name "/bin/sh")
 ;; torna arquivos com shebang (#!) executáveis quando salvados
 (add-hook 'after-save-hook #'executable-make-buffer-file-executable-if-script-p)
+
+;;; Miscelânea
 ;; necessário no windows
 (set-default-coding-systems 'utf-8)
 (setq large-file-warning-threshold 100000000 ; considera 100MB> um arquivo grande
@@ -57,8 +59,6 @@
 (use-package diff-hl
   :init (global-diff-hl-mode)
   :config
-  (add-hook 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
-  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
   (set-face-attribute 'diff-hl-change nil :background "#ffff00" :foreground "#ffff00")
   (set-face-attribute 'diff-hl-delete nil :background "#ff0000" :foreground "#ff0000")
   (set-face-attribute 'diff-hl-insert nil :background "#009900" :foreground "#009900")

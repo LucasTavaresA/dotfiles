@@ -99,6 +99,7 @@ jre-openjdk
 jre-openjdk-headless
 js-beautify
 kdecoration
+keepassxc
 kpackage
 kvantum
 kwidgetsaddons

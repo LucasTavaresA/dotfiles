@@ -11,6 +11,7 @@
 .config/emacs/auto-save-list/
 .config/emacs/straight/
 .config/emacs/backups/
+.config/emacs/elpa/
 .config/emacs/var/
 .config/fish/completions/
 .config/fish/conf.d/
