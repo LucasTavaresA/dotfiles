@@ -30,8 +30,8 @@
       ;; scroll
       auto-window-vscroll nil ; diminui o stuttering do scroll
       fast-but-imprecise-scrolling t ; scroll mais rápido
-      scroll-margin 1 ; distancia de onde o scroll começa
-      scroll-conservatively 0 ; tolerância para centralizar cursor
+      scroll-margin 10 ; distancia de onde o scroll começa
+      scroll-conservatively 101 ; tolerância para centralizar cursor
       scroll-preserve-screen-position t
       ;; desativa barra piscando
       visible-bell       nil
