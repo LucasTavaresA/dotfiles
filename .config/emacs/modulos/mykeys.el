@@ -21,11 +21,11 @@
 (define-key spc-map (kbd "b b") 'consult-bookmark)
 (define-key spc-map (kbd "b m") 'bookmark-set)
 (define-key spc-map (kbd "b r") 'bookmark-delete)
-(define-key spc-map (kbd "b s") 'flyspell-buffer)
 (define-key spc-map (kbd "b t") 'org-babel-tangle)
 (define-key spc-map (kbd "e e") 'eval-defun)
 (define-key spc-map (kbd "e b") 'aval-buffer)
 (define-key spc-map (kbd "e r") 'aval-region)
+(define-key spc-map (kbd "f b") 'flyspell-buffer)
 (define-key spc-map (kbd "f f") 'find-file)
 (define-key spc-map (kbd "f F") 'consult-find)
 (define-key spc-map (kbd "i i") 'aggressive-indent-indent-defun)
@@ -84,13 +84,11 @@
 (define-key evil-motion-state-map (kbd "K") 'helpful-at-point)
 (define-key evil-motion-state-map (kbd "z x") 'marcar-checkbox)
 ;; evil-normal-state-map
-(define-key evil-normal-state-map (kbd "z =") 'flyspell-popup-correct)
+(define-key evil-normal-state-map (kbd "C-.") 'ispell-word)
 (define-key evil-normal-state-map (kbd "m") 'evil-execute-macro)
 (define-key evil-normal-state-map (kbd "p") 'evil-colar)
 (define-key evil-normal-state-map (kbd "P") 'evil-collection-unimpaired-paste-below)
 (define-key evil-normal-state-map "\\" 'consult-line)
-;; evil-visual-state-map
-(define-key evil-visual-state-map (kbd "z =") 'flyspell-popup-correct)
 ;; evil-mc
 (define-key evil-mc-cursors-map (kbd "ESC") 'evil-mc-undo-all-cursors)
 ;; minibuffer
