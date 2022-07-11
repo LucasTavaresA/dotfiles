@@ -60,14 +60,18 @@
   (set-face-attribute 'auto-dim-other-buffers-face nil :background "#080808"))
 
 ;;; Indicação visual
-(require 'pulse)
-(set-face-attribute 'pulse-highlight-start-face nil :background "#00f")
-(defun pulsar-linha (&rest _)
-  "Pulsa a linha atual."
-  (pulse-momentary-highlight-one-line (point)))
-(dolist (command '(scroll-up-command scroll-down-command
-                                     recenter-top-bottom other-window))
-  (advice-add command :after #'pulsar-linha))
+(use-package pulse
+  :defer t
+  :init
+  (defun pulsar-linha (&rest _)
+    "Pulsa a linha atual."
+    (pulse-momentary-highlight-one-line (point)))
+  (dolist (command '(other-window windmove-do-window-select mouse-set-point mouse-select-window))
+    (advice-add command :after #'pulsar-linha))
+  (dolist (command '(scroll-up-command scroll-down-command
+                                       recenter-top-bottom other-window))
+    (advice-add command :after #'pulsar-linha))
+  :config (set-face-attribute 'pulse-highlight-start-face nil :background "#00f"))
 
 (provide 'mylooks)
 ;;; mylooks.el ends here
