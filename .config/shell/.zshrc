@@ -120,15 +120,11 @@ git_confirma () {
         "push")                  git_cmd="git push" ;;
         "push-f")                git_cmd="git push -f" ;;
         "pull")                  git_cmd="git pull" ;;
-        "fetch")                 git_cmd="git fetch" ;;
         "restore")               git_cmd="git restore $2" ;;
         "restore-staged")        git_cmd="git restore --staged $2" ;;
         "reset-soft")            git_cmd="git reset --soft $2" ;;
         "reset-hard")            git_cmd="git reset --hard $2" ;;
         "remote-set-url-origin") git_cmd="git remote set-url origin $2" ;;
-        "commit")                git_cmd="git commit" ;;
-        "commit-amend")          git_cmd="git commit --amend" ;;
-        "commit-amend-no-edit")  git_cmd="git commit --amend --no-edit" ;;
         *) echo "nenhum comando git!" && return 1;;
     esac
     printf "Você vai executar %s em %s? [yes]: " "$git_cmd" "$(pwd)"
@@ -217,14 +213,14 @@ alias gl="git log --oneline"
 alias ga="git add"
 alias gaf="git add -f"
 alias gap="git add -p"
-alias gcm="git_confirma commit"
-alias gcam="git_confirma commit-amend"
-alias gca="git_confirma commit-amend-no-edit"
+alias gcm="git commit"
+alias gcam="git commit --amend"
+alias gca="git commit --amend --no-edit"
 alias gco="git checkout"
 alias gps="git_confirma push"
 alias gpsf="git_confirma push-f"
 alias gpl="git_confirma pull"
-alias gf="git_confirma fetch"
+alias gf="git fetch"
 alias gr="git_confirma restore"
 alias grv="git remote -v"
 alias grs="git_confirma restore-staged"

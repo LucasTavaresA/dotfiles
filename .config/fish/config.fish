@@ -116,15 +116,11 @@ if status is-interactive
             case "push"; set git_cmd "git push"
             case "push-f"; set git_cmd "git push -f"
             case "pull"; set git_cmd "git pull"
-            case "fetch"; set git_cmd "git fetch"
             case "restore"; set git_cmd "git restore $argv[2]"
             case "restore-staged"; set git_cmd "git restore --staged $argv[2]"
             case "reset-soft"; set git_cmd "git reset --soft $argv[2]"
             case "reset-hard"; set git_cmd "git reset --hard $argv[2]"
             case "remote-set-url-origin"; set git_cmd "git remote set-url origin $argv[2]"
-            case "commit"; set git_cmd "git commit"
-            case "commit-amend"; set git_cmd "git commit --amend"
-            case "commit-amend-no-edit"; set git_cmd "git commit --amend --no-edit"
         end
         echo "Você vai executar $git_cmd em $(pwd)? [yes] "
         read resposta
@@ -136,7 +132,7 @@ if status is-interactive
     function criar_script
         printf "#!/usr/bin/env $argv[1]\n$argv[3..-1]" > $argv[2]
     end
-    
+
     ## Abbr ##
     abbr -a -g cd z
     abbr -a -g cs criar_script sh script.sh
@@ -210,14 +206,14 @@ if status is-interactive
     abbr -a -g ga git add
     abbr -a -g gaf git add -f
     abbr -a -g gap git add -p
-    abbr -a -g gcm git_confirma commit
-    abbr -a -g gca git_confirma commit-amend-no-edit
-    abbr -a -g gcam git_confirma commit-amend
+    abbr -a -g gcm git commit
+    abbr -a -g gcam git commit --amend
+    abbr -a -g gca git commit --amend --no-edit
     abbr -a -g gco git checkout
     abbr -a -g gps git_confirma push
     abbr -a -g gpsf git_confirma push-f
     abbr -a -g gpl git_confirma pull
-    abbr -a -g gf git_confirma fetch
+    abbr -a -g gf git fetch
     abbr -a -g gr git_confirma restore
     abbr -a -g grv git remote -v
     abbr -a -g grs git_confirma restore-staged

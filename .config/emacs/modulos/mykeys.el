@@ -136,6 +136,7 @@
 (global-set-key (kbd "<C-M-down>") 'evil-window-split)
 (global-set-key (kbd "<M-up>") 'drag-stuff-up)
 (global-set-key (kbd "<M-down>") 'drag-stuff-down)
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (global-set-key (kbd "C-SPC") 'popper-toggle-latest)
 ;; org-mode-map
 (with-eval-after-load 'org
