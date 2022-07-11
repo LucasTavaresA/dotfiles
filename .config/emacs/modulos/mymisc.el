@@ -55,6 +55,11 @@
 (global-visual-line-mode +1) ; quebra parágrafos de acordo com as palavras
 (electric-pair-mode 1) ; auto-inserir "{}()[]"
 (show-paren-mode 1) ; indica parenteses
+;; Não permite o cursor no minibuffer
+(setq minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt))
+(add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+;; Ativa comandos no minibuffer
+(setq enable-recursive-minibuffers t)
 
 ;;; Lida com buffers incomodantes
 (use-package popper
