@@ -12,10 +12,12 @@
 (window-divider-mode 1)
 
 ;;; Indicação de espaços e tabs
-(setq whitespace-style '(face tabs spaces space-mark trailing space-before-tab indentation
-                              empty space-after-tab tab-mark missing-newline-at-eof))
-(global-whitespace-mode +1)
-(set-face-attribute 'whitespace-space nil :background "#000" :foreground "#333")
+(use-package whitespace
+  :hook (prog-mode . whitespace-mode)
+  :init
+  (setq whitespace-style '(face tabs spaces space-mark trailing space-before-tab indentation
+                                empty space-after-tab tab-mark missing-newline-at-eof))
+  :config (set-face-attribute 'whitespace-space nil :background "#000" :foreground "#333"))
 
 ;;; Mode-line
 (use-package awesome-tray
@@ -31,7 +33,6 @@
         awesome-tray-separator " ┃ "
         awesome-tray-essential-modules '("buffer-read-only" "git" "location")
         awesome-tray-active-modules    '("buffer-read-only" "git" "location" "file-path")))
-(awesome-tray-mode)
 (use-package hide-mode-line
   :init (global-hide-mode-line-mode))
 
