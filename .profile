@@ -31,7 +31,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_RUNTIME_DIR="/run/user/$UID"
 export XDG_BIN_HOME="$HOME/.local/bin"
 # window manager
-export WM="herbstluftwm"
+export WM="stumpwm"
 # Wayland
 if [ "$WM" = "dwl" ] || [ "$WM" = "cagebreak" ]; then
     export XDG_SESSION_TYPE=wayland

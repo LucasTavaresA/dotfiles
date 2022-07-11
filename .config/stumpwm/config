@@ -1,90 +1,92 @@
 ;;; -*-  mode: lisp; -*-
-;; Módulos ;;
+;;; Módulos
 ;; chamar módulos stumpwm:
 (in-package :stumpwm)
-;; módulos da comunidade
+
+;;; Módulos da comunidade
 ;; git clone https://github.com/stumpwm/stumpwm-contrib ~/.config/stumpwm/modules/contrib
 ;; esse comando carrega todos os módulos em pastas e subpastas
 (init-load-path #p"~/.config/stumpwm/modules")
-;; systray
-(ql:quickload "xembed")
-(load-module "stumptray")
-;; manipular janelas em todos os grupos
+
+;;; Manipular janelas em todos os grupos
 (load-module "globalwindows")
-;; compleção e histórico de comandos
+
+;;; Compleção e histórico de comandos
 ;; git clone https://github.com/landakram/stumpwm-prescient ~/.config/stumpwm/modules/stumpwm-prescient
 (setf *input-window-gravity* :center
       *message-window-input-gravity* :left
       *input-completion-show-empty* t)
 (load-module "stumpwm-prescient")
 (setf *input-refine-candidates-fn* 'stumpwm-prescient:refine-input)
-;; mpd
-;;(load-module "mpd")
-;;(mpd::mpd-connect)
-;; disco
-(ql:quickload "cl-diskspace")
-(ql:quickload "cl-mount-info") ;; apenas linux
-(load-module "disk")
 
-;; Funções, comandos, etc. ;;
+;;; Funções, comandos, etc.
 ;; janelas flutuantes sempre visiveis
 (defun centralizar-janela ()
   (float-window-move-resize
    (current-window)
-    :x 120 :y 50 :width 1000 :height 600))
+   :x 120 :y 50 :width 1000 :height 600))
+
 (defun flutuante-p (janela)
   "Retorna T se JANELA é flutuante e NIL caso contrario"
   (typep janela 'stumpwm::float-window))
+
 (defun desativa-sempre-no-topo (janela) ()
-  "Desativa dada JANELA como sempre visível"
-  (let ((ontop-wins (group-on-top-windows (current-group))))
-    (setf (group-on-top-windows (current-group))
-          (remove janela ontop-wins))))
+       "Desativa dada JANELA como sempre visível"
+       (let ((ontop-wins (group-on-top-windows (current-group))))
+         (setf (group-on-top-windows (current-group))
+               (remove janela ontop-wins))))
+
 (defun ativa-sempre-no-topo (janela) ()
-  "Ativa dada JANELA como sempre visível"
-  (let ((j janela)
-        (janelas (group-on-top-windows (current-group))))
-    (when j
-      (unless (find j janelas)
-        (push janela (group-on-top-windows (current-group)))))))
+       "Ativa dada JANELA como sempre visível"
+       (let ((j janela)
+             (janelas (group-on-top-windows (current-group))))
+         (when j
+           (unless (find j janelas)
+             (push janela (group-on-top-windows (current-group)))))))
+
 (defcommand alterna-flutuante () ()
   "Alterna entre janela fixa/flutuante e coloca sempre no topo"
   (let ((jan    (current-window))
         (grupo  (current-group)))
     (cond
-      ((flutuante-p jan)
-       (desativa-sempre-no-topo jan)
-       (stumpwm::unfloat-window jan grupo))
-      (t (ativa-sempre-no-topo jan)
-      (stumpwm::float-window jan grupo)
-      (centralizar-janela)))))
+     ((flutuante-p jan)
+      (desativa-sempre-no-topo jan)
+      (stumpwm::unfloat-window jan grupo))
+     (t (ativa-sempre-no-topo jan)
+        (stumpwm::float-window jan grupo)
+        (centralizar-janela)))))
 
 ;; integração com o emacs
 (defcommand emacs () () ; substitui o comando emacs padrão
   "Inicia o emacs se o client não esta rodando e foca no emacs caso esteja rodando no grupo atual"
   (run-or-raise "emacsclient -c -a 'emacs'" '(:class "Emacs")))
+
 ;; trata divisórias do emacs como janelas do xorg
 (defun emacs-p (jan)
   "T se JAN é emacs"
   (when jan
     (string-equal (window-class jan) "Emacs")))
+
 (defun eval-elisp (expressao)
   "avalia uma string como emacs-lisp"
   (run-shell-command (concat "emacsclient -e '" expressao "'") t))
+
 (defun emacs-winmove (direcao)
   "executa a função do emacs winmove-DIRECTION onde direcao é uma string"
   (eval-elisp (concat "(windmove-" direcao ")")))
+
 (defun melhor-move-focus (ogdir)
   "Similar ao move-focus porem trata janelas do emacs como janelas Xorg"
   (declare (type (member :up :down :left :right) ogdir))
   (flet ((mv () (move-focus ogdir)))
-    (if (emacs-p (current-window))
-        (when
-            (= (length (emacs-winmove
-                        (string-downcase (string ogdir))))
-               1)
-          (mv))
-        (mv))))
+        (if (emacs-p (current-window))
+            (when
+                (= (length (emacs-winmove
+                            (string-downcase (string ogdir))))
+                   1)
+              (mv))
+          (mv))))
+
 (defcommand my-mv (dir) ((:direction "Direção: "))
   (when dir (melhor-move-focus dir)))
 
@@ -92,7 +94,7 @@
   "Retorna T, se o ARQUIVO está disponível para leitura"
   (handler-case
       (with-open-file (f arquivo)
-        (read-line f))
+                      (read-line f))
     (stream-error () nil)))
 
 (defun executavel-p (nome)
@@ -108,6 +110,7 @@
                              (stumpwm::frame-window frame))
       (when win
         (stumpwm::pull-window win frame)))))
+
 (defcommand rotate-windows () ()
   (let* ((frames (stumpwm::head-frames (current-group) (current-head)))
          (win (stumpwm::frame-window (car (last frames)))))
@@ -116,52 +119,41 @@
 (defun unix-cat (file)
   "Funciona como o programa cat"
   (string-trim '(#\newline)
-         (with-output-to-string (s)
-     (with-open-file (stream file)
-       (loop for l = (read-line stream nil)
-       until (null l)
-       do (format s "~a~%" l))))))
+               (with-output-to-string (s)
+                                      (with-open-file (stream file)
+                                                      (loop for l = (read-line stream nil)
+                                                            until (null l)
+                                                            do (format s "~a~%" l))))))
 
 (defun enable-mode-line-everywhere ()
   "Ativa a barra em todos os monitores"
   (loop for screen in *screen-list* do
-    (loop for head in (screen-heads screen) do
-      (enable-mode-line screen head t))))
+        (loop for head in (screen-heads screen) do
+              (enable-mode-line screen head t))))
 
 (defcommand reload-config () ()
   "Recarrega a configuração com o stumpish"
   (load "~/.config/stumpwm/config"))
 
-;; Hooks ;;
+;;; Hooks
 (remove-all-hooks *focus-group-hook*)
 (remove-all-hooks *focus-window-hook*)
-
-;; alterna stumptray junto com a barra
-(stumptray:add-mode-line-hooks)
 
 (defun grupo-atual (current-group last-group)
   "popup mostrando os grupos e indicando o grupo selecionado"
   (message (group-name current-group)))
-;; (add-hook *focus-group-hook* 'grupo-atual)
+(add-hook *focus-group-hook* 'grupo-atual)
 
 (defun janela-atual (to-frame from-frame)
-    "popup mostrando as janelas na head e indicando a janela selecionada"
-    (run-commands "windows"))
-;; (add-hook *focus-window-hook* 'janela-atual)
+  "popup mostrando as janelas na head e indicando a janela selecionada"
+  (run-commands "windows"))
+(add-hook *focus-window-hook* 'janela-atual)
 
-;; Miscelânea ;;
+;;; Configuração
+(set-font "-*-terminus-*-*-*-*-14-*-*-*-*-*-*-*")
 (set-normal-gravity :center)
 (set-maxsize-gravity :center)
 (set-transient-gravity :center)
-(setf *mouse-focus-policy* :click
-      *resize-increment* 25
-      *run-or-raise-all-groups* t) ; muda de grupos ao abrir programas
-(setq *suppress-echo-timeout* nil
-      *timeout-wait* 1)
-
-;; Tema ;;
-(set-font "-*-terminus-*-*-*-*-14-*-*-*-*-*-*-*")
-;; cores
 (set-fg-color "#ffffff")
 (set-bg-color "#000000")
 (set-border-color "#ffffff")
@@ -170,6 +162,8 @@
 (set-unfocus-color "#000000")
 (set-float-focus-color "#ffffff")
 (set-float-unfocus-color "#ffffff")
+(setq *suppress-echo-timeout* nil
+      *timeout-wait* 1)
 (setf *colors*
       '("#000000"
         "#ff0000"
@@ -180,9 +174,11 @@
         "#00ffbd"
         "#ffffff")
       *default-bg-color* "#000000"
-      ;; prompts e caixas de dialogo
+      *mouse-focus-policy* :click
+      *resize-increment* 25
+      *run-or-raise-all-groups* t ; muda de grupos ao abrir programas
       *message-window-gravity* :center
-      *window-border-style* :thick
+      *window-border-style* :thin
       *message-window-padding* 1
       *maxsize-border-width* 1
       *normal-border-width* 1
@@ -192,72 +188,49 @@
       stumpwm::*float-window-title-height* 3
       *startup-message* NIL
       *suppress-abort-messages* t
+      *window-format* " %25t "
+      *time-modeline-string* "%a %d/%m/%Y - %H:%M"
+      *group-format* "%s %t"
       *shell-program* "/bin/sh")
 (update-color-map (current-screen))
 
-;; barra
-(setf *window-format* " %25t " ;; formato indicador de janela
-      ;;mpd::*mpd-status-fmt* ""
-      ;;mpd::*mpd-current-song-fmt* ""
-      ;;mpd::*mpd-modeline-fmt* " %L  "
-      disk::*disk-usage-paths* (list "/" "/home")
-      disk::*disk-modeline-fmt* "%m: %p"
-      stumptray::*tray-cursor-thickness* 0
-      stumptray::*tray-cursor-icon-distance* 0
-      stumptray::*tray-win-background* "#000000"
-      stumptray::*tray-viwin-background* "#000000"
-      stumptray::*tray-hiwin-background* "#000000"
-      stumptray::*tray-cursor-color* "#000000"
-      *screen-mode-line-format* (list ;; formato da barra
-        ;;"[%n] %W" ;; grupo atual e janelas
-        '(:eval (unix-cat "~/.cache/barra"))
-        ;;"%m" ;; estado do mpd
-        "       %D" ;; disco
-        "^>" ;; move o resto para a direita
-        "       %d     " ;; data
-      )
-      *time-modeline-string* "%a %d/%m/%Y - %H:%M" ;; formato da data
-      *group-format* "%s %t"
-      *mode-line-pad-y* 0
-      *mode-line-timeout* 1 ;; tempo de atualização da barra
-      *mode-line-border-color* "#ffffff"
-      *mode-line-border-width* 0
-      *mode-line-background-color* (car *colors*)
-      *mode-line-foreground-color* (car (last *colors*)))
-
-;; Grupos e regras ;;
+;;; Grupos e regras
 (when *initializing*
   (grename "Browser")
-  ;(gnewbg "Code")
+  (gnewbg "Code")
   (gnewbg "Fullscreen")
   (gnewbg "Message")
   (gnewbg ".Hidden"))
 
 ;; remove todas as regras
 (clear-window-placement-rules)
+
 (define-fullscreen-in-frame-rule firefox-rule (win)
   (when (classed-p win "firefox")
     (classed-p win "firefox")))
-;(frame-number raise lock &key create restore dump-name class instance type role title)
-(define-frame-preference "Browser"
-    (0 t t :class "qutebrowser")
-    (0 t t :class "Firefox")
-    (0 t t :class "firefox")
-    (0 t t :class "nvim")
-    (0 t t :class "Emacs")
-    (1 t t :class "st-256color")
-    (1 t t :class "alacritty"))
-;; (define-frame-preference "Code"
-(define-frame-preference "Fullscreen"
-    (0 t t :class "mpv")
-    (0 t t :class "Gimp")
-    (0 t t :class "Xephyr"))
-(define-frame-preference "Message"
-    (0 t t :class "discord")
-    (0 t t :class "TelegramDesktop"))
 
-;; Teclas ;;
-(define-key *top-map* (kbd "SunPrint_Screen") "exec term_open -a fzf fzf_print")
+;;(frame-number raise lock &key create restore dump-name class instance type role title)
+(define-frame-preference "Browser"
+  (0 t t :class "qutebrowser")
+  (0 t t :class "Firefox")
+  (0 t t :class "firefox"))
+(define-frame-preference "Code"
+  (0 t t :class "nvim")
+  (0 t t :class "Emacs")
+  (1 t t :class "st-256color")
+  (1 t t :class "St")
+  (1 t t :class "alacritty"))
+(define-frame-preference "Fullscreen"
+  (0 t t :class "mpv")
+  (0 t t :class "Gimp")
+  (0 t t :class "Xephyr"))
+(define-frame-preference "Message"
+  (0 t t :class "discord")
+  (0 t t :class "Hexchat")
+  (0 t t :class "TelegramDesktop"))
+
+;;; Teclas
+(define-key *top-map* (kbd "SunPrint_Screen") "exec print")
 ;; C-Space
 (set-prefix-key (kbd "C-space"))
 (define-key *root-map* (kbd "C-space") "global-windowlist")
@@ -268,43 +241,51 @@
 (define-key *groups-map* (kbd "s") "gselect")
 ;; Menu
 (defvar *Menu-map* (make-sparse-keymap))
-(define-key *Menu-map* (kbd "Menu") "exec term_open -a fzf fzf_run")
+(define-key *Menu-map* (kbd "Menu") "exec dmenu_run")
 (define-key *Menu-map* (kbd "r") "loadrc")
-(define-key *Menu-map* (kbd "ESC") "exec term_open -a fzf fzf_sys")
-(define-key *Menu-map* (kbd "XF86Launch2") "exec term_open -a fzf fzf_sys")
-(define-key *Menu-map* (kbd "e") "exec term_open -a fzf fzf_edit")
-(define-key *Menu-map* (kbd "b") "exec dmenu_browser")
-(define-key *Menu-map* (kbd "f") "exec firefox")
+(define-key *Menu-map* (kbd "ESC") "exec term_open -a center fzf_sys")
+(define-key *Menu-map* (kbd "XF86Launch2") "exec term_open -a center fzf_sys")
+(define-key *Menu-map* (kbd "e") "exec term_open -a center fzf_edit")
+(define-key *Menu-map* (kbd "o") "exec dmenu_pesquisar")
 (define-key *Menu-map* (kbd "q") "exec qutebrowser")
 (define-key *Menu-map* (kbd "m") "exec dmenu_mont")
 (define-key *Menu-map* (kbd "p") "exec passmenu --type")
-(define-key *Menu-map* (kbd "w") "exec term_open -a fzf fzf_wifi")
-(define-key *Menu-map* (kbd "x") "exec term_open -a fzf fzf_xephyr")
-(define-key *Menu-map* (kbd "c") "exec term_open -a fzf fzf_clip")
-(define-key *Menu-map* (kbd "E") "exec term_open -a fzf fzf_emojis")
+(define-key *Menu-map* (kbd "w") "exec term_open -a center fzf_wifi")
+(define-key *Menu-map* (kbd "x") "exec term_open -a center fzf_xephyr")
+(define-key *Menu-map* (kbd "c") "exec term_open -a center fzf_clip")
+(define-key *Menu-map* (kbd "E") "exec term_open -a center fzf_emojis")
 (define-key *Menu-map* (kbd "h") "exec term_open -a htop htop")
 (define-key *Menu-map* (kbd "P") "exec pkill -x picom || picom -b --unredir-if-possible --backend xr_glx_hybrid --vsync --use-damage --glx-no-stencil")
 (define-key *Menu-map* (kbd "s") "exec sct")
 (define-key *Menu-map* (kbd "S") "exec sct 2000")
 (define-key *Menu-map* (kbd "t") "exec transmission-qt")
 (define-key *Menu-map* (kbd "a") "exec emacsclient -n -c -a 'term_open nvim' ~/documentos/anotações.org")
+(define-key *Menu-map* (kbd "f") "exec emacsclient -n -c -a 'term_open nvim' ~/documentos/favoritos.org")
 (define-key *Menu-map* (kbd ";") "colon")
 (define-key *Menu-map* (kbd ":") "eval")
 (define-key *Menu-map* (kbd "!") "exec")
 (define-key *top-map* (kbd "Menu") '*Menu-map*)
 ;; Stumpwm
+(define-key *top-map* (kbd "s-1") "gselect 1")
+(define-key *top-map* (kbd "s-2") "gselect 2")
+(define-key *top-map* (kbd "s-3") "gselect 3")
+(define-key *top-map* (kbd "s-4") "gselect 4")
 (define-key *top-map* (kbd "s-q") "delete-window")
 (define-key *top-map* (kbd "s-w") "alterna-flutuante")
 (define-key *top-map* (kbd "s-f") "fullscreen")
 (define-key *top-map* (kbd "s-Tab") "pull-hidden-next")
+(define-key *top-map* (kbd "M-s-.") "pull-hidden-next")
 (define-key *top-map* (kbd "s-b") "mode-line")
 (define-key *top-map* (kbd "s-S-Return") "exec term_open")
 (define-key *top-map* (kbd "s-\\") "exec term_scratchpad")
 (define-key *top-map* (kbd "s-SPC") "exec playerctl play-pause || mpc toggle")
-(define-key *top-map* (kbd "s-<") "exec mpc prev && musica notificar")
-(define-key *top-map* (kbd "s->") "exec mpc next && musica notificar")
-(define-key *top-map* (kbd "s-,") "exec amixer -q set Master 5%-")
-(define-key *top-map* (kbd "s-.") "exec amixer -q set Master 5%+")
+(define-key *top-map* (kbd "XF86AudioPlay") "exec playerctl play-pause || mpc toggle")
+(define-key *top-map* (kbd "s-<") "exec musica ante")
+(define-key *top-map* (kbd "s->") "exec musica prox")
+(define-key *top-map* (kbd "s-,") "exec pactl set-sink-volume @DEFAULT_SINK@ -5%")
+(define-key *top-map* (kbd "s-.") "exec pactl set-sink-volume @DEFAULT_SINK@ +5%")
+(define-key *top-map* (kbd "XF86AudioLowerVolume") "exec pactl set-sink-volume @DEFAULT_SINK@ -5%")
+(define-key *top-map* (kbd "XF86AudioRaiseVolume") "exec pactl set-sink-volume @DEFAULT_SINK@ +5%")
 (define-key *top-map* (kbd "s-a") "exec term_open -a ncmpcpp ncmpcpp")
 (define-key *top-map* (kbd "s-A") "exec term_open -a pulsemixer pulsemixer")
 (define-key *top-map* (kbd "s-Q") "remove")
@@ -315,8 +296,8 @@
 (define-key *top-map* (kbd "M-s-Right") "gnext-with-window")
 (define-key *top-map* (kbd "M-h") "gprev")
 (define-key *top-map* (kbd "M-l") "gnext")
-(define-key *top-map* (kbd "M-s-H") "gprev-wth-window")
-(define-key *top-map* (kbd "M-s-L") "gnext-wth-window")
+(define-key *top-map* (kbd "M-s-h") "gprev-wth-window")
+(define-key *top-map* (kbd "M-s-l") "gnext-wth-window")
 (define-key *top-map* (kbd "C-s-Down") "vsplit")
 (define-key *top-map* (kbd "C-s-Right") "hsplit")
 (define-key *top-map* (kbd "C-s-j") "vsplit")
@@ -339,19 +320,10 @@
 (define-key *top-map* (kbd "s-L") "move-window right")
 
 (when *initializing*
-  ;(defvar *OS* (uiop:getenv "OS"))
-  ;(enable-mode-line-everywhere)
-  ;(enable-mode-line (current-screen) (current-head) t)
   (which-key-mode)
-  (run-shell-command "stumpwm_barra")
-  (run-shell-command "setxkbmap -option caps:escape")
-  (run-shell-command "xset r rate 300 100")
-  ; Teclas no notebook
-  ; alt + , = Escape
-  (run-shell-command "xmodmap -e 'keycode 59 = comma less comma less Escape'")
-  ; alt + . = Tab
-  (run-shell-command "xmodmap -e 'keycode 60 = period greater period greater Tab'")
-  ; alt + ; = "
-  (run-shell-command "xmodmap -e 'keycode 61 = semicolon colon semicolon colon quotedbl'")
+  (run-shell-command "polybar")
+  (run-shell-command "hexchat --minimize=2")
+  (sleep 5)
+  (run-shell-command "polybar-msg cmd hide")
   ;; remove logs
   (uiop:delete-directory-tree (pathname "~/.stumpwm.d/") :validate t))
