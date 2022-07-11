@@ -87,6 +87,9 @@
   (setq popper-window-height 15)
   (popper-mode +1))
 
+;; indica todos
+(use-package hl-todo
+  :hook (prog-mode . hl-todo-mode))
 ;; lista possíveis teclas de atalho
 (use-package which-key
   :init (which-key-mode)
