@@ -1,4 +1,10 @@
 ;;; mymisc.el -*- lexical-binding: t; -*-
+;;; Async
+(use-package async
+  :defer t
+  :init (async-bytecomp-package-mode 1)
+  :custom (async-bytecomp-allowed-packages '(all)))
+
 ;;; checagens de sistema
 (defconst IS-LINUX   (eq system-type 'gnu/linux))
 (defconst IS-MAC     (eq system-type 'darwin))
