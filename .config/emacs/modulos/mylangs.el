@@ -3,6 +3,16 @@
 (use-package aggressive-indent
   :init (global-aggressive-indent-mode))
 
+;;; Compile
+(use-package compile
+  :config
+  (setq compilation-scroll-output t)
+  (require 'ansi-color)
+  (defun colorize-compilation-buffer ()
+    (let ((inhibit-read-only t))
+      (ansi-color-apply-on-region (point-min) (point-max))))
+  (add-hook 'compilation-filter-hook 'colorize-compilation-buffer))
+
 ;;; LSP
 (use-package eglot
   :hook
