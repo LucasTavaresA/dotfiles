@@ -95,14 +95,6 @@
   :init (which-key-mode)
   :config
   (setq which-key-idle-delay 0.5))
-;; indica diffs
-(use-package diff-hl
-  :init (global-diff-hl-mode)
-  :config
-  (set-face-attribute 'diff-hl-change nil :background "#ffff00" :foreground "#ffff00")
-  (set-face-attribute 'diff-hl-delete nil :background "#ff0000" :foreground "#ff0000")
-  (set-face-attribute 'diff-hl-insert nil :background "#009900" :foreground "#009900")
-  (diff-hl-flydiff-mode))
 ;;; mostra cores `#fff'
 (use-package rainbow-mode)
 ;; abre um terminal no diretório atual

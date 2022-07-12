@@ -9,6 +9,7 @@
 
 (require 'mystraight)
 (require 'mymisc)
+(require 'mygit)
 (require 'mylooks)
 (require 'myedit)
 (require 'mycompletion)

@@ -1,6 +1,6 @@
 ;;; mylooks.el -*- lexical-binding: t; -*-
 ;; tamanho das fringes
-(set-fringe-mode 1)
+(set-fringe-mode 5)
 ;; símbolos em prog-mode
 (add-hook 'prog-mode-hook 'prettify-symbols-mode)
 

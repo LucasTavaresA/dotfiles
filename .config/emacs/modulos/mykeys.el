@@ -31,6 +31,13 @@
 (define-key spc-map (kbd "w w") 'save-buffer)
 (define-key spc-map (kbd "w q") 'evil-save-and-quit)
 (define-key spc-map (kbd "q q") 'evil-quit)
+;; g-map
+(defalias 'g-map (make-sparse-keymap))
+(defvar g-map (symbol-function 'g-map))
+(define-key spc-map (kbd "g") 'g-map)
+;; SPC g
+(define-key g-map (kbd "g") 'magit-status)
+(define-key g-map (kbd "l") 'git-link)
 ;; SPC c
 ;; c-map
 (defalias 'c-map (make-sparse-keymap))
@@ -114,6 +121,8 @@
 (define-key corfu-map (kbd "E") 'tempel-expand)
 ;; edebug-mode-map
 (define-key edebug-mode-map (kbd "Q") 'edebug-mode)
+;; forge-topic-mode-map
+(define-key forge-topic-mode-map (kbd "R") 'code-review-forge-pr-at-point)
 ;; global
 (fset 'comentar-e-descer-linha
       (kmacro-lambda-form [?, ?c ?i down] 0 "%d"))
