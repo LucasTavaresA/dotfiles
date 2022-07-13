@@ -8,6 +8,7 @@
 (define-key spc-map (kbd "K") 'kill-some-buffers)
 (define-key spc-map (kbd "l") 'inserir-link)
 (define-key spc-map (kbd "u") 'undo-tree-visualize)
+(define-key spc-map (kbd ";") 'eval-expression)
 (define-key spc-map (kbd "RET") 'terminal-here)
 (define-key spc-map (kbd "<up>") 'windmove-up)
 (define-key spc-map (kbd "<down>") 'windmove-down)
@@ -78,7 +79,7 @@
 (defvar e-map (symbol-function 'e-map))
 (define-key spc-map (kbd "e") 'e-map)
 ;; SPC e
-(define-key e-map (kbd "t") (lambda () (interactive) (find-file "~/.config/emacs/templates")))
+(define-key e-map (kbd "t") (lambda () (interactive) (find-file "~/.config/emacs/etc/templates")))
 (define-key e-map (kbd "e") 'eval-defun)
 (define-key e-map (kbd "b") 'aval-buffer)
 (define-key e-map (kbd "r") 'aval-region)
@@ -146,7 +147,7 @@
 (global-set-key (kbd "<M-up>") 'drag-stuff-up)
 (global-set-key (kbd "<M-down>") 'drag-stuff-down)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-(global-set-key (kbd "C-SPC") 'popper-toggle-latest)
+(global-set-key (kbd "M-q") 'popper-toggle-latest)
 ;; org-mode-map
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "<M-up>") nil)
