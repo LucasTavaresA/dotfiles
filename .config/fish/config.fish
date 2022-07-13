@@ -162,12 +162,6 @@ if status is-interactive
     abbr -a -g ytw streamlink
     abbr -a -g mi make install
     abbr -a -g mu make uninstall
-    abbr -a -g dh doom help
-    abbr -a -g ds doom sync
-    abbr -a -g dd doom doctor
-    abbr -a -g du doom upgrade
-    abbr -a -g dr doom_reset
-    abbr -a -g dp doom purge
     abbr -a -g dmi doas make install
     abbr -a -g dmu doas make uninstall
     abbr -a -g dnr dotnet run
