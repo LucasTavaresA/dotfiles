@@ -5,13 +5,13 @@
   :init (async-bytecomp-package-mode 1)
   :custom (async-bytecomp-allowed-packages '(all)))
 
-;;; checagens de sistema
+;;; Checagens de sistema
 (defconst IS-LINUX   (eq system-type 'gnu/linux))
 (defconst IS-MAC     (eq system-type 'darwin))
 (defconst IS-BSD     (or IS-MAC (eq system-type 'berkeley-unix)))
 (defconst IS-WINDOWS (memq system-type '(cygwin windows-nt ms-dos)))
 
-;;; mover arquios para pastas apropriadas
+;;; Mover arquios para pastas apropriadas
 (use-package no-littering)
 (require 'recentf)
 (setq custom-file (no-littering-expand-etc-file-name "custom.el"))
@@ -20,7 +20,7 @@
 (add-to-list 'recentf-exclude no-littering-var-directory)
 (add-to-list 'recentf-exclude no-littering-etc-directory)
 
-;;; shell
+;;; Shell
 (setq-default explicit-shell-file-name "/bin/sh"
               shell-file-name "/bin/sh")
 ;; torna arquivos com shebang (#!) executáveis quando salvados
@@ -61,6 +61,40 @@
 ;; Ativa comandos no minibuffer
 (setq enable-recursive-minibuffers t)
 
+;;; Indica todos
+(use-package hl-todo
+  :hook (prog-mode . hl-todo-mode))
+
+;;; Mostra cores `#fff'
+(use-package rainbow-mode)
+
+;;; Abre um terminal no diretório atual
+(use-package terminal-here
+  :config (setq terminal-here-linux-terminal-command 'st))
+
+;;; navegação
+;; lista possíveis teclas de atalho
+(use-package which-key
+  :init (which-key-mode)
+  :config
+  (setq which-key-idle-delay 0.5))
+;; melhora `gd' para ir a definições de código
+(use-package dumb-jump)
+(add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+(setq xref-show-definitions-function #'xref-show-definitions-completing-read)
+;; melhora buffers de ajuda
+(use-package helpful
+  :config
+  (define-key helpful-mode-map [remap revert-buffer] #'helpful-update)
+  (global-set-key [remap describe-command] #'helpful-command)
+  (global-set-key [remap describe-function] #'helpful-callable)
+  (global-set-key [remap describe-key] #'helpful-key)
+  (global-set-key [remap describe-symbol] #'helpful-symbol)
+  (global-set-key [remap describe-variable] #'helpful-variable))
+;; mostra código em buffers de ajuda
+(use-package elisp-demos
+  :config (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update))
+
 ;;; Lida com buffers incomodantes
 (use-package popper
   :init
@@ -87,36 +121,7 @@
   (setq popper-window-height 15)
   (popper-mode +1))
 
-;; indica todos
-(use-package hl-todo
-  :hook (prog-mode . hl-todo-mode))
-;; lista possíveis teclas de atalho
-(use-package which-key
-  :init (which-key-mode)
-  :config
-  (setq which-key-idle-delay 0.5))
-;;; mostra cores `#fff'
-(use-package rainbow-mode)
-;; abre um terminal no diretório atual
-(use-package terminal-here
-  :config (setq terminal-here-linux-terminal-command 'st))
-;; melhora `gd' para ir a definições de código
-(use-package dumb-jump)
-(add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
-(setq xref-show-definitions-function #'xref-show-definitions-completing-read)
-;; melhora buffers de ajuda
-(use-package helpful
-  :config
-  (define-key helpful-mode-map [remap revert-buffer] #'helpful-update)
-  (global-set-key [remap describe-command] #'helpful-command)
-  (global-set-key [remap describe-function] #'helpful-callable)
-  (global-set-key [remap describe-key] #'helpful-key)
-  (global-set-key [remap describe-symbol] #'helpful-symbol)
-  (global-set-key [remap describe-variable] #'helpful-variable))
-;; mostra código em buffers de ajuda
-(use-package elisp-demos
-  :config (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update))
-;; popup que retorna comandos sendo usados
+;;; Popup que retorna comandos sendo usados
 (use-package posframe)
 (use-package command-log-mode
   :after (posframe)
