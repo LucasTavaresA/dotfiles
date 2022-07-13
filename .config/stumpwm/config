@@ -322,7 +322,9 @@
 (when *initializing*
   (which-key-mode)
   (run-shell-command "polybar")
+  (run-shell-command "emacsclient -e '(kill-emacs)'")
   (sleep 5)
+  (run-shell-command "emacs --daemon")
   (run-shell-command "polybar-msg cmd hide")
   (run-shell-command "hexchat --minimize=2")
   (run-shell-command "barrier")
