@@ -9,7 +9,6 @@ dunst &
 xbanish &
 pgrep -x syncthing || syncthing &
 pgrep -x emacs || emacs --daemon &
-barrier &
 fzf_man update &
 # musica
 pgrep -x mpd || mpd &

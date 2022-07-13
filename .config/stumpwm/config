@@ -245,7 +245,6 @@
 (define-key *Menu-map* (kbd "r") "loadrc")
 (define-key *Menu-map* (kbd "ESC") "exec term_open -a center fzf_sys")
 (define-key *Menu-map* (kbd "XF86Launch2") "exec term_open -a center fzf_sys")
-(define-key *Menu-map* (kbd "e") "exec term_open -a center fzf_edit")
 (define-key *Menu-map* (kbd "o") "exec dmenu_pesquisar")
 (define-key *Menu-map* (kbd "q") "exec qutebrowser")
 (define-key *Menu-map* (kbd "m") "exec dmenu_mont")
@@ -259,6 +258,7 @@
 (define-key *Menu-map* (kbd "s") "exec sct")
 (define-key *Menu-map* (kbd "S") "exec sct 2000")
 (define-key *Menu-map* (kbd "t") "exec transmission-qt")
+(define-key *Menu-map* (kbd "e") "exec emacsclient -n -c -a 'term_open nvim' ~/documentos/editar.org")
 (define-key *Menu-map* (kbd "a") "exec emacsclient -n -c -a 'term_open nvim' ~/documentos/anotações.org")
 (define-key *Menu-map* (kbd "f") "exec emacsclient -n -c -a 'term_open nvim' ~/documentos/favoritos.org")
 (define-key *Menu-map* (kbd ";") "colon")
@@ -322,8 +322,9 @@
 (when *initializing*
   (which-key-mode)
   (run-shell-command "polybar")
-  (run-shell-command "hexchat --minimize=2")
   (sleep 5)
   (run-shell-command "polybar-msg cmd hide")
+  (run-shell-command "hexchat --minimize=2")
+  (run-shell-command "barrier")
   ;; remove logs
   (uiop:delete-directory-tree (pathname "~/.stumpwm.d/") :validate t))
