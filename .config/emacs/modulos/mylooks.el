@@ -22,17 +22,17 @@
 ;;; Mode-line
 (use-package awesome-tray
   :straight (awesome-tray :type git :host github :repo "manateelazycat/awesome-tray")
-  :init (awesome-tray-mode)
-  :config
+  :init
   (setq awesome-tray-git-format "%s"
         awesome-tray-git-show-status t
         awesome-tray-file-path-show-filename t
         awesome-tray-file-path-full-dirname-levels 1
         awesome-tray-info-padding-right 1
         awesome-tray-file-path-truncate-dirname-levels 3
-        awesome-tray-separator " ┃ "
-        awesome-tray-essential-modules '("buffer-read-only" "git" "location")
-        awesome-tray-active-modules    '("buffer-read-only" "git" "location" "file-path")))
+        awesome-tray-separator " "
+        awesome-tray-essential-modules '("anzu" "evil" "buffer-read-only" "git")
+        awesome-tray-active-modules    '("anzu" "evil" "buffer-read-only" "git" "file-path"))
+  (awesome-tray-mode))
 (use-package hide-mode-line
   :init (global-hide-mode-line-mode))
 
@@ -40,7 +40,7 @@
 (use-package doom-themes
   :init (load-theme 'doom-acario-dark t)
   :config
-  (set-face-attribute 'default nil :background "#000" :foreground "#fff")
+  (set-face-attribute 'default nil :background "#000")
   (set-face-attribute 'region nil :background "#00f")
   ;; fontes
   (set-face-attribute 'default nil :family "Terminus" :height 140)
