@@ -61,6 +61,17 @@
 ;; Ativa comandos no minibuffer
 (setq enable-recursive-minibuffers t)
 
+;; Mostra quantidade e índice de palavras procuradas
+(use-package anzu
+  :init
+  (global-anzu-mode +1)
+  (setq anzu-deactivate-region t
+        anzu-search-threshold 1000
+        anzu-replace-threshold 50
+        anzu-replace-to-string-separator " => "))
+(use-package evil-anzu
+  :init (require 'evil-anzu))
+
 ;;; Indica todos
 (use-package hl-todo
   :hook (prog-mode . hl-todo-mode))
