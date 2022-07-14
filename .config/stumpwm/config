@@ -19,6 +19,15 @@
 (load-module "stumpwm-prescient")
 (setf *input-refine-candidates-fn* 'stumpwm-prescient:refine-input)
 
+;; systray
+(ql:quickload "xembed")
+(load-module "stumptray")
+
+;; disco
+(ql:quickload "cl-diskspace")
+(ql:quickload "cl-mount-info") ;; apenas linux
+(load-module "disk")
+
 ;;; Funções, comandos, etc.
 ;; janelas flutuantes sempre visiveis
 (defun centralizar-janela ()
@@ -139,6 +148,9 @@
 (remove-all-hooks *focus-group-hook*)
 (remove-all-hooks *focus-window-hook*)
 
+;; alterna stumptray junto com a barra
+(stumptray:add-mode-line-hooks)
+
 (defun grupo-atual (current-group last-group)
   "popup mostrando os grupos e indicando o grupo selecionado"
   (message (group-name current-group)))
@@ -188,11 +200,33 @@
       stumpwm::*float-window-title-height* 3
       *startup-message* NIL
       *suppress-abort-messages* t
-      *window-format* " %25t "
-      *time-modeline-string* "%a %d/%m/%Y - %H:%M"
-      *group-format* "%s %t"
       *shell-program* "/bin/sh")
 (update-color-map (current-screen))
+
+;; barra
+(setf *window-format* " %25t "
+      disk::*disk-usage-paths* (list "/" "/home")
+      disk::*disk-modeline-fmt* "%m: %p"
+      stumptray::*tray-cursor-thickness* 0
+      stumptray::*tray-cursor-icon-distance* 0
+      stumptray::*tray-win-background* "#000000"
+      stumptray::*tray-viwin-background* "#000000"
+      stumptray::*tray-hiwin-background* "#000000"
+      stumptray::*tray-cursor-color* "#000000"
+      *screen-mode-line-format* (list
+                                 '(:eval (unix-cat "~/.cache/barra"))
+                                 "       %D" ;; disco
+                                 "^>" ;; move o resto para a direita
+                                 "       %d     " ;; data
+                                 )
+      *time-modeline-string* "%a %d/%m/%Y - %H:%M"
+      *group-format* "%s %t"
+      *mode-line-pad-y* 0
+      *mode-line-timeout* 1
+      *mode-line-border-color* "#ffffff"
+      *mode-line-border-width* 1
+      *mode-line-background-color* (car *colors*)
+      *mode-line-foreground-color* (car (last *colors*)))
 
 ;;; Grupos e regras
 (when *initializing*
@@ -321,11 +355,10 @@
 
 (when *initializing*
   (which-key-mode)
-  (run-shell-command "polybar")
-  (run-shell-command "emacsclient -e '(kill-emacs)'")
-  (sleep 5)
-  (run-shell-command "emacs --daemon")
-  (run-shell-command "polybar-msg cmd hide")
+  ;;(enable-mode-line-everywhere)
+  (enable-mode-line (current-screen) (current-head) t)
+  (run-shell-command "stumpwm_barra")
+  (run-shell-command "emacs_reset")
   (run-shell-command "hexchat --minimize=2")
   (run-shell-command "barrier")
   ;; remove logs
