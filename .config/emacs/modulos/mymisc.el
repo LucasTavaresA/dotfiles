@@ -27,6 +27,8 @@
 (add-hook 'after-save-hook #'executable-make-buffer-file-executable-if-script-p)
 
 ;;; Miscelânea
+;; dired não abre varios buffers
+(put 'dired-find-alternate-file 'disabled nil)
 ;; necessário no windows
 (set-default-coding-systems 'utf-8)
 (setq large-file-warning-threshold 100000000 ; considera 100MB> um arquivo grande
