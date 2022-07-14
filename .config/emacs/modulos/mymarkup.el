@@ -98,7 +98,7 @@
   "insere link dependendo do major-mode"
   (interactive)
   (cond ((string= major-mode "org-mode") (org-insert-link))
-        ((string= major-mode "gfm-mode") (markdown-insert-gfm-link))))
+        ((string= major-mode "gfm-mode") (markdown-insert-link))))
 
 (defun marcar-checkbox ()
   "marca checkbox dependendo do major-mode"
