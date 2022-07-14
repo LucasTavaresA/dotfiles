@@ -14,7 +14,7 @@
 ;;; Github
 (use-package forge
   :after (magit)
-  :config (setq auth-sources '("~/.local/share/gnupg/authinfo")))
+  :config (setq auth-sources '("~/.gnupg/authinfo")))
 (use-package code-review
   :after (forge)
   :init (add-hook 'code-review-mode-hook #'emojify-mode)

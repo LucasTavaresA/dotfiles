@@ -81,7 +81,8 @@ export DOTNET_ROOT="${XDG_DATA_HOME:-$HOME/.local/share}/dotnet"
 # nuget
 export NUGET_PACKAGES="${XDG_CACHE_HOME:-$HOME/.cache}/NuGetPackages"
 # gnupg
-export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
+export GNUPGHOME="$HOME/.gnupg"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 # npm
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc"
 # terminfo
