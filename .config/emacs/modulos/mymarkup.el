@@ -56,10 +56,6 @@
         org-appear-autoentities t
         org-appear-autokeywords t)
   :hook (org-mode . org-appear-mode))
-;; expande seções org mode automaticamente
-(use-package org-auto-expand
-  :after (org)
-  :hook (org-mode . org-auto-expand-mode))
 ;; tangle automático
 (use-package org-auto-tangle
   :after (org)
