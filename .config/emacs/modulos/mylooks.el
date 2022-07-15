@@ -46,13 +46,8 @@
   (set-face-attribute 'default nil :family "Terminus" :height 140)
   (set-face-attribute 'variable-pitch nil :family "Ubuntu" :weight 'light)
   (set-face-attribute 'font-lock-string-face nil :foreground "#ffff00")
-  (set-face-attribute 'font-lock-keyword-face nil :family "SauceCodePro Nerd Font Mono" :height 130)
-  (set-face-attribute 'font-lock-constant-face nil :family "SauceCodePro Nerd Font Mono" :slant 'italic :height 130)
   (set-face-attribute 'font-lock-comment-face nil :family "SauceCodePro Nerd Font Mono" :slant 'italic
                       :height 130 :foreground "#009900")
-  (set-face-attribute 'font-lock-function-name-face nil :family "SauceCodePro Nerd Font Mono" :slant 'italic :height 130)
-  (set-face-attribute 'font-lock-variable-name-face nil :family "SauceCodePro Nerd Font Mono" :slant 'italic :height 130)
-  (set-face-attribute 'font-lock-builtin-face nil :family "SauceCodePro Nerd Font Mono" :height 130)
   (variable-pitch-mode 1))
 
 ;;; Clareia buffer sem foco
