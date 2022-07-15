@@ -86,11 +86,6 @@
   :config (setq terminal-here-linux-terminal-command 'st))
 
 ;;; navegação
-;; lista possíveis teclas de atalho
-(use-package which-key
-  :init (which-key-mode)
-  :config
-  (setq which-key-idle-delay 0.5))
 ;; melhora `gd' para ir a definições de código
 (use-package dumb-jump)
 (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
