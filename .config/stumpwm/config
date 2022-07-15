@@ -8,10 +8,10 @@
 ;; esse comando carrega todos os módulos em pastas e subpastas
 (init-load-path #p"~/.config/stumpwm/modules")
 
-;;; Manipular janelas em todos os grupos
+;; Manipular janelas em todos os grupos
 (load-module "globalwindows")
 
-;;; Compleção e histórico de comandos
+;; Compleção e histórico de comandos
 ;; git clone https://github.com/landakram/stumpwm-prescient ~/.config/stumpwm/modules/stumpwm-prescient
 (setf *input-window-gravity* :center
       *message-window-input-gravity* :left
