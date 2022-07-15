@@ -108,32 +108,6 @@
 (use-package elisp-demos
   :config (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update))
 
-;;; Lida com buffers incomodantes
-(use-package popper
-  :init
-  (setq popper-reference-buffers
-        '("\\*Messages\\*"
-          "\\*Warnings\\*"
-          "\\*scratch\\*"
-          "\\*xref\\*"
-          "\\*Backtrace\\*"
-          "*Flymake diagnostics.*"
-          "\\*eldoc\\*"
-          "\\*compilation\\*"
-          "\\*rustic-"
-          "^*tex"
-          "\\*Ement Notifications\\*"
-          "Output\\*$"
-          "\\*Async Shell Command\\*"
-          "\\*Dtache Shell Command\\*"
-          "\\*mu4e-update\\*"
-          "\\*GDB.*out\\*"
-          help-mode
-          helpful-mode
-          compilation-mode))
-  (setq popper-window-height 15)
-  (popper-mode +1))
-
 ;;; Popup que retorna comandos sendo usados
 (use-package posframe)
 (use-package command-log-mode
