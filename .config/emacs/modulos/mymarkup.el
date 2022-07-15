@@ -63,8 +63,7 @@
   :config (setq org-auto-tangle-default nil))
 ;; cria sumários automaticamente
 (use-package org-make-toc
-  :after (org)
-  :hook (org-mode . org-make-toc-mode))
+  :after (org))
 
 ;;; Markdown
 (use-package markdown-mode
