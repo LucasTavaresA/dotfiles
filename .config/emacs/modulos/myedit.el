@@ -24,17 +24,7 @@
                 tab-width 4
                 evil-shift-width tab-width
                 indent-tabs-mode nil)
-  ;; Remove evil mode exeto nos modos citados
-  (setq evil-default-state 'emacs
-        evil-emacs-state-modes nil
-        evil-insert-state-modes nil
-        evil-motion-state-modes nil
-        evil-normal-state-modes '(text-mode prog-mode fundamental-mode
-                                            css-mode conf-mode
-                                            TeX-mode LaTeX-mode
-                                            diff-mode generic-dart-mode
-                                            helpful-mode)
-        evil-respect-visual-line-mode t
+  (setq evil-respect-visual-line-mode t
         evil-undo-system 'undo-tree
         evil-split-window-below t  ; foca em novas splits
         evil-vsplit-window-right t
@@ -51,6 +41,12 @@
         evil-motion-state-cursor   '("#ad8beb" box))
   (evil-mode 1)
   :config (evil-select-search-module 'evil-search-module 'evil-search))
+
+;;; Teclas evil para vários modos
+(use-package evil-collection
+  :after (evil)
+  :init (evil-collection-init)
+  (setq forge-add-default-bindings nil))
 
 ;;; desfazer com timeline
 (use-package undo-tree
