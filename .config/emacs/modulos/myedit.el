@@ -24,7 +24,17 @@
                 tab-width 4
                 evil-shift-width tab-width
                 indent-tabs-mode nil)
-  (setq evil-respect-visual-line-mode t
+  ;; Remove evil mode exeto nos modos citados
+  (setq evil-default-state 'emacs
+        evil-emacs-state-modes nil
+        evil-insert-state-modes nil
+        evil-motion-state-modes nil
+        evil-normal-state-modes '(text-mode prog-mode fundamental-mode
+                                            css-mode conf-mode
+                                            TeX-mode LaTeX-mode
+                                            diff-mode generic-dart-mode
+                                            helpful-mode)
+        evil-respect-visual-line-mode t
         evil-undo-system 'undo-tree
         evil-split-window-below t  ; foca em novas splits
         evil-vsplit-window-right t
