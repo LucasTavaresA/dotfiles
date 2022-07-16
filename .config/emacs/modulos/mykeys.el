@@ -19,7 +19,7 @@
 (define-key spc-map (kbd "b c") 'copiar-buffer)
 (define-key spc-map (kbd "b b") 'consult-bookmark)
 (define-key spc-map (kbd "b m") 'bookmark-set)
-(define-key spc-map (kbd "b r") 'bookmark-delete)
+(define-key spc-map (kbd "b d") 'bookmark-delete)
 (define-key spc-map (kbd "b t") 'org-babel-tangle)
 (define-key spc-map (kbd "f b") 'flyspell-buffer)
 (define-key spc-map (kbd "f f") 'find-file)
@@ -102,11 +102,14 @@
 (define-key evil-normal-state-map (kbd "C-.") 'ispell-word)
 (define-key evil-normal-state-map (kbd "m") 'evil-execute-macro)
 (define-key evil-normal-state-map (kbd "p") 'evil-colar)
-(define-key evil-normal-state-map (kbd "P") 'evil-collection-unimpaired-paste-belo)
+(define-key evil-normal-state-map (kbd "P") 'evil-collection-unimpaired-paste-below)
 (define-key evil-normal-state-map "\\" 'consult-line)
 (define-key evil-normal-state-map (kbd "q") nil)
 ;; evil-mc
 (define-key evil-mc-cursors-map (kbd "ESC") 'evil-mc-undo-all-cursors)
+;; dired
+(define-key dired-mode-map (kbd "SPC") 'spc-map)
+(define-key dired-mode-map (kbd "<normal-state> SPC") 'spc-map)
 ;; minibuffer
 (define-key minibuffer-local-map (kbd "C-d") 'embark-act)
 (define-key minibuffer-local-map (kbd "C-<tab>") #'vertico-next)
