@@ -10,6 +10,8 @@
 (use-package magit-todos
   :after (magit)
   :init (magit-todos-mode))
+(use-package magit-delta
+  :hook (magit-mode . magit-delta-mode))
 
 ;;; Github
 (use-package forge
