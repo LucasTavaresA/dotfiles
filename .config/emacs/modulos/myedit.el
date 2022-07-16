@@ -58,12 +58,6 @@
   :init (global-undo-tree-mode)
   :config (setq undo-tree-auto-save-history nil))
 
-;;; pacote com teclas evil para vários modos
-(use-package evil-collection
-  :after (evil)
-  :init (evil-collection-init)
-  (setq forge-add-default-bindings nil))
-
 ;;; comenta código
 (use-package evil-nerd-commenter
   :after (evil)

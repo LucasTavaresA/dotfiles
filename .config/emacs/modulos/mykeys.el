@@ -101,7 +101,9 @@
 (define-key evil-normal-state-map (kbd "C-.") 'ispell-word)
 (define-key evil-normal-state-map (kbd "m") 'evil-execute-macro)
 (define-key evil-normal-state-map (kbd "p") 'evil-colar)
-(define-key evil-normal-state-map (kbd "P") 'evil-collection-unimpaired-paste-below)
+(fset 'colar-abaixo
+      (kmacro-lambda-form [?o escape ?p] 0 "%d"))
+(define-key evil-normal-state-map (kbd "P") 'colar-abaixo)
 (define-key evil-normal-state-map "\\" 'consult-line)
 ;; evil-mc
 (define-key evil-mc-cursors-map (kbd "ESC") 'evil-mc-undo-all-cursors)
