@@ -102,9 +102,7 @@
 (define-key evil-normal-state-map (kbd "C-.") 'ispell-word)
 (define-key evil-normal-state-map (kbd "m") 'evil-execute-macro)
 (define-key evil-normal-state-map (kbd "p") 'evil-colar)
-(fset 'colar-abaixo
-      (kmacro-lambda-form [?o escape ?p] 0 "%d"))
-(define-key evil-normal-state-map (kbd "P") 'colar-abaixo)
+(define-key evil-normal-state-map (kbd "P") 'evil-collection-unimpaired-paste-belo)
 (define-key evil-normal-state-map "\\" 'consult-line)
 (define-key evil-normal-state-map (kbd "q") nil)
 ;; evil-mc
