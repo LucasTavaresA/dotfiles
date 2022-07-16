@@ -97,6 +97,7 @@
 (define-key evil-motion-state-map (kbd "C-M-i") 'completion-at-point)
 (define-key evil-motion-state-map (kbd "K") 'helpful-at-point)
 (define-key evil-motion-state-map (kbd "z x") 'marcar-checkbox)
+(define-key evil-motion-state-map (kbd "M") 'evil-record-macro)
 ;; evil-normal-state-map
 (define-key evil-normal-state-map (kbd "C-.") 'ispell-word)
 (define-key evil-normal-state-map (kbd "m") 'evil-execute-macro)
@@ -105,6 +106,7 @@
       (kmacro-lambda-form [?o escape ?p] 0 "%d"))
 (define-key evil-normal-state-map (kbd "P") 'colar-abaixo)
 (define-key evil-normal-state-map "\\" 'consult-line)
+(define-key evil-normal-state-map (kbd "q") nil)
 ;; evil-mc
 (define-key evil-mc-cursors-map (kbd "ESC") 'evil-mc-undo-all-cursors)
 ;; minibuffer
