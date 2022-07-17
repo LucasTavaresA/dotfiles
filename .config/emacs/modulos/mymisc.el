@@ -15,6 +15,7 @@
 (use-package no-littering)
 (require 'recentf)
 (setq custom-file (no-littering-expand-etc-file-name "custom.el"))
+(setq bookmark-default-file "~/documentos/bookmarks.el")
 ;; ativa lembrar arquivos recentes
 (add-hook 'after-init-hook #'recentf-mode)
 (add-to-list 'recentf-exclude no-littering-var-directory)
