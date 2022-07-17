@@ -95,23 +95,13 @@ ex () {
     done
 }
 
-git_confirma () {
-    case "$1" in
-        "push")                  git_cmd="git push" ;;
-        "push-f")                git_cmd="git push -f" ;;
-        "pull")                  git_cmd="git pull" ;;
-        "restore")               git_cmd="git restore $2" ;;
-        "restore-staged")        git_cmd="git restore --staged $2" ;;
-        "reset-soft")            git_cmd="git reset --soft $2" ;;
-        "reset-hard")            git_cmd="git reset --hard $2" ;;
-        "remote-set-url-origin") git_cmd="git remote set-url origin $2" ;;
-        *) echo "nenhum comando git!" && return 1;;
-    esac
-    printf "Você vai executar %s em %s? [yes]: " "$git_cmd" "$(pwd)"
-    read resposta
-    if echo "$resposta" | grep -q "yes" ;then
-        eval $git_cmd
-    fi
+# Executa comandos inseguros usando a senha do usuario atual
+confirma () {
+    green=$(tput bold setaf 2)
+    cyan=$(tput bold setaf 6)
+    normal=$(tput sgr0)
+    printf "Você vai executar ${green}$@${normal} em ${cyan}$(pwd)${normal}?\n"
+    su $USER -c "$@"
 }
 
 criar_script () {
@@ -191,16 +181,16 @@ alias gcm="git commit"
 alias gcam="git commit --amend"
 alias gca="git commit --amend --no-edit"
 alias gco="git checkout"
-alias gps="git_confirma push"
-alias gpsf="git_confirma push-f"
-alias gpl="git_confirma pull"
+alias gps="confirma git push"
+alias gpsf="confirma git push -f"
+alias gpl="confirma git pull"
 alias gf="git fetch"
-alias gr="git_confirma restore"
+alias gr="confirma git restore"
 alias grv="git remote -v"
-alias grs="git_confirma restore-staged"
-alias grsu="git_confirma remote-set-url-origin"
-alias grrs="git_confirma reset-soft"
-alias grrh="git_confirma reset-hard"
+alias grs="confirma git restore --staged"
+alias grsu="confirma git remote set-url origin"
+alias grrs="confirma git reset --soft"
+alias grrh="confirma git reset --hard"
 alias gg="git grep -iInp --break --heading"
 alias ggs="git grep -iInp --break --heading -8"
 
