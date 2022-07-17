@@ -355,7 +355,6 @@
 (define-key *top-map* (kbd "s-L") "move-window right")
 
 (when *initializing*
-  (which-key-mode)
   ;;(enable-mode-line-everywhere)
   (enable-mode-line (current-screen) (current-head) t)
   (mode-line)
