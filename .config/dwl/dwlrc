@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 ## Miscellanea ##
 fzf_man update &
-pgrep -i -f emacs || doom_reset &
+pgrep -i -f emacs || emacs_reset &
 pgrep -i -f foot || foot --server &
 pgrep -i -f dunst || dunst &
 pgrep -i -f syncthing || syncthing &

@@ -131,11 +131,6 @@ export PATH="$PATH:${XDG_BIN_HOME:-$HOME/.local/bin}"
 export PATH="$PATH:${XDG_DATA_HOME:-$HOME/.local/share}/cargo/bin"
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:${XDG_DATA_HOME:-$HOME/.local/share}/dotnet"
-# DOOM emacs
-export PATH="$PATH:${XDG_CONFIG_HOME:-$HOME/.config}/emacs/bin"
-export EMACSDIR="${XDG_CONFIG_HOME:-$HOME/.config}/emacs"
-export DOOMDIR="${XDG_CONFIG_HOME:-$HOME/.config}/doom"
-export DOOMLOCALDIR="${XDG_CONFIG_HOME:-$HOME/.config}/emacs/.local"
 # diffprogram
 export DIFFPROG="nvim -d"
 # editor no terminal
