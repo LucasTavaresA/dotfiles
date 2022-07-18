@@ -1,34 +1,12 @@
 ;;; mymisc.el -*- lexical-binding: t; -*-
-;;; Async
-(use-package async
-  :defer t
-  :init (async-bytecomp-package-mode 1)
-  :custom (async-bytecomp-allowed-packages '(all)))
-
 ;;; Checagens de sistema
 (defconst IS-LINUX   (eq system-type 'gnu/linux))
 (defconst IS-MAC     (eq system-type 'darwin))
 (defconst IS-BSD     (or IS-MAC (eq system-type 'berkeley-unix)))
 (defconst IS-WINDOWS (memq system-type '(cygwin windows-nt ms-dos)))
 
-;;; Mover arquios para pastas apropriadas
-(use-package no-littering)
-(require 'recentf)
-(setq custom-file (no-littering-expand-etc-file-name "custom.el"))
-(setq bookmark-default-file "~/documentos/bookmarks.el")
-;; ativa lembrar arquivos recentes
-(add-hook 'after-init-hook #'recentf-mode)
-(add-to-list 'recentf-exclude no-littering-var-directory)
-(add-to-list 'recentf-exclude no-littering-etc-directory)
-
-;;; Shell
-(setq-default explicit-shell-file-name "/bin/sh"
-              shell-file-name "/bin/sh")
-;; torna arquivos com shebang (#!) executáveis quando salvados
-(add-hook 'after-save-hook #'executable-make-buffer-file-executable-if-script-p)
-
 ;;; Miscelânea
-;; dired não abre varios buffers
+;; desativa aviso ao usar `dired-find-alternate-file'
 (put 'dired-find-alternate-file 'disabled nil)
 ;; necessário no windows
 (set-default-coding-systems 'utf-8)
@@ -64,7 +42,29 @@
 ;; Ativa comandos no minibuffer
 (setq enable-recursive-minibuffers t)
 
-;; Mostra quantidade e índice de palavras procuradas
+;;; Async
+(use-package async
+  :defer t
+  :init (async-bytecomp-package-mode 1)
+  :custom (async-bytecomp-allowed-packages '(all)))
+
+;;; Shell
+(setq-default explicit-shell-file-name "/bin/sh"
+              shell-file-name "/bin/sh")
+;; torna arquivos com shebang (#!) executáveis quando salvados
+(add-hook 'after-save-hook #'executable-make-buffer-file-executable-if-script-p)
+
+;;; Mover arquios para pastas apropriadas
+(use-package no-littering)
+(require 'recentf)
+(setq custom-file (no-littering-expand-etc-file-name "custom.el"))
+(setq bookmark-default-file "~/documentos/bookmarks.el")
+;; ativa lembrar arquivos recentes
+(add-hook 'after-init-hook #'recentf-mode)
+(add-to-list 'recentf-exclude no-littering-var-directory)
+(add-to-list 'recentf-exclude no-littering-etc-directory)
+
+;;; Mostra quantidade e índice de palavras procuradas
 (use-package anzu
   :init
   (global-anzu-mode +1)
