@@ -11,7 +11,6 @@
 ;; necessário no windows
 (set-default-coding-systems 'utf-8)
 (setq large-file-warning-threshold 100000000 ; considera 100MB> um arquivo grande
-      whitespace-action nil ; desativa limpeza de espaços ao salvar
       use-short-answers t ; apenas confirmações com "y" e "n"
       kill-do-not-save-duplicates t ; não salva duplicadas ao copiar
       user-full-name "Lucas Tavares"
@@ -63,6 +62,12 @@
 (add-hook 'after-init-hook #'recentf-mode)
 (add-to-list 'recentf-exclude no-littering-var-directory)
 (add-to-list 'recentf-exclude no-littering-etc-directory)
+
+;;; Limpa espaços apenas em linhas editadas
+(use-package ws-butler
+  :init
+  (setq whitespace-action nil) ; desativa limpeza de espaços usando `whitespace'
+  (ws-butler-global-mode))
 
 ;;; Mostra quantidade e índice de palavras procuradas
 (use-package anzu
