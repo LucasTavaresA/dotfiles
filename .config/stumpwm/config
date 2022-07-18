@@ -145,21 +145,20 @@
   (load "~/.config/stumpwm/config"))
 
 ;;; Hooks
-(remove-all-hooks *focus-group-hook*)
-(remove-all-hooks *focus-window-hook*)
-
 ;; alterna stumptray junto com a barra
 (stumptray:add-mode-line-hooks)
 
 (defun grupo-atual (current-group last-group)
   "popup mostrando os grupos e indicando o grupo selecionado"
   (message (group-name current-group)))
+(remove-hook *focus-group-hook* 'grupo-atual)
 (add-hook *focus-group-hook* 'grupo-atual)
 
 (defun janela-atual (to-frame from-frame)
   "popup mostrando as janelas na head e indicando a janela selecionada"
   (run-commands "windows"))
-(add-hook *focus-window-hook* 'janela-atual)
+;;(remove-hook *focus-window-hook* 'janela-atual)
+;;(add-hook *focus-window-hook* 'janela-atual)
 
 ;;; Configuração
 (set-font "-*-terminus-*-*-*-*-14-*-*-*-*-*-*-*")
