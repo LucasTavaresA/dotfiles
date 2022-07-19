@@ -25,13 +25,15 @@
   :init
   (setq awesome-tray-git-format "%s"
         awesome-tray-git-show-status t
+        awesome-tray-evil-show-mode nil
         awesome-tray-file-path-show-filename t
         awesome-tray-file-path-full-dirname-levels 1
-        awesome-tray-info-padding-right 1
-        awesome-tray-file-path-truncate-dirname-levels 3
-        awesome-tray-separator " "
-        awesome-tray-essential-modules '("anzu" "evil" "buffer-read-only" "git")
-        awesome-tray-active-modules    '("anzu" "evil" "buffer-read-only" "git" "file-path"))
+        awesome-tray-file-path-truncate-dirname-levels 0
+        awesome-tray-location-format "L%l"
+        awesome-tray-info-padding-right 0
+        awesome-tray-separator "  "
+        awesome-tray-essential-modules '("github" "buffer-read-only" "evil" "anzu" "git" "location")
+        awesome-tray-active-modules    '("github" "buffer-read-only" "evil" "anzu" "git" "location" "file-path"))
   (awesome-tray-mode))
 (use-package hide-mode-line
   :init (global-hide-mode-line-mode))
