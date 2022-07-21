@@ -63,6 +63,7 @@
 (define-key h-map (kbd "f") 'describe-function)
 (define-key h-map (kbd "F") 'describe-face)
 (define-key h-map (kbd "c") 'describe-command)
+(define-key h-map (kbd "p") 'describe-package)
 ;; t-map
 (defalias 't-map (make-sparse-keymap))
 (defvar t-map (symbol-function 't-map))
@@ -70,9 +71,10 @@
 ;; SPC t
 (define-key t-map (kbd "n") (lambda () (interactive) (if display-line-numbers (setq display-line-numbers nil)
                                                   (setq display-line-numbers t))))
-(define-key t-map (kbd "c") 'log/toggle-command-window)
+(define-key t-map (kbd "l") 'log/toggle-command-window)
+(define-key t-map (kbd "c") 'obvious-mode)
 (define-key t-map (kbd "r") 'rainbow-mode)
-(define-key t-map (kbd "l") 'toggle-truncate-lines)
+(define-key t-map (kbd "t") 'toggle-truncate-lines)
 (define-key t-map (kbd "h") 'hl-line-mode)
 (define-key t-map (kbd "f") 'flyspell-mode)
 (define-key t-map (kbd "F") 'flymake-mode)

@@ -91,6 +91,12 @@
 (use-package terminal-here
   :config (setq terminal-here-linux-terminal-command 'st))
 
+;;; Esconde comentários
+(use-package obvious
+  :straight (obvious :type git :host github :repo "alphapapa/obvious.el")
+  :config (setq obvious-headers nil)
+  :hook (prog-mode . obvious-mode))
+
 ;;; navegação
 ;; melhora `gd' para ir a definições de código
 (use-package dumb-jump)
