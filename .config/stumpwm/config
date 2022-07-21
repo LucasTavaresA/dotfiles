@@ -218,6 +218,7 @@
                                  "^>" ;; move o resto para a direita
                                  "       %d     " ;; data
                                  )
+      stumpwm::*time-day-names* #("segunda" "terca" "quarta" "quinta" "sexta" "sabado" "domingo")
       *time-modeline-string* "%a %d/%m/%Y - %H:%M"
       *group-format* "%s %t"
       *mode-line-pad-y* 0
