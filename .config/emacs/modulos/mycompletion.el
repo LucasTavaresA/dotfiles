@@ -17,13 +17,6 @@
   :config
   (setq completion-styles '(orderless)
         completion-category-overrides '((file (styles . (partial-completion))))))
-;; ações no mini-buffer
-(use-package embark
-  :config
-  (setq prefix-help-command #'embark-prefix-help-command)
-  (global-set-key [remap describe-bindings] #'embark-bindings))
-;; funções em mini-buffers `consult'
-(use-package embark-consult)
 ;; popups
 (use-package corfu
   :custom

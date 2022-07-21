@@ -54,7 +54,7 @@
 (defvar h-map (symbol-function 'h-map))
 (define-key spc-map (kbd "h") 'h-map)
 (define-key h-map (kbd "a") 'consult-apropos)
-(define-key h-map (kbd "b") 'embark-bindings)
+(define-key h-map (kbd "b") 'describe-bindings)
 (define-key h-map (kbd "M") 'consult-man)
 (define-key h-map (kbd "m") 'describe-mode)
 (define-key h-map (kbd "K") 'describe-keymap)
