@@ -51,7 +51,7 @@
 (use-package org-appear
   :after (org)
   :config
-  (setq org-appear-autolinks t
+  (setq org-appear-autolinks nil
         org-appear-autosubmarkers t
         org-appear-autoentities t
         org-appear-autokeywords t)
