@@ -4,7 +4,7 @@
 (in-package :stumpwm)
 
 ;;; Módulos da comunidade
-;; git clone https://github.com/stumpwm/stumpwm-contrib ~/.config/stumpwm/modules/contrib
+;; git clone https://github.com/stumpwm/stumpwm-contrib ~/.config/stumpwm/modules/stumpwm-contrib
 ;; esse comando carrega todos os módulos em pastas e subpastas
 (init-load-path #p"~/.config/stumpwm/modules")
 
