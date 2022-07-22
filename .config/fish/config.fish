@@ -196,9 +196,9 @@ if status is-interactive
     abbr -a -g gcam git commit --amend
     abbr -a -g gca git commit --amend --no-edit
     abbr -a -g gco git checkout
-    abbr -a -g gps confirma git push
-    abbr -a -g gpsf confirma git push -f
-    abbr -a -g gpl confirma git pull
+    abbr -a -g gps git push
+    abbr -a -g gpsf git push -f
+    abbr -a -g gpl git pull
     abbr -a -g gf git fetch
     abbr -a -g gr confirma git restore
     abbr -a -g grv git remote -v
