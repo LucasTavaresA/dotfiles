@@ -64,21 +64,6 @@
 (define-key h-map (kbd "F") 'describe-face)
 (define-key h-map (kbd "c") 'describe-command)
 (define-key h-map (kbd "p") 'describe-package)
-;; t-map
-(defalias 't-map (make-sparse-keymap))
-(defvar t-map (symbol-function 't-map))
-(define-key spc-map (kbd "t") 't-map)
-;; SPC t
-(define-key t-map (kbd "n") (lambda () (interactive) (if display-line-numbers (setq display-line-numbers nil)
-                                                  (setq display-line-numbers t))))
-(define-key t-map (kbd "l") 'log/toggle-command-window)
-(define-key t-map (kbd "c") 'obvious-mode)
-(define-key t-map (kbd "r") 'rainbow-mode)
-(define-key t-map (kbd "t") 'toggle-truncate-lines)
-(define-key t-map (kbd "h") 'hl-line-mode)
-(define-key t-map (kbd "f") 'flyspell-mode)
-(define-key t-map (kbd "F") 'flymake-mode)
-(define-key t-map (kbd "m") 'markdown-toggle-markup-hiding)
 ;; e-map
 (defalias 'e-map (make-sparse-keymap))
 (defvar e-map (symbol-function 'e-map))
@@ -110,6 +95,19 @@
 (define-key evil-normal-state-map (kbd "P") 'evil-collection-unimpaired-paste-below)
 (define-key evil-normal-state-map "\\" 'consult-line)
 (define-key evil-normal-state-map (kbd "q") nil)
+;; toggles
+(define-key evil-normal-state-map (kbd "z n") (lambda () (interactive) (if display-line-numbers (setq display-line-numbers nil)
+                                                                    (setq display-line-numbers t))))
+(define-key evil-normal-state-map (kbd "z v") 'visible-mode)
+(define-key evil-normal-state-map (kbd "z c") 'obvious-mode)
+(define-key evil-normal-state-map (kbd "z l") 'log/toggle-command-window)
+(define-key evil-normal-state-map (kbd "z t") 'toggle-truncate-lines)
+(define-key evil-normal-state-map (kbd "z h") 'hl-line-mode)
+(define-key evil-normal-state-map (kbd "z f") 'flymake-mode)
+(define-key evil-normal-state-map (kbd "z s") 'flyspell-mode)
+(define-key evil-normal-state-map (kbd "z r") 'rainbow-mode)
+(define-key evil-normal-state-map (kbd "z z") 'evil-toggle-fold)
+(define-key evil-normal-state-map (kbd "Z Z") 'evil-scroll-line-to-center)
 ;; evil-mc
 (define-key evil-mc-cursors-map (kbd "ESC") 'evil-mc-undo-all-cursors)
 ;; dired
@@ -157,7 +155,6 @@
 (global-set-key (kbd "<M-up>") 'drag-stuff-up)
 (global-set-key (kbd "<M-down>") 'drag-stuff-down)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-(global-set-key (kbd "M-q") 'popper-toggle-latest)
 ;; org-mode-map
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "<M-up>") nil)
