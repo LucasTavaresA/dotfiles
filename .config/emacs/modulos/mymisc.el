@@ -40,6 +40,10 @@
 (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
 ;; Ativa comandos no minibuffer
 (setq enable-recursive-minibuffers t)
+;; Esconde seções de código
+(add-hook 'prog-mode-hook 'hs-minor-mode)
+(add-hook 'hs-minor-mode-hook 'hs-hide-all)
+(setq hs-hide-comments-when-hiding-all nil)
 
 ;;; Async
 (use-package async
