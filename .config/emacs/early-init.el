@@ -42,5 +42,5 @@
 (set-frame-parameter (selected-frame) 'fullscreen 'maximized)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 ;; transparencia - emacs 29
-;;(set-frame-parameter (selected-frame) 'alpha-background 85)
-;;(add-to-list 'default-frame-alist '(alpha-background . 85))
+(set-frame-parameter (selected-frame) 'alpha-background 85)
+(add-to-list 'default-frame-alist '(alpha-background . 85))
