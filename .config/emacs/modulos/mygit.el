@@ -1,5 +1,5 @@
 ;;; mygit.el -*- lexical-binding: t; -*-
-;;; Misc
+;;; Miscelânea
 (use-package git-link
   :config (setq git-link-open-in-browser t))
 

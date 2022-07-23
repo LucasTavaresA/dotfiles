@@ -1,5 +1,5 @@
 ;;; mystraight.el -*- lexical-binding: t; -*-
-;; boostrap straight.el
+;;; boostrap straight.el
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -13,9 +13,10 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-;; instala use-package
+;;; instala use-package
 (straight-use-package 'use-package)
-;; usa :straight t por padrão
+
+;;; usa :straight t por padrão
 (setq straight-use-package-by-default t)
 
 (provide 'mystraight)

@@ -1,23 +1,27 @@
 ;;; mycompletion.el -*- lexical-binding: t; -*-
-;; ui
+;;; ui
 (use-package vertico
   :config (setq vertico-cycle t)
   :init (vertico-mode))
-;; descrições no mini-buffer
+
+;;; descrições no mini-buffer
 (use-package marginalia
   :config (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
   :init (marginalia-mode))
-;; varias funções no mini-buffer
+
+;;; varias funções no mini-buffer
 (use-package consult
   :config
   (setq completion-in-region-function #'consult-completion-in-region
         consult-preview-key nil)) ; desativa previsão consult
-;; procura items usando "fuzzy find"
+
+;;; procura items usando "fuzzy find"
 (use-package orderless
   :config
   (setq completion-styles '(orderless)
         completion-category-overrides '((file (styles . (partial-completion))))))
-;; popups
+
+;;; popups
 (use-package corfu
   :custom
   (corfu-auto t)
@@ -30,10 +34,12 @@
   (set-face-attribute 'corfu-default nil :background "#000")
   (set-face-attribute 'corfu-border nil :background "#fff")
   :init (global-corfu-mode))
-;; descrições em popup
+
+;;; descrições em popups
 (use-package corfu-doc
   :hook (corfu-mode . corfu-doc-mode))
-;; adiciona vários tipos de completações
+
+;;; adiciona vários tipos de compleções
 (use-package cape
   :init
   (add-to-list 'completion-at-point-functions #'cape-file)

@@ -1,8 +1,7 @@
 ;;; mykeys.el -*- lexical-binding: t; -*-
-;; spc-map
+;;; SPC
 (defalias 'spc-map (make-sparse-keymap))
 (defvar spc-map (symbol-function 'spc-map))
-;; SPC
 (define-key spc-map (kbd "SPC") 'consult-recent-file)
 (define-key spc-map (kbd "k") 'kill-current-buffer)
 (define-key spc-map (kbd "K") 'kill-some-buffers)
@@ -20,7 +19,6 @@
 (define-key spc-map (kbd "b b") 'consult-bookmark)
 (define-key spc-map (kbd "b m") 'bookmark-set)
 (define-key spc-map (kbd "b d") 'bookmark-delete)
-(define-key spc-map (kbd "b t") 'org-babel-tangle)
 (define-key spc-map (kbd "f b") 'flyspell-buffer)
 (define-key spc-map (kbd "f f") 'find-file)
 (define-key spc-map (kbd "f F") 'consult-find)
@@ -35,21 +33,18 @@
 (define-key spc-map (kbd "w w") 'save-buffer)
 (define-key spc-map (kbd "w q") 'evil-save-and-quit)
 (define-key spc-map (kbd "q q") 'evil-quit)
-;; g-map
+;;; SPC g
 (defalias 'g-map (make-sparse-keymap))
 (defvar g-map (symbol-function 'g-map))
 (define-key spc-map (kbd "g") 'g-map)
-;; SPC g
 (define-key g-map (kbd "g") 'magit-status)
 (define-key g-map (kbd "l") 'git-link)
-;; SPC c
-;; c-map
+;;; SPC c
 (defalias 'c-map (make-sparse-keymap))
 (defvar c-map (symbol-function 'c-map))
 (define-key spc-map (kbd "c") 'c-map)
 (define-key c-map (kbd "c") 'compile)
-;; SPC h
-;; h-map
+;;; SPC h
 (defalias 'h-map (make-sparse-keymap))
 (defvar h-map (symbol-function 'h-map))
 (define-key spc-map (kbd "h") 'h-map)
@@ -64,38 +59,32 @@
 (define-key h-map (kbd "F") 'describe-face)
 (define-key h-map (kbd "c") 'describe-command)
 (define-key h-map (kbd "p") 'describe-package)
-;; e-map
+;;; SPC e
 (defalias 'e-map (make-sparse-keymap))
 (defvar e-map (symbol-function 'e-map))
 (define-key spc-map (kbd "e") 'e-map)
-;; SPC e
 (define-key e-map (kbd "t") (lambda () (interactive) (find-file "~/.config/emacs/etc/templates")))
 (define-key e-map (kbd "e") 'eval-defun)
 (define-key e-map (kbd "b") 'aval-buffer)
 (define-key e-map (kbd "r") 'aval-region)
 (define-key e-map (kbd "E") 'edebug-mode)
-;; evil-global-set-key
-;; Use visual line motions mesmo fora de buffers no visual-line-mode
-(evil-global-set-key 'motion "j" 'evil-next-visual-line)
-(evil-global-set-key 'motion "k" 'evil-previous-visual-line)
-;; evil-insert-state-map
+;;; evil-insert-state-map
 (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
-;; evil-motion-state-map
+;;; evil-motion-state-map
 (define-key evil-motion-state-map (kbd "SPC") 'spc-map)
 (define-key evil-motion-state-map "?" (lambda () (interactive) (evil-ex-search-word-forward nil (thing-at-point 'symbol))))
 (define-key evil-motion-state-map "|" (lambda () (interactive) (consult-line (thing-at-point 'symbol))))
 (define-key evil-motion-state-map (kbd "C-M-i") 'completion-at-point)
 (define-key evil-motion-state-map (kbd "K") 'helpful-at-point)
-(define-key evil-motion-state-map (kbd "z x") 'marcar-checkbox)
 (define-key evil-motion-state-map (kbd "M") 'evil-record-macro)
-;; evil-normal-state-map
+;;; evil-normal-state-map
 (define-key evil-normal-state-map (kbd "C-.") 'ispell-word)
 (define-key evil-normal-state-map (kbd "m") 'evil-execute-macro)
 (define-key evil-normal-state-map (kbd "p") 'evil-colar)
 (define-key evil-normal-state-map (kbd "P") 'evil-collection-unimpaired-paste-below)
 (define-key evil-normal-state-map "\\" 'consult-line)
 (define-key evil-normal-state-map (kbd "q") nil)
-;; toggles
+;;; toggles
 (define-key evil-normal-state-map (kbd "z n") (lambda () (interactive) (if display-line-numbers (setq display-line-numbers nil)
                                                                     (setq display-line-numbers t))))
 (define-key evil-normal-state-map (kbd "z v") 'visible-mode)
@@ -106,20 +95,21 @@
 (define-key evil-normal-state-map (kbd "z f") 'flymake-mode)
 (define-key evil-normal-state-map (kbd "z s") 'flyspell-mode)
 (define-key evil-normal-state-map (kbd "z r") 'rainbow-mode)
+(define-key evil-motion-state-map (kbd "z x") 'marcar-checkbox)
 (define-key evil-normal-state-map (kbd "z z") 'evil-toggle-fold)
 (define-key evil-normal-state-map (kbd "Z Z") 'evil-scroll-line-to-center)
-;; evil-mc
+;;; evil-mc-key-map
 (define-key evil-mc-key-map (kbd "q") 'evil-mc-undo-all-cursors)
-;; dired
+;;; dired-mode-map
 (define-key dired-mode-map (kbd "SPC") 'spc-map)
 (define-key dired-mode-map (kbd "<normal-state> SPC") 'spc-map)
-;; minibuffer
+;;; minibuffer-local-map
 (define-key minibuffer-local-map (kbd "C-d") 'embark-act)
 (define-key minibuffer-local-map (kbd "C-<tab>") #'vertico-next)
 (define-key minibuffer-local-map (kbd "<backtab>") #'vertico-previous)
-;; tempel-map
+;;; tempel-map
 (define-key tempel-map (kbd "<backtab>") 'tempel-next)
-;; corfu popups
+;;; corfu-map
 (define-key corfu-map (kbd "TAB") 'corfu-next)
 (define-key corfu-map (kbd "<tab>") 'corfu-next)
 (define-key corfu-map (kbd "C-M-i") 'corfu-next)
@@ -128,11 +118,11 @@
 (define-key corfu-map (kbd "<up>") 'evil-previous-line)
 (define-key corfu-map (kbd "<down>") 'evil-next-line)
 (define-key corfu-map (kbd "E") 'tempel-expand)
-;; edebug-mode-map
+;;; edebug-mode-map
 (define-key edebug-mode-map (kbd "Q") 'edebug-mode)
-;; forge-topic-mode-map
+;;; forge-topic-mode-map
 (define-key forge-topic-mode-map (kbd "R") 'code-review-forge-pr-at-point)
-;; global
+;;; global
 (fset 'comentar-e-descer-linha
       (kmacro-lambda-form [?, ?c ?i down] 0 "%d"))
 (global-set-key (kbd "C-c C-c") 'comentar-e-descer-linha)
@@ -140,7 +130,7 @@
 (global-set-key (kbd "C-s") 'evil-mc-make-all-cursors)
 (global-set-key (kbd "M-c") 'evil-yank)
 (global-set-key (kbd "M-v") 'evil-colar)
-(global-set-key (kbd "M-d") 'org-babel-demarcate-block)
+(global-set-key (kbd "M-e") 'tempel-expand)
 (global-set-key (kbd "C-=") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
 (global-set-key (kbd "C-0") 'text-scale-adjust)
@@ -155,7 +145,7 @@
 (global-set-key (kbd "<M-up>") 'drag-stuff-up)
 (global-set-key (kbd "<M-down>") 'drag-stuff-down)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-;; org-mode-map
+;;; org-mode
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "<M-up>") nil)
   (define-key org-mode-map (kbd "<M-down>") nil)
@@ -163,7 +153,9 @@
   (define-key org-mode-map (kbd "<S-down>") nil)
   (define-key org-mode-map (kbd "<S-up>") nil)
   (define-key org-mode-map (kbd "<C-S-down>") nil)
-  (define-key org-mode-map (kbd "<C-S-up>") nil))
+  (define-key org-mode-map (kbd "<C-S-up>") nil)
+  (define-key org-mode-map (kbd "b t") 'org-babel-tangle)
+  (define-key org-mode-map (kbd "M-d") 'org-babel-demarcate-block))
 
 (provide 'mykeys)
 ;;; mykeys.el ends here

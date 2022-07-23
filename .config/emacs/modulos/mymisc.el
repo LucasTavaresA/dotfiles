@@ -5,7 +5,7 @@
 (defconst IS-BSD     (or IS-MAC (eq system-type 'berkeley-unix)))
 (defconst IS-WINDOWS (memq system-type '(cygwin windows-nt ms-dos)))
 
-;;; Miscelânea
+;;; Configurações
 ;; desativa aviso ao usar `dired-find-alternate-file'
 (put 'dired-find-alternate-file 'disabled nil)
 ;; necessário no windows
@@ -40,6 +40,7 @@
 (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
 ;; Ativa comandos no minibuffer
 (setq enable-recursive-minibuffers t)
+
 ;;; Async
 (use-package async
   :defer t
@@ -52,7 +53,7 @@
 ;; torna arquivos com shebang (#!) executáveis quando salvados
 (add-hook 'after-save-hook #'executable-make-buffer-file-executable-if-script-p)
 
-;;; Mover arquios para pastas apropriadas
+;;; Mover arquivos para pastas apropriadas
 (use-package no-littering)
 (require 'recentf)
 (setq custom-file (no-littering-expand-etc-file-name "custom.el"))
@@ -91,12 +92,12 @@
   :config (setq terminal-here-linux-terminal-command 'st))
 
 ;;; Folding
-;;;; Esconde comentários
+;; Esconde comentários
 (use-package obvious
   :straight (obvious :type git :host github :repo "alphapapa/obvious.el")
   :config (setq obvious-headers nil))
 
-;;;; Esconde seções usando comentarios como headings
+;; Esconde seções usando comentarios como headings
 (use-package outshine
   :straight (outshine :type git :host github :repo "alphapapa/outshine")
   :init
@@ -113,11 +114,11 @@
                   (outshine-level-8 . 0.9)))
     (set-face-attribute (car face) nil :font "Ubuntu" :weight 'regular :height (cdr face) :background nil)))
 
-;;;; Esconde seções de código
+;; Esconde seções de código
 (use-package origami
   :straight (origami :type git :host github :repo "elp-revive/origami.el"))
 
-;;;; Ativa folding apropriado dependendo do major-mode
+;; Ativa folding apropriado dependendo do major-mode
 (defun my-folding-modes ()
   "Ativa folding apropriado dependendo do major-mode"
   (cond ((and (string= major-mode "emacs-lisp-mode")

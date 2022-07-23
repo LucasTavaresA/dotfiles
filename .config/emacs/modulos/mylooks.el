@@ -20,6 +20,7 @@
   :config (set-face-attribute 'whitespace-space nil :background "#000" :foreground "#333"))
 
 ;;; Mode-line
+;; informações no minibuffer
 (use-package awesome-tray
   :straight (awesome-tray :type git :host github :repo "manateelazycat/awesome-tray")
   :init
@@ -35,6 +36,7 @@
         awesome-tray-essential-modules '("github" "buffer-read-only" "evil" "anzu" "git" "location")
         awesome-tray-active-modules    '("github" "buffer-read-only" "evil" "anzu" "git" "location" "file-path"))
   (awesome-tray-mode))
+;; esconde a mode-line
 (use-package hide-mode-line
   :init (global-hide-mode-line-mode))
 
@@ -52,12 +54,12 @@
                       :height 130 :foreground "#009900")
   (variable-pitch-mode 1))
 
-;;; Clareia buffer sem foco
+;;; Indica buffers sem foco
 (use-package auto-dim-other-buffers
   :init (auto-dim-other-buffers-mode)
   (set-face-attribute 'auto-dim-other-buffers-face nil :background "#080808"))
 
-;;; Indicação visual
+;;; Indicação visual no cursor
 (use-package pulse
   :defer t
   :init

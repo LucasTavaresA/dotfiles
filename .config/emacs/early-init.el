@@ -1,9 +1,9 @@
 ;;; early-init.el -*- lexical-binding: t; -*-
-;; aumenta a taxa de coleta de lixo para iniciar mais rápido
+;;; aumenta a taxa de coleta de lixo para iniciar mais rápido
 ;; o padrão são 800 kilobytes, medido em bytes
 (setq gc-cons-threshold most-positive-fixnum)
 
-;; tempo para iniciar
+;;; tempo para iniciar
 (add-hook 'emacs-startup-hook
           (lambda ()
             (message "Emacs carregado em %s."
