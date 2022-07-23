@@ -279,7 +279,7 @@
 (define-key *Menu-map* (kbd "r") "loadrc")
 (define-key *Menu-map* (kbd "ESC") "exec term_open -a center fzf_sys")
 (define-key *Menu-map* (kbd "XF86Launch2") "exec term_open -a center fzf_sys")
-(define-key *Menu-map* (kbd "o") "exec dmenu_pesquisar")
+(define-key *Menu-map* (kbd "o") "exec org_dmenu ~/documentos/favoritos.org")
 (define-key *Menu-map* (kbd "q") "exec qutebrowser")
 (define-key *Menu-map* (kbd "m") "exec dmenu_mont")
 (define-key *Menu-map* (kbd "p") "exec passmenu --type")
