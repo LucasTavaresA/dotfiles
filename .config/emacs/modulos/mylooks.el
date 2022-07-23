@@ -42,7 +42,7 @@
 
 ;;; Tema
 (use-package doom-themes
-  :init (load-theme 'doom-acario-dark t)
+  :init (load-theme 'doom-solarized-dark t)
   :config
   (set-face-attribute 'default nil :background "#000")
   (set-face-attribute 'region nil :background "#00f")
