@@ -109,7 +109,7 @@
 (define-key evil-normal-state-map (kbd "z z") 'evil-toggle-fold)
 (define-key evil-normal-state-map (kbd "Z Z") 'evil-scroll-line-to-center)
 ;; evil-mc
-(define-key evil-mc-cursors-map (kbd "ESC") 'evil-mc-undo-all-cursors)
+(define-key evil-mc-key-map (kbd "q") 'evil-mc-undo-all-cursors)
 ;; dired
 (define-key dired-mode-map (kbd "SPC") 'spc-map)
 (define-key dired-mode-map (kbd "<normal-state> SPC") 'spc-map)

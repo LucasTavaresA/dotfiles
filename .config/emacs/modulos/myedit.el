@@ -85,39 +85,5 @@ isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no mo
         (call-interactively #'evil-paste-before)
       (call-interactively #'evil-paste-after))))
 
-;;; Evil-mc sai com ESC
-;; copiado do doom emacs
-(defvar evil-escape-hook nil
-  "A hook run when C-g is pressed (or ESC in normal mode, for evil users).
-all hooks after it are ignored.")
-(defun evil-escape (&optional interactive)
-  "Run `evil-escape-hook'."
-  (interactive (list 'interactive))
-  (cond ((minibuffer-window-active-p (minibuffer-window))
-         ;; quit the minibuffer if open.
-         (when interactive
-           (setq this-command 'abort-recursive-edit))
-         (abort-recursive-edit))
-        ;; Run all escape hooks. If any returns non-nil, then stop there.
-        ((run-hook-with-args-until-success 'evil-escape-hook))
-        ;; don't abort macros
-        ((or defining-kbd-macro executing-kbd-macro) nil)
-        ;; Back to the default
-        ((unwind-protect (keyboard-quit)
-           (when interactive
-             (setq this-command 'keyboard-quit))))))
-(add-hook 'evil-escape-hook
-          (defun +multiple-cursors-escape-multiple-cursors-h ()
-            "Clear evil-mc cursors and restore state."
-            (when (evil-mc-has-cursors-p)
-              (evil-mc-undo-all-cursors)
-              (evil-mc-resume-cursors)
-              t)))
-(defun +evil-escape-a (&rest _)
-  "Call `evil-escape' if `evil-force-normal-state' is called interactively."
-  (when (called-interactively-p 'any)
-    (call-interactively #'evil-escape)))
-(advice-add #'evil-force-normal-state :after #'+evil-escape-a)
-
 (provide 'myedit)
 ;;; myedit.el ends here
