@@ -40,11 +40,6 @@
 (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
 ;; Ativa comandos no minibuffer
 (setq enable-recursive-minibuffers t)
-;; Esconde seções de código
-(add-hook 'prog-mode-hook 'hs-minor-mode)
-(add-hook 'hs-minor-mode-hook 'hs-hide-all)
-(setq hs-hide-comments-when-hiding-all nil)
-
 ;;; Async
 (use-package async
   :defer t
@@ -95,11 +90,46 @@
 (use-package terminal-here
   :config (setq terminal-here-linux-terminal-command 'st))
 
-;;; Esconde comentários
+;;; Folding
+;;;; Esconde comentários
 (use-package obvious
   :straight (obvious :type git :host github :repo "alphapapa/obvious.el")
-  :config (setq obvious-headers nil)
-  :hook (prog-mode . obvious-mode))
+  :config (setq obvious-headers nil))
+
+;;;; Esconde seções usando comentarios como headings
+(use-package outshine
+  :straight (outshine :type git :host github :repo "alphapapa/outshine")
+  :init
+  (setq outshine-startup-folded-p t
+        outshine-cycle-emulate-tab t)
+  :config
+  (dolist (face '((outshine-level-1 . 1.1)
+                  (outshine-level-2 . 1.0)
+                  (outshine-level-3 . 1.0)
+                  (outshine-level-4 . 0.9)
+                  (outshine-level-5 . 0.9)
+                  (outshine-level-6 . 0.9)
+                  (outshine-level-7 . 0.9)
+                  (outshine-level-8 . 0.9)))
+    (set-face-attribute (car face) nil :font "Ubuntu" :weight 'regular :height (cdr face) :background nil)))
+
+;;;; Esconde seções de código
+(use-package origami
+  :straight (origami :type git :host github :repo "elp-revive/origami.el"))
+
+;;;; Ativa folding apropriado dependendo do major-mode
+(defun my-folding-modes ()
+  "Ativa folding apropriado dependendo do major-mode"
+  (cond ((and (string= major-mode "emacs-lisp-mode")
+              (string-match-p (regexp-quote ".config/emacs") buffer-file-name))
+         (outshine-mode))
+        ((string= major-mode "emacs-lisp-mode")
+         (progn (call-interactively #'origami-mode)
+                (call-interactively #'origami-close-all-nodes)))
+        (t (progn
+             (call-interactively #'origami-mode)
+             (call-interactively #'origami-close-all-nodes)))))
+(add-hook 'prog-mode-hook 'my-folding-modes)
 
 ;;; navegação
 ;; melhora `gd' para ir a definições de código
