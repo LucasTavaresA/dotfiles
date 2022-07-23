@@ -84,6 +84,9 @@
 (define-key evil-normal-state-map (kbd "P") 'evil-collection-unimpaired-paste-below)
 (define-key evil-normal-state-map "\\" 'consult-line)
 (define-key evil-normal-state-map (kbd "q") nil)
+;;; outshine-mode-map
+(define-key outshine-mode-map (kbd "M-<up>") nil)
+(define-key outshine-mode-map (kbd "M-<down>") nil)
 ;;; toggles
 (define-key evil-normal-state-map (kbd "z n") (lambda () (interactive) (if display-line-numbers (setq display-line-numbers nil)
                                                                     (setq display-line-numbers t))))
