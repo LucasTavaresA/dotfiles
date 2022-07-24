@@ -101,8 +101,6 @@
 (define-key evil-motion-state-map (kbd "z x") 'marcar-checkbox)
 (define-key evil-normal-state-map (kbd "z z") 'evil-toggle-fold)
 (define-key evil-normal-state-map (kbd "Z Z") 'evil-scroll-line-to-center)
-;;; evil-mc-key-map
-(define-key evil-mc-key-map (kbd "q") 'evil-mc-undo-all-cursors)
 ;;; dired-mode-map
 (define-key dired-mode-map (kbd "SPC") 'spc-map)
 (define-key dired-mode-map (kbd "<normal-state> SPC") 'spc-map)
