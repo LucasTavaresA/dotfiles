@@ -205,6 +205,7 @@ testdisk
 texinfo
 tidy
 tmux
+topgrade
 translate-shell
 transmission-qt
 ttc-iosevka-aile

@@ -127,6 +127,7 @@ if status is-interactive
 
     ## Abbr ##
     abbr -a -g cd z
+    abbr -a -g tpg topgrade
     abbr -a -g cs criar_script sh script.sh
     abbr -a -g pk pkill -i
     abbr -a -g pg pgrep -ia
