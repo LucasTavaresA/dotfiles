@@ -38,14 +38,14 @@
      (C . t)))
   (push '("conf-unix" . conf-unix) org-src-lang-modes)
   ;; headers variam de tamanho
-  (dolist (face '((org-level-1 . 1.3)
+  (dolist (face '((org-level-1 . 1.2)
                   (org-level-2 . 1.1)
                   (org-level-3 . 1.0)
                   (org-level-4 . 0.9)
-                  (org-level-5 . 0.9)
-                  (org-level-6 . 0.9)
-                  (org-level-7 . 0.9)
-                  (org-level-8 . 0.9)))
+                  (org-level-5 . 0.8)
+                  (org-level-6 . 0.8)
+                  (org-level-7 . 0.8)
+                  (org-level-8 . 0.8)))
     (set-face-attribute (car face) nil :font "Ubuntu" :weight 'regular :height (cdr face) :background nil)))
 ;; esconde marcação
 (use-package org-appear
