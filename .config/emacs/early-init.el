@@ -32,7 +32,7 @@
 (push '(mouse-color . "white") default-frame-alist)
 (push '(vertical-scroll-bars) default-frame-alist)
 ;; tema padrão para evitar tela branca ao iniciar
-(load-theme 'modus-vivendi t)
+(load-theme 'wombat t)
 ;; desativa a modeline
 (setq-default mode-line-format nil)
 (setq mode-line-format nil)

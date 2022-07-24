@@ -41,18 +41,49 @@
   :init (global-hide-mode-line-mode))
 
 ;;; Tema
-(use-package doom-themes
-  :init (load-theme 'doom-solarized-dark t)
+(use-package modus-themes
+  :init
+  (setq modus-themes-italic-constructs t
+        modus-themes-bold-constructs t
+        modus-themes-mixed-fonts t
+        modus-themes-subtle-line-numbers t
+        modus-themes-tabs-accented t
+        modus-themes-variable-pitch-ui t
+        modus-themes-inhibit-reload nil
+        modus-themes-fringes nil
+        modus-themes-lang-checkers '(straight-underline text-also)
+        modus-themes-mode-line nil
+        modus-themes-markup '(bold italic)
+        modus-themes-syntax nil
+        modus-themes-hl-line nil
+        modus-themes-paren-match '(bold intense)
+        modus-themes-links '(bold italic)
+        modus-themes-box-buttons '(variable-pitch flat faint 0.9)
+        modus-themes-prompts '(intense bold)
+        modus-themes-completions '((matches . (underline intense))
+                                   (selection . (semibold accented intense))
+                                   (popup . (accented)))
+        modus-themes-region '(bg-only no-extend)
+        modus-themes-diffs nil
+        modus-themes-org-blocks 'tinted-background
+        modus-themes-headings
+        '((1 . (bold variable-pitch 1.1))
+          (2 . (bold 1.0))
+          (3 . (semibold variable-pitch 0.9))
+          (4 . (semibold 0.8))
+          (5 . (semibold variable-pitch 0.8))
+          (t . (semibold))))
   :config
+  (load-theme 'modus-vivendi t)
   (set-face-attribute 'default nil :background "#000")
-  (set-face-attribute 'region nil :background "#00f")
-  ;; fontes
-  (set-face-attribute 'default nil :family "Terminus" :height 140)
-  (set-face-attribute 'variable-pitch nil :family "Ubuntu" :weight 'light)
-  (set-face-attribute 'font-lock-string-face nil :foreground "#ffff00")
-  (set-face-attribute 'font-lock-comment-face nil :family "SauceCodePro Nerd Font Mono" :slant 'italic
-                      :height 130 :foreground "#009900")
-  (variable-pitch-mode 1))
+  (set-face-attribute 'region nil :background "#00f"))
+
+;;; fontes
+(set-face-attribute 'default nil :family "Terminus" :height 140)
+(set-face-attribute 'variable-pitch nil :family "Ubuntu" :weight 'light)
+(set-face-attribute 'font-lock-string-face nil :foreground "#ffff00")
+(set-face-attribute 'font-lock-comment-face nil :family "SauceCodePro Nerd Font Mono"
+                    :slant 'italic :height 130 :foreground "#009900")
 
 ;;; Indica buffers sem foco
 (use-package auto-dim-other-buffers
