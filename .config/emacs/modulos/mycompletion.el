@@ -1,7 +1,32 @@
 ;;; mycompletion.el -*- lexical-binding: t; -*-
 ;;; ui
 (use-package vertico
-  :init (vertico-mode))
+  :straight (vertico :includes vertico-directory
+                     :files (:defaults "extensions/vertico-directory.el"
+                                       "extensions/vertico-multiform.el"))
+  :init
+  (vertico-mode)
+  (vertico-multiform-mode)
+  (setq vertico-multiform-categories
+        '((symbol (vertico-sort-function . vertico-sort-alpha))
+          (file (vertico-sort-function . sort-directories-first))))
+  (setq vertico-multiform-commands
+        '((describe-symbol (vertico-sort-function . vertico-sort-alpha))))
+  ;; mostra diretórios antes de arquivos
+  (defun sort-directories-first (files)
+    (setq files (vertico-sort-history-length-alpha files))
+    (nconc (seq-filter (lambda (x) (string-suffix-p "/" x)) files)
+           (seq-remove (lambda (x) (string-suffix-p "/" x)) files)))
+  ;; prefixa candidato selecionado com uma seta
+  (advice-add #'vertico--format-candidate :around
+              (lambda (orig cand prefix suffix index _start)
+                (setq cand (funcall orig cand prefix suffix index _start))
+                (concat
+                 (if (= vertico--index index)
+                     (propertize "> " 'face 'vertico-current)
+                   "")
+                 cand)))
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
 
 ;;; descrições no mini-buffer
 (use-package marginalia
