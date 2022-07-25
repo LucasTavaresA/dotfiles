@@ -18,7 +18,8 @@
 ;;; procura items usando "fuzzy find"
 (use-package orderless
   :config
-  (setq completion-styles '(orderless)
+  (setq completion-styles '(orderless basic)
+        completion-category-defaults nil
         completion-category-overrides '((file (styles . (partial-completion))))))
 
 ;;; popups
