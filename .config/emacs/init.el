@@ -19,5 +19,9 @@
 (require 'myspell)
 (require 'mykeys)
 
+;;; acelerar a coleta de lixo
+(use-package gcmh
+  :init (gcmh-mode))
+
 ;;; aumenta pausas para coleta de lixo
 (setq gc-cons-threshold (* 2 1000 1000))
