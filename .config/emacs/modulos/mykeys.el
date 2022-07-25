@@ -78,7 +78,7 @@
 (define-key evil-motion-state-map (kbd "K") 'helpful-at-point)
 (define-key evil-motion-state-map (kbd "M") 'evil-record-macro)
 ;;; evil-normal-state-map
-(define-key evil-normal-state-map (kbd "C-.") 'ispell-word)
+(define-key evil-normal-state-map (kbd "C-.") #'flyspell-correct-wrapper)
 (define-key evil-normal-state-map (kbd "m") 'evil-execute-macro)
 (define-key evil-normal-state-map (kbd "p") 'evil-colar)
 (define-key evil-normal-state-map (kbd "P") 'evil-collection-unimpaired-paste-below)

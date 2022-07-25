@@ -25,5 +25,9 @@
 (unless (file-exists-p ispell-personal-dictionary)
   (write-region "" nil ispell-personal-dictionary nil 0))
 
+;; integração com o vertico
+(use-package flyspell-correct
+  :init (setq flyspell-correct-interface #'flyspell-correct-completing-read))
+
 (provide 'myspell)
 ;;; myspell.el ends here
