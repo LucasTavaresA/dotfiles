@@ -1,7 +1,6 @@
 ;;; mycompletion.el -*- lexical-binding: t; -*-
 ;;; ui
 (use-package vertico
-  :config (setq vertico-cycle t)
   :init (vertico-mode))
 
 ;;; descrições no mini-buffer
