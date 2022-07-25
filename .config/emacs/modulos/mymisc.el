@@ -122,7 +122,7 @@
 (defun my-folding-modes ()
   "Ativa folding apropriado dependendo do major-mode"
   (cond ((and (string= major-mode "emacs-lisp-mode")
-              (string-match-p (regexp-quote ".config/emacs") buffer-file-name))
+              (string-match-p (regexp-quote ".config/emacs/modulos/") buffer-file-name))
          (outshine-mode))
         ((string= major-mode "emacs-lisp-mode")
          (progn (call-interactively #'origami-mode)
