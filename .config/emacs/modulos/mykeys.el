@@ -108,6 +108,8 @@
 (define-key minibuffer-local-map (kbd "C-d") 'embark-act)
 (define-key minibuffer-local-map (kbd "C-<tab>") #'vertico-next)
 (define-key minibuffer-local-map (kbd "<backtab>") #'vertico-previous)
+;;; Outline-mode-map
+(define-key outline-mode-map (kbd "<normal-state> z l") nil)
 ;;; tempel-map
 (define-key tempel-map (kbd "<backtab>") 'tempel-next)
 ;;; corfu-map
