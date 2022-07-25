@@ -37,6 +37,12 @@
 (use-package corfu-doc
   :hook (corfu-mode . corfu-doc-mode))
 
+;; adiciona icones ao corfu
+(use-package kind-icon
+  :after (corfu)
+  :custom (kind-icon-default-face 'corfu-default)
+  :config (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+
 ;;; Funções no mini-buffer
 (use-package consult
   :config
