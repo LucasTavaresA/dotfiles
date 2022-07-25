@@ -51,6 +51,9 @@
                                                                consult--source-buffer consult--source-project-buffer)
         consult-preview-key nil)) ; desativa previsão consult
 
+;; Lida com diretórios usando consult
+(use-package consult-dir)
+
 ;;; Ordenar items
 (use-package orderless
   :config

@@ -3,6 +3,7 @@
 (defalias 'spc-map (make-sparse-keymap))
 (defvar spc-map (symbol-function 'spc-map))
 (define-key spc-map (kbd "SPC") 'consult-recent-file)
+(define-key spc-map (kbd "d") 'consult-dir)
 (define-key spc-map (kbd "k") 'kill-current-buffer)
 (define-key spc-map (kbd "K") 'kill-some-buffers)
 (define-key spc-map (kbd "l") 'inserir-link)
@@ -105,9 +106,10 @@
 (define-key dired-mode-map (kbd "SPC") 'spc-map)
 (define-key dired-mode-map (kbd "<normal-state> SPC") 'spc-map)
 ;;; minibuffer-local-map
-(define-key minibuffer-local-map (kbd "C-d") 'embark-act)
 (define-key minibuffer-local-map (kbd "C-<tab>") #'vertico-next)
 (define-key minibuffer-local-map (kbd "<backtab>") #'vertico-previous)
+;;; minibuffer-local-completion-map
+(define-key minibuffer-local-map (kbd "C-.") 'consult-dir-jump-file)
 ;;; Vertico-mode-map
 (define-key vertico-map "?" #'minibuffer-completion-help)
 (define-key vertico-map (kbd "RET") #'vertico-directory-enter)
