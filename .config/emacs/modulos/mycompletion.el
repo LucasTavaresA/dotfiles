@@ -1,5 +1,5 @@
 ;;; mycompletion.el -*- lexical-binding: t; -*-
-;;; ui
+;;; Ui
 (use-package vertico
   :straight (vertico :includes vertico-directory
                      :files (:defaults "extensions/vertico-directory.el"
@@ -28,12 +28,16 @@
                  cand)))
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
 
-;;; descrições no mini-buffer
+;; descrições no mini-buffer
 (use-package marginalia
   :config (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
   :init (marginalia-mode))
 
-;;; varias funções no mini-buffer
+;; descrições em popups
+(use-package corfu-doc
+  :hook (corfu-mode . corfu-doc-mode))
+
+;;; Funções no mini-buffer
 (use-package consult
   :config
   (setq completion-in-region-function #'consult-completion-in-region
@@ -41,12 +45,21 @@
                                                                consult--source-buffer consult--source-project-buffer)
         consult-preview-key nil)) ; desativa previsão consult
 
-;;; procura items usando "fuzzy find"
+;;; Ordenar items
 (use-package orderless
   :config
   (setq completion-styles '(orderless basic)
         completion-category-defaults nil
         completion-category-overrides '((file (styles . (partial-completion))))))
+
+;; adiciona vários tipos de compleções
+(use-package cape
+  :init
+  (add-to-list 'completion-at-point-functions #'cape-file)
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  ;; completação não-intrusiva
+  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
+  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify))
 
 ;;; popups
 (use-package corfu
@@ -61,19 +74,6 @@
   (set-face-attribute 'corfu-default nil :background "#000")
   (set-face-attribute 'corfu-border nil :background "#fff")
   :init (global-corfu-mode))
-
-;;; descrições em popups
-(use-package corfu-doc
-  :hook (corfu-mode . corfu-doc-mode))
-
-;;; adiciona vários tipos de compleções
-(use-package cape
-  :init
-  (add-to-list 'completion-at-point-functions #'cape-file)
-  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
-  ;; completação não-intrusiva
-  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
-  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify))
 
 (provide 'mycompletion)
 ;;; mycompletion.el ends here
