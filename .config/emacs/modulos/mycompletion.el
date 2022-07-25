@@ -37,6 +37,8 @@
 (use-package consult
   :config
   (setq completion-in-region-function #'consult-completion-in-region
+        consult-buffer-sources '(consult--source-hidden-buffer consult--source-modified-buffer
+                                                               consult--source-buffer consult--source-project-buffer)
         consult-preview-key nil)) ; desativa previsão consult
 
 ;;; procura items usando "fuzzy find"
