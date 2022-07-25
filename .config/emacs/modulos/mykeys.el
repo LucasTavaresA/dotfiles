@@ -95,7 +95,7 @@
 (define-key evil-normal-state-map (kbd "z l") 'log/toggle-command-window)
 (define-key evil-normal-state-map (kbd "z t") 'toggle-truncate-lines)
 (define-key evil-normal-state-map (kbd "z h") 'hl-line-mode)
-(define-key evil-normal-state-map (kbd "z f") 'flymake-mode)
+(define-key evil-normal-state-map (kbd "z f") 'flycheck-mode)
 (define-key evil-normal-state-map (kbd "z s") 'flyspell-mode)
 (define-key evil-normal-state-map (kbd "z r") 'rainbow-mode)
 (define-key evil-motion-state-map (kbd "z x") 'marcar-checkbox)

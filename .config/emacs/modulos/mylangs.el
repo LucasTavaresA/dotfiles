@@ -69,5 +69,8 @@
         (cond ((string= major-mode "sh-mode") (shell-command regionp))
               (t (eval-region start end t))))))
 
+;;; Flycheck
+(use-package flycheck)
+
 (provide 'mylangs)
 ;;; mylangs.el ends here
