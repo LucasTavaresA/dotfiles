@@ -73,8 +73,8 @@
           (4 . (semibold 0.8))
           (5 . (semibold variable-pitch 0.8))
           (t . (semibold))))
-  :config
   (load-theme 'modus-vivendi t)
+  :config
   (set-face-attribute 'default nil :background "#000")
   (set-face-attribute 'region nil :background "#00f"))
 

@@ -210,6 +210,7 @@ hc rule class="mpv" tag=3 switchtag=on
 hc rule class="Gimp" tag=3 switchtag=on
 hc rule class="Xephyr" tag=3 switchtag=on
 hc rule class="Hexchat" tag=4 switchtag=on
+hc rule class="emacsirc" tag=4 switchtag=on
 hc rule class="discord" tag=4 switchtag=on
 hc rule class="TelegramDesktop" tag=4 switchtag=on
 # flutuantes
@@ -230,7 +231,7 @@ hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 
 if hc silent new_attr bool my_open_apps; then
     polybar &
-    hexchat --minimize=2 &
+    term_open -a emacsirc emacs -nw -q --load "~/.config/emacs/irc.el"
 fi
 
 hc unlock

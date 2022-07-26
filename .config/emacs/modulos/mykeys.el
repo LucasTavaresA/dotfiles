@@ -116,6 +116,7 @@
 (define-key vertico-map (kbd "DEL") #'vertico-directory-delete-char)
 ;;; Outline-mode-map
 (define-key outline-mode-map (kbd "<normal-state> z l") nil)
+(define-key outline-mode-map (kbd "<normal-state> M-<return>") nil)
 ;;; tempel-map
 (define-key tempel-map (kbd "<backtab>") 'tempel-next)
 ;;; corfu-map
