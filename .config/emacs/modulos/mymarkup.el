@@ -2,7 +2,7 @@
 ;;; Org mode
 (use-package org
   :defer t
-  :hook (org-mode . aumenta-fonte)
+  :hook (org-mode . ajusta-texto)
   :init
   (setq org-ellipsis "  "
         org-startup-folded 'content
@@ -72,7 +72,7 @@
   (font-lock-add-keywords 'gfm-mode
                           '(("^ *\\([-]\\) "
                              (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
-  :hook (((gfm-mode markdown-mode) . aumenta-fonte)
+  :hook (((gfm-mode markdown-mode) . ajusta-texto)
          ((gfm-mode markdown-mode) . markdown-esconde-marcação))
   :config
   (dolist (face '((markdown-header-face-1 . 1.3)
@@ -107,9 +107,11 @@
   (cond ((string= major-mode "org-mode") (consult-org-heading))
         (t (consult-outline))))
 
-(defun aumenta-fonte ()
-  "Aumenta o tamanho da fonte."
-  (text-scale-set 2))
+(defun ajusta-texto ()
+  "Aumenta o tamanho da fonte e margem."
+  (text-scale-set 1)
+  (setq left-margin-width 25)
+  (setq right-margin-width 25))
 
 (defun markdown-esconde-marcação ()
   "Esconde marcação em markdown."
