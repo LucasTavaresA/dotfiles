@@ -361,6 +361,7 @@
   (mode-line)
   (run-shell-command "stumpwm_barra")
   (run-shell-command "emacs_reset")
+  (run-shell-command "transmission-qt -m")
   (run-shell-command "term_open -a emacsirc emacs -nw -q --load '~/.config/emacs/irc.el'")
   (run-shell-command "barrier")
   ;; remove logs

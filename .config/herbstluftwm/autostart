@@ -231,6 +231,9 @@ hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 
 if hc silent new_attr bool my_open_apps; then
     polybar &
+    emacs_reset &
+    transmission-qt -m &
+    barrier &
     term_open -a emacsirc emacs -nw -q --load "~/.config/emacs/irc.el"
 fi
 
