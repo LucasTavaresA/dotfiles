@@ -29,34 +29,15 @@
         awesome-tray-essential-modules '("circe" "evil")
         awesome-tray-active-modules    '("circe" "evil" "buffer-name"))
   (awesome-tray-mode))
+
 ;; esconde a mode-line
 (use-package hide-mode-line
   :init (global-hide-mode-line-mode))
 
 ;; tema
-(use-package modus-themes
-  :init
-  (setq
-   modus-themes-inhibit-reload nil
-   modus-themes-fringes nil
-   modus-themes-lang-checkers '(straight-underline text-also)
-   modus-themes-mode-line nil
-   modus-themes-markup '(bold italic)
-   modus-themes-syntax nil
-   modus-themes-hl-line nil
-   modus-themes-paren-match '(bold intense)
-   modus-themes-links '(bold italic)
-   modus-themes-box-buttons '(variable-pitch flat faint 0.9)
-   modus-themes-prompts '(intense bold)
-   modus-themes-completions '((matches . (underline intense))
-                              (selection . (semibold accented intense))
-                              (popup . (accented)))
-   modus-themes-region '(bg-only no-extend)
-   modus-themes-diffs nil)
-  (load-theme 'modus-vivendi t)
-  :config
-  (set-face-attribute 'default nil :background "#000")
-  (set-face-attribute 'region nil :background "#00f"))
+(load-theme 'modus-vivendi t)
+(set-face-attribute 'default nil :background "#000")
+(set-face-attribute 'region nil :background "#00f")
 
 ;; fontes
 (set-face-attribute 'default nil :family "Terminus" :height 140)
@@ -70,24 +51,7 @@
   :init (auto-dim-other-buffers-mode)
   (set-face-attribute 'auto-dim-other-buffers-face nil :background "#080808"))
 
-;; indicação visual no cursor
-(use-package pulse
-  :defer t
-  :init
-  (defun pulsar-linha (&rest _)
-    "Pulsa a linha atual."
-    (pulse-momentary-highlight-one-line (point)))
-  (dolist (command '(other-window windmove-do-window-select mouse-set-point mouse-select-window))
-    (advice-add command :after #'pulsar-linha))
-  (dolist (command '(scroll-up-command scroll-down-command
-                                       recenter-top-bottom other-window))
-    (advice-add command :after #'pulsar-linha))
-  :config (set-face-attribute 'pulse-highlight-start-face nil :background "#00f"))
-
 ;;; Teclas
-;; expande região selecionada
-(use-package expand-region)
-
 (use-package evil
   :init
   (setq-default evil-cross-lines t ; da a volta para a proxima linha
@@ -167,36 +131,6 @@
 (use-package vertico
   :init (vertico-mode))
 
-;; Ordenar items
-(use-package orderless
-  :config
-  (setq completion-styles '(orderless basic)
-        completion-category-defaults nil
-        completion-category-overrides '((file (styles . (partial-completion))))))
-
-;; adiciona vários tipos de compleções
-(use-package cape
-  :init
-  (add-to-list 'completion-at-point-functions #'cape-file)
-  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
-  ;; completação não-intrusiva
-  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
-  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify))
-
-;; popups
-(use-package corfu
-  :custom
-  (corfu-auto t)
-  (corfu-auto-delay 0.5)
-  (corfu-cycle t)
-  (corfu-preselect-first nil)
-  (corfu-echo-documentation 0.25)
-  :config
-  (set-face-attribute 'corfu-current nil :background "#007")
-  (set-face-attribute 'corfu-default nil :background "#000")
-  (set-face-attribute 'corfu-border nil :background "#fff")
-  :init (global-corfu-mode))
-
 ;;; Teclas
 ;; SPC
 (defalias 'spc-map (make-sparse-keymap))
@@ -269,14 +203,6 @@
 (define-key minibuffer-local-map (kbd "<backtab>") #'vertico-previous)
 ;; Vertico-mode-map
 (define-key vertico-map "?" #'minibuffer-completion-help)
-;; corfu-map
-(define-key corfu-map (kbd "TAB") 'corfu-next)
-(define-key corfu-map (kbd "<tab>") 'corfu-next)
-(define-key corfu-map (kbd "C-M-i") 'corfu-next)
-(define-key corfu-map (kbd "S-TAB") 'corfu-previous)
-(define-key corfu-map (kbd "<backtab>") 'corfu-previous)
-(define-key corfu-map (kbd "<up>") 'evil-previous-line)
-(define-key corfu-map (kbd "<down>") 'evil-next-line)
 ;; global
 (fset 'comentar-e-descer-linha
       (kmacro-lambda-form [?, ?c ?i down] 0 "%d"))
@@ -286,8 +212,6 @@
 (global-set-key (kbd "C-=") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
 (global-set-key (kbd "C-0") 'text-scale-adjust)
-(global-set-key (kbd "<S-up>") 'er/expand-region)
-(global-set-key (kbd "<S-down>") 'er/contract-region)
 (global-set-key (kbd "<C-M-right>") 'evil-window-vsplit)
 (global-set-key (kbd "<C-M-down>") 'evil-window-split)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -314,7 +238,7 @@
         lui-prompt ">"
         lui-track-bar-behavior 'before-switch-to-buffer
         circe-format-say "{nick:-8s}>{body}"
-        circe-format-self-say "*{nick:-8}*>{body}"
+        circe-format-self-say "({nick})>{body}"
         circe-network-options
         `(("Libera Chat"
            :nick "lucasta"
