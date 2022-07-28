@@ -237,6 +237,7 @@
         lui-time-stamp-format "%H:%M"
         lui-prompt ">"
         lui-track-bar-behavior 'before-switch-to-buffer
+        tracking-ignored-buffers '("#suckless" "#archlinux" "#artix" "#git" "#qbittorrent")
         circe-format-say "{nick:-8s}>{body}"
         circe-format-self-say "({nick})>{body}"
         circe-network-options
