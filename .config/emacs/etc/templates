@@ -1,6 +1,7 @@
 fundamental-mode
 
 (date (format-time-string "%a %d/%m/%Y - %H:%M"))
+(bang "#!/usr/bin/env ")
 
 prog-mode
 
@@ -9,7 +10,6 @@ prog-mode
 (bug (if (derived-mode-p 'emacs-lisp-mode) ";; " comment-start) "BUG ")
 (hack (if (derived-mode-p 'emacs-lisp-mode) ";; " comment-start) "HACK ")
 
-;; Specify multiple modes
 lisp-mode emacs-lisp-mode
 
 (ilamb "(lambda (" p ")" n> r> ")")
@@ -34,7 +34,7 @@ emacs-lisp-mode
 \n
 (provide 'my" p ")" > "
 ;;; my" p ".el ends here")
-(pkg "(use-package " p > n ")")
+(pkg "(use-package " p ")")
 (aload ";;;###autoload")
 (ilamb "(lambda (" p ") (" p ")" n> r> ")")
 (alias "(defalias '" p " '" p ")")
@@ -86,7 +86,46 @@ org-mode
 (conf "#+begin_src conf" n> r> n "#+end_src" :post (org-edit-src-code))
 (vim "#+begin_src vim" n> r> n "#+end_src" :post (org-edit-src-code))
 
+html-mode web-mode
+
+(html (html-html5-template))
+
+sh-mode
+
+(for "for " (p "needle") " in " (p "haystack")"; do" n>
+     (p "#code")n
+     "done")
+(if "if [ " (p "condition")" ]; then"n> (r "#code")n "fi")
+(case (sh-case))
+(readfile "while IFS= read -r line || [ -n "(p "\"$line\"")" ]; do"n>
+          (p "printf '%s\\n' \"$line\"")n
+          "done < \"file\"")
+
+(while "while [ "(p "\"$start\"") " -le " (p "\"$end\"")" ]; do"n>
+       (p "#code")n
+       "done")
+
+python-mode
+
+(for "for " (p "needle") " in " (p "heystack") ":"n>
+     (p "# code goes here"))
+(if "if " (p "condition" var) ":"n>
+    (p "# code goes here"))
+
+c-mode c++-mode
+
+(if "if ("  (p "true") ") {" n> r> (p "true") n "}")
+(print "printf(" (p "\"The value of ___ is\"" text) (r ", ")")")
+(for "for (" "int " (p "i" var) "=" (p "0") "; "
+     (s var) "< " (p "max" max) "; "
+     (s var) "++" "){"
+     n> (p "/* your code here*/")
+     n "}")
+(main "int main(int argc, char* argv[])"n"{" n> (r "/*Your Code Here*/") n"}")
+
+(struct "struct "(p "Name")" {" n> (p "/* fields */") n "};")
+
 ;; Local Variables:
 ;; mode: lisp-data
-;; outline-regexp: "[a-z]"
+;; outline-regexp: "^[a-z].*$"
 ;; End:
