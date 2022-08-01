@@ -1,5 +1,6 @@
 *cache*
 *log*
+.android/
 .cache/
 .config/cabal/
 .config/cheat/cheatsheets/

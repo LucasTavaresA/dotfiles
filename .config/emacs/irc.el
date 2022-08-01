@@ -245,7 +245,7 @@
            :nick "lucasta"
            :sasl-username "lucasta"
            :sasl-password ,libera-password
-           :channels ("#emacs" "#herbstluftwm" "#qutebrowser" "#stumpwm" "#git"
+           :channels ("#emacs" "#herbstluftwm" "#qutebrowser" "#stumpwm" "#git" "#lineageos"
                       "#systemcrafters" "#suckless" "#qbittorrent" "#artix" "#archlinux"))
           ("OFTC"
            :nick "lucasta"
