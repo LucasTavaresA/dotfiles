@@ -1,11 +1,11 @@
 #!/usr/bin/env sh
 ## Miscellanea ##
 fzf_man update &
-pgrep -i -f emacs || emacs_reset &
 pgrep -i -f foot || foot --server &
 pgrep -i -f dunst || dunst &
 pgrep -i -f syncthing || syncthing &
 pgrep -i -f clipman || wl-paste -t text --watch clipman store &
+emacs --daemon=emacsdaemon &
 ## Musica ##
 pgrep -i -f mpd || mpd &
 pgrep -i -f mpd || mpc update &
