@@ -222,8 +222,7 @@
 (defun irc ()
           "Abre todos os servers IRC"
           (interactive)
-          (circe "Libera Chat")
-          (circe "OFTC"))
+          (circe "Libera Chat"))
 
 (use-package circe
   :init
@@ -235,11 +234,10 @@
         lui-logging-directory (concat user-emacs-directory "circelogs")
         lui-time-stamp-position 'right-margin
         lui-time-stamp-format "%H:%M"
-        lui-prompt ">"
         lui-track-bar-behavior 'before-switch-to-buffer
-        tracking-ignored-buffers '("#suckless" "#archlinux" "#artix" "#git" "#qbittorrent")
-        circe-format-say "{nick:-8s}>{body}"
-        circe-format-self-say "({nick})>{body}"
+        tracking-ignored-buffers '("#suckless" "#archlinux" "#artix" "#lineageos" "#git" "#qbittorrent")
+        circe-format-say "<{nick}> {body}"
+        circe-format-self-say ">{nick}< {body}"
         circe-network-options
         `(("Libera Chat"
            :nick "lucasta"
@@ -247,15 +245,20 @@
            :sasl-password ,libera-password
            :channels ("#emacs" "#herbstluftwm" "#qutebrowser" "#stumpwm" "#git" "#lineageos"
                       "#systemcrafters" "#suckless" "#qbittorrent" "#artix" "#archlinux"))
-          ("OFTC"
-           :nick "lucasta"
-           :channels ("#suckless"))
           ))
   (load "lui-logging" nil t)
   (enable-circe-color-nicks)
   (enable-circe-display-images)
   (enable-lui-logging-globally)
   (enable-lui-track-bar))
+
+(add-hook 'circe-chat-mode-hook 'my-circe-prompt)
+;; nome do server no prompt
+(defun my-circe-prompt ()
+  (lui-set-prompt
+   (concat (propertize (concat (buffer-name) ">")
+                       'face 'circe-prompt-face)
+           " ")))
 
 ;; comentários de bots em cinza
 (defvar my-circe-bot-list '("fsbot" "rudybot"))
