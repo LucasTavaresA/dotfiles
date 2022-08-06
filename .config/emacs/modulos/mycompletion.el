@@ -77,7 +77,7 @@
 (use-package corfu
   :custom
   (corfu-auto t)
-  (corfu-auto-delay 0.5)
+  (corfu-auto-delay 0.2)
   (corfu-cycle t)
   (corfu-preselect-first nil)
   (corfu-echo-documentation 0.25)
