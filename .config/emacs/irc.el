@@ -231,11 +231,11 @@
         circe-split-line-length 800
         lui-flyspell-p t
         lui-flyspell-alist '((".*" "american" "pt_BR"))
-        lui-logging-directory (concat user-emacs-directory "circelogs")
+        lui-logging-directory (concat user-emacs-directory "var/circelogs")
         lui-time-stamp-position 'right-margin
         lui-time-stamp-format "%H:%M"
         lui-track-bar-behavior 'before-switch-to-buffer
-        tracking-ignored-buffers '("#suckless" "#archlinux" "#artix" "#lineageos" "#git" "#qbittorrent")
+        tracking-ignored-buffers '("#suckless" "#archlinux" "#artix" "#freebsd" "#lineageos" "#git" "#qbittorrent")
         circe-format-say "<{nick}> {body}"
         circe-format-self-say ">{nick}< {body}"
         circe-network-options
@@ -244,7 +244,7 @@
            :sasl-username "lucasta"
            :sasl-password ,libera-password
            :channels ("#emacs" "#herbstluftwm" "#qutebrowser" "#stumpwm" "#git" "#lineageos"
-                      "#systemcrafters" "#suckless" "#qbittorrent" "#artix" "#archlinux"))
+                      "#systemcrafters" "#suckless" "#qbittorrent" "#freebsd" "#artix" "#archlinux"))
           ))
   (load "lui-logging" nil t)
   (enable-circe-color-nicks)
