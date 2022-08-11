@@ -51,6 +51,7 @@
 .config/gtkfilechooser.ini
 .config/pam-gnupg
 .config/QtProject.conf
+.config/pmbootstrap.cfg
 .gnupg/
 .dbus/
 .dotnet/

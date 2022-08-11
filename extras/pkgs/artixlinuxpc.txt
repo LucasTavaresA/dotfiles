@@ -172,6 +172,7 @@ picom
 pkgconf
 playerctl
 plocate
+pmbootstrap
 polybar
 pulseaudio
 pulseaudio-alsa
