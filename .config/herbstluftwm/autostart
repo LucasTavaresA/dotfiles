@@ -192,7 +192,7 @@ hc rule class="mpv" tag=3 switchtag=on
 hc rule class="Gimp" tag=3 switchtag=on
 hc rule class="Xephyr" tag=3 switchtag=on
 hc rule class="Hexchat" tag=4 switchtag=on
-hc rule class="emacsirc" tag=4 switchtag=on
+hc rule instance="emacsirc" title="emacsirc" tag=4 switchtag=on
 hc rule class="discord" tag=4 switchtag=on
 hc rule class="TelegramDesktop" tag=4 switchtag=on
 ## flutuantes
@@ -216,7 +216,7 @@ if hc silent new_attr bool my_open_apps; then
     sxhkd -c ~/.config/sxhkd/sxhkd_hlwm &
     polybar &
     transmission-qt -m &
-    term_open -a emacsirc emacs -nw -q --load "~/.config/emacs/irc.el" &
+    emacs --name=emacsirc --title=emacsirc -q --load "~/.config/emacs/irc.el" &
     emacs --daemon &
 fi
 
