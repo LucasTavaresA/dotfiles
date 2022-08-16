@@ -1,0 +1,65 @@
+# Menus
+## dmenu_run
+Menu;Menu
+    dmenu_run
+## fzf_sys
+Menu;{Escape,XF86Launch2}
+    term_open -a fzf fzf_sys
+## org_dmenu
+Menu;o
+    org_dmenu ~/documentos/favoritos.org
+## dmenu_mont
+Menu;m
+    dmenu_mont
+## passmenu
+Menu;p
+    passmenu --type
+## fzf_wifi
+Menu;w
+    term_open -a fzf fzf_wifi
+## fzf_xephyr
+Menu;x
+    term_open -a fzf fzf_xephyr
+## fzf_clip
+Menu;c
+    term_open -a fzf fzf_clip
+## fzf_emoji
+Menu;E
+    term_open -a fzf fzf_emojis
+## fzf_sxhkd
+Menu;slash
+    term_open -a fzf fzf_sxhkd
+## dmenu_print
+Print
+    dmenu_print
+
+# Outros
+## qutebrowser
+Menu;q
+    qutebrowser
+## htop
+Menu;h
+    term_open -a htop htop
+## picom
+Menu;P
+    pkill -x picom || picom -b --unredir-if-possible --backend xr_glx_hybrid --vsync --use-damage --glx-no-stencil
+## sct
+Menu;{s,S}
+    {sct,sct 2000}
+## transmission
+Menu;t
+    transmission-qt
+## calculadora
+Menu;C
+    Galculator
+
+# arquivos
+## abre o emacs
+Menu;e
+    emacsclient -n -c -a 'term_open nvim'
+## anotações
+Menu;a
+    emacsclient -n -c -a 'term_open nvim' ~/documentos/anotações.org
+## favoritos
+Menu;f
+    emacsclient -n -c -a 'term_open nvim' ~/documentos/favoritos.org
