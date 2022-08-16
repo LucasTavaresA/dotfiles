@@ -18,7 +18,6 @@ aspnet-runtime
 aspnet-targeting-pack
 autoconf
 automake
-barrier
 base
 bat
 bc
@@ -195,6 +194,7 @@ starship
 stpv-git
 streamlink
 sx
+sxhkd
 syncthing
 telegram-desktop
 terminus-font
