@@ -37,6 +37,9 @@ Print
 ## qutebrowser
 Menu;q
     qutebrowser
+## firefox
+Menu;f
+    firefox
 ## htop
 Menu;h
     term_open -a htop htop
@@ -51,7 +54,7 @@ Menu;t
     transmission-qt
 ## calculadora
 Menu;C
-    Galculator
+    galculator
 
 # arquivos
 ## abre o emacs
@@ -60,6 +63,3 @@ Menu;e
 ## anotações
 Menu;a
     emacsclient -n -c -a 'term_open nvim' ~/documentos/anotações.org
-## favoritos
-Menu;f
-    emacsclient -n -c -a 'term_open nvim' ~/documentos/favoritos.org

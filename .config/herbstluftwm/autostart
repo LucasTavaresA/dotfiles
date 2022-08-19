@@ -115,11 +115,7 @@ hck Mod4-Ctrl-Shift-k resize up +0.05
 hck Mod4-Ctrl-Shift-j resize down +0.05
 hck Mod4-Ctrl-Shift-h resize left +0.05
 hck Mod4-Ctrl-Shift-l resize right +0.05
-## outros
-hck Mod4-e spawn emacs
-hck Mod4-Shift-Return spawn term_open
-hck Mod4-backslash spawn term_scratchpad
-hck Mod4-b spawn polybar-msg cmd toggle
+## musica
 hck Mod4-a spawn term_open -a float ncmpcpp
 hck Mod4-Shift-a spawn term_open -a float pulsemixer
 hck Mod4-space or . spawn playerctl play-pause . spawn mpc toggle
@@ -130,6 +126,11 @@ hck XF86AudioLowerVolume spawn pactl set-sink-volume @DEFAULT_SINK@ -5%
 hck XF86AudioRaiseVolume spawn pactl set-sink-volume @DEFAULT_SINK@ +5%
 hck Mod4-Shift-comma spawn musica ante
 hck Mod4-Shift-period spawn musica prox
+## outros
+hck Mod4-e spawn emacs
+hck Mod4-Shift-Return spawn term_open
+hck Mod4-backslash spawn term_scratchpad
+hck Mod4-b spawn polybar-msg cmd toggle
 
 # configuração
 hc attr theme.tiling.reset 1
