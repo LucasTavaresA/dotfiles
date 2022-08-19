@@ -33,8 +33,8 @@
         awesome-tray-location-format "L%l"
         awesome-tray-info-padding-right 0
         awesome-tray-separator "  "
-        awesome-tray-essential-modules '("github" "buffer-read-only" "evil" "anzu" "git" "location")
-        awesome-tray-active-modules    '("github" "buffer-read-only" "evil" "anzu" "git" "location" "file-path"))
+        awesome-tray-essential-modules '("github" "git" "buffer-read-only" "evil" "anzu" "location")
+        awesome-tray-active-modules    '("github" "git" "buffer-read-only" "evil" "anzu" "location" "file-path"))
   (awesome-tray-mode))
 ;; esconde a mode-line
 (use-package hide-mode-line
