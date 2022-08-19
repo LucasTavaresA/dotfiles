@@ -1,0 +1,191 @@
+# sway
+mouse_warping output
+focus_follows_mouse no
+floating_minimum_size 500 x 300
+floating_maximum_size 1000 x 600
+default_orientation vertical
+workspace_layout tabbed
+title_align center
+focus_wrapping no
+focus_on_window_activation focus
+# Aparência
+font pango:Terminus 12
+## bordas
+smart_borders on
+hide_edge_borders smart
+# for_window border pixel 1
+default_border pixel 1
+default_floating_border pixel 1
+hide_edge_borders none
+## cores
+### classe              borda   fundo   texto   indicador  child_border
+client.focused          #ffffff #000000 #ffffff #ffffff    #ffffff
+client.focused_inactive #000000 #000000 #ffffff #000000    #000000
+client.unfocused        #000000 #000000 #ffffff #000000    #000000
+client.urgent           #ff0000 #000000 #ffffff #ff0000    #ff0000
+client.placeholder      #555555 #555555 #ffffff #555555    #555555
+client.background       #ffffff
+# Regras
+# for_window title_window_icon on
+for_window [class="^float$"] floating enable
+for_window [class="^Firefox$"] focus
+for_window [class="^firefox$"] focus
+for_window [class="^qutebrowser$"] focus
+for_window [class="^Chromium$"] focus
+for_window [class="^st-256color$"] focus
+for_window [class="^alacritty$"] focus
+for_window [class="^Emacs$"] focus
+for_window [class="^nvim$"] focus
+for_window [class="^mpv$"] focus
+for_window [class="^Gimp$"] focus
+for_window [class="^Xephyr$"] focus
+for_window [class="^discord$"] focus
+for_window [class="^TelegramDesktop$"] focus
+assign [class="^Chromium$"] "1:Browser"
+assign [class="^qutebrowser$"] "1:Browser"
+assign [class="^Firefox$"] "1:Browser"
+assign [class="^firefox$"] "1:Browser"
+assign [class="^Emacs$"] "2:Code"
+assign [class="^nvim$"] "2:Code"
+assign [class="^st-256color$"] "2:Code"
+assign [class="^St"] "2:Code"
+assign [class="^alacritty$"] "2:Code"
+assign [class="^mpv$"] "3:Fullscreen"
+assign [class="^Gimp$"] "3:Fullscreen"
+assign [class="^Xephyr$"] "3:Fullscreen"
+assign [class="^Hexchat"] "4:Message"
+assign [instance="^emacsirc"] "4:Message"
+assign [class="^discord$"] "4:Message"
+assign [class="^TelegramDesktop$"] "4:Message"
+# Teclas
+set $mod Mod4
+set $mods Mod4+Shift
+floating_modifier $mod normal
+## menu
+mode "Menu" {
+    bindsym Menu exec fuzzel ; mode "default"
+    bindsym Escape exec term_open -a float fzf_sys ; mode "default"
+    bindsym XF86Launch2 exec term_open -a float fzf_sys ; mode "default"
+    bindsym o exec org_dmenu ~/documentos/favoritos.org
+    bindsym m exec dmenu_mont ; mode "default"
+    bindsym p exec passmenu --type ; mode "default"
+    bindsym w exec term_open -a float fzf_wifi ; mode "default"
+    bindsym x exec term_open -a float fzf_xephyr ; mode "default"
+    bindsym c exec term_open -a float fzf_clip ; mode "default"
+    bindsym Shift+c exec galculator ; mode "default"
+    bindsym Shift+e exec term_open -a float fzf_emojis ; mode "default"
+    bindsym q exec qutebrowser ; mode "default"
+    bindsym f exec firefox ; mode "default"
+    bindsym h exec term_open -a float htop ; mode "default"
+    bindsym Shift+p exec pkill -x picom || picom -b --unredir-if-possible --backend xr_glx_hybrid --vsync --use-damage --glx-no-stencil ; mode "default"
+    bindsym s exec sct ; mode "default"
+    bindsym Shift+s exec sct 2000 ; mode "default"
+    bindsym t exec transmission-qt ; mode "default"
+    bindsym e exec emacsclient -n -c -a 'term_open nvim' ; mode "default"
+    bindsym a exec emacsclient -n -c -a 'term_open nvim' ~/documentos/anotações.org ; mode "default"
+    bindsym r reload
+    bindsym Shift+r restart
+    bindsym Shift+q exit
+}
+bindsym Menu mode "Menu"
+## resize mode
+mode "resize" {
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+## sway
+bindsym $mod+q kill
+bindsym $mod+t layout tabbed
+bindsym $mod+s layout stacking
+bindsym $mods+s layout toggle split
+bindsym $mod+w floating toggle
+bindsym $mod+f fullscreen toggle
+bindsym $mod+b bar hidden_state toggle
+## musica
+bindsym $mod+a exec term_open -a float ncmpcpp
+bindsym $mods+a exec term_open -a float pulsemixer
+bindsym $mod+space exec playerctl play-pause || mpc toggle
+bindsym XF86AudioPlay exec playerctl play-pause || mpc toggle
+bindsym $mod+comma exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym $mod+period exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym $mods+comma exec musica ante
+bindsym $mods+period exec musica prox
+## outros
+bindsym Print exec dmenu_print
+bindsym $mod+e exec emacs
+bindsym $mods+Return exec term_open
+## setas/vimkeys
+bindsym $mod+Up focus up
+bindsym $mod+Down focus down
+bindsym $mod+Left focus left
+bindsym $mod+Right focus right
+bindsym $mods+Up move up
+bindsym $mods+Down move down
+bindsym $mods+Left move left
+bindsym $mods+Right move right
+bindsym Ctrl+$mod+Right splith
+bindsym Ctrl+$mod+Down splitv
+bindsym Mod1+Left workspace prev
+bindsym Mod1+Right workspace next
+bindsym $mod+k focus up
+bindsym $mod+j focus down
+bindsym $mod+h focus left
+bindsym $mod+l focus right
+bindsym $mods+k move up
+bindsym $mods+j move down
+bindsym $mods+h move left
+bindsym $mods+l move right
+bindsym Mod1+h workspace next
+bindsym Mod1+l workspace prev
+## workspaces
+set $ws1 "1:Browser"
+set $ws2 "2:Code"
+set $ws3 "3:Fullscreen"
+set $ws4 "4:Message"
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mods+1 move window to workspace number $ws1
+bindsym $mods+2 move window to workspace number $ws2
+bindsym $mods+3 move window to workspace number $ws3
+bindsym $mods+4 move window to workspace number $ws4
+# Iniciar
+# output * bg /home/lucas/media/imagens/wallpapers/kaiji_friends.png
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock -f -c 000000'
+exec transmission-qt -m
+exec emacs --name=emacsirc --title=emacsirc -q --load "~/.config/emacs/irc.el"
+exec emacs --daemon
+# Barra
+bar {
+    colors {
+        background #00000085
+        statusline #ffffffff
+        separator #ffffffff
+        focused_workspace #ffffffff #ffffffff #00000085
+        inactive_workspace #00000085 #00000085 #ffffffff
+        urgent_workspace #ff0000ff #ff0000ff #00000085
+    }
+    status_command while date +'%a %d/%m/%Y - %H:%M'; do sleep 1; done
+    strip_workspace_numbers yes
+    position top
+    height 14
+    mode hide
+        hidden_state hide
+        modifier Mod4
+}

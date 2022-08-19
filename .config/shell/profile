@@ -32,18 +32,19 @@ export XDG_RUNTIME_DIR="/run/user/$UID"
 export XDG_BIN_HOME="$HOME/.local/bin"
 # window manager
 export WM="herbstluftwm"
-# Wayland
-if [ "$WM" = "dwl" ] || [ "$WM" = "cagebreak" ]; then
-    export XDG_SESSION_TYPE=wayland
-    export MOZ_ENABLE_WAYLAND=1
-    export QT_QPA_PLATFORM=wayland-egl
-    export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-    export SDL_VIDEODRIVER=wayland
-    export _JAVA_AWT_WM_NONREPARENTING=1
-fi
 # terminal
 export TERMINAL="st"
 export TERM="xterm-256color"
+# Wayland
+if [ "$WM" = "sway" ] || [ "$WM" = "dwl" ] || [ "$WM" = "cagebreak" ]; then
+    export XDG_SESSION_TYPE=wayland
+    export MOZ_ENABLE_WAYLAND=1
+    export QT_QPA_PLATFORM=wayland
+    export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+    export SDL_VIDEODRIVER=wayland
+    export _JAVA_AWT_WM_NONREPARENTING=1
+    export TERMINAL="foot"
+fi
 # navegador padrão
 export BROWSER="qutebrowser"
 # systema
@@ -149,7 +150,9 @@ export LC_TIME="pt_BR.UTF-8"
 
 [ "$HOSTNAME" = *"note"* ] && export LIBGL_ALWAYS_SOFTWARE=1
 
-if [ "$WM" = "dwl" ] && [ "$(tty)" = "/dev/tty1" ]; then
+if [ "$WM" = "sway" ] && [ "$(tty)" = "/dev/tty1" ]; then
+    exec sway
+elif [ "$WM" = "dwl" ] && [ "$(tty)" = "/dev/tty1" ]; then
     exec dbus-run-session dwl -s "${XDG_CONFIG_HOME:-$HOME/.config}/dwl/dwlrc"
 elif [ "$WM" = "cagebreak" ] && [ "$(tty)" = "/dev/tty1" ]; then
     exec cagebreak
