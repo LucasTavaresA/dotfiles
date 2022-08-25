@@ -203,12 +203,12 @@ exec checar_updates
 ## Barra
 bar {
     colors {
-        background #000000bb
+        background #000000ff
         statusline #ffffffff
         separator #ffffffff
-        focused_workspace #ffffffff #ffffffff #000000bb
-        inactive_workspace #000000bb #000000bb #ffffffff
-        urgent_workspace #ff0000ff #ff0000ff #000000bb
+        focused_workspace #ffffffff #ffffffff #000000ff
+        inactive_workspace #000000ff #000000ff #ffffffff
+        urgent_workspace #ff0000ff #ff0000ff #000000ff
     }
     font pango:Terminus 12
     status_command i3blocks
