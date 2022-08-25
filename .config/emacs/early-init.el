@@ -23,6 +23,9 @@
       (startup-redirect-eln-cache (convert-standard-filename (expand-file-name "var/eln-cache/" user-emacs-directory)))))
   (add-to-list 'native-comp-eln-load-path (expand-file-name "eln-cache/" user-emacs-directory)))
 
+;; desativa o package.el
+(setq package-enable-at-startup nil)
+
 ;;; Aparencia
 (setq inhibit-startup-message t)
 (tooltip-mode -1)
