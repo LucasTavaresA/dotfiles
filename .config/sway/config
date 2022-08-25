@@ -1,6 +1,9 @@
 # sway
-mouse_warping output
+xwayland enable
+## mouse
+mouse_warping container
 focus_follows_mouse no
+## janelas
 floating_minimum_size 500 x 300
 floating_maximum_size 1000 x 600
 default_orientation vertical
@@ -8,14 +11,26 @@ workspace_layout tabbed
 title_align center
 focus_wrapping no
 focus_on_window_activation focus
+## teclado
+input type:keyboard {
+    xkb_layout br
+    xkb_options caps:escape_shifted_capslock
+    xkb_numlock enable
+    repeat_delay 300
+    repeat_rate 100
+}
+
 # Aparência
-font pango:Terminus 12
+## sem abas
+font pango:monospace 0
+titlebar_border_thickness 0
+titlebar_padding 0
 ## bordas
 smart_borders on
 hide_edge_borders smart
-# for_window border pixel 1
+for_window [app_id=".*"] border pixel 1
 default_border pixel 1
-default_floating_border pixel 1
+default_floating_border pixel 4
 hide_edge_borders none
 ## cores
 ### classe              borda   fundo   texto   indicador  child_border
@@ -25,67 +40,80 @@ client.unfocused        #000000 #000000 #ffffff #000000    #000000
 client.urgent           #ff0000 #000000 #ffffff #ff0000    #ff0000
 client.placeholder      #555555 #555555 #ffffff #555555    #555555
 client.background       #ffffff
+
 # Regras
-# for_window title_window_icon on
-for_window [class="^float$"] floating enable
-for_window [class="^Firefox$"] focus
-for_window [class="^firefox$"] focus
-for_window [class="^qutebrowser$"] focus
-for_window [class="^Chromium$"] focus
-for_window [class="^st-256color$"] focus
-for_window [class="^alacritty$"] focus
-for_window [class="^Emacs$"] focus
-for_window [class="^nvim$"] focus
-for_window [class="^mpv$"] focus
-for_window [class="^Gimp$"] focus
-for_window [class="^Xephyr$"] focus
-for_window [class="^discord$"] focus
-for_window [class="^TelegramDesktop$"] focus
-assign [class="^Chromium$"] "1:Browser"
-assign [class="^qutebrowser$"] "1:Browser"
-assign [class="^Firefox$"] "1:Browser"
-assign [class="^firefox$"] "1:Browser"
-assign [class="^Emacs$"] "2:Code"
-assign [class="^nvim$"] "2:Code"
-assign [class="^st-256color$"] "2:Code"
-assign [class="^St"] "2:Code"
-assign [class="^alacritty$"] "2:Code"
-assign [class="^mpv$"] "3:Fullscreen"
-assign [class="^Gimp$"] "3:Fullscreen"
-assign [class="^Xephyr$"] "3:Fullscreen"
-assign [class="^Hexchat"] "4:Message"
-assign [instance="^emacsirc"] "4:Message"
-assign [class="^discord$"] "4:Message"
-assign [class="^TelegramDesktop$"] "4:Message"
+## Não desliga a tela quando em tela cheia
+for_window [class="^.*"] inhibit_idle fullscreen
+for_window [app_id="^.*"] inhibit_idle fullscreen
+for_window [app_id=".*"] title_window_icon on
+for_window [app_id="^menu$"] floating enable, border pixel 4, resize set 400 300, move position center
+for_window [app_id="^float$"] floating enable, border pixel 4, resize set 1000 600, move position center
+for_window [app_id="org.qutebrowser.qutebrowser"] focus
+for_window [app_id="^Firefox$"] focus
+for_window [app_id="^firefox$"] focus
+for_window [instance="^emacs$"] focus
+for_window [app_id="^nvim$"] focus
+for_window [app_id="^foot$"] focus
+for_window [app_id="^alacritty$"] focus
+for_window [app_id="^mpv$"] focus
+for_window [app_id="^Gimp$"] focus
+for_window [app_id="^Xephyr$"] focus
+for_window [instance="^emacsirc$"] focus
+for_window [app_id="^discord$"] focus
+for_window [app_id="^TelegramDesktop$"] focus
+assign [app_id="org.qutebrowser.qutebrowser"] "1:Browser"
+assign [app_id="^Firefox$"] "1:Browser"
+assign [app_id="^firefox$"] "1:Browser"
+assign [instance="^emacs$"] "2:Code"
+assign [app_id="^nvim$"] "2:Code"
+assign [app_id="^foot$"] "2:Code"
+assign [app_id="^alacritty$"] "2:Code"
+assign [app_id="^mpv$"] "3:Fullscreen"
+assign [app_id="^Gimp$"] "3:Fullscreen"
+assign [app_id="^Xephyr$"] "3:Fullscreen"
+assign [instance="^emacsirc$"] "4:Message"
+assign [app_id="^discord$"] "4:Message"
+assign [app_id="^TelegramDesktop$"] "4:Message"
+
 # Teclas
+set $fuzzelopts "-I --terminal=term_open -x 0 -y 0 -p 0 -b 000000ff -t ffffffff -m ff0000ff -S 000000ff -B 1 -r 0 -C ffffffff --show-actions -f Terminus:size=16 -P '>'"
 set $mod Mod4
 set $mods Mod4+Shift
 floating_modifier $mod normal
+## sway
+bindsym $mod+q kill
+bindsym $mod+w floating toggle, border pixel 4, sticky true
+bindsym $mod+f fullscreen toggle
+bindsym $mod+b bar hidden_state toggle
+bindsym $mod+tab exec sway-overfocus split-rw group-rw float-rw
+bindsym Print exec wayland_print
+bindsym $mod+e exec emacs
+bindsym $mods+Return exec term_open
 ## menu
 mode "Menu" {
-    bindsym Menu exec fuzzel ; mode "default"
-    bindsym Escape exec term_open -a float fzf_sys ; mode "default"
-    bindsym XF86Launch2 exec term_open -a float fzf_sys ; mode "default"
-    bindsym o exec org_dmenu ~/documentos/favoritos.org
+    bindsym Menu exec fuzzel "$fuzzelopts" -w 35 ; mode "default"
+    bindsym Escape exec powermenu ; mode "default"
+    bindsym XF86Launch2 exec powermenu ; mode "default"
+    bindsym o exec org_dmenu ~/documentos/favoritos.org ; mode "default"
     bindsym m exec dmenu_mont ; mode "default"
     bindsym p exec passmenu --type ; mode "default"
-    bindsym w exec term_open -a float fzf_wifi ; mode "default"
-    bindsym x exec term_open -a float fzf_xephyr ; mode "default"
-    bindsym c exec term_open -a float fzf_clip ; mode "default"
+    bindsym c exec clipman pick --tool fuzzel --tool-args=$fuzzelopts ; mode "default"
     bindsym Shift+c exec galculator ; mode "default"
     bindsym Shift+e exec term_open -a float fzf_emojis ; mode "default"
     bindsym q exec qutebrowser ; mode "default"
     bindsym f exec firefox ; mode "default"
     bindsym h exec term_open -a float htop ; mode "default"
     bindsym Shift+p exec pkill -x picom || picom -b --unredir-if-possible --backend xr_glx_hybrid --vsync --use-damage --glx-no-stencil ; mode "default"
-    bindsym s exec sct ; mode "default"
-    bindsym Shift+s exec sct 2000 ; mode "default"
+    bindsym s exec gammastep -O 3000 ; mode "default"
+    bindsym Shift+s exec pkill -x gammastep ; mode "default"
     bindsym t exec transmission-qt ; mode "default"
     bindsym e exec emacsclient -n -c -a 'term_open nvim' ; mode "default"
     bindsym a exec emacsclient -n -c -a 'term_open nvim' ~/documentos/anotações.org ; mode "default"
+    bindsym i exec emacsclient -n -c -a 'term_open nvim' ~/documentos/inf.org ; mode "default"
+    bindsym l exec swaylock -c 000000ff --scaling fill ; mode "default"
     bindsym r reload
-    bindsym Shift+r restart
-    bindsym Shift+q exit
+    # bindsym Shift+q exit
+    bindsym Shift+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit' ; mode "default"
 }
 bindsym Menu mode "Menu"
 ## resize mode
@@ -103,29 +131,17 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 bindsym $mod+r mode "resize"
-## sway
-bindsym $mod+q kill
-bindsym $mod+t layout tabbed
-bindsym $mod+s layout stacking
-bindsym $mods+s layout toggle split
-bindsym $mod+w floating toggle
-bindsym $mod+f fullscreen toggle
-bindsym $mod+b bar hidden_state toggle
 ## musica
 bindsym $mod+a exec term_open -a float ncmpcpp
 bindsym $mods+a exec term_open -a float pulsemixer
 bindsym $mod+space exec playerctl play-pause || mpc toggle
 bindsym XF86AudioPlay exec playerctl play-pause || mpc toggle
-bindsym $mod+comma exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym $mod+period exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym $mods+comma exec musica ante
-bindsym $mods+period exec musica prox
-## outros
-bindsym Print exec dmenu_print
-bindsym $mod+e exec emacs
-bindsym $mods+Return exec term_open
+bindsym $mod+comma exec pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -SIGRTMIN+22 i3blocks
+bindsym $mod+period exec pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -SIGRTMIN+22 i3blocks
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -SIGRTMIN+22 i3blocks
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -SIGRTMIN+22 i3blocks
+bindsym $mods+comma exec musica ante && pkill -SIGRTMIN+18 i3blocks
+bindsym $mods+period exec musica prox && pkill -SIGRTMIN+18 i3blocks
 ## setas/vimkeys
 bindsym $mod+Up focus up
 bindsym $mod+Down focus down
@@ -135,8 +151,6 @@ bindsym $mods+Up move up
 bindsym $mods+Down move down
 bindsym $mods+Left move left
 bindsym $mods+Right move right
-bindsym Ctrl+$mod+Right splith
-bindsym Ctrl+$mod+Down splitv
 bindsym Mod1+Left workspace prev
 bindsym Mod1+Right workspace next
 bindsym $mod+k focus up
@@ -162,29 +176,45 @@ bindsym $mods+1 move window to workspace number $ws1
 bindsym $mods+2 move window to workspace number $ws2
 bindsym $mods+3 move window to workspace number $ws3
 bindsym $mods+4 move window to workspace number $ws4
+
 # Iniciar
-# output * bg /home/lucas/media/imagens/wallpapers/kaiji_friends.png
 exec swayidle -w \
          timeout 300 'swaylock -f -c 000000' \
          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
          before-sleep 'swaylock -f -c 000000'
+exec wl-paste -t text --watch clipman store 1>> $XDG_DATA_HOME/clipman.log 2>&1 &
+exec fzf_man update
+exec dunst
+exec syncthing
 exec transmission-qt -m
 exec emacs --name=emacsirc --title=emacsirc -q --load "~/.config/emacs/irc.el"
 exec emacs --daemon
-# Barra
+exec foot -s
+## musica
+exec mpd
+exec mpDris2 --music-dir="$HOME/media/musicas/"
+exec playerctld daemon
+exec mpc update
+## aparência
+exec swaybg -i $HOME/media/imagens/wallpapers/kaiji_friends.png -m fill
+## sistema
+exec checar_updates
+
+## Barra
 bar {
     colors {
-        background #00000085
+        background #000000bb
         statusline #ffffffff
         separator #ffffffff
-        focused_workspace #ffffffff #ffffffff #00000085
-        inactive_workspace #00000085 #00000085 #ffffffff
-        urgent_workspace #ff0000ff #ff0000ff #00000085
+        focused_workspace #ffffffff #ffffffff #000000bb
+        inactive_workspace #000000bb #000000bb #ffffffff
+        urgent_workspace #ff0000ff #ff0000ff #000000bb
     }
-    status_command while date +'%a %d/%m/%Y - %H:%M'; do sleep 1; done
+    font pango:Terminus 12
+    status_command i3blocks
     strip_workspace_numbers yes
     position top
-    height 14
+    height 16
     mode hide
         hidden_state hide
         modifier Mod4
