@@ -15,8 +15,8 @@ pgrep -x mpd || mpd &
 mpDris2 --music-dir="$HOME/media/musicas/" &
 playerctld daemon &
 mpc update &
-# aparencia
-[ "$HOSTNAME" = *"note"* ] && xrandr --output LVDS --set TearFree on
+# aparência
+[ "$HOSTNAME" = "$OS"note ] && xrandr --output LVDS --set TearFree on
 picom -b --unredir-if-possible --backend xr_glx_hybrid --vsync --use-damage --glx-no-stencil &
 nitrogen --restore &
 xsetroot -cursor_name left_ptr
