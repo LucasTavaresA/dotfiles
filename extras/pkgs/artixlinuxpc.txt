@@ -3,7 +3,6 @@ adobe-source-han-sans-jp-fonts
 adobe-source-han-sans-kr-fonts
 adobe-source-sans-fonts
 aic94xx-firmware
-alacritty
 alsa-firmware
 alsa-utils
 android-tools
@@ -40,7 +39,6 @@ dnsmasq
 docx2txt
 dotnet-sdk
 dunst
-elogind-runit
 emacs-nativecomp
 enchant
 esysusers
@@ -57,8 +55,12 @@ findutils
 firefox
 fish
 flex
+foot
+foot-terminfo
+fuzzel
 fzf
 galculator
+gammastep
 gawk
 gcc
 gdu
@@ -72,6 +74,7 @@ gnome-tweaks
 gopls
 gparted
 grep
+grimshot
 groff
 grub
 grub2-theme-fallout-git
@@ -81,13 +84,13 @@ gucharmap
 gzip
 handlr
 herbstluftwm
-hexchat
 highlight
 hspell
 htop
 hunspell
 hunspell-en_us
 hunspell-pt-br
+i3blocks
 imagemagick
 imlib
 imlib2
@@ -182,6 +185,7 @@ python-pipenv
 python-pynvim
 python-pytest
 qemu-desktop
+qt5-wayland
 qt5-x11extras
 qt5ct
 qutebrowser
@@ -191,6 +195,7 @@ rtags
 runit
 sbcl
 sct
+seatd-runit
 sed
 shellcheck
 simple-mtpfs
@@ -198,6 +203,11 @@ slop
 starship
 stpv-git
 streamlink
+sway
+sway-overfocus
+swaybg
+swayidle
+swaylock
 sx
 sxhkd
 syncthing
@@ -234,6 +244,7 @@ w3m
 wd719x-firmware
 wget
 which
+wl-clipboard
 wmctrl
 xautolock
 xbanish
@@ -253,6 +264,7 @@ xorg-xkill
 xorg-xprop
 xorg-xset
 xorg-xsetroot
+xorg-xwayland
 xorg-xwininfo
 youtube-dl
 yt-dlp
