@@ -26,7 +26,7 @@ if os.getenv('HOSTNAME') == os.getenv('OS') + 'pc':
 if os.getenv('HOSTNAME') == os.getenv('OS') + 'note':
     config.set('qt.force_software_rendering', 'software-opengl')
 # tela cheia limitada a janela do navegador
-config.set('content.fullscreen.window', True)
+config.set('content.fullscreen.window', False)
 # diminuiu javascript lento nos sites
 config.set('content.prefers_reduced_motion', True)
 # vê pdfs no browser usando o pdfjs
