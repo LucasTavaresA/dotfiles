@@ -132,7 +132,7 @@ criar_script () {
 
 #### Aliases ####
 alias cd="z"
-alias eirc="term_open -a emacsirc emacs -nw -q --load '~/.config/emacs/irc.el' &!"
+alias eirc="emacs --name=emacsirc --title=emacsirc -q --load '~/.config/emacs/irc.el' &!"
 alias tpg="topgrade"
 alias cs="criar_script sh script.sh"
 alias pk="pkill -i"
