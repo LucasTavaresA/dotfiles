@@ -1,42 +1,50 @@
-# List of valid properties:
-#
-# align
-# color
-# command
-# full_text
-# instance
-# interval
-# label
-# min_width
-# name
-# separator
-# separator_block_width
-# short_text
-# signal
-# urgent
-
-# Global properties
-#
-# The top properties below are applied to every block, but can be overridden.
-# Each block command defaults to the script name to avoid boilerplate.
-# Change $SCRIPT_DIR to the location of your scripts!
 command=$XDG_DATA_HOME/i3blocks/$BLOCK_NAME/$BLOCK_NAME
-separator_block_width=15
-separator=" "
+full_text=│
+align=center
+separator=false
+separator_block_width=20
 markup=none
 
 [musica]
+label=🎵 
+color=#00bbff
 command=echo $(musica tocando)
 interval=5
 signal=18
 
 [volume]
+color=#00bbff
 command=echo $(volume)
 interval=once
 signal=22
 
-[separador]
-full_text="                                     "
+[separator]
+color=#555555
+
+[disk]
+color=#ff5500
+LABEL=/home 
+DIR=/home
+interval=3600
+
+[disk]
+color=#ff5500
+LABEL=/ 
+DIR=/
+interval=3600
+
+[battery-poly]
+color=#555555
+interval=5
+
+
+[iface]
+color=#009900
+interval=10
+display_wifi_name=0
+
+[separator]
+color=#555555
 
 [data]
 command=date '+%a %d/%m/%Y - %H:%M'
