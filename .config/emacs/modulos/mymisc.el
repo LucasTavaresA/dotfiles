@@ -96,11 +96,6 @@
   :config (setq terminal-here-linux-terminal-command 'st))
 
 ;;; Folding
-;; Esconde comentários
-(use-package obvious
-  :straight (obvious :type git :host github :repo "alphapapa/obvious.el")
-  :config (setq obvious-headers nil))
-
 ;; Esconde seções usando comentarios como headings
 (use-package outshine
   :straight (outshine :type git :host github :repo "alphapapa/outshine")
