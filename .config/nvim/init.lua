@@ -145,8 +145,8 @@ vim.opt.whichwrap = vim.opt.whichwrap + "<,>,h,l,[,]"
 -- ativa uso do mouse
 vim.opt.mouse = "a"
 -- copiar e colar para o neovim
-vim.cmd("autocmd InsertEnter * set cul")
-vim.cmd("autocmd InsertLeave * set nocul")
+vim.api.nvim_create_autocmd("InsertEnter", { pattern = {"*"}, command = "set cul", })
+vim.api.nvim_create_autocmd("InsertLeave", { pattern = {"*"}, command = "set nocul", })
 vim.opt.clipboard:append { "unnamedplus" }
 -- atualiza o neovim mais rápido
 vim.opt.updatetime = 100
@@ -164,21 +164,16 @@ vim.opt.incsearch = false
 -- linhas não dão a volta na tela
 vim.opt.wrap = false
 -- desativa comentar automaticamente a próxima linha
-vim.cmd("autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
--- automaticamente deleta todos os espaços em branco e novas linhas no salvamento do arquivo
-vim.cmd [[ autocmd BufWritePre * let currPos = getpos('.') ]]
-vim.cmd [[ autocmd BufWritePre * %s/\s\+$//e ]]
-vim.cmd [[ autocmd BufWritePre * %s/\n\+\%$//e ]]
-vim.cmd [[ autocmd BufWritePre *.[ch] %s/\%$/\r/e ]]
-vim.cmd [[ autocmd BufWritePre * cal cursor(currPos[1], currPos[2]) ]]
+vim.api.nvim_create_autocmd("FileType", 
+    { pattern = {"*"}, command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o", })
 
 --- Aparência
 -- indicação de sintaxe
 vim.cmd("syntax on")
 -- inicia sem a barra - LiteDFM
-vim.cmd("autocmd VimEnter * LiteDFMToggle")
 -- tema - moonlight
 vim.cmd("colorscheme spaceway")
+vim.api.nvim_create_autocmd("VimEnter", { pattern = {"*"}, command = "LiteDFMToggle", })
 -- tema do visual multi
 vim.g.VM_theme = "neon"
 -- indica linha selecionada no modo normal
@@ -195,7 +190,7 @@ vim.cmd("hi EndOfBuffer guibg=NONE ctermbg=NONE")
 vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
 -- cor da linha atual
 vim.cmd("hi CursorLine guibg=#333333")
-vim.cmd("autocmd InsertLeave * set cursorline")
+vim.api.nvim_create_autocmd("InsertLeave", { pattern = {"*"}, command = "set cursorline", })
 -- incida parenteses correspondente
 vim.cmd("hi! MatchParen cterm=NONE,bold gui=NONE,bold  guibg=NONE guifg=#ff0000")
 -- não deleta pares automaticamente
