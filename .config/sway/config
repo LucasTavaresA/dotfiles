@@ -191,6 +191,8 @@ exec emacs --name=emacsirc --title=emacsirc -q --load "~/.config/emacs/irc.el"
 exec emacs --daemon
 exec foot -s
 ## musica
+exec pipewire
+exec pipewire-pulse
 exec mpd
 exec mpDris2 --music-dir="$HOME/media/musicas/"
 exec playerctld daemon
