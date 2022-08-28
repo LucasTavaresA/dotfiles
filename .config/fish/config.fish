@@ -237,14 +237,14 @@ if status is-interactive
     else if test "$OS" = "voidlinux";
         abbr -a -g xs "./xbps-src"
         # xbps
-        abbr -a -g xis doas xbps-install -S
+        abbr -a -g xis doas xbps-install -S && ~/extras/pkgs/updatepkglist
         abbr -a -g xqrs xbps-query -Rs
-        abbr -a -g xisu doas xbps-install -Su
+        abbr -a -g xisu doas xbps-install -Su && ~/extras/pkgs/updatepkglist
         abbr -a -g xql xbps-query -l
         abbr -a -g xqlg "xbps-query -l | grep --color -i"
         abbr -a -g xrr doas xbps-remove -R
         # xtools
-        abbr -a -g chroot xchroot
+        abbr -a -g xch xchroot
         abbr -a -g xg xgrep
         abbr -a -g xh xhog
         abbr -a -g xil xilog

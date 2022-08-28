@@ -242,14 +242,14 @@ if [ "$OS" = "artixlinux" ] || [ "$OS" = "archlinux" ] || [ "$OS" = "manjaro" ];
 elif [ "$OS" = "voidlinux" ]; then
     alias xs="./xbps-src"
     # xbps
-    alias xis="doas xbps-install -S"
+    alias xis="doas xbps-install -S && ~/extras/pkgs/updatepkglist"
     alias xqrs="xbps-query -Rs"
-    alias xisu="doas xbps-install -Su"
+    alias xisu="doas xbps-install -Su && ~/extras/pkgs/updatepkglist"
     alias xql="xbps-query -l"
     alias xqlg="xbps-query -l | grep --color -i"
     alias xrr="doas xbps-remove -R"
     # xtools
-    alias chroot="xchroot"
+    alias xch="xchroot"
     alias xg="xgrep"
     alias xh="xhog"
     alias xil="xilog"
