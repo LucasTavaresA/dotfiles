@@ -11,6 +11,8 @@ pgrep -x syncthing || syncthing &
 pgrep -x emacs || emacs --daemon &
 fzf_man update &
 # musica
+pipewire &
+pipewire-pulse &
 pgrep -x mpd || mpd &
 mpDris2 --music-dir="$HOME/media/musicas/" &
 playerctld daemon &
