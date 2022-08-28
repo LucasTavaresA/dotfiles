@@ -50,14 +50,13 @@ esac
 if [ "$WM" = "sway" ] || [ "$WM" = "dwl" ] || [ "$WM" = "cagebreak" ]; then
     export XDG_SESSION_TYPE=wayland
     export MOZ_ENABLE_WAYLAND=1
-    export QT_QPA_PLATFORM=wayland
+    export QT_QPA_PLATFORM=wayland-egl
     export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
     export SDL_VIDEODRIVER=wayland
     export _JAVA_AWT_WM_NONREPARENTING=1
     export TERMINAL="footclient"
-    if [ "$OS" = "artixlinux" ]; then
-        export LIBSEAT_BACKEND=seatd
-    fi
+    export LIBSEAT_BACKEND=seatd
+    export ELM_DISPLAY=wl
 fi
 # onde procurar manpages
 export MANPATH="/usr/local/man:/usr/local/share/man:/usr/share/man:/usr/lib/jvm/default/man:/usr/lib/jvm/java-11-openjdk/man"
@@ -95,7 +94,7 @@ export TERMINFO="${XDG_DATA_HOME:-$HOME/.local/share}/terminfo"
 export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/readline/inputrc"
 # gtk 2
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc"
-export GTK_THEME="Catppuccin-blue"
+export GTK_THEME="Catppuccin-Macchiato"
 # w3m
 export W3M_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/w3m"
 # go
