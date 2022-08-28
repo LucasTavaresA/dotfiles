@@ -12,10 +12,10 @@ set hidden on
 # informação mostrada do lado do arquivo
 set info "size"
 # previa de arquivos
-set previewer stpv
-set cleaner stpvimgclr
-&stpvimg --listen $id
-cmd on-quit $stpvimg --end $id
+set previewer ctpv
+set cleaner ctpvclear
+&ctpv -s $id
+&ctpvquit $id
 # fração das abas
 set ratios 1:2
 # da a volta nos items
