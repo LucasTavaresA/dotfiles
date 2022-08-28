@@ -1,4 +1,5 @@
 ImageMagick
+alsa-firmware
 alsa-pipewire
 alsa-utils
 android-tools
@@ -12,6 +13,7 @@ bc
 cargo
 catdoc
 catimg
+ccls
 cheat
 checkbashisms
 chromium-widevine
@@ -133,7 +135,6 @@ python3-adblock
 python3-neovim
 qt5-wayland
 qt5ct
-qt6-wayland
 qutebrowser
 rtags
 seatd
