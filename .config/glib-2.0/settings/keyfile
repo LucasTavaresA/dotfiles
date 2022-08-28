@@ -1,10 +1,10 @@
 [org/gnome/desktop/interface]
-gtk-theme='Catppuccin-blue'
+gtk-theme='Catppuccin-Macchiato'
 
 icon-theme='Papirus-Dark'
 
 [org/gnome/desktop/wm/preferences]
-theme='Catppuccin-blue'
+theme='Catppuccin-Macchiato-Dark'
 
 [org/gtk/settings/file-chooser]
 window-position=(176, 97)
