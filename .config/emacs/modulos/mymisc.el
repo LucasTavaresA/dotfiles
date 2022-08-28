@@ -120,7 +120,7 @@
 ;; Ativa folding apropriado dependendo do major-mode
 (defun my-folding-modes ()
   "Ativa folding apropriado dependendo do major-mode"
-  (cond ((string= major-mode "sh-mode")
+  (cond ((or (string= major-mode "sh-mode") (string= major-mode "python-mode") (string= major-mode "fish-mode"))
          nil)
         ((and (string= major-mode "emacs-lisp-mode")
               (string-match-p (regexp-quote ".config/emacs/modulos/") buffer-file-name))

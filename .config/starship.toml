@@ -4,9 +4,9 @@ format = """
 
 [character]
 format = "$symbol"
-success_symbol = "[I](bold green)"
-error_symbol = "[X](bold red)"
-vicmd_symbol = "[N](bold white)"
+success_symbol = "[I>](bold green)"
+error_symbol = "[X>](bold red)"
+vicmd_symbol = "[N>](bold white)"
 
 [shell]
 unknown_indicator = "unknown shell"

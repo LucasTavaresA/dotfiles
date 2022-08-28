@@ -263,7 +263,7 @@
         lui-time-stamp-position 'right-margin
         lui-time-stamp-format "%H:%M"
         lui-track-bar-behavior 'before-switch-to-buffer
-        tracking-ignored-buffers '("#archlinux" "#artix" "#freebsd" "#lineageos" "#git" "#qbittorrent")
+        tracking-ignored-buffers '("#archlinux" "#artix" "#voidlinux" "#freebsd" "#lineageos" "#git" "#qbittorrent")
         circe-format-say "<{nick}> {body}"
         circe-format-self-say ">{nick}< {body}"
         circe-network-options
@@ -272,7 +272,7 @@
            :sasl-username "lucasta"
            :sasl-password ,libera-password
            :channels ("#lucasta" "#sway" "#emacs" "#herbstluftwm" "#qutebrowser" "#stumpwm" "#git" "#lineageos"
-                      "#systemcrafters" "#qbittorrent" "#freebsd" "#artix" "#archlinux"))
+                      "#systemcrafters" "#qbittorrent" "#voidlinux" "#freebsd" "#artix" "#archlinux"))
           ))
   (load "lui-logging" nil t)
   (enable-circe-color-nicks)

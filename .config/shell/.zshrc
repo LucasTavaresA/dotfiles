@@ -167,8 +167,6 @@ alias dnr="dotnet run"
 alias dnn="dotnet new"
 alias xp="xprop"
 alias xk="xkill"
-alias sys="doas systemctl"
-[ "$OS" = "voidlinux" ] && alias sys="doas sv"
 # arquivos e Diretórios
 alias g="grep --color -iIn"
 alias rm="lixo"
@@ -239,12 +237,13 @@ if [ "$OS" = "artixlinux" ] || [ "$OS" = "archlinux" ] || [ "$OS" = "manjaro" ];
     alias ppqs="paru --color always -Qs"
     alias ppfyl="paru --color always -Fyl"
     alias pprns="paru --color always -Rns"
+    alias sys="doas systemctl"
 elif [ "$OS" = "voidlinux" ]; then
     alias xs="./xbps-src"
     # xbps
-    alias xis="doas xbps-install -S && ~/extras/pkgs/updatepkglist"
+    alias xis="doas xbps-install -S"
     alias xqrs="xbps-query -Rs"
-    alias xisu="doas xbps-install -Su && ~/extras/pkgs/updatepkglist"
+    alias xisu="doas xbps-install -Su"
     alias xql="xbps-query -l"
     alias xqlg="xbps-query -l | grep --color -i"
     alias xrr="doas xbps-remove -R"
@@ -256,6 +255,7 @@ elif [ "$OS" = "voidlinux" ]; then
     alias xl="xlocate -S && xlocate"
     alias xm="xmandoc"
     alias xqr="xq -R"
+    alias sys="doas sv"
 elif [ "$OS" = "linuxmint" ]; then
     alias bat="batcat"
     # apt
@@ -265,6 +265,7 @@ elif [ "$OS" = "linuxmint" ]; then
     alias auau="doas apt update && doas apt upgrade"
     alias ali="apt list --installed"
     alias ar="doas apt remove"
+    alias sys="doas systemctl"
 fi
 
 # carrega plugins do zsh, deve ser o ultimo comando

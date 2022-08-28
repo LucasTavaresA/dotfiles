@@ -32,7 +32,9 @@ xmodmap -e "keycode 61 = semicolon colon semicolon colon quotedbl" # alt + ; = "
 # sistema
 checar_updates &
 
-if [ "$WM" = "herbstluftwm" ]; then
+if [ "$WM" = "i3" ]; then
+    flags=""
+elif [ "$WM" = "herbstluftwm" ]; then
     flags=" --locked"
 elif [ "$WM" = "dwm" ]; then
     sxhkd -c "$HOME/.config/sxhkd/sxhkd_dwm" &

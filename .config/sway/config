@@ -31,7 +31,6 @@ hide_edge_borders smart
 for_window [app_id=".*"] border pixel 1
 default_border pixel 1
 default_floating_border pixel 4
-hide_edge_borders none
 ## cores
 ### classe              borda   fundo   texto   indicador  child_border
 client.focused          #ffffff #000000 #ffffff #ffffff    #ffffff
@@ -59,7 +58,6 @@ for_window [app_id="^foot$"] focus
 for_window [app_id="^alacritty$"] focus
 for_window [app_id="^mpv$"] focus
 for_window [app_id="^Gimp$"] focus
-for_window [app_id="^Xephyr$"] focus
 for_window [instance="^emacsirc$"] focus
 for_window [app_id="^discord$"] focus
 for_window [app_id="^TelegramDesktop$"] focus
@@ -72,7 +70,6 @@ assign [app_id="^foot$"] "2:Code"
 assign [app_id="^alacritty$"] "2:Code"
 assign [app_id="^mpv$"] "3:Fullscreen"
 assign [app_id="^Gimp$"] "3:Fullscreen"
-assign [app_id="^Xephyr$"] "3:Fullscreen"
 assign [instance="^emacsirc$"] "4:Message"
 assign [app_id="^discord$"] "4:Message"
 assign [app_id="^TelegramDesktop$"] "4:Message"

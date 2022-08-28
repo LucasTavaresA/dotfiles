@@ -4,7 +4,7 @@
   :defer t
   :hook (org-mode . ajusta-texto)
   :init
-  (setq org-ellipsis "  "
+  (setq org-ellipsis "..."
         org-startup-folded 'content
         org-return-follows-link t
         org-mouse-1-follows-link t

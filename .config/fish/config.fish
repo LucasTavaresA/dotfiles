@@ -162,8 +162,6 @@ if status is-interactive
     abbr -a -g dnn dotnet new
     abbr -a -g xp xprop
     abbr -a -g xk xkill
-    abbr -a -g sys doas systemctl
-    test "$OS" = "voidlinux"; and abbr -a -g sys doas sv
     # arquivos e Diretórios
     abbr -a -g rm lixo
     abbr -a -g rml lixo limpar
@@ -234,12 +232,13 @@ if status is-interactive
         abbr -a -g ppqs paru --color always -Qs
         abbr -a -g ppfyl paru --color always -Fyl
         abbr -a -g pprns paru --color always -Rns
+        abbr -a -g sys doas systemctl
     else if test "$OS" = "voidlinux";
         abbr -a -g xs "./xbps-src"
         # xbps
-        abbr -a -g xis doas xbps-install -S && ~/extras/pkgs/updatepkglist
+        abbr -a -g xis doas xbps-install -S
         abbr -a -g xqrs xbps-query -Rs
-        abbr -a -g xisu doas xbps-install -Su && ~/extras/pkgs/updatepkglist
+        abbr -a -g xisu doas xbps-install -Su
         abbr -a -g xql xbps-query -l
         abbr -a -g xqlg "xbps-query -l | grep --color -i"
         abbr -a -g xrr doas xbps-remove -R
@@ -251,6 +250,7 @@ if status is-interactive
         abbr -a -g xl "xlocate -S && xlocate"
         abbr -a -g xm xmandoc
         abbr -a -g xqr xq -R
+        abbr -a -g sys doas sv
     else if test "$OS" = "linuxmint";
         abbr -a -g bat batcat
         # apt
@@ -260,6 +260,7 @@ if status is-interactive
         abbr -a -g auau "doas apt update && doas apt upgrade"
         abbr -a -g ali apt list --installed
         abbr -a -g ar doas apt remove
+        abbr -a -g sys doas systemctl
     end
 
     ## Prompt ##
