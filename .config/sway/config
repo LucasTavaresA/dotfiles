@@ -96,8 +96,8 @@ mode "Menu" {
     bindsym Menu exec fuzzel "$fuzzelopts" -w 35 ; mode "default"
     bindsym Escape exec powermenu ; mode "default"
     bindsym XF86Launch2 exec powermenu ; mode "default"
-    bindsym o exec org_dmenu ~/documentos/favoritos.org ; mode "default"
-    bindsym m exec dmenu_mont ; mode "default"
+    bindsym o exec orgmenu ~/documentos/favoritos.org ; mode "default"
+    bindsym m exec menu_mont ; mode "default"
     bindsym p exec passmenu --type ; mode "default"
     bindsym c exec clipman pick --tool fuzzel --tool-args=$fuzzelopts ; mode "default"
     bindsym Shift+c exec galculator ; mode "default"
@@ -105,7 +105,6 @@ mode "Menu" {
     bindsym q exec qutebrowser ; mode "default"
     bindsym f exec firefox ; mode "default"
     bindsym h exec term_open -a float htop ; mode "default"
-    bindsym Shift+p exec pkill -x picom || picom -b --unredir-if-possible --backend xr_glx_hybrid --vsync --use-damage --glx-no-stencil ; mode "default"
     bindsym s exec gammastep -O 3000 ; mode "default"
     bindsym Shift+s exec pkill -x gammastep ; mode "default"
     bindsym t exec transmission-qt ; mode "default"
@@ -114,8 +113,7 @@ mode "Menu" {
     bindsym i exec emacsclient -n -c -a 'term_open nvim' ~/documentos/inf.org ; mode "default"
     bindsym l exec swaylock -c 000000ff --scaling fill ; mode "default"
     bindsym r reload
-    # bindsym Shift+q exit
-    bindsym Shift+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit' ; mode "default"
+    bindsym Shift+q exit
 }
 bindsym Menu mode "Menu"
 ## resize mode
