@@ -38,6 +38,10 @@
   (require 'sly-repl-ansi-color)
   (require 'sly-asdf))
 
+;;; Elisp
+(use-package eros
+  :hook (emacs-lisp . eros-mode))
+
 ;;; CSharp
 (use-package csharp-mode
   :config (add-to-list 'aggressive-indent-excluded-modes 'csharp-mode)
