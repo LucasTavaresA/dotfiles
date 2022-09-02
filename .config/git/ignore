@@ -24,6 +24,7 @@
 .config/git/config
 .config/gtk-2.0/gtkfilechooser.ini
 .config/hexchat/
+.config/keepassxc/
 .config/libreoffice/
 .config/mpd/
 .config/ncmpcpp/error.log
