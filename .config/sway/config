@@ -95,7 +95,7 @@ mode "Menu" {
     bindsym XF86Launch2 exec powermenu ; mode "default"
     bindsym o exec orgmenu ~/documentos/favoritos.org ; mode "default"
     bindsym m exec menu_mont ; mode "default"
-    bindsym p exec passmenu --type ; mode "default"
+    bindsym p exec keepmenu ; mode "default"
     bindsym c exec clipman pick --tool fuzzel --tool-args=$fuzzelopts ; mode "default"
     bindsym Shift+c exec galculator ; mode "default"
     bindsym Shift+e exec term_open -a float fzf_emojis ; mode "default"
