@@ -181,7 +181,7 @@ exec swayidle -w \
          before-sleep 'swaylock -f -c 000000'
 exec wl-paste -t text --watch clipman store 1>> $XDG_DATA_HOME/clipman.log 2>&1 &
 exec fzf_man update
-exec dunst
+exec mako
 exec syncthing
 exec transmission-qt -m
 exec emacs --name=emacsirc --title=emacsirc -q --load "~/.config/emacs/irc.el"
