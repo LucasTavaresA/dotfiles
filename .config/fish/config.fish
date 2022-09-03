@@ -127,7 +127,6 @@ if status is-interactive
 
     ## Abbr ##
     abbr -a -g cd z
-    abbr -a -g eirc "dis emacs --name=emacsirc --title=emacsirc -q --load '~/.config/emacs/irc.el'"
     abbr -a -g tpg topgrade
     abbr -a -g cs criar_script sh script.sh
     abbr -a -g pk pkill -i

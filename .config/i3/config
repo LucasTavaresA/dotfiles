@@ -38,11 +38,10 @@ for_window [class="^firefox$"] focus
 for_window [class="^qutebrowser$"] focus
 for_window [class="^st-256color$"] focus
 for_window [class="^alacritty$"] focus
-for_window [instance="^emacs$"] focus
+for_window [class="^Emacs$"] focus
 for_window [class="^nvim$"] focus
 for_window [class="^mpv$"] focus
 for_window [class="^Gimp$"] focus
-for_window [instance="^emacsirc$"] focus
 for_window [class="^discord$"] focus
 for_window [class="^TelegramDesktop$"] focus
 assign [class="^Firefox$"] "1:Browser"
@@ -51,11 +50,10 @@ assign [class="^qutebrowser$"] "1:Browser"
 assign [class="^Chromium$"] "1:Browser"
 assign [class="^st-256color$"] "2:Code"
 assign [class="^alacritty$"] "2:Code"
-assign [instance="^emacs$"] "2:Code"
+assign [class="^Emacs$"] "2:Code"
 assign [class="^nvim$"] "2:Code"
 assign [class="^mpv$"] "3:Fullscreen"
 assign [class="^Gimp$"] "3:Fullscreen"
-assign [instance="^emacsirc$"] "4:Message"
 assign [class="^discord$"] "4:Message"
 assign [class="^TelegramDesktop$"] "4:Message"
 
@@ -163,7 +161,6 @@ bindsym $mods+4 move window to workspace number $ws4
 # Iniciar
 # exec --no-startup-id dex --autostart --environment i3
 exec transmission-qt -m
-exec emacs --name=emacsirc --title=emacsirc -q --load "~/.config/emacs/irc.el"
 
 # Barra
 bar {

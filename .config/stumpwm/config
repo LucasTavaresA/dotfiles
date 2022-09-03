@@ -261,7 +261,6 @@
 (define-frame-preference "Message"
   (0 t t :class "discord")
   (0 t t :class "Hexchat")
-  (0 t t :class "emacsirc")
   (0 t t :class "TelegramDesktop"))
 
 ;;; Teclas
@@ -361,7 +360,6 @@
   (mode-line)
   (run-shell-command "stumpwm_barra")
   (run-shell-command "transmission-qt -m")
-  (run-shell-command "term_open -a emacsirc emacs -nw -q --load '~/.config/emacs/irc.el'")
   (run-shell-command "emacs --daemon")
   ;; remove logs
   (uiop:delete-directory-tree (pathname "~/.stumpwm.d/") :validate t))

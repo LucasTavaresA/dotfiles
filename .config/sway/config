@@ -52,25 +52,23 @@ for_window [class="^Galculator$"] floating enable, border pixel 4, resize set 20
 for_window [app_id="org.qutebrowser.qutebrowser"] focus
 for_window [app_id="^Firefox$"] focus
 for_window [app_id="^firefox$"] focus
-for_window [instance="^emacs$"] focus
+for_window [app_id="^emacs$"] focus
 for_window [app_id="^nvim$"] focus
 for_window [app_id="^foot$"] focus
 for_window [app_id="^alacritty$"] focus
 for_window [app_id="^mpv$"] focus
 for_window [app_id="^Gimp$"] focus
-for_window [instance="^emacsirc$"] focus
 for_window [app_id="^discord$"] focus
 for_window [app_id="^TelegramDesktop$"] focus
 assign [app_id="org.qutebrowser.qutebrowser"] "1:Browser"
 assign [app_id="^Firefox$"] "1:Browser"
 assign [app_id="^firefox$"] "1:Browser"
-assign [instance="^emacs$"] "2:Code"
+assign [app_id="^emacs$"] "2:Code"
 assign [app_id="^nvim$"] "2:Code"
 assign [app_id="^foot$"] "2:Code"
 assign [app_id="^alacritty$"] "2:Code"
 assign [app_id="^mpv$"] "3:Fullscreen"
 assign [app_id="^Gimp$"] "3:Fullscreen"
-assign [instance="^emacsirc$"] "4:Message"
 assign [app_id="^discord$"] "4:Message"
 assign [app_id="^TelegramDesktop$"] "4:Message"
 
@@ -184,7 +182,6 @@ exec fzf_man update
 exec mako
 exec syncthing
 exec transmission-qt -m
-exec emacs --name=emacsirc --title=emacsirc -q --load "~/.config/emacs/irc.el"
 exec emacs --daemon
 exec foot -s
 ## musica
