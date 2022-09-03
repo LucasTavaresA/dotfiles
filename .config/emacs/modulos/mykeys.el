@@ -2,7 +2,7 @@
 ;;; SPC
 (defalias 'spc-map (make-sparse-keymap))
 (defvar spc-map (symbol-function 'spc-map))
-(define-key spc-map (kbd "SPC") 'consult-recent-file)
+(define-key spc-map (kbd "SPC") 'consult-buffer)
 (define-key spc-map (kbd "d") 'consult-dir)
 (define-key spc-map (kbd "k") 'kill-current-buffer)
 (define-key spc-map (kbd "K") 'kill-some-buffers)
@@ -21,8 +21,8 @@
 (define-key spc-map (kbd "b m") 'bookmark-set)
 (define-key spc-map (kbd "b d") 'bookmark-delete)
 (define-key spc-map (kbd "f b") 'flyspell-buffer)
-(define-key spc-map (kbd "f f") 'find-file)
-(define-key spc-map (kbd "f F") 'consult-find)
+(define-key spc-map (kbd "f F") 'find-file)
+(define-key spc-map (kbd "f f") 'consult-recent-file)
 (define-key spc-map (kbd "i i") 'aggressive-indent-indent-defun)
 (define-key spc-map (kbd "s l") 'consult-locate)
 (define-key spc-map (kbd "s f") 'consult-flymake)
@@ -131,10 +131,7 @@
 ;;; forge-topic-mode-map
 (define-key forge-topic-mode-map (kbd "R") 'code-review-forge-pr-at-point)
 ;;; global
-(fset 'comentar-e-descer-linha
-      (kmacro-lambda-form [?, ?c ?i down] 0 "%d"))
-(global-set-key (kbd "C-c C-c") 'comentar-e-descer-linha)
-(global-set-key (kbd "C-<tab>") 'consult-buffer)
+(global-set-key (kbd "C-<tab>") #'buffers-mesmo-modo)
 (global-set-key (kbd "C-s") 'evil-mc-make-all-cursors)
 (global-set-key (kbd "M-c") 'evil-yank)
 (global-set-key (kbd "M-v") 'evil-colar)
