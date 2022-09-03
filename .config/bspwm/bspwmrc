@@ -42,7 +42,7 @@ bspc rule -a dialog state=floating rectangle=480x270+0+0 sticky=on layer=above c
 bspc rule -a download state=floating rectangle=480x270+0+0 sticky=off layer=above
 bspc rule -a MEGAsync:megasync state=floating rectangle=480x270+0+0 sticky=off layer=above center=true
 bspc rule -a firefox:Devtools state=floating rectangle=800x350+0+0 sticky=on layer=above center=true
-bspc rule -a Galculator:galculator state=floating rectangle=480x270+0+0 sticky=on layer=above center=true
+bspc rule -a calculadora state=floating rectangle=480x270+0+0 sticky=on layer=above center=true
 bspc rule -a toolbar state=floating rectangle=480x270+0+0 sticky=off layer=above
 bspc rule -a error state=floating rectangle=480x270+0+0 sticky=off layer=above center=true
 bspc rule -a MPlayer state=floating rectangle=480x270+0+0 sticky=off layer=above center=true

@@ -44,7 +44,6 @@ fonts-droid-ttf
 foot
 fuzzel
 fzf
-galculator-gtk2
 gammastep
 gcc
 gdu

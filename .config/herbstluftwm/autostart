@@ -198,9 +198,9 @@ hc rule class="TelegramDesktop" tag=4 switchtag=on
 ## flutuantes
 hc rule class="center" floating=on floatplacement=center floating_geometry=300x200
 hc rule class="float" floating=on floatplacement=center floating_geometry=1000x600
+hc rule class="calculadora" floating=on floatplacement=center floating_geometry=200x200
 hc rule class="MEGAsync" floating=on floatplacement=center
 hc rule class="transmission" floating=on floatplacement=center
-hc rule class="Galculator" floating=on floatplacement=center
 hc rule class="GParted" floating=on floatplacement=center
 hc rule class="Nitrogen" floating=on floatplacement=center
 hc rule class="pinentry-qt" floating=on floatplacement=center

@@ -43,7 +43,6 @@ foot
 foot-terminfo
 fuzzel
 fzf
-galculator-gtk2
 gammastep
 gawk
 gcc

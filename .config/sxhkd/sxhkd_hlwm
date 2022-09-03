@@ -54,7 +54,7 @@ Menu;t
     transmission-qt
 ## calculadora
 Menu;C
-    galculator
+    term_open -a calculadora python
 
 # arquivos
 ## abre o emacs

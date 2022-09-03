@@ -32,7 +32,7 @@ for_window [all] title_window_icon on
 for_window [class="^menu"] floating enable, border pixel 4, resize set 400 300, move position center
 for_window [class="^float$"] floating enable, border pixel 4, resize set 1000 600, move position center
 for_window [class="^pinentry-qt$"] floating enable, border pixel 4, resize set 600 400, move position center
-for_window [class="^Galculator$"] floating enable, border pixel 4, resize set 200 400, move position center
+for_window [class="^calculadora"] floating enable, border pixel 4, resize set 200 200, move position center
 for_window [class="^Firefox$"] focus
 for_window [class="^firefox$"] focus
 for_window [class="^qutebrowser$"] focus
@@ -79,7 +79,7 @@ mode "Menu" {
     bindsym m exec menu_mont ; mode "default"
     bindsym p exec passmenu --type ; mode "default"
     bindsym c exec term_open -a float fzf_clip ; mode "default"
-    bindsym Shift+c exec galculator ; mode "default"
+    bindsym Shift+c exec term_open -a calculadora python ; mode "default"
     bindsym Shift+e exec term_open -a float fzf_emojis ; mode "default"
     bindsym q exec qutebrowser ; mode "default"
     bindsym f exec firefox ; mode "default"

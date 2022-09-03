@@ -48,7 +48,7 @@ for_window [app_id=".*"] title_window_icon on
 for_window [app_id="^menu$"] floating enable, border pixel 4, resize set 400 300, move position center
 for_window [app_id="^float$"] floating enable, border pixel 4, resize set 1000 600, move position center
 for_window [app_id="^pinentry-qt$"] floating enable, border pixel 4, resize set 600 400, move position center
-for_window [class="^Galculator$"] floating enable, border pixel 4, resize set 200 400, move position center
+for_window [app_id="^calculadora"] floating enable, border pixel 4, resize set 200 200, move position center
 for_window [app_id="org.qutebrowser.qutebrowser"] focus
 for_window [app_id="^Firefox$"] focus
 for_window [app_id="^firefox$"] focus
@@ -95,7 +95,7 @@ mode "Menu" {
     bindsym m exec menu_mont ; mode "default"
     bindsym p exec keepmenu ; mode "default"
     bindsym c exec clipman pick --tool fuzzel --tool-args=$fuzzelopts ; mode "default"
-    bindsym Shift+c exec galculator ; mode "default"
+    bindsym Shift+c exec term_open -a calculadora python ; mode "default"
     bindsym Shift+e exec term_open -a float fzf_emojis ; mode "default"
     bindsym q exec qutebrowser ; mode "default"
     bindsym f exec firefox ; mode "default"

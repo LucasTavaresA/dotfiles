@@ -58,7 +58,6 @@ firefox
 fish
 flex
 fzf
-galculator
 gawk
 gcc
 gdu
