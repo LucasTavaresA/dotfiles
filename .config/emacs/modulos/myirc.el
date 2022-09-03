@@ -52,6 +52,17 @@
   (setq left-margin-width 25))
 (add-hook 'lui-mode-hook 'my-circe-set-margin)
 
+;;; Notificações
+(use-package circe-notifications)
+
+(autoload 'enable-circe-notifications "circe-notifications" nil t)
+
+(eval-after-load "circe-notifications"
+  '(setq circe-notifications-watch-strings
+         '("lucasta")))
+
+(add-hook 'circe-server-connected-hook 'enable-circe-notifications)
+
 ;;; Abre os canais
 (circe "Libera Chat")
 
