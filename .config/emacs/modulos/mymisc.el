@@ -138,6 +138,7 @@
 (use-package dumb-jump)
 (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
 (setq xref-show-definitions-function #'xref-show-definitions-completing-read)
+
 ;; melhora buffers de ajuda
 (use-package helpful
   :config
@@ -147,9 +148,23 @@
   (global-set-key [remap describe-key] #'helpful-key)
   (global-set-key [remap describe-symbol] #'helpful-symbol)
   (global-set-key [remap describe-variable] #'helpful-variable))
+
 ;; mostra código em buffers de ajuda
 (use-package elisp-demos
   :config (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update))
+
+(defun buffers-mesmo-modo (&optional mode pre-fn switch-fn)
+  "Navega por buffers no mesmo major-mode do buffer atual."
+  (interactive)
+  (let* ((mode (or mode major-mode))
+         (modes (if (symbolp mode) (list mode) mode))
+         (pred `(lambda (b)
+                  (let ((b (get-buffer (if (consp b) (car b) b))))
+                    (member (buffer-local-value 'major-mode b)
+                            ',modes))))
+         (buff (read-buffer "Buffer: " nil t pred)))
+    (when pre-fn (funcall pre-fn))
+    (if switch-fn (funcall switch-fn buff) (pop-to-buffer-same-window buff))))
 
 ;;; Popup que retorna comandos sendo usados
 (use-package posframe)
