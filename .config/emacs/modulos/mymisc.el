@@ -93,7 +93,7 @@
 
 ;;; Abre um terminal no diretório atual
 (use-package terminal-here
-  :config (setq terminal-here-linux-terminal-command 'st))
+  :config (setq terminal-here-linux-terminal-command (list (getenv "TERMINAL"))))
 
 ;;; Folding
 ;; Esconde seções usando comentarios como headings
