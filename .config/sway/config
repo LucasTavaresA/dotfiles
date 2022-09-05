@@ -59,6 +59,7 @@ for_window [app_id="^alacritty$"] focus
 for_window [app_id="^mpv$"] focus
 for_window [app_id="^Gimp$"] focus
 for_window [app_id="^discord$"] focus
+for_window [app_id="^emacsirc$"] focus
 for_window [app_id="^TelegramDesktop$"] focus
 assign [app_id="org.qutebrowser.qutebrowser"] "1:Browser"
 assign [app_id="^Firefox$"] "1:Browser"
@@ -70,6 +71,7 @@ assign [app_id="^alacritty$"] "2:Code"
 assign [app_id="^mpv$"] "3:Fullscreen"
 assign [app_id="^Gimp$"] "3:Fullscreen"
 assign [app_id="^discord$"] "4:Message"
+assign [app_id="^emacsirc$"] "4:Message"
 assign [app_id="^TelegramDesktop$"] "4:Message"
 
 # Teclas
@@ -182,6 +184,7 @@ exec fzf_man update
 exec mako
 exec syncthing
 exec transmission-qt -m
+exec emacs --name=emacsirc --title=emacsirc -q --load '~/.config/emacs/irc.el'
 exec emacs --daemon
 exec foot -s
 ## musica

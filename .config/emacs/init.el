@@ -18,7 +18,6 @@
 (require 'mylangs)
 (require 'myspell)
 (require 'mykeys)
-(require 'myirc)
 
 ;;; acelerar a coleta de lixo
 (use-package gcmh
