@@ -1,5 +1,5 @@
 command=$XDG_DATA_HOME/i3blocks/$BLOCK_NAME/$BLOCK_NAME
-full_text=│
+full_text=" "
 align=center
 separator=false
 separator_block_width=20
@@ -18,9 +18,6 @@ command=echo $(volume)
 interval=once
 signal=22
 
-[separator]
-color=#555555
-
 [disk]
 color=#ff5500
 LABEL=/home 
@@ -37,14 +34,10 @@ interval=3600
 color=#555555
 interval=5
 
-
 [iface]
 color=#009900
 interval=10
 display_wifi_name=0
-
-[separator]
-color=#555555
 
 [data]
 command=date '+%a %d/%m/%Y - %H:%M'
