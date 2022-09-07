@@ -150,6 +150,9 @@
 (global-set-key (kbd "<M-up>") 'drag-stuff-up)
 (global-set-key (kbd "<M-down>") 'drag-stuff-down)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+;;; Csharp-mode
+(with-eval-after-load 'csharp-mode
+  (define-key csharp-mode-map (kbd "M-e") nil))
 ;;; org-mode
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "<M-up>") nil)
