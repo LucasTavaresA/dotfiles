@@ -46,6 +46,9 @@
 (setq read-file-name-completion-ignore-case t
       read-buffer-completion-ignore-case t
       completion-ignore-case t)
+;; Desativa quebras de linha quando programando
+(add-hook 'prog-mode-hook 'toggle-truncate-lines)
+(add-hook 'prog-mode-hook (lambda () (interactive) (visual-line-mode -1)))
 
 ;;; Async
 (use-package async
