@@ -155,18 +155,16 @@
 (use-package elisp-demos
   :config (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update))
 
-(defun buffers-mesmo-modo (&optional mode pre-fn switch-fn)
-  "Navega por buffers no mesmo major-mode do buffer atual."
+;;; Trocar de buffer
+(defun buffers-outros ()
+  "Navega por buffers cujo o nome não começa com uma letra."
   (interactive)
-  (let* ((mode (or mode major-mode))
-         (modes (if (symbolp mode) (list mode) mode))
-         (pred `(lambda (b)
-                  (let ((b (get-buffer (if (consp b) (car b) b))))
-                    (member (buffer-local-value 'major-mode b)
-                            ',modes))))
-         (buff (read-buffer "Buffer: " nil t pred)))
-    (when pre-fn (funcall pre-fn))
-    (if switch-fn (funcall switch-fn buff) (pop-to-buffer-same-window buff))))
+  (pop-to-buffer-same-window (completing-read ">" (mapcar #'buffer-name (buffer-list)) nil nil "^[^A-z] ")))
+
+(defun buffers-arquivo ()
+  "Navega por buffers cujo o nome começa com uma letra."
+  (interactive)
+  (pop-to-buffer-same-window (completing-read ">" (mapcar #'buffer-name (buffer-list)) nil nil "^[A-z] ")))
 
 (provide 'mymisc)
 ;;; mymisc.el ends here

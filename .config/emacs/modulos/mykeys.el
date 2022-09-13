@@ -2,7 +2,7 @@
 ;;; SPC
 (defalias 'spc-map (make-sparse-keymap))
 (defvar spc-map (symbol-function 'spc-map))
-(define-key spc-map (kbd "SPC") 'consult-buffer)
+(define-key spc-map (kbd "SPC") 'buffers-outros)
 (define-key spc-map (kbd "d") 'consult-dir)
 (define-key spc-map (kbd "k") 'kill-current-buffer)
 (define-key spc-map (kbd "K") 'kill-some-buffers)
@@ -130,7 +130,7 @@
 ;;; forge-topic-mode-map
 (define-key forge-topic-mode-map (kbd "R") 'code-review-forge-pr-at-point)
 ;;; global
-(global-set-key (kbd "C-<tab>") #'buffers-mesmo-modo)
+(global-set-key (kbd "C-<tab>") 'buffers-arquivo)
 (global-set-key (kbd "C-s") 'evil-mc-make-all-cursors)
 (global-set-key (kbd "M-c") 'evil-yank)
 (global-set-key (kbd "M-v") 'evil-colar)
