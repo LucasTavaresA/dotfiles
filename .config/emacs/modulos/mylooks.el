@@ -48,10 +48,7 @@
 
 ;;; fontes
 (set-face-attribute 'default nil :family "Terminus" :height 140)
-(set-face-attribute 'variable-pitch nil :family "Ubuntu" :weight 'light)
-(set-face-attribute 'font-lock-string-face nil :foreground "#ffff00")
-(set-face-attribute 'font-lock-comment-face nil :family "SauceCodePro Nerd Font Mono"
-                    :slant 'italic :height 130 :foreground "#009900")
+(set-face-attribute 'font-lock-comment-face nil :slant 'italic :foreground "#009900")
 ;; símbolos em prog-mode
 (add-hook 'prog-mode-hook 'prettify-symbols-mode)
 
