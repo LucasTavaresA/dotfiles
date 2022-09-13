@@ -83,21 +83,6 @@ paq({
     -- snippets
     "SirVer/ultisnips";
     "honza/vim-snippets";
-    -- prever markdown
-    {
-      "iamcco/markdown-preview.nvim",
-      run = function() vim.fn['mkdp#util#install']() end,
-      ft = {'markdown', 'vimwiki'},
-      cmd = { 'MarkdownPreview', 'MarkdownPreviewToggle' },
-      config = {
-        function()
-          vim.g.mkdp_auto_close = 0
-          vim.g.mkdp_echo_preview_url = 1
-        end,
-      }
-    };
-    -- tabelas em markdown
-    "dhruvasagar/vim-table-mode";
     -- json
     "elzr/vim-json";
     -- previsão de output para REPL em Python, JavaScript, CoffeeScript, PHP, Lua, C++, TypeScript
@@ -304,30 +289,6 @@ configs.setup {
 --vim.opt.foldmethod = "expr"
 --vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
---- Markdown
-vim.g.vim_markdown_frontmatter = 1  -- para formatar YAML
-vim.g.vim_markdown_toml_frontmatter = 1 -- para formatar TOML
-vim.g.vim_markdown_json_frontmatter = 1 -- para formatar JSON
--- função para fechar e abrir o sumario
-vim.cmd([[
-function s:TocToggle()
-    if index(["markdown", "qf"], &filetype) == -1
-        return
-    endif
-
-    if get(getloclist(0, {'winid':0}), 'winid', 0)
-        " caso esteja aberto
-        lclose
-    else
-        " caso fechado
-        Toc
-    endif
-endfunction
-command TocToggle call s:TocToggle()
-]])
--- tabelas em markdown
-vim.g.table_mode_corner = '|'
-
 --- LSP
 local lsp_installer = require("nvim-lsp-installer")
 lsp_installer.on_server_ready(function(server)
@@ -386,8 +347,6 @@ keymap("n", "cb", "ggVGy", nr)
 keymap("n", "tn", ":set number!<CR>", {})
 -- procura palavra no cursor
 keymap("n", "?", "*", {})
--- abrir e Fechar Toc
-keymap("n", "<leader><Tab>", "<CR>:TocToggle<CR>", {})
 -- abre terminal no local do arquivo atual
 keymap("n", "<leader><return>", ":!sh -c 'cd %:p:h ; term_open' &<CR><CR>", {})
 -- executa um macro
