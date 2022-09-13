@@ -23,7 +23,6 @@
   :straight (awesome-tray :type git :host github :repo "manateelazycat/awesome-tray")
   :init
   (setq awesome-tray-git-format "%s"
-        awesome-tray-git-show-status t
         awesome-tray-evil-show-mode nil
         awesome-tray-file-path-show-filename t
         awesome-tray-file-path-full-dirname-levels 1
@@ -31,8 +30,12 @@
         awesome-tray-location-format "L%l"
         awesome-tray-info-padding-right 0
         awesome-tray-separator "  "
-        awesome-tray-essential-modules '("github" "buffer-read-only" "evil" "anzu" "circe" "git" "location")
-        awesome-tray-active-modules    '("github" "buffer-read-only" "evil" "anzu" "circe" "git" "location" "file-path"))
+        awesome-tray-second-line t
+        awesome-tray-position 'center
+        awesome-tray-essential-modules '("github" "buffer-read-only" "evil" "anzu"
+                                         "circe" "mode-name" "git" "location" "file-path")
+        awesome-tray-active-modules    '("github" "buffer-read-only" "evil" "anzu"
+                                         "circe" "mode-name" "git" "location" "file-path"))
   (awesome-tray-mode))
 ;; esconde a mode-line
 (use-package hide-mode-line
