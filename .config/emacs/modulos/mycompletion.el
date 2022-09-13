@@ -3,16 +3,13 @@
 (use-package vertico
   :straight (vertico :includes vertico-directory
                      :files (:defaults "extensions/vertico-directory.el"
-                                       "extensions/vertico-buffer.el"
-                                       "extensions/vertico-grid.el"
                                        "extensions/vertico-multiform.el"))
   :init
   (vertico-mode)
   (vertico-multiform-mode)
   (setq vertico-multiform-categories
         '((symbol (vertico-sort-function . vertico-sort-alpha))
-          (file grid (vertico-sort-function . sort-directories-first))
-          (consult-grep buffer)))
+          (file (vertico-sort-function . sort-directories-first))))
   (setq vertico-multiform-commands
         '((describe-symbol (vertico-sort-function . vertico-sort-alpha))))
   ;; mostra diretórios antes de arquivos
@@ -29,6 +26,7 @@
                      (propertize "> " 'face 'vertico-current)
                    "")
                  cand)))
+  (setq vertico-cycle t)
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
 
 ;; descrições no mini-buffer
