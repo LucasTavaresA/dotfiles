@@ -201,6 +201,7 @@ exec playerctld daemon
 exec mpc update
 ## aparência
 exec swaybg -i $HOME/media/imagens/wallpapers/kaiji_friends.png -m fill
+exec xrdb -load $HOME/.config/x11/xresources
 ## sistema
 exec checar_updates
 
