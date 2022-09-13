@@ -15,6 +15,7 @@ bat
 bc
 binutils
 bison
+cage
 catdoc
 catimg
 ccls
@@ -61,6 +62,7 @@ grimshot
 groff
 grub
 gtk-engine-murrine
+gtk-engines
 gtk2fontsel
 gtkspell3
 gucharmap
@@ -104,7 +106,6 @@ mplayer
 mpv
 mpv-mpris
 ncmpcpp
-neofetch
 neovim
 nerd-fonts-complete
 noto-fonts
@@ -112,14 +113,18 @@ noto-fonts-cjk
 noto-fonts-emoji
 noto-fonts-extra
 nouveau-fw
+nuget
 nuspell
 omnisharp-roslyn
+opencl-headers
 opendoas
 opusfile
 otf-hermit
 p7zip
 pacman
+pacman-contrib
 pam-gnupg
+pandoc
 papirus-icon-theme
 paru
 pass
@@ -170,11 +175,13 @@ ttf-ubuntu-font-family
 unicode-emoji
 unrar
 unzip
+ventoy-bin
 wget
 which
 wl-clipboard
 wtype
 xf86-video-nouveau
+xorg-xrdb
 xorg-xwayland
 youtube-dl
 yt-dlp
