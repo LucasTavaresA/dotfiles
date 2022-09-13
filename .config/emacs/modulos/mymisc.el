@@ -104,8 +104,8 @@
   (setq outshine-startup-folded-p t
         outshine-cycle-emulate-tab t)
   :config
-  (dolist (face '((outshine-level-1 . 1.1)
-                  (outshine-level-2 . 1.0)
+  (dolist (face '((outshine-level-1 . 1.2)
+                  (outshine-level-2 . 1.1)
                   (outshine-level-3 . 1.0)
                   (outshine-level-4 . 0.9)
                   (outshine-level-5 . 0.9)

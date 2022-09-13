@@ -42,10 +42,10 @@
                   (org-level-2 . 1.1)
                   (org-level-3 . 1.0)
                   (org-level-4 . 0.9)
-                  (org-level-5 . 0.8)
-                  (org-level-6 . 0.8)
-                  (org-level-7 . 0.8)
-                  (org-level-8 . 0.8)))
+                  (org-level-5 . 0.9)
+                  (org-level-6 . 0.9)
+                  (org-level-7 . 0.9)
+                  (org-level-8 . 0.9)))
     (set-face-attribute (car face) nil :font "Ubuntu" :weight 'regular :height (cdr face) :background nil)))
 ;; esconde marcação
 (use-package org-appear
@@ -75,7 +75,7 @@
   :hook (((gfm-mode markdown-mode) . ajusta-texto)
          ((gfm-mode markdown-mode) . markdown-esconde-marcação))
   :config
-  (dolist (face '((markdown-header-face-1 . 1.3)
+  (dolist (face '((markdown-header-face-1 . 1.2)
                   (markdown-header-face-2 . 1.1)
                   (markdown-header-face-3 . 1.0)
                   (markdown-header-face-4 . 0.9)
