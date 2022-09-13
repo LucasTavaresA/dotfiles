@@ -13,6 +13,7 @@
 (setq large-file-warning-threshold 100000000 ; considera 100MB> um arquivo grande
       use-short-answers t ; apenas confirmações com "y" e "n"
       kill-do-not-save-duplicates t ; não salva duplicadas ao copiar
+      switch-to-buffer-obey-display-actions t
       auth-sources '("~/.gnupg/authinfo")
       user-full-name "Lucas Tavares"
       user-mail-address "tavares.lassuncao@gmail.com"

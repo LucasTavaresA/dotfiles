@@ -19,5 +19,8 @@
 ;;; usa :straight t por padrão
 (setq straight-use-package-by-default t)
 
+;;; orgmode prescisa ser carregado primeiro
+(use-package org :defer t)
+
 (provide 'mystraight)
 ;;; mystraight.el ends here

@@ -203,7 +203,7 @@
 ;;; Indica buffers sem foco
 (use-package auto-dim-other-buffers
   :init (auto-dim-other-buffers-mode)
-  (set-face-attribute 'auto-dim-other-buffers-face nil :background "#080808"))
+  (set-face-attribute 'auto-dim-other-buffers-face nil :background "#101010"))
 
 ;;; Indicação visual no cursor
 (use-package pulse
