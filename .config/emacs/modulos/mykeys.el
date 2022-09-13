@@ -92,7 +92,6 @@
 (define-key evil-normal-state-map (kbd "z n") (lambda () (interactive) (if display-line-numbers (setq display-line-numbers nil)
                                                                     (setq display-line-numbers t))))
 (define-key evil-normal-state-map (kbd "z v") 'visible-mode)
-(define-key evil-normal-state-map (kbd "z l") 'log/toggle-command-window)
 (define-key evil-normal-state-map (kbd "z t") 'toggle-truncate-lines)
 (define-key evil-normal-state-map (kbd "z h") 'hl-line-mode)
 (define-key evil-normal-state-map (kbd "z f") 'flycheck-mode)

@@ -168,35 +168,5 @@
     (when pre-fn (funcall pre-fn))
     (if switch-fn (funcall switch-fn buff) (pop-to-buffer-same-window buff))))
 
-;;; Popup que retorna comandos sendo usados
-(use-package posframe)
-(use-package command-log-mode
-  :after (posframe)
-  :config
-  (setq log/command-window-frame nil)
-  (defun log/toggle-command-window ()
-    (interactive)
-    (if log/command-window-frame
-        (progn
-          (posframe-delete-frame clm/command-log-buffer)
-          (setq log/command-window-frame nil))
-      (progn
-        (command-log-mode t)
-        (with-current-buffer
-            (setq clm/command-log-buffer
-                  (get-buffer-create " *command-log*"))
-          (text-scale-set -1))
-        (setq log/command-window-frame
-              (posframe-show
-               clm/command-log-buffer
-               :position `(,(- (x-display-pixel-width) 590) . 15)
-               :width 50
-               :height 15
-               :min-width 50
-               :min-height 15
-               :internal-border-width 1
-               :internal-border-color "#BA45A3"
-               :override-parameters '((parent-frame . nil))))))))
-
 (provide 'mymisc)
 ;;; mymisc.el ends here
