@@ -220,7 +220,7 @@ if status is-interactive
         abbr -a -g pqs pacman --color always -Qs
         abbr -a -g pfyl doas pacman --color always -Fyl
         abbr -a -g prns doas pacman --color always -Rns
-        abbr -a -g exp "expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
+        abbr -a -g exp "expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n 100"
         # paru
         abbr -a -g pps paru --color always -S
         abbr -a -g ppsi paru --color always -Si
@@ -263,5 +263,6 @@ if status is-interactive
     end
 
     ## Prompt ##
+    flashfetch
     starship init fish | source
 end

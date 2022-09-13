@@ -40,7 +40,7 @@
 
 ;;; Elisp
 (use-package eros
-  :hook (emacs-lisp . eros-mode))
+  :hook (emacs-lisp-mode . eros-mode))
 
 ;;; CSharp
 (use-package csharp-mode

@@ -205,7 +205,7 @@ if [ "$OS" = "artixlinux" ] || [ "$OS" = "archlinux" ] || [ "$OS" = "manjaro" ];
     alias pqs="pacman --color always -Qs"
     alias pfyl="doas pacman --color always -Fyl"
     alias prns="doas pacman --color always -Rns"
-    alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n"
+    alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n 100"
     # paru
     alias pps="paru --color always -S"
     alias ppsi="paru --color always -Si"
