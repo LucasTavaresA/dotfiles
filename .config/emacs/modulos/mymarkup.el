@@ -82,7 +82,9 @@
                   (markdown-header-face-5 . 0.9)
                   (markdown-header-face-6 . 0.9)))
     (set-face-attribute (car face) nil :font "Ubuntu" :weight 'regular :height (cdr face)))
-  :mode ("\\.md\\'" . gfm-mode))
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode)))
 ;; faz sumários automaticamente
 (use-package markdown-toc
   :after (gfm-mode markdown-mode)

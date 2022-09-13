@@ -27,6 +27,7 @@
   (html-mode . eglot-ensure)
   (csharp-mode . eglot-ensure)
   (c-mode . eglot-ensure)
+  (c++-mode . eglot-ensure)
   (lisp-mode . eglot-ensure)
   (scheme-mode . eglot-ensure)
   (clojure-mode . eglot-ensure)
