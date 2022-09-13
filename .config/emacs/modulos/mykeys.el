@@ -134,6 +134,7 @@
 ;;; global
 (global-set-key (kbd "C-<tab>") 'buffers-arquivo)
 (global-set-key (kbd "C-s") 'evil-mc-make-all-cursors)
+(global-set-key (kbd "M-s") 'evil-mc-make-cursor-move-next-line)
 (global-set-key (kbd "M-c") 'evil-yank)
 (global-set-key (kbd "M-v") 'evil-colar)
 (global-set-key (kbd "M-e") 'tempel-expand)
