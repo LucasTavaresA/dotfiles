@@ -24,6 +24,7 @@
 (define-key spc-map (kbd "f F") 'find-file)
 (define-key spc-map (kbd "f f") 'consult-recent-file)
 (define-key spc-map (kbd "i i") 'aggressive-indent-indent-defun)
+(define-key spc-map (kbd "i I") 'normalizar-buffer)
 (define-key spc-map (kbd "s l") 'consult-locate)
 (define-key spc-map (kbd "s f") 'consult-flymake)
 (define-key spc-map (kbd "s s") 'consult-focus-lines)
@@ -97,7 +98,8 @@
 (define-key evil-normal-state-map (kbd "z f") 'flycheck-mode)
 (define-key evil-normal-state-map (kbd "z s") 'flyspell-mode)
 (define-key evil-normal-state-map (kbd "z r") 'rainbow-mode)
-(define-key evil-motion-state-map (kbd "z z") 'marcar-checkbox)
+(define-key evil-motion-state-map (kbd "z x") 'marcar-checkbox)
+(define-key evil-motion-state-map (kbd "z z") 'evil-toggle-fold)
 (define-key evil-normal-state-map (kbd "Z Z") 'evil-scroll-line-to-center)
 ;;; dired-mode-map
 (define-key dired-mode-map (kbd "SPC") 'spc-map)
