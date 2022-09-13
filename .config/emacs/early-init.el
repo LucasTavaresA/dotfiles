@@ -3,13 +3,14 @@
 ;; o padrão são 800 kilobytes, medido em bytes
 (setq gc-cons-threshold most-positive-fixnum)
 
-;;; tempo para iniciar
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (message "Emacs carregado em %s."
-                     (emacs-init-time))))
+;;; Pacotes
+;; desativa o package.el
+(setq package-enable-at-startup nil)
 
-;;; Compilação nativa
+;; prefere versões mais recentes de pacotes
+(setq load-prefer-newer t)
+
+;; Compilação nativa
 (when (featurep 'native-compile)
   ;; silencia avisos de compilação
   (setq native-comp-async-report-warnings-errors nil)
@@ -22,9 +23,6 @@
         (add-to-list 'native-comp-eln-load-path (convert-standard-filename (expand-file-name "var/eln-cache/" user-emacs-directory)))
       (startup-redirect-eln-cache (convert-standard-filename (expand-file-name "var/eln-cache/" user-emacs-directory)))))
   (add-to-list 'native-comp-eln-load-path (expand-file-name "eln-cache/" user-emacs-directory)))
-
-;; desativa o package.el
-(setq package-enable-at-startup nil)
 
 ;;; Aparencia
 (setq inhibit-startup-message t)
@@ -42,6 +40,6 @@
 ;; maximizar janela
 (set-frame-parameter (selected-frame) 'fullscreen 'maximized)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
-;; transparencia - emacs 29
+;; transparencia
 (set-frame-parameter (selected-frame) 'alpha-background 85)
 (add-to-list 'default-frame-alist '(alpha-background . 85))

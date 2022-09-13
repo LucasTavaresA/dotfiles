@@ -13,6 +13,7 @@
 (setq large-file-warning-threshold 100000000 ; considera 100MB> um arquivo grande
       use-short-answers t ; apenas confirmações com "y" e "n"
       kill-do-not-save-duplicates t ; não salva duplicadas ao copiar
+      auth-sources '("~/.gnupg/authinfo")
       user-full-name "Lucas Tavares"
       user-mail-address "tavares.lassuncao@gmail.com"
       ;; scroll
@@ -133,7 +134,7 @@
              (call-interactively #'origami-close-all-nodes)))))
 (add-hook 'prog-mode-hook 'my-folding-modes)
 
-;;; navegação
+;;; Ajuda
 ;; melhora `gd' para ir a definições de código
 (use-package dumb-jump)
 (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)

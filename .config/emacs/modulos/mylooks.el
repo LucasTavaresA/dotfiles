@@ -1,10 +1,8 @@
 ;;; mylooks.el -*- lexical-binding: t; -*-
+;;; Divisórias
 ;; tamanho das fringes
 (set-fringe-mode 5)
-;; símbolos em prog-mode
-(add-hook 'prog-mode-hook 'prettify-symbols-mode)
-
-;;; Divisórias
+;; Divisórias entre frames
 (setq window-divider-default-places t
       window-divider-default-bottom-width 1
       window-divider-default-right-width 1)
@@ -199,6 +197,8 @@
 (set-face-attribute 'font-lock-string-face nil :foreground "#ffff00")
 (set-face-attribute 'font-lock-comment-face nil :family "SauceCodePro Nerd Font Mono"
                     :slant 'italic :height 130 :foreground "#009900")
+;; símbolos em prog-mode
+(add-hook 'prog-mode-hook 'prettify-symbols-mode)
 
 ;;; Indica buffers sem foco
 (use-package auto-dim-other-buffers
