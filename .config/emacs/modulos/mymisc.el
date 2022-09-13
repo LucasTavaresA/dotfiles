@@ -138,6 +138,18 @@
              (call-interactively #'origami-close-all-nodes)))))
 (add-hook 'prog-mode-hook 'my-folding-modes)
 
+;;; Indentação
+(use-package aggressive-indent
+  :init (global-aggressive-indent-mode))
+
+(defun normalizar-buffer ()
+  "Organiza o buffer, formata espaço e tabs e conserta indentação."
+  (interactive)
+  (save-excursion
+    (delete-trailing-whitespace)
+    (untabify (point-min) (point-max))
+    (indent-region (point-min) (point-max))))
+
 ;;; Ajuda
 ;; melhora `gd' para ir a definições de código
 (use-package dumb-jump)
