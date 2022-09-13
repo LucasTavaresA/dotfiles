@@ -105,8 +105,6 @@ paq({
     "elzr/vim-json";
     -- previsão de output para REPL em Python, JavaScript, CoffeeScript, PHP, Lua, C++, TypeScript
     -- "metakirby5/codi.vim";
-    -- debug de código
-    "puremourning/vimspector";
 
     --- Aparência
     -- Tema
@@ -355,11 +353,6 @@ vim.cmd([[
     let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 ]])
 
---- vimspector
-vim.cmd([[
-    let g:vimspector_base_dir=expand( '$HOME/.config/nvim/data/vimspector' )
-]])
-
 --- diffview
 local cb = require'diffview.config'.diffview_callback
 require'diffview'.setup {
@@ -523,12 +516,3 @@ keymap("n", "K", ":lua vim.lsp.buf.hover()<CR>", {})
 keymap("n", "<c-k>", ":lua vim.lsp.buf.signature_help()<CR>", {})
 keymap("n", "<leader>af", ":lua vim.lsp.buf.code_action()<CR>", {})
 keymap("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>", {})
-
---- vimspector
-keymap("n", "Dd", ":call vimspector#Continue()<CR>", {})
-keymap("n", "Ds", ":call vimspector#Stop()<CR>", {})
-keymap("n", "Dr", ":call vimspector#Restart()<CR>", {})
-keymap("n", "DD", ":call vimspector#ToggleBreakpoint()<CR>", {})
-keymap("n", "D<Up>", ":call vimspector#StepOut()<CR>", {})
-keymap("n", "D<Right>", ":call vimspector#StepInto()<CR>", {})
-keymap("n", "D<Down>", ":call vimspector#StepOver()<CR>", {})
