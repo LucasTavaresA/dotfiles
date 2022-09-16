@@ -14,7 +14,7 @@
 (use-package expand-region)
 
 ;;; move linhas
-(use-package drag-stuff)
+(use-package move-text)
 
 ;;; Evil
 (use-package evil
