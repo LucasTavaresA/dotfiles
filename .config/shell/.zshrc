@@ -62,7 +62,7 @@ ee () {
 
 # git bare dotfiles
 git () {
-    if [ $(pwd) = $HOME ]; then
+    if [ $(pwd) = $HOME ] && [ $1 != "init" ]; then
         /usr/bin/git --git-dir="$HOME/.dotfiles/" $@
     else
         /usr/bin/git $@

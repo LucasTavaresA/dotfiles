@@ -60,7 +60,7 @@ if status is-interactive
 
     # Git bare dotfiles
     function git
-        if test "$(pwd)" = "$HOME";
+        if test "$(pwd)" = "$HOME"; and test $argv[1] != init;
             /usr/bin/git --git-dir="$HOME/.dotfiles/" $argv
         else
             /usr/bin/git $argv
