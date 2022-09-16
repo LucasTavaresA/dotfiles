@@ -1,5 +1,6 @@
 ;;; mygit.el -*- lexical-binding: t; -*-
 ;;; Miscelânea
+(use-package git-modes)
 (use-package git-link
   :config (setq git-link-open-in-browser t))
 
