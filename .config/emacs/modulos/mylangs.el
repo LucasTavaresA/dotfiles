@@ -58,7 +58,8 @@
   :hook (css-mode . turn-on-css-eldoc))
 
 ;;; Fish
-(use-package fish-mode)
+(use-package fish-mode
+  :mode ("\\.fish\\'" . fish-mode))
 
 ;;; Funções
 (defun aval-buffer ()
