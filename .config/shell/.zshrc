@@ -115,15 +115,6 @@ ex () {
     done
 }
 
-# Executa comandos inseguros usando a senha do usuario atual
-confirma () {
-    green=$(tput bold setaf 2)
-    cyan=$(tput bold setaf 6)
-    normal=$(tput sgr0)
-    printf "Você vai executar ${green}$*${normal} em ${cyan}$(pwd)${normal}?\n"
-    su $USER -c "$*"
-}
-
 criar_script () {
     lang=$1
     arquivo=$2
@@ -200,16 +191,8 @@ alias gcm="git commit"
 alias gcam="git commit --amend"
 alias gca="git commit --amend --no-edit"
 alias gco="git checkout"
-alias gps="git push"
-alias gpsf="git push -f"
-alias gpl="git pull"
-alias gf="git fetch"
-alias gr="confirma git restore"
 alias grv="git remote -v"
-alias grs="confirma git restore --staged"
-alias grsu="confirma git remote set-url origin"
-alias grrs="confirma git reset --soft"
-alias grrh="confirma git reset --hard"
+alias grsu="git remote set-url origin"
 alias gg="git grep -iInp --break --heading"
 alias ggs="git grep -iInp --break --heading -8"
 

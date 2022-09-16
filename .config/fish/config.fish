@@ -111,16 +111,6 @@ if status is-interactive
         end
     end
 
-    # Executa comandos inseguros usando a senha do usuario atual
-    function confirma
-        printf "Você vai executar "
-        set_color -o green; printf "$argv[1..-1]"
-        set_color normal; printf " em "
-        set_color -o cyan; printf "$(pwd)?\n"
-        set_color normal
-        su $USER -c "$argv[1..-1]"
-    end
-
     function criar_script
         printf "#!/usr/bin/env $argv[1]\n$argv[3..-1]" > $argv[2]
     end
@@ -195,16 +185,8 @@ if status is-interactive
     abbr -a -g gcam git commit --amend
     abbr -a -g gca git commit --amend --no-edit
     abbr -a -g gco git checkout
-    abbr -a -g gps git push
-    abbr -a -g gpsf git push -f
-    abbr -a -g gpl git pull
-    abbr -a -g gf git fetch
-    abbr -a -g gr confirma git restore
     abbr -a -g grv git remote -v
-    abbr -a -g grs confirma git restore --staged
-    abbr -a -g grsu confirma git remote set-url origin
-    abbr -a -g grrs confirma git reset --soft
-    abbr -a -g grrh confirma git reset --hard
+    abbr -a -g grsu git remote set-url origin
     abbr -a -g gg git grep -iInp --break --heading
     abbr -a -g ggs git grep -iInp --break --heading -8
 
