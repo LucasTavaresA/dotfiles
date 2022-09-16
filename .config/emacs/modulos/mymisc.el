@@ -118,9 +118,6 @@
                   (outshine-level-8 . 0.9)))
     (set-face-attribute (car face) nil :font "Ubuntu" :weight 'regular :height (cdr face) :background nil)))
 
-;; Esconde seções de código
-(use-package origami
-  :straight (origami :type git :host github :repo "elp-revive/origami.el"))
 
 ;; Ativa folding apropriado dependendo do major-mode
 (defun my-folding-modes ()
