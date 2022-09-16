@@ -159,6 +159,7 @@
 ;; melhora buffers de ajuda
 (use-package helpful
   :config
+  (setq helpful-switch-buffer-function #'pop-to-buffer-same-window)
   (define-key helpful-mode-map [remap revert-buffer] #'helpful-update)
   (global-set-key [remap describe-command] #'helpful-command)
   (global-set-key [remap describe-function] #'helpful-callable)
