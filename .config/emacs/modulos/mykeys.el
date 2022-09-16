@@ -85,6 +85,7 @@
 (define-key evil-normal-state-map (kbd "p") 'evil-colar)
 (define-key evil-normal-state-map (kbd "P") 'evil-collection-unimpaired-paste-below)
 (define-key evil-normal-state-map "\\" 'consult-line)
+(define-key evil-normal-state-map (kbd "z a") nil)
 (define-key evil-normal-state-map (kbd "q") nil)
 ;;; outshine-mode-map
 (define-key outshine-mode-map (kbd "M-<up>") nil)

@@ -14,6 +14,9 @@
       use-short-answers t ; apenas confirmações com "y" e "n"
       kill-do-not-save-duplicates t ; não salva duplicadas ao copiar
       switch-to-buffer-obey-display-actions t
+      help-window-select t
+      cursor-in-non-selected-windows nil
+      visible-cursor nil
       auth-sources '("~/.gnupg/authinfo")
       user-full-name "Lucas Tavares"
       user-mail-address "tavares.lassuncao@gmail.com"
@@ -49,6 +52,14 @@
 ;; Desativa quebras de linha quando programando
 (add-hook 'prog-mode-hook 'toggle-truncate-lines)
 (add-hook 'prog-mode-hook (lambda () (interactive) (visual-line-mode -1)))
+;; Cursor não pisca
+(blink-cursor-mode -1)
+;; Nomeia os buffers apropriadamente
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward
+      uniquify-trailing-separator-p t)
+;; Sai mais facilmente com o ESC
+(setq buffer-quit-function (lambda () t))
 
 ;;; Async
 (use-package async
