@@ -17,6 +17,7 @@
   (c-mode . eglot-ensure)
   (c++-mode . eglot-ensure)
   (lisp-mode . eglot-ensure)
+  (go-mode . eglot-ensure)
   (scheme-mode . eglot-ensure)
   (clojure-mode . eglot-ensure)
   (python-mode . eglot-ensure)
@@ -47,6 +48,10 @@
   :mode ("\\.csproj\\'" . csproj-mode))
 (use-package sln-mode
   :mode ("\\.sln\\'" . sln-mode))
+
+;;; Go
+(use-package go-mode
+  :mode ("\\.go\\'" . go-mode))
 
 ;;; CSS
 (use-package css-eldoc
