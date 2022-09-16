@@ -134,17 +134,18 @@
 ;; Ativa folding apropriado dependendo do major-mode
 (defun my-folding-modes ()
   "Ativa folding apropriado dependendo do major-mode"
-  (cond ((or (string= major-mode "sh-mode") (string= major-mode "python-mode") (string= major-mode "fish-mode"))
-         nil)
-        ((and (string= major-mode "emacs-lisp-mode")
-              (string-match-p (regexp-quote ".config/emacs/modulos/") buffer-file-name))
-         (outshine-mode))
-        ((string= major-mode "emacs-lisp-mode")
-         (progn (call-interactively #'origami-mode)
-                (call-interactively #'origami-close-all-nodes)))
-        (t (progn
-             (call-interactively #'origami-mode)
-             (call-interactively #'origami-close-all-nodes)))))
+  (cond
+   ((and (string= major-mode "emacs-lisp-mode")
+         (string-match-p (regexp-quote ".config/emacs/modulos/") buffer-file-name))
+    (outshine-mode))
+   ((or (string= major-mode "fish-mode") (string= major-mode "sh-mode"))
+    (progn (call-interactively #'yafolding-mode)
+           (call-interactively #'yafolding-hide-all)))
+   ((or (string= major-mode "mhtml-mode") (string= major-mode "html-mode"))
+    (hs-minor-mode))
+   (t (progn
+        (call-interactively #'hs-minor-mode)
+        (call-interactively #'hs-hide-all)))))
 (add-hook 'prog-mode-hook 'my-folding-modes)
 
 ;;; Indentação
