@@ -101,7 +101,7 @@
   :config (setq terminal-here-linux-terminal-command (list (getenv "TERMINAL"))))
 
 ;;; Folding
-;; Esconde seções usando comentarios como headings
+;; Folding baseado em comentários
 (use-package outshine
   :straight (outshine :type git :host github :repo "alphapapa/outshine")
   :init
@@ -118,6 +118,18 @@
                   (outshine-level-8 . 0.9)))
     (set-face-attribute (car face) nil :font "Ubuntu" :weight 'regular :height (cdr face) :background nil)))
 
+;; Folding baseado em indentação
+(use-package yafolding
+  :straight (yafolding :type git :host github :repo "lucastavaresa/yafolding.el")
+  :config
+  (add-to-list 'evil-fold-list
+               `((yafolding-mode)
+                 :open-all   yafolding-show-all
+                 :close-all  yafolding-close-all
+                 :toggle     yafolding-toggle-element-dwim
+                 :open       yafolding-show-element-dwim
+                 :open-rec   nil
+                 :close      yafolding-hide-element-dwim)))
 
 ;; Ativa folding apropriado dependendo do major-mode
 (defun my-folding-modes ()
