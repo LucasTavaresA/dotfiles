@@ -65,6 +65,7 @@
 .templateengine/
 code/
 documentos/
+.dotfiles/
 Downloads/
 jogos/
 media/
