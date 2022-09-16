@@ -170,6 +170,14 @@
 (use-package elisp-demos
   :config (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update))
 
+;;;; eldoc
+(require 'eldoc)
+(setq eldoc-mode-line-string nil
+      eldoc-echo-area-use-multiline-p t
+      eldoc-echo-area-prefer-doc-buffer nil
+      eldoc-display-functions '(eldoc-display-in-echo-area))
+(global-eldoc-mode 1)
+
 ;;; Trocar de buffer
 (defun buffers-outros ()
   "Navega por buffers cujo o nome não começa com uma letra."
