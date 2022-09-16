@@ -58,6 +58,15 @@ if status is-interactive
         $argv >/dev/null 2>&1 &;disown
     end
 
+    # Git bare dotfiles
+    function git
+        if test "$(pwd)" = "$HOME";
+            /usr/bin/git --git-dir="$HOME/.dotfiles/" $argv
+        else
+            /usr/bin/git $argv
+        end
+    end
+
     # git status recursivo
     function gsr
         for repo in (fd -H -I -E "*cache*" -E "*.local*" -E "*.config/emacs*" | grep --color -iI "/.git\$")

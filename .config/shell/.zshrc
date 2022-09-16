@@ -60,6 +60,15 @@ ee () {
     fi
 }
 
+# git bare dotfiles
+git () {
+    if [ $(pwd) = $HOME ]; then
+        /usr/bin/git --git-dir="$HOME/.dotfiles/" $@
+    else
+        /usr/bin/git $@
+    fi
+}
+
 # git status recursivo
 gsr () {
     for repo in $(fd -H -I -E "*cache*" -E "*.local*" -E "*.config/emacs*" | grep --color -iI "/.git\$");
