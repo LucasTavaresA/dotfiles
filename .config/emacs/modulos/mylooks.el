@@ -47,6 +47,7 @@
   (load-theme 'gruvbox-dark-hard t)
   :config
   (set-face-attribute 'default nil :background "#000")
+  (set-face-attribute 'fringe nil :background "#000")
   (set-face-attribute 'region nil :background "#00f"))
 
 ;;; fontes
