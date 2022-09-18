@@ -84,9 +84,6 @@ export OMNISHARPHOME="${XDG_DATA_HOME:-$HOME/.local/share}/omnisharp"
 export DOTNET_ROOT="${XDG_DATA_HOME:-$HOME/.local/share}/dotnet"
 # nuget
 export NUGET_PACKAGES="${XDG_CACHE_HOME:-$HOME/.cache}/NuGetPackages"
-# gnupg
-export GNUPGHOME="$HOME/.gnupg"
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 # npm
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc"
 # terminfo
@@ -142,12 +139,16 @@ export EDITOR="emacsclient -t -a 'nvim'"
 # editor com interface gráfica
 export VISUAL="emacsclient -n -c -a 'term_open nvim'"
 
-# usa o dmenu como autenticador GUI
+## GPG/SSH
 export SSH_ASKPASS="doas_askpass"
 export GIT_ASKPASS="doas_askpass"
 export SUDO_ASKPASS="$HOME/code/shellscripts/dmenu_pass"
 export DOAS_ASKPASS="dmenu -fn Terminus-18 -c -cw 500 -P -p Senha:"
 [ "$XDG_SESSION_TYPE" = "wayland" ] && export DOAS_ASKPASS="fuzzel -t ffffff00 -C ff0000ff -d -r 0 -x 0 -y 0 -l 1"
+
+export GNUPGHOME="$HOME/.gnupg"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+eval "$(ssh-agent -s)"
 
 # localização para datas
 export LC_TIME="pt_BR.UTF-8"
