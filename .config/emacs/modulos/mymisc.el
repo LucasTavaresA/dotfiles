@@ -112,24 +112,12 @@
   :config (setq terminal-here-linux-terminal-command (list (getenv "TERMINAL"))))
 
 ;;; Folding
-;; Folding baseado em comentários
-(use-package outshine
-  :straight (outshine :type git :host github :repo "alphapapa/outshine")
-  :init
-  (setq outshine-startup-folded-p t
-        outshine-cycle-emulate-tab t)
-  :config
-  (dolist (face '((outshine-level-1 . 1.2)
-                  (outshine-level-2 . 1.1)
-                  (outshine-level-3 . 1.0)
-                  (outshine-level-4 . 0.9)
-                  (outshine-level-5 . 0.9)
-                  (outshine-level-6 . 0.9)
-                  (outshine-level-7 . 0.9)
-                  (outshine-level-8 . 0.9)))
-    (set-face-attribute (car face) nil :font "Ubuntu" :weight 'regular :height (cdr face) :background nil)))
+;;;; Folding baseado em comentários
+(use-package outli
+  :straight (outli :type git :host github :repo "jdtsmith/outli")
+  :init (setq outli-blend nil))
 
-;; Folding baseado em indentação
+;;;; Folding baseado em indentação
 (use-package yafolding
   :straight (yafolding :type git :host github :repo "lucastavaresa/yafolding.el")
   :config
@@ -142,13 +130,14 @@
                  :open-rec   nil
                  :close      yafolding-hide-element-dwim)))
 
-;; Ativa folding apropriado dependendo do major-mode
+;;;; Ativa folding apropriado dependendo do major-mode
 (defun my-folding-modes ()
   "Ativa folding apropriado dependendo do major-mode"
   (cond
    ((and (string= major-mode "emacs-lisp-mode")
          (string-match-p (regexp-quote ".config/emacs/modulos/") buffer-file-name))
-    (outshine-mode))
+    (progn (call-interactively #'outli-mode)
+           (call-interactively #'outline-hide-body)))
    ((or (string= major-mode "fish-mode") (string= major-mode "sh-mode"))
     (progn (call-interactively #'yafolding-mode)
            (call-interactively #'yafolding-hide-all)))
