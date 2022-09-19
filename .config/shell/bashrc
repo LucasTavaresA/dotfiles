@@ -122,7 +122,7 @@ alias tep="tpe trans -s pt -l en"
 alias tpe="tpe trans -s pt -l en"
 alias fm="fzf_man"
 alias as="alias | grep --color -i"
-alias n="neofetch"
+alias ff="flashfetch"
 alias v="nvim"
 alias vv="term_open -s nvim"
 alias h="htop"
@@ -238,6 +238,8 @@ elif [ "$OS" = "linuxmint" ]; then
     alias ar="doas apt remove"
     alias sys="doas systemctl"
 fi
+
+flashfetch
 
 # prompt
 # PS1="\e[01;37m[\u] \w\e[m \e[01;32m>\e[m"

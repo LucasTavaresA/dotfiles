@@ -136,7 +136,7 @@ if status is-interactive
     abbr -a -g hc herbstclient
     abbr -a -g fm fzf_man
     abbr -a -g as "abbr | grep --color -i"
-    abbr -a -g n neofetch
+    abbr -a -g ff flashfetch
     abbr -a -g v nvim
     abbr -a -g vv term_open -s nvim
     abbr -a -g h htop
@@ -253,7 +253,8 @@ if status is-interactive
         abbr -a -g sys doas systemctl
     end
 
-    ## Prompt ##
     flashfetch
+
+    ## Prompt ##
     starship init fish | source
 end

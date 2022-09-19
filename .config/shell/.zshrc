@@ -142,7 +142,7 @@ alias tpe="tpe trans -s pt -l en"
 alias fm="fzf_man"
 alias hc="herbstclient"
 alias as="alias | grep --color -i"
-alias n="neofetch"
+alias ff="flashfetch"
 alias v="nvim"
 alias vv="term_open -s nvim"
 alias h="htop"
@@ -268,6 +268,8 @@ source $HOME/.config/shell/plugins/fzf.zsh
 source $HOME/.config/shell/plugins/keys-fzf.zsh
 bindkey  "^[d"   fzf-cd-widget
 bindkey  "^[s"   fzf-history-widget
+
+flashfetch
 
 # prompt
 #PS1="%B[%n] %4~ %{$fg[green]%}>%{$reset_color%}%b"
