@@ -7,6 +7,10 @@
 ;;; Magit
 (use-package magit
   :config
+  (magit-add-section-hook 'magit-status-sections-hook
+                          'magit-insert-modules
+                          'magit-insert-stashes
+                          'append)
   (setq magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 (use-package magit-todos
   :after (magit)
