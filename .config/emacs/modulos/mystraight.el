@@ -19,6 +19,14 @@
 ;;; usa :straight t por padrão
 (setq straight-use-package-by-default t)
 
+;;; auto-compile
+(use-package auto-compile
+  :init
+  (auto-compile-on-load-mode)
+  (auto-compile-on-save-mode)
+  (setq auto-compile-display-buffer nil
+        auto-compile-mode-line-counter t))
+
 ;;; orgmode prescisa ser carregado primeiro
 (use-package org :defer t)
 
