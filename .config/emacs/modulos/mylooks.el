@@ -37,9 +37,6 @@
         awesome-tray-active-modules    '("github" "buffer-read-only" "evil" "anzu"
                                          "circe" "mode-name" "git" "location" "file-path"))
   (awesome-tray-mode))
-;; esconde a mode-line
-(use-package hide-mode-line
-  :init (global-hide-mode-line-mode))
 
 ;;; Tema
 (use-package gruvbox-theme
