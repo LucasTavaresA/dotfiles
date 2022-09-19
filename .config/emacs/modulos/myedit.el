@@ -16,6 +16,9 @@
 ;;; move linhas
 (use-package move-text)
 
+;;; pula para palavras
+(use-package avy)
+
 ;;; Evil
 (use-package evil
   :init

@@ -79,6 +79,7 @@
 (define-key evil-motion-state-map (kbd "C-M-i") 'completion-at-point)
 (define-key evil-motion-state-map (kbd "K") 'helpful-at-point)
 (define-key evil-motion-state-map (kbd "M") 'evil-record-macro)
+(define-key evil-motion-state-map (kbd "f") 'avy-goto-word-1)
 ;;; evil-normal-state-map
 (define-key evil-normal-state-map (kbd "C-.") #'flyspell-correct-wrapper)
 (define-key evil-normal-state-map (kbd "m") 'evil-execute-macro)
