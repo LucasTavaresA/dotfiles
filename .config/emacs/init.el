@@ -1,7 +1,6 @@
-;;; init.el -*- lexical-binding: t; -*-
+;;; init.el -*- lexical-binding: t; no-byte-compile: t; -*-
 (toggle-debug-on-error)
-;;; módulos
-;; pacotes pessoais/desenvolvimento
+;;; pacotes pessoais/desenvolvimento
 (let ((base "~/code/elisp"))
   (add-to-list 'load-path base)
   (dolist (f (directory-files base))
@@ -11,7 +10,7 @@
                  (not (equal f ".")))
         (add-to-list 'load-path name)))))
 
-;; módulos do emacs
+;;; módulos do emacs
 (add-to-list 'load-path (expand-file-name "modulos/" user-emacs-directory))
 (require 'mystraight)
 (require 'mylooks)

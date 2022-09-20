@@ -150,7 +150,7 @@
 
 ;;; Indentação
 (use-package aggressive-indent
-  :init (global-aggressive-indent-mode))
+  :config (global-aggressive-indent-mode))
 
 (defun normalizar-buffer ()
   "Organiza o buffer, formata espaço e tabs e conserta indentação."
