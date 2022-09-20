@@ -1,11 +1,11 @@
 ;;; mymisc.el -*- lexical-binding: t; -*-
-;;; Checagens de sistema
+;;; checagens de sistema
 (defconst IS-LINUX   (eq system-type 'gnu/linux))
 (defconst IS-MAC     (eq system-type 'darwin))
 (defconst IS-BSD     (or IS-MAC (eq system-type 'berkeley-unix)))
 (defconst IS-WINDOWS (memq system-type '(cygwin windows-nt ms-dos)))
 
-;;; Configurações
+;;; configurações
 ;; desativa aviso ao usar `dired-find-alternate-file'
 (put 'dired-find-alternate-file 'disabled nil)
 ;; necessário no windows
@@ -40,40 +40,40 @@
 (global-visual-line-mode +1) ; quebra parágrafos de acordo com as palavras
 (electric-pair-mode 1) ; auto-inserir "{}()[]"
 (show-paren-mode 1) ; indica parenteses
-;; Não permite o cursor no minibuffer
+;; não permite o cursor no minibuffer
 (setq minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt))
 (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
-;; Ativa minibuffers recursivos
+;; ativa minibuffers recursivos
 (setq enable-recursive-minibuffers t)
-;; Ativa case insensitivity em compleções
+;; ativa case insensitivity em compleções
 (setq read-file-name-completion-ignore-case t
       read-buffer-completion-ignore-case t
       completion-ignore-case t)
-;; Desativa quebras de linha quando programando
+;; desativa quebras de linha quando programando
 (add-hook 'prog-mode-hook 'toggle-truncate-lines)
 (add-hook 'prog-mode-hook (lambda () (interactive) (visual-line-mode -1)))
-;; Cursor não pisca
+;; cursor não pisca
 (blink-cursor-mode -1)
-;; Nomeia os buffers apropriadamente
+;; nomeia os buffers apropriadamente
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward
       uniquify-trailing-separator-p t)
-;; Sai mais facilmente com o ESC
+;; sai mais facilmente com o ESC
 (setq buffer-quit-function (lambda () t))
 
-;;; Async
+;;; async
 (use-package async
   :defer t
   :init (async-bytecomp-package-mode 1)
   :custom (async-bytecomp-allowed-packages '(all)))
 
-;;; Shell
+;;; shell
 (setq-default explicit-shell-file-name "/bin/sh"
               shell-file-name "/bin/sh")
 ;; torna arquivos com shebang (#!) executáveis quando salvados
 (add-hook 'after-save-hook #'executable-make-buffer-file-executable-if-script-p)
 
-;;; Mover arquivos para pastas apropriadas
+;;; mover arquivos para pastas apropriadas
 (use-package no-littering)
 (require 'recentf)
 (setq custom-file (no-littering-expand-etc-file-name "custom.el"))
@@ -83,13 +83,13 @@
 (add-to-list 'recentf-exclude no-littering-var-directory)
 (add-to-list 'recentf-exclude no-littering-etc-directory)
 
-;;; Limpa espaços apenas em linhas editadas
+;;; limpa espaços apenas em linhas editadas
 (use-package ws-butler
   :init
   (setq whitespace-action nil) ; desativa limpeza de espaços usando `whitespace'
   (ws-butler-global-mode))
 
-;;; Mostra quantidade e índice de palavras procuradas
+;;; mostra quantidade e índice de palavras procuradas
 (use-package anzu
   :init
   (global-anzu-mode +1)
@@ -100,24 +100,24 @@
 (use-package evil-anzu
   :init (require 'evil-anzu))
 
-;;; Indica todos
+;;; indica todos
 (use-package hl-todo
   :hook (prog-mode . hl-todo-mode))
 
-;;; Mostra cores `#fff'
+;;; mostra cores `#fff'
 (use-package rainbow-mode)
 
-;;; Abre um terminal no diretório atual
+;;; abre um terminal no diretório atual
 (use-package terminal-here
   :config (setq terminal-here-linux-terminal-command (list (getenv "TERMINAL"))))
 
-;;; Folding
-;;;; Folding baseado em comentários
+;;; folding
+;;;; folding baseado em comentários
 (use-package outli
   :straight (outli :type git :host github :repo "jdtsmith/outli")
   :init (setq outli-blend nil))
 
-;;;; Folding baseado em indentação
+;;;; folding baseado em indentação
 (use-package yafolding
   :straight (yafolding :type git :host github :repo "lucastavaresa/yafolding.el")
   :config
@@ -130,7 +130,7 @@
                  :open-rec   nil
                  :close      yafolding-hide-element-dwim)))
 
-;;;; Ativa folding apropriado dependendo do major-mode
+;;;; ativa folding apropriado dependendo do major-mode
 (defun my-folding-modes ()
   "Ativa folding apropriado dependendo do major-mode"
   (cond
@@ -148,7 +148,7 @@
         (call-interactively #'hs-hide-all)))))
 (add-hook 'prog-mode-hook 'my-folding-modes)
 
-;;; Indentação
+;;; indentação
 (use-package aggressive-indent
   :config (global-aggressive-indent-mode))
 
@@ -160,7 +160,7 @@
     (untabify (point-min) (point-max))
     (indent-region (point-min) (point-max))))
 
-;;; Ajuda
+;;; ajuda
 ;; melhora `gd' para ir a definições de código
 (use-package dumb-jump)
 (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
@@ -189,7 +189,7 @@
       eldoc-display-functions '(eldoc-display-in-echo-area))
 (global-eldoc-mode 1)
 
-;;; Trocar de buffer
+;;; trocar de buffer
 (defun buffers-outros ()
   "Navega por buffers cujo o nome não começa com uma letra."
   (interactive)

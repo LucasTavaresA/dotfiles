@@ -1,10 +1,10 @@
 ;;; mygit.el -*- lexical-binding: t; -*-
-;;; Miscelânea
+;;; miscelânea
 (use-package git-modes)
 (use-package git-link
   :config (setq git-link-open-in-browser t))
 
-;;; Magit
+;;; magit
 (use-package magit
   :config
   (magit-add-section-hook 'magit-status-sections-hook
@@ -31,7 +31,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 
 (advice-add 'magit-process-environment :filter-return #'magit-dotfiles)
 
-;;; Github
+;;; github
 (use-package forge
   :after (magit))
 (use-package code-review
@@ -39,7 +39,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
   :init (add-hook 'code-review-mode-hook #'emojify-mode)
   :config (setq code-review-auth-login-marker 'forge))
 
-;;; Indica diffs
+;;; indica diffs
 (use-package diff-hl
   :init (global-diff-hl-mode)
   :config

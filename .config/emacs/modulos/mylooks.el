@@ -1,15 +1,15 @@
 ;;; mylooks.el -*- lexical-binding: t; -*-
-;;; Divisórias
+;;; divisórias
 ;; tamanho das fringes
 (set-fringe-mode 5)
-;; Divisórias entre frames
+;; divisórias entre frames
 (setq window-divider-default-places t
       window-divider-default-bottom-width 1
       window-divider-default-right-width 1)
 (set-face-attribute 'window-divider nil :foreground "#fff")
 (window-divider-mode 1)
 
-;;; Indicação de espaços e tabs
+;;; indicação de espaços e tabs
 (use-package whitespace
   :hook (prog-mode . whitespace-mode)
   :init
@@ -17,7 +17,7 @@
                                 empty space-after-tab tab-mark missing-newline-at-eof))
   :config (set-face-attribute 'whitespace-space nil :background "#000" :foreground "#333"))
 
-;;; Mode-line
+;;; mode-line
 ;; informações no minibuffer
 (use-package awesome-tray
   :straight (awesome-tray :type git :host github :repo "manateelazycat/awesome-tray")
@@ -38,7 +38,7 @@
                                          "circe" "mode-name" "git" "location" "file-path"))
   (awesome-tray-mode))
 
-;;; Tema
+;;; tema
 (use-package gruvbox-theme
   :init
   (load-theme 'gruvbox-dark-hard t)
@@ -53,12 +53,12 @@
 ;; símbolos em prog-mode
 (add-hook 'prog-mode-hook 'prettify-symbols-mode)
 
-;;; Indica buffers sem foco
+;;; indica buffers sem foco
 (use-package auto-dim-other-buffers
   :init (auto-dim-other-buffers-mode)
   (set-face-attribute 'auto-dim-other-buffers-face nil :background "#101010"))
 
-;;; Indicação visual no cursor
+;;; indicação visual no cursor
 (use-package pulse
   :defer t
   :init

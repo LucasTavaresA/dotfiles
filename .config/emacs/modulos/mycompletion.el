@@ -1,5 +1,5 @@
 ;;; mycompletion.el -*- lexical-binding: t; -*-
-;;; Ui
+;;; ui
 (use-package vertico
   :straight (vertico :includes vertico-directory
                      :files (:defaults "extensions/vertico-directory.el"
@@ -44,7 +44,7 @@
   :custom (kind-icon-default-face 'corfu-default)
   :config (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
-;;; Funções no mini-buffer
+;;; funções no mini-buffer
 (use-package consult
   :config
   (setq completion-in-region-function #'consult-completion-in-region
@@ -52,10 +52,10 @@
                                                                consult--source-buffer consult--source-project-buffer)
         consult-preview-key nil)) ; desativa previsão consult
 
-;; Lida com diretórios usando consult
+;; lida com diretórios usando consult
 (use-package consult-dir)
 
-;;; Ordenar items
+;;; ordenar items
 (use-package orderless
   :config
   (setq completion-styles '(orderless basic)

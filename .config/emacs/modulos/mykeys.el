@@ -108,11 +108,11 @@
 (define-key minibuffer-local-map (kbd "<backtab>") #'vertico-previous)
 ;;; minibuffer-local-completion-map
 (define-key minibuffer-local-map (kbd "C-.") 'consult-dir-jump-file)
-;;; Vertico-mode-map
+;;; vertico-mode-map
 (define-key vertico-map "?" #'minibuffer-completion-help)
 (define-key vertico-map (kbd "RET") #'vertico-directory-enter)
 (define-key vertico-map (kbd "DEL") #'vertico-directory-delete-char)
-;;; Outline-mode-map
+;;; outline-mode-map
 (define-key outline-mode-map (kbd "<normal-state> z l") nil)
 (define-key outline-mode-map (kbd "<normal-state> M-<return>") nil)
 ;;; tempel-map
@@ -151,7 +151,7 @@
 (global-set-key (kbd "<M-up>") 'move-text-up)
 (global-set-key (kbd "<M-down>") 'move-text-down)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-;;; Csharp-mode
+;;; csharp-mode
 (with-eval-after-load 'csharp-mode
   (define-key csharp-mode-map (kbd "M-e") nil))
 ;;; org-mode

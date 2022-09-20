@@ -1,5 +1,5 @@
 ;;; mymarkup.el -*- lexical-binding: t; -*-
-;;; Org mode
+;;; org mode
 (use-package org
   :defer t
   :hook (org-mode . ajusta-texto)
@@ -15,13 +15,13 @@
         org-src-tab-acts-natively t ; tab em código fonte
         org-startup-indented t      ; carrega o org-indent ao iniciar
         org-hide-leading-stars t           ; mostra asteriscos das headers
-        org-edit-src-content-indentation 2 ; Indentação nos blocos de código
+        org-edit-src-content-indentation 2 ; indentação nos blocos de código
         org-table-convert-region-max-lines 20000)
   ;; remove asteriscos de headings
   (font-lock-add-keywords 'org-mode `(("^\\(\\*+ \\)\\s-*\\S-"
                                        (1 (put-text-property (match-beginning 1) (match-end 1) 'invisible t)
                                           nil))))
-  ;; Trocar listas com hifens por pontos
+  ;; trocar listas com hifens por pontos
   (font-lock-add-keywords 'org-mode
                           '(("^ *\\([-]\\) "
                              (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
@@ -65,10 +65,10 @@
 (use-package org-make-toc
   :after (org))
 
-;;; Markdown
+;;; markdown
 (use-package markdown-mode
   :init
-  ;; Trocar listas com hifens por pontos
+  ;; trocar listas com hifens por pontos
   (font-lock-add-keywords 'gfm-mode
                           '(("^ *\\([-]\\) "
                              (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
@@ -90,7 +90,7 @@
   :after (gfm-mode markdown-mode)
   :hook ((gfm-mode markdown-mode) . markdown-toc))
 
-;;; Funções
+;;; funções
 (defun inserir-link ()
   "insere link dependendo do major-mode"
   (interactive)

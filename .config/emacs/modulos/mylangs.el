@@ -1,5 +1,5 @@
 ;;; mylangs.el -*- lexical-binding: t; -*-
-;;; Compile
+;;; compile
 (use-package compile
   :config
   (setq compilation-scroll-output t)
@@ -9,7 +9,7 @@
       (ansi-color-apply-on-region (point-min) (point-max))))
   (add-hook 'compilation-filter-hook 'colorize-compilation-buffer))
 
-;;; LSP
+;;; lSP
 (use-package eglot
   :hook
   (html-mode . eglot-ensure)
@@ -24,7 +24,7 @@
   (js-mode . eglot-ensure)
   :config (setq eglot-autoshutdown t))
 
-;;; Common lisp
+;;; common lisp
 (use-package sly-asdf)
 (use-package sly-quicklisp)
 (use-package sly-repl-ansi-color)
@@ -36,11 +36,11 @@
   (require 'sly-repl-ansi-color)
   (require 'sly-asdf))
 
-;;; Elisp
+;;; elisp
 (use-package eros
   :hook (emacs-lisp-mode . eros-mode))
 
-;;; CSharp
+;;; csharp
 (use-package csharp-mode
   :config (add-to-list 'aggressive-indent-excluded-modes 'csharp-mode)
   :mode ("\\.cs\\'" . csharp-mode))
@@ -49,19 +49,19 @@
 (use-package sln-mode
   :mode ("\\.sln\\'" . sln-mode))
 
-;;; Go
+;;; go
 (use-package go-mode
   :mode ("\\.go\\'" . go-mode))
 
-;;; CSS
+;;; css
 (use-package css-eldoc
   :hook (css-mode . turn-on-css-eldoc))
 
-;;; Fish
+;;; fish
 (use-package fish-mode
   :mode ("\\.fish\\'" . fish-mode))
 
-;;; Funções
+;;; funções
 (defun aval-buffer ()
   "Avalia buffer dependendo do major-mode."
   (interactive)
@@ -76,7 +76,7 @@
         (cond ((string= major-mode "sh-mode") (shell-command regionp))
               (t (eval-region start end t))))))
 
-;;; Flycheck
+;;; flycheck
 (use-package flycheck)
 
 (provide 'mylangs)
