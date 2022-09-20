@@ -115,7 +115,11 @@
 ;;;; folding baseado em comentários
 (use-package outli
   :straight (outli :type git :host github :repo "jdtsmith/outli")
-  :init (setq outli-blend nil))
+  :init
+  (setq outli-blend 0.5)
+  :config
+  (setq outli-heading-config (assoc-delete-all 'emacs-lisp-mode outli-heading-config))
+  (add-to-list 'outli-heading-config '(emacs-lisp-mode ";;" ?\; t t)))
 
 ;;;; folding baseado em indentação
 (use-package yafolding
