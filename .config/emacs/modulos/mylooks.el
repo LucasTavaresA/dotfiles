@@ -23,12 +23,12 @@
   :straight (awesome-tray :type git :host github :repo "manateelazycat/awesome-tray")
   :init
   (setq awesome-tray-git-format "%s"
+        awesome-tray-hide-mode-line nil
         awesome-tray-evil-show-mode nil
         awesome-tray-file-path-show-filename t
         awesome-tray-file-path-full-dirname-levels 1
         awesome-tray-file-path-truncate-dirname-levels 0
         awesome-tray-location-format "L%l"
-        awesome-tray-info-padding-right 0
         awesome-tray-separator "  "
         awesome-tray-second-line t
         awesome-tray-position 'center
