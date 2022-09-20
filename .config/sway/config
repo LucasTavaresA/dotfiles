@@ -179,10 +179,7 @@ bindsym $mods+3 move window to workspace number $ws3
 bindsym $mods+4 move window to workspace number $ws4
 
 # Iniciar
-exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
-         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         before-sleep 'swaylock -f -c 000000'
+exec swayidle -w timeout 500 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
 exec wl-paste -t text --watch clipman store 1>> $XDG_DATA_HOME/clipman.log 2>&1 &
 exec fzf_man update
 exec mako
