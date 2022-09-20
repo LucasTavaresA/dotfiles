@@ -14,7 +14,7 @@
 (add-to-list 'load-path (expand-file-name "modulos/" user-emacs-directory))
 (require 'mystraight)
 (require 'mylooks)
-(require 'myedit)
+(require 'myevil)
 (require 'mymisc)
 (require 'mygit)
 (require 'mymarkup)

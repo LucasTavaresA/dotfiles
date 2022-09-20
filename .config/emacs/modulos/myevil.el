@@ -1,25 +1,5 @@
-;;; myedit.el -*- lexical-binding: t; -*-
-;;; templates
-(use-package tempel
-  :init
-  (defun tempel-setup-capf ()
-    (setq-local completion-at-point-functions
-                (cons #'tempel-expand
-                      completion-at-point-functions)))
-  (add-hook 'prog-mode-hook 'tempel-setup-capf)
-  (add-hook 'text-mode-hook 'tempel-setup-capf)
-  :config (setq tempel-path "/home/lucas/.config/emacs/etc/templates"))
-
-;;; expande região selecionada
-(use-package expand-region)
-
-;;; move linhas
-(use-package move-text)
-
-;;; pula para palavras
-(use-package avy)
-
-;;; Evil
+;;; myevil.el -*- lexical-binding: t; -*-
+;;; evil
 (use-package evil
   :init
   (setq-default evil-cross-lines t ; da a volta para a proxima linha
@@ -45,17 +25,11 @@
   (evil-mode 1)
   :config (evil-select-search-module 'evil-search-module 'evil-search))
 
-;;; Teclas evil para vários modos
+;;; teclas evil para vários modos
 (use-package evil-collection
   :after (evil)
   :init (evil-collection-init)
   (setq forge-add-default-bindings nil))
-
-;;; desfazer com timeline
-(use-package undo-tree
-  :after (evil)
-  :init (global-undo-tree-mode)
-  :config (setq undo-tree-auto-save-history nil))
 
 ;;; comenta código
 (use-package evil-nerd-commenter
@@ -73,11 +47,6 @@
   :init (global-evil-mc-mode))
 
 ;;; funções
-(defun copiar-buffer ()
-  "Copia todo o buffer"
-  (interactive)
-  (clipboard-kill-ring-save (point-min) (point-max)))
-
 (defun evil-colar ()
   "Chama `evil-paste-after' porem inverte `evil-kill-on-visual-paste'.
 
@@ -88,7 +57,7 @@ isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no mo
         (call-interactively #'evil-paste-before)
       (call-interactively #'evil-paste-after))))
 
-;;; Evil-mc sai com ESC
+;;;; evil-mc sai com ESC
 ;; copiado do doom emacs
 (defvar evil-escape-hook nil
   "A hook run when C-g is pressed (or ESC in normal mode, for evil users).
@@ -101,11 +70,11 @@ all hooks after it are ignored.")
          (when interactive
            (setq this-command 'abort-recursive-edit))
          (abort-recursive-edit))
-        ;; Run all escape hooks. If any returns non-nil, then stop there.
+        ;; run all escape hooks. If any returns non-nil, then stop there.
         ((run-hook-with-args-until-success 'evil-escape-hook))
         ;; don't abort macros
         ((or defining-kbd-macro executing-kbd-macro) nil)
-        ;; Back to the default
+        ;; back to the default
         ((unwind-protect (keyboard-quit)
            (when interactive
              (setq this-command 'keyboard-quit))))))
@@ -122,5 +91,5 @@ all hooks after it are ignored.")
     (call-interactively #'evil-escape)))
 (advice-add #'evil-force-normal-state :after #'+evil-escape-a)
 
-(provide 'myedit)
-;;; myedit.el ends here
+(provide 'myevil)
+;;; myevil.el ends here

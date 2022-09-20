@@ -201,4 +201,36 @@
   (pop-to-buffer-same-window (completing-read ">" (mapcar #'buffer-name (buffer-list)) nil nil "^[A-z] ")))
 
 (provide 'mymisc)
+;;; templates
+(use-package tempel
+  :init
+  (defun tempel-setup-capf ()
+    (setq-local completion-at-point-functions
+                (cons #'tempel-expand
+                      completion-at-point-functions)))
+  (add-hook 'prog-mode-hook 'tempel-setup-capf)
+  (add-hook 'text-mode-hook 'tempel-setup-capf)
+  :config (setq tempel-path "/home/lucas/.config/emacs/etc/templates"))
+
+;;; expande região selecionada
+(use-package expand-region)
+
+;;; move linhas
+(use-package move-text)
+
+;;; pula para palavras
+(use-package avy)
+
+;;; desfazer com timeline
+(use-package undo-tree
+  :after (evil)
+  :init (global-undo-tree-mode)
+  :config (setq undo-tree-auto-save-history nil))
+
+;;; funções
+(defun copiar-buffer ()
+  "Copia todo o buffer"
+  (interactive)
+  (clipboard-kill-ring-save (point-min) (point-max)))
+
 ;;; mymisc.el ends here
