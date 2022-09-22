@@ -204,7 +204,6 @@
   (interactive)
   (pop-to-buffer-same-window (completing-read ">" (mapcar #'buffer-name (buffer-list)) nil nil "^[A-z] ")))
 
-(provide 'mymisc)
 ;;; templates
 (use-package tempel
   :init
@@ -237,4 +236,5 @@
   (interactive)
   (clipboard-kill-ring-save (point-min) (point-max)))
 
+(provide 'mymisc)
 ;;; mymisc.el ends here
