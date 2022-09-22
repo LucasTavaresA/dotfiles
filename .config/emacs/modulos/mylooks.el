@@ -39,13 +39,10 @@
   (awesome-tray-mode))
 
 ;;; tema
-(use-package gruvbox-theme
-  :init
-  (load-theme 'gruvbox-dark-hard t)
-  :config
-  (set-face-attribute 'default nil :background "#000")
-  (set-face-attribute 'fringe nil :background "#000")
-  (set-face-attribute 'region nil :background "#00f"))
+(load-theme 'misterioso t)
+(set-face-attribute 'default nil :background "#000")
+(set-face-attribute 'fringe nil :background "#000")
+(set-face-attribute 'region nil :background "#00f")
 
 ;;; fontes
 (set-face-attribute 'default nil :family "Terminus" :height 140)

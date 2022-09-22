@@ -54,7 +54,7 @@
   (awesome-tray-mode))
 
 ;;;; tema
-(load-theme 'wombat t)
+(load-theme 'misterioso t)
 (set-face-attribute 'default nil :background "#000")
 (set-face-attribute 'fringe nil :background "#000")
 (set-face-attribute 'region nil :background "#00f")
