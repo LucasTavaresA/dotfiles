@@ -281,7 +281,7 @@ if status is-interactive
         abbr -a -g sys doas systemctl
     end
 
-    flashfetch
+    timeout 0.3s flashfetch
 
     ## Prompt ##
     starship init fish | source

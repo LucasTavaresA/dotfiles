@@ -300,7 +300,7 @@ source $HOME/.config/shell/plugins/keys-fzf.zsh
 bindkey  "^[d"   fzf-cd-widget
 bindkey  "^[s"   fzf-history-widget
 
-flashfetch
+timeout 0.3s flashfetch
 
 # prompt
 #PS1="%B[%n] %4~ %{$fg[green]%}>%{$reset_color%}%b"
