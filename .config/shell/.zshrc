@@ -71,22 +71,53 @@ git () {
 
 # git status recursivo
 gsr () {
-    for repo in $(fd -H -I -E "*cache*" -E "*.local*" -E "*.config/emacs*" | grep --color -iI "/.git\$");
+    cdir=$(pwd)
+    for repo in $(fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | grep '\.git/$');
     do
-        repo=$(echo $repo | sed 's/\/.git$//')
+        repo=$(echo $repo | sed 's/\/.git\/$//')
+        cd $repo
+
         cols=$(tput cols)
         i=0
         while [ $i -lt $cols ]; do
             echo -n "─"
             i=$((i+1))
         done
-        if git status $repo | grep nothing > /dev/null; then
+
+        if git status | grep nothing > /dev/null; then
             printf "\033[96m\033[1m%s\033[0m\n" "$repo"
         else
             printf "\033[96m\033[1m%s\033[0m\n" "$repo"
-            git status $repo
+            git status
         fi
     done
+    cd $cdir
+}
+
+# git pull recursivo
+gpr () {
+    cdir=$(pwd)
+    for repo in $(fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | grep '\.git/$');
+    do
+        repo=$(echo $repo | sed 's/\/.git\/$//')
+        cd $repo
+
+        cols=$(tput cols)
+        i=0
+        while [ $i -lt $cols ]; do
+            echo -n "─"
+            i=$((i+1))
+        done
+        echo
+
+        read -p "pull $repo ? [y/N] " -n 1 -r
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]]
+        then
+            git pull
+        fi
+    done
+    cd $cdir
 }
 
 # facilita extrair arquivos

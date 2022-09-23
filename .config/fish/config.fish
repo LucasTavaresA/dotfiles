@@ -69,21 +69,49 @@ if status is-interactive
 
     # git status recursivo
     function gsr
-        for repo in (fd -H -I -E "*cache*" -E "*.local*" -E "*.config/emacs*" | grep --color -iI "/.git\$")
-            set repo (echo $repo | sed 's/\/.git$//')
+        set cdir (pwd)
+        for repo in (fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | grep '\.git/$')
+            set repo (echo $repo | sed 's/\/.git\/$//')
+            cd $repo
+
             set cols (tput cols)
             set i 0
             while test $i -lt $cols;
                 echo -n "─"
                 set i (math $i + 1)
             end
-            if git status $repo | grep nothing > /dev/null;
+
+            if git status | grep nothing > /dev/null;
                 printf "\033[96m\033[1m%s\033[0m\n" "$repo"
             else
                 printf "\033[96m\033[1m%s\033[0m\n" "$repo"
-                git status $repo
+                git status
             end
         end
+        cd $cdir
+    end
+
+    # git pull recursivo
+    function gpr
+        set cdir (pwd)
+        for repo in (fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | grep '\.git/$')
+            set repo (echo $repo | sed 's/\/.git\/$//')
+            cd $repo
+
+            set cols (tput cols)
+            set i 0
+            while test $i -lt $cols;
+                echo -n "─"
+                set i (math $i + 1)
+            end
+            echo
+
+            read -l -P "pull $repo? [y/N] " confirm
+            if test $confirm = y -o $confirm = Y
+                git pull
+            end
+        end
+        cd $cdir
     end
 
     # Facilita extrair arquivos
