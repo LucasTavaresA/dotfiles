@@ -56,6 +56,7 @@
   (set-face-attribute 'auto-dim-other-buffers-face nil :background "#101010"))
 
 ;;; indicação visual no cursor
+;; pulsar em movimento
 (use-package pulse
   :defer t
   :init
@@ -68,6 +69,11 @@
                                        recenter-top-bottom other-window))
     (advice-add command :after #'pulsar-linha))
   :config (set-face-attribute 'pulse-highlight-start-face nil :background "#00f"))
+
+;; pulsar ao editar texto
+(use-package goggles
+  :hook ((prog-mode text-mode) . goggles-mode)
+  :config (setq-default goggles-pulse t))
 
 (provide 'mylooks)
 ;;; mylooks.el ends here
