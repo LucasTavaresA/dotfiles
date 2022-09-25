@@ -3,7 +3,7 @@ if status is-interactive
     ## Fish ##
     # set fish_trace 1 # ativa modo debug
     set -U fish_greeting # desativa mensagem ao iniciar
-    set -x SHELL "fish"
+    set -x SHELL "/bin/fish"
     set -x GPG_TTY (tty)
     set fzf_fd_opts --base-directory $HOME -H -I -d 4 -t d -E '*cache*' -E '*git*'
     set fzf_git_log_opts --preview-window=bottom

@@ -113,7 +113,7 @@ export LS_COLORS="di=1;34:ln=1;36:so=1;33:pi=1;35:ex=32:bd=1;0;44:cd=1;36;42:su=
 export FZF_ALT_C_COMMAND="fd --base-directory $HOME -H -I -d 4 -t d -E '*cache*' -E '*git*'"
 
 # shell
-export SHELL="sh"
+export SHELL="/bin/sh"
 # muda o local do zshrc
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/shell"
 # muda o local do histórico

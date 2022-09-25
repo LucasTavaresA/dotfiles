@@ -4,7 +4,7 @@
 [[ $- != *i* ]] && return
 
 #### Zsh exports ####
-export SHELL="zsh"
+export SHELL="/bin/zsh"
 export GPG_TTY=$TTY
 # não adiciona esses itens ao histórico
 export HISTORY_IGNORE="(lsd|ls|cd|pwd|exit|doas reboot|history|cd -|cd ..)"
