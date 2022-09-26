@@ -54,27 +54,6 @@ paq({
     "jiangmiao/auto-pairs";
     -- indica diffs
     "mhinz/vim-signify";
-    -- buffer com erros no codigo
-    "kyazdani42/nvim-web-devicons";
-    { "folke/trouble.nvim",
-        requires = "kyazdani42/nvim-web-devicons",
-        config = function()
-        require("trouble").setup {
-            padding = false,
-            icons = false,
-            fold_open = "v",
-            fold_closed = ">",
-            indent_lines = false,
-            signs = {
-                error = "error",
-                warning = "warn",
-                hint = "hint",
-                information = "info"
-            },
-            use_diagnostic_signs = false
-        }
-      end
-    };
     -- snippets
     "SirVer/ultisnips";
     "honza/vim-snippets";
@@ -287,8 +266,6 @@ keymap("n", "cc", "gccj", {})
 keymap("v", "cc", "gc", {})
 -- ativa previsão de cores - nvimcolorizer
 keymap("n", "zr", ":ColorizerToggle<CR>", {})
--- abrir e fechar o buffer de diagnostico - Trouble
-keymap("n", "zt", ":TroubleToggle<CR>", {})
 -- abrir e fechar arvore de undos - undotree
 keymap("n", "zu", ":UndotreeToggle<CR>:UndotreeFocus<CR>", {})
 -- editar snippets para o tipo de arquivo atual - ultisnips
