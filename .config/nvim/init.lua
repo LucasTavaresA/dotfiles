@@ -49,7 +49,6 @@ paq({
     --- Code
     -- indentação e indicação de sintaxe
     "sheerun/vim-polyglot";
-    "nvim-treesitter/nvim-treesitter";
     -- fecha parenteses apertando enter
     "jiangmiao/auto-pairs";
     -- indica diffs
@@ -152,22 +151,6 @@ vim.api.nvim_create_autocmd("InsertLeave", { pattern = {"*"}, command = "set cur
 vim.cmd("hi! MatchParen cterm=NONE,bold gui=NONE,bold  guibg=NONE guifg=#ff0000")
 -- não deleta pares automaticamente
 vim.g.AutoPairsMapBS = 0
-
---- Treesitter
--- indentação e indicação de sintaxe
-local configs = require'nvim-treesitter.configs'
-configs.setup {
-    ensure_installed = "all",
-    highlight = { -- Indicação de sintaxe
-        enable = true,
-    },
-    indent = {
-        enable = true, -- Indentação
-    }
-}
--- ativa folding do treesitter
---vim.opt.foldmethod = "expr"
---vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 --- Ctrlp
 -- abre arquivos no repositório atual de acordo com o gitignore
