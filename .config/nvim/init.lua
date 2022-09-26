@@ -54,9 +54,6 @@ paq({
     "jiangmiao/auto-pairs";
     -- indica diffs
     "mhinz/vim-signify";
-    -- LSP
-    "neovim/nvim-lspconfig";
-    "williamboman/nvim-lsp-installer";
     -- buffer com erros no codigo
     "kyazdani42/nvim-web-devicons";
     { "folke/trouble.nvim",
@@ -193,22 +190,6 @@ configs.setup {
 --vim.opt.foldmethod = "expr"
 --vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
---- LSP
-local lsp_installer = require("nvim-lsp-installer")
-lsp_installer.on_server_ready(function(server)
-  local opts = {}
-  server:setup(opts)
-end)
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics,
-    {
-        virtual_text = false,
-        signs = false,
-        update_in_insert = false,
-        underline = true,
-    }
-)
-
 --- Ctrlp
 -- abre arquivos no repositório atual de acordo com o gitignore
 vim.cmd([[
@@ -317,15 +298,3 @@ vim.g.UltiSnipsExpandTrigger = "<tab>"
 vim.g.UltiSnipsJumpForwardTrigger = "<tab>"
 vim.g.UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 
---- LSP
-keymap("n", "gd", ":lua vim.lsp.buf.definition()<CR>", {})
-keymap("n", "gD", ":lua vim.lsp.buf.declaration()<CR>", {})
-keymap("n", "gi", ":lua vim.lsp.buf.implementation()<CR>", {})
-keymap("n", "gw", ":lua vim.lsp.buf.document_symbol()<CR>", {})
-keymap("n", "gw", ":lua vim.lsp.buf.workspace_symbol()<CR>", {})
-keymap("n", "gr", ":lua vim.lsp.buf.references()<CR>", {})
-keymap("n", "gt", ":lua vim.lsp.buf.type_definition()<CR>", {})
-keymap("n", "K", ":lua vim.lsp.buf.hover()<CR>", {})
-keymap("n", "<c-k>", ":lua vim.lsp.buf.signature_help()<CR>", {})
-keymap("n", "<leader>af", ":lua vim.lsp.buf.code_action()<CR>", {})
-keymap("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>", {})
