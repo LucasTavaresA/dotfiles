@@ -139,7 +139,7 @@
   "Ativa folding apropriado dependendo do major-mode"
   (cond
    ((and (string= major-mode "emacs-lisp-mode")
-         (string-match-p (regexp-quote ".config/emacs/modulos/") buffer-file-name))
+         (string-match-p (regexp-quote ".config/emacs/modulos/") (format "%s" buffer-file-name)))
     (progn (call-interactively #'outli-mode)
            (call-interactively #'outline-hide-body)))
    ((or (string= major-mode "fish-mode") (string= major-mode "sh-mode"))
