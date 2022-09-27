@@ -143,12 +143,6 @@ isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no mo
 (setq-default explicit-shell-file-name "/bin/sh"
               shell-file-name "/bin/sh")
 
-;;;; trocar de buffer
-(defun buffers-irc ()
-  "Navega por buffers irc."
-  (interactive)
-  (pop-to-buffer-same-window (completing-read ">" (mapcar #'buffer-name (buffer-list)) nil nil "#")))
-
 ;;;; compleção
 (fido-vertical-mode)
 
@@ -156,7 +150,6 @@ isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no mo
 ;;;; SPC
 (defalias 'spc-map (make-sparse-keymap))
 (defvar spc-map (symbol-function 'spc-map))
-(define-key spc-map (kbd "SPC") 'switch-to-buffer)
 (define-key spc-map (kbd "k") 'kill-current-buffer)
 (define-key spc-map (kbd "K") 'kill-some-buffers)
 (define-key spc-map (kbd "<up>") 'windmove-up)
@@ -213,7 +206,7 @@ isso cola o item sem copiar texto selecionado, tambem cola antes do cursor no mo
 (define-key minibuffer-local-map (kbd "C-<tab>") #'icomplete-forward-completions)
 (define-key minibuffer-local-map (kbd "<backtab>") #'icomplete-backward-completions)
 ;;; global
-(global-set-key (kbd "C-<tab>") 'buffers-irc)
+(global-set-key (kbd "C-<tab>") 'switch-to-buffer)
 (global-set-key (kbd "C-S-c") 'evil-yank)
 (global-set-key (kbd "C-S-v") 'evil-colar)
 (global-set-key (kbd "C-=") 'text-scale-increase)
