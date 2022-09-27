@@ -68,7 +68,7 @@
                 evil-shift-width tab-width
                 indent-tabs-mode nil)
   (setq evil-respect-visual-line-mode t
-        evil-undo-system 'undo-tree
+        evil-undo-system 'undo-redo
         evil-split-window-below t  ; foca em novas splits
         evil-vsplit-window-right t
         evil-want-Y-yank-to-eol t
