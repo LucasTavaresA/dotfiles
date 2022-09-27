@@ -27,6 +27,7 @@
         awesome-tray-evil-show-mode nil
         awesome-tray-file-path-show-filename t
         awesome-tray-file-path-full-dirname-levels 1
+        awesome-tray-minibuffer nil
         awesome-tray-file-path-truncate-dirname-levels 0
         awesome-tray-location-format "L%l"
         awesome-tray-separator "  "
