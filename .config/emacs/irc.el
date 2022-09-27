@@ -37,20 +37,15 @@
 (use-package awesome-tray
   :straight (awesome-tray :type git :host github :repo "manateelazycat/awesome-tray")
   :init
-  (setq awesome-tray-git-format "%s"
-        awesome-tray-hide-mode-line nil
+  (setq awesome-tray-hide-mode-line nil
         awesome-tray-evil-show-mode nil
-        awesome-tray-file-path-show-filename t
-        awesome-tray-file-path-full-dirname-levels 1
-        awesome-tray-file-path-truncate-dirname-levels 0
+        awesome-tray-minibuffer nil
         awesome-tray-location-format "L%l"
         awesome-tray-separator "  "
         awesome-tray-second-line t
         awesome-tray-position 'center
-        awesome-tray-essential-modules '("github" "buffer-read-only" "evil" "anzu"
-                                         "circe" "mode-name" "git" "location" "file-path")
-        awesome-tray-active-modules    '("github" "buffer-read-only" "evil" "anzu"
-                                         "circe" "mode-name" "git" "location" "file-path"))
+        awesome-tray-essential-modules '("github" "evil" "anzu" "circe" "mode-name" "location" "buffer-name")
+        awesome-tray-active-modules    '("github" "evil" "anzu" "circe" "mode-name" "location" "buffer-name"))
   (awesome-tray-mode))
 
 ;;;; tema
