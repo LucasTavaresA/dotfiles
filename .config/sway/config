@@ -1,5 +1,5 @@
 # sway
-xwayland enable
+xwayland disable
 ## mouse
 mouse_warping container
 focus_follows_mouse no

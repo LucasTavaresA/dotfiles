@@ -55,6 +55,7 @@
 
 ;;;; tema
 (load-theme 'misterioso t)
+(set-face-attribute 'default nil :family "Terminus" :height 140)
 (set-face-attribute 'default nil :background "#000")
 (set-face-attribute 'fringe nil :background "#000")
 (set-face-attribute 'region nil :background "#00f")

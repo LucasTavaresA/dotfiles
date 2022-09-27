@@ -25,7 +25,7 @@ dash
 dhcpcd
 docx2txt
 dotnet-sdk
-emacs-nativecomp
+emacs-gcc-wayland-devel-bin
 enchant
 esysusers
 etmpfiles
