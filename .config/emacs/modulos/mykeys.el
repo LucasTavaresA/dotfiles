@@ -150,6 +150,8 @@
 (global-set-key (kbd "<C-M-down>") 'evil-window-split)
 (global-set-key (kbd "<M-up>") 'move-text-up)
 (global-set-key (kbd "<M-down>") 'move-text-down)
+(evil-collection-define-key '(normal visual) 'helpful-mode-map
+  (kbd "<escape>") 'quit-window)
 ;;; csharp-mode
 (with-eval-after-load 'csharp-mode
   (define-key csharp-mode-map (kbd "M-e") nil))
