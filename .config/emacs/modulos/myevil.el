@@ -91,5 +91,63 @@ all hooks after it are ignored.")
     (call-interactively #'evil-escape)))
 (advice-add #'evil-force-normal-state :after #'+evil-escape-a)
 
+;;;; evil-search não da erro quando palavra não é encontrada
+(defun evil-ex-start-search (direction count)
+  "Start a new search in a certain DIRECTION."
+  ;; store buffer and window where the search started
+  (let ((evil-ex-current-buffer (current-buffer)))
+    (setq evil-ex-search-count count
+          evil-ex-search-direction direction
+          evil-ex-search-start-point (point)
+          evil-ex-last-was-search t)
+    (progn
+      ;; ensure minibuffer is initialized accordingly
+      (add-hook 'minibuffer-setup-hook #'evil-ex-search-start-session)
+      ;; read the search string
+      (let* ((minibuffer-local-map evil-ex-search-keymap)
+             (search-string
+              (condition-case err
+                  (minibuffer-with-setup-hook
+                      #'evil-ex-search-setup
+                    (read-string (if (eq evil-ex-search-direction 'forward)
+                                     "/" "?")
+                                 (and evil-ex-search-history
+                                      (propertize
+                                       (car evil-ex-search-history)
+                                       'face 'shadow))
+                                 'evil-ex-search-history))
+                (quit
+                 (evil-ex-search-stop-session)
+                 (evil-ex-delete-hl 'evil-ex-search)
+                 (goto-char evil-ex-search-start-point)
+                 (signal (car err) (cdr err))))))
+        ;; pattern entered successful
+        (goto-char (if (eq evil-ex-search-direction 'forward)
+                       (1+ evil-ex-search-start-point)
+                     (1- evil-ex-search-start-point)))
+        (let* ((result
+                (evil-ex-search-full-pattern search-string
+                                             evil-ex-search-count
+                                             evil-ex-search-direction))
+               (success (pop result))
+               (pattern (pop result))
+               (offset (pop result)))
+          (setq evil-ex-search-pattern pattern
+                evil-ex-search-offset offset)
+          (cond
+           ((memq success '(t wrap))
+            (goto-char (match-beginning 0))
+            (setq evil-ex-search-match-beg (match-beginning 0)
+                  evil-ex-search-match-end (match-end 0))
+            (evil-ex-search-goto-offset offset)
+            (evil-push-search-history search-string (eq direction 'forward))
+            (when (and (not evil-ex-search-incremental) evil-ex-search-highlight-all)
+              (evil-ex-search-activate-highlight pattern))
+            (when (and evil-ex-search-incremental (not evil-ex-search-persistent-highlight))
+              (evil-ex-delete-hl 'evil-ex-search)))
+           (t
+            (goto-char evil-ex-search-start-point)
+            (evil-ex-delete-hl 'evil-ex-search))))))))
+
 (provide 'myevil)
 ;;; myevil.el ends here
