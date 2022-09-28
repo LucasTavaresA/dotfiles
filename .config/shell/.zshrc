@@ -163,7 +163,7 @@ criar_script () {
 
 #### Aliases ####
 alias cd="z"
-alias tpg="topgrade"
+alias att="atualizar"
 alias cs="criar_script sh script.sh"
 alias pk="pkill -i"
 alias pg="pgrep -ia"
