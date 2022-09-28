@@ -159,7 +159,6 @@ telegram-desktop
 terminus-font
 testdisk
 texinfo
-topgrade
 translate-shell
 transmission-qt
 ttf-croscore
