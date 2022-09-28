@@ -176,6 +176,7 @@ unicode-emoji
 unrar
 unzip
 ventoy-bin
+vimiv-qt
 wget
 which
 wl-clipboard

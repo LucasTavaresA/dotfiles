@@ -45,7 +45,7 @@ cmd open ${{
         application/pdf|application/vnd*|application/epub*) zathura $fx ;;
         text/*) emacsclient -n -c -a 'nvim' $fx ;;
         audio/*) mpv -no-video $fx ;;
-        image/*) nsxiv . ;;
+        image/*) vimiv $fx ;;
         video/*) mpv $fx ;;
         *) xdg-open $fx ;;
     esac
@@ -129,7 +129,6 @@ map c chmod
 map C clear
 map m mkdir
 map e extract
-map i !nsxiv .
 map zz push :z<space>
 map zi push :zi<space>
 

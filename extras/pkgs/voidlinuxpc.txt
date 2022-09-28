@@ -113,7 +113,7 @@ noto-fonts-cjk
 noto-fonts-emoji
 noto-fonts-ttf
 noto-fonts-ttf-extra
-nsxiv
+vimiv-qt
 nuspell
 opendoas
 opusfile
