@@ -78,6 +78,7 @@
 
 ;;; flycheck
 (use-package flycheck)
+(use-package consult-flycheck)
 
 (provide 'mylangs)
 ;;; mylangs.el ends here
