@@ -219,7 +219,7 @@
 (use-package expand-region)
 
 ;;; move linhas
-(use-package move-text)
+(use-package drag-stuff)
 
 ;;; pula para palavras
 (use-package avy)

@@ -148,8 +148,8 @@
 (global-set-key (kbd "<S-down>") 'er/contract-region)
 (global-set-key (kbd "<C-M-right>") 'evil-window-vsplit)
 (global-set-key (kbd "<C-M-down>") 'evil-window-split)
-(global-set-key (kbd "<M-up>") 'move-text-up)
-(global-set-key (kbd "<M-down>") 'move-text-down)
+(global-set-key (kbd "<M-up>") 'drag-stuff-up)
+(global-set-key (kbd "<M-down>") 'drag-stuff-down)
 (evil-collection-define-key '(normal visual) 'helpful-mode-map
   (kbd "<escape>") 'quit-window)
 ;;; csharp-mode
