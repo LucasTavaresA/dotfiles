@@ -95,8 +95,6 @@ bindsym $mods+Return exec term_open
 ## menu
 mode "Menu" {
     bindsym Menu exec fuzzel "$fuzzelopts" -w 35 ; mode "default"
-    bindsym Escape exec powermenu ; mode "default"
-    bindsym XF86Launch2 exec powermenu ; mode "default"
     bindsym o exec orgmenu ~/documentos/favoritos.org ; mode "default"
     bindsym m exec menu_mont ; mode "default"
     bindsym p exec keepmenu ; mode "default"
@@ -115,6 +113,9 @@ mode "Menu" {
     bindsym l exec swaylock -c 000000ff --scaling fill ; mode "default"
     bindsym r reload
     bindsym Shift+q exit
+    bindsym Ctrl+Shift+q exec powermenu ; mode "default"
+    bindsym XF86Launch2 exec powermenu ; mode "default"
+    bindsym escape ; mode "default"
 }
 bindsym Menu mode "Menu"
 ## resize mode
