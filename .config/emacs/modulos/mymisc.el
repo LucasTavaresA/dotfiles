@@ -143,8 +143,7 @@
     (progn (call-interactively #'outli-mode)
            (call-interactively #'outline-hide-body)))
    ((or (string= major-mode "fish-mode") (string= major-mode "sh-mode"))
-    (progn (call-interactively #'yafolding-mode)
-           (call-interactively #'yafolding-hide-all)))
+    (call-interactively #'yafolding-mode))
    ((or (string= major-mode "mhtml-mode") (string= major-mode "html-mode"))
     (hs-minor-mode))
    (t (progn
