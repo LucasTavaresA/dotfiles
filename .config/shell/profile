@@ -132,8 +132,10 @@ export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/cargo/bin:$PATH"
 export PATH="${XDG_BIN_HOME:-$HOME/.local/bin}:$PATH"
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/code/shellscripts:$PATH"
-# diffprogram
+# diffprog
 export DIFFPROG="nvim -d"
+# mergeprog
+export MERGEPROG="nvim -d"
 # editor no terminal
 export EDITOR="emacsclient -t -a 'nvim'"
 # editor com interface gráfica
