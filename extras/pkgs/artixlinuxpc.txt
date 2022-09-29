@@ -125,7 +125,6 @@ pacman
 pacman-contrib
 pam-gnupg
 pandoc
-papirus-icon-theme
 paru
 pass
 patch

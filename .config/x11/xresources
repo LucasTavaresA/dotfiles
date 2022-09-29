@@ -1,4 +1,4 @@
-Xcursor.theme:Catppuccin-Macchiato-Dark
+Xcursor.theme:Capitaine Cursors (Gruvbox)
 Xcursor.size:24
 
 Xft.antialias: true
@@ -16,22 +16,22 @@ XTerm.vt100.selectToClipboard: true
 XTerm.vt100.scrollBar: false
 XTerm*metaSendsEscape: true
 
-! catppuccin
-*background: #1E1E2E
-*foreground: #D9E0EE
-*color0: #6E6C7E
-*color8: #988BA2
-*color1: #F28FAD
-*color9: #F28FAD
-*color2: #ABE9B3
-*color10: #ABE9B3
-*color3: #FAE3B0
-*color11:  #FAE3B0
-*color4: #96CDFB
-*color12: #96CDFB
-*color5: #DDB6F2
-*color13: #DDB6F2
-*color6: #F5C2E7
-*color14: #F5C2E7
-*color7: #C3BAC6
-*color15: #D9E0EE
+! Gruvbox
+*background: #1d2021
+*foreground: #ebdbb2
+*color0:  #282828
+*color8:  #928374
+*color1:  #cc241d
+*color9:  #fb4934
+*color2:  #98971a
+*color10: #b8bb26
+*color3:  #d79921
+*color11: #fabd2f
+*color4:  #458588
+*color12: #83a598
+*color5:  #b16286
+*color13: #d3869b
+*color6:  #689d6a
+*color14: #8ec07c
+*color7:  #a89984
+*color15: #ebdbb2

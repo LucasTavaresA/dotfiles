@@ -25,7 +25,6 @@ binutils
 bison
 catdoc
 catimg
-catppuccin-gtk-theme
 cheat
 checkbashisms
 chromium-widevine
@@ -158,7 +157,6 @@ p7zip
 pacman
 pacman-contrib
 pam-gnupg
-papirus-icon-theme
 paru
 pass
 patch

@@ -119,7 +119,6 @@ opendoas
 opusfile
 p7zip
 pam-gnupg
-papirus-icon-theme
 pass
 patch
 pdf.js

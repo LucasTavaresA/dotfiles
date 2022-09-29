@@ -1,10 +1,10 @@
 [org/gnome/desktop/interface]
-gtk-theme='Catppuccin-Macchiato'
+gtk-theme='Gruvbox_Dark'
 
-icon-theme='Papirus-Dark'
+icon-theme='Gruvbox'
 
 [org/gnome/desktop/wm/preferences]
-theme='Catppuccin-Macchiato-Dark'
+theme='Capitaine Cursors (Gruvbox)'
 
 [org/gtk/settings/file-chooser]
 window-position=(176, 97)
