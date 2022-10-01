@@ -58,8 +58,6 @@ autocmd FileType org nnoremap <silent> zx :call Marcar()<CR>j
 keymap("n", "<leader>ps", ":PaqSync<CR>", {})
 -- remove plugins não utilizados - paq
 keymap("n", "<leader>pc", ":PaqClean<CR>", {})
--- ativa/desativa a barra - litedfm
-keymap("n", "zb", ":LiteDFMToggle<CR>", {})
 -- expande região selecionada - expand region
 keymap("n", "<S-Up>", "<Plug>(expand_region_expand)", {})
 keymap("n", "<S-Down>", "<Plug>(expand_region_shrink)", {})

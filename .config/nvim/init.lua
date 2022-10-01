@@ -70,6 +70,8 @@ vim.g.VM_theme = "neon"
 vim.opt.cursorline = false
 -- define quando a barra superior aparece
 vim.opt.showtabline = 0
+-- esconde a modeline
+vim.opt.laststatus = 0
 -- diminui tamanho da barra inferior
 vim.opt.cmdheight = 1
 -- fundo escuro
@@ -93,9 +95,5 @@ vim.cmd([[
 ]])
 
 ----- Modulos -----
---- Esconde a barra
--- inicia sem a barra - LiteDFM
-vim.opt.runtimepath:append("~/.config/nvim/plugins/lite-dfm")
-vim.api.nvim_create_autocmd("VimEnter", { pattern = {"*"}, command = "LiteDFMToggle", })
 --- Teclas
 require('teclas')
