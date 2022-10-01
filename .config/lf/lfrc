@@ -47,7 +47,7 @@ cmd open ${{
         audio/*) mpv -no-video $fx ;;
         image/*) vimiv $fx ;;
         video/*) mpv $fx ;;
-        *) xdg-open $fx ;;
+        *) handlr open $fx ;;
     esac
 }}
 
