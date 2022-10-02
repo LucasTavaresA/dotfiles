@@ -176,7 +176,7 @@ bindings = {
     # ativa/desativa a barra
     "qq": "config-cycle statusbar.show always in-mode;; config-cycle tabs.show always switching",
     # ativa/desativa tema escuro
-    "qd": "config-cycle content.user_stylesheets ~/.config/qutebrowser/styles/dark.css ~/.config/qutebrowser/styles/custom-solarized-dark.css",
+    "qd": "config-cycle content.user_stylesheets ~/.config/qutebrowser/styles/dark.css ~/.config/qutebrowser/styles/custom-gruvbox-dark.css",
     # ativa/desativa javascript para um site
     "qj": "config-cycle -p -u *://*.{url:host}/* content.javascript.enabled ;; reload",
     # ativa/desativa adblocking para um site
