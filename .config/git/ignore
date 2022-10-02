@@ -37,7 +37,6 @@
 .config/qutebrowser/greasemonkey/
 .config/qutebrowser/bookmarks/
 .config/qutebrowser/autoconfig.yml
-.config/qutebrowser/quickmarks
 .config/transmission/
 .config/VirtualBox/
 .config/NuGet/
