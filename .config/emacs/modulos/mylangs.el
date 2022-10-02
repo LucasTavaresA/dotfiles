@@ -24,6 +24,18 @@
   (js-mode . eglot-ensure)
   :config (setq eglot-autoshutdown t))
 
+;;; lisps
+(use-package paredit
+  :hook
+  (Lisp-mode . paredit-mode)
+  (lisp-interaction-mode . paredit-mode)
+  (eval-expression-minibuffer-setup . paredit-mode)
+  (scheme-mode . paredit-mode)
+  (emacs-lisp-mode . paredit-mode)
+  :bind (:map paredit-mode-map
+              ("M-<up>" . nil)
+              ("M-<down>" . nil)))
+
 ;;; common lisp
 (use-package sly-asdf)
 (use-package sly-quicklisp)
