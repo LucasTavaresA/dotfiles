@@ -33,6 +33,7 @@
   (scheme-mode . paredit-mode)
   (emacs-lisp-mode . paredit-mode)
   :bind (:map paredit-mode-map
+              ("M-s" . nil)
               ("M-<up>" . nil)
               ("M-<down>" . nil)))
 

@@ -11,7 +11,10 @@
                           'magit-insert-modules
                           'magit-insert-stashes
                           'append)
-  (setq magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+  (setq magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
+  :bind (:map magit-section-mode-map
+              ("<normal-state> C-<tab>" . nil)
+              ("C-<tab>" . nil)))
 (use-package magit-todos
   :after (magit)
   :init (magit-todos-mode))
