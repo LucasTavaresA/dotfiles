@@ -30,13 +30,9 @@ LABEL=/
 DIR=/
 interval=3600
 
-[battery-poly]
-color=#555555
-interval=5
-
 [iface]
 color=#009900
-interval=10
+interval=60
 display_wifi_name=0
 
 [data]
