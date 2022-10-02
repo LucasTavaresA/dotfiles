@@ -193,7 +193,7 @@ exec fzf_man update
 exec mako
 exec syncthing
 exec transmission-qt -m
-exec emacs --name=emacsirc --title=emacsirc -Q --load '~/.config/emacs/irc.el'
+# exec emacs --name=emacsirc --title=emacsirc -Q --load '~/.config/emacs/irc.el'
 exec emacs --daemon
 exec foot -s
 ## musica
