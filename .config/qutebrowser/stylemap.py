@@ -1,7 +1,8 @@
 styles = {
+    'dark.css': ['*soundcloud.com*', '*stackoverflow.com*'],
     'custom-gruvbox-dark.css': ['qute://help*', '*www.google.com*', '*youtube.com*', '*facebook.com*', '*reddit.com*',
                                   '*archlinux.org*', '*soundcloud*', '*mangadex.org*', '*anilist.co*', '*twitter.com*',
-                                  '*discord.com*', '*brainly.com.br*', '*tenhou.net*', '*virustotal.com*',
+                                  '*discord.com*', '*brainly.com.br*', '*tenhou.net*', '*virustotal.com*', '*github.com*',
                                   '*web.whatsapp.com*', '*odysee.com*', '*imdb.com*', '*sxmo.org*', '*gitlab.com*',
                                   '*suckless.org*', '*qutebrowser.org*', '*herbstluftwm.org*', '*infojobs.com*',
                                   '*saucenao.com*', '*epicgames.com*', '*instagram.com*', '*linkedin.com*', '*microsoft.com*',
