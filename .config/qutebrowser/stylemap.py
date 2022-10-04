@@ -1,7 +1,6 @@
 styles = {
-    'dark.css': ['*soundcloud.com*', '*stackoverflow.com*'],
     'custom-gruvbox-dark.css': ['qute://help*', '*www.google.com*', '*youtube.com*', '*facebook.com*', '*reddit.com*',
-                                  '*archlinux.org*', '*soundcloud*', '*mangadex.org*', '*anilist.co*', '*twitter.com*',
+                                  '*archlinux.org*', '*soundcloud.com*', '*mangadex.org*', '*anilist.co*', '*twitter.com*',
                                   '*discord.com*', '*brainly.com.br*', '*tenhou.net*', '*virustotal.com*', '*github.com*',
                                   '*web.whatsapp.com*', '*odysee.com*', '*imdb.com*', '*sxmo.org*', '*gitlab.com*',
                                   '*suckless.org*', '*qutebrowser.org*', '*herbstluftwm.org*', '*infojobs.com*',
@@ -10,5 +9,6 @@ styles = {
                                   '*mega.nz*', '*mediafire.com*', '*dropbox.com*', '*nyaa.si*', '*livechart.me*',
                                   '*vndb.org*', '*uniotaku.com*', '*anbient.com*', '*animestc.net*', '*goyabu.com*',
                                   '*anihub.tv*', '*mangaupdates.com*', '*manganelo.tv*', '*unionmangas.top*',
+                                  '*stackoverflow.com*',
                                   ]
 }
