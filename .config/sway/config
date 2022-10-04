@@ -198,8 +198,6 @@ exec emacs --daemon
 exec foot -s
 ## musica
 exec pipewire
-exec pipewire-pulse
-exec wireplumber
 exec mpd
 exec mpDris2 --music-dir="$HOME/media/musicas/"
 exec playerctld daemon
