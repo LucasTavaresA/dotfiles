@@ -204,6 +204,8 @@ bindings = {
     "cc": "hint code userscript code_select.py",
     # copia links para um arquivo
     "z": "hint links spawn sh -c 'printf %s\\\\n \"$1\" >> ~/copied.txt' _ {hint-url}",
+    # Copia url atual para um arquivo
+    "yz": "spawn sh -c 'printf %s\\\\n \"$1\" >> ~/copied.txt' _ {url}",
 }
 
 for key, bind in bindings.items():
