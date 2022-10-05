@@ -1,6 +1,16 @@
 * {
     border-color: #fabd2f !important;
 }
+.s-topbar {
+    background-color: #ff5555 !important;
+    border-color: #fabd2f !important;
+}
+#question-header .question-hyperlink {
+    color: #ffbb00 !important;
+}
+#question-header .question-hyperlink:visited {
+    color: #ff5555 !important;
+}
 a {
     color: #ffbb00 !important;
 }
