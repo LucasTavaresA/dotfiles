@@ -11,6 +11,19 @@
 #question-header .question-hyperlink:visited {
     color: #ff5555 !important;
 }
+#content {
+    background-color: #000000 !important;
+}
+.s-prose *:not(.s-code-block)>code {
+    color: #ffffff !important;
+    background-color: #3c3836 !important;
+}
+.s-sidebarwidget__yellow .s-sidebarwidget--header {
+    background-color: #000000 !important;
+}
+.s-sidebarwidget__yellow {
+    background-color: #000000 !important;
+}
 a {
     color: #ffbb00 !important;
 }

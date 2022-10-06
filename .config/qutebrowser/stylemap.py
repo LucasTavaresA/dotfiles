@@ -9,6 +9,6 @@ styles = {
                                   '*mega.nz*', '*mediafire.com*', '*dropbox.com*', '*nyaa.si*', '*livechart.me*',
                                   '*vndb.org*', '*uniotaku.com*', '*anbient.com*', '*animestc.net*', '*goyabu.com*',
                                   '*anihub.tv*', '*mangaupdates.com*', '*manganelo.tv*', '*unionmangas.top*',
-                                  '*stackoverflow.com*',
+                                  '*stackoverflow.com*', '*askubuntu.com*',
                                   ]
 }
