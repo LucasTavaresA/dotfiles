@@ -169,7 +169,7 @@ bindings = {
     "<Ctrl-d>": "forward",
     "u": "undo --window",
     # atalho para assistir link
-    "qvw": "hint links spawn streamlink {hint-url}",
+    "qvw": "hint links spawn streamlink {hint-url} 720p",
     # baixar video
     "qvd": "hint links spawn term_open -a float streamlink -o video.ts {hint-url} 720p",
     # baixar imagem
