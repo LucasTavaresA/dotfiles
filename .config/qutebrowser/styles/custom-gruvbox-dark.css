@@ -1646,3 +1646,165 @@ div.vectorTabs span {
         background-color: #b8bb26 !important;
         color: #ffffff !important;
     }
+
+/*---SOUNDCLOUD---*/
+
+.playControls__inner, .playControls__bg{background-color:#000000 !important;}
+.playControl{filter:invert(100%) !important;}
+.skipControl__previous{filter:invert(100%) !important;}
+.skipControl__next{filter: invert(100%) !important;}
+.shuffleControl{filter: invert(100%) !important;}
+.repeatControl.m-none{filter: invert(100%) !important;}
+.volume[data-level='6'] .volume__button, .volume[data-level='7'] .volume__button, .volume[data-level='8'] .volume__button, .volume[data-level='9'] .volume__button, .volume[data-level='10'] .volume__button{filter: invert(100%) !important;}
+.volume[data-level='1'] .volume__button, .volume[data-level='2'] .volume__button, .volume[data-level='3'] .volume__button, .volume[data-level='4'] .volume__button, .volume[data-level='5'] .volume__button{filter: invert(100%) !important;}
+.volume.muted .volume__button{filter: invert(100%) !important;}
+.volume__button{filter: invert(100%) !important;}
+.playbackTimeline__duration{filter: invert(100%) !important;}
+.l-container{background-color: #000000 !important;}
+.g-tabs-link, .g-tabs-link:visited{color: #ffffff !important}
+.g-tabs-link.active{color: #00f !important}
+.sc-button-small.sc-button-icon:not(.sc-button-stretch-icon), .sc-button-small.sc-button-responsive:not(.sc-button-stretch-icon){background-color: #000 !important}
+.sound__soundActions{background-color: transparent !important}
+.soundActions{background-color: transparent !important}
+.soundContext__line .sc-ministats{color: #fff !important}
+.sc-border-light-right{border-right: 1px solid #ffffff !important}
+.sc-border-light-bottom{border-bottom: 1px solid #fff !important}
+.playControls__inner, .playControls__bg{border-top: unset !important}
+.playbackSoundBadge__showQueue{filter: invert(100%) !important;}
+.sc-button{color: #fff !important; border: 0px solid #fff !important}
+.sc-button-small.sc-button-share:before{filter: invert(100%) !important;}
+.sc-button-small.sc-button-more:before{filter: invert(100%) !important;}
+.sc-buylink, .sc-buylink:visited{filter: invert(100%) !important;}
+.dialog{background: #000000 !important; border: 0px solid #ffffff !important}
+.dialog__arrow{background: #000000 !important}
+.volume__sliderWrapper{background-color: #000000 !important; border: 0px solid transparent !important}
+.listenEngagement{border: 0px solid #fff !important; box-shadow: 0 1px 0 0 #44494f !important}
+.l-listen-wrapper .l-about-rows{border-right: 1px solid #44494f !important}
+.sc-button{background-color: #000 !important}
+.commentForm.m-active .commentForm__wrapper{background: unset !important}
+.commentForm__wrapper{background: unset !important; border: 0px solid #000 !important}
+.commentForm__input{background: #000000; border: 1px solid #303133 !important}
+.g-dark textarea, .g-dark select, .g-dark input[type="text"], .g-dark input[type="password"], .g-dark input[type="search"]{color: #ccc !important}
+.g-tabs{border-bottom: 1px solid #44494f !important}
+.sc-tag, .sc-tag:visited{background: #000000 !important;border:1px solid #353535 !important}
+.sc-button-medium.sc-button-share:before{filter: invert(100%) !important}
+.sc-button-selected.sc-button-medium.sc-button-more:before, .sc-button-active.sc-button-medium.sc-button-more:before{filter: invert(0%) !important;}
+.sc-button-medium.sc-button-more:before{filter: invert(100%) !important}
+.modal__modal{background: #000000 !important}
+.modal.modalWhiteout{background-color: rgba(1,1,1,.9) !important}
+.composeTextfield .textfield__input{background: #000 !important}
+.recipientChooser .tokenInput__wrapper{background-color: #000 !important}
+.tokenInput__token{background: #000000 !important}
+.fullHero{background: #000000 !important}
+.moreActions__button, .moreActions__link{background-color: #0b0c0c !important}
+.moreActions__button:not(:last-child), .moreActions__link{border-bottom: 1px solid #333333 !important}
+.sc-button-queue:before{filter: invert(100%) !important;}
+.sc-button-medium.sc-button-addtoset:before{filter: invert(100%) !important;}
+.sc-button-medium.sc-button-startstation:before{filter: invert(100%) !important;}
+.moreActions{border: 1px solid #333333 !important}
+.g-modal-section{background: #000000 !important}
+.tabs__tabs, .tabs__headingContainer{background: #000000 !important}
+.queue{background-color: #000000 !important}
+.queue__hide:focus, .queue__hide:hover, .queue__hide{filter: invert(100%) !important;}
+.queue__itemWrapper{background-color: #000000 !important}
+.queueFallback__stationMode{border-top: 1px solid #333333 !important}
+.queueItemView:hover, .queueItemView.m-active{background: #000000 !important}
+.header{background: #000000 !important}
+.sc-border-light-top{border-top: 1px solid #444444 !important}
+.profileHeaderBackground{background: #000000 !important}
+.l-fixed-top-one-column>.l-top{background: #000000 !important} /* Fixes profile's likes page header */
+.sc-button-medium.sc-button-message:before{filter: invert(100%) !important;}
+.g-tabs-link:hover, .g-tabs-link:focus{border-color: #fff !important}
+.dropbar__content{background-color: #000000 !important}
+.infoStats__value{color: #fff !important}
+.truncatedAudioInfo.m-overflow.m-collapsed .truncatedAudioInfo__wrapper::after{background: linear-gradient(rgba(255,255,255,0),rgba(255,255,255,.1)90%,#000) !important}
+.sc-button-selected.sc-button-medium.sc-button-like:before{filter: invert(0%) !important;}
+.sc-button-medium.sc-button-like:before{filter: invert(100%) !important;}
+.sc-button-selected.sc-button-medium.sc-button-repost:before{filter: invert(0%) !important;}
+.sc-button-medium.sc-button-repost:before{filter: invert(100%) !important}
+.commentItem.m-creatorComment{background-color: #333333 !important}
+.volume__sliderWrapper:before{border-color: transparent transparent #000000 #000000 !important}
+.volume__sliderWrapper:after{border-color: transparent transparent #000000 #000000 !important}
+.sc-button-medium.sc-button-edit:before{filter: invert(100%) !important;}
+.sc-button-small.sc-button-more.sc-button-lightfg:before{filter: invert(0%) !important;}
+.uploadLoggedOut__testimonialsTitle{color: #000 !important}
+.uploadLoggedOut__testimonialsText, .uploadLoggedOut__toolsText{color: #000 !important}
+.uploadLoggedOut__testimonialListItemQuote{color: #000000 !important}
+.uploadLoggedOut__toolsText{color: #fff !important}
+.productsMiniTable{color: #000000 !important}
+.listenLogin{background-color: #000000 !important;border: 1px solid #fff !important}
+.g-scrollable-v .g-scrollable-inner{background-color: #000000 !important}
+.chartTrack.m-playing, .chartTrack:hover{background: #000000 !important}
+.sc-button-small.sc-button-like:before{filter: invert(100%) !important;}
+.sc-button-small.sc-button-repost:before{filter: invert(100%) !important;}
+.sc-button-small.sc-button-selected.sc-button-more:before, .sc-button-small.sc-button-active.sc-button-more:before{filter: invert(0%) !important;}
+.linkMenu{background-color: #000000 !important}
+.sidebarInfoBox__body{background-color: #000000 !important}
+.sc-text{color: #fff bold !important}
+.sc-button-small.sc-button-selected.sc-button-like:before, .sc-button-small.sc-button-selected.sc-button-like.sc-button-lightfg:before, .sc-button-small.sc-button-selected.sc-button-like.sc-button-visual:before{filter: invert(0%) !important;}
+.sc-button-small.sc-button-selected.sc-button-repost:before, .sc-button-small.sc-button-selected.sc-button-repost.sc-button-lightfg:before, .sc-button-small.sc-button-selected.sc-button-repost.sc-button-visual:before{filter: invert(0%) !important;}
+.soundBadge__additional{background: unset !important}
+.searchTitle{background-color: #000000 !important}
+.g-nav-item>.g-nav-link{color: #fff !important}
+.uploadMain__chooserContainer{background-color: #000000 !important}
+.sc-border-light{border: 1px solid #fff !important}
+.uploadMain__foot{background-color: unset !important}
+.sc-background-white{background-color: unset !important}
+.sc-background-light{background-color: unset !important}
+.statsOverview__separator{background-color: unset !important}
+.dateSelectStats__datepicker{background: #000000 !important}
+.sc-button-small.sc-button-edit:before{filter: invert(100%) !important;}
+.sc-button-medium.sc-button-addtoset:before{filter: invert(100%) !important;}
+.conversation__actions{background: #000000 !important;box-shadow: 0 1px 0 #ff0 !important;}
+.inboxItem:hover, .inboxItem:focus, .inboxItem.unread, .inboxItem.active{background-color: #000000 !important;}
+.inbox__item:before{background-color: #00f !important;}
+.g-type-marketing-header{color: black !important;}
+.g-type-marketing-info{color: black !important;}
+.playControls__castControl>button{filter: invert(100%) !important;}
+.removeFromNextUp:hover, .removeFromNextUp{background-color: #444444 !important;}
+.queue__hide:focus, .queue__hide:hover, .queue__hide{background-color: white !important;}
+.queue__dragCover .m-active {background-color: black !important;}
+.trackItem.hover, .trackItem.active{background-color: black !important;}
+.trackItem:not(.m-disabled).hover .trackItem__additional {background: linear-gradient(to right,rgba(11,12,12,.1),black 17px) !important;}
+.trackItem:not(.m-disabled).active .trackItem__additional {background: linear-gradient(to right,rgba(11,12,12,.1),black 17px) !important;}
+.sc-snippet-badge-small{filter: invert(100%) !important;}
+.compactTrackListItem.clickToPlay.active{background-color: black !important;}
+.compactTrackListItem.clickToPlay:hover{background-color: #000000 !important;}
+.compactTrackListItem.clickToPlay.active .compactTrackListItem__additional{background: black !important;}
+.compactTrackListItem.clickToPlay:hover .compactTrackListItem__additional{background: #000000 !important;}
+.compactTrackListItem__trackTitle{color: #757575 !important;}
+.compactTrackListItem__user{color: #ffffff !important;}
+.activeUpload.m-hq-upload-note .activeUpload__hqNote{background-color: #0002 !important;}
+.activeUpload__form{background-color: transparent !important;}
+.suggestedTags{background-color: black !important;}
+.suggestedTags__listItem.selected{background-color: #00f !important;}
+.tagInput__wrapper{background-color: transparent !important;}
+.sc-button-dropdown:focus:not(.sc-button-disabled):not(:disabled){box-shadow: 0 0 0 4px #000000 !important;}
+.g-upsell-container{background: transparent !important;}
+.ui-datepicker{background: #000000 !important;}
+.activeUpload__shareContainer{background-color: transparent !important;}
+.audibleEditForm__form{background-color: transparent !important;}
+.audibleEditForm__audio{background-color: #000000 !important;}
+.commentPopover.darkText .commentPopover__body{color: #8d8d8d !important;}
+.paging-eof{filter: invert(90.6%) !important;} /* Makes logo at the bottom of pages dark */
+.newItemBadge.newItems__some{border: none !important;} /* Removes ugly border from notification icon alert (1/2) */
+.newItemBadge{width: 120% !important; height: 120% !important;} /* Removes ugly border from notification icon alert (2/2) */
+.dashbox__titleLine{color: #ffffff !important;} /* Fixes dark text in dashbox (1/2) */
+.dashbox__bodyLine{color: #ffffff !important;} /* Fixes dark text in dashbox (2/2) */
+.truncatedUserDescription.m-overflow.m-collapsed .truncatedUserDescription__wrapper::after{background: linear-gradient(rgba(255,255,255,0),rgba(255,255,255,.1)) !important;} /* Gradient in truncated user description */
+.visualSound__wrapper {background-color: #000000 !important;} /* Old style album layout interact area */
+.readMoreTile__countWrapper{background-color: #ffffff !important;} /* Fixes blur behind View all button as the invert filter breaks it */
+.sc-button-small{font-weight: 500 !important;} /* Make font on small buttons thicker, or its too thin */
+.callout__bubble{background-color: #000000 !important;} /* Fixes informational pop-ups shown to new users (1/2) */
+.callout__bubble::before{background-color: black !important;} /* Fixes informational pop-ups shown to new users (2/2) */
+.quotaMeterWrapper{background-color: unset !important;} /* Fixes free upload limit background */
+.compactTrackList__moreLink:focus, .compactTrackList__moreLink:hover{background-color: black !important; color: white !important} /* Fixes stream playlist expand btn */
+.commentFormDisabled{background-color: black !important;} /* Fixes background of Comments Disabled box */
+.streamHTUpsell{background-color: #000000 !important;} /* In-stream banners */
+.emptyNetworkPage__image{filter: invert(80%) !important;} /* Fix empty profile page */
+.sc-font-body{font-weight: 500 !important;} /* Make body font slightly thicker for readability */
+.featuredProfiles__item h3{filter: invert(100%) !important;} /* Fix featured profiles text 1/2 */
+.featuredProfiles__list .sc-status-icon{filter: invert(100) !important;} /* Fix featured profiles text 2/2 */
+.sc-button-delete::before{filter: invert(100%) !important;} /* Fix delete playlist button */
+.sc-button-small.sc-button-lightfg:before{filter: unset !important;} /* Fix playlist preview song buttons */
+
