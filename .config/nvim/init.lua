@@ -94,6 +94,21 @@ vim.cmd([[
     let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 ]])
 
+--- Treesitter
+-- indentação e indicação de sintaxe
+local configs = require'nvim-treesitter.configs'
+configs.setup {
+    ensure_installed = { "c", "lua", "c_sharp", "fish", "css", 
+        "comment", "go", "html", "javascript", "make", "markdown",
+        "norg", "org", "python", "vim" },
+    highlight = { -- Indicação de sintaxe
+        enable = true,
+    },
+    indent = {
+        enable = true, -- Indentação
+    }
+}
+
 ----- Modulos -----
 --- Teclas
 require('teclas')
