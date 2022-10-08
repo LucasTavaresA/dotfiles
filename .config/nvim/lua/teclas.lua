@@ -65,6 +65,13 @@ keymap("v", "<S-Up>", "<Plug>(expand_region_expand)", {})
 keymap("v", "<S-Down>", "<Plug>(expand_region_shrink)", {})
 keymap("i", "<S-Up>", "<esc><Plug>(expand_region_expand)", {})
 keymap("i", "<S-Down>", "<esc><Plug>(expand_region_shrink)", {})
+-- move linha - vim-move
+keymap("n", "<A-Down>", "<Plug>MoveLineDown", {})
+keymap("n", "<A-Up>", "<Plug>MoveLineUp", {})
+keymap("i", "<A-Down>", "<esc><Plug>MoveLineDown", {})
+keymap("i", "<A-Up>", "<esc><Plug>MoveLineUp", {})
+keymap("v", "<A-Down>", "<Plug>MoveBlockDown", {})
+keymap("v", "<A-Up>", "<Plug>MoveBlockUp", {})
 -- Criar cursor na próxima palavra - visual multi
 keymap("n", "<C-s>", "<C-n>", {})
 keymap("v", "<C-s>", "<C-n>", {})

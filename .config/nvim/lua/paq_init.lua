@@ -44,6 +44,8 @@ paq({
     "pelodelfuego/vim-swoop";
     -- arvore de undos
     "mbbill/undotree";
+    -- move linhas
+    "matze/vim-move";
 
     --- Code
     -- indentação e indicação de sintaxe
