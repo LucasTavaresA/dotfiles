@@ -83,7 +83,6 @@ vim.cmd("hi EndOfBuffer guibg=NONE ctermbg=NONE")
 vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
 -- cor da linha atual
 vim.cmd("hi CursorLine guibg=#333333")
-vim.api.nvim_create_autocmd("InsertLeave", { pattern = { "*" }, command = "set cursorline", })
 -- incida parenteses correspondente
 vim.cmd("hi! MatchParen cterm=NONE,bold gui=NONE,bold  guibg=NONE guifg=#ff0000")
 -- não deleta pares automaticamente
