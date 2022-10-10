@@ -1,3 +1,4 @@
+require('impatient')
 -- clona o paq caso a sua pasta não exista
 local path = vim.fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
 if vim.fn.empty(vim.fn.glob(path)) > 0 then
@@ -72,4 +73,3 @@ paq({
     -- Tema
     "morhetz/gruvbox";
 })
-require('impatient')
