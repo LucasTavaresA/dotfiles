@@ -112,6 +112,9 @@ config.set('content.notifications.enabled', False, 'https://www.infojobs.com.br'
 # geolocalização
 config.set('content.geolocation', False, 'https://www.google.com')
 
+# desativa popup no gmail
+config.set('content.register_protocol_handler', False, 'https://mail.google.com?extsrc=mailto&url=%25s')
+
 #### Ferramentas de pesquisa ####
 c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
                     ,  'alm':  'https://anilist.co/search/manga?search={}&sort=SEARCH_MATCH'
