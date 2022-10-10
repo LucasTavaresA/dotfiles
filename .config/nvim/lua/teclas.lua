@@ -1,7 +1,9 @@
+--- Variaveis
 local keymap = vim.api.nvim_set_keymap
-local nr = { noremap = true }
+local opts = { noremap = true, silent = true }
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+
 -- cancela indicação de palavras procuradas
 keymap("n", "<esc><esc>", ":noh<CR>", {})
 -- colar na linha abaixo
@@ -26,7 +28,7 @@ keymap("n", "<C-A-Right>", ":vs<CR>", {})
 -- divide a tela abaixo
 keymap("n", "<C-A-Down>", ":sp<CR>", {})
 -- copiar buffer
-keymap("n", "cb", "ggVGy", nr)
+keymap("n", "cb", "ggVGy", { noremap = true })
 -- ativa/desativa números de linha
 keymap("n", "zn", ":set number!<CR>", {})
 -- procura palavra no cursor
@@ -101,3 +103,28 @@ keymap("n", "<leader>es", ":UltiSnipsEdit<CR>", {})
 vim.g.UltiSnipsExpandTrigger = "<tab>"
 vim.g.UltiSnipsJumpForwardTrigger = "<tab>"
 vim.g.UltiSnipsJumpBackwardTrigger = "<S-Tab>"
+
+--- LSP
+-- Ativa essas teclas quando o lsp esta ativo
+On_attach = function(_, bufnr)
+    local function buf_set_option(...)
+        vim.api.nvim_buf_set_option(bufnr, ...)
+    end
+
+    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    opts = { buffer = bufnr, noremap = true, silent = true }
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+    vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+    vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+    vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+    vim.keymap.set('n', '<space>ii', function() vim.lsp.buf.format { async = true } end, opts)
+end

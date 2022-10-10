@@ -32,8 +32,8 @@ vim.opt.whichwrap = vim.opt.whichwrap + "<,>,h,l,[,]"
 -- ativa uso do mouse
 vim.opt.mouse = "a"
 -- copiar e colar para o neovim
-vim.api.nvim_create_autocmd("InsertEnter", { pattern = {"*"}, command = "set cul", })
-vim.api.nvim_create_autocmd("InsertLeave", { pattern = {"*"}, command = "set nocul", })
+vim.api.nvim_create_autocmd("InsertEnter", { pattern = { "*" }, command = "set cul", })
+vim.api.nvim_create_autocmd("InsertLeave", { pattern = { "*" }, command = "set nocul", })
 vim.opt.clipboard:append { "unnamedplus" }
 -- atualiza o neovim mais rápido
 vim.opt.updatetime = 100
@@ -51,8 +51,8 @@ vim.opt.incsearch = false
 -- linhas não dão a volta na tela
 vim.opt.wrap = false
 -- desativa comentar automaticamente a próxima linha
-vim.api.nvim_create_autocmd("FileType", 
-    { pattern = {"*"}, command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o", })
+vim.api.nvim_create_autocmd("FileType",
+    { pattern = { "*" }, command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o", })
 
 --- Aparência
 -- indicação de sintaxe
@@ -82,7 +82,7 @@ vim.cmd("hi EndOfBuffer guibg=NONE ctermbg=NONE")
 vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
 -- cor da linha atual
 vim.cmd("hi CursorLine guibg=#333333")
-vim.api.nvim_create_autocmd("InsertLeave", { pattern = {"*"}, command = "set cursorline", })
+vim.api.nvim_create_autocmd("InsertLeave", { pattern = { "*" }, command = "set cursorline", })
 -- incida parenteses correspondente
 vim.cmd("hi! MatchParen cterm=NONE,bold gui=NONE,bold  guibg=NONE guifg=#ff0000")
 -- não deleta pares automaticamente
@@ -96,9 +96,9 @@ vim.cmd([[
 
 --- Treesitter
 -- indentação e indicação de sintaxe
-local configs = require'nvim-treesitter.configs'
+local configs = require 'nvim-treesitter.configs'
 configs.setup {
-    ensure_installed = { "c", "lua", "c_sharp", "fish", "css", 
+    ensure_installed = { "c", "lua", "c_sharp", "fish", "css",
         "comment", "go", "html", "javascript", "make", "markdown",
         "norg", "org", "python", "vim" },
     highlight = { -- Indicação de sintaxe
@@ -112,3 +112,64 @@ configs.setup {
 ----- Modulos -----
 --- Teclas
 require('teclas')
+
+--- LSP
+-- diagnostico
+vim.diagnostic.config({
+    virtual_text = false,
+    signs = false,
+    underline = true,
+    update_in_insert = false,
+    severity_sort = false,
+})
+
+-- instale o clang e o ccls
+require 'lspconfig'.ccls.setup {
+    on_attach = On_attach,
+    init_options = {
+        compilationDatabaseDirectory = "build";
+        index = {
+            threads = 0;
+        };
+        clang = {
+            excludeArgs = { "-frounding-math" };
+        };
+    }
+}
+
+-- necessario `npm i -g vscode-langservers-extracted`
+require 'lspconfig'.cssls.setup {
+    on_attach = On_attach,
+}
+require 'lspconfig'.html.setup {
+}
+
+-- instale o omnisharp
+require 'lspconfig'.omnisharp.setup {
+    cmd = { 'dotnet', '/usr/lib/omnisharp-roslyn/OmniSharp.dll' },
+    on_attach = On_attach,
+}
+
+-- instale o lua-language-server
+require 'lspconfig'.sumneko_lua.setup {
+    on_attach = On_attach,
+    settings = {
+        Lua = {
+            runtime = {
+                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                version = 'LuaJIT',
+            },
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = { 'vim' },
+            },
+            workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = vim.api.nvim_get_runtime_file("", true),
+            },
+            telemetry = {
+                enable = false,
+            },
+        },
+    },
+}

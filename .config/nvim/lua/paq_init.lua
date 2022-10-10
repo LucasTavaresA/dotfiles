@@ -51,6 +51,8 @@ paq({
     -- indentação e indicação de sintaxe
     "sheerun/vim-polyglot";
     { "nvim-treesitter/nvim-treesitter", run = ':TSUpdate', };
+    -- LSP
+    "neovim/nvim-lspconfig";
     -- fecha parenteses apertando enter
     "jiangmiao/auto-pairs";
     -- indica diffs
