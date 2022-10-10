@@ -89,6 +89,11 @@ vim.cmd("hi! MatchParen cterm=NONE,bold gui=NONE,bold  guibg=NONE guifg=#ff0000"
 -- não deleta pares automaticamente
 vim.g.AutoPairsMapBS = 0
 
+--- Ultisnips
+vim.g.UltiSnipsSnippetDirectories = {
+    "/home/lucas/.config/nvim/Ultisnips/",
+}
+
 --- Ctrlp
 -- abre arquivos no repositório atual de acordo com o gitignore
 vim.g.ctrlp_user_command = { '.git', 'cd %s && git ls-files -co --exclude-standard' }
