@@ -71,5 +71,5 @@ paq({
 
     --- Aparência
     -- Tema
-    "morhetz/gruvbox";
+    "ellisonleao/gruvbox.nvim";
 })

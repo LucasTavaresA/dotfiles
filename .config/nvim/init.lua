@@ -59,12 +59,19 @@ vim.api.nvim_create_autocmd("FileType",
 -- indicação de sintaxe
 vim.cmd.syntax('on')
 -- tema
+-- prefere modo escuro
+vim.opt.background = "dark"
+-- tema
+require("gruvbox").setup({
+  invert_selection = true,
+  inverse = true, -- invert background for search, diffs, statuslines and errors
+  contrast = "hard", -- can be "hard", "soft" or empty string
+  dim_inactive = false,
+  transparent_mode = true,
+})
+vim.cmd.colorscheme('gruvbox')
 -- melhora suporte de cores
 vim.opt.termguicolors = true
-vim.g.gruvbox_italic = 1
-vim.g.gruvbox_transparent_bg = 1
-vim.g.gruvbox_contrast_dark = "hard"
-vim.cmd.colorscheme('gruvbox')
 -- tema do visual multi
 vim.g.VM_theme = "neon"
 -- indica linha selecionada no modo normal
@@ -75,8 +82,6 @@ vim.opt.showtabline = 0
 vim.opt.laststatus = 0
 -- diminui tamanho da barra inferior
 vim.opt.cmdheight = 1
--- fundo escuro
-vim.opt.background = "dark"
 -- transparência
 vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
 vim.cmd("hi EndOfBuffer guibg=NONE ctermbg=NONE")
