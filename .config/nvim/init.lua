@@ -57,14 +57,14 @@ vim.api.nvim_create_autocmd("FileType",
 
 --- Aparência
 -- indicação de sintaxe
-vim.cmd("syntax on")
+vim.cmd.syntax('on')
 -- tema
 -- melhora suporte de cores
 vim.opt.termguicolors = true
 vim.g.gruvbox_italic = 1
 vim.g.gruvbox_transparent_bg = 1
 vim.g.gruvbox_contrast_dark = "hard"
-vim.cmd [[colorscheme gruvbox]]
+vim.cmd.colorscheme('gruvbox')
 -- tema do visual multi
 vim.g.VM_theme = "neon"
 -- indica linha selecionada no modo normal
@@ -91,9 +91,7 @@ vim.g.AutoPairsMapBS = 0
 
 --- Ctrlp
 -- abre arquivos no repositório atual de acordo com o gitignore
-vim.cmd([[
-    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-]])
+vim.g.ctrlp_user_command = { '.git', 'cd %s && git ls-files -co --exclude-standard' }
 
 --- Treesitter
 -- indentação e indicação de sintaxe
