@@ -55,7 +55,9 @@ if status is-interactive
 
     # Abre um processo e o separa
     function dis
-        $argv >/dev/null 2>&1 &;disown
+        for arg in $argv
+            $arg >/dev/null 2>&1 &;disown
+        end
     end
 
     # Git bare dotfiles
