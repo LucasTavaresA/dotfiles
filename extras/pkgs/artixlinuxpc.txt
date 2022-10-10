@@ -56,6 +56,7 @@ glow
 gnome-epub-thumbnailer
 gnome-themes-extra
 gnome-tweaks
+go
 gparted
 grep
 grimshot
@@ -91,6 +92,7 @@ linux
 linux-firmware
 lm_sensors
 lsd
+lua-language-server
 lxappearance
 m4
 make
@@ -108,6 +110,7 @@ mpv-mpris
 ncmpcpp
 neovim
 nerd-fonts-complete
+ninja
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
