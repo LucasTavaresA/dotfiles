@@ -26,7 +26,7 @@ vim.opt.expandtab = true
 -- muda o titulo da janela
 vim.opt.title = true
 vim.opt.titlestring = "nvim"
-vim.opt.titleold = "foot"
+vim.opt.titleold = os.getenv("TERMINAL")
 -- da a volta entre linhas
 vim.opt.whichwrap = vim.opt.whichwrap + "<,>,h,l,[,]"
 -- ativa uso do mouse
