@@ -1,4 +1,3 @@
-require('impatient')
 -- clona o paq caso a sua pasta não exista
 local path = vim.fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
 if vim.fn.empty(vim.fn.glob(path)) > 0 then
@@ -10,13 +9,24 @@ if vim.fn.empty(vim.fn.glob(path)) > 0 then
         path
     }
 end
+path = vim.fn.stdpath('data') .. '/site/pack/paqs/start/impatient.nvim'
+if vim.fn.empty(vim.fn.glob(path)) > 0 then
+    vim.fn.system {
+        'git',
+        'clone',
+        '--depth=1',
+        'https://github.com/lewis6991/impatient.nvim.git',
+        path
+    }
+end
 
 -- adiciona o paq aos pacotes do nvim
 vim.cmd('packadd paq-nvim')
+vim.cmd('packadd impatient.nvim')
+require('impatient')
 
 -- inicia o paq e seus pacotes
-local paq = require('paq')
-paq({
+require'paq'({
     --- Iniciar
     -- vim mais rápido
     "lewis6991/impatient.nvim";
@@ -29,14 +39,13 @@ paq({
     -- múltiplos cursores
     { "mg979/vim-visual-multi", branch = 'master' };
     -- comenta linhas
-    { "numToStr/Comment.nvim", run = require('Comment').setup() };
+    "numToStr/Comment.nvim";
     -- troca/coloca aspas/parenteses
     "tpope/vim-surround";
     -- expande região selecionada
     "terryma/vim-expand-region";
     -- previsão de cores
-    { "norcalli/nvim-colorizer.lua",
-        run = vim.cmd('set termguicolors') ; require('colorizer').setup() };
+    "norcalli/nvim-colorizer.lua";
     -- procura arquivos usando fzf
     { "junegunn/fzf", run = './install --bin', };
     "junegunn/fzf.vim";
@@ -49,7 +58,7 @@ paq({
     -- move linhas
     "matze/vim-move";
     -- remove espaços em linhas editadas
-    { "lewis6991/spaceless.nvim", run = require'spaceless'.setup() };
+    "lewis6991/spaceless.nvim";
 
     --- Code
     -- indentação e indicação de sintaxe
@@ -76,3 +85,7 @@ paq({
     -- Tema
     "ellisonleao/gruvbox.nvim";
 })
+require('Comment').setup()
+vim.cmd('set termguicolors')
+require('colorizer').setup()
+require'spaceless'.setup()
