@@ -59,6 +59,8 @@ require'paq'({
     "matze/vim-move";
     -- remove espaços em linhas editadas
     "lewis6991/spaceless.nvim";
+    -- pula para palavras
+    { "phaazon/hop.nvim", branch = 'v2' };
 
     --- Code
     -- indentação e indicação de sintaxe
@@ -90,3 +92,4 @@ require('Comment').setup()
 vim.cmd('set termguicolors')
 require('colorizer').setup()
 require'spaceless'.setup()
+require'hop'.setup()
