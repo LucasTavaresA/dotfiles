@@ -35,7 +35,7 @@ require'paq'({
 
     --- Miscelânea
     -- salva posição do cursor
-    "farmergreg/vim-lastplace";
+    "ethanholz/nvim-lastplace";
     -- múltiplos cursores
     { "mg979/vim-visual-multi", branch = 'master' };
     -- comenta linhas
@@ -85,6 +85,7 @@ require'paq'({
     -- Tema
     "ellisonleao/gruvbox.nvim";
 })
+require'nvim-lastplace'.setup{}
 require('Comment').setup()
 vim.cmd('set termguicolors')
 require('colorizer').setup()
