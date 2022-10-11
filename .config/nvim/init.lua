@@ -92,6 +92,18 @@ vim.cmd("hi CursorLine guibg=#333333")
 vim.cmd("hi! MatchParen cterm=NONE,bold gui=NONE,bold  guibg=NONE guifg=#ff0000")
 -- não deleta pares automaticamente
 vim.g.AutoPairsMapBS = 0
+-- signcolumn transparente
+vim.cmd([[
+    hi SignColumn guibg=NONE ctermbg=NONE
+]])
+
+--- gitsigns
+-- melhora cores - gitsigns
+vim.cmd([[
+    hi GitSignsDelete guibg=NONE ctermbg=NONE guifg=#ff0000 ctermfg=red
+    hi GitSignsChange guibg=NONE ctermbg=NONE guifg=#ffff00 ctermfg=yellow
+    hi GitSignsAdd guibg=NONE ctermbg=NONE guifg=#008800 ctermfg=green
+]])
 
 --- Ultisnips
 vim.g.UltiSnipsSnippetDirectories = {

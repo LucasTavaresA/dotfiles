@@ -71,7 +71,7 @@ require'paq'({
     -- fecha parenteses apertando enter
     "jiangmiao/auto-pairs";
     -- indica diffs
-    "mhinz/vim-signify";
+    "lewis6991/gitsigns.nvim";
     -- snippets
     "SirVer/ultisnips";
     "honza/vim-snippets";
@@ -95,3 +95,4 @@ vim.cmd('set termguicolors')
 require('colorizer').setup()
 require'spaceless'.setup()
 require'hop'.setup()
+require('gitsigns').setup()
