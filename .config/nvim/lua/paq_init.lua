@@ -48,6 +48,8 @@ paq({
     "mbbill/undotree";
     -- move linhas
     "matze/vim-move";
+    -- remove espaços em linhas editadas
+    { "lewis6991/spaceless.nvim", run = require'spaceless'.setup() };
 
     --- Code
     -- indentação e indicação de sintaxe
