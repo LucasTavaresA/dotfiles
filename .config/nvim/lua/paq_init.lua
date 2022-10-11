@@ -86,6 +86,8 @@ require'paq'({
     --- Aparência
     -- Tema
     "ellisonleao/gruvbox.nvim";
+    -- indica indentação
+    "lukas-reineke/indent-blankline.nvim";
 })
 require'nvim-lastplace'.setup{}
 require('Comment').setup()
