@@ -35,7 +35,8 @@ paq({
     -- expande região selecionada
     "terryma/vim-expand-region";
     -- previsão de cores
-    { "norcalli/nvim-colorizer.lua", config = function() require('colorizer').setup() end };
+    { "norcalli/nvim-colorizer.lua",
+        run = vim.cmd('set termguicolors') ; require('colorizer').setup() };
     -- procura arquivos usando fzf
     { "junegunn/fzf", run = './install --bin', };
     "junegunn/fzf.vim";
