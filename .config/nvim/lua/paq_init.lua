@@ -29,7 +29,7 @@ paq({
     -- múltiplos cursores
     { "mg979/vim-visual-multi", branch = 'master' };
     -- comenta linhas
-    "tpope/vim-commentary";
+    { "numToStr/Comment.nvim", run = require('Comment').setup() };
     -- troca/coloca aspas/parenteses
     "tpope/vim-surround";
     -- expande região selecionada
