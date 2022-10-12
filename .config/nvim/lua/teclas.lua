@@ -48,8 +48,43 @@ keymap("n", "zs", ":setlocal spell! spelllang=pt<CR>", {})
 keymap("n", "zS", ":setlocal spell! spelllang=en<CR>", {})
 -- procura palavra no cursor
 keymap("n", "?", "*", {})
--- abre terminal no local do arquivo atual
+-- abre terminal do sistema no local do arquivo atual
 keymap("n", "<leader><return>", ":!sh -c 'cd %:p:h ; term_open' &<CR><CR>", {})
+-- abre terminal nativo em uma split
+local lua_terminal_window = nil
+local lua_terminal_buffer = nil
+local terminal_split_size = tonumber(vim.api.nvim_exec("echo &lines", true)) / 2.5
+function TerminalToggle()
+    if vim.fn.win_gotoid(lua_terminal_window) == 1 then
+        if vim.fn.win_gotoid(lua_terminal_window) == 1 then
+            vim.api.nvim_command("hide")
+        end
+    else
+        if vim.fn.bufexists(lua_terminal_buffer) == 0 then
+            vim.api.nvim_command("new lua_terminal")
+            vim.api.nvim_command("wincmd J")
+            vim.api.nvim_command("resize " .. terminal_split_size)
+            vim.fn.termopen(os.getenv("SHELL"), {
+                detach = 1
+            })
+            vim.api.nvim_command("silent file Terminal 1")
+            lua_terminal_window = vim.fn.win_getid()
+            lua_terminal_buffer = vim.fn.bufnr('%')
+            vim.opt.buflisted = false
+        else
+            if vim.fn.win_gotoid(lua_terminal_window) == 0 then
+                vim.api.nvim_command("sp")
+                vim.api.nvim_command("wincmd J")
+                vim.api.nvim_command("resize " .. terminal_split_size)
+                vim.api.nvim_command("buffer Terminal 1")
+                lua_terminal_window = vim.fn.win_getid()
+            end
+        end
+        vim.cmd("startinsert")
+    end
+end
+vim.keymap.set("n", "<M-CR>", TerminalToggle)
+vim.keymap.set("t", "<M-CR>", TerminalToggle)
 -- cria um macro
 keymap("n", "M", "q", opts)
 keymap("n", "q", "", {})
