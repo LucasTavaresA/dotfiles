@@ -78,10 +78,10 @@ vim.g.VM_theme = "neon"
 vim.opt.cursorline = false
 -- define quando a barra superior aparece
 vim.opt.showtabline = 0
--- esconde a modeline
-vim.opt.laststatus = 0
+-- mostra a modeline
+vim.opt.laststatus = 3
 -- diminui tamanho da barra inferior
-vim.opt.cmdheight = 1
+-- vim.opt.cmdheight = 0
 -- transparência
 vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
 vim.cmd("hi EndOfBuffer guibg=NONE ctermbg=NONE")
@@ -96,6 +96,7 @@ vim.g.AutoPairsMapBS = 0
 vim.cmd([[
     hi SignColumn guibg=NONE ctermbg=NONE
 ]])
+require('statusline')
 
 --- gitsigns
 -- melhora cores - gitsigns
