@@ -110,6 +110,8 @@ keymap("n", "<leader>fh", ":Files ~<CR>", {})
 -- comentar linhas - vim comentary
 keymap("n", ",,", "gccj", {})
 keymap("v", ",,", "gc", {})
+-- procura e edita ocorrencias de uma palavra - greplace.vim
+keymap("n", "<leader>gg", ":Gsearch<CR>", {})
 -- ativa previsão de cores - nvimcolorizer
 keymap("n", "zc", ":ColorizerToggle<CR>", {})
 -- abrir e fechar arvore de undos - undotree

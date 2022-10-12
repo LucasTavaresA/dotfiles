@@ -61,6 +61,8 @@ require'paq'({
     { "phaazon/hop.nvim", branch = 'v2' };
 
     --- Code
+    -- procura e edita varias ocorrencias de uma palavra
+    "skwp/greplace.vim";
     -- indentação e indicação de sintaxe
     "sheerun/vim-polyglot";
     { "nvim-treesitter/nvim-treesitter", run = ':TSUpdate', };
