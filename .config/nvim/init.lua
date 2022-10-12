@@ -112,7 +112,7 @@ vim.g.UltiSnipsSnippetDirectories = {
 
 --- Ctrlp
 -- abre arquivos no repositório atual de acordo com o gitignore
-vim.g.ctrlp_user_command = { '.git', 'cd %s && git ls-files -co --exclude-standard' }
+vim.g.ctrlp_user_command = "fd --base-directory $HOME -d 4 -t f -E '*log*' -E '*cache*' -E '*.local*' -E '*media*'"
 
 --- Treesitter
 -- indentação e indicação de sintaxe

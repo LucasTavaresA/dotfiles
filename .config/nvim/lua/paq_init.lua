@@ -49,10 +49,8 @@ require'paq'({
     -- procura arquivos usando fzf
     { "junegunn/fzf", run = './install --bin', };
     "junegunn/fzf.vim";
-    -- procura arquivos rapidamente
+    -- procura rapidamente
     "ctrlpvim/ctrlp.vim";
-    -- procura linhas no buffer
-    "pelodelfuego/vim-swoop";
     -- arvore de undos
     "mbbill/undotree";
     -- move linhas

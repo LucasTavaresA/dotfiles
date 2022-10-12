@@ -99,11 +99,10 @@ keymap("n", "<C-s>", "<C-n>", {})
 keymap("v", "<C-s>", "<C-n>", {})
 -- criar cursor abaixo - visual multi
 keymap("n", "<C-S-s>", "<C-Down>", {})
--- procura linhas no buffer - swoop
-keymap("n", ";", ":call Swoop()<CR>", {})
-keymap("v", ";", ":call SwoopSelection()<CR>", {})
 -- abre arquivos no repositório atual - ctrlp
 keymap("n", "<leader>ff", ":CtrlP<CR>", {})
+-- procura linhas no buffer - ctrlp
+keymap("n", "\\", ":CtrlPLine<CR>", {})
 -- abre arquivos abertos recentemente - ctrlp
 keymap("n", "<leader><leader>", ":CtrlPMRUFiles<CR>", {})
 -- abre arquivos na home - fzf
