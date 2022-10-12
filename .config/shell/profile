@@ -138,9 +138,9 @@ export DIFFPROG="nvim -d"
 # mergeprog
 export MERGEPROG="nvim -d"
 # editor no terminal
-export EDITOR="emacsclient -t -a 'nvim'"
+export EDITOR="nvim"
 # editor com interface gráfica
-export VISUAL="emacsclient -n -c -a 'term_open nvim'"
+export VISUAL="term_open -a nvim nvim"
 
 ## GPG/SSH
 export SSH_ASKPASS="doas_askpass"

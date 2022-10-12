@@ -44,7 +44,7 @@ cmd open ${{
         image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) zathura $fx ;;
         application/vnd.oasis.opendocument.text) libreoffice $f ;;
         application/pdf|application/vnd*|application/epub*) zathura $fx ;;
-        text/*) emacsclient -n -c -a 'nvim' $fx ;;
+        text/*) term_open -a nvim nvim $fx ;;
         audio/*) mpv -no-video $fx ;;
         image/*) vimiv $fx ;;
         video/*) mpv $fx ;;

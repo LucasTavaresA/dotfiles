@@ -71,7 +71,7 @@ c.tabs.position = "top"
 # tamanho da barra de compleção
 config.set('completion.height', '100%')
 # editor
-c.editor.command = ["emacsclient", "-c", "-a", "'term_open nvim'", "{}"]
+c.editor.command = ["term_open", "-a", "nvim", "nvim", "{}"]
 
 #### Adblock ####
 config.set('content.blocking.method', 'both')

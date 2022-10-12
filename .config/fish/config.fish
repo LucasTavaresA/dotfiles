@@ -168,7 +168,7 @@ if status is-interactive
     abbr -a -g as "abbr | grep --color -i"
     abbr -a -g ff flashfetch
     abbr -a -g v nvim
-    abbr -a -g vv term_open -s nvim
+    abbr -a -g vv term_open -a nvim nvim
     abbr -a -g h htop
     abbr -a -g ed emacs --daemon
     abbr -a -g ek "emacsclient -e '(kill-emacs)'"

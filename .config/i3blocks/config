@@ -18,10 +18,10 @@ command=echo $(volume)
 interval=once
 signal=22
 
-[emacs]
-color=#5955a9
-command=pgrep -ia emacs | grep daemon > /dev/null && echo '𝓔' || echo x
-interval=5
+# [emacs]
+# color=#5955a9
+# command=pgrep -ia emacs | grep daemon > /dev/null && echo '𝓔' || echo x
+# interval=5
 
 [disk]
 color=#ff5500
