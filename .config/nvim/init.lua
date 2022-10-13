@@ -115,6 +115,11 @@ vim.g.UltiSnipsSnippetDirectories = {
 -- abre arquivos no repositório atual de acordo com o gitignore
 vim.g.ctrlp_user_command = "fd --base-directory $HOME -d 4 -t f -E '*log*' -E '*cache*' -E '*.local*' -E '*media*'"
 
+--- greplace
+-- usa o git grep
+vim.opt.grepprg = 'git grep'
+vim.g.grep_cmd_opts = '-nrIi'
+
 --- Treesitter
 -- indentação e indicação de sintaxe
 local configs = require 'nvim-treesitter.configs'
