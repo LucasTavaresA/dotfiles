@@ -1,5 +1,5 @@
 ----- PLUGINS -----
-require('paq_init')
+require('packages')
 
 ----- Configuração -----
 --- Vim
@@ -137,7 +137,7 @@ configs.setup {
 
 ----- Modulos -----
 --- Teclas
-require('teclas')
+require('keys')
 
 -- compleção - nvim-cmp
 local cmp = require 'cmp'
