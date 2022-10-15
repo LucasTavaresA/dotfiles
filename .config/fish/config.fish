@@ -212,6 +212,7 @@ if status is-interactive
     # git
     abbr -a -g gi git init
     abbr -a -g gc git clone
+    abbr -a -g gcr git clone --recurse-submodules
     abbr -a -g gs git status
     abbr -a -g gsa git submodule add https://github.com/
     abbr -a -g gd git diff
@@ -224,8 +225,17 @@ if status is-interactive
     abbr -a -g gcam git commit --amend
     abbr -a -g gca git commit --amend --no-edit
     abbr -a -g gco git checkout
+    abbr -a -g gcob git checkout -b
     abbr -a -g grv git remote -v
     abbr -a -g grsu git remote set-url origin
+    abbr -a -g gba git branch -a
+    abbr -a -g gbad git branch -ad
+    abbr -a -g gwa git worktree add
+    abbr -a -g gwr git worktree remove
+    abbr -a -g gri git rebase -i
+    abbr -a -g grc git rebase --continue
+    abbr -a -g grs git rebase --skip
+    abbr -a -g gra git rebase --abort
     abbr -a -g gg git grep -iInp --break --heading
     abbr -a -g ggs git grep -iInp --break --heading -8
 
