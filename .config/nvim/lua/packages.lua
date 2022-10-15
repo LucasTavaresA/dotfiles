@@ -64,7 +64,6 @@ require'paq'({
     -- procura e edita varias ocorrencias de uma palavra
     "skwp/greplace.vim";
     -- indentação e indicação de sintaxe
-    "sheerun/vim-polyglot";
     { "nvim-treesitter/nvim-treesitter", run = ':TSUpdate', };
     -- LSP
     "neovim/nvim-lspconfig";
