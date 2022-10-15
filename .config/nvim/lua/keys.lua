@@ -83,6 +83,7 @@ function TerminalToggle()
         vim.cmd("startinsert")
     end
 end
+
 vim.keymap.set("n", "<M-CR>", TerminalToggle)
 vim.keymap.set("t", "<M-CR>", TerminalToggle)
 -- cria um macro
