@@ -54,6 +54,13 @@ vim.opt.wrap = false
 -- desativa comentar automaticamente a próxima linha
 vim.api.nvim_create_autocmd("FileType",
     { pattern = { "*" }, command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o", })
+-- Ativa checagem ortografica em arquivos
+vim.api.nvim_create_autocmd("FileType",
+    { pattern = { "org" }, command = "setlocal spell spelllang=pt", })
+vim.api.nvim_create_autocmd("FileType",
+    { pattern = { "markdown" }, command = "setlocal spell spelllang=pt", })
+vim.api.nvim_create_autocmd("FileType",
+    { pattern = { "gitcommit" }, command = "setlocal spell spelllang=pt", })
 
 --- Aparência
 -- indicação de sintaxe
