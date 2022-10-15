@@ -1,5 +1,12 @@
 ----- PLUGINS -----
-require('packages')
+require('impatient')
+require 'nvim-lastplace'.setup {}
+require('gitsigns').setup()
+require 'hop'.setup()
+require 'spaceless'.setup()
+vim.cmd('set termguicolors')
+require('colorizer').setup()
+require('Comment').setup()
 
 ----- Configuração -----
 --- Vim

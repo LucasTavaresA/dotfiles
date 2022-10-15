@@ -1,32 +1,6 @@
--- clona o paq caso a sua pasta não exista
-local path = vim.fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
-if vim.fn.empty(vim.fn.glob(path)) > 0 then
-    vim.fn.system {
-        'git',
-        'clone',
-        '--depth=1',
-        'https://github.com/savq/paq-nvim.git',
-        path
-    }
-end
-path = vim.fn.stdpath('data') .. '/site/pack/paqs/start/impatient.nvim'
-if vim.fn.empty(vim.fn.glob(path)) > 0 then
-    vim.fn.system {
-        'git',
-        'clone',
-        '--depth=1',
-        'https://github.com/lewis6991/impatient.nvim.git',
-        path
-    }
-end
-
--- adiciona o paq aos pacotes do nvim
-vim.cmd('packadd paq-nvim')
-vim.cmd('packadd impatient.nvim')
-require('impatient')
-
--- inicia o paq e seus pacotes
-require'paq'({
+-- bootstrap paq with:
+-- nvim --headless -u NONE -c 'lua require("bootstrap").bootstrap_paq()'
+local PKGS = {
     --- Iniciar
     -- vim mais rápido
     "lewis6991/impatient.nvim";
@@ -64,7 +38,7 @@ require'paq'({
     -- procura e edita varias ocorrencias de uma palavra
     "skwp/greplace.vim";
     -- indentação e indicação de sintaxe
-    { "nvim-treesitter/nvim-treesitter", run = ':TSUpdate', };
+    "nvim-treesitter/nvim-treesitter";
     -- LSP
     "neovim/nvim-lspconfig";
     -- fecha parenteses apertando enter
@@ -89,11 +63,34 @@ require'paq'({
     "lukas-reineke/indent-blankline.nvim";
     -- statusline
     "famiu/feline.nvim";
-})
-require'nvim-lastplace'.setup{}
-require('Comment').setup()
-vim.cmd('set termguicolors')
-require('colorizer').setup()
-require'spaceless'.setup()
-require'hop'.setup()
-require('gitsigns').setup()
+}
+
+local function clone_paq()
+    local path = vim.fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
+    if vim.fn.empty(vim.fn.glob(path)) > 0 then
+        vim.fn.system {
+            'git',
+            'clone',
+            '--depth=1',
+            'https://github.com/savq/paq-nvim.git',
+            path
+        }
+    end
+end
+
+local function bootstrap_paq()
+    clone_paq()
+
+    -- Load Paq
+    vim.cmd('packadd paq-nvim')
+    local paq = require('paq')
+
+    -- Exit nvim after installing plugins
+    vim.cmd('autocmd User PaqDoneInstall quit')
+
+    -- Read and install packages
+    paq(PKGS)
+    paq.install()
+end
+
+return { bootstrap_paq = bootstrap_paq }
