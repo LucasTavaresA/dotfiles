@@ -63,6 +63,8 @@ local PKGS = {
     "lukas-reineke/indent-blankline.nvim";
     -- statusline
     "famiu/feline.nvim";
+    -- centraliza texto e esconde distrações ao escrever
+    "junegunn/goyo.vim";
 }
 
 local function clone_paq()

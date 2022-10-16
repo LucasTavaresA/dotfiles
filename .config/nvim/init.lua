@@ -111,6 +111,11 @@ vim.cmd([[
     hi SignColumn guibg=NONE ctermbg=NONE
 ]])
 require('statusline')
+-- ativa goyo em arquivos especificos
+vim.api.nvim_create_autocmd("FileType",
+    { pattern = { "org" }, command = "call timer_start(100, { tid -> execute('Goyo')})", })
+vim.api.nvim_create_autocmd("FileType",
+    { pattern = { "markdown" }, command = "call timer_start(100, { tid -> execute('Goyo')})", })
 
 --- gitsigns
 -- melhora cores - gitsigns

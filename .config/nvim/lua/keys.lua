@@ -154,6 +154,8 @@ keymap("n", "<leader>gr", ":Greplace<CR>", {})
 keymap("n", "zc", ":ColorizerToggle<CR>", {})
 -- abrir e fechar arvore de undos - undotree
 keymap("n", "zu", ":UndotreeToggle<CR>:UndotreeFocus<CR>", {})
+-- ativa modo focado - goyo
+keymap("n", "zg", ":Goyo<CR>", {})
 -- editar snippets para o tipo de arquivo atual - ultisnips
 keymap("n", "<leader>es", ":UltiSnipsEdit<CR>", {})
 -- troca entre partes do snippet - ultisnips
