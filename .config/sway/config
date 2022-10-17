@@ -114,8 +114,8 @@ mode "Menu" {
     bindsym s exec gammastep -O 3000 ; mode "default"
     bindsym Shift+s exec pkill -x gammastep ; mode "default"
     bindsym t exec transmission-qt ; mode "default"
-    bindsym a exec term_open -a nvim nvim ~/documentos/anotações.org ; mode "default"
-    bindsym i exec term_open -a nvim nvim ~/documentos/inf.org ; mode "default"
+    bindsym a exec term_open -a nvim nvim ~/documentos/anotações.md ; mode "default"
+    bindsym i exec term_open -a nvim nvim ~/documentos/inf.md ; mode "default"
     bindsym l exec swaylock -c 000000ff --scaling fill ; mode "default"
     bindsym r reload
     bindsym Shift+q exit

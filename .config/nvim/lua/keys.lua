@@ -6,21 +6,22 @@ vim.g.maplocalleader = " "
 
 -- cancela indicação de palavras procuradas
 keymap("n", "<esc>", ":noh<CR>", {})
--- colar na linha abaixo/acima
-keymap("n", "p", ":norm o<CR>p", opts)
-keymap("n", "P", ":norm O<CR>p", {})
+-- colar na linha de baixo
+keymap("n", "P", ":norm o<CR>p", opts)
 -- trocar de buffer
 keymap("n", "<C-Tab>", ":bn<CR>", {})
 -- trocar de split
 keymap("n", "<A-Tab>", "<C-w>w", {})
 -- formatar buffer
-keymap("n", "<leader>F", "gg=G", {})
+keymap("n", "<leader>I", "gg=G", {})
 -- formatar paragrafo
 keymap("n", "<leader>ii", "{=}", {})
 -- alinhar texto
 keymap("v", "<leader>a", ":'<,'>!column -t -o ' '<CR>", {})
 -- mudar o typo de arquivo
 keymap("n", "<leader>ft", ":set filetype=", {})
+-- abrir o explorador de arquivos
+keymap("n", "<A-f>", ":Lexplore<CR>", {})
 -- salvar buffer
 keymap("n", "<leader>ww", ":w<CR>", {})
 -- sair e salvar
@@ -110,10 +111,6 @@ vim.cmd([[
 ]])
 
 --- Plugins
--- atualiza plugins do paq - paq
-keymap("n", "<leader>ps", ":PaqSync<CR>", {})
--- remove plugins não utilizados - paq
-keymap("n", "<leader>pc", ":PaqClean<CR>", {})
 -- expande região selecionada - expand region
 keymap("n", "<S-Up>", "<Plug>(expand_region_expand)", {})
 keymap("n", "<S-Down>", "<Plug>(expand_region_shrink)", {})
@@ -179,6 +176,6 @@ On_attach = function(_, bufnr)
     vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
     vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
     vim.keymap.set('n', '<leader>D', vim.diagnostic.setloclist, opts)
-    vim.keymap.set('n', '<leader>F', function() vim.lsp.buf.format { async = true } end, opts)
+    vim.keymap.set('n', '<leader>I', function() vim.lsp.buf.format { async = true } end, opts)
     vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, opts)
 end
