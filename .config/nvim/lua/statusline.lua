@@ -1,6 +1,6 @@
 -- gruvbox
-local colors = {
-    bg = '#282828',
+local theme = {
+    bg = '#000000',
     fg = '#fb4934',
     red = '#cc241d',
     green = '#98971a',
@@ -13,20 +13,20 @@ local colors = {
 }
 
 local vi_mode_colors = {
-    NORMAL = colors.violet,
-    INSERT = colors.yellow,
-    VISUAL = colors.blue,
-    OP = colors.cyan,
-    BLOCK = colors.cyan,
-    REPLACE = colors.red,
-    ['V-REPLACE'] = colors.red,
-    ENTER = colors.yellow,
-    MORE = colors.pink,
-    SELECT = colors.blue,
-    COMMAND = colors.cyan,
-    SHELL = colors.cyan,
-    TERM = colors.green,
-    NONE = colors.blue
+    NORMAL = theme.violet,
+    INSERT = theme.yellow,
+    VISUAL = theme.blue,
+    OP = theme.cyan,
+    BLOCK = theme.cyan,
+    REPLACE = theme.red,
+    ['V-REPLACE'] = theme.red,
+    ENTER = theme.yellow,
+    MORE = theme.pink,
+    SELECT = theme.blue,
+    COMMAND = theme.cyan,
+    SHELL = theme.cyan,
+    TERM = theme.green,
+    NONE = theme.blue
 }
 
 local lsp = require('feline.providers.lsp')
@@ -48,7 +48,7 @@ local comps = {
             hl = function()
                 local set_color = {
                     name = vi_mode_utils.get_mode_highlight_name(),
-                    fg = colors.bg,
+                    fg = theme.bg,
                     bg = vi_mode_utils.get_mode_color(),
                     style = 'bold'
                 }
@@ -67,7 +67,7 @@ local comps = {
                     file_modified_icon = ''
                 }
             },
-            hl = { fg = colors.cyan },
+            hl = { fg = theme.cyan },
             icon = '  ',
             left_sep = ' ',
             right_sep = ' ',
@@ -78,7 +78,7 @@ local comps = {
         position = {
             provider = { name = 'position' },
             hl = {
-                fg = colors.cyan,
+                fg = theme.cyan,
                 style = 'bold'
             },
             left_sep = ' ',
@@ -86,7 +86,7 @@ local comps = {
         },
         scroll_bar = {
             provider = { name = 'scroll_bar' },
-            hl = { fg = colors.green },
+            hl = { fg = theme.green },
             left_sep = ' ',
             right_sep = ' ',
         },
@@ -96,28 +96,28 @@ local comps = {
         err = {
             provider = 'diagnostic_errors',
             icon = ' ⚠ ',
-            hl = { fg = colors.red },
+            hl = { fg = theme.red },
             left_sep = ' ',
             right_sep = ' ',
         },
         warn = {
             provider = 'diagnostic_warnings',
             icon = '  ',
-            hl = { fg = colors.yellow },
+            hl = { fg = theme.yellow },
             left_sep = ' ',
             right_sep = ' ',
         },
         info = {
             provider = 'diagnostic_info',
             icon = '  ',
-            hl = { fg = colors.green },
+            hl = { fg = theme.green },
             left_sep = ' ',
             right_sep = ' ',
         },
         hint = {
             provider = 'diagnostic_hints',
             icon = '  ',
-            hl = { fg = colors.cyan },
+            hl = { fg = theme.cyan },
             left_sep = ' ',
             right_sep = ' ',
         },
@@ -127,28 +127,28 @@ local comps = {
         branch = {
             provider = 'git_branch',
             icon = '  ',
-            hl = { fg = colors.pink },
+            hl = { fg = theme.pink },
             left_sep = ' ',
             right_sep = ' ',
         },
         add = {
             provider = 'git_diff_added',
             icon = '  ',
-            hl = { fg = colors.green },
+            hl = { fg = theme.green },
             left_sep = ' ',
             right_sep = ' ',
         },
         change = {
             provider = 'git_diff_changed',
             icon = '  ',
-            hl = { fg = colors.orange },
+            hl = { fg = theme.orange },
             left_sep = ' ',
             right_sep = ' ',
         },
         remove = {
             provider = 'git_diff_removed',
             icon = '  ',
-            hl = { fg = colors.red },
+            hl = { fg = theme.red },
             left_sep = ' ',
             right_sep = ' ',
         }
@@ -182,9 +182,10 @@ table.insert(components.inactive[2], comps.file.info)
 table.insert(components.active[2], comps.file.position)
 
 require('feline').setup {
-    colors = {
-        bg = colors.bg,
-        fg = colors.fg
+    default_bg = theme.bg,
+    theme = {
+        bg = theme.bg,
+        fg = theme.fg
     },
     components = components,
     vi_mode_colors = vi_mode_colors,
