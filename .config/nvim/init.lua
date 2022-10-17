@@ -20,6 +20,15 @@ vim.opt.lazyredraw = true
 --- Arquivos
 -- desabilita swapfile
 vim.opt.swapfile = false
+--- netrw
+-- define o modo de listagem de arquivos
+vim.g.netrw_liststyle = 3
+-- remove o banner
+vim.g.netrw_banner = 0
+-- define onde abrir arquivos
+vim.g.netrw_browse_split = 4
+-- tamanho da split
+vim.g.netrw_winsize = 20
 
 --- Tabs/Espaços
 -- limita tabs em 4 espaços
