@@ -1,46 +1,47 @@
--- bootstrap paq with:
+-- bootstrap paq:
 -- nvim --headless -u NONE -c 'lua require("bootstrap").bootstrap_paq()'
 local PKGS = {
-    --- Iniciar
     -- vim mais rápido
     "lewis6991/impatient.nvim";
     -- gerenciador de pacotes
     "savq/paq-nvim";
 
     --- Miscelânea
-    -- salva posição do cursor
-    "ethanholz/nvim-lastplace";
-    -- múltiplos cursores
-    { "mg979/vim-visual-multi", branch = 'master' };
-    -- comenta linhas
-    "numToStr/Comment.nvim";
-    -- troca/coloca aspas/parenteses
-    "tpope/vim-surround";
-    -- expande região selecionada
-    "terryma/vim-expand-region";
     -- previsão de cores
     "norcalli/nvim-colorizer.lua";
+    -- salva posição do cursor
+    "ethanholz/nvim-lastplace";
     -- procura arquivos usando fzf
     { "junegunn/fzf", run = './install --bin', };
     "junegunn/fzf.vim";
     -- procura rapidamente
     "ctrlpvim/ctrlp.vim";
+
+    --- Editar
+    -- múltiplos cursores
+    { "mg979/vim-visual-multi", branch = 'master' };
+    -- troca/coloca aspas/parenteses
+    "tpope/vim-surround";
+    -- expande região selecionada
+    "terryma/vim-expand-region";
     -- arvore de undos
     "mbbill/undotree";
     -- move linhas
     "matze/vim-move";
+    -- procura e edita varias ocorrências de uma palavra
+    "skwp/greplace.vim";
     -- remove espaços em linhas editadas
     "lewis6991/spaceless.nvim";
 
     --- Code
-    -- procura e edita varias ocorrencias de uma palavra
-    "skwp/greplace.vim";
+    -- comenta linhas
+    "numToStr/Comment.nvim";
+    -- fecha parenteses automaticamente
+    "jiangmiao/auto-pairs";
     -- indentação e indicação de sintaxe
     "nvim-treesitter/nvim-treesitter";
-    -- LSP
+    -- lsp
     "neovim/nvim-lspconfig";
-    -- fecha parenteses apertando enter
-    "jiangmiao/auto-pairs";
     -- indica diffs
     "lewis6991/gitsigns.nvim";
     -- snippets
@@ -55,14 +56,18 @@ local PKGS = {
     "quangnguyen30192/cmp-nvim-ultisnips";
 
     --- Aparência
-    -- Tema
+    -- tema
     "ellisonleao/gruvbox.nvim";
     -- indica indentação
     "lukas-reineke/indent-blankline.nvim";
     -- statusline
     "famiu/feline.nvim";
+
+    --- Escrever
     -- centraliza texto e esconde distrações ao escrever
     "junegunn/goyo.vim";
+    -- previsão de markdown
+    "ellisonleao/glow.nvim";
 }
 
 local function clone_paq()
