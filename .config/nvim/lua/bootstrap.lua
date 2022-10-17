@@ -31,8 +31,6 @@ local PKGS = {
     "matze/vim-move";
     -- remove espaços em linhas editadas
     "lewis6991/spaceless.nvim";
-    -- pula para palavras
-    { "phaazon/hop.nvim", branch = 'v2' };
 
     --- Code
     -- procura e edita varias ocorrencias de uma palavra

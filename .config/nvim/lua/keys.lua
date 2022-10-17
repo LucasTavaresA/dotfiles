@@ -114,8 +114,6 @@ vim.cmd([[
 keymap("n", "<leader>ps", ":PaqSync<CR>", {})
 -- remove plugins não utilizados - paq
 keymap("n", "<leader>pc", ":PaqClean<CR>", {})
--- pula para uma palavra - hop
-keymap("n", "f", ":HopWord<CR>", {})
 -- expande região selecionada - expand region
 keymap("n", "<S-Up>", "<Plug>(expand_region_expand)", {})
 keymap("n", "<S-Down>", "<Plug>(expand_region_shrink)", {})
