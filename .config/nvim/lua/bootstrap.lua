@@ -68,6 +68,9 @@ local PKGS = {
     "junegunn/goyo.vim";
     -- previsão de markdown
     "ellisonleao/glow.nvim";
+    -- markdown
+    "godlygeek/tabular";
+    "preservim/vim-markdown";
 }
 
 local function clone_paq()

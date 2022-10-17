@@ -74,6 +74,9 @@ vim.cmd.syntax('on')
 -- tema
 -- prefere modo escuro
 vim.opt.background = "dark"
+-- esconde marcação
+vim.opt.conceallevel = 3
+vim.g.vim_markdown_conceal_code_blocks = 0
 -- tema
 require("gruvbox").setup({
     invert_selection = true,
@@ -143,7 +146,7 @@ vim.g.grep_cmd_opts = '-nrIi'
 local configs = require 'nvim-treesitter.configs'
 configs.setup {
     ensure_installed = { "c", "lua", "c_sharp", "fish", "css",
-        "comment", "go", "html", "javascript", "make", "markdown",
+        "comment", "go", "html", "javascript", "make",
         "norg", "org", "python", "vim" },
     highlight = { -- Indicação de sintaxe
         enable = true,
@@ -288,3 +291,4 @@ require 'lspconfig'.sumneko_lua.setup {
     },
     capabilities = capabilities,
 }
+
