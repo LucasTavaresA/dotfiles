@@ -156,7 +156,7 @@ if status is-interactive
 
     ## Abbr ##
     abbr -a -g cd z
-    abbr -a -g att atualizar
+    abbr -a -g att sgrade
     abbr -a -g cs criar_script sh script.sh
     abbr -a -g pk pkill -i
     abbr -a -g pg pgrep -ia
@@ -232,6 +232,8 @@ if status is-interactive
     abbr -a -g gbad git branch -ad
     abbr -a -g gwa git worktree add
     abbr -a -g gwr git worktree remove
+    abbr -a -g gss git stash
+    abbr -a -g gsp git stash pop
     abbr -a -g gri git rebase -i
     abbr -a -g grc git rebase --continue
     abbr -a -g grs git rebase --skip

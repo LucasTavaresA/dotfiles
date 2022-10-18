@@ -163,7 +163,7 @@ criar_script () {
 
 #### Aliases ####
 alias cd="z"
-alias att="atualizar"
+alias att="sgrade"
 alias cs="criar_script sh script.sh"
 alias pk="pkill -i"
 alias pg="pgrep -ia"
@@ -239,6 +239,8 @@ alias gba="git branch -a"
 alias gbad="git branch -ad"
 alias gwa="git worktree add"
 alias gwr="git worktree remove"
+alias gss="git stash"
+alias gsp="git stash pop"
 alias gri="git rebase -i"
 alias grc="git rebase --continue"
 alias grs="git rebase --skip"
