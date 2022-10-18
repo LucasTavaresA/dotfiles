@@ -138,9 +138,6 @@ keymap("n", "\\", ":CtrlPLine<CR>", {})
 keymap("n", "<leader><leader>", ":CtrlPMRUFiles<CR>", {})
 -- abre arquivos na home - fzf
 keymap("n", "<leader>fh", ":Files ~<CR>", {})
--- comentar linhas - vim comentary
-keymap("n", ",,", "gccj", {})
-keymap("v", ",,", "gc", {})
 -- procura e edita ocorrencias de uma palavra - greplace.vim
 keymap("n", "<leader>gg", ":Gsearch<CR>", {})
 -- confirma todas as modificações - greplace.vim

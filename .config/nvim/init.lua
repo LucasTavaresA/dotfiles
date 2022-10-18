@@ -80,6 +80,10 @@ vim.api.nvim_create_autocmd("FileType",
 --- Aparência
 -- indicação de sintaxe
 vim.cmd.syntax('on')
+-- mostra numero de linhas relativo
+vim.opt.number = true
+vim.opt.numberwidth = 1
+vim.opt.relativenumber = true
 -- tema
 -- prefere modo escuro
 vim.opt.background = "dark"
@@ -114,7 +118,7 @@ vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
 -- cor da linha atual
 vim.cmd("hi CursorLine guibg=#333333")
 -- incida parenteses correspondente
-vim.cmd("hi! MatchParen cterm=NONE,bold gui=NONE,bold  guibg=NONE guifg=#ff0000")
+vim.cmd("hi! MatchParen cterm=NONE,bold gui=NONE,bold  guibg=NONE guifg=Red")
 -- não deleta pares automaticamente
 vim.g.AutoPairsMapBS = 0
 -- signcolumn transparente
