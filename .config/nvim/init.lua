@@ -120,7 +120,9 @@ vim.cmd("hi CursorLine guibg=#333333")
 -- incida parenteses correspondente
 vim.cmd("hi! MatchParen cterm=NONE,bold gui=NONE,bold  guibg=NONE guifg=Red")
 -- não deleta pares automaticamente
-vim.g.AutoPairsMapBS = 0
+require('nvim-autopairs').setup({
+  map_bs = false,
+})
 -- signcolumn transparente
 vim.cmd([[
     hi SignColumn guibg=NONE ctermbg=NONE

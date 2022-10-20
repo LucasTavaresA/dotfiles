@@ -37,7 +37,7 @@ local PKGS = {
     -- comenta linhas
     "numToStr/Comment.nvim";
     -- fecha parenteses automaticamente
-    "jiangmiao/auto-pairs";
+    "windwp/nvim-autopairs";
     -- indentação e indicação de sintaxe
     "nvim-treesitter/nvim-treesitter";
     -- lsp
