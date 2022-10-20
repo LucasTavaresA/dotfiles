@@ -125,11 +125,6 @@ keymap("i", "<A-Down>", "<esc><Plug>MoveLineDown", {})
 keymap("i", "<A-Up>", "<esc><Plug>MoveLineUp", {})
 keymap("v", "<A-Down>", "<Plug>MoveBlockDown", {})
 keymap("v", "<A-Up>", "<Plug>MoveBlockUp", {})
--- Criar cursor na próxima palavra - visual multi
-keymap("n", "<C-s>", "<C-n>", {})
-keymap("v", "<C-s>", "<C-n>", {})
--- criar cursor abaixo - visual multi
-keymap("n", "<C-S-s>", "<C-Down>", {})
 -- abre arquivos no repositório atual - ctrlp
 keymap("n", "<leader>ff", ":CtrlP<CR>", {})
 -- procura linhas no buffer - ctrlp

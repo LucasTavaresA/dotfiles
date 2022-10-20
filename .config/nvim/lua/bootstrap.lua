@@ -18,8 +18,6 @@ local PKGS = {
     "ctrlpvim/ctrlp.vim";
 
     --- Editar
-    -- múltiplos cursores
-    { "mg979/vim-visual-multi", branch = 'master' };
     -- troca/coloca aspas/parenteses
     "tpope/vim-surround";
     -- expande região selecionada

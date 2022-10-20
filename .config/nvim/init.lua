@@ -112,8 +112,6 @@ require("gruvbox").setup({
 vim.cmd.colorscheme('gruvbox')
 -- melhora suporte de cores
 vim.opt.termguicolors = true
--- tema do visual multi
-vim.g.VM_theme = "neon"
 -- indica linha selecionada no modo normal
 vim.opt.cursorline = false
 -- define quando a barra superior aparece
