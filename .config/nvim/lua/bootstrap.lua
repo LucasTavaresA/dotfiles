@@ -58,8 +58,6 @@ local PKGS = {
     --- Aparência
     -- tema
     "ellisonleao/gruvbox.nvim";
-    -- indica indentação
-    "lukas-reineke/indent-blankline.nvim";
     -- statusline
     "famiu/feline.nvim";
 
