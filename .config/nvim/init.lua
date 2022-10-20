@@ -84,6 +84,17 @@ vim.cmd.syntax('on')
 vim.opt.number = true
 vim.opt.numberwidth = 1
 vim.opt.relativenumber = true
+-- indicação de espaços e tabs
+vim.opt.list = true
+vim.opt.listchars = {
+    tab = '> ',
+    extends = '⟩',
+    precedes = '⟨',
+    trail = '~',
+    multispace = '··',
+    leadmultispace = '│···',
+    conceal = '*',
+}
 -- tema
 -- prefere modo escuro
 vim.opt.background = "dark"
