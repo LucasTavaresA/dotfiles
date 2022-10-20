@@ -1,7 +1,6 @@
 ----- PLUGINS -----
 require('impatient')
 require 'nvim-lastplace'.setup {}
-require('gitsigns').setup()
 require 'spaceless'.setup()
 vim.cmd('set termguicolors')
 require('colorizer').setup()
@@ -144,6 +143,11 @@ vim.api.nvim_create_autocmd("FileType",
     { pattern = { "markdown" }, command = "call timer_start(100, { tid -> execute('Goyo')})", })
 
 --- gitsigns
+require("gitsigns").setup({
+    worktrees = {{
+        toplevel = vim.env.HOME,
+        gitdir = vim.env.HOME .. '/.dotfiles'
+    }}})
 -- melhora cores - gitsigns
 vim.cmd([[
     hi GitSignsDelete guibg=NONE ctermbg=NONE guifg=#ff0000 ctermfg=red
@@ -167,8 +171,7 @@ vim.g.grep_cmd_opts = '-nrIi'
 
 --- Treesitter
 -- indentação e indicação de sintaxe
-local configs = require 'nvim-treesitter.configs'
-configs.setup {
+require 'nvim-treesitter.configs'.setup {
     ensure_installed = { "c", "lua", "c_sharp", "fish", "css",
         "comment", "go", "html", "javascript", "make",
         "norg", "org", "python", "vim" },
