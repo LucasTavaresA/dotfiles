@@ -26,10 +26,10 @@ local PKGS = {
     "mbbill/undotree";
     -- move linhas
     "matze/vim-move";
-    -- procura e edita varias ocorrências de uma palavra
-    "skwp/greplace.vim";
     -- remove espaços em linhas editadas
     "lewis6991/spaceless.nvim";
+    -- procura e edita varias ocorrências de uma palavra
+    "yegappan/greplace";
 
     --- Code
     -- comenta linhas

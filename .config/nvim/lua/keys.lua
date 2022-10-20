@@ -49,6 +49,8 @@ keymap("n", "zs", ":setlocal spell! spelllang=pt<CR>", {})
 keymap("n", "zS", ":setlocal spell! spelllang=en<CR>", {})
 -- procura palavra no cursor
 keymap("n", "?", "*", {})
+-- procura e substitui
+keymap("n", "<A-s>", ":%s//gc<left><left><left>", {})
 -- abre terminal do sistema no local do arquivo atual
 keymap("n", "<leader><return>", ":!sh -c 'cd %:p:h ; term_open' &<CR><CR>", {})
 -- abre terminal nativo em uma split
@@ -133,9 +135,9 @@ keymap("n", "\\", ":CtrlPLine<CR>", {})
 keymap("n", "<leader><leader>", ":CtrlPMRUFiles<CR>", {})
 -- abre arquivos na home - fzf
 keymap("n", "<leader>fh", ":Files ~<CR>", {})
--- procura e edita ocorrencias de uma palavra - greplace.vim
-keymap("n", "<leader>gg", ":Gsearch<CR>", {})
--- confirma todas as modificações - greplace.vim
+-- procura e edita ocorrencias de uma palavra - greplace
+keymap("n", "<leader>gg", ":Gsearch  ./<left><left><left>", {})
+-- confirma todas as modificações - greplace
 keymap("n", "<leader>gr", ":Greplace<CR>", {})
 -- ativa previsão de cores - nvimcolorizer
 keymap("n", "zc", ":ColorizerToggle<CR>", {})

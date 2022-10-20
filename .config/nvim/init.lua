@@ -166,8 +166,11 @@ vim.g.ctrlp_user_command = "fd --base-directory $HOME -d 4 -t f -E '*log*' -E '*
 
 --- greplace
 -- usa o git grep
-vim.opt.grepprg = 'git grep'
-vim.g.grep_cmd_opts = '-nrIi'
+vim.opt.grepprg = 'git grep -nIi'
+if vim.fn.getcwd() == os.getenv('HOME') then
+    vim.env.GIT_DIR = vim.fn.expand("~/.dotfiles")
+    vim.env.GIT_WORK_TREE = vim.fn.expand("~")
+end
 
 --- Treesitter
 -- indentação e indicação de sintaxe
