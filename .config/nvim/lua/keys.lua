@@ -133,8 +133,6 @@ keymap("n", "<leader>ff", ":CtrlP<CR>", {})
 keymap("n", "\\", ":CtrlPLine<CR>", {})
 -- abre arquivos abertos recentemente - ctrlp
 keymap("n", "<leader><leader>", ":CtrlPMRUFiles<CR>", {})
--- abre arquivos na home - fzf
-keymap("n", "<leader>fh", ":Files ~<CR>", {})
 -- procura e edita ocorrencias de uma palavra - greplace
 keymap("n", "<leader>gg", ":Gsearch  ./<left><left><left>", {})
 -- confirma todas as modificações - greplace

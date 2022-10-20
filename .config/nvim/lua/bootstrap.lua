@@ -11,9 +11,6 @@ local PKGS = {
     "norcalli/nvim-colorizer.lua";
     -- salva posição do cursor
     "ethanholz/nvim-lastplace";
-    -- procura arquivos usando fzf
-    { "junegunn/fzf", run = './install --bin', };
-    "junegunn/fzf.vim";
     -- procura rapidamente
     "ctrlpvim/ctrlp.vim";
 
