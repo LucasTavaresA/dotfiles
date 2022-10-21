@@ -22,7 +22,7 @@ local PKGS = {
     -- arvore de undos
     "mbbill/undotree";
     -- move linhas
-    "matze/vim-move";
+    "fedepujol/move.nvim";
     -- remove espaços em linhas editadas
     "lewis6991/spaceless.nvim";
     -- procura e edita varias ocorrências de uma palavra

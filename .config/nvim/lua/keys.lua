@@ -122,13 +122,13 @@ keymap("v", "<S-Up>", "<Plug>(expand_region_expand)", {})
 keymap("v", "<S-Down>", "<Plug>(expand_region_shrink)", {})
 keymap("i", "<S-Up>", "<esc><Plug>(expand_region_expand)", {})
 keymap("i", "<S-Down>", "<esc><Plug>(expand_region_shrink)", {})
--- move linha - vim-move
-keymap("n", "<A-Down>", "<Plug>MoveLineDown", {})
-keymap("n", "<A-Up>", "<Plug>MoveLineUp", {})
-keymap("i", "<A-Down>", "<esc><Plug>MoveLineDown", {})
-keymap("i", "<A-Up>", "<esc><Plug>MoveLineUp", {})
-keymap("v", "<A-Down>", "<Plug>MoveBlockDown", {})
-keymap("v", "<A-Up>", "<Plug>MoveBlockUp", {})
+-- move linha - move.nvim
+vim.keymap.set('n', "<A-Down>", ':MoveLine(1)<CR>', opts)
+vim.keymap.set('n', "<A-Up>", ':MoveLine(-1)<CR>', opts)
+vim.keymap.set('i', "<A-Up>", '<esc>:MoveLine(-1)<CR>', opts)
+vim.keymap.set('i', "<A-Down>", '<esc>:MoveLine(1)<CR>', opts)
+vim.keymap.set('v', "<A-Down>", ':MoveBlock(1)<CR>', opts)
+vim.keymap.set('v', "<A-Up>", ':MoveBlock(-1)<CR>', opts)
 -- abre arquivos no repositório atual - ctrlp
 keymap("n", "<leader>ff", ":CtrlP<CR>", {})
 -- procura linhas no buffer - ctrlp
