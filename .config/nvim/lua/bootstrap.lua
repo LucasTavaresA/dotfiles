@@ -40,7 +40,7 @@ local PKGS = {
     -- indica diffs
     "lewis6991/gitsigns.nvim";
     -- snippets
-    "SirVer/ultisnips";
+    "L3MON4D3/LuaSnip";
     "honza/vim-snippets";
     -- autocompletion
     "hrsh7th/nvim-cmp";
@@ -48,7 +48,7 @@ local PKGS = {
     "hrsh7th/cmp-buffer";
     "hrsh7th/cmp-path";
     "hrsh7th/cmp-cmdline";
-    "quangnguyen30192/cmp-nvim-ultisnips";
+    "saadparwaiz1/cmp_luasnip";
 
     --- Aparência
     -- tema

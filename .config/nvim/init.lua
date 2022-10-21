@@ -172,10 +172,14 @@ vim.api.nvim_set_hl(0, 'GitSignsAdd', {
     ctermfg = green,
 })
 
---- Ultisnips
-vim.g.UltiSnipsSnippetDirectories = {
-    "/home/lucas/.config/nvim/Ultisnips/",
-}
+-- Luasnip
+require('luasnip').config.set_config({
+    history = true, -- keep around last snippet local to jump back
+    enable_autosnippets = true,
+})
+require("luasnip.loaders.from_snipmate").lazy_load({
+    paths = { "/home/lucas/.config/nvim/Ultisnips/*" }
+})
 
 --- Ctrlp
 -- abre arquivos no repositório atual de acordo com o gitignore
@@ -212,7 +216,7 @@ local cmp = require 'cmp'
 cmp.setup({
     snippet = {
         expand = function(args)
-            vim.fn["UltiSnips#Anon"](args.body)
+            require('luasnip').lsp_expand(args.body)
         end,
     },
     window = {
@@ -242,7 +246,7 @@ cmp.setup({
     }),
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
-        { name = 'ultisnips' },
+        { name = 'luasnip' },
     }, {
         { name = 'buffer' },
     })
