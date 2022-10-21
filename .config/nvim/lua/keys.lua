@@ -143,8 +143,8 @@ keymap("n", "<leader>gr", ":Greplace<CR>", {})
 keymap("n", "zc", ":ColorizerToggle<CR>", {})
 -- abrir e fechar arvore de undos - undotree
 keymap("n", "zu", ":UndotreeToggle<CR>:UndotreeFocus<CR>", {})
--- ativa modo focado - goyo
-keymap("n", "zg", ":Goyo<CR>", {})
+-- ativa foco - zen
+keymap("n", "zf", ":ZenMode<CR>", {})
 -- luasnip
 vim.cmd([[
     " press <Tab> to expand or jump in a snippet. These can also be mapped separately

@@ -58,8 +58,8 @@ local PKGS = {
     "famiu/feline.nvim";
 
     --- Escrever
-    -- centraliza texto e esconde distrações ao escrever
-    "junegunn/goyo.vim";
+    -- esconde distrações ao escrever
+    "folke/zen-mode.nvim";
     -- previsão de markdown
     "ellisonleao/glow.nvim";
     -- markdown

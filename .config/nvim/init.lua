@@ -140,11 +140,35 @@ require('nvim-autopairs').setup({
 -- signcolumn transparente
 vim.api.nvim_set_hl(0, 'SignColumn', { bg = NONE, ctermbg = NONE })
 require('statusline')
--- ativa goyo em arquivos especificos
+
+--- zen-mode
+require("zen-mode").setup {
+    window = {
+        width = 80, -- width of the Zen window
+        height = 30, -- height of the Zen window
+        options = {
+            signcolumn = "no", -- disable signcolumn
+            number = false, -- disable number column
+            relativenumber = false, -- disable relative numbers
+            cursorline = false, -- disable cursorline
+            cursorcolumn = false, -- disable cursor column
+            foldcolumn = "0", -- disable fold column
+            list = false, -- disable whitespace characters
+        },
+    },
+    -- callback where you can add custom code when the Zen window opens
+    on_open = function(win)
+    end,
+    -- callback where you can add custom code when the Zen window closes
+    on_close = function()
+        vim.cmd.quit()
+    end,
+}
+-- ativa zen em arquivos especificos
 vim.api.nvim_create_autocmd("FileType",
-    { pattern = { "org" }, command = "call timer_start(100, { tid -> execute('Goyo')})", })
+    { pattern = { "org" }, command = "call timer_start(100, { tid -> execute('ZenMode')})", })
 vim.api.nvim_create_autocmd("FileType",
-    { pattern = { "markdown" }, command = "call timer_start(100, { tid -> execute('Goyo')})", })
+    { pattern = { "markdown" }, command = "call timer_start(100, { tid -> execute('ZenMode')})", })
 
 --- gitsigns
 require("gitsigns").setup({
