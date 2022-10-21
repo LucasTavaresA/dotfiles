@@ -206,9 +206,30 @@ require("luasnip.loaders.from_snipmate").lazy_load({
     paths = { "/home/lucas/.config/nvim/Ultisnips/*" }
 })
 
---- Ctrlp
--- abre arquivos no repositório atual de acordo com o gitignore
-vim.g.ctrlp_user_command = "fd --base-directory $HOME -d 4 -t f -E '*log*' -E '*cache*' -E '*.local*' -E '*media*'"
+--- Telescope
+require('telescope').setup {
+    defaults = {
+        theme = "dropdown",
+        preview = false
+    },
+    pickers = {
+        find_files = {
+            find_command = { "fd", "--strip-cwd-prefix", "--base-directory",
+                os.getenv('HOME'), "-d", "4", "-t", "f",
+                "-E", "*log*", "-E", "*cache*", "-E", "*.local*", "-E", "*media*"
+            }
+        },
+    },
+    extensions = {
+        fzf = {
+            fuzzy = true,
+            override_generic_sorter = true,
+            override_file_sorter = true,
+            case_mode = "smart_case",
+        }
+    }
+}
+require('telescope').load_extension('fzf')
 
 --- greplace
 -- usa o git grep

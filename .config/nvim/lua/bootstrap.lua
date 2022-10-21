@@ -12,7 +12,9 @@ local PKGS = {
     -- salva posição do cursor
     "ethanholz/nvim-lastplace";
     -- procura rapidamente
-    "ctrlpvim/ctrlp.vim";
+    { "nvim-telescope/telescope-fzf-native.nvim", run = "make" };
+    "nvim-lua/plenary.nvim";
+    "nvim-telescope/telescope.nvim";
 
     --- Editar
     -- troca/coloca aspas/parenteses

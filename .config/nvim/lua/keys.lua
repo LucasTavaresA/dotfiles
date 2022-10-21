@@ -129,12 +129,24 @@ vim.keymap.set('i', "<A-Up>", '<esc>:MoveLine(-1)<CR>', opts)
 vim.keymap.set('i', "<A-Down>", '<esc>:MoveLine(1)<CR>', opts)
 vim.keymap.set('v', "<A-Down>", ':MoveBlock(1)<CR>', opts)
 vim.keymap.set('v', "<A-Up>", ':MoveBlock(-1)<CR>', opts)
--- abre arquivos no repositório atual - ctrlp
-keymap("n", "<leader>ff", ":CtrlP<CR>", {})
--- procura linhas no buffer - ctrlp
-keymap("n", "\\", ":CtrlPLine<CR>", {})
--- abre arquivos abertos recentemente - ctrlp
-keymap("n", "<leader><leader>", ":CtrlPMRUFiles<CR>", {})
+-- abre arquivos no repositório atual - telescope
+keymap("n", "<leader>ff", ":lua require'telescope.builtin'.find_files{}<CR>", {})
+-- procura linhas no buffer - telescope
+keymap("n", "\\", ":lua require'telescope.builtin'.current_buffer_fuzzy_find{}<CR>", {})
+-- pesquisar por comandos - telescope
+keymap("n", "<leader>hc", ":lua require'telescope.builtin'.commands{}<CR>", {})
+-- pesquisar por correções - telescope
+keymap("n", "z=", ":lua require'telescope.builtin'.spell_suggest{}<CR>", {})
+-- pesquisar por opções - telescope
+keymap("n", "<leader>ho", ":lua require'telescope.builtin'.vim_options{}<CR>", {})
+-- pesquisar por documentação - telescope
+keymap("n", "<leader>hh", ":lua require'telescope.builtin'.help_tags{}<CR>", {})
+-- pesquisar por highlights - telescope
+keymap("n", "<leader>hH", ":lua require'telescope.builtin'.highlights{}<CR>", {})
+-- pesquisar por manpages - telescope
+keymap("n", "<leader>hm", ":lua require'telescope.builtin'.man_pages{}<CR>", {})
+-- abre arquivos abertos recentemente - telescope
+keymap("n", "<leader><leader>", ":lua require'telescope.builtin'.oldfiles{}<CR>", {})
 -- procura e edita ocorrencias de uma palavra - greplace
 keymap("n", "<leader>gg", ":Gsearch  ./<left><left><left>", {})
 -- confirma todas as modificações - greplace
@@ -175,12 +187,14 @@ On_attach = function(_, bufnr)
     opts = { buffer = bufnr, noremap = true, silent = true }
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+    vim.keymap.set('n', 'gd', function() require'telescope.builtin'.lsp_definitions{} end, opts)
+    vim.keymap.set('n', 'gi', function() require'telescope.builtin'.lsp_implementations{} end, opts)
+    vim.keymap.set('n', 'gr', function() require'telescope.builtin'.lsp_references{} end, opts)
+    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+    vim.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, opts)
     vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
     vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-    vim.keymap.set('n', '<leader>D', vim.diagnostic.setloclist, opts)
+    vim.keymap.set('n', '<leader>D', function() require'telescope.builtin'.diagnostics{} end, opts)
     vim.keymap.set('n', '<leader>I', function() vim.lsp.buf.format { async = true } end, opts)
     vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, opts)
 end
