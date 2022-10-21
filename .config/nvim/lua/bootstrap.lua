@@ -8,7 +8,7 @@ local PKGS = {
 
     --- Miscelânea
     -- previsão de cores
-    "norcalli/nvim-colorizer.lua";
+    "lewis6991/nvim-colorizer.lua";
     -- salva posição do cursor
     "ethanholz/nvim-lastplace";
     -- procura rapidamente
