@@ -16,7 +16,7 @@ local PKGS = {
 
     --- Editar
     -- troca/coloca aspas/parenteses
-    "tpope/vim-surround";
+    "kylechui/nvim-surround";
     -- expande região selecionada
     "terryma/vim-expand-region";
     -- arvore de undos
@@ -35,6 +35,7 @@ local PKGS = {
     "windwp/nvim-autopairs";
     -- indentação e indicação de sintaxe
     "nvim-treesitter/nvim-treesitter";
+    "nvim-treesitter/nvim-treesitter-textobjects";
     -- lsp
     "neovim/nvim-lspconfig";
     -- indica diffs

@@ -1,6 +1,7 @@
 ----- PLUGINS -----
 require('impatient')
 require 'nvim-lastplace'.setup {}
+require("nvim-surround").setup()
 require 'spaceless'.setup()
 vim.opt.termguicolors = true
 require('colorizer').setup()
