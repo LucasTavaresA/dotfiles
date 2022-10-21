@@ -2,7 +2,7 @@
 require('impatient')
 require 'nvim-lastplace'.setup {}
 require 'spaceless'.setup()
-vim.cmd('set termguicolors')
+vim.opt.termguicolors = true
 require('colorizer').setup()
 require('Comment').setup()
 
@@ -120,21 +120,24 @@ vim.opt.laststatus = 3
 -- diminui tamanho da barra inferior
 -- vim.opt.cmdheight = 0
 -- transparência
-vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
-vim.cmd("hi EndOfBuffer guibg=NONE ctermbg=NONE")
-vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
+vim.api.nvim_set_hl(0, 'Normal', { bg = NONE, ctermbg = NONE })
+vim.api.nvim_set_hl(0, 'EndOfBuffer', { bg = NONE, ctermbg = NONE })
 -- cor da linha atual
-vim.cmd("hi CursorLine guibg=#333333")
--- incida parenteses correspondente
-vim.cmd("hi! MatchParen cterm=NONE,bold gui=NONE,bold  guibg=NONE guifg=Red")
+vim.api.nvim_set_hl(0, 'CursorLine', { bg = "#333333" })
+-- indica parentese correspondente
+vim.api.nvim_set_hl(0, 'MatchParen', {
+    cterm = { NONE,bold },
+    bold = true,
+    fg = "#ff0000",
+    bg = NONE,
+})
+vim.api.nvim_set_hl(0, 'NormalFloat', { bg = '#000000' })
 -- não deleta pares automaticamente
 require('nvim-autopairs').setup({
-  map_bs = false,
+    map_bs = false,
 })
 -- signcolumn transparente
-vim.cmd([[
-    hi SignColumn guibg=NONE ctermbg=NONE
-]])
+vim.api.nvim_set_hl(0, 'SignColumn', { bg = NONE, ctermbg = NONE })
 require('statusline')
 -- ativa goyo em arquivos especificos
 vim.api.nvim_create_autocmd("FileType",
@@ -144,16 +147,30 @@ vim.api.nvim_create_autocmd("FileType",
 
 --- gitsigns
 require("gitsigns").setup({
-    worktrees = {{
+    worktrees = { {
         toplevel = vim.env.HOME,
         gitdir = vim.env.HOME .. '/.dotfiles'
-    }}})
--- melhora cores - gitsigns
-vim.cmd([[
-    hi GitSignsDelete guibg=NONE ctermbg=NONE guifg=#ff0000 ctermfg=red
-    hi GitSignsChange guibg=NONE ctermbg=NONE guifg=#ffff00 ctermfg=yellow
-    hi GitSignsAdd guibg=NONE ctermbg=NONE guifg=#008800 ctermfg=green
-]])
+    } }
+})
+-- Remove fundo cinza e melhores cores - gitsigns
+vim.api.nvim_set_hl(0, 'GitSignsDelete', {
+    bg = NONE,
+    ctermbg = NONE,
+    fg = "#ff0000",
+    ctermfg = Red,
+})
+vim.api.nvim_set_hl(0, 'GitSignsChange', {
+    bg = NONE,
+    ctermbg = NONE,
+    fg = "#ffff00",
+    ctermfg = yellow,
+})
+vim.api.nvim_set_hl(0, 'GitSignsAdd', {
+    bg = NONE,
+    ctermbg = NONE,
+    fg = "#008800",
+    ctermfg = green,
+})
 
 --- Ultisnips
 vim.g.UltiSnipsSnippetDirectories = {
@@ -197,6 +214,10 @@ cmp.setup({
         expand = function(args)
             vim.fn["UltiSnips#Anon"](args.body)
         end,
+    },
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
         ['<C-Space>'] = cmp.mapping.complete(),
@@ -321,4 +342,3 @@ require 'lspconfig'.sumneko_lua.setup {
     },
     capabilities = capabilities,
 }
-

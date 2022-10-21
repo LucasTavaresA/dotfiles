@@ -87,7 +87,7 @@ local function bootstrap_paq()
     local paq = require('paq')
 
     -- Exit nvim after installing plugins
-    vim.cmd('autocmd User PaqDoneInstall quit')
+    vim.api.nvim_create_autocmd("User", { pattern = { "PaqDoneInstall" }, command = "quit", })
 
     -- Read and install packages
     paq(PKGS)

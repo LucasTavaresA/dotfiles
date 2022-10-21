@@ -108,9 +108,11 @@ vim.cmd([[
         endif
         call winrestview(l:curs)
     endfunction
-    autocmd FileType markdown nnoremap <silent> zx :call Marcar()<CR>j
-    autocmd FileType org nnoremap <silent> zx :call Marcar()<CR>j
 ]])
+vim.api.nvim_create_autocmd("FileType",
+    { pattern = { "markdown" }, command = "nnoremap <silent> zx :call Marcar()<CR>j", })
+vim.api.nvim_create_autocmd("FileType",
+    { pattern = { "org" }, command = "nnoremap <silent> zx :call Marcar()<CR>j", })
 
 --- Plugins
 -- expande região selecionada - expand region
