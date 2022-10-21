@@ -38,6 +38,8 @@ local PKGS = {
     -- indentação e indicação de sintaxe
     "nvim-treesitter/nvim-treesitter";
     "nvim-treesitter/nvim-treesitter-textobjects";
+    -- mostra função atual no topo
+    "nvim-treesitter/nvim-treesitter-context";
     -- lsp
     "neovim/nvim-lspconfig";
     -- indica diffs
