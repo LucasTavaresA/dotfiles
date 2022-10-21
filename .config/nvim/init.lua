@@ -14,8 +14,6 @@ vim.cmd("filetype plugin on")
 vim.cmd("filetype indent on")
 -- mantem configurações de buffers
 vim.opt.hidden = true
--- diminui recarregamentos da tela
-vim.opt.lazyredraw = true
 
 --- Arquivos
 -- desabilita swapfile
