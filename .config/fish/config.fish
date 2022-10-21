@@ -233,6 +233,7 @@ if status is-interactive
     abbr -a -g gwa git worktree add
     abbr -a -g gwr git worktree remove
     abbr -a -g gss git stash
+    abbr -a -g gsss git stash --staged
     abbr -a -g gsp git stash pop
     abbr -a -g gri git rebase -i
     abbr -a -g grc git rebase --continue
