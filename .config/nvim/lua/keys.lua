@@ -19,8 +19,10 @@ keymap("n", "<leader>ii", "{=}", {})
 -- formas de alinhar texto
 vim.keymap.set('v', '<leader>a', function() require'align'.align_to_string(false, true, true) end, opts)
 keymap("v", "<leader>A", ":'<,'>!column -t -o ' '<CR>", {})
+-- abre arquivos no diretório atual
+keymap("n", "<leader>ff", ":e %:h<Tab>", {})
 -- mudar o typo de arquivo
-keymap("n", "<leader>ft", ":set filetype=", {})
+keymap("n", "<leader>ft", ":setlocal filetype=", {})
 -- abrir o explorador de arquivos
 keymap("n", "<A-f>", ":Lexplore<CR>", {})
 -- salvar buffer
@@ -35,6 +37,8 @@ keymap("n", "<leader>wr", ":w<CR>:e<CR>", {})
 keymap("n", "<leader>k", ":bd<CR>", {})
 -- abre o buffer de mensagems
 keymap("n", "<leader>m", ":message<CR>", {})
+-- avaliar buffer
+keymap("n", "<leader>eb", ":source %<CR>", {})
 -- divide a tela do lado
 keymap("n", "<C-A-Right>", ":vs<CR>", {})
 -- divide a tela abaixo
@@ -42,16 +46,18 @@ keymap("n", "<C-A-Down>", ":sp<CR>", {})
 -- copiar buffer
 keymap("n", "<leader>bc", "ggVGy", { noremap = true })
 -- ativa/desativa números de linha
-keymap("n", "zn", ":set number!<CR>", {})
+keymap("n", "zn", ":setlocal number! relativenumber!<CR>", {})
 -- ativa/desativa indicação de linha
-keymap("n", "zl", ":set cursorline!<CR>", {})
+keymap("n", "zl", ":setlocal cursorline!<CR>", {})
 -- ativa/desativa o corretor ortográfico
 keymap("n", "zs", ":setlocal spell! spelllang=pt<CR>", {})
 keymap("n", "zS", ":setlocal spell! spelllang=en<CR>", {})
 -- procura palavra no cursor
 keymap("n", "?", "*", {})
--- procura e substitui
+-- procura e substitui no arquivo
 keymap("n", "<A-s>", ":%s//gc<left><left><left>", {})
+-- procura e substitui na região selecionada
+keymap("v", "<A-s>", ":s//gc<left><left><left>", {})
 -- abre terminal do sistema no local do arquivo atual
 keymap("n", "<leader><return>", ":!sh -c 'cd %:p:h ; term_open' &<CR><CR>", {})
 -- abre terminal nativo em uma split
@@ -96,7 +102,10 @@ keymap("n", "q", "", {})
 -- executa um macro
 keymap("n", "m", "@", {})
 -- abre/fecha fold
-keymap("n", "zz", "za", {})
+keymap("n", "zz", "za", opts)
+keymap("n", "za", "", {})
+-- centraliza texto
+keymap("n", "za", "zz", opts)
 -- marca/desmarca caixas
 vim.cmd([[
     function Marcar()
@@ -131,7 +140,7 @@ vim.keymap.set('i', "<A-Down>", '<esc>:MoveLine(1)<CR>', opts)
 vim.keymap.set('v', "<A-Down>", ':MoveBlock(1)<CR>', opts)
 vim.keymap.set('v', "<A-Up>", ':MoveBlock(-1)<CR>', opts)
 -- abre arquivos no repositório atual - telescope
-keymap("n", "<leader>ff", ":Telescope find_files<CR>", {})
+keymap("n", "<leader>F", ":Telescope find_files<CR>", {})
 -- procura linhas no buffer - telescope
 keymap("n", "\\", ":Telescope current_buffer_fuzzy_find<CR>", {})
 -- pesquisar por comandos - telescope
@@ -142,6 +151,8 @@ keymap("n", "z=", ":Telescope spell_suggest<CR>", {})
 keymap("n", "<leader>ho", ":Telescope vim_options<CR>", {})
 -- pesquisar por documentação - telescope
 keymap("n", "<leader>hh", ":Telescope help_tags<CR>", {})
+-- pesquisar por teclas - telescope
+keymap("n", "<leader>hk", ":Telescope keymaps<CR>", {})
 -- pesquisar por highlights - telescope
 keymap("n", "<leader>hH", ":Telescope highlights<CR>", {})
 -- pesquisar por manpages - telescope
@@ -151,9 +162,9 @@ keymap("n", "<leader><leader>", ":Telescope oldfiles<CR>", {})
 -- navegar por headings - telescope-heading
 keymap("n", "<leader>v", ":Telescope heading<CR>", {})
 -- procura e edita ocorrencias de uma palavra - greplace
-keymap("n", "<leader>gg", ":Gsearch  ./<left><left><left>", {})
+keymap("n", "<leader>r", ":Gsearch  ./<left><left><left>", {})
 -- confirma todas as modificações - greplace
-keymap("n", "<leader>gr", ":Greplace<CR>", {})
+keymap("n", "<leader>R", ":Greplace<CR>", {})
 -- ativa previsão de cores - nvimcolorizer
 keymap("n", "zc", ":ColorizerToggle<CR>", {})
 -- escolher cor
