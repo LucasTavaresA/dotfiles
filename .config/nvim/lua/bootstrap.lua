@@ -31,6 +31,8 @@ local PKGS = {
     "lewis6991/spaceless.nvim";
     -- procura e edita varias ocorrências de uma palavra
     "yegappan/greplace";
+    -- alinha texto
+    "Vonr/align.nvim";
 
     --- Code
     -- comenta linhas

@@ -16,8 +16,9 @@ keymap("n", "<A-Tab>", "<C-w>w", {})
 keymap("n", "<leader>I", "gg=G", {})
 -- formatar paragrafo
 keymap("n", "<leader>ii", "{=}", {})
--- alinhar texto
-keymap("v", "<leader>a", ":'<,'>!column -t -o ' '<CR>", {})
+-- formas de alinhar texto
+vim.keymap.set('v', '<leader>a', function() require'align'.align_to_string(false, true, true) end, opts)
+keymap("v", "<leader>A", ":'<,'>!column -t -o ' '<CR>", {})
 -- mudar o typo de arquivo
 keymap("n", "<leader>ft", ":set filetype=", {})
 -- abrir o explorador de arquivos
