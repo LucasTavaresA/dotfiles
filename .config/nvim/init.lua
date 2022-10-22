@@ -4,7 +4,7 @@ require 'nvim-lastplace'.setup {}
 require("nvim-surround").setup()
 require 'spaceless'.setup()
 vim.opt.termguicolors = true
-require('colorizer').setup()
+require 'colorizer'.setup({'*'} , {})
 require('Comment').setup()
 
 ----- Configuração -----
