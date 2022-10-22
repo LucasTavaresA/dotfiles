@@ -193,6 +193,11 @@ vim.api.nvim_create_autocmd("FileType",
 vim.api.nvim_create_autocmd("FileType",
     { pattern = { "markdown" }, command = "call timer_start(100, { tid -> execute('ZenMode')})", })
 
+--- foldsigns
+require 'foldsigns'.setup {
+    exclude = { 'GitSigns.*' }
+}
+
 --- gitsigns
 require("gitsigns").setup({
     worktrees = { {

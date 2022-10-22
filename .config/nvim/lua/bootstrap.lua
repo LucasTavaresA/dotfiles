@@ -73,6 +73,8 @@ local PKGS = {
     "famiu/feline.nvim";
     -- fold mais bonitas
     "lewis6991/cleanfold.nvim";
+    -- indicadores em foldings
+    "lewis6991/foldsigns.nvim";
 
     --- Escrever
     -- esconde distrações ao escrever
