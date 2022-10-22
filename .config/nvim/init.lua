@@ -93,6 +93,13 @@ vim.opt.listchars = {
     leadmultispace = '│···',
     conceal = '*',
 }
+-- folding
+vim.g.sh_fold_enabled = 1
+vim.g.foldenabled = true
+vim.opt.foldmethod = 'syntax'
+vim.opt.foldcolumn = '0'
+vim.opt.foldnestmax = 3
+vim.opt.foldopen:append('jump')
 -- tema
 -- prefere modo escuro
 vim.opt.background = "dark"
