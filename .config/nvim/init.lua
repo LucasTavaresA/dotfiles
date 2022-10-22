@@ -345,11 +345,16 @@ cmp.setup({
         end, { 'i', 's' }),
     }),
     sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
+        { name = 'nvim_lsp'   },
+        { name = 'nvim_lsp_signature_help'},
+        { name = 'nvim_lua'   },
+        { name = 'path'       },
+        { name = 'buffer'     },
+        { name = 'spell'      },
         { name = 'luasnip' },
     }, {
-        { name = 'buffer' },
-    })
+            { name = 'buffer' },
+        })
 })
 
 -- Set configuration for specific filetype.
@@ -446,6 +451,32 @@ require 'lspconfig'.sumneko_lua.setup {
     },
     capabilities = capabilities,
 }
+
+--- fidget
+require 'fidget'.setup {
+    text = {
+        spinner = "dots",
+    },
+    fmt = {
+        stack_upwards = false,
+        task = function(task_name, message, percentage)
+            local pct = percentage and string.format(" (%s%%)", percentage) or ""
+            if task_name then
+                return string.format("%s%s [%s]", message, pct, task_name)
+            else
+                return string.format("%s%s", message, pct)
+            end
+        end,
+    },
+}
+
+--- lsp_signature
+require "lsp_signature".setup({
+    bind = true, -- This is mandatory, otherwise border config won't get registered.
+    handler_opts = {
+        border = "rounded"
+    }
+})
 
 --- nvim-dap
 require("dapui").setup()
