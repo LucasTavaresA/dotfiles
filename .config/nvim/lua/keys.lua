@@ -130,23 +130,23 @@ vim.keymap.set('i', "<A-Down>", '<esc>:MoveLine(1)<CR>', opts)
 vim.keymap.set('v', "<A-Down>", ':MoveBlock(1)<CR>', opts)
 vim.keymap.set('v', "<A-Up>", ':MoveBlock(-1)<CR>', opts)
 -- abre arquivos no repositório atual - telescope
-keymap("n", "<leader>ff", ":lua require'telescope.builtin'.find_files{}<CR>", {})
+keymap("n", "<leader>ff", ":Telescope find_files<CR>", {})
 -- procura linhas no buffer - telescope
-keymap("n", "\\", ":lua require'telescope.builtin'.current_buffer_fuzzy_find{}<CR>", {})
+keymap("n", "\\", ":Telescope current_buffer_fuzzy_find<CR>", {})
 -- pesquisar por comandos - telescope
-keymap("n", "<leader>hc", ":lua require'telescope.builtin'.commands{}<CR>", {})
+keymap("n", "<leader>hc", ":Telescope commands<CR>", {})
 -- pesquisar por correções - telescope
-keymap("n", "z=", ":lua require'telescope.builtin'.spell_suggest{}<CR>", {})
+keymap("n", "z=", ":Telescope spell_suggest<CR>", {})
 -- pesquisar por opções - telescope
-keymap("n", "<leader>ho", ":lua require'telescope.builtin'.vim_options{}<CR>", {})
+keymap("n", "<leader>ho", ":Telescope vim_options<CR>", {})
 -- pesquisar por documentação - telescope
-keymap("n", "<leader>hh", ":lua require'telescope.builtin'.help_tags{}<CR>", {})
+keymap("n", "<leader>hh", ":Telescope help_tags<CR>", {})
 -- pesquisar por highlights - telescope
-keymap("n", "<leader>hH", ":lua require'telescope.builtin'.highlights{}<CR>", {})
+keymap("n", "<leader>hH", ":Telescope highlights<CR>", {})
 -- pesquisar por manpages - telescope
-keymap("n", "<leader>hm", ":lua require'telescope.builtin'.man_pages{}<CR>", {})
+keymap("n", "<leader>hm", ":Telescope man_pages<CR>", {})
 -- abre arquivos abertos recentemente - telescope
-keymap("n", "<leader><leader>", ":lua require'telescope.builtin'.oldfiles{}<CR>", {})
+keymap("n", "<leader><leader>", ":Telescope oldfiles<CR>", {})
 -- procura e edita ocorrencias de uma palavra - greplace
 keymap("n", "<leader>gg", ":Gsearch  ./<left><left><left>", {})
 -- confirma todas as modificações - greplace
