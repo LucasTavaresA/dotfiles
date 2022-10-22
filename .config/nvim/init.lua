@@ -228,6 +228,7 @@ require('telescope').setup {
     }
 }
 require('telescope').load_extension('fzf')
+require('telescope').load_extension('heading')
 
 --- greplace
 -- usa o git grep

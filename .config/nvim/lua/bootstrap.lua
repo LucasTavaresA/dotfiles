@@ -69,6 +69,8 @@ local PKGS = {
     -- markdown
     "godlygeek/tabular";
     "preservim/vim-markdown";
+    -- move entre headings
+    "crispgm/telescope-heading.nvim";
 }
 
 local function clone_paq()

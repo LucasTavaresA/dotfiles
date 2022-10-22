@@ -147,6 +147,8 @@ keymap("n", "<leader>hH", ":Telescope highlights<CR>", {})
 keymap("n", "<leader>hm", ":Telescope man_pages<CR>", {})
 -- abre arquivos abertos recentemente - telescope
 keymap("n", "<leader><leader>", ":Telescope oldfiles<CR>", {})
+-- navegar por headings - telescope-heading
+keymap("n", "<leader>v", ":Telescope heading<CR>", {})
 -- procura e edita ocorrencias de uma palavra - greplace
 keymap("n", "<leader>gg", ":Gsearch  ./<left><left><left>", {})
 -- confirma todas as modificações - greplace
