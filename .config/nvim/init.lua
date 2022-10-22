@@ -8,6 +8,7 @@ require 'colorizer'.setup({'*'} , {})
 require('Comment').setup()
 require('cleanfold').setup()
 require("color-picker")
+require('undotree').setup()
 
 ----- Configuração -----
 --- Vim

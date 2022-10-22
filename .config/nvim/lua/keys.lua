@@ -158,7 +158,7 @@ keymap("n", "zc", ":ColorizerToggle<CR>", {})
 -- escolher cor
 keymap("n", "<leader>c", "<cmd>PickColor<cr>", opts)
 -- abrir e fechar arvore de undos - undotree
-keymap("n", "zu", ":UndotreeToggle<CR>:UndotreeFocus<CR>", {})
+vim.keymap.set('n', 'zu', require('undotree').toggle, { noremap = true, silent = true })
 -- ativa foco - zen
 keymap("n", "zf", ":ZenMode<CR>", {})
 -- luasnip

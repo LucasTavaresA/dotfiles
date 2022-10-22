@@ -24,7 +24,7 @@ local PKGS = {
     -- expande região selecionada
     "terryma/vim-expand-region";
     -- arvore de undos
-    "mbbill/undotree";
+    "jiaoshijie/undotree";
     -- move linhas
     "fedepujol/move.nvim";
     -- remove espaços em linhas editadas
