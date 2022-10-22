@@ -60,6 +60,8 @@ local PKGS = {
     "ellisonleao/gruvbox.nvim";
     -- statusline
     "famiu/feline.nvim";
+    -- fold mais bonitas
+    "lewis6991/cleanfold.nvim";
 
     --- Escrever
     -- esconde distrações ao escrever

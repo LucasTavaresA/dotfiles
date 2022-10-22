@@ -6,6 +6,7 @@ require 'spaceless'.setup()
 vim.opt.termguicolors = true
 require 'colorizer'.setup({'*'} , {})
 require('Comment').setup()
+require('cleanfold').setup()
 
 ----- Configuração -----
 --- Vim
