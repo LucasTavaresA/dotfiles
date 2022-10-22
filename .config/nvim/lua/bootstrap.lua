@@ -54,6 +54,8 @@ local PKGS = {
     "hrsh7th/cmp-path";
     "hrsh7th/cmp-cmdline";
     "saadparwaiz1/cmp_luasnip";
+    -- mostra informação do codigo no cursor
+    "lewis6991/hover.nvim";
 
     --- Aparência
     -- tema

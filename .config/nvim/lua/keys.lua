@@ -187,7 +187,8 @@ On_attach = function(_, bufnr)
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
     opts = { buffer = bufnr, noremap = true, silent = true }
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set("n", "K", require("hover").hover, {desc = "hover.nvim"})
+    vim.keymap.set("n", "gK", require("hover").hover_select, {desc = "hover.nvim (select)"})
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
     vim.keymap.set('n', 'gd', function() require'telescope.builtin'.lsp_definitions{} end, opts)
     vim.keymap.set('n', 'gi', function() require'telescope.builtin'.lsp_implementations{} end, opts)
