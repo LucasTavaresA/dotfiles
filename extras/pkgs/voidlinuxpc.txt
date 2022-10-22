@@ -42,7 +42,6 @@ font-libertine-ttf
 fonts-croscore-ttf
 fonts-droid-ttf
 foot
-fuzzel
 fzf
 gammastep
 gcc

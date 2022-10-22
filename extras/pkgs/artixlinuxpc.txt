@@ -42,7 +42,6 @@ fish
 flex
 foot
 foot-terminfo
-fuzzel
 fzf
 gammastep
 gawk
@@ -162,6 +161,7 @@ telegram-desktop
 terminus-font
 testdisk
 texinfo
+tofi
 translate-shell
 transmission-qt
 ttf-croscore

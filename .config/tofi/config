@@ -1,0 +1,17 @@
+hide-cursor=true
+fuzzy-match=true
+require-match=false
+font=/usr/share/fonts/misc/ter-u24b.otb
+font-size=18px
+background-color=#000000
+outline-width=1px
+outline-color=#ffffff
+border-width=2px
+border-color=#000000
+prompt-text=>
+selection-color=#000000
+selection-background=#ff5555ff
+selection-match-color=#ffff00ff
+width=50%
+height=50%
+hint-font=false

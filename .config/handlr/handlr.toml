@@ -1,2 +1,2 @@
 enable_selector = true
-selector = "fuzzel -d -I --terminal=term_open -x 0 -y 0 -w 42 -p 0 -b 000000ff -t ffffffff -m ff0000ff -S 000000ff -B 1 -r 0 -C ffffffff --show-actions -f Terminus:size=16 -P 'Abrir com: '"
+selector = "tofi --prompt-text 'Abrir com: '"

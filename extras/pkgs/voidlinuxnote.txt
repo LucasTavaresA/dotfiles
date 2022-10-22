@@ -30,7 +30,6 @@ font-hermit-otf
 font-inconsolata-otf
 fonts-droid-ttf
 foot
-fuzzel
 fzf
 gammastep
 gcc
