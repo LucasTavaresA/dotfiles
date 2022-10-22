@@ -13,6 +13,7 @@ local PKGS = {
     "ethanholz/nvim-lastplace";
     -- procura rapidamente
     { "nvim-telescope/telescope-fzf-native.nvim", run = "make" };
+    "nvim-telescope/telescope-ui-select.nvim";
     "nvim-lua/plenary.nvim";
     "nvim-telescope/telescope.nvim";
     -- escolher cores
