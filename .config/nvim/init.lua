@@ -433,3 +433,24 @@ require 'lspconfig'.sumneko_lua.setup {
     },
     capabilities = capabilities,
 }
+
+--- nvim-dap
+require("dapui").setup()
+require("nvim-dap-virtual-text").setup({})
+require('telescope').load_extension('dap')
+
+-- netcoredbg
+require('dap').adapters.coreclr = {
+    type = 'executable',
+    command = '/usr/bin/netcoredbg',
+    args = {'--interpreter=vscode'}
+}
+require('dap').configurations.cs = {{
+    type = "coreclr",
+    name = "launch - netcoredbg",
+    request = "launch",
+    program = function()
+        return vim.fn.input('Project dll: ', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+    end,
+},
+}

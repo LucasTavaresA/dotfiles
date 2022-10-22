@@ -56,6 +56,11 @@ local PKGS = {
     "saadparwaiz1/cmp_luasnip";
     -- mostra informação do codigo no cursor
     "lewis6991/hover.nvim";
+    -- debug
+    "rcarriga/nvim-dap-ui";
+    "theHamsta/nvim-dap-virtual-text";
+    "nvim-telescope/telescope-dap.nvim";
+    "mfussenegger/nvim-dap";
 
     --- Aparência
     -- tema

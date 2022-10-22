@@ -109,6 +109,7 @@ mpv-mpris
 ncmpcpp
 neovim
 nerd-fonts-complete
+netcoredbg
 ninja
 noto-fonts
 noto-fonts-cjk
