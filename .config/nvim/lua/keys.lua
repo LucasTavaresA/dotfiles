@@ -155,6 +155,8 @@ keymap("n", "<leader>gg", ":Gsearch  ./<left><left><left>", {})
 keymap("n", "<leader>gr", ":Greplace<CR>", {})
 -- ativa previsão de cores - nvimcolorizer
 keymap("n", "zc", ":ColorizerToggle<CR>", {})
+-- escolher cor
+keymap("n", "<leader>c", "<cmd>PickColor<cr>", opts)
 -- abrir e fechar arvore de undos - undotree
 keymap("n", "zu", ":UndotreeToggle<CR>:UndotreeFocus<CR>", {})
 -- ativa foco - zen

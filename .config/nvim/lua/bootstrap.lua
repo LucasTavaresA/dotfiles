@@ -15,6 +15,8 @@ local PKGS = {
     { "nvim-telescope/telescope-fzf-native.nvim", run = "make" };
     "nvim-lua/plenary.nvim";
     "nvim-telescope/telescope.nvim";
+    -- escolher cores
+    "ziontee113/color-picker.nvim";
 
     --- Editar
     -- troca/coloca aspas/parenteses

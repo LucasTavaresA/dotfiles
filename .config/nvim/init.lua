@@ -7,6 +7,7 @@ vim.opt.termguicolors = true
 require 'colorizer'.setup({'*'} , {})
 require('Comment').setup()
 require('cleanfold').setup()
+require("color-picker")
 
 ----- Configuração -----
 --- Vim
@@ -129,6 +130,7 @@ vim.opt.laststatus = 3
 -- transparência
 vim.api.nvim_set_hl(0, 'Normal', { bg = NONE, ctermbg = NONE })
 vim.api.nvim_set_hl(0, 'EndOfBuffer', { bg = NONE, ctermbg = NONE })
+vim.api.nvim_set_hl(0, 'FloatBorder', { bg = NONE, ctermbg = NONE })
 -- cor da linha atual
 vim.api.nvim_set_hl(0, 'CursorLine', { bg = "#333333" })
 -- indica parentese correspondente
