@@ -247,6 +247,11 @@ end
 
 --- Treesitter
 -- indentação e indicação de sintaxe
+require'treesitter-context'.setup {
+    enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+    max_lines = 5, -- How many lines the window should span. Values <= 0 mean no limit.
+    trim_scope = 'outer',
+}
 require 'nvim-treesitter.configs'.setup {
     ensure_installed = { "c", "lua", "c_sharp", "fish", "css",
         "comment", "go", "html", "javascript", "make",
