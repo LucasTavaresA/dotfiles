@@ -42,6 +42,7 @@ local PKGS = {
     -- indentação e indicação de sintaxe
     "nvim-treesitter/nvim-treesitter";
     "nvim-treesitter/nvim-treesitter-textobjects";
+    "JoosepAlviste/nvim-ts-context-commentstring";
     -- mostra função atual no topo
     "nvim-treesitter/nvim-treesitter-context";
     -- lsp

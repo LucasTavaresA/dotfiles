@@ -4,7 +4,7 @@ require 'nvim-lastplace'.setup {}
 require("nvim-surround").setup()
 require 'spaceless'.setup()
 vim.opt.termguicolors = true
-require 'colorizer'.setup({'*'} , {})
+require 'colorizer'.setup({ '*' }, {})
 require('Comment').setup()
 require('cleanfold').setup()
 require("color-picker")
@@ -136,7 +136,7 @@ vim.api.nvim_set_hl(0, 'FloatBorder', { bg = NONE, ctermbg = NONE })
 vim.api.nvim_set_hl(0, 'CursorLine', { bg = "#333333" })
 -- indica parentese correspondente
 vim.api.nvim_set_hl(0, 'MatchParen', {
-    cterm = { NONE,bold },
+    cterm = { NONE, bold },
     bold = true,
     fg = "#ff0000",
     bg = NONE,
@@ -270,17 +270,17 @@ end
 
 --- Treesitter
 -- indentação e indicação de sintaxe
-require'nvim-treesitter'.define_modules {
+require 'nvim-treesitter'.define_modules {
     fold = {
         attach = function()
             vim.opt_local.foldexpr = 'nvim_treesitter#foldexpr()'
             vim.opt_local.foldmethod = 'expr'
-            vim.cmd.normal'zx' -- recompute folds
+            vim.cmd.normal 'zx' -- recompute folds
         end,
         detach = function() end,
     }
 }
-require'treesitter-context'.setup {
+require 'treesitter-context'.setup {
     enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
     max_lines = 5, -- How many lines the window should span. Values <= 0 mean no limit.
     trim_scope = 'outer',
@@ -297,7 +297,7 @@ require 'nvim-treesitter.configs'.setup {
     },
     fold = {
         enable = true,
-        disable = {'rst', 'make'}
+        disable = { 'rst', 'make' }
     },
     context_commentstring = { enable = true }
 }
@@ -451,9 +451,9 @@ require('telescope').load_extension('dap')
 require('dap').adapters.coreclr = {
     type = 'executable',
     command = '/usr/bin/netcoredbg',
-    args = {'--interpreter=vscode'}
+    args = { '--interpreter=vscode' }
 }
-require('dap').configurations.cs = {{
+require('dap').configurations.cs = { {
     type = "coreclr",
     name = "launch - netcoredbg",
     request = "launch",
