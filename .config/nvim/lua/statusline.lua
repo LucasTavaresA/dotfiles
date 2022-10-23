@@ -58,6 +58,41 @@ local comps = {
             right_sep = ' ',
         }
     },
+    search_count = {
+        provider = function()
+            if vim.v.hlsearch == 0 then
+                return ''
+            end
+
+            local result = vim.fn.searchcount { maxcount = 999, timeout = 250 }
+            local denominator = math.min(result.total, result.maxcount)
+            return string.format('[%d/%d]', result.current, denominator)
+        end,
+        hl = {
+            fg = theme.blue,
+            bg = theme.bg,
+            style = 'bold'
+        },
+        left_sep = ' ',
+        right_sep = ' ',
+    },
+    macro = {
+        provider = function()
+                local recording_register = vim.fn.reg_recording()
+                if recording_register == "" then
+                    return ""
+                else
+                    return " Recording @" .. recording_register .. " "
+                end
+            end,
+        hl = {
+            fg = theme.red,
+            bg = theme.bg,
+            style = 'bold'
+        },
+        left_sep = ' ',
+        right_sep = ' ',
+    },
     file = {
         info = {
             provider = {
@@ -167,6 +202,8 @@ table.insert(components.inactive, {})
 
 -- Right section
 table.insert(components.active[1], comps.vi_mode.left)
+table.insert(components.active[1], comps.search_count)
+table.insert(components.active[1], comps.macro)
 
 -- Left Section
 table.insert(components.active[2], comps.git.branch)

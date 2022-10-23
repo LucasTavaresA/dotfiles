@@ -130,7 +130,7 @@ vim.opt.showtabline = 0
 -- mostra a modeline
 vim.opt.laststatus = 3
 -- diminui tamanho da barra inferior
--- vim.opt.cmdheight = 0
+vim.opt.cmdheight = 0
 -- transparência
 vim.api.nvim_set_hl(0, 'Normal', { bg = NONE, ctermbg = NONE })
 vim.api.nvim_set_hl(0, 'EndOfBuffer', { bg = NONE, ctermbg = NONE })
