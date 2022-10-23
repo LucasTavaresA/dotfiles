@@ -39,6 +39,8 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 --- Miscelânea
+-- undo persistente
+vim.opt.undofile = true
 -- muda o titulo da janela
 vim.opt.title = true
 vim.opt.titlestring = "nvim"
@@ -85,6 +87,7 @@ vim.cmd.syntax('on')
 vim.opt.number = true
 vim.opt.numberwidth = 1
 vim.opt.relativenumber = true
+vim.api.nvim_create_autocmd("TermOpen", { pattern = { "*" }, command = "setlocal nonumber norelativenumber", })
 -- indicação de espaços e tabs
 vim.opt.list = true
 vim.opt.listchars = {
@@ -134,6 +137,8 @@ vim.api.nvim_set_hl(0, 'EndOfBuffer', { bg = NONE, ctermbg = NONE })
 vim.api.nvim_set_hl(0, 'FloatBorder', { bg = NONE, ctermbg = NONE })
 -- cor da linha atual
 vim.api.nvim_set_hl(0, 'CursorLine', { bg = "#333333" })
+-- cor da area selecionada
+vim.api.nvim_set_hl(0, 'Visual', { bg = "#0055ff" })
 -- indica parentese correspondente
 vim.api.nvim_set_hl(0, 'MatchParen', {
     cterm = { NONE, bold },
@@ -149,6 +154,8 @@ require('nvim-autopairs').setup({
 -- signcolumn transparente
 vim.api.nvim_set_hl(0, 'SignColumn', { bg = NONE, ctermbg = NONE })
 require('statusline')
+-- estilo das splits
+vim.api.nvim_set_hl(0, 'VertSplit', { fg = "#ffffff", bg = NONE, ctermbg = NONE })
 
 --- hover.nvim
 require("hover").setup {
@@ -299,7 +306,7 @@ require 'treesitter-context'.setup {
 require 'nvim-treesitter.configs'.setup {
     ensure_installed = { "c", "lua", "c_sharp", "fish", "css",
         "comment", "go", "html", "javascript", "make",
-        "norg", "org", "python", "vim" },
+        "org", "python", "vim", "regex" },
     highlight = { -- Indicação de sintaxe
         enable = true,
     },
