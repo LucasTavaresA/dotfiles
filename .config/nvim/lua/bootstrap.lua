@@ -1,127 +1,116 @@
 -- bootstrap paq:
--- nvim --headless -u NONE -c 'lua require("bootstrap").bootstrap_paq()'
-local PKGS = {
+-- nvim --headless -u NONE -c 'lua require("bootstrap")' -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+local ensure_packer = function()
+    local fn = vim.fn
+    local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+    if fn.empty(fn.glob(install_path)) > 0 then
+        fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+        vim.cmd [[packadd packer.nvim]]
+        return true
+    end
+    return false
+end
+
+local packer_bootstrap = ensure_packer()
+
+return require('packer').startup(function(use)
     -- vim mais rápido
-    "lewis6991/impatient.nvim";
+    use "lewis6991/impatient.nvim"
     -- gerenciador de pacotes
-    "savq/paq-nvim";
+    use 'wbthomason/packer.nvim'
 
     --- Miscelânea
     -- previsão de cores
-    "lewis6991/nvim-colorizer.lua";
+    use "lewis6991/nvim-colorizer.lua"
     -- salva posição do cursor
-    "ethanholz/nvim-lastplace";
+    use "ethanholz/nvim-lastplace"
     -- procura rapidamente
-    { "nvim-telescope/telescope-fzf-native.nvim", run = "make" };
-    "nvim-telescope/telescope-ui-select.nvim";
-    "nvim-lua/plenary.nvim";
-    "nvim-telescope/telescope.nvim";
+    use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
+    use "nvim-telescope/telescope-ui-select.nvim"
+    use "nvim-lua/plenary.nvim"
+    use "nvim-telescope/telescope.nvim"
     -- escolher cores
-    "ziontee113/color-picker.nvim";
+    use "ziontee113/color-picker.nvim"
 
     --- Editar
     -- troca/coloca aspas/parenteses
-    "kylechui/nvim-surround";
+    use "kylechui/nvim-surround"
     -- expande região selecionada
-    "terryma/vim-expand-region";
+    use "terryma/vim-expand-region"
     -- arvore de undos
-    "jiaoshijie/undotree";
+    use "jiaoshijie/undotree"
     -- move linhas
-    "fedepujol/move.nvim";
+    use "fedepujol/move.nvim"
     -- remove espaços em linhas editadas
-    "lewis6991/spaceless.nvim";
+    use "lewis6991/spaceless.nvim"
     -- procura e edita varias ocorrências de uma palavra
-    "yegappan/greplace";
+    use "yegappan/greplace"
     -- alinha texto
-    "Vonr/align.nvim";
+    use "Vonr/align.nvim"
 
     --- Code
     -- comenta linhas
-    "numToStr/Comment.nvim";
+    use "numToStr/Comment.nvim"
     -- fecha parenteses automaticamente
-    "windwp/nvim-autopairs";
+    use "windwp/nvim-autopairs"
     -- indentação e indicação de sintaxe
-    { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" };
-    "nvim-treesitter/nvim-treesitter-textobjects";
-    "JoosepAlviste/nvim-ts-context-commentstring";
+    use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
+    use "nvim-treesitter/nvim-treesitter-textobjects"
+    use "JoosepAlviste/nvim-ts-context-commentstring"
     -- mostra função atual no topo
-    "nvim-treesitter/nvim-treesitter-context";
+    use "nvim-treesitter/nvim-treesitter-context"
     -- lsp
-    "neovim/nvim-lspconfig";
+    use "neovim/nvim-lspconfig"
     -- indica diffs
-    "lewis6991/gitsigns.nvim";
+    use "lewis6991/gitsigns.nvim"
     -- snippets
-    "L3MON4D3/LuaSnip";
-    "honza/vim-snippets";
+    use "L3MON4D3/LuaSnip"
+    use "honza/vim-snippets"
     -- autocompletion
-    "hrsh7th/nvim-cmp";
-    "hrsh7th/cmp-nvim-lsp";
-    "hrsh7th/cmp-nvim-lua";
-    "hrsh7th/cmp-nvim-lsp-signature-help";
-    "hrsh7th/cmp-buffer";
-    "hrsh7th/cmp-path";
-    "hrsh7th/cmp-cmdline";
-    "saadparwaiz1/cmp_luasnip";
-    "f3fora/cmp-spell";
+    use "hrsh7th/nvim-cmp"
+    use "hrsh7th/cmp-nvim-lsp"
+    use "hrsh7th/cmp-nvim-lua"
+    use "hrsh7th/cmp-nvim-lsp-signature-help"
+    use "hrsh7th/cmp-buffer"
+    use "hrsh7th/cmp-path"
+    use "hrsh7th/cmp-cmdline"
+    use "saadparwaiz1/cmp_luasnip"
+    use "f3fora/cmp-spell"
     -- mostra informação do codigo no cursor
-    "lewis6991/hover.nvim";
-    "ray-x/lsp_signature.nvim";
+    use "lewis6991/hover.nvim"
+    use "ray-x/lsp_signature.nvim"
     -- debug
-    "rcarriga/nvim-dap-ui";
-    "theHamsta/nvim-dap-virtual-text";
-    "nvim-telescope/telescope-dap.nvim";
-    "mfussenegger/nvim-dap";
+    use "rcarriga/nvim-dap-ui"
+    use "theHamsta/nvim-dap-virtual-text"
+    use "nvim-telescope/telescope-dap.nvim"
+    use "mfussenegger/nvim-dap"
     -- indicação de carregamento lsp
-    "j-hui/fidget.nvim";
+    use "j-hui/fidget.nvim"
 
     --- Aparência
     -- tema
-    "ellisonleao/gruvbox.nvim";
+    use "ellisonleao/gruvbox.nvim"
     -- statusline
-    "famiu/feline.nvim";
+    use "famiu/feline.nvim"
     -- fold mais bonitas
-    "lewis6991/cleanfold.nvim";
+    use "lewis6991/cleanfold.nvim"
     -- indicadores em foldings
-    "lewis6991/foldsigns.nvim";
+    use "lewis6991/foldsigns.nvim"
 
     --- Escrever
     -- esconde distrações ao escrever
-    "folke/zen-mode.nvim";
+    use "folke/zen-mode.nvim"
     -- previsão de markdown
-    "ellisonleao/glow.nvim";
+    use "ellisonleao/glow.nvim"
     -- markdown
-    "godlygeek/tabular";
-    "preservim/vim-markdown";
+    use "godlygeek/tabular"
+    use "preservim/vim-markdown"
     -- move entre headings
-    "crispgm/telescope-heading.nvim";
-}
+    use "crispgm/telescope-heading.nvim"
 
-local function clone_paq()
-    local path = vim.fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
-    if vim.fn.empty(vim.fn.glob(path)) > 0 then
-        vim.fn.system {
-            'git',
-            'clone',
-            '--depth=1',
-            'https://github.com/savq/paq-nvim.git',
-            path
-        }
+    -- Automatically set up your configuration after cloning packer.nvim
+    -- Put this at the end after all plugins
+    if packer_bootstrap then
+        require('packer').sync()
     end
-end
-
-local function bootstrap_paq()
-    clone_paq()
-
-    -- Load Paq
-    vim.cmd('packadd paq-nvim')
-    local paq = require('paq')
-
-    -- Exit nvim after installing plugins
-    vim.api.nvim_create_autocmd("User", { pattern = { "PaqDoneInstall" }, command = "quit", })
-
-    -- Read and install packages
-    paq(PKGS)
-    paq.install()
-end
-
-return { bootstrap_paq = bootstrap_paq }
+end)
