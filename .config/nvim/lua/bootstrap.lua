@@ -18,6 +18,8 @@ return require('packer').startup(function(use)
     use "lewis6991/impatient.nvim"
     -- gerenciador de pacotes
     use 'wbthomason/packer.nvim'
+    -- mostra tempo para iniciar
+    use "dstein64/vim-startuptime"
 
     --- Miscelânea
     -- previsão de cores
