@@ -193,6 +193,12 @@ vim.api.nvim_create_autocmd("FileType",
 vim.api.nvim_create_autocmd("FileType",
     { pattern = { "markdown" }, command = "call timer_start(100, { tid -> execute('ZenMode')})", })
 
+--- Writegood mode
+vim.api.nvim_create_autocmd("FileType",
+    { pattern = { "org" }, command = "call timer_start(100, { tid -> execute('WritegoodEnable')})", })
+vim.api.nvim_create_autocmd("FileType",
+    { pattern = { "markdown" }, command = "call timer_start(100, { tid -> execute('WritegoodEnable')})", })
+
 --- foldsigns
 require 'foldsigns'.setup {
     exclude = { 'GitSigns.*' }

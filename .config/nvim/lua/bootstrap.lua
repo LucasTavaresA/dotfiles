@@ -105,6 +105,8 @@ return require('packer').startup(function(use)
     -- markdown
     use "godlygeek/tabular"
     use "preservim/vim-markdown"
+    -- indica mals habitos de escrita
+    use "davidbeckingsale/writegood.vim"
     -- move entre headings
     use "crispgm/telescope-heading.nvim"
 
