@@ -1,0 +1,9 @@
+default partial alphanumeric_keys
+xkb_symbols "basic" {
+    include "br"
+        name[Group1] = "Modified br Qwerty";
+    key <AB07> { [ m,         M,       apostrophe ] };
+    key <AB08> { [ comma,     less,    Escape ] };
+    key <AB09> { [ period,    greater, Tab ] };
+    key <AB10> { [ semicolon, colon,   quotedbl ] };
+};

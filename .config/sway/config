@@ -19,7 +19,7 @@ focus_wrapping no
 focus_on_window_activation focus
 ## teclado
 input type:keyboard {
-    xkb_layout br
+    xkb_layout custom
     xkb_options caps:escape_shifted_capslock
     xkb_numlock enable
     repeat_delay 300
