@@ -23,8 +23,6 @@ keymap("v", "<leader>A", ":'<,'>!column -t -o ' '<CR>", {})
 keymap("n", "<leader>ff", ":e %:h<Tab>", {})
 -- mudar o typo de arquivo
 keymap("n", "<leader>ft", ":setlocal filetype=", {})
--- abrir o explorador de arquivos
-keymap("n", "<A-f>", ":Lexplore<CR>", {})
 -- salvar buffer
 keymap("n", "<leader>ww", ":w<CR>", {})
 -- sair e salvar
@@ -58,6 +56,33 @@ keymap("n", "?", "*", {})
 keymap("n", "<A-s>", ":%s//gc<left><left><left>", {})
 -- procura e substitui na região selecionada
 keymap("v", "<A-s>", ":s//gc<left><left><left>", {})
+-- abre netrw em uma split
+local lua_netrw_window = nil
+local lua_netrw_buffer = nil
+function NetrwToggle()
+    if vim.fn.win_gotoid(lua_netrw_window) == 1 then
+        if vim.fn.win_gotoid(lua_netrw_window) == 1 then
+            vim.api.nvim_command("hide")
+        end
+    else
+        if vim.fn.bufexists(lua_netrw_buffer) == 0 then
+            vim.api.nvim_command("Lexplore")
+            vim.api.nvim_command("silent file Netrw 1")
+            lua_netrw_window = vim.fn.win_getid()
+            lua_netrw_buffer = vim.fn.bufnr('%')
+            vim.opt.buflisted = false
+        else
+            if vim.fn.win_gotoid(lua_netrw_window) == 0 then
+                vim.api.nvim_command("Lexplore")
+                vim.api.nvim_command("buffer Netrw 1")
+                lua_netrw_window = vim.fn.win_getid()
+            end
+        end
+    end
+end
+vim.keymap.set("n", "<A-f>", NetrwToggle)
+vim.keymap.set("i", "<A-f>", NetrwToggle)
+vim.keymap.set("t", "<A-f>", NetrwToggle)
 -- abre terminal do sistema no local do arquivo atual
 keymap("n", "<leader><return>", ":!sh -c 'cd %:p:h ; term_open' &<CR><CR>", {})
 -- abre terminal nativo em uma split
