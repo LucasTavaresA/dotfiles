@@ -1,41 +1,37 @@
 -- gruvbox
 local theme = {
     bg = '#000000',
-    fg = '#fb4934',
-    red = '#cc241d',
-    green = '#98971a',
-    yellow = '#979921',
-    blue = '#459588',
-    pink = '#b16286',
-    cyan = '#689d6a',
-    orange = '#a89984',
-    violet = '#928374',
+    fg = '#ffffff',
+    red = '#ff0000',
+    lightgreen = '#00ff00',
+    green = '#009900',
+    yellow = '#ffff00',
+    lightblue = '#0077ff',
+    pink = '#ff00ff',
+    cyan = '#00ffff',
+    orange = '#ff5500',
+    violet = '#9900ff',
 }
 
 local vi_mode_colors = {
-    NORMAL = theme.violet,
+    NORMAL = theme.orange,
     INSERT = theme.yellow,
-    VISUAL = theme.blue,
-    OP = theme.cyan,
-    BLOCK = theme.cyan,
+    VISUAL = theme.lightblue,
+    OP = theme.green,
+    BLOCK = theme.lightblue,
+    LINES = theme.lightblue,
     REPLACE = theme.red,
     ['V-REPLACE'] = theme.red,
     ENTER = theme.yellow,
     MORE = theme.pink,
-    SELECT = theme.blue,
-    COMMAND = theme.cyan,
-    SHELL = theme.cyan,
+    SELECT = theme.lightblue,
+    COMMAND = theme.violet,
+    SHELL = theme.green,
     TERM = theme.green,
-    NONE = theme.blue
+    NONE = theme.cyan
 }
 
-local lsp = require('feline.providers.lsp')
 local vi_mode_utils = require('feline.providers.vi_mode')
-
-local lsp_get_diag = function(str)
-    local count = vim.lsp, diagnostic.get_count(0, str)
-    return (count > 0) and ' ' .. count .. ' ' or ''
-end
 
 -- My components
 local comps = {
@@ -69,7 +65,7 @@ local comps = {
             return string.format('[%d/%d]', result.current, denominator)
         end,
         hl = {
-            fg = theme.blue,
+            fg = theme.yellow,
             bg = theme.bg,
             style = 'bold'
         },
@@ -78,13 +74,13 @@ local comps = {
     },
     macro = {
         provider = function()
-                local recording_register = vim.fn.reg_recording()
-                if recording_register == "" then
-                    return ""
-                else
-                    return " Recording @" .. recording_register .. " "
-                end
-            end,
+            local recording_register = vim.fn.reg_recording()
+            if recording_register == "" then
+                return ""
+            else
+                return "Recording @" .. recording_register
+            end
+        end,
         hl = {
             fg = theme.red,
             bg = theme.bg,
@@ -99,29 +95,11 @@ local comps = {
                 name = 'file_info',
                 opts = {
                     type = 'relative',
-                    file_modified_icon = ''
+                    file_modified_icon = '!'
                 }
             },
-            hl = { fg = theme.cyan },
-            icon = '  ',
-            left_sep = ' ',
-            right_sep = ' ',
-        },
-        type = {
-            provider = { name = 'file_type' },
-        },
-        position = {
-            provider = { name = 'position' },
-            hl = {
-                fg = theme.cyan,
-                style = 'bold'
-            },
-            left_sep = ' ',
-            right_sep = ' ',
-        },
-        scroll_bar = {
-            provider = { name = 'scroll_bar' },
-            hl = { fg = theme.green },
+            hl = { fg = theme.lightgreen },
+            icon = '',
             left_sep = ' ',
             right_sep = ' ',
         },
@@ -130,28 +108,28 @@ local comps = {
     diagnos = {
         err = {
             provider = 'diagnostic_errors',
-            icon = ' ⚠ ',
+            icon = '⚠ ',
             hl = { fg = theme.red },
             left_sep = ' ',
             right_sep = ' ',
         },
         warn = {
             provider = 'diagnostic_warnings',
-            icon = '  ',
+            icon = ' ',
             hl = { fg = theme.yellow },
             left_sep = ' ',
             right_sep = ' ',
         },
         info = {
             provider = 'diagnostic_info',
-            icon = '  ',
-            hl = { fg = theme.green },
+            icon = ' ',
+            hl = { fg = theme.lightblue },
             left_sep = ' ',
             right_sep = ' ',
         },
         hint = {
             provider = 'diagnostic_hints',
-            icon = '  ',
+            icon = ' ',
             hl = { fg = theme.cyan },
             left_sep = ' ',
             right_sep = ' ',
@@ -161,28 +139,28 @@ local comps = {
     git = {
         branch = {
             provider = 'git_branch',
-            icon = '  ',
+            icon = ' ',
             hl = { fg = theme.pink },
             left_sep = ' ',
             right_sep = ' ',
         },
         add = {
             provider = 'git_diff_added',
-            icon = '  ',
+            icon = '+ ',
             hl = { fg = theme.green },
             left_sep = ' ',
             right_sep = ' ',
         },
         change = {
             provider = 'git_diff_changed',
-            icon = '  ',
-            hl = { fg = theme.orange },
+            icon = '! ',
+            hl = { fg = theme.yellow },
             left_sep = ' ',
             right_sep = ' ',
         },
         remove = {
             provider = 'git_diff_removed',
-            icon = '  ',
+            icon = '- ',
             hl = { fg = theme.red },
             left_sep = ' ',
             right_sep = ' ',
@@ -197,6 +175,8 @@ local components = {
 
 table.insert(components.active, {})
 table.insert(components.active, {})
+table.insert(components.active, {})
+table.insert(components.inactive, {})
 table.insert(components.inactive, {})
 table.insert(components.inactive, {})
 
@@ -205,18 +185,19 @@ table.insert(components.active[1], comps.vi_mode.left)
 table.insert(components.active[1], comps.search_count)
 table.insert(components.active[1], comps.macro)
 
--- Left Section
-table.insert(components.active[2], comps.git.branch)
-table.insert(components.active[2], comps.git.add)
-table.insert(components.active[2], comps.git.change)
-table.insert(components.active[2], comps.git.remove)
+-- Center
 table.insert(components.active[2], comps.diagnos.err)
 table.insert(components.active[2], comps.diagnos.warn)
 table.insert(components.active[2], comps.diagnos.hint)
 table.insert(components.active[2], comps.diagnos.info)
-table.insert(components.active[2], comps.file.info)
-table.insert(components.inactive[2], comps.file.info)
-table.insert(components.active[2], comps.file.position)
+
+-- Left Section
+table.insert(components.active[3], comps.git.add)
+table.insert(components.active[3], comps.git.change)
+table.insert(components.active[3], comps.git.remove)
+table.insert(components.active[3], comps.git.branch)
+table.insert(components.active[3], comps.file.info)
+table.insert(components.inactive[3], comps.file.info)
 
 require('feline').setup {
     default_bg = theme.bg,
