@@ -7,7 +7,6 @@ vim.opt.termguicolors = true
 require 'colorizer'.setup({ '*' }, {})
 require('Comment').setup()
 require('cleanfold').setup()
-require("color-picker")
 require('undotree').setup()
 
 ----- Configuração -----
@@ -156,6 +155,16 @@ vim.api.nvim_set_hl(0, 'SignColumn', { bg = NONE, ctermbg = NONE })
 require('statusline')
 -- estilo das splits
 vim.api.nvim_set_hl(0, 'VertSplit', { fg = "#ffffff", bg = NONE, ctermbg = NONE })
+
+--- color-picker
+require("color-picker").setup({
+    ["keymap"] = {
+        ["<Left>"] = "<Plug>ColorPickerSlider1Decrease",
+        ["<Right>"] = "<Plug>ColorPickerSlider1Increase",
+        ["<S-Left>"] = "<Plug>ColorPickerSlider100Decrease",
+        ["<S-Right>"] = "<Plug>ColorPickerSlider100Increase",
+    },
+})
 
 --- hover.nvim
 require("hover").setup {
