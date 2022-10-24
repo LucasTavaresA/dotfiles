@@ -1,95 +1,99 @@
------ PLUGINS -----
 require('impatient')
-require 'nvim-lastplace'.setup {}
-require("nvim-surround").setup()
-require 'spaceless'.setup()
-vim.opt.termguicolors = true
-require 'colorizer'.setup({ '*' }, {})
-require('Comment').setup()
-require('cleanfold').setup()
-require('undotree').setup()
+require('keys')
+local vo = vim.opt
+local vol = vim.opt_local
+local vg = vim.g
+local vc = vim.cmd
+local vanca = vim.api.nvim_create_autocmd
+local vansh = vim.api.nvim_set_hl
 
 ----- Configuração -----
---- Vim
-vim.g.nocompatible = true
-vim.cmd("filetype plugin on")
-vim.cmd("filetype indent on")
--- mantem configurações de buffers
-vim.opt.hidden = true
-
---- Arquivos
+vc("filetype plugin on")
+vc("filetype indent on")
 -- desabilita swapfile
-vim.opt.swapfile = false
---- netrw
+vo.swapfile = false
+-- undo persistente
+vo.undofile = true
+-- muda o titulo da janela
+vo.title = true
+vo.titlestring = "nvim"
+vo.titleold = os.getenv("TERMINAL")
+-- da a volta entre linhas
+vo.whichwrap = vo.whichwrap + "<,>,h,l,[,]"
+-- desativa uso do mouse
+vo.mouse = ""
+-- copiar e colar para o neovim
+vanca("InsertEnter", { pattern = { "*" }, command = "set cul", })
+vanca("InsertLeave", { pattern = { "*" }, command = "set nocul", })
+vo.clipboard:append { "unnamedplus" }
+-- procura ignorando maiúsculas
+vo.ignorecase = true
+vo.smartcase = true
+-- habilita a compleção de comandos
+vo.wildmode = { "longest", "list", "full" }
+vo.completeopt = { "menu", "menuone", "preview", "noselect" }
+-- divide a tela do lado e para baixo
+vo.splitbelow = true
+vo.splitright = true
+vo.diffopt:append { "horizontal" }
+-- não vai automaticamente para os itens pesquisados
+vo.incsearch = false
+-- linhas não dão a volta na tela
+vo.wrap = false
+-- desativa comentar automaticamente a próxima linha
+vanca("FileType", { pattern = { "*" },
+    command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o", })
+-- Ativa checagem ortografica em arquivos
+vanca("FileType", { pattern = { "org" }, command = "setlocal spell spelllang=pt", })
+vanca("FileType", { pattern = { "markdown" }, command = "setlocal spell spelllang=pt", })
+vanca("FileType", { pattern = { "gitcommit" }, command = "setlocal spell spelllang=pt", })
+--- Writegood mode
+vanca("FileType", { pattern = { "org" },
+    command = "call timer_start(100, { tid -> execute('WritegoodEnable')})", })
+vanca("FileType", { pattern = { "markdown" },
+    command = "call timer_start(100, { tid -> execute('WritegoodEnable')})", })
+--- Greplace
+-- usa o git grep
+vo.grepprg = 'git grep -nIi'
+if vim.fn.getcwd() == os.getenv('HOME') then
+    vim.env.GIT_DIR = vim.fn.expand("~/.dotfiles")
+    vim.env.GIT_WORK_TREE = vim.fn.expand("~")
+end
+--- zen-mode
+-- ativa zen em arquivos especificos
+vanca("FileType", { pattern = { "org" },
+    command = "call timer_start(100, { tid -> execute('ZenMode')})", })
+vanca("FileType", { pattern = { "markdown" },
+    command = "call timer_start(100, { tid -> execute('ZenMode')})", })
+
+--- Netrw
 -- define o modo de listagem de arquivos
-vim.g.netrw_liststyle = 3
+vg.netrw_liststyle = 3
 -- remove o banner
-vim.g.netrw_banner = 0
+vg.netrw_banner = 0
 -- define onde abrir arquivos
-vim.g.netrw_browse_split = 4
+vg.netrw_browse_split = 4
 -- tamanho da split
-vim.g.netrw_winsize = 20
+vg.netrw_winsize = 20
 
 --- Tabs/Espaços
--- limita tabs em 4 espaços
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
+vo.tabstop = 4
+vo.shiftwidth = 4
 -- troca tabs por espaços
-vim.opt.expandtab = true
-
---- Miscelânea
--- undo persistente
-vim.opt.undofile = true
--- muda o titulo da janela
-vim.opt.title = true
-vim.opt.titlestring = "nvim"
-vim.opt.titleold = os.getenv("TERMINAL")
--- da a volta entre linhas
-vim.opt.whichwrap = vim.opt.whichwrap + "<,>,h,l,[,]"
--- ativa uso do mouse
-vim.opt.mouse = "a"
--- copiar e colar para o neovim
-vim.api.nvim_create_autocmd("InsertEnter", { pattern = { "*" }, command = "set cul", })
-vim.api.nvim_create_autocmd("InsertLeave", { pattern = { "*" }, command = "set nocul", })
-vim.opt.clipboard:append { "unnamedplus" }
--- atualiza o neovim mais rápido
-vim.opt.updatetime = 100
--- procura ignorando maiúsculas
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
--- habilita a compleção de comandos
-vim.opt.wildmode = { "longest", "list", "full" }
-vim.opt.completeopt = { "menu", "menuone", "noselect" }
--- divide a tela do lado e para baixo
-vim.opt.splitbelow = true
-vim.opt.splitright = true
-vim.opt.diffopt:append { "horizontal" }
--- não vai automaticamente para os itens pesquisados
-vim.opt.incsearch = false
--- linhas não dão a volta na tela
-vim.opt.wrap = false
--- desativa comentar automaticamente a próxima linha
-vim.api.nvim_create_autocmd("FileType",
-    { pattern = { "*" }, command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o", })
--- Ativa checagem ortografica em arquivos
-vim.api.nvim_create_autocmd("FileType",
-    { pattern = { "org" }, command = "setlocal spell spelllang=pt", })
-vim.api.nvim_create_autocmd("FileType",
-    { pattern = { "markdown" }, command = "setlocal spell spelllang=pt", })
-vim.api.nvim_create_autocmd("FileType",
-    { pattern = { "gitcommit" }, command = "setlocal spell spelllang=pt", })
+vo.expandtab = true
 
 --- Aparência
 -- indicação de sintaxe
-vim.cmd.syntax('on')
+vc.syntax('on')
 -- mostra numero de linhas relativo
-vim.opt.number = true
-vim.opt.numberwidth = 1
-vim.opt.relativenumber = true
-vim.api.nvim_create_autocmd("TermOpen", { pattern = { "*" }, command = "setlocal nonumber norelativenumber", })
+vo.number = true
+vo.numberwidth = 1
+vo.relativenumber = true
+-- remove numeor de linhas no terminal
+vanca("TermOpen", { pattern = { "*" }, command = "setlocal nonumber norelativenumber", })
 -- indicação de espaços e tabs
-vim.opt.list = true
-vim.opt.listchars = {
+vo.list = true
+vo.listchars = {
     tab = '> ',
     extends = '⟩',
     precedes = '⟨',
@@ -99,241 +103,71 @@ vim.opt.listchars = {
     conceal = '*',
 }
 -- folding
-vim.g.sh_fold_enabled = 1
-vim.g.foldenabled = true
-vim.opt.foldmethod = 'syntax'
-vim.opt.foldcolumn = '0'
-vim.opt.foldnestmax = 3
-vim.opt.foldopen:append('jump')
+vg.sh_fold_enabled = 1
+vg.foldenabled = true
+vo.foldmethod = 'syntax'
+vo.foldcolumn = '0'
+vo.foldnestmax = 3
+vo.foldopen:append('jump')
 -- tema
+vc.colorscheme('gruvbox')
 -- prefere modo escuro
-vim.opt.background = "dark"
+vo.background = "dark"
 -- esconde marcação
-vim.opt.conceallevel = 3
-vim.g.vim_markdown_conceal_code_blocks = 0
--- tema
-require("gruvbox").setup({
-    invert_selection = true,
-    inverse = true, -- invert background for search, diffs, statuslines and errors
-    contrast = "hard", -- can be "hard", "soft" or empty string
-    dim_inactive = false,
-    transparent_mode = true,
-})
-vim.cmd.colorscheme('gruvbox')
+vo.conceallevel = 3
+vg.vim_markdown_conceal_code_blocks = 0
 -- melhora suporte de cores
-vim.opt.termguicolors = true
+vo.termguicolors = true
 -- indica linha selecionada no modo normal
-vim.opt.cursorline = false
+vo.cursorline = false
 -- define quando a barra superior aparece
-vim.opt.showtabline = 0
+vo.showtabline = 0
 -- mostra a modeline
-vim.opt.laststatus = 3
+vo.laststatus = 3
 -- diminui tamanho da barra inferior
-vim.opt.cmdheight = 0
+vo.cmdheight = 0
 -- transparência
-vim.api.nvim_set_hl(0, 'Normal', { bg = NONE, ctermbg = NONE })
-vim.api.nvim_set_hl(0, 'EndOfBuffer', { bg = NONE, ctermbg = NONE })
-vim.api.nvim_set_hl(0, 'FloatBorder', { bg = NONE, ctermbg = NONE })
+vansh(0, 'Normal', { bg = NONE, ctermbg = NONE })
+vansh(0, 'EndOfBuffer', { bg = NONE, ctermbg = NONE })
+vansh(0, 'FloatBorder', { bg = NONE, ctermbg = NONE })
 -- cor da linha atual
-vim.api.nvim_set_hl(0, 'CursorLine', { bg = "#333333" })
+vansh(0, 'CursorLine', { bg = "#333333" })
 -- cor da area selecionada
-vim.api.nvim_set_hl(0, 'Visual', { bg = "#0055ff" })
+vansh(0, 'Visual', { bg = "#0055ff" })
 -- indica parentese correspondente
-vim.api.nvim_set_hl(0, 'MatchParen', {
+vansh(0, 'MatchParen', {
     cterm = { NONE, bold },
     bold = true,
     fg = "#ff0000",
     bg = NONE,
 })
-vim.api.nvim_set_hl(0, 'NormalFloat', { bg = '#000000' })
--- não deleta pares automaticamente
-require('nvim-autopairs').setup({
-    map_bs = false,
-})
+vansh(0, 'NormalFloat', { bg = '#000000' })
 -- signcolumn transparente
-vim.api.nvim_set_hl(0, 'SignColumn', { bg = NONE, ctermbg = NONE })
+vansh(0, 'SignColumn', { bg = NONE, ctermbg = NONE })
 require('statusline')
 -- estilo das splits
-vim.api.nvim_set_hl(0, 'VertSplit', { fg = "#ffffff", bg = NONE, ctermbg = NONE })
-
---- color-picker
-require("color-picker").setup({
-    ["keymap"] = {
-        ["<Left>"] = "<Plug>ColorPickerSlider1Decrease",
-        ["<Right>"] = "<Plug>ColorPickerSlider1Increase",
-        ["<S-Left>"] = "<Plug>ColorPickerSlider100Decrease",
-        ["<S-Right>"] = "<Plug>ColorPickerSlider100Increase",
-    },
-})
-
---- hover.nvim
-require("hover").setup {
-    init = function()
-        require("hover.providers.lsp")
-    end,
-    preview_opts = {
-        border = nil
-    },
-    -- Whether the contents of a currently open hover window should be moved
-    -- to a :h preview-window when pressing the hover keymap.
-    preview_window = true,
-    title = true
-}
-
---- zen-mode
-require("zen-mode").setup {
-    window = {
-        width = 80, -- width of the Zen window
-        height = 30, -- height of the Zen window
-        options = {
-            signcolumn = "no", -- disable signcolumn
-            number = false, -- disable number column
-            relativenumber = false, -- disable relative numbers
-            cursorline = false, -- disable cursorline
-            cursorcolumn = false, -- disable cursor column
-            foldcolumn = "0", -- disable fold column
-            list = false, -- disable whitespace characters
-        },
-    },
-    -- callback where you can add custom code when the Zen window opens
-    on_open = function(win)
-    end,
-    -- callback where you can add custom code when the Zen window closes
-    on_close = function()
-        vim.cmd.quit()
-    end,
-}
--- ativa zen em arquivos especificos
-vim.api.nvim_create_autocmd("FileType",
-    { pattern = { "org" }, command = "call timer_start(100, { tid -> execute('ZenMode')})", })
-vim.api.nvim_create_autocmd("FileType",
-    { pattern = { "markdown" }, command = "call timer_start(100, { tid -> execute('ZenMode')})", })
-
---- Writegood mode
-vim.api.nvim_create_autocmd("FileType",
-    { pattern = { "org" }, command = "call timer_start(100, { tid -> execute('WritegoodEnable')})", })
-vim.api.nvim_create_autocmd("FileType",
-    { pattern = { "markdown" }, command = "call timer_start(100, { tid -> execute('WritegoodEnable')})", })
-
---- foldsigns
-require 'foldsigns'.setup {
-    exclude = { 'GitSigns.*' }
-}
-
---- gitsigns
-require("gitsigns").setup({
-    worktrees = { {
-        toplevel = vim.env.HOME,
-        gitdir = vim.env.HOME .. '/.dotfiles'
-    } }
-})
+vansh(0, 'VertSplit', { fg = "#ffffff", bg = NONE, ctermbg = NONE })
 -- Remove fundo cinza e melhores cores - gitsigns
-vim.api.nvim_set_hl(0, 'GitSignsDelete', {
+vansh(0, 'GitSignsDelete', {
     bg = NONE,
     ctermbg = NONE,
     fg = "#ff0000",
     ctermfg = Red,
 })
-vim.api.nvim_set_hl(0, 'GitSignsChange', {
+vansh(0, 'GitSignsChange', {
     bg = NONE,
     ctermbg = NONE,
     fg = "#ffff00",
     ctermfg = yellow,
 })
-vim.api.nvim_set_hl(0, 'GitSignsAdd', {
+vansh(0, 'GitSignsAdd', {
     bg = NONE,
     ctermbg = NONE,
     fg = "#008800",
     ctermfg = green,
 })
 
--- Luasnip
-require('luasnip').config.set_config({
-    history = true, -- keep around last snippet local to jump back
-    enable_autosnippets = true,
-})
-require("luasnip.loaders.from_snipmate").lazy_load({
-    paths = { "/home/lucas/.config/nvim/Ultisnips/*" }
-})
-
---- Telescope
-require('telescope').setup {
-    defaults = {
-        theme = "dropdown",
-        preview = false
-    },
-    pickers = {
-        find_files = {
-            find_command = { "fd", "--strip-cwd-prefix", "--base-directory",
-                os.getenv('HOME'), "-d", "4", "-t", "f",
-                "-E", "*log*", "-E", "*cache*", "-E", "*.local*", "-E", "*media*"
-            }
-        },
-    },
-    extensions = {
-        ["ui-select"] = {
-            require("telescope.themes").get_dropdown {
-            },
-        },
-        fzf = {
-            fuzzy = true,
-            override_generic_sorter = true,
-            override_file_sorter = true,
-            case_mode = "smart_case",
-        }
-    }
-}
-require('telescope').load_extension('fzf')
-require('telescope').load_extension('heading')
-require("telescope").load_extension("ui-select")
-
---- greplace
--- usa o git grep
-vim.opt.grepprg = 'git grep -nIi'
-if vim.fn.getcwd() == os.getenv('HOME') then
-    vim.env.GIT_DIR = vim.fn.expand("~/.dotfiles")
-    vim.env.GIT_WORK_TREE = vim.fn.expand("~")
-end
-
---- Treesitter
--- indentação e indicação de sintaxe
-require 'nvim-treesitter'.define_modules {
-    fold = {
-        attach = function()
-            vim.opt_local.foldexpr = 'nvim_treesitter#foldexpr()'
-            vim.opt_local.foldmethod = 'expr'
-            vim.cmd.normal 'zx' -- recompute folds
-        end,
-        detach = function() end,
-    }
-}
-require 'treesitter-context'.setup {
-    enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
-    max_lines = 5, -- How many lines the window should span. Values <= 0 mean no limit.
-    trim_scope = 'outer',
-}
-require 'nvim-treesitter.configs'.setup {
-    ensure_installed = { "c", "lua", "c_sharp", "fish", "css",
-        "comment", "go", "html", "javascript", "make",
-        "org", "python", "vim", "regex" },
-    highlight = { -- Indicação de sintaxe
-        enable = true,
-    },
-    indent = {
-        enable = true, -- Indentação
-    },
-    fold = {
-        enable = true,
-        disable = { 'rst', 'make' }
-    },
-    context_commentstring = { enable = true }
-}
-
------ Modulos -----
---- Teclas
-require('keys')
-
--- compleção - nvim-cmp
+--- nvim-cmp
 local cmp = require 'cmp'
 cmp.setup({
     snippet = {
@@ -384,8 +218,8 @@ cmp.setup.filetype('gitcommit', {
     sources = cmp.config.sources({
         { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
     }, {
-        { name = 'buffer' },
-    })
+            { name = 'buffer' },
+        })
 })
 
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
@@ -402,8 +236,8 @@ cmp.setup.cmdline(':', {
     sources = cmp.config.sources({
         { name = 'path' }
     }, {
-        { name = 'cmdline' }
-    })
+            { name = 'cmdline' }
+        })
 })
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -472,51 +306,4 @@ require 'lspconfig'.sumneko_lua.setup {
         },
     },
     capabilities = capabilities,
-}
-
---- fidget
-require 'fidget'.setup {
-    text = {
-        spinner = "dots",
-    },
-    fmt = {
-        stack_upwards = false,
-        task = function(task_name, message, percentage)
-            local pct = percentage and string.format(" (%s%%)", percentage) or ""
-            if task_name then
-                return string.format("%s%s [%s]", message, pct, task_name)
-            else
-                return string.format("%s%s", message, pct)
-            end
-        end,
-    },
-}
-
---- lsp_signature
-require "lsp_signature".setup({
-    bind = true, -- This is mandatory, otherwise border config won't get registered.
-    handler_opts = {
-        border = "rounded"
-    }
-})
-
---- nvim-dap
-require("dapui").setup()
-require("nvim-dap-virtual-text").setup({})
-require('telescope').load_extension('dap')
-
--- netcoredbg
-require('dap').adapters.coreclr = {
-    type = 'executable',
-    command = '/usr/bin/netcoredbg',
-    args = { '--interpreter=vscode' }
-}
-require('dap').configurations.cs = { {
-    type = "coreclr",
-    name = "launch - netcoredbg",
-    request = "launch",
-    program = function()
-        return vim.fn.input('Project dll: ', vim.fn.getcwd() .. '/bin/Debug/', 'file')
-    end,
-},
 }
