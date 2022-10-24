@@ -93,7 +93,7 @@ return require('packer').startup(function(use)
 
     --- Editar
     -- troca/coloca aspas/parenteses
-    use { "kylechui/nvim-surround", 
+    use { "kylechui/nvim-surround",
         config = function()
             require("nvim-surround").setup()
         end,

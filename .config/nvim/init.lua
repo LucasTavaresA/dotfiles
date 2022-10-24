@@ -1,7 +1,6 @@
 require('impatient')
 require('keys')
 local vo = vim.opt
-local vol = vim.opt_local
 local vg = vim.g
 local vc = vim.cmd
 local vanca = vim.api.nvim_create_autocmd
@@ -127,44 +126,44 @@ vo.laststatus = 3
 -- diminui tamanho da barra inferior
 vo.cmdheight = 0
 -- transparência
-vansh(0, 'Normal', { bg = NONE, ctermbg = NONE })
-vansh(0, 'EndOfBuffer', { bg = NONE, ctermbg = NONE })
-vansh(0, 'FloatBorder', { bg = NONE, ctermbg = NONE })
+vansh(0, 'Normal', { bg = nil, ctermbg = nil })
+vansh(0, 'EndOfBuffer', { bg = nil, ctermbg = nil })
+vansh(0, 'FloatBorder', { bg = nil, ctermbg = nil })
 -- cor da linha atual
 vansh(0, 'CursorLine', { bg = "#333333" })
 -- cor da area selecionada
 vansh(0, 'Visual', { bg = "#0055ff" })
 -- indica parentese correspondente
 vansh(0, 'MatchParen', {
-    cterm = { NONE, bold },
+    cterm =  nil,
     bold = true,
     fg = "#ff0000",
-    bg = NONE,
+    bg = nil,
 })
 vansh(0, 'NormalFloat', { bg = '#000000' })
 -- signcolumn transparente
-vansh(0, 'SignColumn', { bg = NONE, ctermbg = NONE })
+vansh(0, 'SignColumn', { bg = nil, ctermbg = nil })
 require('statusline')
 -- estilo das splits
-vansh(0, 'VertSplit', { fg = "#ffffff", bg = NONE, ctermbg = NONE })
+vansh(0, 'VertSplit', { fg = "#ffffff", bg = nil, ctermbg = nil })
 -- Remove fundo cinza e melhores cores - gitsigns
 vansh(0, 'GitSignsDelete', {
-    bg = NONE,
-    ctermbg = NONE,
+    bg = nil,
+    ctermbg = nil,
     fg = "#ff0000",
-    ctermfg = Red,
+    ctermfg = 'Red',
 })
 vansh(0, 'GitSignsChange', {
-    bg = NONE,
-    ctermbg = NONE,
+    bg = nil,
+    ctermbg = nil,
     fg = "#ffff00",
-    ctermfg = yellow,
+    ctermfg = 'yellow',
 })
 vansh(0, 'GitSignsAdd', {
-    bg = NONE,
-    ctermbg = NONE,
+    bg = nil,
+    ctermbg = nil,
     fg = "#008800",
-    ctermfg = green,
+    ctermfg = 'green',
 })
 
 --- nvim-cmp
