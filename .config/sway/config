@@ -100,11 +100,11 @@ bindsym $mod+e exec term_open -a nvim nvim
 bindsym $mods+Return exec term_open
 ## menu
 mode "Menu" {
-    bindsym Menu exec tofi-drun --drun-launch=true ; mode "default"
+    bindsym Menu exec pgrep tofi && pkill tofi || tofi-drun --drun-launch=true ; mode "default"
     bindsym o exec orgmenu ~/documentos/favoritos.org ; mode "default"
     bindsym m exec menu_mont ; mode "default"
     bindsym p exec keepmenu ; mode "default"
-    bindsym c exec clipman pick --tool=CUSTOM --tool-args="tofi" ; mode "default"
+    bindsym c exec clipman pick --tool=CUSTOM --tool-args="tofi --padding-left 0" ; mode "default"
     bindsym Shift+c exec term_open -a calculadora python ; mode "default"
     bindsym Shift+e exec term_open -a float fzf_emojis ; mode "default"
     bindsym q exec qutebrowser ; mode "default"
