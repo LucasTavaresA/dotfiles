@@ -1,68 +1,69 @@
 --- Variaveis
-local keymap = vim.api.nvim_set_keymap
-local opts = { noremap = true, silent = true }
+local vks = vim.keymap.set
+local n = { noremap = true }
+local ns = { noremap = true, silent = true }
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- cancela indicação de palavras procuradas
-keymap("n", "<esc>", ":noh<CR>", {})
+vks("n", "<esc>", ":noh<CR>")
 -- colar na linha de baixo
-keymap("n", "P", ":norm o<CR>p", opts)
+vks("n", "P", ":norm o<CR>p", ns)
 -- trocar de buffer
-keymap("n", "<C-Tab>", ":bn<CR>", {})
+vks("n", "<C-Tab>", ":bn<CR>")
 -- trocar de split
-keymap("n", "<A-Tab>", "<C-w>w", {})
+vks("n", "<A-Tab>", "<C-w>w")
 -- formatar buffer
-keymap("n", "<leader>I", "gg=G", {})
+vks("n", "<leader>I", "gg=G")
 -- formatar paragrafo
-keymap("n", "<leader>ii", "{=}", {})
+vks("n", "<leader>ii", "{=}<C-o>")
 -- formas de alinhar texto
-vim.keymap.set('v', '<leader>a', function() require'align'.align_to_string(false, true, true) end, opts)
-keymap("v", "<leader>A", ":'<,'>!column -t -o ' '<CR>", {})
+vks('v', '<leader>a', function() require 'align'.align_to_string(false, true, true) end, ns)
+vks("v", "<leader>A", ":'<,'>!column -t -o ' '<CR>")
 -- abre arquivos no diretório atual
-keymap("n", "<leader>ff", ":e %:h<Tab>", {})
+vks("n", "<leader>ff", ":e %:h")
 -- mudar o typo de arquivo
-keymap("n", "<leader>ft", ":setlocal filetype=", {})
+vks("n", "<leader>ft", ":setlocal filetype=")
 -- salvar buffer
-keymap("n", "<leader>ww", ":w<CR>", {})
+vks("n", "<leader>ww", ":w<CR>")
 -- sair e salvar
-keymap("n", "<leader>wq", ":wq!<CR>", {})
+vks("n", "<leader>wq", ":wq!<CR>")
 -- fecha sem salvar
-keymap("n", "<leader>qq", ":q!<CR>", {})
+vks("n", "<leader>qq", ":q!<CR>")
 -- salvar e recarregar arquivo
-keymap("n", "<leader>wr", ":w<CR>:e<CR>", {})
+vks("n", "<leader>wr", ":w<CR>:e<CR>")
 -- deletar buffer
-keymap("n", "<leader>k", ":bd<CR>", {})
+vks("n", "<leader>k", ":bd<CR>")
 -- abre o buffer de mensagems
-keymap("n", "<leader>m", ":message<CR>", {})
+vks("n", "<leader>m", ":message<CR>")
 -- avaliar buffer
-keymap("n", "<leader>eb", ":source %<CR>", {})
+vks("n", "<leader>eb", ":source %<CR>")
 -- divide a tela do lado
-keymap("n", "<C-A-Right>", ":vs<CR>", {})
+vks("n", "<C-A-Right>", ":vs<CR>")
 -- divide a tela abaixo
-keymap("n", "<C-A-Down>", ":sp<CR>", {})
+vks("n", "<C-A-Down>", ":sp<CR>")
 -- copiar buffer
-keymap("n", "<leader>bc", "ggVGy", { noremap = true })
+vks("n", "<leader>bc", "ggVGy<C-o>zz", n)
 -- ativa/desativa números de linha
-keymap("n", "zn", ":setlocal number! relativenumber!<CR>", {})
+vks("n", "zn", ":setlocal number! relativenumber!<CR>")
 -- ativa/desativa indicação de linha
-keymap("n", "zl", ":setlocal cursorline!<CR>", {})
+vks("n", "zl", ":setlocal cursorline!<CR>")
 -- ativa/desativa o corretor ortográfico
-keymap("n", "zs", ":setlocal spell! spelllang=pt<CR>", {})
-keymap("n", "zS", ":setlocal spell! spelllang=en<CR>", {})
+vks("n", "zs", ":setlocal spell! spelllang=pt<CR>")
+vks("n", "zS", ":setlocal spell! spelllang=en<CR>")
 -- procura palavra no cursor
-keymap("n", "?", "*", {})
+vks("n", "?", "*")
 -- procura e substitui no arquivo
-keymap("n", "<A-s>", ":%s//gc<left><left><left>", {})
+vks("n", "<leader>s", ":%s//gc<left><left><left>")
 -- procura e substitui na região selecionada
-keymap("v", "<A-s>", ":s//gc<left><left><left>", {})
+vks("v", "<leader>s", ":s//gc<left><left><left>")
 -- abre netrw em uma split
 local lua_netrw_window = nil
 local lua_netrw_buffer = nil
 function NetrwToggle()
     if vim.fn.win_gotoid(lua_netrw_window) == 1 then
         if vim.fn.win_gotoid(lua_netrw_window) == 1 then
-            vim.api.nvim_command("hide")
+            vim.cmd("hide")
         end
     else
         if vim.fn.bufexists(lua_netrw_buffer) == 0 then
@@ -80,11 +81,12 @@ function NetrwToggle()
         end
     end
 end
-vim.keymap.set("n", "<A-f>", NetrwToggle)
-vim.keymap.set("i", "<A-f>", NetrwToggle)
-vim.keymap.set("t", "<A-f>", NetrwToggle)
+
+vks("n", "<A-f>", NetrwToggle)
+vks("i", "<A-f>", NetrwToggle)
+vks("t", "<A-f>", NetrwToggle)
 -- abre terminal do sistema no local do arquivo atual
-keymap("n", "<leader><return>", ":!sh -c 'cd %:p:h ; term_open' &<CR><CR>", {})
+vks("n", "<leader><return>", ":!sh -c 'cd %:p:h ; term_open' &<CR><CR>")
 -- abre terminal nativo em uma split
 local lua_terminal_window = nil
 local lua_terminal_buffer = nil
@@ -119,18 +121,18 @@ function TerminalToggle()
     end
 end
 
-vim.keymap.set("n", "<M-CR>", TerminalToggle)
-vim.keymap.set("t", "<M-CR>", TerminalToggle)
+vks("n", "<M-CR>", TerminalToggle)
+vks("t", "<M-CR>", TerminalToggle)
 -- cria um macro
-keymap("n", "M", "q", opts)
-keymap("n", "q", "", {})
+vks("n", "M", "q", ns)
+vks("n", "q", "")
 -- executa um macro
-keymap("n", "m", "@", {})
+vks("n", "m", "@")
 -- abre/fecha fold
-keymap("n", "zz", "za", opts)
-keymap("n", "za", "", {})
+vks("n", "zz", "za", ns)
+vks("n", "za", "")
 -- centraliza texto
-keymap("n", "za", "zz", opts)
+vks("n", "za", "zz", ns)
 -- marca/desmarca caixas
 vim.cmd([[
     function Marcar()
@@ -151,54 +153,55 @@ vim.api.nvim_create_autocmd("FileType",
 
 --- Plugins
 -- expande região selecionada - expand region
-keymap("n", "<S-Up>", "<Plug>(expand_region_expand)", {})
-keymap("n", "<S-Down>", "<Plug>(expand_region_shrink)", {})
-keymap("v", "<S-Up>", "<Plug>(expand_region_expand)", {})
-keymap("v", "<S-Down>", "<Plug>(expand_region_shrink)", {})
-keymap("i", "<S-Up>", "<esc><Plug>(expand_region_expand)", {})
-keymap("i", "<S-Down>", "<esc><Plug>(expand_region_shrink)", {})
+vks("n", "<S-Up>", "<Plug>(expand_region_expand)")
+vks("n", "<S-Down>", "<Plug>(expand_region_shrink)")
+vks("v", "<S-Up>", "<Plug>(expand_region_expand)")
+vks("v", "<S-Down>", "<Plug>(expand_region_shrink)")
+vks("i", "<S-Up>", "<esc><Plug>(expand_region_expand)")
+vks("i", "<S-Down>", "<esc><Plug>(expand_region_shrink)")
 -- move linha - move.nvim
-vim.keymap.set('n', "<A-Down>", ':MoveLine(1)<CR>', opts)
-vim.keymap.set('n', "<A-Up>", ':MoveLine(-1)<CR>', opts)
-vim.keymap.set('i', "<A-Up>", '<esc>:MoveLine(-1)<CR>', opts)
-vim.keymap.set('i', "<A-Down>", '<esc>:MoveLine(1)<CR>', opts)
-vim.keymap.set('v', "<A-Down>", ':MoveBlock(1)<CR>', opts)
-vim.keymap.set('v', "<A-Up>", ':MoveBlock(-1)<CR>', opts)
+vks('n', "<A-Down>", ':MoveLine(1)<CR>', ns)
+vks('n', "<A-Up>", ':MoveLine(-1)<CR>', ns)
+vks('i', "<A-Up>", '<esc>:MoveLine(-1)<CR>', ns)
+vks('i', "<A-Down>", '<esc>:MoveLine(1)<CR>', ns)
+vks('v', "<A-Down>", ':MoveBlock(1)<CR>', ns)
+vks('v', "<A-Up>", ':MoveBlock(-1)<CR>', ns)
 -- abre arquivos no repositório atual - telescope
-keymap("n", "<leader>F", ":Telescope find_files<CR>", {})
+vks("n", "<leader>F", ":Telescope find_files<CR>")
 -- procura linhas no buffer - telescope
-keymap("n", "\\", ":Telescope current_buffer_fuzzy_find<CR>", {})
+vks("n", "\\", ":Telescope current_buffer_fuzzy_find<CR>")
 -- pesquisar por comandos - telescope
-keymap("n", "<leader>hc", ":Telescope commands<CR>", {})
+vks("n", "<leader>hc", ":Telescope commands<CR>")
 -- pesquisar por correções - telescope
-keymap("n", "z=", ":Telescope spell_suggest<CR>", {})
+vks("n", "z=", ":Telescope spell_suggest<CR>")
 -- pesquisar por opções - telescope
-keymap("n", "<leader>ho", ":Telescope vim_options<CR>", {})
+vks("n", "<leader>ho", ":Telescope vim_options<CR>")
 -- pesquisar por documentação - telescope
-keymap("n", "<leader>hh", ":Telescope help_tags<CR>", {})
+vks("n", "<leader>hh", ":Telescope help_tags<CR>")
 -- pesquisar por teclas - telescope
-keymap("n", "<leader>hk", ":Telescope keymaps<CR>", {})
+vks("n", "<leader>hk", ":Telescope keymaps<CR>")
 -- pesquisar por highlights - telescope
-keymap("n", "<leader>hH", ":Telescope highlights<CR>", {})
+vks("n", "<leader>hH", ":Telescope highlights<CR>")
 -- pesquisar por manpages - telescope
-keymap("n", "<leader>hm", ":Telescope man_pages<CR>", {})
+vks("n", "<leader>hm", ":Telescope man_pages<CR>")
 -- abre arquivos abertos recentemente - telescope
-keymap("n", "<leader><leader>", ":Telescope oldfiles<CR>", {})
+vks("n", "<leader><leader>", ":Telescope oldfiles<CR>")
 -- navegar por headings - telescope-heading
-keymap("n", "<leader>v", ":Telescope heading<CR>", {})
+vks("n", "<leader>v", ":Telescope heading<CR>")
 -- procura e edita ocorrencias de uma palavra - greplace
-keymap("n", "<leader>r", ":Gsearch  ./<left><left><left>", {})
+vks("n", "<leader>r", ":Gsearch  ./<left><left><left>")
 -- confirma todas as modificações - greplace
-keymap("n", "<leader>R", ":Greplace<CR>", {})
+vks("n", "<leader>R", ":Greplace<CR>")
 -- ativa previsão de cores - nvimcolorizer
-keymap("n", "zc", ":ColorizerToggle<CR>", {})
+vks("n", "zc", ":ColorizerToggle<CR>")
 -- escolher cor
-keymap("n", "<leader>c", "<cmd>PickColor<cr>", opts)
+vks("n", "<leader>C", "<cmd>PickColor<cr>", ns)
 -- abrir e fechar arvore de undos - undotree
-vim.keymap.set('n', 'zu', require('undotree').toggle, { noremap = true, silent = true })
+vks('n', 'zu', require('undotree').toggle, ns)
 -- ativa foco - zen
-keymap("n", "zf", ":ZenMode<CR>", {})
+vks("n", "zf", ":ZenMode<CR>")
 -- luasnip
+vks("n", "es", ":e ~/.config/nvim/Ultisnips/")
 vim.cmd([[
     " press <Tab> to expand or jump in a snippet. These can also be mapped separately
     " via <Plug>luasnip-expand-snippet and <Plug>luasnip-jump-next.
@@ -208,13 +211,7 @@ vim.cmd([[
 
     snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
     snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
-
-    " For changing choices in choiceNodes (not strictly necessary for a basic setup).
-    imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
-    smap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
 ]])
--- editar snippets
-keymap("n", "<leader>es", ":e ~/.config/nvim/Ultisnips/", {})
 
 --- LSP
 -- Ativa essas teclas quando o lsp esta ativo
@@ -225,30 +222,31 @@ On_attach = function(_, bufnr)
 
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-    opts = { buffer = bufnr, noremap = true, silent = true }
-    vim.keymap.set("n", "K", require("hover").hover, {desc = "hover.nvim"})
-    vim.keymap.set("n", "gK", require("hover").hover_select, {desc = "hover.nvim (select)"})
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-    vim.keymap.set('n', 'gd', function() require'telescope.builtin'.lsp_definitions{} end, opts)
-    vim.keymap.set('n', 'gi', function() require'telescope.builtin'.lsp_implementations{} end, opts)
-    vim.keymap.set('n', 'gr', function() require'telescope.builtin'.lsp_references{} end, opts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-    vim.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, opts)
-    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-    vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-    vim.keymap.set('n', '<leader>D', function() require'telescope.builtin'.diagnostics{} end, opts)
-    vim.keymap.set('n', '<leader>I', function() vim.lsp.buf.format { async = true } end, opts)
-    vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, opts)
+    local bns = { buffer = bufnr, noremap = true, silent = true }
+    vks("n", "K", require("hover").hover, { desc = "hover.nvim" })
+    vks("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
+    vks('n', 'gD', vim.lsp.buf.declaration, bns)
+    vks('n', 'gd', function() require 'telescope.builtin'.lsp_definitions {} end, bns)
+    vks('n', 'gi', function() require 'telescope.builtin'.lsp_implementations {} end, bns)
+    vks('n', 'gr', function() require 'telescope.builtin'.lsp_references {} end, bns)
+    vks('n', '<C-k>', vim.lsp.buf.signature_help, bns)
+    vks('i', '<C-k>', vim.lsp.buf.signature_help, bns)
+    vks('n', '[d', vim.diagnostic.goto_prev, bns)
+    vks('n', ']d', vim.diagnostic.goto_next, bns)
+    vks('n', '<leader>D', function() require 'telescope.builtin'.diagnostics {} end, bns)
+    vks('n', '<leader>I', function() vim.lsp.buf.format { async = true } end, bns)
+    vks('n', '<leader>r', vim.lsp.buf.rename, bns)
 end
 
 --- DAP
-keymap("n", "<F4>", ":lua require'dapui'.toggle()<CR>", opts)
-keymap("n", "<F5>", ":lua require'dap'.continue()<CR>", opts)
-keymap("n", "<F10>", ":lua require'dap'.step_over()<CR>", opts)
-keymap("n", "<F11>", ":lua require'dap'.step_into()<CR>", opts)
-keymap("n", "<F12>", ":lua require'dap'.step_out()<CR>", opts)
-keymap("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<CR>", opts)
-keymap("n", "<leader>dB", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", opts)
-keymap("n", "<leader>dp", ":lua require'dap'.require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", opts)
-keymap("n", "<leader>dr", ":lua require'dap'.repl.open()<CR>", opts)
-keymap("n", "<leader>dl", ":lua require'dap'.run_last()<CR>", opts)
+vks("n", "<F4>", ":lua require'dapui'.toggle()<CR>", ns)
+vks("n", "<F5>", ":lua require'dap'.continue()<CR>", ns)
+vks("n", "<F10>", ":lua require'dap'.step_over()<CR>", ns)
+vks("n", "<F11>", ":lua require'dap'.step_into()<CR>", ns)
+vks("n", "<F12>", ":lua require'dap'.step_out()<CR>", ns)
+vks("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<CR>", ns)
+vks("n", "<leader>dB", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", ns)
+vks("n", "<leader>dp",
+    ":lua require'dap'.require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", ns)
+vks("n", "<leader>dr", ":lua require'dap'.repl.open()<CR>", ns)
+vks("n", "<leader>dl", ":lua require'dap'.run_last()<CR>", ns)
