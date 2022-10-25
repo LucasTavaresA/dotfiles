@@ -59,12 +59,12 @@ vks("n", "<leader>s", ":%s//gc<left><left><left>")
 vks("v", "<leader>s", ":s//gc<left><left><left>")
 -- compilar codigo e lembrar commando
 function Compile()
-    vim.ui.input({ prompt = 'Compile with> ', default = Compile_cmd }, function(input)
-        Compile_cmd = input
-        if Compile_cmd ~= nil then
-            vim.cmd(":! " .. Compile_cmd)
-        end
-    end)
+  vim.ui.input({ prompt = 'Compile with> ', default = Compile_cmd }, function(input)
+    Compile_cmd = input
+    if Compile_cmd ~= nil then
+      vim.cmd(":! " .. Compile_cmd)
+    end
+  end)
 end
 
 vks("n", "<leader>c", Compile)
@@ -72,25 +72,25 @@ vks("n", "<leader>c", Compile)
 local lua_netrw_window = nil
 local lua_netrw_buffer = nil
 function NetrwToggle()
+  if vim.fn.win_gotoid(lua_netrw_window) == 1 then
     if vim.fn.win_gotoid(lua_netrw_window) == 1 then
-        if vim.fn.win_gotoid(lua_netrw_window) == 1 then
-            vim.cmd("hide")
-        end
-    else
-        if vim.fn.bufexists(lua_netrw_buffer) == 0 then
-            vim.api.nvim_command("Lexplore")
-            vim.api.nvim_command("silent file Netrw 1")
-            lua_netrw_window = vim.fn.win_getid()
-            lua_netrw_buffer = vim.fn.bufnr('%')
-            vim.opt.buflisted = false
-        else
-            if vim.fn.win_gotoid(lua_netrw_window) == 0 then
-                vim.api.nvim_command("Lexplore")
-                vim.api.nvim_command("buffer Netrw 1")
-                lua_netrw_window = vim.fn.win_getid()
-            end
-        end
+      vim.cmd("hide")
     end
+  else
+    if vim.fn.bufexists(lua_netrw_buffer) == 0 then
+      vim.api.nvim_command("Lexplore")
+      vim.api.nvim_command("silent file Netrw 1")
+      lua_netrw_window = vim.fn.win_getid()
+      lua_netrw_buffer = vim.fn.bufnr('%')
+      vim.opt.buflisted = false
+    else
+      if vim.fn.win_gotoid(lua_netrw_window) == 0 then
+        vim.api.nvim_command("Lexplore")
+        vim.api.nvim_command("buffer Netrw 1")
+        lua_netrw_window = vim.fn.win_getid()
+      end
+    end
+  end
 end
 
 vks("n", "<A-f>", NetrwToggle)
@@ -103,33 +103,33 @@ local lua_terminal_window = nil
 local lua_terminal_buffer = nil
 local terminal_split_size = tonumber(vim.api.nvim_exec("echo &lines", true)) / 2.5
 function TerminalToggle()
+  if vim.fn.win_gotoid(lua_terminal_window) == 1 then
     if vim.fn.win_gotoid(lua_terminal_window) == 1 then
-        if vim.fn.win_gotoid(lua_terminal_window) == 1 then
-            vim.api.nvim_command("hide")
-        end
-    else
-        if vim.fn.bufexists(lua_terminal_buffer) == 0 then
-            vim.api.nvim_command("new lua_terminal")
-            vim.api.nvim_command("wincmd J")
-            vim.api.nvim_command("resize " .. terminal_split_size)
-            vim.fn.termopen(os.getenv("SHELL"), {
-                detach = 1
-            })
-            vim.api.nvim_command("silent file Terminal 1")
-            lua_terminal_window = vim.fn.win_getid()
-            lua_terminal_buffer = vim.fn.bufnr('%')
-            vim.opt.buflisted = false
-        else
-            if vim.fn.win_gotoid(lua_terminal_window) == 0 then
-                vim.api.nvim_command("sp")
-                vim.api.nvim_command("wincmd J")
-                vim.api.nvim_command("resize " .. terminal_split_size)
-                vim.api.nvim_command("buffer Terminal 1")
-                lua_terminal_window = vim.fn.win_getid()
-            end
-        end
-        vim.cmd("startinsert")
+      vim.api.nvim_command("hide")
     end
+  else
+    if vim.fn.bufexists(lua_terminal_buffer) == 0 then
+      vim.api.nvim_command("new lua_terminal")
+      vim.api.nvim_command("wincmd J")
+      vim.api.nvim_command("resize " .. terminal_split_size)
+      vim.fn.termopen(os.getenv("SHELL"), {
+        detach = 1
+      })
+      vim.api.nvim_command("silent file Terminal 1")
+      lua_terminal_window = vim.fn.win_getid()
+      lua_terminal_buffer = vim.fn.bufnr('%')
+      vim.opt.buflisted = false
+    else
+      if vim.fn.win_gotoid(lua_terminal_window) == 0 then
+        vim.api.nvim_command("sp")
+        vim.api.nvim_command("wincmd J")
+        vim.api.nvim_command("resize " .. terminal_split_size)
+        vim.api.nvim_command("buffer Terminal 1")
+        lua_terminal_window = vim.fn.win_getid()
+      end
+    end
+    vim.cmd("startinsert")
+  end
 end
 
 vks("n", "<M-CR>", TerminalToggle)
@@ -158,9 +158,9 @@ vim.cmd([[
     endfunction
 ]])
 vim.api.nvim_create_autocmd("FileType",
-    { pattern = { "markdown" }, command = "nnoremap <silent> zx :call Marcar()<CR>j", })
+  { pattern = { "markdown" }, command = "nnoremap <silent> zx :call Marcar()<CR>j", })
 vim.api.nvim_create_autocmd("FileType",
-    { pattern = { "org" }, command = "nnoremap <silent> zx :call Marcar()<CR>j", })
+  { pattern = { "org" }, command = "nnoremap <silent> zx :call Marcar()<CR>j", })
 
 --- Plugins
 -- expande região selecionada - expand region
@@ -227,26 +227,26 @@ vim.cmd([[
 --- LSP
 -- Ativa essas teclas quando o lsp esta ativo
 On_attach = function(_, bufnr)
-    local function buf_set_option(...)
-        vim.api.nvim_buf_set_option(bufnr, ...)
-    end
+  local function buf_set_option(...)
+    vim.api.nvim_buf_set_option(bufnr, ...)
+  end
 
-    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-    local bns = { buffer = bufnr, noremap = true, silent = true }
-    vks("n", "K", require("hover").hover, { desc = "hover.nvim" })
-    vks("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
-    vks('n', 'gD', vim.lsp.buf.declaration, bns)
-    vks('n', 'gd', function() require 'telescope.builtin'.lsp_definitions {} end, bns)
-    vks('n', 'gi', function() require 'telescope.builtin'.lsp_implementations {} end, bns)
-    vks('n', 'gr', function() require 'telescope.builtin'.lsp_references {} end, bns)
-    vks('n', '<C-k>', vim.lsp.buf.signature_help, bns)
-    vks('i', '<C-k>', vim.lsp.buf.signature_help, bns)
-    vks('n', '[d', vim.diagnostic.goto_prev, bns)
-    vks('n', ']d', vim.diagnostic.goto_next, bns)
-    vks('n', '<leader>D', function() require 'telescope.builtin'.diagnostics {} end, bns)
-    vks('n', '<leader>I', function() vim.lsp.buf.format { async = true } end, bns)
-    vks('n', '<leader>r', vim.lsp.buf.rename, bns)
+  local bns = { buffer = bufnr, noremap = true, silent = true }
+  vks("n", "K", require("hover").hover, { desc = "hover.nvim" })
+  vks("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
+  vks('n', 'gD', vim.lsp.buf.declaration, bns)
+  vks('n', 'gd', function() require 'telescope.builtin'.lsp_definitions {} end, bns)
+  vks('n', 'gi', function() require 'telescope.builtin'.lsp_implementations {} end, bns)
+  vks('n', 'gr', function() require 'telescope.builtin'.lsp_references {} end, bns)
+  vks('n', '<C-k>', vim.lsp.buf.signature_help, bns)
+  vks('i', '<C-k>', vim.lsp.buf.signature_help, bns)
+  vks('n', '[d', vim.diagnostic.goto_prev, bns)
+  vks('n', ']d', vim.diagnostic.goto_next, bns)
+  vks('n', '<leader>D', function() require 'telescope.builtin'.diagnostics {} end, bns)
+  vks('n', '<leader>I', function() vim.lsp.buf.format { async = true } end, bns)
+  vks('n', '<leader>r', vim.lsp.buf.rename, bns)
 end
 
 --- DAP
@@ -258,6 +258,6 @@ vks("n", "<F12>", ":lua require'dap'.step_out()<CR>", ns)
 vks("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<CR>", ns)
 vks("n", "<leader>dB", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", ns)
 vks("n", "<leader>dp",
-    ":lua require'dap'.require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", ns)
+  ":lua require'dap'.require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", ns)
 vks("n", "<leader>dr", ":lua require'dap'.repl.open()<CR>", ns)
 vks("n", "<leader>dl", ":lua require'dap'.run_last()<CR>", ns)

@@ -41,29 +41,29 @@ vo.incsearch = false
 vo.wrap = false
 -- desativa comentar automaticamente a próxima linha
 vanca("FileType", { pattern = { "*" },
-    command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o", })
+  command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o", })
 -- Ativa checagem ortografica em arquivos
 vanca("FileType", { pattern = { "org" }, command = "setlocal spell spelllang=pt", })
 vanca("FileType", { pattern = { "markdown" }, command = "setlocal spell spelllang=pt", })
 vanca("FileType", { pattern = { "gitcommit" }, command = "setlocal spell spelllang=pt", })
 --- Writegood mode
 vanca("FileType", { pattern = { "org" },
-    command = "call timer_start(100, { tid -> execute('WritegoodEnable')})", })
+  command = "call timer_start(100, { tid -> execute('WritegoodEnable')})", })
 vanca("FileType", { pattern = { "markdown" },
-    command = "call timer_start(100, { tid -> execute('WritegoodEnable')})", })
+  command = "call timer_start(100, { tid -> execute('WritegoodEnable')})", })
 --- Greplace
 -- usa o git grep
 vo.grepprg = 'git grep -nIi'
 if vim.fn.getcwd() == os.getenv('HOME') then
-    vim.env.GIT_DIR = vim.fn.expand("~/.dotfiles")
-    vim.env.GIT_WORK_TREE = vim.fn.expand("~")
+  vim.env.GIT_DIR = vim.fn.expand("~/.dotfiles")
+  vim.env.GIT_WORK_TREE = vim.fn.expand("~")
 end
 --- zen-mode
 -- ativa zen em arquivos especificos
 vanca("FileType", { pattern = { "org" },
-    command = "call timer_start(100, { tid -> execute('ZenMode')})", })
+  command = "call timer_start(100, { tid -> execute('ZenMode')})", })
 vanca("FileType", { pattern = { "markdown" },
-    command = "call timer_start(100, { tid -> execute('ZenMode')})", })
+  command = "call timer_start(100, { tid -> execute('ZenMode')})", })
 
 --- Netrw
 -- define o modo de listagem de arquivos
@@ -80,6 +80,8 @@ vo.tabstop = 4
 vo.shiftwidth = 4
 -- troca tabs por espaços
 vo.expandtab = true
+-- tabs em arquivos lua
+vanca("FileType", { pattern = { "lua" }, command = "setlocal tabstop=2 shiftwidth=2", })
 
 --- Aparência
 -- indicação de sintaxe
@@ -93,13 +95,13 @@ vanca("TermOpen", { pattern = { "*" }, command = "setlocal nonumber norelativenu
 -- indicação de espaços e tabs
 vo.list = true
 vo.listchars = {
-    tab = '> ',
-    extends = '⟩',
-    precedes = '⟨',
-    trail = '~',
-    multispace = '··',
-    leadmultispace = '│···',
-    conceal = '*',
+  tab = '> ',
+  extends = '⟩',
+  precedes = '⟨',
+  trail = '~',
+  multispace = '··',
+  leadmultispace = '│···',
+  conceal = '*',
 }
 -- folding
 vg.sh_fold_enabled = 1
@@ -135,10 +137,10 @@ vansh(0, 'CursorLine', { bg = "#333333" })
 vansh(0, 'Visual', { bg = "#0055ff" })
 -- indica parentese correspondente
 vansh(0, 'MatchParen', {
-    cterm =  nil,
-    bold = true,
-    fg = "#ff0000",
-    bg = nil,
+  cterm = nil,
+  bold = true,
+  fg = "#ff0000",
+  bg = nil,
 })
 vansh(0, 'NormalFloat', { bg = '#000000' })
 -- signcolumn transparente
@@ -148,95 +150,95 @@ require('statusline')
 vansh(0, 'VertSplit', { fg = "#ffffff", bg = nil, ctermbg = nil })
 -- Remove fundo cinza e melhores cores - gitsigns
 vansh(0, 'GitSignsDelete', {
-    bg = nil,
-    ctermbg = nil,
-    fg = "#ff0000",
-    ctermfg = 'Red',
+  bg = nil,
+  ctermbg = nil,
+  fg = "#ff0000",
+  ctermfg = 'Red',
 })
 vansh(0, 'GitSignsChange', {
-    bg = nil,
-    ctermbg = nil,
-    fg = "#ffff00",
-    ctermfg = 'yellow',
+  bg = nil,
+  ctermbg = nil,
+  fg = "#ffff00",
+  ctermfg = 'yellow',
 })
 vansh(0, 'GitSignsAdd', {
-    bg = nil,
-    ctermbg = nil,
-    fg = "#008800",
-    ctermfg = 'green',
+  bg = nil,
+  ctermbg = nil,
+  fg = "#008800",
+  ctermfg = 'green',
 })
 
 --- nvim-cmp
 local cmp = require 'cmp'
 cmp.setup({
-    snippet = {
-        expand = function(args)
-            require('luasnip').lsp_expand(args.body)
-        end,
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
+  },
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<CR>'] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
     },
-    window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
-    },
-    mapping = cmp.mapping.preset.insert({
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<CR>'] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
-        },
-        ['<Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            else
-                fallback()
-            end
-        end, { 'i', 's' }),
-        ['<S-Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            else
-                fallback()
-            end
-        end, { 'i', 's' }),
-    }),
-    sources = cmp.config.sources({
-        { name = 'nvim_lsp'   },
-        { name = 'nvim_lsp_signature_help'},
-        { name = 'nvim_lua'   },
-        { name = 'path'       },
-        { name = 'buffer'     },
-        { name = 'spell'      },
-        { name = 'luasnip' },
-    }, {
-            { name = 'buffer' },
-        })
+    ['<Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+  }),
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'nvim_lsp_signature_help' },
+    { name = 'nvim_lua' },
+    { name = 'path' },
+    { name = 'buffer' },
+    { name = 'spell' },
+    { name = 'luasnip' },
+  }, {
+    { name = 'buffer' },
+  })
 })
 
 -- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {
-    sources = cmp.config.sources({
-        { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
-    }, {
-            { name = 'buffer' },
-        })
+  sources = cmp.config.sources({
+    { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+  }, {
+    { name = 'buffer' },
+  })
 })
 
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline({ '/', '?' }, {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-        { name = 'buffer' }
-    }
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'buffer' }
+  }
 })
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-        { name = 'path' }
-    }, {
-            { name = 'cmdline' }
-        })
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  })
 })
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -244,65 +246,65 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 --- LSP
 -- diagnostico
 vim.diagnostic.config({
-    virtual_text = false,
-    signs = false,
-    underline = true,
-    update_in_insert = false,
-    severity_sort = false,
+  virtual_text = false,
+  signs = false,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = false,
 })
 
 -- instale o clang e o ccls
 require 'lspconfig'.ccls.setup {
-    on_attach = On_attach,
-    capabilities = capabilities,
-    init_options = {
-        compilationDatabaseDirectory = "build";
-        index = {
-            threads = 0;
-        };
-        clang = {
-            excludeArgs = { "-frounding-math" };
-        };
-    }
+  on_attach = On_attach,
+  capabilities = capabilities,
+  init_options = {
+    compilationDatabaseDirectory = "build";
+    index = {
+      threads = 0;
+    };
+    clang = {
+      excludeArgs = { "-frounding-math" };
+    };
+  }
 }
 
 -- necessario `npm i -g vscode-langservers-extracted`
 require 'lspconfig'.cssls.setup {
-    on_attach = On_attach,
-    capabilities = capabilities,
+  on_attach = On_attach,
+  capabilities = capabilities,
 }
 require 'lspconfig'.html.setup {
-    capabilities = capabilities,
+  capabilities = capabilities,
 }
 
 -- instale o omnisharp
 require 'lspconfig'.omnisharp.setup {
-    cmd = { 'dotnet', '/usr/lib/omnisharp-roslyn/OmniSharp.dll' },
-    on_attach = On_attach,
-    capabilities = capabilities,
+  cmd = { 'dotnet', '/usr/lib/omnisharp-roslyn/OmniSharp.dll' },
+  on_attach = On_attach,
+  capabilities = capabilities,
 }
 
 -- instale o lua-language-server
 require 'lspconfig'.sumneko_lua.setup {
-    on_attach = On_attach,
-    settings = {
-        Lua = {
-            runtime = {
-                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                version = 'LuaJIT',
-            },
-            diagnostics = {
-                -- Get the language server to recognize the `vim` global
-                globals = { 'vim' },
-            },
-            workspace = {
-                -- Make the server aware of Neovim runtime files
-                library = vim.api.nvim_get_runtime_file("", true),
-            },
-            telemetry = {
-                enable = false,
-            },
-        },
+  on_attach = On_attach,
+  settings = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = { 'vim' },
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      telemetry = {
+        enable = false,
+      },
     },
-    capabilities = capabilities,
+  },
+  capabilities = capabilities,
 }
