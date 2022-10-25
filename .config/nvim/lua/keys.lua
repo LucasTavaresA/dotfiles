@@ -57,6 +57,17 @@ vks("n", "?", "*")
 vks("n", "<leader>s", ":%s//gc<left><left><left>")
 -- procura e substitui na região selecionada
 vks("v", "<leader>s", ":s//gc<left><left><left>")
+-- compilar codigo e lembrar commando
+function Compile()
+    vim.ui.input({ prompt = 'Compile with> ', default = Compile_cmd }, function(input)
+        Compile_cmd = input
+        if Compile_cmd ~= nil then
+            vim.cmd(":! " .. Compile_cmd)
+        end
+    end)
+end
+
+vks("n", "<leader>c", Compile)
 -- abre netrw em uma split
 local lua_netrw_window = nil
 local lua_netrw_buffer = nil
