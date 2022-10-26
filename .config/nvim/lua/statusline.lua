@@ -31,17 +31,19 @@ local vi_mode_colors = {
   NONE = theme.cyan
 }
 
-local vi_mode_utils = require('feline.providers.vi_mode')
+local vi_mode_utils = require('feline.providers.vi_mode');
 
 -- My components
 local comps = {
+  separator = { provider = ' ' },
   vi_mode = {
     left = {
       provider = function()
-        local label = ' ' .. vi_mode_utils.get_vim_mode() .. ' '
+        local label = '  ' .. vi_mode_utils.get_vim_mode() .. ' 🭅'
         return label
       end,
-      hl = function()
+      hl =
+      function()
         local set_color = {
           name = vi_mode_utils.get_mode_highlight_name(),
           fg = theme.bg,
@@ -50,44 +52,17 @@ local comps = {
         }
         return set_color
       end,
-      left_sep = ' ',
-      right_sep = ' ',
     }
   },
-  search_count = {
-    provider = function()
-      if vim.v.hlsearch == 0 then
-        return ''
-      end
-
-      local result = vim.fn.searchcount { maxcount = 999, timeout = 250 }
-      local denominator = math.min(result.total, result.maxcount)
-      return string.format('[%d/%d]', result.current, denominator)
-    end,
-    hl = {
-      fg = theme.yellow,
-      bg = theme.bg,
-      style = 'bold'
-    },
-    left_sep = ' ',
-    right_sep = ' ',
-  },
   macro = {
-    provider = function()
-      local recording_register = vim.fn.reg_recording()
-      if recording_register == "" then
-        return ""
-      else
-        return "Recording @" .. recording_register
-      end
-    end,
-    hl = {
-      fg = theme.red,
-      bg = theme.bg,
-      style = 'bold'
-    },
+    provider = { name = 'macro' },
+    hl = { bold = true, fg = theme.red },
     left_sep = ' ',
-    right_sep = ' ',
+  },
+  search_count = {
+    provider = { name = 'search_count' },
+    hl = { fg = theme.lightgreen },
+    left_sep = ' ',
   },
   file = {
     info = {
@@ -95,75 +70,57 @@ local comps = {
         name = 'file_info',
         opts = {
           type = 'relative',
-          file_modified_icon = '!'
+          file_modified_icon = ''
         }
       },
       hl = { fg = theme.lightgreen },
       icon = '',
-      left_sep = ' ',
-      right_sep = ' ',
     },
   },
-  -- LSP info
   diagnos = {
     err = {
       provider = 'diagnostic_errors',
       icon = '⚠ ',
       hl = { fg = theme.red },
-      left_sep = ' ',
-      right_sep = ' ',
     },
     warn = {
       provider = 'diagnostic_warnings',
       icon = ' ',
       hl = { fg = theme.yellow },
-      left_sep = ' ',
-      right_sep = ' ',
     },
     info = {
       provider = 'diagnostic_info',
       icon = ' ',
       hl = { fg = theme.lightblue },
-      left_sep = ' ',
-      right_sep = ' ',
     },
     hint = {
       provider = 'diagnostic_hints',
       icon = ' ',
       hl = { fg = theme.cyan },
-      left_sep = ' ',
-      right_sep = ' ',
     },
   },
-  -- git info
   git = {
     branch = {
       provider = 'git_branch',
       icon = ' ',
-      hl = { fg = theme.pink },
-      left_sep = ' ',
-      right_sep = ' ',
+      hl = { fg = theme.bg, bg = theme.pink, style = 'bold' },
+      left_sep = '🭅',
+      right_sep = '🭡',
     },
     add = {
       provider = 'git_diff_added',
-      icon = '+ ',
-      hl = { fg = theme.green },
-      left_sep = ' ',
-      right_sep = ' ',
+      icon = '+',
+      hl = { fg = theme.green, style = 'bold' },
     },
     change = {
       provider = 'git_diff_changed',
-      icon = '! ',
-      hl = { fg = theme.yellow },
-      left_sep = ' ',
-      right_sep = ' ',
+      icon = '~',
+      hl = { fg = theme.yellow, style = 'bold' },
     },
     remove = {
       provider = 'git_diff_removed',
-      icon = '- ',
-      hl = { fg = theme.red },
-      left_sep = ' ',
-      right_sep = ' ',
+      icon = '-',
+      hl = { fg = theme.red, style = 'bold' },
     }
   }
 }
@@ -187,17 +144,25 @@ table.insert(components.active[1], comps.macro)
 
 -- Center
 table.insert(components.active[2], comps.diagnos.err)
+table.insert(components.active[2], comps.separator)
 table.insert(components.active[2], comps.diagnos.warn)
+table.insert(components.active[2], comps.separator)
 table.insert(components.active[2], comps.diagnos.hint)
+table.insert(components.active[2], comps.separator)
 table.insert(components.active[2], comps.diagnos.info)
 
 -- Left Section
 table.insert(components.active[3], comps.git.add)
+table.insert(components.active[3], comps.separator)
 table.insert(components.active[3], comps.git.change)
+table.insert(components.active[3], comps.separator)
 table.insert(components.active[3], comps.git.remove)
+table.insert(components.active[3], comps.separator)
 table.insert(components.active[3], comps.git.branch)
+table.insert(components.active[3], comps.separator)
 table.insert(components.active[3], comps.file.info)
 table.insert(components.inactive[3], comps.file.info)
+table.insert(components.active[3], comps.separator)
 
 require('feline').setup {
   default_bg = theme.bg,
