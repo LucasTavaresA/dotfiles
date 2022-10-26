@@ -116,6 +116,25 @@ if status is-interactive
         cd $cdir
     end
 
+    # git stash list
+    # usa o fzf para selecionar uma stash e uma ação
+    function gsl
+        set snum (git stash list | fzf | sed 's/^.*{//;s/}.*$//')
+        test -z $snum && return
+        set action (printf "pop\napply\ndrop\nshow\nbranch\nclear" | fzf)
+        test -z $action && return
+
+        test $action = clear && git stash $action && return
+
+        if test $action = branch;
+            read -l -P "Branch name: " name
+            test -z $name && return
+            git stash branch $name $stash && return
+        end
+
+        git stash $action $snum
+    end
+
     # Facilita extrair arquivos
     # exemplo: ex <arquivo>.zip
     function ex
@@ -156,10 +175,13 @@ if status is-interactive
 
     ## Abbr ##
     abbr -a -g cd z
+    abbr -a -g cat bat
     abbr -a -g att sgrade
     abbr -a -g cs criar_script sh script.sh
     abbr -a -g pk pkill -i
     abbr -a -g pg pgrep -ia
+    abbr -a -g uma doas usermod -aG
+    abbr -a -g umr doas usermod -rG
     abbr -a -g df df -hT --total -x tmpfs -x devtmpfs
     abbr -a -g tep trans -s en -l pt
     abbr -a -g tpe trans -s pt -l en
@@ -168,6 +190,8 @@ if status is-interactive
     abbr -a -g as "abbr | grep --color -i"
     abbr -a -g ff flashfetch
     abbr -a -g v nvim
+    abbr -a -g vu "nvim --headless -u NONE -c 'lua require(\"bootstrap\")' -c 'autocmd User PackerComplete quitall' -c 'PackerSync'"
+    abbr -a -g vc nvim --clean
     abbr -a -g vv term_open -a nvim nvim
     abbr -a -g h htop
     abbr -a -g ed emacs --daemon
@@ -229,12 +253,12 @@ if status is-interactive
     abbr -a -g grv git remote -v
     abbr -a -g grsu git remote set-url origin
     abbr -a -g gba git branch -a
-    abbr -a -g gbad git branch -ad
+    abbr -a -g gbd git branch -d
     abbr -a -g gwa git worktree add
     abbr -a -g gwr git worktree remove
-    abbr -a -g gss git stash
-    abbr -a -g gsss git stash --staged
-    abbr -a -g gsp git stash pop
+    abbr -a -g gss git stash push -m
+    abbr -a -g gssp git stash push --patch -m
+    abbr -a -g gsss git stash push -S -m
     abbr -a -g gri git rebase -i
     abbr -a -g grc git rebase --continue
     abbr -a -g grs git rebase --skip
@@ -286,6 +310,7 @@ if status is-interactive
         abbr -a -g sys doas sv
     else if test "$OS" = "linuxmint";
         abbr -a -g bat batcat
+        abbr -a -g cat batcat
         # apt
         abbr -a -g ai doas apt install
         abbr -a -g as apt show

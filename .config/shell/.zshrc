@@ -120,6 +120,25 @@ gpr () {
     cd $cdir
 }
 
+# git stash list
+# usa o fzf para selecionar uma stash e uma ação
+gsl () {
+    snum="$(git stash list | fzf | sed 's/^.*{//;s/}.*$//')"
+    [ -z $snum ] && return
+    action="$(printf "pop\napply\ndrop\nshow\nbranch\nclear" | fzf)"
+    [ -z $action ] && return
+
+    [ "$action" = "clear" ] && git stash $action && return
+
+    if [ $action = "branch" ]; then
+        read "name?Branch name: "
+        [ -z $name ] && return
+        git stash branch $name $stash && return
+    fi
+
+    git stash $action $snum
+}
+
 # facilita extrair arquivos
 # exemplo: ex (arquivo).zip
 ex () {
@@ -163,10 +182,13 @@ criar_script () {
 
 #### Aliases ####
 alias cd="z"
+alias cat="bat"
 alias att="sgrade"
 alias cs="criar_script sh script.sh"
 alias pk="pkill -i"
 alias pg="pgrep -ia"
+alias uma="doas usermod -aG"
+alias umr="doas usermod -rG"
 alias df="df -hT --total -x tmpfs -x devtmpfs"
 alias tep="tpe trans -s pt -l en"
 alias tpe="tpe trans -s pt -l en"
@@ -175,6 +197,8 @@ alias hc="herbstclient"
 alias as="alias | grep --color -i"
 alias ff="flashfetch"
 alias v="nvim"
+alias vc="nvim --clean"
+alias vu="nvim --headless -u NONE -c 'lua require(\"bootstrap\")' -c 'autocmd User PackerComplete quitall' -c 'PackerSync'"
 alias vv="term_open -s nvim"
 alias h="htop"
 alias ed="emacs --daemon"
@@ -236,12 +260,12 @@ alias gcob="git checkout -b"
 alias grv="git remote -v"
 alias grsu="git remote set-url origin"
 alias gba="git branch -a"
-alias gbad="git branch -ad"
+alias gbd="git branch -d"
 alias gwa="git worktree add"
 alias gwr="git worktree remove"
-alias gss="git stash"
-alias gsss="git stash --staged"
-alias gsp="git stash pop"
+alias gss="git stash push -m"
+alias gssp="git stash push --patch -m"
+alias gsss="git stash push -S -m"
 alias gri="git rebase -i"
 alias grc="git rebase --continue"
 alias grs="git rebase --skip"
@@ -293,6 +317,7 @@ elif [ "$OS" = "voidlinux" ]; then
     alias sys="doas sv"
 elif [ "$OS" = "linuxmint" ]; then
     alias bat="batcat"
+    alias cat="batcat"
     # apt
     alias ai="doas apt install"
     alias as="apt show"
