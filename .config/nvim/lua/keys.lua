@@ -18,7 +18,9 @@ vks("n", "<leader>I", "gg=G<C-o>")
 -- formatar paragrafo
 vks("n", "<leader>ii", "{=}<C-o>")
 -- formas de alinhar texto
-vks('v', '<leader>a', function() require 'align'.align_to_string(false, true, true) end, ns)
+vks("v", "<leader>a", function()
+  require("align").align_to_string(false, true, true)
+end, ns)
 vks("v", "<leader>A", ":'<,'>!column -t -o ' '<CR>")
 -- abre arquivos no diretório atual
 vks("n", "<leader>ff", ":e %:h")
@@ -59,7 +61,7 @@ vks("n", "<leader>s", ":%s//gc<left><left><left>")
 vks("v", "<leader>s", ":s//gc<left><left><left>")
 -- compilar codigo e lembrar commando
 function Compile()
-  vim.ui.input({ prompt = 'Compile with> ', default = Compile_cmd }, function(input)
+  vim.ui.input({ prompt = "Compile with> ", default = Compile_cmd }, function(input)
     Compile_cmd = input
     if Compile_cmd ~= nil then
       vim.cmd(":! " .. Compile_cmd)
@@ -81,7 +83,7 @@ function NetrwToggle()
       vim.api.nvim_command("Lexplore")
       vim.api.nvim_command("silent file Netrw 1")
       lua_netrw_window = vim.fn.win_getid()
-      lua_netrw_buffer = vim.fn.bufnr('%')
+      lua_netrw_buffer = vim.fn.bufnr("%")
       vim.opt.buflisted = false
     else
       if vim.fn.win_gotoid(lua_netrw_window) == 0 then
@@ -97,8 +99,8 @@ vks("n", "<A-f>", NetrwToggle)
 vks("i", "<A-f>", NetrwToggle)
 vks("t", "<A-f>", NetrwToggle)
 function NetrwKeys()
-	vim.api.nvim_buf_set_keymap(0, "n", "<Left>", "gg<CR>", {})
-	vim.api.nvim_buf_set_keymap(0, "n", "<Right>", "gg<CR>", {})
+  vim.api.nvim_buf_set_keymap(0, "n", "<Left>", "gg<CR>", {})
+  vim.api.nvim_buf_set_keymap(0, "n", "<Right>", "gg<CR>", {})
 end
 vim.api.nvim_create_autocmd("FileType", { pattern = { "netrw" }, command = "lua NetrwKeys()" })
 -- abre terminal do sistema no local do arquivo atual
@@ -118,11 +120,11 @@ function TerminalToggle()
       vim.api.nvim_command("wincmd J")
       vim.api.nvim_command("resize " .. terminal_split_size)
       vim.fn.termopen(os.getenv("SHELL"), {
-        detach = 1
+        detach = 1,
       })
       vim.api.nvim_command("silent file Terminal 1")
       lua_terminal_window = vim.fn.win_getid()
-      lua_terminal_buffer = vim.fn.bufnr('%')
+      lua_terminal_buffer = vim.fn.bufnr("%")
       vim.opt.buflisted = false
     else
       if vim.fn.win_gotoid(lua_terminal_window) == 0 then
@@ -162,10 +164,11 @@ vim.cmd([[
         call winrestview(l:curs)
     endfunction
 ]])
-vim.api.nvim_create_autocmd("FileType",
-  { pattern = { "markdown" }, command = "nnoremap <silent> zx :call Marcar()<CR>j", })
-vim.api.nvim_create_autocmd("FileType",
-  { pattern = { "org" }, command = "nnoremap <silent> zx :call Marcar()<CR>j", })
+vim.api.nvim_create_autocmd(
+  "FileType",
+  { pattern = { "markdown" }, command = "nnoremap <silent> zx :call Marcar()<CR>j" }
+)
+vim.api.nvim_create_autocmd("FileType", { pattern = { "org" }, command = "nnoremap <silent> zx :call Marcar()<CR>j" })
 
 --- Plugins
 -- expande região selecionada - expand region
@@ -176,12 +179,12 @@ vks("v", "<S-Down>", "<Plug>(expand_region_shrink)")
 vks("i", "<S-Up>", "<esc><Plug>(expand_region_expand)")
 vks("i", "<S-Down>", "<esc><Plug>(expand_region_shrink)")
 -- move linha - move.nvim
-vks('n', "<A-Down>", ':MoveLine(1)<CR>', ns)
-vks('n', "<A-Up>", ':MoveLine(-1)<CR>', ns)
-vks('i', "<A-Up>", '<esc>:MoveLine(-1)<CR>', ns)
-vks('i', "<A-Down>", '<esc>:MoveLine(1)<CR>', ns)
-vks('v', "<A-Down>", ':MoveBlock(1)<CR>', ns)
-vks('v', "<A-Up>", ':MoveBlock(-1)<CR>', ns)
+vks("n", "<A-Down>", ":MoveLine(1)<CR>", ns)
+vks("n", "<A-Up>", ":MoveLine(-1)<CR>", ns)
+vks("i", "<A-Up>", "<esc>:MoveLine(-1)<CR>", ns)
+vks("i", "<A-Down>", "<esc>:MoveLine(1)<CR>", ns)
+vks("v", "<A-Down>", ":MoveBlock(1)<CR>", ns)
+vks("v", "<A-Up>", ":MoveBlock(-1)<CR>", ns)
 -- abre arquivos no repositório atual - telescope
 vks("n", "<leader>F", ":Telescope find_files<CR>")
 -- procura linhas no buffer - telescope
@@ -213,7 +216,7 @@ vks("n", "zc", ":ColorizerToggle<CR>")
 -- escolher cor
 vks("n", "<leader>C", "<cmd>PickColor<cr>", ns)
 -- abrir e fechar arvore de undos - undotree
-vks('n', 'zu', require('undotree').toggle, ns)
+vks("n", "zu", require("undotree").toggle, ns)
 -- ativa foco - zen
 vks("n", "zf", ":ZenMode<CR>")
 -- luasnip
@@ -236,22 +239,32 @@ On_attach = function(_, bufnr)
     vim.api.nvim_buf_set_option(bufnr, ...)
   end
 
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+  buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
   local bns = { buffer = bufnr, noremap = true, silent = true }
   vks("n", "K", require("hover").hover, { desc = "hover.nvim" })
   vks("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
-  vks('n', 'gD', vim.lsp.buf.declaration, bns)
-  vks('n', 'gd', function() require 'telescope.builtin'.lsp_definitions {} end, bns)
-  vks('n', 'gi', function() require 'telescope.builtin'.lsp_implementations {} end, bns)
-  vks('n', 'gr', function() require 'telescope.builtin'.lsp_references {} end, bns)
-  vks('n', '<C-k>', vim.lsp.buf.signature_help, bns)
-  vks('i', '<C-k>', vim.lsp.buf.signature_help, bns)
-  vks('n', '[d', vim.diagnostic.goto_prev, bns)
-  vks('n', ']d', vim.diagnostic.goto_next, bns)
-  vks('n', '<leader>D', function() require 'telescope.builtin'.diagnostics {} end, bns)
-  vks('n', '<leader>I', function() vim.lsp.buf.format { async = true } end, bns)
-  vks('n', '<leader>r', vim.lsp.buf.rename, bns)
+  vks("n", "gD", vim.lsp.buf.declaration, bns)
+  vks("n", "gd", function()
+    require("telescope.builtin").lsp_definitions({})
+  end, bns)
+  vks("n", "gi", function()
+    require("telescope.builtin").lsp_implementations({})
+  end, bns)
+  vks("n", "gr", function()
+    require("telescope.builtin").lsp_references({})
+  end, bns)
+  vks("n", "<C-k>", vim.lsp.buf.signature_help, bns)
+  vks("i", "<C-k>", vim.lsp.buf.signature_help, bns)
+  vks("n", "[d", vim.diagnostic.goto_prev, bns)
+  vks("n", "]d", vim.diagnostic.goto_next, bns)
+  vks("n", "<leader>D", function()
+    require("telescope.builtin").diagnostics({})
+  end, bns)
+  vks("n", "<leader>I", function()
+    vim.lsp.buf.format({ async = true })
+  end, bns)
+  vks("n", "<leader>r", vim.lsp.buf.rename, bns)
 end
 
 --- DAP
@@ -262,7 +275,11 @@ vks("n", "<F11>", ":lua require'dap'.step_into()<CR>", ns)
 vks("n", "<F12>", ":lua require'dap'.step_out()<CR>", ns)
 vks("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<CR>", ns)
 vks("n", "<leader>dB", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", ns)
-vks("n", "<leader>dp",
-  ":lua require'dap'.require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", ns)
+vks(
+  "n",
+  "<leader>dp",
+  ":lua require'dap'.require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
+  ns
+)
 vks("n", "<leader>dr", ":lua require'dap'.repl.open()<CR>", ns)
 vks("n", "<leader>dl", ":lua require'dap'.run_last()<CR>", ns)
