@@ -14,7 +14,7 @@ vks("n", "<C-Tab>", ":bn<CR>")
 -- trocar de split
 vks("n", "<A-Tab>", "<C-w>w")
 -- formatar buffer
-vks("n", "<leader>I", "gg=G")
+vks("n", "<leader>I", "gg=G<C-o>")
 -- formatar paragrafo
 vks("n", "<leader>ii", "{=}<C-o>")
 -- formas de alinhar texto
@@ -29,7 +29,7 @@ vks("n", "<leader>ww", ":w<CR>")
 -- sair e salvar
 vks("n", "<leader>wq", ":wq!<CR>")
 -- fecha sem salvar
-vks("n", "<leader>qq", ":q!<CR>")
+vks("n", "<leader>qq", ":qa!<CR>")
 -- salvar e recarregar arquivo
 vks("n", "<leader>wr", ":w<CR>:e<CR>")
 -- deletar buffer
@@ -96,6 +96,11 @@ end
 vks("n", "<A-f>", NetrwToggle)
 vks("i", "<A-f>", NetrwToggle)
 vks("t", "<A-f>", NetrwToggle)
+function NetrwKeys()
+	vim.api.nvim_buf_set_keymap(0, "n", "<Left>", "gg<CR>", {})
+	vim.api.nvim_buf_set_keymap(0, "n", "<Right>", "gg<CR>", {})
+end
+vim.api.nvim_create_autocmd("FileType", { pattern = { "netrw" }, command = "lua NetrwKeys()" })
 -- abre terminal do sistema no local do arquivo atual
 vks("n", "<leader><return>", ":!sh -c 'cd %:p:h ; term_open' &<CR><CR>")
 -- abre terminal nativo em uma split
