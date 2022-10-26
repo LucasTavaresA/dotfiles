@@ -131,6 +131,8 @@ vo.cmdheight = 0
 vansh(0, 'Normal', { bg = nil, ctermbg = nil })
 vansh(0, 'EndOfBuffer', { bg = nil, ctermbg = nil })
 vansh(0, 'FloatBorder', { bg = nil, ctermbg = nil })
+-- cor das palavras procuradas
+vansh(0, 'Search', { fg = "#ffff00", bg = nil, undercurl = true, bold = true })
 -- cor da linha atual
 vansh(0, 'CursorLine', { bg = "#333333" })
 -- cor da area selecionada
