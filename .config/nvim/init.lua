@@ -41,10 +41,9 @@ vo.incsearch = false
 vo.wrap = false
 -- desativa comentar automaticamente a próxima linha
 vanca("FileType", { pattern = { "*" }, command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" })
--- Ativa checagem ortografica em arquivos
-vanca("FileType", { pattern = { "org" }, command = "setlocal spell spelllang=pt" })
-vanca("FileType", { pattern = { "markdown" }, command = "setlocal spell spelllang=pt" })
-vanca("FileType", { pattern = { "gitcommit" }, command = "setlocal spell spelllang=pt" })
+-- Ativa checagem ortográfica
+vo.spell = true
+vo.spelllang = { "pt", "en" }
 --- Writegood mode
 vanca("FileType", { pattern = { "org" }, command = "call timer_start(100, { tid -> execute('WritegoodEnable')})" })
 vanca("FileType", {
