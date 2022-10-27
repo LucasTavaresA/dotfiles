@@ -134,6 +134,8 @@ vo.cmdheight = 0
 vansh(0, "Normal", { bg = nil, ctermbg = nil })
 vansh(0, "EndOfBuffer", { bg = nil, ctermbg = nil })
 vansh(0, "FloatBorder", { bg = nil, ctermbg = nil })
+-- cores nvim-treesitter-context
+vansh(0, "TreesitterContext", { bg = "#003050" })
 -- cor das palavras procuradas
 vansh(0, "Search", { fg = "#ffff00", bg = nil, undercurl = true, bold = true })
 -- cor da linha atual
