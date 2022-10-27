@@ -50,6 +50,7 @@ return require("packer").startup(function(use)
       require("telescope").setup({
         defaults = {
           theme = "dropdown",
+          border = false,
           preview = false,
         },
         pickers = {
@@ -249,7 +250,7 @@ return require("packer").startup(function(use)
           require("lsp_signature").setup({
             bind = true,
             handler_opts = {
-              border = "rounded",
+              border = "none",
             },
           })
         end,
