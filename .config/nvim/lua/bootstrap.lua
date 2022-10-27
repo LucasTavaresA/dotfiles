@@ -365,6 +365,8 @@ return require("packer").startup(function(use)
   })
 
   --- Aparência
+  -- icones em popups da lsp
+  use("onsails/lspkind.nvim")
   -- icones usados em varios plugins
   use("kyazdani42/nvim-web-devicons")
   -- tema
