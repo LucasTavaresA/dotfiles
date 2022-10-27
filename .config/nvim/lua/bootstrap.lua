@@ -390,6 +390,17 @@ return require("packer").startup(function(use)
       })
     end,
   })
+  -- previsão para commandos do vim
+  use({
+    "smjonas/live-command.nvim",
+    config = function()
+      require("live-command").setup({
+        commands = {
+          Norm = { cmd = "norm" },
+        },
+      })
+    end,
+  })
 
   --- Escrever
   -- esconde distrações ao escrever
