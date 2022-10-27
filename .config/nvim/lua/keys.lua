@@ -218,18 +218,8 @@ vks("n", "<leader>C", "<cmd>PickColor<cr>", ns)
 vks("n", "zu", require("undotree").toggle, ns)
 -- ativa foco - zen
 vks("n", "zf", ":ZenMode<CR>")
--- luasnip
-vks("n", "es", ":e ~/.config/nvim/Ultisnips/")
-vim.cmd([[
-    " press <Tab> to expand or jump in a snippet. These can also be mapped separately
-    " via <Plug>luasnip-expand-snippet and <Plug>luasnip-jump-next.
-    imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'
-    " -1 for jumping backwards.
-    inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
-
-    snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
-    snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
-]])
+-- snippets
+vks("n", "es", ":e ~/.config/nvim/snippets/")
 
 --- LSP
 -- Ativa essas teclas quando o lsp esta ativo

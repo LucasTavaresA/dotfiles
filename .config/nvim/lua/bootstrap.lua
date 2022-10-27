@@ -265,7 +265,7 @@ return require("packer").startup(function(use)
           { "hrsh7th/cmp-buffer" },
           { "hrsh7th/cmp-path" },
           { "hrsh7th/cmp-cmdline" },
-          { "saadparwaiz1/cmp_luasnip" },
+          { "dcampos/cmp-snippy" },
           { "f3fora/cmp-spell" },
         },
       },
@@ -351,15 +351,16 @@ return require("packer").startup(function(use)
   })
   -- snippets
   use({
-    "L3MON4D3/LuaSnip",
+    "dcampos/nvim-snippy",
     requires = { "honza/vim-snippets" },
     config = function()
-      require("luasnip").config.set_config({
-        history = true, -- keep around last snippet local to jump back
-        enable_autosnippets = true,
-      })
-      require("luasnip.loaders.from_snipmate").lazy_load({
-        paths = { "/home/lucas/.config/nvim/Ultisnips/" },
+      require("snippy").setup({
+        mappings = {
+          is = {
+            ["<Tab>"] = "expand_or_advance",
+            ["<S-Tab>"] = "previous",
+          },
+        },
       })
     end,
   })

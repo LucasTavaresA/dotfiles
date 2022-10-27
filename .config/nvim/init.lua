@@ -180,7 +180,7 @@ local cmp = require("cmp")
 cmp.setup({
   snippet = {
     expand = function(args)
-      require("luasnip").lsp_expand(args.body)
+      require("snippy").expand_snippet(args.body)
     end,
   },
   mapping = cmp.mapping.preset.insert({
@@ -211,7 +211,7 @@ cmp.setup({
     { name = "path" },
     { name = "buffer" },
     { name = "spell" },
-    { name = "luasnip" },
+    { name = "snippy" },
   }, {
     { name = "buffer" },
   }),
