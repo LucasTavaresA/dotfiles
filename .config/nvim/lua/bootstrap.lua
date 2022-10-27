@@ -364,6 +364,8 @@ return require("packer").startup(function(use)
   })
 
   --- Aparência
+  -- icones usados em varios plugins
+  use("kyazdani42/nvim-web-devicons")
   -- tema
   use("rebelot/kanagawa.nvim")
   -- statusline
