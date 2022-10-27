@@ -365,18 +365,7 @@ return require("packer").startup(function(use)
 
   --- Aparência
   -- tema
-  use({
-    "ellisonleao/gruvbox.nvim",
-    config = function()
-      require("gruvbox").setup({
-        invert_selection = true,
-        inverse = true, -- invert background for search, diffs, statuslines and errors
-        contrast = "hard", -- can be "hard", "soft" or empty string
-        dim_inactive = false,
-        transparent_mode = true,
-      })
-    end,
-  })
+  use("rebelot/kanagawa.nvim")
   -- statusline
   use("famiu/feline.nvim")
   -- fold mais bonitas

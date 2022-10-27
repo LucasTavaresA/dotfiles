@@ -115,7 +115,7 @@ vo.foldcolumn = "0"
 vo.foldnestmax = 3
 vo.foldopen:append("jump")
 -- tema
-vc.colorscheme("gruvbox")
+vc.colorscheme("kanagawa")
 -- prefere modo escuro
 vo.background = "dark"
 -- esconde marcação
