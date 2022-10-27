@@ -1,4 +1,4 @@
---- Variaveis
+--- Variáveis
 local vks = vim.keymap.set
 local n = { noremap = true }
 local ns = { noremap = true, silent = true }
@@ -17,10 +17,7 @@ vks("n", "<A-Tab>", "<C-w>w")
 vks("n", "<leader>I", "gg=G<C-o>")
 -- formatar paragrafo
 vks("n", "<leader>ii", "{=}<C-o>")
--- formas de alinhar texto
-vks("v", "<leader>a", function()
-  require("align").align_to_string(false, true, true)
-end, ns)
+-- alinhar texto
 vks("v", "<leader>A", ":'<,'>!column -t -o ' '<CR>")
 -- abre arquivos no diretório atual
 vks("n", "<leader>ff", ":e %:h")
@@ -31,12 +28,12 @@ vks("n", "<leader>ww", ":w<CR>")
 -- sair e salvar
 vks("n", "<leader>wq", ":wq!<CR>")
 -- fecha sem salvar
-vks("n", "<leader>qq", ":qa!<CR>")
+vks("n", "<leader>qq", ":q!<CR>")
 -- salvar e recarregar arquivo
 vks("n", "<leader>wr", ":w<CR>:e<CR>")
 -- deletar buffer
 vks("n", "<leader>k", ":bd<CR>")
--- abre o buffer de mensagems
+-- abre o buffer de mensagens
 vks("n", "<leader>m", ":message<CR>")
 -- avaliar buffer
 vks("n", "<leader>eb", ":source %<CR>")
@@ -58,7 +55,7 @@ vks("n", "?", "*")
 vks("n", "<leader>s", ":%s//gc<left><left><left>")
 -- procura e substitui na região selecionada
 vks("v", "<leader>s", ":s//gc<left><left><left>")
--- compilar codigo e lembrar commando
+-- compilar código e lembrar commando
 function Compile()
   vim.ui.input({ prompt = "Compile with> ", default = Compile_cmd }, function(input)
     Compile_cmd = input
@@ -170,6 +167,8 @@ vim.api.nvim_create_autocmd(
 vim.api.nvim_create_autocmd("FileType", { pattern = { "org" }, command = "nnoremap <silent> zx :call Marcar()<CR>j" })
 
 --- Plugins
+-- neogit
+vks("n", "<leader>gg", ":Neogit<CR>")
 -- expande região selecionada - expand region
 vks("n", "<S-Up>", "<Plug>(expand_region_expand)")
 vks("n", "<S-Down>", "<Plug>(expand_region_shrink)")
@@ -184,6 +183,10 @@ vks("i", "<A-Up>", "<esc>:MoveLine(-1)<CR>", ns)
 vks("i", "<A-Down>", "<esc>:MoveLine(1)<CR>", ns)
 vks("v", "<A-Down>", ":MoveBlock(1)<CR>", ns)
 vks("v", "<A-Up>", ":MoveBlock(-1)<CR>", ns)
+-- alinhar texto - align
+vks("v", "<leader>a", function()
+  require("align").align_to_string(false, true, true)
+end, ns)
 -- abre arquivos no repositório atual - telescope
 vks("n", "<leader>F", ":Telescope find_files<CR>")
 -- procura linhas no buffer - telescope
@@ -206,7 +209,7 @@ vks("n", "<leader>hm", ":Telescope man_pages<CR>")
 vks("n", "<leader><leader>", ":Telescope oldfiles<CR>")
 -- navegar por headings - telescope-heading
 vks("n", "<leader>v", ":Telescope heading<CR>")
--- procura e edita ocorrencias de uma palavra - greplace
+-- procura e edita ocorrências de uma palavra - greplace
 vks("n", "<leader>r", ":Gsearch  ./<left><left><left>")
 -- confirma todas as modificações - greplace
 vks("n", "<leader>R", ":Greplace<CR>")
@@ -216,7 +219,7 @@ vks("n", "zc", ":ColorizerToggle<CR>")
 vks("n", "<leader>C", "<cmd>PickColor<cr>", ns)
 -- abrir e fechar arvore de undos - undotree
 vks("n", "zu", require("undotree").toggle, ns)
--- ativa foco - zen
+-- ativa foco - zen-mode
 vks("n", "zf", ":ZenMode<CR>")
 -- snippets
 vks("n", "es", ":e ~/.config/nvim/snippets/")

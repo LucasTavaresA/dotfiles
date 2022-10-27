@@ -58,7 +58,7 @@ if vim.fn.getcwd() == os.getenv("HOME") then
   vim.env.GIT_WORK_TREE = vim.fn.expand("~")
 end
 --- zen-mode
--- ativa zen em arquivos especificos
+-- ativa zen em arquivos específicos
 vanca("FileType", { pattern = { "org" }, command = "call timer_start(100, { tid -> execute('ZenMode')})" })
 vanca("FileType", { pattern = { "markdown" }, command = "call timer_start(100, { tid -> execute('ZenMode')})" })
 
@@ -93,7 +93,7 @@ vc.syntax("on")
 vo.number = true
 vo.numberwidth = 1
 vo.relativenumber = true
--- remove numeor de linhas no terminal
+-- remove numero de linhas no terminal
 vanca("TermOpen", { pattern = { "*" }, command = "setlocal nonumber norelativenumber" })
 -- indicação de espaços e tabs
 vo.list = true
@@ -126,7 +126,7 @@ vo.termguicolors = true
 vo.cursorline = false
 -- define quando a barra superior aparece
 vo.showtabline = 0
--- mostra a modeline
+-- mostra a statusline
 vo.laststatus = 3
 -- diminui tamanho da barra inferior
 vo.cmdheight = 0
@@ -246,13 +246,13 @@ cmp.setup.cmdline(":", {
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
---- lsp kind - icones
+--- lsp kind - ícones
 cmp.setup({
   formatting = {
     format = require("lspkind").cmp_format({
       mode = "symbol", -- show only symbol annotations
-      maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-      ellipsis_char = "…", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+      maxwidth = 50, -- prevent the pop-up from showing more than provided characters (e.g 50 will not show more than 50 characters)
+      ellipsis_char = "…", -- when pop-up menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
     }),
   },
 })
@@ -282,7 +282,7 @@ require("lspconfig").ccls.setup({
   },
 })
 
--- necessario `npm i -g vscode-langservers-extracted`
+-- necessário `npm i -g vscode-langservers-extracted`
 require("lspconfig").cssls.setup({
   on_attach = On_attach,
   capabilities = capabilities,

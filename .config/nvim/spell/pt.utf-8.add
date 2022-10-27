@@ -109,3 +109,9 @@ LuaJIT
 pointcuts
 treesitter
 aliases
+lsp
+keymap
+statusline
+signcolumn
+filetype
+DAP

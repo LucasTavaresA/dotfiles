@@ -20,7 +20,7 @@ return require("packer").startup(function(use)
   use("wbthomason/packer.nvim")
   -- mostra tempo para iniciar
   use({ "dstein64/vim-startuptime", opt = true, cmd = { "StartupTime" } })
-  -- dependencia de multiplos pacotes
+  -- dependência de múltiplos pacotes
   use("nvim-lua/plenary.nvim")
 
   --- Miscelânea
@@ -243,7 +243,7 @@ return require("packer").startup(function(use)
           })
         end,
       },
-      -- mostra informação do codigo no cursor
+      -- mostra informação do código no cursor
       {
         "ray-x/lsp_signature.nvim",
         config = function()
@@ -316,7 +316,7 @@ return require("packer").startup(function(use)
       end
     end,
   })
-  -- mostra informação do codigo no cursor
+  -- mostra informação do código no cursor
   use({
     "lewis6991/hover.nvim",
     config = function()
@@ -334,7 +334,6 @@ return require("packer").startup(function(use)
       })
     end,
   })
-
   -- indica diffs
   use({
     "lewis6991/gitsigns.nvim",
@@ -364,11 +363,17 @@ return require("packer").startup(function(use)
       })
     end,
   })
+  -- git
+  use({
+    "TimUntersberger/neogit",
+    requires = "nvim-lua/plenary.nvim",
+    cmd = "Neogit",
+  })
 
   --- Aparência
-  -- icones em popups da lsp
+  -- ícones em pop-ups da lsp
   use("onsails/lspkind.nvim")
-  -- icones usados em varios plugins
+  -- ícones usados em vários plugins
   use("kyazdani42/nvim-web-devicons")
   -- tema
   use("rebelot/kanagawa.nvim")
@@ -439,11 +444,13 @@ return require("packer").startup(function(use)
     opt = true,
     ft = { "markdown" },
     requires = {
+      -- previsão de markdown
       { "ellisonleao/glow.nvim", opt = true, cmd = { "Glow" } },
+      -- alinha tabelas
       { "godlygeek/tabular", opt = true, ft = { "markdown" } },
     },
   })
-  -- indica mals habitos de escrita
+  -- indica mals hábitos de escrita
   use({ "davidbeckingsale/writegood.vim", opt = true, cmd = { "WritegoodEnable" } })
   -- move entre headings
   use({

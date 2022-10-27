@@ -147,6 +147,7 @@ python-pynvim
 qt5-wayland
 qt5ct
 qutebrowser
+ripgrep
 runit
 seatd-runit
 sed
