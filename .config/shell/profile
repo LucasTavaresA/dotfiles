@@ -158,14 +158,14 @@ export LC_TIME="pt_BR.UTF-8"
 
 [ "$HOSTNAME" = "$OS"note ] && export LIBGL_ALWAYS_SOFTWARE=1
 
-if [ "$WM" = "sway" ] && [ "$(tty)" = "/dev/tty1" ]; then
-    exec dbus-launch --sh-syntax --exit-with-session sway
-elif [ "$WM" = "dwl" ] && [ "$(tty)" = "/dev/tty1" ]; then
-    exec dbus-run-session dwl -s "${XDG_CONFIG_HOME:-$HOME/.config}/dwl/dwlrc"
-elif [ "$WM" = "cagebreak" ] && [ "$(tty)" = "/dev/tty1" ]; then
-    exec cagebreak
-elif [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1; then
-    exec sx sh "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
-else
-    exec fish
-fi
+[ "$(tty)" != "/dev/tty1" ] && exec fish
+
+case "$(printf 'sway\nfish\ndwl\ncagebreak\nxorg' | fzf --disabled)" in
+    'sway') exec dbus-launch --sh-syntax --exit-with-session sway ;;
+    'fish') exec fish ;;
+    'dwl') exec dbus-run-session dwl -s "${XDG_CONFIG_HOME:-$HOME/.config}/dwl/dwlrc" ;;
+    'cagebreak') exec cagebreak ;;
+    'xorg') exec sx sh "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc" ;;
+esac
+
+exec fish
