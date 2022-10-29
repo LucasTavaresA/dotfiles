@@ -1,6 +1,7 @@
 ImageMagick
 Vulkan-Headers
 alsa-pipewire
+alsa-utils
 amdvlk
 aspell
 aspell-en
@@ -12,6 +13,8 @@ cage
 cargo
 catdoc
 catimg
+ccls
+cheat
 clang
 cmake
 dbus
@@ -45,6 +48,8 @@ gparted
 grimshot
 grub
 gtkspell3
+harfbuzz
+harfbuzz-devel
 highlight
 htop
 hunspell
@@ -61,14 +66,17 @@ libexif-devel
 libnotify
 libreoffice
 libwebp-devel
+libxkbcommon-devel
 lsd
 lua
+lua-language-server
 mako
 mediainfo
 mesa-dri
 mesa-vaapi
 mesa-vdpau
 mesa-vulkan-radeon
+meson
 mpDris2
 mpc
 mpd
@@ -79,6 +87,7 @@ msttcorefonts
 ncmpcpp
 neovim
 nerd-fonts
+nodejs
 noto-fonts-cjk
 noto-fonts-emoji
 noto-fonts-ttf
@@ -88,7 +97,10 @@ opendoas
 openssl-devel
 opusfile
 pam-gnupg
+pandoc
+pango-devel
 papirus-icon-theme
+patch
 pdf.js
 pinentry-qt
 pipewire
@@ -96,6 +108,7 @@ pkgconf
 pkgconf-devel
 playerctl
 plocate
+podman
 pulseaudio-utils
 python
 python3-adblock
@@ -105,8 +118,10 @@ python3-neovim
 python3-pip
 python3-wheel
 qt5-wayland
+qt5ct
 qt6-wayland
 qutebrowser
+scdoc
 seatd
 shellcheck
 simple-mtpfs
@@ -118,7 +133,6 @@ swayidle
 swaylock
 syncthing
 terminus-font
-topgrade
 translate-shell
 transmission-qt
 ttf-opensans
@@ -127,6 +141,9 @@ void-repo-multilib
 void-repo-multilib-nonfree
 void-repo-nonfree
 vulkan-loader
+wayland-devel
+wayland-protocols
+wget
 wireplumber
 wl-clipboard
 wtype
