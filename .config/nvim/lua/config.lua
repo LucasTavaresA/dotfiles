@@ -41,8 +41,12 @@ vo.incsearch = false
 vo.wrap = false
 -- desativa comentar automaticamente a próxima linha
 vanca("FileType", { pattern = { "*" }, command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" })
--- Ativa checagem ortográfica
+-- Checagem ortográfica em varias linguas
 vo.spelllang = { "pt", "en" }
+-- Ativa checagem ortografica typos de arquivos
+vim.api.nvim_create_autocmd("FileType", { pattern = { "org" }, command = "setlocal spell" })
+vim.api.nvim_create_autocmd("FileType", { pattern = { "markdown" }, command = "setlocal spell" })
+vim.api.nvim_create_autocmd("FileType", { pattern = { "gitcommit" }, command = "setlocal spell" })
 --- Writegood mode
 vanca("FileType", { pattern = { "org" }, command = "call timer_start(100, { tid -> execute('WritegoodEnable')})" })
 vanca("FileType", {

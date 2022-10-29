@@ -50,7 +50,7 @@ vks("n", "zn", ":setlocal number! relativenumber!<CR>")
 -- ativa/desativa indicação de linha
 vks("n", "zl", ":setlocal cursorline!<CR>")
 -- ativa/desativa o corretor ortográfico
-vks("n", "zs", ":setlocal spell! spelllang=pt,en<CR>")
+vks("n", "zs", ":setlocal spell!<CR>")
 -- procura palavra no cursor
 vks("n", "?", "*")
 -- procura e substitui no arquivo
