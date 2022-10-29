@@ -429,9 +429,12 @@ return require("packer").startup(function(use)
           },
         },
         -- callback where you can add custom code when the Zen window opens
-        on_open = function(win) end,
+        on_open = function(win)
+          vim.opt_local.laststatus = 0
+        end,
         -- callback where you can add custom code when the Zen window closes
         on_close = function()
+          vim.opt_local.laststatus = 3
           vim.cmd.quit()
         end,
       })
