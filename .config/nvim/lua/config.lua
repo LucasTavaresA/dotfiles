@@ -19,6 +19,8 @@ vo.titlestring = "nvim"
 vo.titleold = os.getenv("TERMINAL")
 -- da a volta entre linhas
 vo.whichwrap = vo.whichwrap + "<,>,h,l,[,]"
+-- quantidade de linhas ao redor do cursor
+vo.scrolloff = 10
 -- desativa uso do mouse
 vo.mouse = ""
 -- copiar e colar para o neovim
