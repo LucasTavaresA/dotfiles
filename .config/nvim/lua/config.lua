@@ -42,7 +42,6 @@ vo.wrap = false
 -- desativa comentar automaticamente a próxima linha
 vanca("FileType", { pattern = { "*" }, command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" })
 -- Ativa checagem ortográfica
-vo.spell = true
 vo.spelllang = { "pt", "en" }
 --- Writegood mode
 vanca("FileType", { pattern = { "org" }, command = "call timer_start(100, { tid -> execute('WritegoodEnable')})" })
