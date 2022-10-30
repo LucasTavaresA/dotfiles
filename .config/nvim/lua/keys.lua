@@ -151,8 +151,6 @@ vanca("FileType", { pattern = { "markdown" }, command = "nnoremap <silent> zx :c
 vanca("FileType", { pattern = { "org" }, command = "nnoremap <silent> zx :call Marcar()<CR>j" })
 
 --- Plugins
--- pula para palavras visiveis - hop
-vks("n", "q", ":HopWord<CR>")
 -- neogit
 vks("n", "<leader>gg", ":Neogit<CR>")
 -- expande região selecionada - expand region
