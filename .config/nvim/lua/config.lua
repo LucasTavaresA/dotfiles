@@ -1,4 +1,3 @@
-require("impatient")
 require("keys")
 local vo = vim.opt
 local vg = vim.g
