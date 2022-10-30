@@ -252,6 +252,23 @@ return require("packer").startup(function(use)
           })
         end,
       },
+      {
+        "lewis6991/hover.nvim",
+        config = function()
+          require("hover").setup({
+            init = function()
+              require("hover.providers.lsp")
+            end,
+            preview_opts = {
+              border = nil,
+            },
+            -- Whether the contents of a currently open hover window should be moved
+            -- to a :h preview-window when pressing the hover keymap.
+            preview_window = true,
+            title = true,
+          })
+        end,
+      },
       -- autocompleção
       {
         "hrsh7th/nvim-cmp",
@@ -311,24 +328,6 @@ return require("packer").startup(function(use)
           end,
         }
       end
-    end,
-  })
-  -- mostra informação do código no cursor
-  use({
-    "lewis6991/hover.nvim",
-    config = function()
-      require("hover").setup({
-        init = function()
-          require("hover.providers.lsp")
-        end,
-        preview_opts = {
-          border = nil,
-        },
-        -- Whether the contents of a currently open hover window should be moved
-        -- to a :h preview-window when pressing the hover keymap.
-        preview_window = true,
-        title = true,
-      })
     end,
   })
   -- indica diffs
