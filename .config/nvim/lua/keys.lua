@@ -229,10 +229,10 @@ vks("n", "<leader>v", ":Telescope heading<CR>")
 vks("n", "<leader>r", ":Gsearch  ./<left><left><left>")
 -- confirma todas as modificações - greplace
 vks("n", "<leader>R", ":Greplace<CR>")
--- ativa previsão de cores - nvimcolorizer
-vks("n", "zc", ":ColorizerToggle<CR>")
+-- ativa previsão de cores - ccc
+vks("n", "zc", ":CccHighlighterToggle<CR>")
 -- escolher cor
-vks("n", "<leader>C", "<cmd>PickColor<cr>", ns)
+vks("n", "<leader>C", "<cmd>CccPick<cr>", ns)
 -- abrir e fechar arvore de undos - undotree
 vks("n", "zu", require("undotree").toggle, ns)
 -- ativa foco - zen-mode

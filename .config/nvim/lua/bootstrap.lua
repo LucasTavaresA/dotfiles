@@ -24,12 +24,16 @@ return require("packer").startup(function(use)
   use("nvim-lua/plenary.nvim")
 
   --- Miscelânea
-  -- previsão de cores
+  -- previsão e seleção de cores
   use({
-    "lewis6991/nvim-colorizer.lua",
+    "uga-rosa/ccc.nvim",
     config = function()
       vim.opt.termguicolors = true
-      require("colorizer").setup({ "*" }, {})
+      require("ccc").setup({
+        highlighter = {
+          auto_enable = true,
+        },
+      })
     end,
   })
   -- salva posição do cursor
@@ -89,22 +93,6 @@ return require("packer").startup(function(use)
       })
       require("telescope").load_extension("fzf")
       require("telescope").load_extension("ui-select")
-    end,
-  })
-  -- escolher cores
-  use({
-    "ziontee113/color-picker.nvim",
-    opt = true,
-    cmd = { "PickColor" },
-    config = function()
-      require("color-picker").setup({
-        ["keymap"] = {
-          ["<Left>"] = "<Plug>ColorPickerSlider1Decrease",
-          ["<Right>"] = "<Plug>ColorPickerSlider1Increase",
-          ["<S-Left>"] = "<Plug>ColorPickerSlider100Decrease",
-          ["<S-Right>"] = "<Plug>ColorPickerSlider100Increase",
-        },
-      })
     end,
   })
 
