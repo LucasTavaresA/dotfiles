@@ -108,6 +108,13 @@ return require("packer").startup(function(use)
       require("fold-cycle").setup()
     end,
   })
+  -- previne repetição de teclas ineficientes
+  use({
+    "ja-ford/delaytrain.nvim",
+    config = function()
+      require("delaytrain").setup()
+    end,
+  })
 
   --- Editar
   -- troca/coloca aspas/parenteses
