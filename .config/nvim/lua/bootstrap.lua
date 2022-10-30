@@ -384,6 +384,7 @@ return require("packer").startup(function(use)
   })
 
   --- Aparência
+  -- indica instancias da palavra no cursor
   use({
     "echasnovski/mini.cursorword",
     config = function()
@@ -425,6 +426,29 @@ return require("packer").startup(function(use)
         commands = {
           Norm = { cmd = "norm" },
         },
+      })
+    end,
+  })
+  -- indicador de modo-atual no cursor
+  use({
+    "doums/monark.nvim",
+    config = function()
+      require("monark").setup({
+        clear_on_normal = true,
+        sticky = true,
+        offset = 1,
+        timeout = 300,
+        modes = {
+          normal = { "N", "monarkNormal" },
+          visual = { "V", "monarkVisual" },
+          visual_l = { "VL", "monarkVisual" },
+          visual_b = { "VB", "monarkVisual" },
+          select = { "S", "monarkVisual" },
+          insert = { "I", "monarkInsert" },
+          replace = { "R", "monarkReplace" },
+          terminal = { "T", "monarkInsert" },
+        },
+        hl_mode = "combine",
       })
     end,
   })
