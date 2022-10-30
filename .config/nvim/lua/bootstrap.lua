@@ -146,11 +146,9 @@ return require("packer").startup(function(use)
   })
   -- fecha parenteses automaticamente
   use({
-    "windwp/nvim-autopairs",
+    "echasnovski/mini.pairs",
     config = function()
-      require("nvim-autopairs").setup({
-        map_bs = false,
-      })
+      require("mini.pairs").setup()
     end,
   })
   -- indentação e indicação de sintaxe
