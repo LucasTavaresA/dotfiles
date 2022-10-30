@@ -281,6 +281,7 @@ return require("packer").startup(function(use)
           { "hrsh7th/cmp-cmdline" },
           { "dcampos/cmp-snippy" },
           { "f3fora/cmp-spell" },
+          { "davidsierradz/cmp-conventionalcommits" },
         },
       },
     },
