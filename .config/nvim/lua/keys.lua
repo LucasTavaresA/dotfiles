@@ -6,14 +6,22 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Remove setas
-vks("n", "<Up>", "<escape>")
-vks("n", "<Down>", "<escape>")
-vks("n", "<Left>", "<escape>")
-vks("n", "<Right>", "<escape>")
-vks("i", "<Up>", "<escape>")
-vks("i", "<Down>", "<escape>")
-vks("i", "<Left>", "<escape>")
-vks("i", "<Right>", "<escape>")
+vks("n", "<Up>", "<esc>")
+vks("n", "<Down>", "<esc>")
+vks("n", "<Left>", "<esc>")
+vks("n", "<Right>", "<esc>")
+vks("i", "<Up>", "<esc>")
+vks("i", "<Down>", "<esc>")
+vks("i", "<Left>", "<esc>")
+vks("i", "<Right>", "<esc>")
+vks("n", "<C-S-k>", "k", ns)
+vks("n", "<C-S-j>", "j", ns)
+vks("n", "<C-S-h>", "h", ns)
+vks("n", "<C-S-l>", "l", ns)
+vks("n", "k", "")
+vks("n", "j", "")
+vks("n", "h", "")
+vks("n", "l", "")
 -- cancela indicação de palavras procuradas
 vks("n", "<esc>", ":noh<CR>")
 -- colar na linha de baixo
