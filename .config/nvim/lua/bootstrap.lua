@@ -368,6 +368,13 @@ return require("packer").startup(function(use)
   })
 
   --- Aparência
+  use({
+    "echasnovski/mini.cursorword",
+    config = function()
+      vim.api.nvim_set_hl(0, "MiniCursorWord", { bg = "#000066" })
+      require("mini.cursorword").setup({ delay = 1000 })
+    end,
+  })
   -- ícones em pop-ups da lsp
   use("onsails/lspkind.nvim")
   -- ícones usados em vários plugins
