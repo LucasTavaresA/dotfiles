@@ -377,9 +377,11 @@ return require("packer").startup(function(use)
   use("famiu/feline.nvim")
   -- fold mais bonitas
   use({
-    "lewis6991/cleanfold.nvim",
+    "anuvyklack/pretty-fold.nvim",
     config = function()
-      require("cleanfold").setup()
+      require("pretty-fold").setup({
+        fill_char = "─",
+      })
     end,
   })
   -- indicadores em foldings
