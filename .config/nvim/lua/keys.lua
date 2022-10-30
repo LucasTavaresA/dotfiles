@@ -171,6 +171,8 @@ vim.api.nvim_create_autocmd(
 vim.api.nvim_create_autocmd("FileType", { pattern = { "org" }, command = "nnoremap <silent> zx :call Marcar()<CR>j" })
 
 --- Plugins
+-- pula para palavras visiveis - hop
+vks("n", "q", ":HopWord<CR>")
 -- neogit
 vks("n", "<leader>gg", ":Neogit<CR>")
 -- expande região selecionada - expand region

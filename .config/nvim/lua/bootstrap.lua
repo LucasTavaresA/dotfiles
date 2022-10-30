@@ -126,6 +126,15 @@ return require("packer").startup(function(use)
   use({ "yegappan/greplace", opt = true, cmd = { "Gsearch" } })
   -- alinha texto
   use("Vonr/align.nvim")
+  -- movimento usando indicadores
+  use({
+    "phaazon/hop.nvim",
+    -- branch = "v2", -- optional but strongly recommended
+    config = function()
+      -- you can configure Hop the way you like here; see :h hop-config
+      require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
+    end,
+  })
 
   --- Code
   -- comenta linhas
