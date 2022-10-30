@@ -73,41 +73,7 @@ function Compile()
     end
   end)
 end
-
 vks("n", "<leader>c", Compile)
--- abre netrw em uma split
-local lua_netrw_window = nil
-local lua_netrw_buffer = nil
-function NetrwToggle()
-  if vim.fn.win_gotoid(lua_netrw_window) == 1 then
-    if vim.fn.win_gotoid(lua_netrw_window) == 1 then
-      vim.cmd("hide")
-    end
-  else
-    if vim.fn.bufexists(lua_netrw_buffer) == 0 then
-      vim.api.nvim_command("Lexplore")
-      vim.api.nvim_command("silent file Netrw 1")
-      lua_netrw_window = vim.fn.win_getid()
-      lua_netrw_buffer = vim.fn.bufnr("%")
-      vim.opt.buflisted = false
-    else
-      if vim.fn.win_gotoid(lua_netrw_window) == 0 then
-        vim.api.nvim_command("Lexplore")
-        vim.api.nvim_command("buffer Netrw 1")
-        lua_netrw_window = vim.fn.win_getid()
-      end
-    end
-  end
-end
-
-vks("n", "<A-f>", NetrwToggle)
-vks("i", "<A-f>", NetrwToggle)
-vks("t", "<A-f>", NetrwToggle)
-function NetrwKeys()
-  vim.api.nvim_buf_set_keymap(0, "n", "h", "gg<CR>", {})
-  vim.api.nvim_buf_set_keymap(0, "n", "l", "gg<CR>", {})
-end
-vim.api.nvim_create_autocmd("FileType", { pattern = { "netrw" }, command = "lua NetrwKeys()" })
 -- abre terminal do sistema no local do arquivo atual
 vks("n", "<leader><return>", ":!sh -c 'cd %:p:h ; term_open' &<CR><CR>")
 -- abre terminal nativo em uma split
@@ -143,7 +109,6 @@ function TerminalToggle()
     vim.cmd("startinsert")
   end
 end
-
 vks("n", "<M-CR>", TerminalToggle)
 vks("t", "<M-CR>", TerminalToggle)
 -- cria um macro

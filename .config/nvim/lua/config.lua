@@ -68,6 +68,9 @@ vanca("FileType", { pattern = { "org" }, command = "call timer_start(100, { tid 
 vanca("FileType", { pattern = { "markdown" }, command = "call timer_start(100, { tid -> execute('ZenMode')})" })
 
 --- Netrw
+-- desabilita o netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 -- define o modo de listagem de arquivos
 vg.netrw_liststyle = 3
 -- remove o banner
