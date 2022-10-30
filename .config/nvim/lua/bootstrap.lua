@@ -133,6 +133,13 @@ return require("packer").startup(function(use)
       require("mini.jump2d").setup()
     end,
   })
+  -- extende a funcionalidade de f,F,t,T
+  use({
+    "echasnovski/mini.jump",
+    config = function()
+      require("mini.jump").setup()
+    end,
+  })
 
   --- Code
   -- comenta linhas
