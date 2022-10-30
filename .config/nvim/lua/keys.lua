@@ -1,9 +1,14 @@
 --- Variáveis
+local vo = vim.opt
+local vg = vim.g
+local vc = vim.cmd
+local vf = vim.fn
+local vanca = vim.api.nvim_create_autocmd
 local vks = vim.keymap.set
 local n = { noremap = true }
 local ns = { noremap = true, silent = true }
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vg.mapleader = " "
+vg.maplocalleader = " "
 
 -- Remove setas
 vks("n", "<Up>", "<esc>")
@@ -77,7 +82,7 @@ function Compile()
   vim.ui.input({ prompt = "Compile with> ", default = Compile_cmd }, function(input)
     Compile_cmd = input
     if Compile_cmd ~= nil then
-      vim.cmd(":! " .. Compile_cmd)
+      vc(":! " .. Compile_cmd)
     end
   end)
 end
@@ -89,32 +94,32 @@ local lua_terminal_window = nil
 local lua_terminal_buffer = nil
 local terminal_split_size = tonumber(vim.api.nvim_exec("echo &lines", true)) / 2.5
 function TerminalToggle()
-  if vim.fn.win_gotoid(lua_terminal_window) == 1 then
-    if vim.fn.win_gotoid(lua_terminal_window) == 1 then
-      vim.api.nvim_command("hide")
+  if vf.win_gotoid(lua_terminal_window) == 1 then
+    if vf.win_gotoid(lua_terminal_window) == 1 then
+      vc("hide")
     end
   else
-    if vim.fn.bufexists(lua_terminal_buffer) == 0 then
-      vim.api.nvim_command("new lua_terminal")
-      vim.api.nvim_command("wincmd J")
-      vim.api.nvim_command("resize " .. terminal_split_size)
-      vim.fn.termopen(os.getenv("SHELL"), {
+    if vf.bufexists(lua_terminal_buffer) == 0 then
+      vc("new lua_terminal")
+      vc("wincmd J")
+      vc("resize " .. terminal_split_size)
+      vf.termopen(os.getenv("SHELL"), {
         detach = 1,
       })
-      vim.api.nvim_command("silent file Terminal 1")
-      lua_terminal_window = vim.fn.win_getid()
-      lua_terminal_buffer = vim.fn.bufnr("%")
-      vim.opt.buflisted = false
+      vc("silent file Terminal 1")
+      lua_terminal_window = vf.win_getid()
+      lua_terminal_buffer = vf.bufnr("%")
+      vo.buflisted = false
     else
-      if vim.fn.win_gotoid(lua_terminal_window) == 0 then
-        vim.api.nvim_command("sp")
-        vim.api.nvim_command("wincmd J")
-        vim.api.nvim_command("resize " .. terminal_split_size)
-        vim.api.nvim_command("buffer Terminal 1")
-        lua_terminal_window = vim.fn.win_getid()
+      if vf.win_gotoid(lua_terminal_window) == 0 then
+        vc("sp")
+        vc("wincmd J")
+        vc("resize " .. terminal_split_size)
+        vc("buffer Terminal 1")
+        lua_terminal_window = vf.win_getid()
       end
     end
-    vim.cmd("startinsert")
+    vc("startinsert")
   end
 end
 vks("n", "<M-CR>", TerminalToggle)
@@ -130,7 +135,7 @@ vks("n", "za", "")
 -- centraliza texto
 vks("n", "za", "zz", ns)
 -- marca/desmarca caixas
-vim.cmd([[
+vc([[
     function Marcar()
         let l:line=getline('.')
         let l:curs=winsaveview()
@@ -142,11 +147,8 @@ vim.cmd([[
         call winrestview(l:curs)
     endfunction
 ]])
-vim.api.nvim_create_autocmd(
-  "FileType",
-  { pattern = { "markdown" }, command = "nnoremap <silent> zx :call Marcar()<CR>j" }
-)
-vim.api.nvim_create_autocmd("FileType", { pattern = { "org" }, command = "nnoremap <silent> zx :call Marcar()<CR>j" })
+vanca("FileType", { pattern = { "markdown" }, command = "nnoremap <silent> zx :call Marcar()<CR>j" })
+vanca("FileType", { pattern = { "org" }, command = "nnoremap <silent> zx :call Marcar()<CR>j" })
 
 --- Plugins
 -- pula para palavras visiveis - hop

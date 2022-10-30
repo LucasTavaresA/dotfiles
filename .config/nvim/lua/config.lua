@@ -2,8 +2,12 @@ require("keys")
 local vo = vim.opt
 local vg = vim.g
 local vc = vim.cmd
+local vf = vim.fn
+local ve = vim.env
 local vanca = vim.api.nvim_create_autocmd
 local vansh = vim.api.nvim_set_hl
+local og = os.getenv
+local HOME = og("HOME")
 
 ----- Configuração -----
 vc("filetype plugin on")
@@ -15,7 +19,7 @@ vo.undofile = true
 -- muda o titulo da janela
 vo.title = true
 vo.titlestring = "nvim"
-vo.titleold = os.getenv("TERMINAL")
+vo.titleold = og("TERMINAL")
 -- da a volta entre linhas
 vo.whichwrap = vo.whichwrap + "<,>,h,l,[,]"
 -- quantidade de linhas ao redor do cursor
@@ -45,9 +49,9 @@ vanca("FileType", { pattern = { "*" }, command = "setlocal formatoptions-=c form
 -- Checagem ortográfica em varias linguas
 vo.spelllang = { "pt", "en" }
 -- Ativa checagem ortografica typos de arquivos
-vim.api.nvim_create_autocmd("FileType", { pattern = { "org" }, command = "setlocal spell" })
-vim.api.nvim_create_autocmd("FileType", { pattern = { "markdown" }, command = "setlocal spell" })
-vim.api.nvim_create_autocmd("FileType", { pattern = { "gitcommit" }, command = "setlocal spell" })
+vanca("FileType", { pattern = { "org" }, command = "setlocal spell" })
+vanca("FileType", { pattern = { "markdown" }, command = "setlocal spell" })
+vanca("FileType", { pattern = { "gitcommit" }, command = "setlocal spell" })
 --- Writegood mode
 vanca("FileType", { pattern = { "org" }, command = "call timer_start(100, { tid -> execute('WritegoodEnable')})" })
 vanca("FileType", {
@@ -57,9 +61,9 @@ vanca("FileType", {
 --- Greplace
 -- usa o git grep
 vo.grepprg = "git grep -nIi"
-if vim.fn.getcwd() == os.getenv("HOME") then
-  vim.env.GIT_DIR = vim.fn.expand("~/.dotfiles")
-  vim.env.GIT_WORK_TREE = vim.fn.expand("~")
+if vf.getcwd() == HOME then
+  ve.GIT_DIR = HOME .. "/.dotfiles"
+  ve.GIT_WORK_TREE = HOME
 end
 --- zen-mode
 -- ativa zen em arquivos específicos
@@ -68,8 +72,8 @@ vanca("FileType", { pattern = { "markdown" }, command = "call timer_start(100, {
 
 --- Netrw
 -- desabilita o netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+vg.loaded_netrw = 1
+vg.loaded_netrwPlugin = 1
 -- define o modo de listagem de arquivos
 vg.netrw_liststyle = 3
 -- remove o banner
@@ -87,7 +91,7 @@ vo.expandtab = true
 -- tabs em arquivos lua
 vanca("FileType", { pattern = { "lua" }, command = "setlocal tabstop=2 shiftwidth=2" })
 -- formata com o stylua
-if vim.fn.getcwd() == os.getenv("HOME") then
+if vf.getcwd() == HOME then
   vanca("BufWritePost", { pattern = { "*.lua" }, command = "!stylua --config-path ./.config/stylua.toml %" })
 else
   vanca("BufWritePost", { pattern = { "*.lua" }, command = "!stylua %" })
