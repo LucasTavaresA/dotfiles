@@ -11,25 +11,8 @@ local ns = { noremap = true, silent = true }
 vg.mapleader = " "
 vg.maplocalleader = " "
 
--- Remove setas
-vks("n", "<Up>", "<esc>")
-vks("n", "<Down>", "<esc>")
-vks("n", "<Left>", "<esc>")
-vks("n", "<Right>", "<esc>")
-vks("i", "<Up>", "<esc>")
-vks("i", "<Down>", "<esc>")
-vks("i", "<Left>", "<esc>")
-vks("i", "<Right>", "<esc>")
-vks("n", "<C-S-k>", "k", ns)
-vks("n", "<C-S-j>", "j", ns)
-vks("n", "<C-S-h>", "h", ns)
-vks("n", "<C-S-l>", "l", ns)
-vks("n", "k", "")
-vks("n", "j", "")
-vks("n", "h", "")
-vks("n", "l", "")
 -- cancela indicação de palavras procuradas
-vks("n", "<esc>", ":noh<CR>")
+vks("n", "<esc>", ":noh<CR>", ns)
 -- colar na linha de baixo
 vks("n", "P", ":norm o<CR>p", ns)
 -- trocar de buffer
@@ -156,6 +139,8 @@ vanca("FileType", { pattern = { "markdown" }, command = "nnoremap <silent> zx :c
 vanca("FileType", { pattern = { "org" }, command = "nnoremap <silent> zx :call Marcar()<CR>j" })
 
 --- Plugins
+-- pula para palavras usando indicadores - mini.jump2d
+vks("n", "q", ":lua MiniJump2d.start(MiniJump2d.builtin_opts.default)<CR>")
 -- neogit
 vks("n", "<leader>gg", ":Neogit<CR>")
 -- expande região selecionada - expand region
