@@ -32,7 +32,7 @@ vks("n", "<esc>", ":noh<CR>")
 -- colar na linha de baixo
 vks("n", "P", ":norm o<CR>p", ns)
 -- trocar de buffer
-vks("n", "<C-Tab>", ":bn<CR>")
+vks("n", "<C-Tab>", ":Telescope buffers<CR>")
 -- trocar de split
 vks("n", "<A-Tab>", "<C-w>w")
 -- formatar buffer

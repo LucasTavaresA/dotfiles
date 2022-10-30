@@ -51,11 +51,17 @@ return require("packer").startup(function(use)
       { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
     },
     config = function()
+      local actions = require("telescope.actions")
       require("telescope").setup({
         defaults = {
           theme = "dropdown",
           border = false,
           preview = false,
+          mappings = {
+            i = {
+              ["<C-Tab>"] = actions.toggle_selection + actions.move_selection_worse,
+            },
+          },
         },
         pickers = {
           find_files = {
