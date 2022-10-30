@@ -6,6 +6,7 @@ local vf = vim.fn
 local vanca = vim.api.nvim_create_autocmd
 local vks = vim.keymap.set
 local n = { noremap = true }
+local s = { silent = true }
 local ns = { noremap = true, silent = true }
 vg.mapleader = " "
 vg.maplocalleader = " "
@@ -130,8 +131,12 @@ vks("n", "q", "")
 -- executa um macro
 vks("n", "m", "@")
 -- abre/fecha fold
-vks("n", "zz", "za", ns)
-vks("n", "za", "")
+vks("n", "<tab>", function()
+  require("fold-cycle").open()
+end, s)
+vks("n", "zz", function()
+  return require("fold-cycle").open()
+end, s)
 -- centraliza texto
 vks("n", "za", "zz", ns)
 -- marca/desmarca caixas

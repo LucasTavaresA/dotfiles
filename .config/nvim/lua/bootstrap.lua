@@ -101,6 +101,13 @@ return require("packer").startup(function(use)
       require("telescope").load_extension("ui-select")
     end,
   })
+  -- cycla estado de folds
+  use({
+    "jghauser/fold-cycle.nvim",
+    config = function()
+      require("fold-cycle").setup()
+    end,
+  })
 
   --- Editar
   -- troca/coloca aspas/parenteses
