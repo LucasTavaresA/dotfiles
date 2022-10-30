@@ -130,30 +130,30 @@ return require("packer").startup(function(use)
   use({
     "echasnovski/mini.jump2d",
     config = function()
-      require("mini.jump2d").setup()
+      require("mini.jump2d").setup({})
     end,
   })
   -- extende a funcionalidade de f,F,t,T
   use({
     "echasnovski/mini.jump",
     config = function()
-      require("mini.jump").setup()
+      require("mini.jump").setup({})
     end,
   })
 
   --- Code
   -- comenta linhas
   use({
-    "numToStr/Comment.nvim",
+    "echasnovski/mini.comment",
     config = function()
-      require("Comment").setup()
+      require("mini.comment").setup({})
     end,
   })
   -- fecha parenteses automaticamente
   use({
     "echasnovski/mini.pairs",
     config = function()
-      require("mini.pairs").setup()
+      require("mini.pairs").setup({})
     end,
   })
   -- indentação e indicação de sintaxe
