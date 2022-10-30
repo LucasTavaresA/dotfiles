@@ -5,6 +5,15 @@ local ns = { noremap = true, silent = true }
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Remove setas
+vks("n", "<Up>", "<escape>")
+vks("n", "<Down>", "<escape>")
+vks("n", "<Left>", "<escape>")
+vks("n", "<Right>", "<escape>")
+vks("i", "<Up>", "<escape>")
+vks("i", "<Down>", "<escape>")
+vks("i", "<Left>", "<escape>")
+vks("i", "<Right>", "<escape>")
 -- cancela indicação de palavras procuradas
 vks("n", "<esc>", ":noh<CR>")
 -- colar na linha de baixo
@@ -38,10 +47,8 @@ vks("n", "<leader>m", ":message<CR>")
 -- avaliar buffer
 vks("n", "<leader>eb", ":source %<CR>")
 -- divide a tela do lado
-vks("n", "<C-A-Right>", ":vs<CR>")
 vks("n", "<C-A-l>", ":vs<CR>")
 -- divide a tela abaixo
-vks("n", "<C-A-Down>", ":sp<CR>")
 vks("n", "<C-A-j>", ":sp<CR>")
 -- copiar buffer
 vks("n", "<leader>bc", "ggVGy<C-o>zz", n)
@@ -97,8 +104,6 @@ vks("n", "<A-f>", NetrwToggle)
 vks("i", "<A-f>", NetrwToggle)
 vks("t", "<A-f>", NetrwToggle)
 function NetrwKeys()
-  vim.api.nvim_buf_set_keymap(0, "n", "<Left>", "gg<CR>", {})
-  vim.api.nvim_buf_set_keymap(0, "n", "<Right>", "gg<CR>", {})
   vim.api.nvim_buf_set_keymap(0, "n", "h", "gg<CR>", {})
   vim.api.nvim_buf_set_keymap(0, "n", "l", "gg<CR>", {})
 end
@@ -176,12 +181,6 @@ vks("n", "q", ":HopWord<CR>")
 -- neogit
 vks("n", "<leader>gg", ":Neogit<CR>")
 -- expande região selecionada - expand region
-vks("n", "<S-Up>", "<Plug>(expand_region_expand)")
-vks("n", "<S-Down>", "<Plug>(expand_region_shrink)")
-vks("v", "<S-Up>", "<Plug>(expand_region_expand)")
-vks("v", "<S-Down>", "<Plug>(expand_region_shrink)")
-vks("i", "<S-Up>", "<esc><Plug>(expand_region_expand)")
-vks("i", "<S-Down>", "<esc><Plug>(expand_region_shrink)")
 vks("n", "<S-k>", "<Plug>(expand_region_expand)")
 vks("n", "<S-j>", "<Plug>(expand_region_shrink)")
 vks("v", "<S-k>", "<Plug>(expand_region_expand)")
@@ -189,12 +188,6 @@ vks("v", "<S-j>", "<Plug>(expand_region_shrink)")
 vks("i", "<S-k>", "<esc><Plug>(expand_region_expand)")
 vks("i", "<S-j>", "<esc><Plug>(expand_region_shrink)")
 -- move linha - move.nvim
-vks("n", "<A-Down>", ":MoveLine(1)<CR>", ns)
-vks("n", "<A-Up>", ":MoveLine(-1)<CR>", ns)
-vks("i", "<A-Up>", "<esc>:MoveLine(-1)<CR>", ns)
-vks("i", "<A-Down>", "<esc>:MoveLine(1)<CR>", ns)
-vks("v", "<A-Down>", ":MoveBlock(1)<CR>", ns)
-vks("v", "<A-Up>", ":MoveBlock(-1)<CR>", ns)
 vks("n", "<A-j>", ":MoveLine(1)<CR>", ns)
 vks("n", "<A-k>", ":MoveLine(-1)<CR>", ns)
 vks("i", "<A-k>", "<esc>:MoveLine(-1)<CR>", ns)
@@ -252,7 +245,7 @@ On_attach = function(_, bufnr)
   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
   local bns = { buffer = bufnr, noremap = true, silent = true }
-  vks("n", "K", require("hover").hover, { desc = "hover.nvim" })
+  vks("n", "H", require("hover").hover, { desc = "hover.nvim" })
   vks("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
   vks("n", "gD", vim.lsp.buf.declaration, bns)
   vks("n", "gd", function()
