@@ -20,8 +20,6 @@ vo.undofile = true
 vo.title = true
 vo.titlestring = "nvim"
 vo.titleold = og("TERMINAL")
--- da a volta entre linhas
-vo.whichwrap = vo.whichwrap + "<,>,h,l,[,]"
 -- quantidade de linhas ao redor do cursor
 vo.scrolloff = 10
 -- desativa uso do mouse
@@ -44,6 +42,11 @@ vo.diffopt:append({ "horizontal" })
 vo.incsearch = false
 -- linhas não dão a volta na tela
 vo.wrap = false
+-- não divide linhas no meio de palavras
+vo.linebreak = true
+vo.textwidth = 80
+-- da a volta entre linhas
+vo.whichwrap = vo.whichwrap + "<,>,h,l,[,]"
 -- desativa comentar automaticamente a próxima linha
 vanca("FileType", { pattern = { "*" }, command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" })
 -- Checagem ortográfica em varias linguas
