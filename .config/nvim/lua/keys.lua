@@ -143,6 +143,11 @@ vanca("FileType", { pattern = { "org" }, command = "nnoremap <silent> zx :call M
 vks("n", "q", ":lua MiniJump2d.start(MiniJump2d.builtin_opts.default)<CR>")
 -- neogit
 vks("n", "<leader>gg", ":Neogit<CR>")
+-- mostra git blame - gitsigns
+vks("n", "<leader>gb", ":Gitsigns toggle_current_line_blame<CR>")
+-- navega entre diffs - gitsigns
+vks("n", "[g", ":Gitsigns prev_hunk<CR>", s)
+vks("n", "]g", ":Gitsigns next_hunk<CR>", s)
 -- expande região selecionada - expand region
 vks("n", "<S-k>", "<Plug>(expand_region_expand)")
 vks("n", "<S-j>", "<Plug>(expand_region_shrink)")
