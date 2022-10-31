@@ -176,6 +176,7 @@ ttf-liberation
 ttf-ms-fonts
 ttf-opensans
 ttf-ubuntu-font-family
+ugrep
 unicode-emoji
 unrar
 unzip

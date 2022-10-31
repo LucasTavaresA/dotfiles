@@ -72,7 +72,7 @@ git () {
 # git status recursivo
 gsr () {
     cdir=$(pwd)
-    for repo in $(fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | grep '\.git/$');
+    for repo in $(fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | ugrep '\.git/$');
     do
         repo=$(echo $repo | sed 's/\/.git\/$//')
         cd $repo
@@ -97,7 +97,7 @@ gsr () {
 # git pull recursivo
 gpr () {
     cdir=$(pwd)
-    for repo in $(fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | grep '\.git/$');
+    for repo in $(fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | ugrep '\.git/$');
     do
         repo=$(echo $repo | sed 's/\/.git\/$//')
         cd $repo
@@ -194,7 +194,7 @@ alias tep="tpe trans -s pt -l en"
 alias tpe="tpe trans -s pt -l en"
 alias fm="fzf_man"
 alias hc="herbstclient"
-alias as="alias | grep --color -i"
+alias as="alias | ugrep --color -i"
 alias ff="flashfetch"
 alias v="nvim"
 alias vc="nvim --clean"
@@ -222,7 +222,7 @@ alias dnn="dotnet new"
 alias xp="xprop"
 alias xk="xkill"
 # arquivos e Diretórios
-alias g="grep --color -iIn"
+alias g="ugrep --color -iIn"
 alias rm="lixo"
 alias rml="lixo limpar"
 alias l="lsd -AX1 --group-dirs first"
@@ -304,7 +304,7 @@ elif [ "$OS" = "voidlinux" ]; then
     alias xqrs="xbps-query -Rs"
     alias xisu="doas xbps-install -Su"
     alias xql="xbps-query -l"
-    alias xqlg="xbps-query -l | grep --color -i"
+    alias xqlg="xbps-query -l | ugrep --color -i"
     alias xrr="doas xbps-remove -R"
     # xtools
     alias xch="xchroot"

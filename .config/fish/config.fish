@@ -72,7 +72,7 @@ if status is-interactive
     # git status recursivo
     function gsr
         set cdir (pwd)
-        for repo in (fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | grep '\.git/$')
+        for repo in (fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | ugrep '\.git/$')
             set repo (echo $repo | sed 's/\/.git\/$//')
             cd $repo
 
@@ -96,7 +96,7 @@ if status is-interactive
     # git pull recursivo
     function gpr
         set cdir (pwd)
-        for repo in (fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | grep '\.git/$')
+        for repo in (fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | ugrep '\.git/$')
             set repo (echo $repo | sed 's/\/.git\/$//')
             cd $repo
 
@@ -187,7 +187,7 @@ if status is-interactive
     abbr -a -g tpe trans -s pt -l en
     abbr -a -g hc herbstclient
     abbr -a -g fm fzf_man
-    abbr -a -g as "abbr | grep --color -i"
+    abbr -a -g as "abbr | ugrep --color -i"
     abbr -a -g ff flashfetch
     abbr -a -g v nvim
     abbr -a -g vu "nvim --headless -u NONE -c 'lua require(\"bootstrap\")' -c 'autocmd User PackerComplete quitall' -c 'PackerSync'"
@@ -217,7 +217,7 @@ if status is-interactive
     # arquivos e Diretórios
     abbr -a -g rm lixo
     abbr -a -g rml lixo limpar
-    abbr -a -g g grep --color -iIn
+    abbr -a -g g ugrep --color -iIn
     abbr -a -g l lsd -AX1 --group-dirs first
     abbr -a -g la lsd -lXA1 --group-dirs first
     abbr -a -g .. "cd .."
@@ -297,7 +297,7 @@ if status is-interactive
         abbr -a -g xqrs xbps-query -Rs
         abbr -a -g xisu doas xbps-install -Su
         abbr -a -g xql xbps-query -l
-        abbr -a -g xqlg "xbps-query -l | grep --color -i"
+        abbr -a -g xqlg "xbps-query -l | ugrep --color -i"
         abbr -a -g xrr doas xbps-remove -R
         # xtools
         abbr -a -g xch xchroot
