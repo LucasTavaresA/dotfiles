@@ -308,8 +308,6 @@ elif [ "$OS" = "linuxmint" ]; then
     alias sys="doas systemctl"
 fi
 
-timeout 0.3s flashfetch
-
 # prompt
 # PS1="\e[01;37m[\u] \w\e[m \e[01;32m>\e[m"
 eval "$(starship init bash)"
