@@ -30,7 +30,7 @@ vks("i", "<C-c>", "", ns)
 -- colar na linha de baixo
 vks(nv, "P", ":norm o<CR>p", ns)
 -- trocar de buffer
-vks(nv, "<C-Tab>", ":Telescope buffers<CR>")
+vks(nv, "<C-Tab>", ":Telescope buffers<CR>", s)
 -- trocar de split
 vks(nv, "<A-Tab>", "<C-w>w")
 -- formatar buffer
@@ -38,37 +38,37 @@ vks(nv, "<leader>I", "gg=G<C-o>")
 -- formatar paragrafo
 vks(nv, "<leader>ii", "{=}<C-o>")
 -- alinhar texto
-vks("v", "<leader>A", ":'<,'>!column -t -o ' '<CR>")
+vks("v", "<leader>A", ":'<,'>!column -t -o ' '<CR>", s)
 -- abre arquivos no diretório atual
 vks(nv, "<leader>ff", ":e %:h")
 -- mudar o typo de arquivo
 vks(nv, "<leader>ft", ":setlocal filetype=")
 -- salvar buffer
-vks(nv, "<leader>ww", ":w<CR>")
+vks(nv, "<leader>ww", ":w<CR>", s)
 -- sair e salvar
-vks(nv, "<leader>wq", ":wq!<CR>")
+vks(nv, "<leader>wq", ":wq!<CR>", s)
 -- fecha sem salvar
-vks(nv, "<leader>qq", ":q!<CR>")
+vks(nv, "<leader>qq", ":q!<CR>", s)
 -- salvar e recarregar arquivo
-vks(nv, "<leader>wr", ":w<CR>:e<CR>")
+vks(nv, "<leader>wr", ":w<CR>:e<CR>", s)
 -- deletar buffer
-vks(nv, "<leader>k", ":bd<CR>")
+vks(nv, "<leader>k", ":bd<CR>", s)
 -- abre o buffer de mensagens
-vks(nv, "<leader>m", ":message<CR>")
+vks(nv, "<leader>m", ":message<CR>", s)
 -- avaliar buffer
-vks(nv, "<leader>eb", ":source %<CR>")
+vks(nv, "<leader>eb", ":source %<CR>", s)
 -- divide a tela do lado
-vks(nv, "<C-A-l>", ":vs<CR>")
+vks(nv, "<C-A-l>", ":vs<CR>", s)
 -- divide a tela abaixo
-vks(nv, "<C-A-j>", ":sp<CR>")
+vks(nv, "<C-A-j>", ":sp<CR>", s)
 -- copiar buffer
 vks(nv, "<leader>bc", "ggVGy<C-o>zz", n)
 -- ativa/desativa números de linha
-vks(nv, "zn", ":setlocal number! relativenumber!<CR>")
+vks(nv, "zn", ":setlocal number! relativenumber!<CR>", s)
 -- ativa/desativa indicação de linha
-vks(nv, "zl", ":setlocal cursorline!<CR>")
+vks(nv, "zl", ":setlocal cursorline!<CR>", s)
 -- ativa/desativa o corretor ortográfico
-vks(nv, "zs", ":setlocal spell!<CR>")
+vks(nv, "zs", ":setlocal spell!<CR>", s)
 -- procura palavra no cursor
 vks(nv, "?", "*")
 -- procura e substitui no arquivo
@@ -78,7 +78,7 @@ vks("v", "<leader>S", ":s//gc<left><left><left>")
 -- compilar código e lembrar commando
 vks(nv, "<leader>c", Compile)
 -- abre terminal do sistema no local do arquivo atual
-vks(nv, "<leader><return>", ":!sh -c 'cd %:p:h ; term_open' &<CR><CR>")
+vks(nv, "<leader><return>", ":!sh -c 'cd %:p:h ; term_open' &<CR><CR>", s)
 -- abre terminal nativo em uma split
 vks(nvi, "<M-CR>", TerminalToggle)
 vks("t", "<M-CR>", TerminalToggle)
@@ -106,9 +106,9 @@ vks(nv, "q", function()
   require("leap").leap({ target_windows = { vim.fn.win_getid() } })
 end)
 -- neogit
-vks(nv, "<leader>gg", ":Neogit<CR>")
+vks(nv, "<leader>gg", ":Neogit<CR>", s)
 -- mostra git blame - gitsigns
-vks(nv, "<leader>gb", ":Gitsigns toggle_current_line_blame<CR>")
+vks(nv, "<leader>gb", ":Gitsigns toggle_current_line_blame<CR>", s)
 -- navega entre diffs - gitsigns
 vks(nv, "[g", ":Gitsigns prev_hunk<CR>", s)
 vks(nv, "]g", ":Gitsigns next_hunk<CR>", s)
@@ -125,33 +125,33 @@ vks("v", "<leader>a", function()
   require("align").align_to_string(false, true, true)
 end, ns)
 -- abre arquivos no repositório atual - telescope
-vks(nv, "<leader>F", ":Telescope find_files<CR>")
+vks(nv, "<leader>F", ":Telescope find_files<CR>", s)
 -- procura linhas no buffer - telescope
-vks(nv, "\\", ":Telescope current_buffer_fuzzy_find<CR>")
+vks(nv, "\\", ":Telescope current_buffer_fuzzy_find<CR>", s)
 -- pesquisar por comandos - telescope
-vks(nv, "<leader>hc", ":Telescope commands<CR>")
+vks(nv, "<leader>hc", ":Telescope commands<CR>", s)
 -- pesquisar por correções - telescope
-vks(nv, "z=", ":Telescope spell_suggest<CR>")
+vks(nv, "z=", ":Telescope spell_suggest<CR>", s)
 -- pesquisar por opções - telescope
-vks(nv, "<leader>ho", ":Telescope vim_options<CR>")
+vks(nv, "<leader>ho", ":Telescope vim_options<CR>", s)
 -- pesquisar por documentação - telescope
-vks(nv, "<leader>hh", ":Telescope help_tags<CR>")
+vks(nv, "<leader>hh", ":Telescope help_tags<CR>", s)
 -- pesquisar por teclas - telescope
-vks(nv, "<leader>hk", ":Telescope keymaps<CR>")
+vks(nv, "<leader>hk", ":Telescope keymaps<CR>", s)
 -- pesquisar por highlights - telescope
-vks(nv, "<leader>hH", ":Telescope highlights<CR>")
+vks(nv, "<leader>hH", ":Telescope highlights<CR>", s)
 -- pesquisar por manpages - telescope
-vks(nv, "<leader>hm", ":Telescope man_pages<CR>")
+vks(nv, "<leader>hm", ":Telescope man_pages<CR>", s)
 -- abre arquivos abertos recentemente - telescope
-vks(nv, "<leader><leader>", ":Telescope oldfiles<CR>")
+vks(nv, "<leader><leader>", ":Telescope oldfiles<CR>", s)
 -- navegar por headings - telescope-heading
-vks(nv, "<leader>v", ":Telescope heading<CR>")
+vks(nv, "<leader>v", ":Telescope heading<CR>", s)
 -- procura e edita ocorrências de uma palavra - greplace
 vks(nv, "<leader>r", ":Gsearch  ./<left><left><left>")
 -- confirma todas as modificações - greplace
-vks(nv, "<leader>R", ":Greplace<CR>")
+vks(nv, "<leader>R", ":Greplace<CR>", s)
 -- ativa previsão de cores - ccc
-vks(nv, "zc", ":CccHighlighterToggle<CR>")
+vks(nv, "zc", ":CccHighlighterToggle<CR>", s)
 -- escolher cor
 vks(nv, "<leader>C", "<cmd>CccPick<cr>", ns)
 -- abrir e fechar arvore de undos - undotree
@@ -159,7 +159,7 @@ vks(nv, "zu", function()
   require("undotree").toggle()
 end, ns)
 -- ativa foco - zen-mode
-vks(nv, "zf", ":ZenMode<CR>")
+vks(nv, "zf", ":ZenMode<CR>", s)
 -- snippets
 vks(nv, "es", ":e ~/.config/nvim/snippets/")
 
