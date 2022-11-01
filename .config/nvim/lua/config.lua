@@ -8,6 +8,10 @@ local vanca = vim.api.nvim_create_autocmd
 local vansh = vim.api.nvim_set_hl
 local og = os.getenv
 local HOME = og("HOME")
+local XDG_DATA_HOME = og("XDG_DATA_HOME")
+if XDG_DATA_HOME == "" then
+  XDG_DATA_HOME = HOME .. "/.local/share"
+end
 
 ----- Configuração -----
 vc("filetype plugin on")
@@ -308,7 +312,7 @@ require("lspconfig").html.setup({
 
 -- instale o omnisharp
 require("lspconfig").omnisharp.setup({
-  cmd = { "dotnet", "/usr/lib/omnisharp-roslyn/OmniSharp.dll" },
+  cmd = { "dotnet", XDG_DATA_HOME .. "/dotnet/OmniSharp.dll" },
   on_attach = On_attach,
   capabilities = capabilities,
 })
