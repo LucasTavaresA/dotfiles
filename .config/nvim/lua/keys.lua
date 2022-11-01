@@ -92,9 +92,9 @@ vks("n", "zs", ":setlocal spell!<CR>")
 -- procura palavra no cursor
 vks("n", "?", "*")
 -- procura e substitui no arquivo
-vks("n", "<leader>s", ":%s//gc<left><left><left>")
+vks("n", "<leader>S", ":%s//gc<left><left><left>")
 -- procura e substitui na região selecionada
-vks("v", "<leader>s", ":s//gc<left><left><left>")
+vks("v", "<leader>S", ":s//gc<left><left><left>")
 -- compilar código e lembrar commando
 function Compile()
   vim.ui.input({ prompt = "Compile with> ", default = Compile_cmd }, function(input)
