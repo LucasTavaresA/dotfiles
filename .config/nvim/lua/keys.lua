@@ -1,106 +1,86 @@
 --- Variáveis
-local vo = vim.opt
 local vg = vim.g
-local vc = vim.cmd
-local vf = vim.fn
 local vanca = vim.api.nvim_create_autocmd
 local vks = vim.keymap.set
 local n = { noremap = true }
 local s = { silent = true }
 local ns = { noremap = true, silent = true }
+local nvi = { "n", "v", "i" }
+local nv = { "n", "v" }
 vg.mapleader = " "
 vg.maplocalleader = " "
 
 -- Remove setas
-vks("n", "<Up>", "")
-vks("n", "<Down>", "")
-vks("n", "<Left>", "")
-vks("n", "<Right>", "")
-vks("v", "<Up>", "")
-vks("v", "<Down>", "")
-vks("v", "<Left>", "")
-vks("v", "<Right>", "")
-vks("i", "<Up>", "")
-vks("i", "<Down>", "")
-vks("i", "<Left>", "")
-vks("i", "<Right>", "")
-vks("n", "<C-S-k>", "k", ns)
-vks("n", "<C-S-j>", "j", ns)
-vks("n", "<C-S-h>", "h", ns)
-vks("n", "<C-S-l>", "l", ns)
-vks("n", "k", "")
-vks("n", "j", "")
-vks("n", "h", "")
-vks("n", "l", "")
-vks("v", "k", "")
-vks("v", "j", "")
-vks("v", "h", "")
-vks("v", "l", "")
+vks(nv, "k", "")
+vks(nv, "j", "")
+vks(nv, "h", "")
+vks(nv, "l", "")
+vks(nvi, "<C-S-k>", "k", ns)
+vks(nvi, "<C-S-j>", "j", ns)
+vks(nvi, "<C-S-h>", "h", ns)
+vks(nvi, "<C-S-l>", "l", ns)
 -- sobe/desce uma tela
-vks("n", "<C-j>", "<C-d>", ns)
-vks("n", "<C-k>", "<C-u>", ns)
-vks("i", "<c-j>", "<c-d>", ns)
-vks("i", "<c-k>", "<c-u>", ns)
-vks("v", "<C-j>", "<C-d>", ns)
-vks("v", "<C-k>", "<C-u>", ns)
+vks(nvi, "<C-j>", "<C-d>", ns)
+vks(nvi, "<C-k>", "<C-u>", ns)
 -- cancela indicação de palavras procuradas
-vks("n", "<esc>", ":noh<CR>", ns)
--- não sai do insert mode com espaço
+vks(nv, "<esc>", ":noh<CR>", ns)
+-- não sai do insert mode com espaço/Ctrl-c
 vks("i", "<esc>", "", ns)
+vks("i", "<C-c>", "", ns)
 -- colar na linha de baixo
-vks("n", "P", ":norm o<CR>p", ns)
+vks(nv, "P", ":norm o<CR>p", ns)
 -- trocar de buffer
-vks("n", "<C-Tab>", ":Telescope buffers<CR>")
+vks(nv, "<C-Tab>", ":Telescope buffers<CR>")
 -- trocar de split
-vks("n", "<A-Tab>", "<C-w>w")
+vks(nv, "<A-Tab>", "<C-w>w")
 -- formatar buffer
-vks("n", "<leader>I", "gg=G<C-o>")
+vks(nv, "<leader>I", "gg=G<C-o>")
 -- formatar paragrafo
-vks("n", "<leader>ii", "{=}<C-o>")
+vks(nv, "<leader>ii", "{=}<C-o>")
 -- alinhar texto
 vks("v", "<leader>A", ":'<,'>!column -t -o ' '<CR>")
 -- abre arquivos no diretório atual
-vks("n", "<leader>ff", ":e %:h")
+vks(nv, "<leader>ff", ":e %:h")
 -- mudar o typo de arquivo
-vks("n", "<leader>ft", ":setlocal filetype=")
+vks(nv, "<leader>ft", ":setlocal filetype=")
 -- salvar buffer
-vks("n", "<leader>ww", ":w<CR>")
+vks(nv, "<leader>ww", ":w<CR>")
 -- sair e salvar
-vks("n", "<leader>wq", ":wq!<CR>")
+vks(nv, "<leader>wq", ":wq!<CR>")
 -- fecha sem salvar
-vks("n", "<leader>qq", ":q!<CR>")
+vks(nv, "<leader>qq", ":q!<CR>")
 -- salvar e recarregar arquivo
-vks("n", "<leader>wr", ":w<CR>:e<CR>")
+vks(nv, "<leader>wr", ":w<CR>:e<CR>")
 -- deletar buffer
-vks("n", "<leader>k", ":bd<CR>")
+vks(nv, "<leader>k", ":bd<CR>")
 -- abre o buffer de mensagens
-vks("n", "<leader>m", ":message<CR>")
+vks(nv, "<leader>m", ":message<CR>")
 -- avaliar buffer
-vks("n", "<leader>eb", ":source %<CR>")
+vks(nv, "<leader>eb", ":source %<CR>")
 -- divide a tela do lado
-vks("n", "<C-A-l>", ":vs<CR>")
+vks(nv, "<C-A-l>", ":vs<CR>")
 -- divide a tela abaixo
-vks("n", "<C-A-j>", ":sp<CR>")
+vks(nv, "<C-A-j>", ":sp<CR>")
 -- copiar buffer
-vks("n", "<leader>bc", "ggVGy<C-o>zz", n)
+vks(nv, "<leader>bc", "ggVGy<C-o>zz", n)
 -- ativa/desativa números de linha
-vks("n", "zn", ":setlocal number! relativenumber!<CR>")
+vks(nv, "zn", ":setlocal number! relativenumber!<CR>")
 -- ativa/desativa indicação de linha
-vks("n", "zl", ":setlocal cursorline!<CR>")
+vks(nv, "zl", ":setlocal cursorline!<CR>")
 -- ativa/desativa o corretor ortográfico
-vks("n", "zs", ":setlocal spell!<CR>")
+vks(nv, "zs", ":setlocal spell!<CR>")
 -- procura palavra no cursor
-vks("n", "?", "*")
+vks(nv, "?", "*")
 -- procura e substitui no arquivo
 vks("n", "<leader>S", ":%s//gc<left><left><left>")
 -- procura e substitui na região selecionada
 vks("v", "<leader>S", ":s//gc<left><left><left>")
 -- compilar código e lembrar commando
-vks("n", "<leader>c", Compile)
+vks(nv, "<leader>c", Compile)
 -- abre terminal do sistema no local do arquivo atual
-vks("n", "<leader><return>", ":!sh -c 'cd %:p:h ; term_open' &<CR><CR>")
+vks(nv, "<leader><return>", ":!sh -c 'cd %:p:h ; term_open' &<CR><CR>")
 -- abre terminal nativo em uma split
-vks("n", "<M-CR>", TerminalToggle)
+vks(nvi, "<M-CR>", TerminalToggle)
 vks("t", "<M-CR>", TerminalToggle)
 -- cria um macro
 vks("n", "M", "q", ns)
@@ -108,14 +88,14 @@ vks("n", "q", "")
 -- executa um macro
 vks("n", "m", "@")
 -- abre/fecha fold
-vks("n", "<tab>", function()
+vks(nvi, "<tab>", function()
   require("fold-cycle").open()
 end, s)
-vks("n", "zz", function()
+vks(nv, "zz", function()
   return require("fold-cycle").open()
 end, s)
 -- centraliza texto
-vks("n", "za", "zz", ns)
+vks(nv, "za", "zz", ns)
 -- marca/desmarca caixas
 vanca("FileType", { pattern = { "markdown" }, command = "nnoremap <silent> zx :call Marcar()<CR>j" })
 vanca("FileType", { pattern = { "org" }, command = "nnoremap <silent> zx :call Marcar()<CR>j" })
@@ -124,68 +104,62 @@ vanca("FileType", { pattern = { "org" }, command = "nnoremap <silent> zx :call M
 -- pula para palavras usando indicadores - mini.jump2d
 vks("n", "q", ":lua MiniJump2d.start(MiniJump2d.builtin_opts.default)<CR>")
 -- neogit
-vks("n", "<leader>gg", ":Neogit<CR>")
+vks(nv, "<leader>gg", ":Neogit<CR>")
 -- mostra git blame - gitsigns
-vks("n", "<leader>gb", ":Gitsigns toggle_current_line_blame<CR>")
+vks(nv, "<leader>gb", ":Gitsigns toggle_current_line_blame<CR>")
 -- navega entre diffs - gitsigns
-vks("n", "[g", ":Gitsigns prev_hunk<CR>", s)
-vks("n", "]g", ":Gitsigns next_hunk<CR>", s)
+vks(nv, "[g", ":Gitsigns prev_hunk<CR>", s)
+vks(nv, "]g", ":Gitsigns next_hunk<CR>", s)
 -- expande região selecionada - expand region
-vks("n", "<S-k>", "<Plug>(expand_region_expand)")
-vks("n", "<S-j>", "<Plug>(expand_region_shrink)")
-vks("v", "<S-k>", "<Plug>(expand_region_expand)")
-vks("v", "<S-j>", "<Plug>(expand_region_shrink)")
-vks("i", "<S-k>", "<esc><Plug>(expand_region_expand)")
-vks("i", "<S-j>", "<esc><Plug>(expand_region_shrink)")
+vks(nv, "<S-k>", "<Plug>(expand_region_expand)")
+vks(nv, "<S-j>", "<Plug>(expand_region_shrink)")
 -- move linha - move.nvim
-vks("n", "<A-j>", ":MoveLine(1)<CR>", ns)
-vks("n", "<A-k>", ":MoveLine(-1)<CR>", ns)
+vks(nv, "<A-j>", ":MoveLine(1)<CR>", ns)
+vks(nv, "<A-k>", ":MoveLine(-1)<CR>", ns)
 vks("i", "<A-k>", "<esc>:MoveLine(-1)<CR>", ns)
 vks("i", "<A-j>", "<esc>:MoveLine(1)<CR>", ns)
-vks("v", "<A-j>", ":MoveBlock(1)<CR>", ns)
-vks("v", "<A-k>", ":MoveBlock(-1)<CR>", ns)
 -- alinhar texto - align
 vks("v", "<leader>a", function()
   require("align").align_to_string(false, true, true)
 end, ns)
 -- abre arquivos no repositório atual - telescope
-vks("n", "<leader>F", ":Telescope find_files<CR>")
+vks(nv, "<leader>F", ":Telescope find_files<CR>")
 -- procura linhas no buffer - telescope
-vks("n", "\\", ":Telescope current_buffer_fuzzy_find<CR>")
+vks(nv, "\\", ":Telescope current_buffer_fuzzy_find<CR>")
 -- pesquisar por comandos - telescope
-vks("n", "<leader>hc", ":Telescope commands<CR>")
+vks(nv, "<leader>hc", ":Telescope commands<CR>")
 -- pesquisar por correções - telescope
-vks("n", "z=", ":Telescope spell_suggest<CR>")
+vks(nv, "z=", ":Telescope spell_suggest<CR>")
 -- pesquisar por opções - telescope
-vks("n", "<leader>ho", ":Telescope vim_options<CR>")
+vks(nv, "<leader>ho", ":Telescope vim_options<CR>")
 -- pesquisar por documentação - telescope
-vks("n", "<leader>hh", ":Telescope help_tags<CR>")
+vks(nv, "<leader>hh", ":Telescope help_tags<CR>")
 -- pesquisar por teclas - telescope
-vks("n", "<leader>hk", ":Telescope keymaps<CR>")
+vks(nv, "<leader>hk", ":Telescope keymaps<CR>")
 -- pesquisar por highlights - telescope
-vks("n", "<leader>hH", ":Telescope highlights<CR>")
+vks(nv, "<leader>hH", ":Telescope highlights<CR>")
 -- pesquisar por manpages - telescope
-vks("n", "<leader>hm", ":Telescope man_pages<CR>")
+vks(nv, "<leader>hm", ":Telescope man_pages<CR>")
 -- abre arquivos abertos recentemente - telescope
-vks("n", "<leader><leader>", ":Telescope oldfiles<CR>")
+vks(nv, "<leader><leader>", ":Telescope oldfiles<CR>")
 -- navegar por headings - telescope-heading
-vks("n", "<leader>v", ":Telescope heading<CR>")
+vks(nv, "<leader>v", ":Telescope heading<CR>")
 -- procura e edita ocorrências de uma palavra - greplace
-vks("n", "<leader>r", ":Gsearch  ./<left><left><left>")
+vks(nv, "<leader>r", ":Gsearch  ./<left><left><left>")
 -- confirma todas as modificações - greplace
-vks("n", "<leader>R", ":Greplace<CR>")
+vks(nv, "<leader>R", ":Greplace<CR>")
 -- ativa previsão de cores - ccc
-vks("n", "zc", ":CccHighlighterToggle<CR>")
+vks(nv, "zc", ":CccHighlighterToggle<CR>")
 -- escolher cor
-vks("n", "<leader>C", "<cmd>CccPick<cr>", ns)
+vks(nv, "<leader>C", "<cmd>CccPick<cr>", ns)
 -- abrir e fechar arvore de undos - undotree
-vks("n", "zu", function()
+vks(nv, "zu", function()
   require("undotree").toggle()
 end, ns)
 -- ativa foco - zen-mode
-vks("n", "zf", ":ZenMode<CR>")
+vks(nv, "zf", ":ZenMode<CR>")
 -- snippets
-vks("n", "es", ":e ~/.config/nvim/snippets/")
+vks(nv, "es", ":e ~/.config/nvim/snippets/")
 
 --- LSP
 -- Ativa essas teclas quando o lsp esta ativo
@@ -197,48 +171,48 @@ On_attach = function(_, bufnr)
   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
   local bns = { buffer = bufnr, noremap = true, silent = true }
-  vks("n", "H", function()
+  vks(nv, "H", function()
     require("hover").hover()
   end, { desc = "hover.nvim" })
-  vks("n", "gH", function()
+  vks(nv, "gH", function()
     require("hover").hover_select()
   end, { desc = "hover.nvim (select)" })
-  vks("n", "gD", vim.lsp.buf.declaration, bns)
-  vks("n", "gd", function()
+  vks(nv, "gD", vim.lsp.buf.declaration, bns)
+  vks(nv, "gd", function()
     require("telescope.builtin").lsp_definitions({})
   end, bns)
-  vks("n", "gi", function()
+  vks(nv, "gi", function()
     require("telescope.builtin").lsp_implementations({})
   end, bns)
-  vks("n", "gr", function()
+  vks(nv, "gr", function()
     require("telescope.builtin").lsp_references({})
   end, bns)
-  vks("n", "<C-h>", vim.lsp.buf.signature_help, bns)
+  vks(nv, "<C-h>", vim.lsp.buf.signature_help, bns)
   vks("i", "<C-h>", vim.lsp.buf.signature_help, bns)
-  vks("n", "[d", vim.diagnostic.goto_prev, bns)
-  vks("n", "]d", vim.diagnostic.goto_next, bns)
-  vks("n", "<leader>D", function()
+  vks(nv, "[d", vim.diagnostic.goto_prev, bns)
+  vks(nv, "]d", vim.diagnostic.goto_next, bns)
+  vks(nv, "<leader>D", function()
     require("telescope.builtin").diagnostics({})
   end, bns)
-  vks("n", "<leader>I", function()
+  vks(nv, "<leader>I", function()
     vim.lsp.buf.format({ async = true })
   end, bns)
-  vks("n", "<leader>r", vim.lsp.buf.rename, bns)
+  vks(nv, "<leader>r", vim.lsp.buf.rename, bns)
 end
 
 --- DAP
-vks("n", "<F4>", ":lua require'dapui'.toggle()<CR>", ns)
-vks("n", "<F5>", ":lua require'dap'.continue()<CR>", ns)
-vks("n", "<F10>", ":lua require'dap'.step_over()<CR>", ns)
-vks("n", "<F11>", ":lua require'dap'.step_into()<CR>", ns)
-vks("n", "<F12>", ":lua require'dap'.step_out()<CR>", ns)
-vks("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<CR>", ns)
-vks("n", "<leader>dB", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", ns)
+vks(nv, "<F4>", ":lua require'dapui'.toggle()<CR>", ns)
+vks(nv, "<F5>", ":lua require'dap'.continue()<CR>", ns)
+vks(nv, "<F10>", ":lua require'dap'.step_over()<CR>", ns)
+vks(nv, "<F11>", ":lua require'dap'.step_into()<CR>", ns)
+vks(nv, "<F12>", ":lua require'dap'.step_out()<CR>", ns)
+vks(nv, "<leader>db", ":lua require'dap'.toggle_breakpoint()<CR>", ns)
+vks(nv, "<leader>dB", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", ns)
 vks(
-  "n",
+  nv,
   "<leader>dp",
   ":lua require'dap'.require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
   ns
 )
-vks("n", "<leader>dr", ":lua require'dap'.repl.open()<CR>", ns)
-vks("n", "<leader>dl", ":lua require'dap'.run_last()<CR>", ns)
+vks(nv, "<leader>dr", ":lua require'dap'.repl.open()<CR>", ns)
+vks(nv, "<leader>dl", ":lua require'dap'.run_last()<CR>", ns)
