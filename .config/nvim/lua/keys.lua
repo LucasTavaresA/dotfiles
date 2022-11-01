@@ -96,50 +96,10 @@ vks("n", "<leader>S", ":%s//gc<left><left><left>")
 -- procura e substitui na região selecionada
 vks("v", "<leader>S", ":s//gc<left><left><left>")
 -- compilar código e lembrar commando
-function Compile()
-  vim.ui.input({ prompt = "Compile with> ", default = Compile_cmd }, function(input)
-    Compile_cmd = input
-    if Compile_cmd ~= nil then
-      vc(":! " .. Compile_cmd)
-    end
-  end)
-end
 vks("n", "<leader>c", Compile)
 -- abre terminal do sistema no local do arquivo atual
 vks("n", "<leader><return>", ":!sh -c 'cd %:p:h ; term_open' &<CR><CR>")
 -- abre terminal nativo em uma split
-local lua_terminal_window = nil
-local lua_terminal_buffer = nil
-local terminal_split_size = tonumber(vim.api.nvim_exec("echo &lines", true)) / 2.5
-function TerminalToggle()
-  if vf.win_gotoid(lua_terminal_window) == 1 then
-    if vf.win_gotoid(lua_terminal_window) == 1 then
-      vc("hide")
-    end
-  else
-    if vf.bufexists(lua_terminal_buffer) == 0 then
-      vc("new lua_terminal")
-      vc("wincmd J")
-      vc("resize " .. terminal_split_size)
-      vf.termopen(os.getenv("SHELL"), {
-        detach = 1,
-      })
-      vc("silent file Terminal 1")
-      lua_terminal_window = vf.win_getid()
-      lua_terminal_buffer = vf.bufnr("%")
-      vo.buflisted = false
-    else
-      if vf.win_gotoid(lua_terminal_window) == 0 then
-        vc("sp")
-        vc("wincmd J")
-        vc("resize " .. terminal_split_size)
-        vc("buffer Terminal 1")
-        lua_terminal_window = vf.win_getid()
-      end
-    end
-    vc("startinsert")
-  end
-end
 vks("n", "<M-CR>", TerminalToggle)
 vks("t", "<M-CR>", TerminalToggle)
 -- cria um macro
@@ -157,18 +117,6 @@ end, s)
 -- centraliza texto
 vks("n", "za", "zz", ns)
 -- marca/desmarca caixas
-vc([[
-    function Marcar()
-        let l:line=getline('.')
-        let l:curs=winsaveview()
-        if l:line=~?'\s*-\s*\[\s*\].*'
-            s/\[.\]/[X]/
-        elseif l:line=~?'\s*-\s*\[X\].*'
-            s/\[X\]/[ ]/
-        endif
-        call winrestview(l:curs)
-    endfunction
-]])
 vanca("FileType", { pattern = { "markdown" }, command = "nnoremap <silent> zx :call Marcar()<CR>j" })
 vanca("FileType", { pattern = { "org" }, command = "nnoremap <silent> zx :call Marcar()<CR>j" })
 
