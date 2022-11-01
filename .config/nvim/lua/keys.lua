@@ -102,7 +102,9 @@ vanca("FileType", { pattern = { "org" }, command = "nnoremap <silent> zx :call M
 
 --- Plugins
 -- pula para palavras usando indicadores - mini.jump2d
-vks("n", "q", ":lua MiniJump2d.start(MiniJump2d.builtin_opts.default)<CR>")
+vks(nv, "q", function()
+  require("leap").leap({ target_windows = { vim.fn.win_getid() } })
+end)
 -- neogit
 vks(nv, "<leader>gg", ":Neogit<CR>")
 -- mostra git blame - gitsigns

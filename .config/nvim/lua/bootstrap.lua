@@ -156,12 +156,7 @@ return require("packer").startup(function(use)
   -- alinha texto
   use("Vonr/align.nvim")
   -- movimento usando indicadores
-  use({
-    "echasnovski/mini.jump2d",
-    config = function()
-      require("mini.jump2d").setup({})
-    end,
-  })
+  use({ "ggandor/leap.nvim" })
   -- extende a funcionalidade de f,F,t,T
   use({
     "echasnovski/mini.jump",
