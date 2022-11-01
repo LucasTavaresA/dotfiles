@@ -182,6 +182,7 @@ unrar
 unzip
 ventoy-bin
 vimiv-qt
+wayland-protocols
 wget
 which
 wl-clipboard
