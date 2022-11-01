@@ -11,8 +11,42 @@ local ns = { noremap = true, silent = true }
 vg.mapleader = " "
 vg.maplocalleader = " "
 
+-- Remove setas
+vks("n", "<Up>", "")
+vks("n", "<Down>", "")
+vks("n", "<Left>", "")
+vks("n", "<Right>", "")
+vks("v", "<Up>", "")
+vks("v", "<Down>", "")
+vks("v", "<Left>", "")
+vks("v", "<Right>", "")
+vks("i", "<Up>", "")
+vks("i", "<Down>", "")
+vks("i", "<Left>", "")
+vks("i", "<Right>", "")
+vks("n", "<C-S-k>", "k", ns)
+vks("n", "<C-S-j>", "j", ns)
+vks("n", "<C-S-h>", "h", ns)
+vks("n", "<C-S-l>", "l", ns)
+vks("n", "k", "")
+vks("n", "j", "")
+vks("n", "h", "")
+vks("n", "l", "")
+vks("v", "k", "")
+vks("v", "j", "")
+vks("v", "h", "")
+vks("v", "l", "")
+-- sobe/desce uma tela
+vks("n", "<C-j>", "<C-d>", ns)
+vks("n", "<C-k>", "<C-u>", ns)
+vks("i", "<c-j>", "<c-d>", ns)
+vks("i", "<c-k>", "<c-u>", ns)
+vks("v", "<C-j>", "<C-d>", ns)
+vks("v", "<C-k>", "<C-u>", ns)
 -- cancela indicação de palavras procuradas
 vks("n", "<esc>", ":noh<CR>", ns)
+-- não sai do insert mode com espaço
+vks("i", "<esc>", "", ns)
 -- colar na linha de baixo
 vks("n", "P", ":norm o<CR>p", ns)
 -- trocar de buffer
@@ -197,7 +231,9 @@ vks("n", "zc", ":CccHighlighterToggle<CR>")
 -- escolher cor
 vks("n", "<leader>C", "<cmd>CccPick<cr>", ns)
 -- abrir e fechar arvore de undos - undotree
-vks("n", "zu", require("undotree").toggle, ns)
+vks("n", "zu", function()
+  require("undotree").toggle()
+end, ns)
 -- ativa foco - zen-mode
 vks("n", "zf", ":ZenMode<CR>")
 -- snippets
@@ -213,8 +249,12 @@ On_attach = function(_, bufnr)
   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
   local bns = { buffer = bufnr, noremap = true, silent = true }
-  vks("n", "H", require("hover").hover, { desc = "hover.nvim" })
-  vks("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
+  vks("n", "H", function()
+    require("hover").hover()
+  end, { desc = "hover.nvim" })
+  vks("n", "gH", function()
+    require("hover").hover_select()
+  end, { desc = "hover.nvim (select)" })
   vks("n", "gD", vim.lsp.buf.declaration, bns)
   vks("n", "gd", function()
     require("telescope.builtin").lsp_definitions({})
@@ -225,8 +265,8 @@ On_attach = function(_, bufnr)
   vks("n", "gr", function()
     require("telescope.builtin").lsp_references({})
   end, bns)
-  vks("n", "<C-k>", vim.lsp.buf.signature_help, bns)
-  vks("i", "<C-k>", vim.lsp.buf.signature_help, bns)
+  vks("n", "<C-h>", vim.lsp.buf.signature_help, bns)
+  vks("i", "<C-h>", vim.lsp.buf.signature_help, bns)
   vks("n", "[d", vim.diagnostic.goto_prev, bns)
   vks("n", "]d", vim.diagnostic.goto_next, bns)
   vks("n", "<leader>D", function()
