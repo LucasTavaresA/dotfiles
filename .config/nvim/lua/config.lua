@@ -231,6 +231,7 @@ cmp.setup({
     { name = "buffer" },
     { name = "spell" },
     { name = "snippy" },
+    { name = "plugins" },
   }, {
     { name = "buffer" },
   }),

@@ -322,6 +322,14 @@ return require("packer").startup(function(use)
           { "dcampos/cmp-snippy" },
           { "f3fora/cmp-spell" },
           { "davidsierradz/cmp-conventionalcommits" },
+          {
+            "KadoBOT/cmp-plugins",
+            config = function()
+              require("cmp-plugins").setup({
+                files = { ".*\\.lua" }, -- default
+              })
+            end,
+          },
         },
       },
     },
