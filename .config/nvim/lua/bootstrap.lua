@@ -418,6 +418,8 @@ return require("packer").startup(function(use)
     requires = "nvim-lua/plenary.nvim",
     cmd = "Neogit",
   })
+  -- balanceia parenteses
+  use("gpanders/nvim-parinfer")
 
   --- Aparência
   -- indica instancias da palavra no cursor
