@@ -124,6 +124,13 @@ return require("packer").startup(function(use)
       })
     end,
   })
+  -- Previne o uso de teclas ineficientes
+  use({
+    "ja-ford/delaytrain.nvim",
+    config = function()
+      require("delaytrain").setup()
+    end,
+  })
 
   --- Editar
   -- troca/coloca aspas/parenteses

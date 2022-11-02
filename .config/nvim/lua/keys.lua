@@ -10,15 +10,6 @@ local nv = { "n", "v" }
 vg.mapleader = " "
 vg.maplocalleader = " "
 
--- Remove setas
-vks(nv, "k", "")
-vks(nv, "j", "")
-vks(nv, "h", "")
-vks(nv, "l", "")
-vks(nvi, "<C-S-k>", "k", ns)
-vks(nvi, "<C-S-j>", "j", ns)
-vks(nvi, "<C-S-h>", "h", ns)
-vks(nvi, "<C-S-l>", "l", ns)
 -- sobe/desce uma tela
 vks(nvi, "<C-j>", "<C-d>", ns)
 vks(nvi, "<C-k>", "<C-u>", ns)
@@ -189,8 +180,7 @@ On_attach = function(_, bufnr)
   vks(nv, "gr", function()
     require("telescope.builtin").lsp_references({})
   end, bns)
-  vks(nv, "<C-h>", vim.lsp.buf.signature_help, bns)
-  vks("i", "<C-h>", vim.lsp.buf.signature_help, bns)
+  vks(nvi, "<C-h>", vim.lsp.buf.signature_help, bns)
   vks(nv, "[d", vim.diagnostic.goto_prev, bns)
   vks(nv, "]d", vim.diagnostic.goto_next, bns)
   vks(nv, "<leader>D", function()
