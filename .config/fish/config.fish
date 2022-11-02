@@ -23,8 +23,10 @@ if status is-interactive
         fisher install PatrickF1/fzf.fish
         echo "Installing done! ✅"
         fisher install franciscolourenco/done
-        echo "Installing abbrevition-tips!"
+        echo "Installing abbrevition-tips! 💡"
         fisher install gazorby/fish-abbreviation-tips
+        echo "Installing autopair! (\"\")"
+        fisher install jorgebucaran/autopair.fish
     end
 
     ## Teclas ##
