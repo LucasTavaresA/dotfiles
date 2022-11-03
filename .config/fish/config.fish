@@ -27,6 +27,8 @@ if status is-interactive
         fisher install gazorby/fish-abbreviation-tips
         echo "Installing autopair! (\"\")"
         fisher install jorgebucaran/autopair.fish
+        echo "Installing sponge! 🧽"
+        fisher install meaningful-ooo/sponge
     end
 
     ## Teclas ##
