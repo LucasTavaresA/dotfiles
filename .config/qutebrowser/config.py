@@ -170,6 +170,8 @@ bindings = {
     "<Ctrl-Right>": "tab-next",
     "<Ctrl-a>": "back",
     "<Ctrl-d>": "forward",
+    "<Ctrl-j>": "scroll-page 0 0.5",
+    "<Ctrl-k>": "scroll-page 0 -0.5",
     "u": "undo --window",
     # atalho para assistir link
     "qvw": "hint links spawn streamlink {hint-url} 720p",
