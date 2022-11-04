@@ -88,8 +88,17 @@ end, s)
 -- centraliza texto
 vks(nv, "za", "zz", ns)
 -- marca/desmarca caixas
-vanca("FileType", { pattern = { "markdown" }, command = "nnoremap <silent> zx :call Marcar()<CR>j" })
-vanca("FileType", { pattern = { "org" }, command = "nnoremap <silent> zx :call Marcar()<CR>j" })
+vanca(
+  "FileType",
+  {
+    pattern = { "markdown" },
+    command = "nnoremap <silent> zx :call Marcar()<CR>j",
+  }
+)
+vanca(
+  "FileType",
+  { pattern = { "org" }, command = "nnoremap <silent> zx :call Marcar()<CR>j" }
+)
 
 --- Plugins
 -- pula para palavras usando indicadores - mini.jump2d
@@ -199,7 +208,12 @@ vks(nv, "<F10>", ":lua require'dap'.step_over()<CR>", ns)
 vks(nv, "<F11>", ":lua require'dap'.step_into()<CR>", ns)
 vks(nv, "<F12>", ":lua require'dap'.step_out()<CR>", ns)
 vks(nv, "<leader>db", ":lua require'dap'.toggle_breakpoint()<CR>", ns)
-vks(nv, "<leader>dB", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", ns)
+vks(
+  nv,
+  "<leader>dB",
+  ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
+  ns
+)
 vks(
   nv,
   "<leader>dp",

@@ -6,12 +6,15 @@ local va = vim.api
 
 --- Executar e lembrar um commando
 function Compile()
-  vim.ui.input({ prompt = "Compile with> ", default = Compile_cmd }, function(input)
-    Compile_cmd = input
-    if Compile_cmd ~= nil then
-      vc(":! " .. Compile_cmd)
+  vim.ui.input(
+    { prompt = "Compile with> ", default = Compile_cmd },
+    function(input)
+      Compile_cmd = input
+      if Compile_cmd ~= nil then
+        vc(":! " .. Compile_cmd)
+      end
     end
-  end)
+  )
 end
 
 --- Ativa/Desativa o terminal

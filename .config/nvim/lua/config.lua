@@ -53,7 +53,10 @@ vo.textwidth = 80
 -- da a volta entre linhas
 vo.whichwrap = vo.whichwrap + "<,>,h,l,[,]"
 -- desativa comentar automaticamente a próxima linha
-vanca("FileType", { pattern = { "*" }, command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" })
+vanca("FileType", {
+  pattern = { "*" },
+  command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o",
+})
 -- Checagem ortográfica em varias linguas
 vo.spelllang = { "pt", "en" }
 -- Ativa checagem ortografica typos de arquivos
@@ -61,7 +64,10 @@ vanca("FileType", { pattern = { "org" }, command = "setlocal spell" })
 vanca("FileType", { pattern = { "markdown" }, command = "setlocal spell" })
 vanca("FileType", { pattern = { "gitcommit" }, command = "setlocal spell" })
 --- Writegood mode
-vanca("FileType", { pattern = { "org" }, command = "call timer_start(100, { tid -> execute('WritegoodEnable')})" })
+vanca("FileType", {
+  pattern = { "org" },
+  command = "call timer_start(100, { tid -> execute('WritegoodEnable')})",
+})
 vanca("FileType", {
   pattern = { "markdown" },
   command = "call timer_start(100, { tid -> execute('WritegoodEnable')})",
@@ -75,8 +81,14 @@ if vf.getcwd() == HOME then
 end
 --- zen-mode
 -- ativa zen em arquivos específicos
-vanca("FileType", { pattern = { "org" }, command = "call timer_start(100, { tid -> execute('ZenMode')})" })
-vanca("FileType", { pattern = { "markdown" }, command = "call timer_start(100, { tid -> execute('ZenMode')})" })
+vanca("FileType", {
+  pattern = { "org" },
+  command = "call timer_start(100, { tid -> execute('ZenMode')})",
+})
+vanca("FileType", {
+  pattern = { "markdown" },
+  command = "call timer_start(100, { tid -> execute('ZenMode')})",
+})
 
 --- Netrw
 -- desabilita o netrw
@@ -97,10 +109,16 @@ vo.shiftwidth = 4
 -- troca tabs por espaços
 vo.expandtab = true
 -- tabs em arquivos lua
-vanca("FileType", { pattern = { "lua" }, command = "setlocal tabstop=2 shiftwidth=2" })
+vanca(
+  "FileType",
+  { pattern = { "lua" }, command = "setlocal tabstop=2 shiftwidth=2" }
+)
 -- formata com o stylua
 if vf.getcwd() == HOME then
-  vanca("BufWritePost", { pattern = { "*.lua" }, command = "!stylua --config-path ./.config/stylua.toml %" })
+  vanca("BufWritePost", {
+    pattern = { "*.lua" },
+    command = "!stylua --config-path ./.config/stylua.toml %",
+  })
 else
   vanca("BufWritePost", { pattern = { "*.lua" }, command = "!stylua %" })
 end
@@ -113,7 +131,10 @@ vo.number = true
 vo.numberwidth = 1
 vo.relativenumber = true
 -- remove numero de linhas no terminal
-vanca("TermOpen", { pattern = { "*" }, command = "setlocal nonumber norelativenumber" })
+vanca(
+  "TermOpen",
+  { pattern = { "*" }, command = "setlocal nonumber norelativenumber" }
+)
 -- indicação de espaços e tabs
 vo.list = true
 vo.listchars = {
@@ -269,7 +290,9 @@ cmp.setup.cmdline(":", {
     { name = "cmdline" },
   }),
 })
-local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").default_capabilities(
+  vim.lsp.protocol.make_client_capabilities()
+)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 --- lsp kind - ícones

@@ -2,9 +2,17 @@
 -- nvim --headless -u NONE -c 'lua require("bootstrap")' -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 local ensure_packer = function()
   local fn = vim.fn
-  local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+  local install_path = fn.stdpath("data")
+    .. "/site/pack/packer/start/packer.nvim"
   if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
+    fn.system({
+      "git",
+      "clone",
+      "--depth",
+      "1",
+      "https://github.com/wbthomason/packer.nvim",
+      install_path,
+    })
     vim.cmd([[packadd packer.nvim]])
     return true
   end
@@ -59,7 +67,8 @@ return require("packer").startup(function(use)
           preview = false,
           mappings = {
             i = {
-              ["<C-Tab>"] = actions.toggle_selection + actions.move_selection_worse,
+              ["<C-Tab>"] = actions.toggle_selection
+                + actions.move_selection_worse,
             },
           },
         },
@@ -276,7 +285,8 @@ return require("packer").startup(function(use)
             fmt = {
               stack_upwards = false,
               task = function(task_name, message, percentage)
-                local pct = percentage and string.format(" (%s%%)", percentage) or ""
+                local pct = percentage and string.format(" (%s%%)", percentage)
+                  or ""
                 if task_name then
                   return string.format("%s%s [%s]", message, pct, task_name)
                 else
@@ -380,7 +390,11 @@ return require("packer").startup(function(use)
           name = "launch - netcoredbg",
           request = "launch",
           program = function()
-            return vim.fn.input("Project dll: ", vim.fn.getcwd() .. "/bin/Debug/", "file")
+            return vim.fn.input(
+              "Project dll: ",
+              vim.fn.getcwd() .. "/bin/Debug/",
+              "file"
+            )
           end,
         }
       end
@@ -545,7 +559,11 @@ return require("packer").startup(function(use)
     },
   })
   -- indica mals hábitos de escrita
-  use({ "davidbeckingsale/writegood.vim", opt = true, cmd = { "WritegoodEnable" } })
+  use({
+    "davidbeckingsale/writegood.vim",
+    opt = true,
+    cmd = { "WritegoodEnable" },
+  })
   -- move entre headings
   use({
     "crispgm/telescope-heading.nvim",
