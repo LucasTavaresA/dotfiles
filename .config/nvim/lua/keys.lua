@@ -21,9 +21,9 @@ vks("i", "<C-c>", "", ns)
 -- colar na linha de baixo
 vks(nv, "P", ":norm o<CR>p", ns)
 -- trocar de buffer
-vks(nv, "<C-Tab>", ":Telescope buffers<CR>", s)
+vks(nvi, "<C-Tab>", "<esc>:Telescope buffers<CR>", s)
 -- trocar de split
-vks(nv, "<A-Tab>", "<C-w>w")
+vks(nvi, "<A-Tab>", "<esc><C-w>w")
 -- formatar buffer
 vks(nv, "<leader>I", "gg=G<C-o>")
 -- formatar paragrafo
@@ -49,9 +49,9 @@ vks(nv, "<leader>m", ":message<CR>", s)
 -- avaliar buffer
 vks(nv, "<leader>eb", ":source %<CR>", s)
 -- divide a tela do lado
-vks(nv, "<C-A-l>", ":vs<CR>", s)
+vks(nvi, "<C-A-l>", "<esc>:vs<CR>", s)
 -- divide a tela abaixo
-vks(nv, "<C-A-j>", ":sp<CR>", s)
+vks(nvi, "<C-A-j>", "<esc>:sp<CR>", s)
 -- copiar buffer
 vks(nv, "<leader>bc", "ggVGy<C-o>zz", n)
 -- ativa/desativa números de linha
