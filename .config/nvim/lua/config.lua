@@ -122,9 +122,14 @@ vo.listchars = {
   precedes = "⟨",
   trail = "~",
   multispace = "··",
-  leadmultispace = "│···",
   conceal = "*",
 }
+vanca("FileType", {
+  pattern = { "*" },
+  callback = function()
+    ListChars()
+  end,
+})
 -- folding
 vg.sh_fold_enabled = 1
 vg.foldenabled = true
