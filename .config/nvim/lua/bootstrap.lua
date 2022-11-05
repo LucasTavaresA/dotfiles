@@ -137,7 +137,9 @@ return require("packer").startup(function(use)
   use({
     "ja-ford/delaytrain.nvim",
     config = function()
-      require("delaytrain").setup()
+      require("delaytrain").setup({
+        ignore_filetypes = { "Neogit" }, -- Example: set to {"help", "NvimTr*"} to
+      })
     end,
   })
 
