@@ -158,6 +158,7 @@ vo.foldmethod = "syntax"
 vo.foldcolumn = "0"
 vo.foldnestmax = 3
 vo.foldopen:append("jump")
+vanca("FileType", { pattern = { "gitcommit" }, command = "norm zr" })
 -- tema
 vc.colorscheme("kanagawa")
 -- prefere modo escuro
