@@ -548,7 +548,7 @@ return require("packer").startup(function(use)
         -- callback where you can add custom code when the Zen window closes
         on_close = function()
           vim.opt_local.laststatus = 3
-          vim.cmd.quit()
+          vim.cmd(":wq!")
         end,
       })
     end,
