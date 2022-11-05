@@ -451,6 +451,12 @@ return require("packer").startup(function(use)
       require("stabilize").setup()
     end,
   })
+  use({
+    "levouh/tint.nvim",
+    config = function()
+      require("tint").setup()
+    end,
+  })
   -- indica instancias da palavra no cursor
   use({
     "echasnovski/mini.cursorword",
