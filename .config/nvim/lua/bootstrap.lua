@@ -455,7 +455,7 @@ return require("packer").startup(function(use)
   use({
     "echasnovski/mini.cursorword",
     config = function()
-      vim.api.nvim_set_hl(0, "MiniCursorWord", { bg = "#000066" })
+      vim.api.nvim_set_hl(0, "MiniCursorWord", { bg = "#7F5D38" })
       require("mini.cursorword").setup({ delay = 1000 })
     end,
   })
@@ -464,7 +464,7 @@ return require("packer").startup(function(use)
   -- ícones usados em vários plugins
   use("kyazdani42/nvim-web-devicons")
   -- tema
-  use("rebelot/kanagawa.nvim")
+  use("lmburns/kimbox")
   -- statusline
   use("famiu/feline.nvim")
   -- fold mais bonitas
