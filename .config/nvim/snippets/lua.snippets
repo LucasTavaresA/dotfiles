@@ -1,0 +1,12 @@
+# packer plugin
+snippet use
+	use("$1")
+
+# packer plugin with setup
+snippet usesetup
+	use({
+	  "$1",
+	  config = function()
+	    require("$2").setup()
+	  end$0
+	})
