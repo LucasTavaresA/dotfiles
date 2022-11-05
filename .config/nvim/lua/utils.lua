@@ -49,18 +49,17 @@ function TerminalToggle()
 end
 
 --- Marcar e desmarcar checkboxes markdown
-vc([[
-    function Marcar()
-        let l:line=getline('.')
-        let l:curs=winsaveview()
-        if l:line=~?'\s*-\s*\[\s*\].*'
-            s/\[.\]/[X]/
-        elseif l:line=~?'\s*-\s*\[X\].*'
-            s/\[X\]/[ ]/
-        endif
-        call winrestview(l:curs)
-    endfunction
-]])
+function Marcar()
+  local line = vf.getline(".")
+  local view = vf.winsaveview()
+  if string.match(line, "- %[ %]") then
+    vc("s/\\[ \\]/[X]/")
+  elseif string.match(line, "- %[X%]") then
+    vc("s/\\[X\\]/[ ]/")
+  end
+  vc("noh")
+  vf.winrestview(view)
+end
 
 --- mudar leadmultispace dependendo do filetype
 function ListChars()

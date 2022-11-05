@@ -88,17 +88,7 @@ end, s)
 -- centraliza texto
 vks(nv, "za", "zz", ns)
 -- marca/desmarca caixas
-vanca(
-  "FileType",
-  {
-    pattern = { "markdown" },
-    command = "nnoremap <silent> zx :call Marcar()<CR>j",
-  }
-)
-vanca(
-  "FileType",
-  { pattern = { "org" }, command = "nnoremap <silent> zx :call Marcar()<CR>j" }
-)
+vks("n", "zx", Marcar, ns)
 
 --- Plugins
 -- pula para palavras usando indicadores - mini.jump2d
