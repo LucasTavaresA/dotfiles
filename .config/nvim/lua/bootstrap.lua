@@ -63,7 +63,7 @@ return require("packer").startup(function(use)
       require("telescope").setup({
         defaults = {
           theme = "dropdown",
-          border = false,
+          border = true,
           preview = false,
           mappings = {
             i = {
@@ -304,7 +304,7 @@ return require("packer").startup(function(use)
           require("lsp_signature").setup({
             bind = true,
             handler_opts = {
-              border = "none",
+              border = "single",
             },
           })
         end,
@@ -317,7 +317,7 @@ return require("packer").startup(function(use)
               require("hover.providers.lsp")
             end,
             preview_opts = {
-              border = nil,
+              border = true,
             },
             -- Whether the contents of a currently open hover window should be moved
             -- to a :h preview-window when pressing the hover keymap.
