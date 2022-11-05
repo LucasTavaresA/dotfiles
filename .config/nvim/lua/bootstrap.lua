@@ -443,6 +443,14 @@ return require("packer").startup(function(use)
   use("gpanders/nvim-parinfer")
 
   --- Aparência
+  -- estabiliza janela ao abrir splits
+  -- TODO: Adicionada no neovim 9
+  use({
+    "luukvbaal/stabilize.nvim",
+    config = function()
+      require("stabilize").setup()
+    end,
+  })
   -- indica instancias da palavra no cursor
   use({
     "echasnovski/mini.cursorword",
