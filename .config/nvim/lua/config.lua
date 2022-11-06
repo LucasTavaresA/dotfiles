@@ -122,6 +122,10 @@ if vf.getcwd() == HOME then
 else
   vanca("BufWritePost", { pattern = { "*.lua" }, command = "!stylua %" })
 end
+vanca(
+  "BufWritePost",
+  { pattern = { "*.cs" }, command = ":call jobstart('dotnet format')" }
+)
 
 --- Aparência
 -- indicação de sintaxe
