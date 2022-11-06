@@ -137,14 +137,6 @@ vanca(
 )
 -- indicação de espaços e tabs
 vo.list = true
-vo.listchars = {
-  tab = "> ",
-  extends = "⟩",
-  precedes = "⟨",
-  trail = "~",
-  multispace = "··",
-  conceal = "*",
-}
 vanca("FileType", {
   pattern = { "*" },
   callback = function()

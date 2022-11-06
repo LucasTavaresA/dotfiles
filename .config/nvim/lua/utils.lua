@@ -65,5 +65,13 @@ end
 function ListChars()
   local indicator = "│"
   local width = va.nvim_buf_get_option(0, "shiftwidth") - 1
-  vol.listchars:append("leadmultispace:" .. indicator .. string.rep(".", width))
+  vol.listchars = {
+    tab = "> ",
+    extends = "⟩",
+    precedes = "⟨",
+    trail = "~",
+    multispace = "··",
+    conceal = "*",
+    leadmultispace = indicator .. string.rep(".", width),
+  }
 end
