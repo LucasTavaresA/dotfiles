@@ -53,10 +53,7 @@ vo.textwidth = 80
 -- da a volta entre linhas
 vo.whichwrap = vo.whichwrap + "<,>,h,l,[,]"
 -- desativa comentar automaticamente a próxima linha
-vanca("FileType", {
-  pattern = { "*" },
-  command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o",
-})
+vo.formatoptions = "tcrqn1j"
 -- Checagem ortográfica em varias linguas
 vo.spelllang = { "pt", "en" }
 -- Ativa checagem ortografica typos de arquivos
