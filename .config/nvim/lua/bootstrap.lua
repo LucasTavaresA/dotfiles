@@ -541,7 +541,7 @@ return require("packer").startup(function(use)
   use({
     "folke/zen-mode.nvim",
     opt = true,
-    cmd = { "ZenMode" },
+    ft = { "markdown", "org", "txt", "norg" },
     config = function()
       require("zen-mode").setup({
         window = {
@@ -560,6 +560,7 @@ return require("packer").startup(function(use)
         -- callback where you can add custom code when the Zen window opens
         on_open = function(win)
           vim.opt_local.laststatus = 0
+          vim.api.nvim_set_hl(0, "Normal", { bg = "#000000" })
         end,
         -- callback where you can add custom code when the Zen window closes
         on_close = function()
@@ -567,6 +568,7 @@ return require("packer").startup(function(use)
           vim.cmd(":wq!")
         end,
       })
+      vim.cmd("call timer_start(100, { tid -> execute('ZenMode')})")
     end,
   })
   -- previsão de markdown

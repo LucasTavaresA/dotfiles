@@ -70,16 +70,6 @@ if vf.getcwd() == HOME then
   ve.GIT_DIR = HOME .. "/.dotfiles"
   ve.GIT_WORK_TREE = HOME
 end
---- zen-mode
--- ativa zen em arquivos específicos
-vanca("FileType", {
-  pattern = { "org" },
-  command = "call timer_start(100, { tid -> execute('ZenMode')})",
-})
-vanca("FileType", {
-  pattern = { "markdown" },
-  command = "call timer_start(100, { tid -> execute('ZenMode')})",
-})
 
 --- Netrw
 -- desabilita o netrw
