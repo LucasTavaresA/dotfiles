@@ -35,13 +35,7 @@ vks(nv, "<leader>ff", ":e %:h")
 -- mudar o typo de arquivo
 vks(nv, "<leader>ft", ":setlocal filetype=")
 -- salvar buffer
-vks(nv, "<leader>ww", ":w<CR>", s)
--- sair e salvar
-vks(nv, "<leader>wq", ":wq!<CR>", s)
--- fecha sem salvar
-vks(nv, "<leader>qq", ":q!<CR>", s)
--- salvar e recarregar arquivo
-vks(nv, "<leader>wr", ":w<CR>:e<CR>", s)
+vks(nv, "ZX", ":w<CR>:e<CR>", s)
 -- deletar buffer
 vks(nv, "<leader>k", ":bd<CR>", s)
 -- abre o buffer de mensagens
@@ -190,7 +184,7 @@ On_attach = function(_, bufnr)
   vks(nv, "<leader>I", function()
     vim.lsp.buf.format({ async = true })
   end, bns)
-  vks(nv, "<leader>r", vim.lsp.buf.rename, bns)
+  vks(nv, "<C-S-r>", vim.lsp.buf.rename, bns)
 end
 
 --- DAP
