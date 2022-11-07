@@ -463,7 +463,7 @@ return require("packer").startup(function(use)
   use({
     "echasnovski/mini.cursorword",
     config = function()
-      vim.api.nvim_set_hl(0, "MiniCursorWord", { bg = "#7F5D38" })
+      vim.api.nvim_set_hl(0, "MiniCursorWord", { bg = "#39260E" })
       require("mini.cursorword").setup({ delay = 1000 })
     end,
   })
