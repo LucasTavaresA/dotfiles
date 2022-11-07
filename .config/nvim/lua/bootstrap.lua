@@ -578,7 +578,10 @@ return require("packer").startup(function(use)
   use({
     "davidbeckingsale/writegood.vim",
     opt = true,
-    cmd = { "WritegoodEnable" },
+    ft = { "markdown", "org", "norg", "txt" },
+    config = function()
+      vim.cmd("call timer_start(300, { tid -> execute('WritegoodEnable')})")
+    end,
   })
   -- move entre headings
   use({

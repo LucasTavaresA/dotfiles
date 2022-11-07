@@ -63,15 +63,6 @@ vo.spelllang = { "pt", "en" }
 vanca("FileType", { pattern = { "org" }, command = "setlocal spell" })
 vanca("FileType", { pattern = { "markdown" }, command = "setlocal spell" })
 vanca("FileType", { pattern = { "gitcommit" }, command = "setlocal spell" })
---- Writegood mode
-vanca("FileType", {
-  pattern = { "org" },
-  command = "call timer_start(100, { tid -> execute('WritegoodEnable')})",
-})
-vanca("FileType", {
-  pattern = { "markdown" },
-  command = "call timer_start(100, { tid -> execute('WritegoodEnable')})",
-})
 --- Greplace
 -- usa o git grep
 vo.grepprg = "git grep -nIi"
