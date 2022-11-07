@@ -453,6 +453,13 @@ return require("packer").startup(function(use)
       require("stabilize").setup()
     end,
   })
+  -- indicador de indentação
+  use({
+    "lucastavaresa/simpleIndentGuides.nvim",
+    config = function()
+      require("simpleIndentGuides").setup("│·")
+    end,
+  })
   -- escurece buffers sem foco
   use({
     "levouh/tint.nvim",
