@@ -245,7 +245,7 @@ if status is-interactive
     abbr -a -g gsa git submodule add https://github.com/
     abbr -a -g gd git diff
     abbr -a -g gds git diff --staged
-    abbr -a -g gl git log --oneline
+    abbr -a -g gl git log --oneline --graph
     abbr -a -g ga git add
     abbr -a -g gaf git add -f
     abbr -a -g gap git add -p
