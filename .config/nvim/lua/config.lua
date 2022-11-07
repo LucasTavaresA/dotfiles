@@ -132,6 +132,14 @@ vanca(
 )
 -- indicação de espaços e tabs
 vo.list = true
+vo.listchars = {
+  tab = "> ",
+  extends = "⟩",
+  precedes = "⟨",
+  trail = "~",
+  multispace = "··",
+  conceal = "*",
+}
 -- folding
 vg.sh_fold_enabled = 1
 vg.foldenabled = true
