@@ -706,7 +706,7 @@ return require("packer").startup(function(use)
       })
     end,
   })
-  -- indicador de modo-atual no cursor
+  -- indica modo atual no cursor
   use({
     "doums/monark.nvim",
     config = function()

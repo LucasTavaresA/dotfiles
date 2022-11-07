@@ -1,6 +1,5 @@
 --- Variáveis
 local vg = vim.g
-local vanca = vim.api.nvim_create_autocmd
 local vks = vim.keymap.set
 local n = { noremap = true }
 local s = { silent = true }

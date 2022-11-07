@@ -48,12 +48,9 @@ vo.incsearch = false
 vo.whichwrap:append("<,>,h,l,[,]")
 
 --- Spell
--- Checagem ortográfica em varias linguas
+vo.spell = true
+-- Checagem ortográfica em varias línguas
 vo.spelllang = { "pt", "en" }
--- Ativa checagem ortografica typos de arquivos
-vanca("FileType", { pattern = { "org" }, command = "setlocal spell" })
-vanca("FileType", { pattern = { "markdown" }, command = "setlocal spell" })
-vanca("FileType", { pattern = { "gitcommit" }, command = "setlocal spell" })
 
 --- Tabs/Espaços
 vo.tabstop = 4
@@ -143,7 +140,7 @@ vo.cmdheight = 0
 -- mostra a tabline
 vo.showtabline = 0
 
---- Numeros
+--- Números
 vo.number = true
 vo.numberwidth = 1
 vo.relativenumber = true
