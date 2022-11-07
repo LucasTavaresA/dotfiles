@@ -1,6 +1,5 @@
 local vc = vim.cmd
 local vo = vim.opt
-local vol = vim.opt_local
 local vf = vim.fn
 local va = vim.api
 
@@ -17,11 +16,10 @@ function Compile()
   )
 end
 
---- Ativa/Desativa o terminal
 local lua_terminal_window = nil
 local lua_terminal_buffer = nil
 local terminal_split_size = tonumber(va.nvim_exec("echo &lines", true)) / 2.5
-
+--- Ativa/Desativa o terminal
 function TerminalToggle()
   if vf.win_gotoid(lua_terminal_window) == 1 then
     if vf.win_gotoid(lua_terminal_window) == 1 then

@@ -170,7 +170,15 @@ return require("packer").startup(function(use)
     end,
   })
   -- procura e edita varias ocorrências de uma palavra
-  use({ "yegappan/greplace", opt = true, cmd = { "Gsearch" } })
+  use({
+    "yegappan/greplace",
+    opt = true,
+    cmd = { "Gsearch" },
+    config = function()
+      -- usa o git grep
+      vim.opt.grepprg = "git grep -nIi"
+    end,
+  })
   -- alinha texto
   use("Vonr/align.nvim")
   -- movimento usando indicadores
@@ -227,6 +235,7 @@ return require("packer").startup(function(use)
             max_lines = 5,
             trim_scope = "outer",
           })
+          vim.api.nvim_set_hl(0, "TreesitterContext", { bg = "#221A02" })
         end,
       },
     },
@@ -341,6 +350,21 @@ return require("packer").startup(function(use)
           { "dcampos/cmp-snippy" },
           { "f3fora/cmp-spell" },
           { "davidsierradz/cmp-conventionalcommits" },
+          -- ícones em pop-ups da lsp
+          {
+            "onsails/lspkind.nvim",
+            config = function()
+              require("cmp").setup({
+                formatting = {
+                  format = require("lspkind").cmp_format({
+                    mode = "symbol", -- show only symbol annotations
+                    maxwidth = 50, -- prevent the pop-up from showing more than provided characters (e.g 50 will not show more than 50 characters)
+                    ellipsis_char = "…", -- when pop-up menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+                  }),
+                },
+              })
+            end,
+          },
           {
             "KadoBOT/cmp-plugins",
             config = function()
@@ -350,8 +374,155 @@ return require("packer").startup(function(use)
             end,
           },
         },
+        config = function()
+          local cmp = require("cmp")
+          cmp.setup({
+            snippet = {
+              expand = function(args)
+                require("snippy").expand_snippet(args.body)
+              end,
+            },
+            mapping = cmp.mapping.preset.insert({
+              ["<A-e>"] = cmp.mapping.complete(),
+              ["<CR>"] = cmp.mapping.confirm({
+                behavior = cmp.ConfirmBehavior.Replace,
+                select = false,
+              }),
+              ["<Tab>"] = cmp.mapping(function(fallback)
+                if cmp.visible() then
+                  cmp.select_next_item()
+                else
+                  fallback()
+                end
+              end, { "i", "s" }),
+              ["<S-Tab>"] = cmp.mapping(function(fallback)
+                if cmp.visible() then
+                  cmp.select_prev_item()
+                else
+                  fallback()
+                end
+              end, { "i", "s" }),
+            }),
+            sources = cmp.config.sources({
+              { name = "nvim_lsp" },
+              { name = "nvim_lsp_signature_help" },
+              { name = "nvim_lua" },
+              { name = "path" },
+              { name = "buffer" },
+              { name = "spell" },
+              { name = "snippy" },
+              { name = "plugins" },
+            }, {
+              { name = "buffer" },
+            }),
+          })
+
+          -- Set configuration for specific filetype.
+          cmp.setup.filetype("gitcommit", {
+            sources = cmp.config.sources({
+              { name = "cmp_git" }, -- You can specify the `cmp_git` source if you were installed it.
+            }, {
+              { name = "buffer" },
+              { name = "conventionalcommits" },
+            }),
+          })
+
+          -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+          cmp.setup.cmdline({ "/", "?" }, {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = {
+              { name = "buffer" },
+            },
+          })
+
+          -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+          cmp.setup.cmdline(":", {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = cmp.config.sources({
+              { name = "path" },
+            }, {
+              { name = "cmdline" },
+            }),
+          })
+        end,
       },
     },
+    config = function()
+      local XDG_DATA_HOME = os.getenv("XDG_DATA_HOME")
+      if XDG_DATA_HOME == "" then
+        XDG_DATA_HOME = os.getenv("HOME") .. "/.local/share"
+      end
+
+      local capabilities = require("cmp_nvim_lsp").default_capabilities(
+        vim.lsp.protocol.make_client_capabilities()
+      )
+      capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+      -- diagnostico
+      vim.diagnostic.config({
+        virtual_text = true,
+        signs = false,
+        underline = false,
+        update_in_insert = false,
+        severity_sort = false,
+      })
+
+      -- instale o clang e o ccls
+      require("lspconfig").ccls.setup({
+        on_attach = On_attach,
+        capabilities = capabilities,
+        init_options = {
+          compilationDatabaseDirectory = "build",
+          index = {
+            threads = 0,
+          },
+          clang = {
+            excludeArgs = { "-frounding-math" },
+          },
+        },
+      })
+
+      -- necessário `npm i -g vscode-langservers-extracted`
+      require("lspconfig").cssls.setup({
+        on_attach = On_attach,
+        capabilities = capabilities,
+      })
+      require("lspconfig").html.setup({
+        capabilities = capabilities,
+      })
+
+      -- instale o omnisharp
+      require("lspconfig").omnisharp.setup({
+        cmd = { "dotnet", XDG_DATA_HOME .. "/dotnet/OmniSharp.dll" },
+        on_attach = On_attach,
+        capabilities = capabilities,
+      })
+
+      -- instale o lua-language-server
+      require("lspconfig").sumneko_lua.setup({
+        on_attach = On_attach,
+        settings = {
+          Lua = {
+            runtime = {
+              -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+              version = "LuaJIT",
+            },
+            diagnostics = {
+              -- Get the language server to recognize the `vim` global
+              globals = { "vim" },
+            },
+            workspace = {
+              -- Make the server aware of Neovim runtime files
+              library = vim.api.nvim_get_runtime_file("", true),
+            },
+            telemetry = {
+              enable = false,
+            },
+          },
+        },
+        capabilities = capabilities,
+      })
+    end,
   })
   -- debug
   use({
@@ -418,6 +589,25 @@ return require("packer").startup(function(use)
           },
         },
       })
+      -- Remove fundo cinza e melhores cores - gitsigns
+      vim.api.nvim_set_hl(0, "GitSignsDeleteNr", {
+        bg = "#660000",
+        ctermbg = nil,
+        fg = "#ff0000",
+        ctermfg = "Red",
+      })
+      vim.api.nvim_set_hl(0, "GitSignsChangeNr", {
+        bg = "#666600",
+        ctermbg = nil,
+        fg = "#ffff00",
+        ctermfg = "yellow",
+      })
+      vim.api.nvim_set_hl(0, "GitSignsAddNr", {
+        bg = "#006600",
+        ctermbg = nil,
+        fg = "#00ff00",
+        ctermfg = "green",
+      })
     end,
   })
   -- snippets
@@ -475,14 +665,18 @@ return require("packer").startup(function(use)
       require("mini.cursorword").setup({ delay = 1000 })
     end,
   })
-  -- ícones em pop-ups da lsp
-  use("onsails/lspkind.nvim")
   -- ícones usados em vários plugins
   use("kyazdani42/nvim-web-devicons")
   -- tema
   use("lmburns/kimbox")
   -- statusline
-  use("famiu/feline.nvim")
+  use({
+    "famiu/feline.nvim",
+    config = function()
+      vim.opt.termguicolors = true
+      require("statusline")
+    end,
+  })
   -- fold mais bonitas
   use({
     "anuvyklack/pretty-fold.nvim",
@@ -558,7 +752,7 @@ return require("packer").startup(function(use)
           },
         },
         -- callback where you can add custom code when the Zen window opens
-        on_open = function(win)
+        on_open = function()
           vim.opt_local.laststatus = 0
           vim.api.nvim_set_hl(0, "Normal", { bg = "#000000" })
         end,
@@ -583,6 +777,9 @@ return require("packer").startup(function(use)
       -- alinha tabelas
       { "godlygeek/tabular", opt = true, ft = { "markdown" } },
     },
+    config = function()
+      vim.g.vim_markdown_conceal_code_blocks = 0
+    end,
   })
   -- indica mals hábitos de escrita
   use({
