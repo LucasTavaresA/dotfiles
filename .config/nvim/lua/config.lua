@@ -132,12 +132,6 @@ vanca(
 )
 -- indicação de espaços e tabs
 vo.list = true
-vanca("FileType", {
-  pattern = { "*" },
-  callback = function()
-    ListChars()
-  end,
-})
 -- folding
 vg.sh_fold_enabled = 1
 vg.foldenabled = true

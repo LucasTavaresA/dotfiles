@@ -60,18 +60,3 @@ function Marcar()
   vc("noh")
   vf.winrestview(view)
 end
-
---- mudar leadmultispace dependendo do filetype
-function ListChars()
-  local indicator = "│"
-  local width = va.nvim_buf_get_option(0, "shiftwidth") - 1
-  vol.listchars = {
-    tab = "> ",
-    extends = "⟩",
-    precedes = "⟨",
-    trail = "~",
-    multispace = "··",
-    conceal = "*",
-    leadmultispace = indicator .. string.rep(".", width),
-  }
-end
