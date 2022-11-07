@@ -453,10 +453,11 @@ return require("packer").startup(function(use)
       require("stabilize").setup()
     end,
   })
+  -- escurece buffers sem foco
   use({
     "levouh/tint.nvim",
     config = function()
-      require("tint").setup()
+      require("tint").setup({})
     end,
   })
   -- indica instancias da palavra no cursor
