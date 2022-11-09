@@ -107,6 +107,8 @@ vansh(0, "EndOfBuffer", { bg = nil, ctermbg = nil })
 vansh(0, "Search", { fg = "#ffff00", bg = nil, undercurl = true, bold = true })
 -- signcolumn transparente
 vansh(0, "SignColumn", { bg = nil, ctermbg = nil })
+-- Palavras erradas
+vansh(0, "SpellBad", { fg = "#ff0000", ctermfg = "Red", undercurl = true })
 -- indicação de sintaxe
 vc.syntax("on")
 -- melhora suporte de cores
