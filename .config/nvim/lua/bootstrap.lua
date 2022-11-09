@@ -668,7 +668,14 @@ return require("packer").startup(function(use)
   -- ícones usados em vários plugins
   use("kyazdani42/nvim-web-devicons")
   -- tema
-  use("lmburns/kimbox")
+  use({
+    "ellisonleao/gruvbox.nvim",
+    config = function()
+      require("gruvbox").setup({
+        transparent_mode = true,
+      })
+    end,
+  })
   -- statusline
   use({
     "famiu/feline.nvim",

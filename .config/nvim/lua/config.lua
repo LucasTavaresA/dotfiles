@@ -95,10 +95,10 @@ vo.conceallevel = 3
 
 --- Cores
 local vansh = vim.api.nvim_set_hl
--- tema
-vc.colorscheme("kimbox")
 -- prefere modo escuro
 vo.background = "dark"
+-- tema
+vc.colorscheme("gruvbox")
 -- transparência
 vansh(0, "Normal", { bg = nil, ctermbg = nil })
 vansh(0, "NormalNC", { bg = nil, ctermbg = nil })
