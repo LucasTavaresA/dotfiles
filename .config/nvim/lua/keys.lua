@@ -75,11 +75,6 @@ vks("n", "m", "@")
 vks(nvi, "<tab>", function()
   require("fold-cycle").open()
 end, s)
-vks(nv, "zz", function()
-  return require("fold-cycle").open()
-end, s)
--- centraliza texto
-vks(nv, "za", "zz", ns)
 -- marca/desmarca caixas
 vks("n", "zx", Marcar, ns)
 
