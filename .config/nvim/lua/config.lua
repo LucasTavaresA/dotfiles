@@ -93,6 +93,8 @@ vo.cursorline = true
 vo.cursorcolumn = true
 -- esconde marcação
 vo.conceallevel = 3
+-- marcação em 80 caracteres
+vo.colorcolumn = "+1"
 
 --- Cores
 local vansh = vim.api.nvim_set_hl
@@ -113,6 +115,8 @@ vansh(0, "SpellBad", { fg = "#ff0000", ctermfg = "Red", undercurl = true })
 -- indicação de linha atual
 vansh(0, "CursorLine", { bg = "#151515" })
 vansh(0, "CursorColumn", { bg = "#151515" })
+-- indicação em 80 caracteres
+vansh(0, "ColorColumn", { bg = "#151515" })
 -- Indica texto copiado
 vanca("TextYankPost", {
   pattern = { "*" },
