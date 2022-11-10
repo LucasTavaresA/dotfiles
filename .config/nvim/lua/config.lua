@@ -109,6 +109,13 @@ vansh(0, "Search", { fg = "#ffff00", bg = nil, undercurl = true, bold = true })
 vansh(0, "SignColumn", { bg = nil, ctermbg = nil })
 -- Palavras erradas
 vansh(0, "SpellBad", { fg = "#ff0000", ctermfg = "Red", undercurl = true })
+-- Indica texto copiado
+vanca("TextYankPost", {
+  pattern = { "*" },
+  callback = function()
+    vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
+  end,
+})
 -- indicação de sintaxe
 vc.syntax("on")
 -- melhora suporte de cores
