@@ -661,6 +661,13 @@ return require("packer").startup(function(use)
       require("stabilize").setup()
     end,
   })
+  -- mantem cursor no centro da tela
+  use({
+    "vvvvv/yfix.nvim",
+    config = function()
+      require("yfix").setup()
+    end,
+  })
   -- indicador de indentação
   use({
     "lucastavaresa/simpleIndentGuides.nvim",
