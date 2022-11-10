@@ -253,7 +253,7 @@ return require("packer").startup(function(use)
             max_lines = 5,
             trim_scope = "outer",
           })
-          vim.api.nvim_set_hl(0, "TreesitterContext", { bg = "#221A02" })
+          vim.api.nvim_set_hl(0, "TreesitterContext", { bg = "#39260E" })
         end,
       },
     },
@@ -659,6 +659,14 @@ return require("packer").startup(function(use)
     "luukvbaal/stabilize.nvim",
     config = function()
       require("stabilize").setup()
+    end,
+  })
+  -- informações na barra de scroll
+  use({
+    "lewis6991/satellite.nvim",
+    config = function()
+      require("satellite").setup()
+      vim.api.nvim_set_hl(0, "ScrollView", { bg = "#39260E" })
     end,
   })
   -- mantem cursor no centro da tela
