@@ -226,6 +226,13 @@ return require("packer").startup(function(use)
     requires = {
       { "nvim-treesitter/nvim-treesitter-textobjects" },
       { "JoosepAlviste/nvim-ts-context-commentstring" },
+      -- melhor indicação de parâmetros e seu uso
+      {
+        "m-demare/hlargs.nvim",
+        config = function()
+          require("hlargs").setup()
+        end,
+      },
       -- mostra função atual no topo
       {
         "nvim-treesitter/nvim-treesitter-context",
@@ -772,7 +779,6 @@ return require("packer").startup(function(use)
       vim.cmd("call timer_start(100, { tid -> execute('ZenMode')})")
     end,
   })
-  -- previsão de markdown
   -- markdown
   use({
     "preservim/vim-markdown",
