@@ -89,7 +89,8 @@ vanca(
 -- linhas não dão a volta na tela
 vo.wrap = false
 -- indica linha selecionada no modo normal
-vo.cursorline = false
+vo.cursorline = true
+vo.cursorcolumn = true
 -- esconde marcação
 vo.conceallevel = 3
 
@@ -109,6 +110,9 @@ vansh(0, "Search", { fg = "#ffff00", bg = nil, undercurl = true, bold = true })
 vansh(0, "SignColumn", { bg = nil, ctermbg = nil })
 -- Palavras erradas
 vansh(0, "SpellBad", { fg = "#ff0000", ctermfg = "Red", undercurl = true })
+-- indicação de linha atual
+vansh(0, "CursorLine", { bg = "#151515" })
+vansh(0, "CursorColumn", { bg = "#151515" })
 -- Indica texto copiado
 vanca("TextYankPost", {
   pattern = { "*" },
