@@ -226,17 +226,7 @@ return require("packer").startup(function(use)
     requires = {
       { "nvim-treesitter/nvim-treesitter-textobjects" },
       { "JoosepAlviste/nvim-ts-context-commentstring" },
-      {
-        "p00f/nvim-ts-rainbow",
-        config = function()
-          require("nvim-treesitter.configs").setup({
-            rainbow = {
-              enable = true,
-              extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-            },
-          })
-        end,
-      },
+      { "p00f/nvim-ts-rainbow" },
       -- melhor indicação de parâmetros e seu uso
       {
         "m-demare/hlargs.nvim",
@@ -296,6 +286,10 @@ return require("packer").startup(function(use)
           disable = { "rst", "make" },
         },
         context_commentstring = { enable = true },
+        rainbow = {
+          enable = true,
+          extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+        },
       })
     end,
   })
