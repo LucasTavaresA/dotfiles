@@ -505,9 +505,8 @@ return require("packer").startup(function(use)
         capabilities = capabilities,
       })
 
-      -- instale o omnisharp
-      require("lspconfig").omnisharp.setup({
-        cmd = { "dotnet", XDG_DATA_HOME .. "/dotnet/OmniSharp.dll" },
+      -- dotnet tool install --global csharp-ls
+      require("lspconfig").csharp_ls.setup({
         on_attach = On_attach,
         capabilities = capabilities,
       })
