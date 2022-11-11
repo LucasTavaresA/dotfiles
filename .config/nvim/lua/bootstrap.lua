@@ -501,6 +501,7 @@ return require("packer").startup(function(use)
         capabilities = capabilities,
       })
       require("lspconfig").html.setup({
+        on_attach = On_attach,
         capabilities = capabilities,
       })
 
@@ -514,6 +515,7 @@ return require("packer").startup(function(use)
       -- instale o lua-language-server
       require("lspconfig").sumneko_lua.setup({
         on_attach = On_attach,
+        capabilities = capabilities,
         settings = {
           Lua = {
             runtime = {
@@ -533,7 +535,6 @@ return require("packer").startup(function(use)
             },
           },
         },
-        capabilities = capabilities,
       })
     end,
   })
