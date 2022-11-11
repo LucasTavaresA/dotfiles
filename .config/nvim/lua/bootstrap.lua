@@ -379,11 +379,12 @@ return require("packer").startup(function(use)
               })
             end,
           },
+          -- completa autores e plugins
           {
             "KadoBOT/cmp-plugins",
             config = function()
               require("cmp-plugins").setup({
-                files = { ".*\\.lua" }, -- default
+                files = { "bootstrap.lua" },
               })
             end,
           },
