@@ -345,13 +345,9 @@ return require("packer").startup(function(use)
             init = function()
               require("hover.providers.lsp")
             end,
-            preview_opts = {
-              border = true,
-            },
             -- Whether the contents of a currently open hover window should be moved
             -- to a :h preview-window when pressing the hover keymap.
             preview_window = true,
-            title = true,
           })
         end,
       },
