@@ -262,6 +262,7 @@ return require("packer").startup(function(use)
       require("nvim-treesitter.configs").setup({
         ensure_installed = {
           "c",
+          "query",
           "lua",
           "c_sharp",
           "fish",
@@ -287,6 +288,11 @@ return require("packer").startup(function(use)
           disable = { "rst", "make" },
         },
         context_commentstring = { enable = true },
+        query_linter = {
+          enable = true,
+          use_virtual_text = true,
+          lint_events = { "BufWrite", "CursorHold" },
+        },
         -- rainbow = {
         --   enable = true,
         --   extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
