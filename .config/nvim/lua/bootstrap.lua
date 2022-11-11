@@ -226,6 +226,7 @@ return require("packer").startup(function(use)
     requires = {
       { "nvim-treesitter/nvim-treesitter-textobjects" },
       { "JoosepAlviste/nvim-ts-context-commentstring" },
+      { "nvim-treesitter/playground", opt = true, cmd = "TSPlaygroundToggle" },
       -- { "p00f/nvim-ts-rainbow" },
       -- melhor indicação de parâmetros e seu uso
       {
