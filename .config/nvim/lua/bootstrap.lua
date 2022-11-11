@@ -356,7 +356,6 @@ return require("packer").startup(function(use)
         "hrsh7th/nvim-cmp",
         requires = {
           { "hrsh7th/cmp-nvim-lsp" },
-          { "hrsh7th/cmp-nvim-lsp-signature-help" },
           { "hrsh7th/cmp-nvim-lua" },
           { "hrsh7th/cmp-buffer" },
           { "hrsh7th/cmp-path" },
@@ -420,7 +419,6 @@ return require("packer").startup(function(use)
             }),
             sources = cmp.config.sources({
               { name = "nvim_lsp" },
-              { name = "nvim_lsp_signature_help" },
               { name = "nvim_lua" },
               { name = "path" },
               { name = "buffer" },
