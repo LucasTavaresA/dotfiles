@@ -79,7 +79,7 @@ end, s)
 vks("n", "zx", Marcar, ns)
 
 --- Plugins
--- pula para palavras usando indicadores - mini.jump2d
+-- pula para palavras usando indicadores - leap
 vks(nv, "q", function()
   require("leap").leap({ target_windows = { vim.fn.win_getid() } })
 end)
@@ -130,10 +130,10 @@ vks(nv, "<leader>v", ":Telescope heading<CR>", s)
 vks(nv, "<leader>r", ":Gsearch  ./<left><left><left>")
 -- confirma todas as modificações - greplace
 vks(nv, "<leader>R", ":Greplace<CR>", s)
--- ativa previsão de cores - ccc
-vks(nv, "zc", ":CccHighlighterToggle<CR>", s)
+-- ativa previsão de cores - colorizer.lua
+vks(nv, "zc", ":ColorizerToggle<CR>", s)
 -- escolher cor
-vks(nv, "<leader>C", "<cmd>CccPick<cr>", ns)
+vks(nv, "<leader>C", "<cmd>PickColor<cr>", ns)
 -- abrir e fechar arvore de undos - undotree
 vks(nv, "zu", function()
   require("undotree").toggle()

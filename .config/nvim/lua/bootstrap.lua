@@ -32,6 +32,13 @@ return require("packer").startup(function(use)
   use("nvim-lua/plenary.nvim")
 
   --- Miscelânea
+  -- seletor de cores
+  use({
+    "ziontee113/color-picker.nvim",
+    config = function()
+      require("color-picker")
+    end,
+  })
   -- desativa funções em arquivos muito grandes
   use({
     "LunarVim/bigfile.nvim",
@@ -41,14 +48,10 @@ return require("packer").startup(function(use)
   })
   -- previsão e seleção de cores
   use({
-    "uga-rosa/ccc.nvim",
+    "NvChad/nvim-colorizer.lua",
     config = function()
       vim.opt.termguicolors = true
-      require("ccc").setup({
-        highlighter = {
-          auto_enable = true,
-        },
-      })
+      require("colorizer").setup({})
     end,
   })
   -- salva posição do cursor
@@ -117,7 +120,7 @@ return require("packer").startup(function(use)
       require("telescope").load_extension("ui-select")
     end,
   })
-  -- cycla estado de folds
+  -- cicla estado de folds
   use({
     "jghauser/fold-cycle.nvim",
     config = function()
