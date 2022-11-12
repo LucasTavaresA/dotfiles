@@ -668,6 +668,13 @@ return require("packer").startup(function(use)
       require("stabilize").setup()
     end,
   })
+  -- esconde indicadores de cursor em janelas sem foco
+  use({
+    "amarakon/nvim-unfocused-cursor",
+    config = function()
+      require("unfocused-cursor").setup()
+    end,
+  })
   -- esconde palavras pesquisadas
   use("romainl/vim-cool")
   -- informações na barra de scroll
