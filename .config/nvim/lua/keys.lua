@@ -202,3 +202,8 @@ vks(
 )
 vks(nv, "<leader>dr", ":lua require'dap'.repl.open()<CR>", ns)
 vks(nv, "<leader>dl", ":lua require'dap'.run_last()<CR>", ns)
+
+-- ajuda na criação de querys treesitter
+vim.keymap.set("n", "<F2>", function()
+  require("query-secretary").query_window_initiate()
+end, {})
