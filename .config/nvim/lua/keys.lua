@@ -127,9 +127,9 @@ vks(nv, "<leader><leader>", ":Telescope oldfiles<CR>", s)
 -- navegar por headings - telescope-heading
 vks(nv, "<leader>v", ":Telescope heading<CR>", s)
 -- procura e edita ocorrências de uma palavra - greplace
-vks(nv, "<leader>r", ":Gsearch  ./<left><left><left>")
+vks(nv, "<leader>gs", ":Gsearch  ./<left><left><left>")
 -- confirma todas as modificações - greplace
-vks(nv, "<leader>R", ":Greplace<CR>", s)
+vks(nv, "<leader>gr", ":Greplace<CR>", s)
 -- ativa previsão de cores - colorizer.lua
 vks(nv, "zc", ":ColorizerToggle<CR>", s)
 -- escolher cor
@@ -210,3 +210,30 @@ vks(nv, "<leader>dl", ":lua require'dap'.run_last()<CR>", ns)
 vim.keymap.set("n", "<F2>", function()
   require("query-secretary").query_window_initiate()
 end, {})
+
+--- Refactoring
+vks("v", "<leader>re", function()
+  require("refactoring").refactor("Extract Function")
+end, { noremap = true, silent = true, expr = false })
+vks("v", "<leader>rf", function()
+  require("refactoring").refactor("Extract Function To File")
+end, { noremap = true, silent = true, expr = false })
+vks("v", "<leader>rv", function()
+  require("refactoring").refactor("Extract Variable")
+end, { noremap = true, silent = true, expr = false })
+vks("v", "<leader>ri", function()
+  require("refactoring").refactor("Inline Variable")
+end, { noremap = true, silent = true, expr = false })
+
+-- Extract block doesn't need visual mode
+vks("n", "<leader>rb", function()
+  require("refactoring").refactor("Extract Block")
+end, { noremap = true, silent = true, expr = false })
+vks("n", "<leader>rbf", function()
+  require("refactoring").refactor("Extract Block To File")
+end, { noremap = true, silent = true, expr = false })
+
+-- Inline variable can also pick up the identifier currently under the cursor without visual mode
+vks("n", "<leader>ri", function()
+  require("refactoring").refactor("Inline Variable")
+end, { noremap = true, silent = true, expr = false })

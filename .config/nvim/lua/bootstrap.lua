@@ -215,6 +215,44 @@ return require("packer").startup(function(use)
   })
 
   --- Code
+  -- refatorar código
+  use({
+    "ThePrimeagen/refactoring.nvim",
+    requires = {
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-treesitter/nvim-treesitter" },
+    },
+    config = function()
+      require("refactoring").setup({
+        prompt_func_return_type = {
+          java = false,
+          cpp = false,
+          hpp = false,
+          cxx = true,
+          go = true,
+          c = true,
+          h = true,
+          javascript = true,
+          python = true,
+          lua = true,
+        },
+        prompt_func_param_type = {
+          java = false,
+          cpp = false,
+          hpp = false,
+          cxx = true,
+          go = true,
+          c = true,
+          h = true,
+          javascript = true,
+          python = true,
+          lua = true,
+        },
+        printf_statements = {},
+        print_var_statements = {},
+      })
+    end,
+  })
   -- avalia código
   use({ "michaelb/sniprun", run = "bash ./install.sh" })
   -- comenta linhas
