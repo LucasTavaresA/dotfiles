@@ -215,6 +215,8 @@ return require("packer").startup(function(use)
   })
 
   --- Code
+  -- avalia código
+  use({ "michaelb/sniprun", run = "bash ./install.sh" })
   -- comenta linhas
   use({
     "echasnovski/mini.comment",

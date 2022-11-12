@@ -39,8 +39,8 @@ vks(nv, "ZX", ":w<CR>:e<CR>", s)
 vks(nv, "<leader>k", ":bd<CR>", s)
 -- abre o buffer de mensagens
 vks(nv, "<leader>m", ":message<CR>", s)
--- avaliar buffer
-vks(nv, "<leader>eb", ":source %<CR>", s)
+-- carregar buffer
+vks(n, "<leader>eb", ":source %<CR>", s)
 -- divide a tela do lado
 vks(nvi, "<C-A-l>", "<esc>:vs<CR>", s)
 -- divide a tela abaixo
@@ -142,6 +142,9 @@ end, ns)
 vks(nv, "zf", ":ZenMode<CR>", s)
 -- snippets
 vks(nv, "es", ":e ~/.config/nvim/snippets/")
+-- avaliar código - SnipRun
+vks("n", "<leader>e", "<Plug>SnipRunOperator", { silent = true })
+vks(nv, "<leader>ee", "<Plug>SnipRun", { silent = true })
 
 --- LSP
 -- Ativa essas teclas quando o lsp esta ativo
