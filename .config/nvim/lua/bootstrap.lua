@@ -714,6 +714,12 @@ return require("packer").startup(function(use)
     "TimUntersberger/neogit",
     requires = "nvim-lua/plenary.nvim",
     cmd = "Neogit",
+    config = function()
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "NeogitStatusRefreshed",
+        command = "setlocal nospell",
+      })
+    end,
   })
   -- balanceia parenteses
   use("gpanders/nvim-parinfer")
