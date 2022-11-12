@@ -274,6 +274,7 @@ return require("packer").startup(function(use)
           "query",
           "lua",
           "c_sharp",
+          "java",
           "fish",
           "css",
           "comment",
