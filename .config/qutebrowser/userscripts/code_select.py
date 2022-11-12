@@ -6,11 +6,11 @@ import re
 import sys
 import xml.etree.ElementTree as ET
 try:
-    import pyperclip
+    import pyclip
 except ImportError:
-    PYPERCLIP = False
+    PYCLIP = False
 else:
-    PYPERCLIP = True
+    PYCLIP = True
 
 
 def parse_text_content(element):
@@ -31,8 +31,8 @@ def main():
     # https://github.com/qutebrowser/qutebrowser/blob/master/doc/userscripts.asciidoc
     element = os.environ.get("QUTE_SELECTED_HTML")
     code_text = parse_text_content(element)
-    if PYPERCLIP:
-        pyperclip.copy(code_text)
+    if PYCLIP:
+        pyclip.copy(code_text)
         send_command_to_qute(
             "message-info 'copied to clipboard: {info}{suffix}'".format(
                 info=code_text.splitlines()[0],
