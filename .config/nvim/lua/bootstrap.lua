@@ -432,6 +432,7 @@ return require("packer").startup(function(use)
           { "hrsh7th/cmp-cmdline" },
           { "dcampos/cmp-snippy" },
           { "f3fora/cmp-spell" },
+          { "amarakon/nvim-cmp-fonts" },
           { "davidsierradz/cmp-conventionalcommits" },
           -- ícones em pop-ups da lsp
           {
@@ -495,6 +496,7 @@ return require("packer").startup(function(use)
               { name = "spell" },
               { name = "snippy" },
               { name = "plugins" },
+              { name = "fonts", option = { space_filter = "-" } },
             }, {
               { name = "buffer" },
             }),
@@ -509,6 +511,12 @@ return require("packer").startup(function(use)
               { name = "conventionalcommits" },
             }),
           })
+
+          -- Only enable `fonts` for `conf`, `config` and `css` file types
+          require("cmp").setup.filetype(
+            { "conf", "config", "css" },
+            { sources = { { name = "fonts" } } }
+          )
 
           -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
           cmp.setup.cmdline({ "/", "?" }, {
