@@ -32,6 +32,13 @@ return require("packer").startup(function(use)
   use("nvim-lua/plenary.nvim")
 
   --- Miscelânea
+  -- desativa funções em arquivos muito grandes
+  use({
+    "LunarVim/bigfile.nvim",
+    config = function()
+      require("bigfile").setup()
+    end,
+  })
   -- previsão e seleção de cores
   use({
     "uga-rosa/ccc.nvim",
