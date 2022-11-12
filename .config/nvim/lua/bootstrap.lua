@@ -306,6 +306,22 @@ return require("packer").startup(function(use)
           use_virtual_text = true,
           lint_events = { "BufWrite", "CursorHold" },
         },
+        textobjects = {
+          select = {
+            enable = true,
+            keymaps = {
+              -- You can use the capture groups defined in textobjects.scm
+              ["af"] = "@function.outer",
+              ["if"] = "@function.inner",
+              ["ac"] = "@class.outer",
+              ["ic"] = {
+                query = "@class.inner",
+                desc = "Select inner part of a class region",
+              },
+            },
+            include_surrounding_whitespace = true,
+          },
+        },
         -- rainbow = {
         --   enable = true,
         --   extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
