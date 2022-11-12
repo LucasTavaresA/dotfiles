@@ -658,6 +658,8 @@ return require("packer").startup(function(use)
       require("stabilize").setup()
     end,
   })
+  -- esconde palavras pesquisadas
+  use("romainl/vim-cool")
   -- informações na barra de scroll
   use({
     "lewis6991/satellite.nvim",
