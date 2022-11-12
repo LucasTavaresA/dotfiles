@@ -107,7 +107,7 @@ vansh(0, "Normal", { bg = nil, ctermbg = nil })
 vansh(0, "NormalNC", { bg = nil, ctermbg = nil })
 vansh(0, "EndOfBuffer", { bg = nil, ctermbg = nil })
 -- cor das palavras procuradas
-vansh(0, "Search", { fg = "#ffff00", bg = nil, undercurl = true, bold = true })
+vansh(0, "Search", { bg = "#ffff00", fg = "#000000" })
 -- signcolumn transparente
 vansh(0, "SignColumn", { bg = nil, ctermbg = nil })
 -- Palavras erradas
