@@ -895,6 +895,12 @@ return require("packer").startup(function(use)
   })
 
   --- Escrever
+  -- marca checkboxes
+  use({
+    "opdavies/toggle-checkbox.nvim",
+    opt = true,
+    ft = { "markdown", "org", "norg", "txt" },
+  })
   -- esconde distrações ao escrever
   use({
     "folke/zen-mode.nvim",

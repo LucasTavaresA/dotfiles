@@ -75,8 +75,6 @@ vks("n", "m", "@")
 vks(nvi, "<tab>", function()
   require("fold-cycle").open()
 end, s)
--- marca/desmarca caixas
-vks("n", "zx", Marcar, ns)
 
 --- Plugins
 -- pula para palavras usando indicadores - leap
@@ -145,6 +143,10 @@ vks(nv, "es", ":e ~/.config/nvim/snippets/")
 -- avaliar código - SnipRun
 vks("n", "<leader>e", "<Plug>SnipRunOperator", { silent = true })
 vks(nv, "<leader>ee", "<Plug>SnipRun", { silent = true })
+-- marca/desmarca caixas - toggle-checkbox
+vks("n", "zx", function()
+  require("toggle-checkbox").toggle()
+end, ns)
 
 --- LSP
 -- Ativa essas teclas quando o lsp esta ativo

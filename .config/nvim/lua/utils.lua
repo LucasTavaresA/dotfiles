@@ -45,16 +45,3 @@ function TerminalToggle()
   end
   vc("startinsert")
 end
-
---- Marcar e desmarcar checkboxes markdown
-function Marcar()
-  local line = vf.getline(".")
-  local view = vf.winsaveview()
-  if string.match(line, "- %[ %]") then
-    vc("s/\\[ \\]/[X]/")
-  elseif string.match(line, "- %[X%]") then
-    vc("s/\\[X\\]/[ ]/")
-  end
-  vc("noh")
-  vf.winrestview(view)
-end
