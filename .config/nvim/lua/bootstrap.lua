@@ -396,7 +396,7 @@ return require("packer").startup(function(use)
           })
         end,
       },
-      -- mostra informação do código no cursor
+      -- mostra parâmetros ao digitar
       {
         "ray-x/lsp_signature.nvim",
         config = function()
@@ -408,6 +408,7 @@ return require("packer").startup(function(use)
           })
         end,
       },
+      -- mostra informação do código no cursor
       {
         "lewis6991/hover.nvim",
         config = function()
@@ -418,6 +419,40 @@ return require("packer").startup(function(use)
             -- Whether the contents of a currently open hover window should be moved
             -- to a :h preview-window when pressing the hover keymap.
             preview_window = true,
+          })
+        end,
+      },
+      -- diagnósticos, formatação e outros
+      {
+        "jose-elias-alvarez/null-ls.nvim",
+        config = function()
+          local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+          local null_ls = require("null-ls")
+          null_ls.setup({
+            sources = {
+              null_ls.builtins.formatting.stylua,
+              null_ls.builtins.formatting.clang_format,
+              null_ls.builtins.diagnostics.eslint,
+              null_ls.builtins.diagnostics.checkmake,
+              null_ls.builtins.diagnostics.fish,
+              null_ls.builtins.diagnostics.flake8,
+              null_ls.builtins.diagnostics.jshint,
+              null_ls.builtins.diagnostics.jsonlint,
+              null_ls.builtins.diagnostics.shellcheck,
+              null_ls.builtins.hover.printenv,
+            },
+            on_attach = function(client, bufnr)
+              if client.supports_method("textDocument/formatting") then
+                vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+                vim.api.nvim_create_autocmd("BufWritePre", {
+                  group = augroup,
+                  buffer = bufnr,
+                  callback = function()
+                    vim.lsp.buf.format({ bufnr = bufnr })
+                  end,
+                })
+              end
+            end,
           })
         end,
       },

@@ -76,8 +76,6 @@ if vf.getcwd() == HOME then
     pattern = { "*.lua" },
     command = "!stylua --config-path ./.config/stylua.toml %",
   })
-else
-  vanca("BufWritePost", { pattern = { "*.lua" }, command = "!stylua %" })
 end
 vanca(
   "BufWritePost",
