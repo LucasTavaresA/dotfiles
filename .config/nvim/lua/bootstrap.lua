@@ -752,8 +752,8 @@ return require("packer").startup(function(use)
       require("snippy").setup({
         mappings = {
           is = {
-            ["<Tab>"] = "expand_or_advance",
-            ["<S-Tab>"] = "previous",
+            ["<cr>"] = "expand_or_advance",
+            ["<S-cr>"] = "previous",
           },
         },
       })
