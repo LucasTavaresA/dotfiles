@@ -71,12 +71,6 @@ vo.textwidth = 80
 -- formatação nativa
 vo.formatoptions = "tcrqn1j"
 -- formatação ao salvar
-if vf.getcwd() == HOME then
-  vanca("BufWritePost", {
-    pattern = { "*.lua" },
-    command = "!stylua --config-path ./.config/stylua.toml %",
-  })
-end
 vanca(
   "BufWritePost",
   { pattern = { "*.cs" }, command = ":call jobstart('dotnet format')" }
