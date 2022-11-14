@@ -158,8 +158,6 @@ bindsym $mods+Up move up
 bindsym $mods+Down move down
 bindsym $mods+Left move left
 bindsym $mods+Right move right
-bindsym Mod1+Left workspace prev
-bindsym Mod1+Right workspace next
 bindsym $mod+k focus up
 bindsym $mod+j focus down
 bindsym $mod+h focus left
@@ -168,8 +166,6 @@ bindsym $mods+k move up
 bindsym $mods+j move down
 bindsym $mods+h move left
 bindsym $mods+l move right
-bindsym Mod1+h workspace next
-bindsym Mod1+l workspace prev
 ## workspaces
 set $ws1 "1:Browser"
 set $ws2 "2:Code"
