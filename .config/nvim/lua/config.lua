@@ -3,7 +3,6 @@ require("keys")
 local vo = vim.opt
 local vg = vim.g
 local vc = vim.cmd
-local vf = vim.fn
 local vanca = vim.api.nvim_create_autocmd
 local og = os.getenv
 local HOME = og("HOME")
