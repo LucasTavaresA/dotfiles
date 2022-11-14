@@ -32,6 +32,13 @@ return require("packer").startup(function(use)
   use("nvim-lua/plenary.nvim")
 
   --- Miscelânea
+  -- previne copia ao colar/deletar
+  use({
+    "tenxsoydev/karen-yank.nvim",
+    config = function()
+      require("karen-yank").setup()
+    end,
+  })
   -- seletor de cores
   use({
     "ziontee113/color-picker.nvim",
