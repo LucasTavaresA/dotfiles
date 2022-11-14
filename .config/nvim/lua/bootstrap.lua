@@ -3,7 +3,7 @@
 local ensure_packer = function()
   local fn = vim.fn
   local install_path = fn.stdpath("data")
-      .. "/site/pack/packer/start/packer.nvim"
+    .. "/site/pack/packer/start/packer.nvim"
   if fn.empty(fn.glob(install_path)) > 0 then
     fn.system({
       "git",
@@ -85,7 +85,7 @@ return require("packer").startup(function(use)
           mappings = {
             i = {
               ["<C-Tab>"] = actions.toggle_selection
-                  + actions.move_selection_worse,
+                + actions.move_selection_worse,
             },
           },
         },
@@ -262,6 +262,19 @@ return require("packer").startup(function(use)
   })
   -- avalia código
   use({ "michaelb/sniprun", run = "bash ./install.sh" })
+  -- troca parâmetros de lugar
+  use({
+    "Wansmer/sibling-swap.nvim",
+    requires = { "nvim-treesitter" },
+    config = function()
+      require("sibling-swap").setup({
+        keymaps = {
+          ["<A-l>"] = "swap_with_right",
+          ["<A-h>"] = "swap_with_left",
+        },
+      })
+    end,
+  })
   -- comenta linhas
   use({
     "echasnovski/mini.comment",
@@ -392,7 +405,7 @@ return require("packer").startup(function(use)
               stack_upwards = false,
               task = function(task_name, message, percentage)
                 local pct = percentage and string.format(" (%s%%)", percentage)
-                    or ""
+                  or ""
                 if task_name then
                   return string.format("%s%s [%s]", message, pct, task_name)
                 else
