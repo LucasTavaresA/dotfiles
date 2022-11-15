@@ -293,7 +293,11 @@ return require("packer").startup(function(use)
   -- indentação e indicação de sintaxe
   use({
     "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
+    run = function()
+      local ts_update =
+        require("nvim-treesitter.install").update({ with_sync = true })
+      ts_update()
+    end,
     requires = {
       { "nvim-treesitter/nvim-treesitter-textobjects" },
       { "JoosepAlviste/nvim-ts-context-commentstring" },
