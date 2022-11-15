@@ -68,7 +68,7 @@ local comps = {
       provider = {
         name = "file_info",
         opts = {
-          type = "relative",
+          type = "unique",
           file_modified_icon = "",
         },
       },
