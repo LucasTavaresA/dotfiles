@@ -161,7 +161,7 @@ vanca(
 vg.sh_fold_enabled = 1
 vo.foldmethod = "syntax"
 vo.foldcolumn = "0"
-vo.foldlevel = 0
+vo.foldlevel = 1
 vo.foldnestmax = 3
 vo.foldopen:append("jump")
 vanca("FileType", { pattern = { "gitcommit" }, command = "norm zr" })

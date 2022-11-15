@@ -340,6 +340,8 @@ return require("packer").startup(function(use)
         ensure_installed = {
           "c",
           "query",
+          "markdown",
+          "markdown_inline",
           "lua",
           "c_sharp",
           "java",
@@ -926,21 +928,8 @@ return require("packer").startup(function(use)
     opt = true,
     ft = { "markdown", "org", "norg", "txt" },
   })
-  -- markdown
-  use({
-    "preservim/vim-markdown",
-    opt = true,
-    ft = { "markdown" },
-    requires = {
-      -- previsão de markdown
-      { "ellisonleao/glow.nvim", opt = true, cmd = { "Glow" } },
-      -- alinha tabelas
-      { "godlygeek/tabular", opt = true, ft = { "markdown" } },
-    },
-    config = function()
-      vim.g.vim_markdown_conceal_code_blocks = 0
-    end,
-  })
+  -- previsão de markdown
+  use({ "ellisonleao/glow.nvim", opt = true, cmd = { "Glow" } })
   -- indica mals hábitos de escrita
   use({
     "davidbeckingsale/writegood.vim",
