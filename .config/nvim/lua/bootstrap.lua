@@ -947,6 +947,14 @@ return require("packer").startup(function(use)
       require("telescope").load_extension("heading")
     end,
   })
+  -- edita blocos de código em um pop-up confiável
+  use({
+    "AckslD/nvim-FeMaco.lua",
+    cmd = "FeMaco",
+    config = function()
+      require("femaco").setup()
+    end,
+  })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
