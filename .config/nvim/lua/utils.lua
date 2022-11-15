@@ -45,3 +45,13 @@ function TerminalToggle()
   end
   vc("startinsert")
 end
+
+--- Ativa autocmd em vários formatos de txt
+---@param cmd string
+function AutoTxt(cmd)
+  local vanca = vim.api.nvim_create_autocmd
+  vanca("FileType", { pattern = { "markdown" }, command = cmd })
+  vanca("FileType", { pattern = { "org" }, command = cmd })
+  vanca("FileType", { pattern = { "txt" }, command = cmd })
+  vanca("FileType", { pattern = { "norg" }, command = cmd })
+end

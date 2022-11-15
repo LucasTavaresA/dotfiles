@@ -136,8 +136,6 @@ vks(nv, "<leader>C", "<cmd>PickColor<cr>", ns)
 vks(nv, "zu", function()
   require("undotree").toggle()
 end, ns)
--- ativa foco - zen-mode
-vks(nv, "zf", ":ZenMode<CR>", s)
 -- snippets
 vks(nv, "es", ":e ~/.config/nvim/snippets/")
 -- avaliar código - SnipRun

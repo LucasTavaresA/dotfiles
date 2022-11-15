@@ -166,6 +166,12 @@ vo.foldnestmax = 3
 vo.foldopen:append("jump")
 vanca("FileType", { pattern = { "gitcommit" }, command = "norm zr" })
 
+--- Escrita
+AutoTxt("setlocal nocursorline nocursorcolumn")
+AutoTxt("setlocal nolist")
+AutoTxt("setlocal laststatus=0")
+AutoTxt("setlocal colorcolumn=0")
+
 --- Netrw
 -- desabilita o netrw
 vg.loaded_netrw = 1

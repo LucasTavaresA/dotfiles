@@ -926,40 +926,6 @@ return require("packer").startup(function(use)
     opt = true,
     ft = { "markdown", "org", "norg", "txt" },
   })
-  -- esconde distrações ao escrever
-  use({
-    "folke/zen-mode.nvim",
-    opt = true,
-    ft = { "markdown", "org", "txt", "norg" },
-    config = function()
-      require("zen-mode").setup({
-        window = {
-          width = 80, -- width of the Zen window
-          height = 30, -- height of the Zen window
-          options = {
-            -- signcolumn = "no", -- disable signcolumn
-            number = false, -- disable number column
-            relativenumber = false, -- disable relative numbers
-            cursorline = false, -- disable cursorline
-            cursorcolumn = false, -- disable cursor column
-            foldcolumn = "0", -- disable fold column
-            list = false, -- disable whitespace characters
-          },
-        },
-        -- callback where you can add custom code when the Zen window opens
-        on_open = function()
-          vim.opt_local.laststatus = 0
-          vim.api.nvim_set_hl(0, "Normal", { bg = "#000000" })
-        end,
-        -- callback where you can add custom code when the Zen window closes
-        on_close = function()
-          vim.opt_local.laststatus = 3
-          vim.cmd(":wq!")
-        end,
-      })
-      vim.cmd("call timer_start(100, { tid -> execute('ZenMode')})")
-    end,
-  })
   -- markdown
   use({
     "preservim/vim-markdown",
