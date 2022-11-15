@@ -928,6 +928,14 @@ return require("packer").startup(function(use)
     opt = true,
     ft = { "markdown", "org", "norg", "txt" },
   })
+  --  melhora aparência de headings, blocos de código, etc...
+  --  funciona em org, markdown e norg
+  use({
+    "lukas-reineke/headlines.nvim",
+    config = function()
+      require("headlines").setup()
+    end,
+  })
   -- previsão de markdown
   use({ "ellisonleao/glow.nvim", opt = true, cmd = { "Glow" } })
   -- indica mals hábitos de escrita
