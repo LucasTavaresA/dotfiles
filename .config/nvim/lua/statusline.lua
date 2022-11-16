@@ -13,46 +13,10 @@ local theme = {
   violet = "#9900ff",
 }
 
-local vi_mode_colors = {
-  NORMAL = theme.orange,
-  INSERT = theme.yellow,
-  VISUAL = theme.lightblue,
-  OP = theme.green,
-  BLOCK = theme.lightblue,
-  LINES = theme.lightblue,
-  REPLACE = theme.red,
-  ["V-REPLACE"] = theme.red,
-  ENTER = theme.yellow,
-  MORE = theme.pink,
-  SELECT = theme.lightblue,
-  COMMAND = theme.violet,
-  SHELL = theme.green,
-  TERM = theme.green,
-  NONE = theme.cyan,
-}
-
-local vi_mode_utils = require("feline.providers.vi_mode")
 
 -- My components
 local comps = {
   separator = { provider = " " },
-  vi_mode = {
-    left = {
-      provider = function()
-        local label = "  " .. vi_mode_utils.get_vim_mode() .. " 🭅"
-        return label
-      end,
-      hl = function()
-        local set_color = {
-          name = vi_mode_utils.get_mode_highlight_name(),
-          fg = theme.bg,
-          bg = vi_mode_utils.get_mode_color(),
-          style = "bold",
-        }
-        return set_color
-      end,
-    },
-  },
   macro = {
     provider = { name = "macro" },
     hl = { bold = true, fg = theme.red },
@@ -137,7 +101,6 @@ table.insert(components.inactive, {})
 table.insert(components.inactive, {})
 
 -- Right section
-table.insert(components.active[1], comps.vi_mode.left)
 table.insert(components.active[1], comps.search_count)
 table.insert(components.active[1], comps.macro)
 
@@ -170,7 +133,6 @@ require("feline").setup({
     fg = theme.fg,
   },
   components = components,
-  vi_mode_colors = vi_mode_colors,
   force_inactive = {
     filetypes = {
       "NvimTree",
