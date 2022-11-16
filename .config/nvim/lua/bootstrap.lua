@@ -388,6 +388,8 @@ return require("packer").startup(function(use)
   use({
     "neovim/nvim-lspconfig",
     requires = {
+      -- mostra contexto do código
+      { "SmiteshP/nvim-navic" },
       -- indicação de carregamento lsp
       {
         "j-hui/fidget.nvim",
@@ -601,6 +603,11 @@ return require("packer").startup(function(use)
 
       -- Ativa quando o lsp esta ativo
       On_attach = function(client, bufnr)
+        if client.server_capabilities.documentSymbolProvider then
+          require("nvim-navic").attach(client, bufnr)
+          require("nvim-navic").setup({ depth_limit = 3 })
+        end
+
         local function buf_set_option(...)
           vim.api.nvim_buf_set_option(bufnr, ...)
         end
