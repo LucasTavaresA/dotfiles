@@ -1,4 +1,18 @@
 --- Variáveis
+local close = function()
+  vim.keymap.set(
+    { "n", "i" },
+    "<esc>",
+    "<esc>:bd!<CR>",
+    { buffer = true, noremap = true, silent = true }
+  )
+  vim.keymap.set(
+    { "n", "i" },
+    "q",
+    "<esc>:bd!<CR>",
+    { buffer = true, noremap = true, silent = true }
+  )
+end
 local vg = vim.g
 local vks = vim.keymap.set
 local n = { noremap = true }
@@ -84,7 +98,7 @@ vks(nv, "<leader>D", function()
 end, ns)
 -- fecha buffers de ajuda
 Autocmd("FileType", { "help" }, function()
-  vim.keymap.set("n", "q", ":bd<CR>", { noremap = true, silent = true })
+  close()
 end)
 
 --- Plugins
@@ -93,6 +107,9 @@ vks(nv, "q", function()
   require("leap").leap({ target_windows = { vim.fn.win_getid() } })
 end)
 -- neogit
+Autocmd("FileType", { "NeogitStatus" }, function()
+  close()
+end)
 vks(nv, "<leader>gg", ":Neogit<CR>", s)
 -- mostra git blame - gitsigns
 vks(nv, "<leader>gb", ":Gitsigns toggle_current_line_blame<CR>", s)
@@ -113,6 +130,10 @@ vks("i", "<A-k>", "<esc>:MoveLine(-1)<CR>", ns)
 vks("v", "<leader>a", function()
   require("align").align_to_string(false, true, true)
 end, ns)
+-- fecha telescope com esc
+Autocmd("FileType", { "TelescopePrompt" }, function()
+  close()
+end)
 -- abre arquivos no repositório atual - telescope
 vks(nv, "<leader>F", ":Telescope find_files<CR>", s)
 -- procura linhas no buffer - telescope
