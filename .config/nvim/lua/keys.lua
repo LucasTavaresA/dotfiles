@@ -96,6 +96,8 @@ end)
 vks(nv, "q", function()
   require("leap").leap({ target_windows = { vim.fn.win_getid() } })
 end)
+-- pula e faz uma ação no indicador - easyaction
+vks("n", "s", "<cmd>BasicEasyAction<cr>", { silent = true, remap = false })
 -- neogit
 Autocmd("FileType", { "NeogitStatus" }, function()
   close()

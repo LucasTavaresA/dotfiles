@@ -199,6 +199,32 @@ return require("packer").startup(function(use)
   })
   -- alinha texto
   use("Vonr/align.nvim")
+  -- ações usando indicadores
+  use({
+    "Weissle/easy-action",
+    requires = {
+      {
+        "kevinhwang91/promise-async",
+        module = { "async" },
+      },
+    },
+    config = function()
+      require("easy-action").setup({
+        jump_provider = "leap",
+        jump_provider_config = {
+          leap = {
+            action_select = {
+              default = function()
+                require("leap").leap({
+                  target_windows = { vim.fn.win_getid() },
+                })
+              end,
+            },
+          },
+        },
+      })
+    end,
+  })
   -- movimento usando indicadores
   use({ "ggandor/leap.nvim" })
   -- extende a funcionalidade de f,F,t,T
