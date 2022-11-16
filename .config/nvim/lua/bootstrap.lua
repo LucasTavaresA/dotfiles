@@ -566,10 +566,6 @@ return require("packer").startup(function(use)
             },
             mapping = cmp.mapping.preset.insert({
               ["<A-e>"] = cmp.mapping.complete({}),
-              ["<CR>"] = cmp.mapping.confirm({
-                behavior = cmp.ConfirmBehavior.Replace,
-                select = false,
-              }),
               ["<Tab>"] = cmp.mapping(function(fallback)
                 if cmp.visible() then
                   cmp.select_next_item()
