@@ -6,12 +6,6 @@ local close = function()
     "<esc>:bd!<CR>",
     { buffer = true, noremap = true, silent = true }
   )
-  vim.keymap.set(
-    { "n", "i" },
-    "q",
-    "<esc>:bd!<CR>",
-    { buffer = true, noremap = true, silent = true }
-  )
 end
 local vg = vim.g
 local vks = vim.keymap.set
