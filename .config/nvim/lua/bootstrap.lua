@@ -1,3 +1,4 @@
+---@diagnostic disable: assign-type-mismatch
 -- bootstrap packer:
 -- nvim --headless -u NONE -c 'lua require("bootstrap")' -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 local ensure_packer = function()
@@ -414,6 +415,13 @@ return require("packer").startup(function(use)
   use({
     "neovim/nvim-lspconfig",
     requires = {
+      -- neovim
+      {
+        "folke/neodev.nvim",
+        config = function()
+          require("neodev").setup()
+        end,
+      },
       -- mostra contexto do código
       { "SmiteshP/nvim-navic" },
       -- lista de ações no código
@@ -557,7 +565,7 @@ return require("packer").startup(function(use)
               end,
             },
             mapping = cmp.mapping.preset.insert({
-              ["<A-e>"] = cmp.mapping.complete(),
+              ["<A-e>"] = cmp.mapping.complete({}),
               ["<CR>"] = cmp.mapping.confirm({
                 behavior = cmp.ConfirmBehavior.Replace,
                 select = false,

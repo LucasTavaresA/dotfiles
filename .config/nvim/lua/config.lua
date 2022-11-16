@@ -1,3 +1,4 @@
+---@diagnostic disable: assign-type-mismatch
 require("utils")
 require("keys")
 local vo = vim.opt
