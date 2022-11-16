@@ -20,6 +20,7 @@ catdoc
 catimg
 ccls
 checkbashisms
+checkmake
 connman-runit
 dash
 dhcpcd
@@ -27,6 +28,7 @@ docx2txt
 dotnet-sdk
 emacs-gcc-wayland-devel-bin
 enchant
+eslint
 esysusers
 etmpfiles
 expac
@@ -39,6 +41,7 @@ file
 findutils
 firefox
 fish
+flake8
 flex
 foot
 foot-terminfo
@@ -111,6 +114,7 @@ neovim
 nerd-fonts-complete
 netcoredbg
 ninja
+nodejs-jshint
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
