@@ -986,6 +986,11 @@ return require("packer").startup(function(use)
     "opdavies/toggle-checkbox.nvim",
     opt = true,
     ft = { "markdown", "org", "norg", "txt" },
+    config = function()
+      vim.keymap.set("n", "zx", function()
+        require("toggle-checkbox").toggle()
+      end, { buffer = true, noremap = true, silent = true })
+    end,
   })
   --  melhora aparência de headings, blocos de código, etc...
   --  funciona em org, markdown e norg

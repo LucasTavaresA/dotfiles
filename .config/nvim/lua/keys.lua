@@ -173,10 +173,6 @@ vks(nv, "es", ":e ~/.config/nvim/snippets/")
 -- avaliar código - SnipRun
 vks("n", "<leader>e", "<Plug>SnipRunOperator", { silent = true })
 vks(nv, "<leader>ee", "<Plug>SnipRun", { silent = true })
--- marca/desmarca caixas - toggle-checkbox
-vks("n", "zx", function()
-  require("toggle-checkbox").toggle()
-end, ns)
 -- pop-up com documentação do simbolo selecionado - hover
 vks(nv, "H", function()
   require("hover").hover()
