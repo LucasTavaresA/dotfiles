@@ -416,6 +416,18 @@ return require("packer").startup(function(use)
     requires = {
       -- mostra contexto do código
       { "SmiteshP/nvim-navic" },
+      -- lista de ações no código
+      {
+        "aznhe21/actions-preview.nvim",
+        requires = { "nvim-telescope/telescope.nvim" },
+        config = function()
+          vim.keymap.set(
+            { "v", "n" },
+            "gf",
+            require("actions-preview").code_actions
+          )
+        end,
+      },
       -- indicação de carregamento lsp
       {
         "j-hui/fidget.nvim",
