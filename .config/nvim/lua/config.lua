@@ -3,7 +3,6 @@ require("keys")
 local vo = vim.opt
 local vg = vim.g
 local vc = vim.cmd
-local vanca = vim.api.nvim_create_autocmd
 local og = os.getenv
 local HOME = og("HOME")
 local XDG_DATA_HOME = og("XDG_DATA_HOME")
@@ -57,10 +56,7 @@ vo.shiftwidth = 4
 -- troca tabs por espaços
 vo.expandtab = true
 -- tabs em arquivos lua
-vanca(
-  "FileType",
-  { pattern = { "lua" }, command = "setlocal tabstop=2 shiftwidth=2" }
-)
+Autocmd("FileType", { "lua" }, "setlocal tabstop=2 shiftwidth=2")
 
 --- Formatação
 -- divide linhas sem quebrar palavras
@@ -70,10 +66,7 @@ vo.textwidth = 80
 -- formatação nativa
 vo.formatoptions = "tcrqn1j"
 -- formatação ao salvar
-vanca(
-  "BufWritePost",
-  { pattern = { "*.cs" }, command = ":call jobstart('dotnet format')" }
-)
+Autocmd("BufWritePost", { "*.cs" }, ":call jobstart('dotnet format')")
 
 ----- Aparência -----
 --- Miscelânea
@@ -109,12 +102,9 @@ vansh(0, "CursorColumn", { bg = "#151515" })
 -- indicação em 80 caracteres
 vansh(0, "ColorColumn", { bg = "#151515" })
 -- Indica texto copiado
-vanca("TextYankPost", {
-  pattern = { "*" },
-  callback = function()
-    vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
-  end,
-})
+Autocmd("TextYankPost", { "*" }, function()
+  vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
+end)
 -- indicação de sintaxe
 vc.syntax("on")
 -- melhora suporte de cores
@@ -149,22 +139,17 @@ vo.cmdheight = 0
 vo.showtabline = 0
 
 --- ajuda
-vanca(
+Autocmd(
   "FileType",
-  {
-    pattern = { "help" },
-    command = "call timer_start(50, { tid -> execute('only')})",
-  }
+  { "help" },
+  "call timer_start(50, { tid -> execute('only')})"
 )
 
 --- Números
 vo.number = true
 vo.numberwidth = 1
 vo.relativenumber = true
-vanca(
-  "TermOpen",
-  { pattern = { "*" }, command = "setlocal nonumber norelativenumber" }
-)
+Autocmd("TermOpen", { "*" }, "setlocal nonumber norelativenumber")
 
 --- Folding
 vg.sh_fold_enabled = 1
@@ -173,13 +158,14 @@ vo.foldcolumn = "0"
 vo.foldlevel = 1
 vo.foldnestmax = 3
 vo.foldopen:append("jump")
-vanca("FileType", { pattern = { "gitcommit" }, command = "norm zr" })
+Autocmd("FileType", { "gitcommit" }, "norm zr")
 
 --- Escrita
-AutoTxt("setlocal nocursorline nocursorcolumn")
-AutoTxt("setlocal nolist")
-AutoTxt("setlocal laststatus=0")
-AutoTxt("setlocal colorcolumn=0")
+Autocmd(
+  "FileType",
+  { "markdown", "org", "txt", "norg" },
+  "setlocal nolist  laststatus=0 colorcolumn=0 nocursorline nocursorcolumn"
+)
 
 --- Netrw
 -- desabilita o netrw
