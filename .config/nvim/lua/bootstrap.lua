@@ -454,7 +454,6 @@ return require("packer").startup(function(use)
               null_ls.builtins.diagnostics.fish,
               null_ls.builtins.diagnostics.flake8,
               null_ls.builtins.diagnostics.jshint,
-              null_ls.builtins.diagnostics.jsonlint,
               null_ls.builtins.diagnostics.shellcheck,
               null_ls.builtins.hover.printenv,
             },
