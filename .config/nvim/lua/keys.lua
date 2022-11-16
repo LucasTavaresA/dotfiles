@@ -33,8 +33,6 @@ vks("i", "<esc>", "", ns)
 vks("i", "<C-c>", "", ns)
 -- colar na linha de baixo
 vks(nv, "P", ":norm o<CR>p", ns)
--- trocar de buffer
-vks(nvi, "<C-Tab>", "<esc>:Telescope buffers<CR>", s)
 -- trocar de split
 vks(nvi, "<A-Tab>", "<esc><C-w>w")
 -- formatar buffer
@@ -85,17 +83,9 @@ vks("n", "M", "q", ns)
 vks("n", "q", "")
 -- executa um macro
 vks("n", "m", "@")
--- abre/fecha fold
-vks(nvi, "<tab>", function()
-  require("fold-cycle").open()
-end, s)
 -- vai para diagnostico
 vks(nv, "[d", vim.diagnostic.goto_prev, ns)
 vks(nv, "]d", vim.diagnostic.goto_next, ns)
--- lista de diagnostico
-vks(nv, "<leader>D", function()
-  require("telescope.builtin").diagnostics({})
-end, ns)
 -- fecha buffers de ajuda
 Autocmd("FileType", { "help" }, function()
   close()
@@ -130,10 +120,20 @@ vks("i", "<A-k>", "<esc>:MoveLine(-1)<CR>", ns)
 vks("v", "<leader>a", function()
   require("align").align_to_string(false, true, true)
 end, ns)
--- fecha telescope com esc
+-- abre/fecha fold - fold-cycle
+vks(nvi, "<tab>", function()
+  require("fold-cycle").open()
+end, s)
+-- fecha com esc - telescope
 Autocmd("FileType", { "TelescopePrompt" }, function()
   close()
 end)
+-- trocar de buffer - telescope
+vks(nvi, "<C-Tab>", "<esc>:Telescope buffers<CR>", s)
+-- lista de diagnostico - telescope
+vks(nv, "<leader>D", function()
+  require("telescope.builtin").diagnostics({})
+end, ns)
 -- abre arquivos no repositório atual - telescope
 vks(nv, "<leader>F", ":Telescope find_files<CR>", s)
 -- procura linhas no buffer - telescope
@@ -162,7 +162,7 @@ vks(nv, "<leader>gs", ":Gsearch  ./<left><left><left>")
 vks(nv, "<leader>gr", ":Greplace<CR>", s)
 -- ativa previsão de cores - colorizer.lua
 vks(nv, "zc", ":ColorizerToggle<CR>", s)
--- escolher cor
+-- escolher cor - color-picker
 vks(nv, "<leader>C", "<cmd>PickColor<cr>", ns)
 -- abrir e fechar arvore de undos - undotree
 vks(nv, "zu", function()

@@ -66,7 +66,7 @@ vo.textwidth = 80
 -- formatação nativa
 vo.formatoptions = "tcrqn1j"
 -- formatação ao salvar
-Autocmd("BufWritePost", { "*.cs" }, ":call jobstart('dotnet format')")
+Autocmd("BufWritePost", { "*.cs" }, "call jobstart('dotnet format')")
 
 ----- Aparência -----
 --- Miscelânea
