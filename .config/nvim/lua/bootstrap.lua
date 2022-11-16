@@ -4,7 +4,7 @@
 local ensure_packer = function()
   local fn = vim.fn
   local install_path = fn.stdpath("data")
-    .. "/site/pack/packer/start/packer.nvim"
+      .. "/site/pack/packer/start/packer.nvim"
   if fn.empty(fn.glob(install_path)) > 0 then
     fn.system({
       "git",
@@ -43,6 +43,8 @@ return require("packer").startup(function(use)
   -- seletor de cores
   use({
     "ziontee113/color-picker.nvim",
+    opt = true,
+    cmd = "PickColor",
     config = function()
       require("color-picker")
     end,
@@ -87,7 +89,7 @@ return require("packer").startup(function(use)
           mappings = {
             i = {
               ["<C-Tab>"] = actions.toggle_selection
-                + actions.move_selection_worse,
+                  + actions.move_selection_worse,
             },
           },
         },
@@ -289,7 +291,12 @@ return require("packer").startup(function(use)
     end,
   })
   -- avalia código
-  use({ "michaelb/sniprun", run = "bash ./install.sh" })
+  use({
+    "michaelb/sniprun",
+    opt = true,
+    cmd = { "SnipRun" },
+    run = "bash ./install.sh",
+  })
   -- troca parâmetros de lugar
   use({
     "Wansmer/sibling-swap.nvim",
@@ -322,7 +329,7 @@ return require("packer").startup(function(use)
     "nvim-treesitter/nvim-treesitter",
     run = function()
       local ts_update =
-        require("nvim-treesitter.install").update({ with_sync = true })
+      require("nvim-treesitter.install").update({ with_sync = true })
       ts_update()
     end,
     requires = {
@@ -439,16 +446,16 @@ return require("packer").startup(function(use)
         "aznhe21/actions-preview.nvim",
         requires = { "nvim-telescope/telescope.nvim" },
         config = function()
-          vim.keymap.set(
-            { "v", "n" },
-            "gf",
-            require("actions-preview").code_actions
-          )
+          vim.keymap.set({ "v", "n" }, "gf", function()
+            require("actions-preview").code_actions()
+          end)
         end,
       },
       -- indicação de carregamento lsp
       {
         "j-hui/fidget.nvim",
+        opt = true,
+        event = "LspAttach",
         config = function()
           require("fidget").setup({
             text = {
@@ -458,7 +465,7 @@ return require("packer").startup(function(use)
               stack_upwards = false,
               task = function(task_name, message, percentage)
                 local pct = percentage and string.format(" (%s%%)", percentage)
-                  or ""
+                    or ""
                 if task_name then
                   return string.format("%s%s [%s]", message, pct, task_name)
                 else
@@ -943,6 +950,8 @@ return require("packer").startup(function(use)
   -- escurece buffers sem foco
   use({
     "levouh/tint.nvim",
+    opt = true,
+    event = "WinLeave",
     config = function()
       require("tint").setup({})
     end,
@@ -1031,6 +1040,8 @@ return require("packer").startup(function(use)
   -- traduz texto
   use({
     "uga-rosa/translate.nvim",
+    opt = true,
+    cmd = "Translate",
     config = function()
       require("translate").setup({})
     end,
