@@ -142,7 +142,7 @@ vo.showtabline = 0
 Autocmd(
   "FileType",
   { "help" },
-  "call timer_start(50, { tid -> execute('only')})"
+  "call timer_start(50, { tid -> execute('setlocal nolist laststatus=0 colorcolumn=0 nocursorline nocursorcolumn | only')})"
 )
 
 --- Números
@@ -164,7 +164,7 @@ Autocmd("FileType", { "gitcommit" }, "norm zr")
 Autocmd(
   "FileType",
   { "markdown", "org", "txt", "norg" },
-  "setlocal nolist  laststatus=0 colorcolumn=0 nocursorline nocursorcolumn"
+  "setlocal nolist laststatus=0 colorcolumn=0 nocursorline nocursorcolumn"
 )
 
 --- Netrw
