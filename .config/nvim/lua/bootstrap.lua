@@ -328,6 +328,18 @@ return require("packer").startup(function(use)
     requires = {
       { "nvim-treesitter/nvim-treesitter-textobjects" },
       { "JoosepAlviste/nvim-ts-context-commentstring" },
+      -- mostra função atual no topo
+      {
+        "nvim-treesitter/nvim-treesitter-context",
+        config = function()
+          require("treesitter-context").setup({
+            enable = true,
+            max_lines = 5,
+            trim_scope = "outer",
+          })
+          vim.api.nvim_set_hl(0, "TreesitterContext", { bg = "#39260E" })
+        end,
+      },
       -- visualiza arvore treesitter
       { "nvim-treesitter/playground", opt = true, cmd = "TSPlaygroundToggle" },
       { "ziontee113/query-secretary" },
@@ -422,8 +434,6 @@ return require("packer").startup(function(use)
           require("neodev").setup()
         end,
       },
-      -- mostra contexto do código
-      { "SmiteshP/nvim-navic" },
       -- lista de ações no código
       {
         "aznhe21/actions-preview.nvim",
@@ -643,12 +653,7 @@ return require("packer").startup(function(use)
       capabilities.textDocument.completion.completionItem.snippetSupport = true
 
       -- Ativa quando o lsp esta ativo
-      On_attach = function(client, bufnr)
-        if client.server_capabilities.documentSymbolProvider then
-          require("nvim-navic").attach(client, bufnr)
-          require("nvim-navic").setup({ depth_limit = 3 })
-        end
-
+      On_attach = function(_, bufnr)
         local function buf_set_option(...)
           vim.api.nvim_buf_set_option(bufnr, ...)
         end

@@ -13,19 +13,9 @@ local theme = {
   violet = "#9900ff",
 }
 
-local navic = require("nvim-navic")
-
 -- My components
 local comps = {
   separator = { provider = " " },
-  navic = {
-    provider = function()
-      return navic.get_location()
-    end,
-    enabled = function()
-      return navic.is_available()
-    end,
-  },
   macro = {
     provider = { name = "macro" },
     hl = { bold = true, fg = theme.red },
@@ -110,7 +100,6 @@ table.insert(components.inactive, {})
 table.insert(components.inactive, {})
 
 -- Right section
-table.insert(components.active[1], comps.navic)
 table.insert(components.active[1], comps.search_count)
 table.insert(components.active[1], comps.macro)
 
