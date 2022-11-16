@@ -1007,6 +1007,13 @@ return require("packer").startup(function(use)
   })
 
   --- Escrever
+  -- traduz texto
+  use({
+    "uga-rosa/translate.nvim",
+    config = function()
+      require("translate").setup({})
+    end,
+  })
   -- marca checkboxes
   use({
     "opdavies/toggle-checkbox.nvim",

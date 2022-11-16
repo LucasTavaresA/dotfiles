@@ -98,6 +98,8 @@ vks(nv, "q", function()
 end)
 -- pula e faz uma ação no indicador - easyaction
 vks("n", "s", "<cmd>BasicEasyAction<cr>", { silent = true, remap = false })
+-- traduz - translate
+vks(nv, "<leader>t", "<cmd>Translate en<CR>")
 -- neogit
 Autocmd("FileType", { "NeogitStatus" }, function()
   close()
