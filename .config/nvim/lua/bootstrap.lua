@@ -611,6 +611,32 @@ return require("packer").startup(function(use)
       )
       capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+      -- Ativa quando o lsp esta ativo
+      On_attach = function(client, bufnr)
+        local function buf_set_option(...)
+          vim.api.nvim_buf_set_option(bufnr, ...)
+        end
+
+        buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+
+        local bns = { buffer = bufnr, noremap = true, silent = true }
+        vim.keymap.set({ "n", "v" }, "gD", vim.lsp.buf.declaration, bns)
+        vim.keymap.set({ "n", "v" }, "gd", function()
+          require("telescope.builtin").lsp_definitions({})
+        end, bns)
+        vim.keymap.set({ "n", "v" }, "gi", function()
+          require("telescope.builtin").lsp_implementations({})
+        end, bns)
+        vim.keymap.set({ "n", "v" }, "gr", function()
+          require("telescope.builtin").lsp_references({})
+        end, bns)
+        vim.keymap.set({ "n", "v" }, "<C-h>", vim.lsp.buf.signature_help, bns)
+        vim.keymap.set({ "n", "v" }, "<leader>I", function()
+          vim.lsp.buf.format({ async = true })
+        end, bns)
+        vim.keymap.set({ "n", "v" }, "<C-S-r>", vim.lsp.buf.rename, bns)
+      end
+
       -- diagnostico
       vim.diagnostic.config({
         virtual_text = true,

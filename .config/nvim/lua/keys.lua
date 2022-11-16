@@ -75,6 +75,13 @@ vks("n", "m", "@")
 vks(nvi, "<tab>", function()
   require("fold-cycle").open()
 end, s)
+-- vai para diagnostico
+vks(nv, "[d", vim.diagnostic.goto_prev, ns)
+vks(nv, "]d", vim.diagnostic.goto_next, ns)
+-- lista de diagnostico
+vks(nv, "<leader>D", function()
+  require("telescope.builtin").diagnostics({})
+end, ns)
 
 --- Plugins
 -- pula para palavras usando indicadores - leap
@@ -145,45 +152,14 @@ vks(nv, "<leader>ee", "<Plug>SnipRun", { silent = true })
 vks("n", "zx", function()
   require("toggle-checkbox").toggle()
 end, ns)
-
---- LSP
--- Ativa essas teclas quando o lsp esta ativo
-On_attach = function(_, bufnr)
-  local function buf_set_option(...)
-    vim.api.nvim_buf_set_option(bufnr, ...)
-  end
-
-  buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-
-  local bns = { buffer = bufnr, noremap = true, silent = true }
-  vks(nv, "gD", vim.lsp.buf.declaration, bns)
-  vks(nv, "gd", function()
-    require("telescope.builtin").lsp_definitions({})
-  end, bns)
-  vks(nv, "gi", function()
-    require("telescope.builtin").lsp_implementations({})
-  end, bns)
-  vks(nv, "gr", function()
-    require("telescope.builtin").lsp_references({})
-  end, bns)
-  vks(nvi, "<C-h>", vim.lsp.buf.signature_help, bns)
-  vks(nv, "<leader>I", function()
-    vim.lsp.buf.format({ async = true })
-  end, bns)
-  vks(nv, "<C-S-r>", vim.lsp.buf.rename, bns)
-end
-
+-- pop-up com documentação do simbolo selecionado - hover
 vks(nv, "H", function()
   require("hover").hover()
 end, { desc = "hover.nvim" })
+-- seleciona documentação do simbolo selecionado - hover
 vks(nv, "gH", function()
   require("hover").hover_select()
 end, { desc = "hover.nvim (select)" })
-vks(nv, "[d", vim.diagnostic.goto_prev, ns)
-vks(nv, "]d", vim.diagnostic.goto_next, ns)
-vks(nv, "<leader>D", function()
-  require("telescope.builtin").diagnostics({})
-end, ns)
 
 --- DAP
 vks(nv, "<F4>", ":lua require'dapui'.toggle()<CR>", ns)
