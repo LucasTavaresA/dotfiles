@@ -148,6 +148,15 @@ vo.cmdheight = 0
 -- mostra a tabline
 vo.showtabline = 0
 
+--- ajuda
+vanca(
+  "FileType",
+  {
+    pattern = { "help" },
+    command = "call timer_start(50, { tid -> execute('only')})",
+  }
+)
+
 --- Números
 vo.number = true
 vo.numberwidth = 1

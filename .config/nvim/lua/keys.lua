@@ -82,6 +82,13 @@ vks(nv, "]d", vim.diagnostic.goto_next, ns)
 vks(nv, "<leader>D", function()
   require("telescope.builtin").diagnostics({})
 end, ns)
+-- fecha buffers de ajuda
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "help" },
+  callback = function()
+    vim.keymap.set("n", "q", ":bd<CR>", { noremap = true, silent = true })
+  end,
+})
 
 --- Plugins
 -- pula para palavras usando indicadores - leap
