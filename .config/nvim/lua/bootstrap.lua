@@ -312,18 +312,6 @@ return require("packer").startup(function(use)
           require("hlargs").setup()
         end,
       },
-      -- mostra função atual no topo
-      {
-        "nvim-treesitter/nvim-treesitter-context",
-        config = function()
-          require("treesitter-context").setup({
-            enable = true,
-            max_lines = 5,
-            trim_scope = "outer",
-          })
-          vim.api.nvim_set_hl(0, "TreesitterContext", { bg = "#39260E" })
-        end,
-      },
     },
     config = function()
       require("nvim-treesitter").define_modules({
