@@ -970,7 +970,7 @@ return require("packer").startup(function(use)
   use({
     "lucastavaresa/simpleIndentGuides.nvim",
     config = function()
-      require("simpleIndentGuides").setup("│·")
+      require("simpleIndentGuides").setup("│", "·")
     end,
   })
   -- escurece buffers sem foco
