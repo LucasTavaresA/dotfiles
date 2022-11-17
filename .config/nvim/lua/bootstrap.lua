@@ -294,17 +294,35 @@ return require("packer").startup(function(use)
   use({
     "michaelb/sniprun",
     opt = true,
+    ft = {
+      "sh",
+      "bash",
+      "markdown",
+      "org",
+      "norg",
+      "haskell",
+      "c",
+      "cpp",
+      "go",
+      "java",
+      "javascript",
+      "typescript",
+      "rust",
+    },
     cmd = { "SnipRun" },
     run = "bash ./install.sh",
   })
-  -- avalia código 2
-  -- use({
-  --   "Olical/conjure",
-  --   requires = "nvim-treesitter/nvim-treesitter",
-  --   config = function()
-  --     vim.g["conjure#extract#tree_sitter#enabled"] = true
-  --   end,
-  -- })
+  -- avalia mais código
+  use({
+    "Olical/conjure",
+    requires = "nvim-treesitter/nvim-treesitter",
+    opt = true,
+    ft = { "lisp", "fennel", "lua", "python", "clojure", "cl", "scheme" },
+    cmd = { "ConjureEval" },
+    config = function()
+      vim.g["conjure#extract#tree_sitter#enabled"] = true
+    end,
+  })
   -- troca parâmetros de lugar
   use({
     "Wansmer/sibling-swap.nvim",
