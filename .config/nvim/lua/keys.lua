@@ -88,7 +88,11 @@ end)
 --- Plugins
 -- pula para palavras usando indicadores - leap
 vks(nv, "q", function()
-  require("leap").leap({ target_windows = { vim.fn.win_getid() } })
+  require("leap").leap({
+    target_windows = vim.tbl_filter(function(win)
+      return vim.api.nvim_win_get_config(win).focusable
+    end, vim.api.nvim_tabpage_list_wins(0)),
+  })
 end)
 -- pula e faz uma ação no indicador - easyaction
 vks("n", "s", "<cmd>BasicEasyAction<cr>", { silent = true, remap = false })
