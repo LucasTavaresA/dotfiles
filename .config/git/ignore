@@ -28,6 +28,7 @@
 .config/keepassxc/
 .config/libreoffice/
 .config/mpd/
+.config/mpv/watch_later/
 .config/ncmpcpp/error.log
 .config/nitrogen/
 .config/npm/_*
