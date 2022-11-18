@@ -38,6 +38,30 @@ cmd zi ${{
     lf -remote "send ${id} cd '${result}'"
 }}
 
+cmd bulk-rename ${{
+    old="$(mktemp)"
+    new="$(mktemp)"
+    if [ -n "$fs" ]; then
+        fs="$(basename -a $fs)"
+    else
+        fs="$(ls)"
+    fi
+    printf '%s\n' "$fs" >"$old"
+    printf '%s\n' "$fs" >"$new"
+    $EDITOR "$new"
+    [ "$(wc -l < "$new")" -ne "$(wc -l < "$old")" ] && exit
+    paste "$old" "$new" | while IFS= read -r names; do
+        src="$(printf '%s' "$names" | cut -f1)"
+        dst="$(printf '%s' "$names" | cut -f2)"
+        if [ "$src" = "$dst" ] || [ -e "$dst" ]; then
+            continue
+        fi
+        mv -- "$src" "$dst"
+    done
+    rm -- "$old" "$new"
+    lf -remote "send $id unselect"
+}}
+
 cmd open ${{
     case $(file --mime-type "$(readlink -f $f)" -b) in
         application/vnd.openxmlformats-officedocument.wordprocessingml.document) libreoffice $f ;;
@@ -132,6 +156,7 @@ map m mkdir
 map e extract
 map zz push :z<space>
 map zi push :zi<space>
+map R bulk-rename
 
 #### Atalhos ####
 map g. cd ~/.config
