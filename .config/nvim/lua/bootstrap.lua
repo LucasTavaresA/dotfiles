@@ -621,6 +621,12 @@ return require("packer").startup(function(use)
             },
             mapping = cmp.mapping.preset.insert({
               ["<A-e>"] = cmp.mapping.complete({}),
+              ["<Up>"] = function(fallback)
+                fallback()
+              end,
+              ["<Down>"] = function(fallback)
+                fallback()
+              end,
               ["<Tab>"] = cmp.mapping(function(fallback)
                 if cmp.visible() then
                   cmp.select_next_item()
