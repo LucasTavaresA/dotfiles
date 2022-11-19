@@ -25,8 +25,6 @@ vks(nv, "<Left>", "")
 -- sobe/desce uma tela
 vks(nvi, "<C-j>", "<C-d>", ns)
 vks(nvi, "<C-k>", "<C-u>", ns)
--- cancela indicação de palavras procuradas
-vks(nv, "<esc>", ":noh<CR>", ns)
 -- não sai do insert mode com espaço/Ctrl-c
 vks("i", "<esc>", "", ns)
 vks("i", "<C-c>", "", ns)
