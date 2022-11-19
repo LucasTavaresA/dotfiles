@@ -17,6 +17,11 @@ local nv = { "n", "v" }
 vg.mapleader = " "
 vg.maplocalleader = " "
 
+-- desativa setas
+vks(nv, "<Up>", "")
+vks(nv, "<Down>", "")
+vks(nv, "<Right>", "")
+vks(nv, "<Left>", "")
 -- sobe/desce uma tela
 vks(nvi, "<C-j>", "<C-d>", ns)
 vks(nvi, "<C-k>", "<C-u>", ns)
