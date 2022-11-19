@@ -4,6 +4,7 @@ require("keys")
 local vo = vim.opt
 local vg = vim.g
 local vc = vim.cmd
+local vf = vim.fn
 local og = os.getenv
 local HOME = og("HOME")
 local XDG_DATA_HOME = og("XDG_DATA_HOME")
@@ -25,7 +26,7 @@ vo.clipboard:append({ "unnamedplus" })
 vo.ignorecase = true
 vo.smartcase = true
 -- dotfiles
-if vim.fn.getcwd() == HOME then
+if vf.getcwd() == HOME then
   vim.env.GIT_DIR = HOME .. "/.dotfiles"
   vim.env.GIT_WORK_TREE = HOME
 end
@@ -68,6 +69,15 @@ vo.textwidth = 80
 vo.formatoptions = "tcrqn1j"
 -- formatação ao salvar
 Autocmd("BufWritePost", { "*.cs" }, "call jobstart('dotnet format')")
+if vf.getcwd() == HOME then
+  Autocmd(
+    "BufWritePost",
+    { "*.lua" },
+    "!stylua --config-path ./.config/nvim/stylua.toml %"
+  )
+else
+  Autocmd("BufWritePost", { "*.lua" }, "!stylua %")
+end
 
 ----- Aparência -----
 --- Miscelânea

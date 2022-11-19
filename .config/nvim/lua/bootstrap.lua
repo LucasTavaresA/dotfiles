@@ -222,10 +222,11 @@ return require("packer").startup(function(use)
           leap = {
             action_select = {
               default = function()
-                require('leap').leap { target_windows = vim.tbl_filter(
-                  function (win) return vim.api.nvim_win_get_config(win).focusable end,
-                  vim.api.nvim_tabpage_list_wins(0)
-                )}
+                require("leap").leap({
+                  target_windows = vim.tbl_filter(function(win)
+                    return vim.api.nvim_win_get_config(win).focusable
+                  end, vim.api.nvim_tabpage_list_wins(0)),
+                })
               end,
             },
           },
@@ -541,7 +542,6 @@ return require("packer").startup(function(use)
           local null_ls = require("null-ls")
           null_ls.setup({
             sources = {
-              null_ls.builtins.formatting.stylua,
               null_ls.builtins.formatting.clang_format,
               null_ls.builtins.diagnostics.eslint,
               null_ls.builtins.diagnostics.checkmake,
