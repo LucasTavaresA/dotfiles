@@ -591,12 +591,27 @@ return require("packer").startup(function(use)
             "onsails/lspkind.nvim",
             config = function()
               require("cmp").setup({
+                window = {
+                  completion = {
+                    winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+                    col_offset = -3,
+                    side_padding = 0,
+                  },
+                },
                 formatting = {
-                  format = require("lspkind").cmp_format({
-                    mode = "symbol", -- show only symbol annotations
-                    maxwidth = 50, -- prevent the pop-up from showing more than provided characters (e.g 50 will not show more than 50 characters)
-                    ellipsis_char = "…", -- when pop-up menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
-                  }),
+                  fields = { "kind", "abbr", "menu" },
+                  format = function(entry, vim_item)
+                    local kind = require("lspkind").cmp_format({
+                      mode = "symbol_text",
+                      maxwidth = 50,
+                      ellipsis_char = "…", -- when pop-up menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+                    })(entry, vim_item)
+                    local strings =
+                      vim.split(kind.kind, "%s", { trimempty = true })
+                    kind.kind = " " .. strings[1] .. " "
+                    kind.menu = "    (" .. strings[2] .. ")"
+                    return kind
+                  end,
                 },
               })
             end,
