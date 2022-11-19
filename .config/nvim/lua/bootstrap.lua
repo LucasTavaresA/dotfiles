@@ -577,7 +577,7 @@ return require("packer").startup(function(use)
           { "hrsh7th/cmp-cmdline" },
           { "dcampos/cmp-snippy" },
           { "f3fora/cmp-spell" },
-          { "amarakon/nvim-cmp-fonts" },
+          { "amarakon/nvim-cmp-fonts", ft = { "conf", "config", "css" } },
           { "davidsierradz/cmp-conventionalcommits" },
           -- ícones em pop-ups da lsp
           {
