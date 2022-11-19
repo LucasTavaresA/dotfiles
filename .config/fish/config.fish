@@ -208,7 +208,7 @@ if status is-interactive
     abbr -a -g ping ping google.com
     abbr -a -g p "patch -p1 <"
     abbr -a -g pr "patch -R <"
-    abbr -a -g yt yt-dlp
+    abbr -a -g yt "yt-dlp -P ~/Downloads --write-subs -f 'worstvideo*[height=720]+worstaudio/worst[height=720]'"
     abbr -a -g yta yt-dlp -x
     abbr -a -g ytw streamlink
     abbr -a -g mi make install
