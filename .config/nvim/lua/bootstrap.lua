@@ -159,7 +159,11 @@ return require("packer").startup(function(use)
     "ja-ford/delaytrain.nvim",
     config = function()
       require("delaytrain").setup({
-        ignore_filetypes = { "Neogit" }, -- Example: set to {"help", "NvimTr*"} to
+        keys = { -- Which keys (in which modes) should be delayed
+          ["nv"] = { "h", "j", "k", "l" },
+        },
+        grace_period = 2,
+        ignore_filetypes = { "Neogit" },
       })
     end,
   })
