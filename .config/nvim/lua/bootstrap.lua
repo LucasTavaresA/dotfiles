@@ -327,6 +327,11 @@ return require("packer").startup(function(use)
     cmd = { "ConjureEval" },
     config = function()
       vim.g["conjure#extract#tree_sitter#enabled"] = true
+      vim.g["conjure#mapping#eval_current_form"] = "ee"
+      vim.g["conjure#mapping#eval_motion"] = "e"
+      vim.g["conjure#mapping#eval_visual"] = "e"
+      vim.g["conjure#mapping#doc_word"] = false
+      vim.g["conjure#mapping#def_word"] = false
     end,
   })
   -- troca parâmetros de lugar
