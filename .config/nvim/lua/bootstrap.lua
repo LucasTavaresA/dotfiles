@@ -575,6 +575,7 @@ return require("packer").startup(function(use)
           { "hrsh7th/cmp-buffer" },
           { "hrsh7th/cmp-path" },
           { "hrsh7th/cmp-cmdline" },
+          { "mtoohey31/cmp-fish", ft = "fish" },
           { "dcampos/cmp-snippy" },
           { "f3fora/cmp-spell" },
           { "amarakon/nvim-cmp-fonts", ft = { "conf", "config", "css" } },
@@ -636,6 +637,7 @@ return require("packer").startup(function(use)
               { name = "buffer" },
               { name = "spell" },
               { name = "snippy" },
+              { name = "fish" },
               { name = "plugins" },
               { name = "fonts", option = { space_filter = "-" } },
             }, {
