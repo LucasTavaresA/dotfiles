@@ -76,7 +76,7 @@ if vf.getcwd() == HOME then
     "!stylua --config-path ./.config/nvim/stylua.toml %"
   )
 else
-  Autocmd("BufWritePost", { "*.lua" }, "!stylua %")
+  Autocmd("BufWritePost", { "*.lua" }, "!ls | grep -q stylua.toml && stylua %")
 end
 
 ----- Aparência -----
