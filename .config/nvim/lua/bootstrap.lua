@@ -269,9 +269,9 @@ return require("packer").startup(function(use)
   })
   -- extende a funcionalidade de f,F,t,T
   use({
-    "echasnovski/mini.jump",
+    "ggandor/flit.nvim",
     config = function()
-      require("mini.jump").setup({})
+      require("flit").setup({})
     end,
   })
   -- substitui palavras
