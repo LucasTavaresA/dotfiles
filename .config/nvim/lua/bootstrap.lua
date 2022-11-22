@@ -274,18 +274,10 @@ return require("packer").startup(function(use)
       require("flit").setup({})
     end,
   })
-  -- substitui palavras
+  -- múltiplos cursores
   use({
-    "otavioschwanck/cool-substitute.nvim",
-    config = function()
-      require("cool-substitute").setup({
-        setup_keybindings = true,
-        mappings = {
-          start = "<leader>s", -- Mark word / region
-          apply_substitute_and_next = "<S-CR>", -- Start substitution / Go to next substitution
-        },
-      })
-    end,
+    "mg979/vim-visual-multi",
+    branch = "master",
   })
 
   --- Code
