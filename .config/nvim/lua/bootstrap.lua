@@ -247,7 +247,26 @@ return require("packer").startup(function(use)
     end,
   })
   -- movimento usando indicadores
-  use({ "ggandor/leap.nvim" })
+  use({
+    "ggandor/leap.nvim",
+    config = function()
+      vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
+      vim.api.nvim_set_hl(0, "LeapMatch", {
+        fg = "white", -- for light themes, set to 'black' or similar
+        bold = true,
+        nocombine = true,
+      })
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "LeapEnter",
+        command = "set nohlsearch nospell",
+      })
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "LeapLeave",
+        command = "let &hlsearch=&hlsearch | set spell",
+      })
+      require("leap").opts.highlight_unlabeled_phase_one_targets = true
+    end,
+  })
   -- extende a funcionalidade de f,F,t,T
   use({
     "echasnovski/mini.jump",
