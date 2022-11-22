@@ -1166,9 +1166,9 @@ return require("packer").startup(function(use)
     opt = true,
     ft = { "markdown", "org", "norg", "txt" },
     config = function()
-      vim.keymap.set("n", "zx", function()
-        require("toggle-checkbox").toggle()
-      end, { buffer = true, noremap = true, silent = true })
+      vim.cmd([[
+      call timer_start(100, { tid -> execute("nnoremap <silent><buffer> zx :lua require('toggle-checkbox').toggle()<CR>")})
+      ]])
     end,
   })
   --  melhora aparência de headings, blocos de código, etc...
