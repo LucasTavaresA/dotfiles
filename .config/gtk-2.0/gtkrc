@@ -2,8 +2,8 @@
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
 include "/home/lucas/.gtkrc-2.0.mine"
-gtk-theme-name="Gruvbox-Dark-B"
-gtk-icon-theme-name="Gruvbox"
+gtk-theme-name="Gruvbox-Material-Dark"
+gtk-icon-theme-name="Gruvbox-Material-Dark"
 gtk-font-name="Terminus 14"
 gtk-cursor-theme-name="Capitaine Cursors (Gruvbox)"
 gtk-cursor-theme-size=24

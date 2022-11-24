@@ -141,6 +141,15 @@ main() {
 
     xbps-install -S python3-pip python3-devel
     pip install keepmenu wheel certifi brotli websockets
+
+    xbps-install -S gtk-engine-murrine gtk+3
+    git clone https://github.com/TheGreatMcPain/gruvbox-material-gtk
+    (
+    cd gruvbox-material-gtk || exit 1
+    cp -r icons/* /usr/share/icons/
+    cp -r themes/* /usr/share/themes/
+    )
+    rm -r gruvbox-material-gtk
 }
 
 main

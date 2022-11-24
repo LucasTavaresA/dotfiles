@@ -1,7 +1,7 @@
 [org/gnome/desktop/interface]
-gtk-theme='Gruvbox_Dark'
+gtk-theme='Gruvbox-Material-Dark'
 
-icon-theme='Gruvbox'
+icon-theme='Gruvbox-Material-Dark'
 
 [org/gnome/desktop/wm/preferences]
 theme='Capitaine Cursors (Gruvbox)'

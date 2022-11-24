@@ -68,8 +68,8 @@ export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/pass"
 # pager
 export PAGER="less -R"
 # faz o qt usar o tema do qt5ct
-export QT_QPA_PLATFORMTHEME="qt5ct"
-# export QT_STYLE_OVERRIDE=kvantum
+# export QT_QPA_PLATFORMTHEME="qt5ct"
+export QT_STYLE_OVERRIDE=kvantum
 # less
 export LESSHISTFILE="-"
 # wget
@@ -92,7 +92,7 @@ export TERMINFO="${XDG_DATA_HOME:-$HOME/.local/share}/terminfo"
 export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/readline/inputrc"
 # gtk 2
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc"
-export GTK_THEME="Gruvbox_Dark"
+export GTK_THEME="Gruvbox-Material-Dark"
 # w3m
 export W3M_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/w3m"
 # go
