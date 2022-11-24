@@ -121,8 +121,10 @@ playerctl
 plocate
 pulseaudio-utils
 pulsemixer
-python
 python3-adblock
+python3-devel
+python3-pip
+python3-pyclip
 qt5-wayland
 qt6-wayland
 qutebrowser

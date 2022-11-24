@@ -138,6 +138,9 @@ main() {
     go install
     )
     rm -r clipman
+
+    xbps-install -S python3-pip python3-devel
+    pip install keepmenu wheel certifi brotli websockets
 }
 
 main
