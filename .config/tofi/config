@@ -1,8 +1,8 @@
 hide-cursor=true
 fuzzy-match=true
 require-match=false
-font=/usr/share/fonts/misc/ter-u24b.otb
-font-size=18px
+font=Terminus
+font-size=28px
 prompt-text=>
 hint-font=false
 width = 100%
