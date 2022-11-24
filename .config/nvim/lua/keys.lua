@@ -42,8 +42,10 @@ vks("v", "<leader>A", ":'<,'>!column -t -o ' '<CR>", s)
 vks(nv, "<leader>ff", ":e %:h")
 -- mudar o typo de arquivo
 vks(nv, "<leader>ft", ":setlocal filetype=")
+-- salvar e fechar buffer
+vks(nv, "ZX", ":wq<CR>", s)
 -- salvar buffer
-vks(nv, "ZX", ":w<CR>:e<CR>", s)
+vks(nv, "ZZ", ":w<CR>:e<CR>", s)
 -- deletar buffer
 vks(nv, "<leader>k", ":bd<CR>", s)
 -- abre o buffer de mensagens
