@@ -130,6 +130,14 @@ main() {
 
     xbps-install -S npm nodejs
     npm install -g jshint
+
+    xbps-install -S wl-clipboard
+    git clone https://github.com/yory8/clipman
+    (
+    cd clipman || exit 1
+    go install
+    )
+    rm -r clipman
 }
 
 main
