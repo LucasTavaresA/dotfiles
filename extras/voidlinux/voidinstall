@@ -118,6 +118,7 @@ main() {
     )
     rm -r lf
 
+    go install github.com/nao1215/gup@latest
     go install github.com/mrtazz/checkmake/cmd/checkmake@latest
     go install github.com/nametake/golangci-lint-langserver@latest
     go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest

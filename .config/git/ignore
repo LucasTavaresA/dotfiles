@@ -23,6 +23,7 @@
 .config/galculator/
 .config/GIMP/
 .config/git/config
+.config/gup/
 .config/gtk-2.0/gtkfilechooser.ini
 .config/hexchat/
 .config/keepassxc/
