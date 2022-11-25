@@ -153,7 +153,7 @@ export DOAS_ASKPASS="dmenu -fn Terminus-18 -c -cw 500 -P -p Senha:"
 
 export GNUPGHOME="$HOME/.gnupg"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-eval "$(ssh-agent -s)"
+pgrep -x ssh-agent || eval "$(ssh-agent -s)"
 
 # localização para datas
 export LC_TIME="pt_BR.UTF-8"
