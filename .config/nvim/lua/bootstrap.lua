@@ -461,6 +461,7 @@ return require("packer").startup(function(use)
           "c_sharp",
           "java",
           "fish",
+          "bash",
           "css",
           "comment",
           "go",
@@ -814,7 +815,13 @@ return require("packer").startup(function(use)
         },
       })
 
-      -- necessário `npm i -g vscode-langservers-extracted`
+      -- npm i -g bash-language-server
+      require'lspconfig'.bashls.setup({
+        on_attach = On_attach,
+        capabilities = capabilities,
+      })
+
+      -- npm i -g vscode-langservers-extracted
       require("lspconfig").eslint.setup({
         on_attach = On_attach,
         capabilities = capabilities,
