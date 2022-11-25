@@ -152,6 +152,9 @@ main() {
     cp -r themes/* /usr/share/themes/
     )
     rm -r gruvbox-material-gtk
+
+    echo "auth        optional    pam_gnupg.so store-only
+session     optional    pam_gnupg.so" >> /etc/pam.d/login
 }
 
 main
