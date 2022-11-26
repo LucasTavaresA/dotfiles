@@ -176,7 +176,9 @@ bindings = {
     # atalho para assistir link
     "qvw": "hint links spawn streamlink {hint-url} 720p",
     # baixar video
-    "qvd": "hint links spawn term_open -a float streamlink -o video.ts {hint-url} 720p",
+    "qvd": "hint links spawn term_open -a float yt-dlp -P ~/Downloads \
+        --write-subs -f 'worstvideo*[height=720]+worstaudio/worst[height=720]' \
+    {hint-url}",
     # baixar imagem
     "qid": "hint images download",
     # baixar audio
