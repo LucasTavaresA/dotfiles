@@ -21,6 +21,7 @@ cheat
 checkbashisms
 chromium-widevine
 clang
+clipman
 cmake
 curl
 dbus

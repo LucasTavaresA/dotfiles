@@ -123,14 +123,6 @@ main() {
     go install github.com/nametake/golangci-lint-langserver@latest
     go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 
-    xbps-install -S wl-clipboard
-    git clone https://github.com/yory8/clipman
-    (
-    cd clipman || exit 1
-    go install
-    )
-    rm -r clipman
-
     xbps-install -S file-devel libmagic libcrypto1.1
     git clone https://github.com/NikitaIvanovV/ctpv/
     (
