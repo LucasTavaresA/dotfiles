@@ -274,36 +274,36 @@ if status is-interactive
     ## Abbrs em sistemas
     if test "$OS" = "artixlinux"; or test "$OS" = "archlinux"; or test "$OS" = "manjaro";
         # pacman
-        abbr -a -g ps doas pacman --color always -S
+        abbr -a -g ps doas pacman --noconfirm --color always -S
         abbr -a -g psi pacman --color always -Si
         abbr -a -g pss pacman --color always -Ss
-        abbr -a -g psyu doas pacman --color always -Syu
+        abbr -a -g psyu doas pacman --noconfirm --color always -Syu
         abbr -a -g pq pacman --color always -Q
         abbr -a -g pqi pacman --color always -Qi
         abbr -a -g pqs pacman --color always -Qs
         abbr -a -g pfyl doas pacman --color always -Fyl
-        abbr -a -g prns doas pacman --color always -Rns
+        abbr -a -g prns doas pacman --noconfirm --color always -Rns
         abbr -a -g exp "expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n 100"
         # paru
-        abbr -a -g pps paru --color always -S
+        abbr -a -g pps paru --noconfirm --color always -S
         abbr -a -g ppsi paru --color always -Si
         abbr -a -g ppss paru --color always -Ss
-        abbr -a -g ppsyu "paru -Pw;paru --color always -Syu"
+        abbr -a -g ppsyu "paru -Pw;paru --noconfirm --color always -Syu"
         abbr -a -g ppq paru --color always -Q
         abbr -a -g ppqi paru --color always -Qi
         abbr -a -g ppqs paru --color always -Qs
         abbr -a -g ppfyl paru --color always -Fyl
-        abbr -a -g pprns paru --color always -Rns
+        abbr -a -g pprns paru --noconfirm --color always -Rns
         abbr -a -g sys doas systemctl
     else if test "$OS" = "voidlinux";
         abbr -a -g xs "./xbps-src"
         # xbps
-        abbr -a -g xis doas xbps-install -S
+        abbr -a -g xis doas xbps-install -Sy
         abbr -a -g xqrs xbps-query -Rs
-        abbr -a -g xisu doas xbps-install -Su
+        abbr -a -g xisu doas xbps-install -Suy
         abbr -a -g xql xbps-query -l
         abbr -a -g xqlg "xbps-query -l | ugrep --color -i"
-        abbr -a -g xrr doas xbps-remove -R
+        abbr -a -g xrr doas xbps-remove -Ry
         # xtools
         abbr -a -g xch xchroot
         abbr -a -g xg xgrep
@@ -317,12 +317,12 @@ if status is-interactive
         abbr -a -g bat batcat
         abbr -a -g cat batcat
         # apt
-        abbr -a -g ai doas apt install
+        abbr -a -g ai doas apt install -y
         abbr -a -g as apt show
         abbr -a -g ass apt search
-        abbr -a -g auau "doas apt update && doas apt upgrade"
+        abbr -a -g auau "doas apt update -y && doas apt upgrade -y"
         abbr -a -g ali apt list --installed
-        abbr -a -g ar doas apt remove
+        abbr -a -g ar doas apt remove -y
         abbr -a -g sys doas systemctl
     end
 
