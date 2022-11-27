@@ -270,8 +270,8 @@ alias gri="git rebase -i"
 alias grc="git rebase --continue"
 alias grs="git rebase --skip"
 alias gra="git rebase --abort"
-alias gg="git grep -iInp --break --heading"
-alias ggs="git grep -iInp --break --heading -8"
+alias gg="git grep -iIn"
+alias ggs="git grep -iIn -8"
 
 ## aliases em sistemas
 if [ "$OS" = "artixlinux" ] || [ "$OS" = "archlinux" ] || [ "$OS" = "manjaro" ]; then

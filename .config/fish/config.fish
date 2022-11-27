@@ -268,8 +268,8 @@ if status is-interactive
     abbr -a -g grc git rebase --continue
     abbr -a -g grs git rebase --skip
     abbr -a -g gra git rebase --abort
-    abbr -a -g gg git grep -iInp --break --heading
-    abbr -a -g ggs git grep -iInp --break --heading -8
+    abbr -a -g gg git grep -iIn
+    abbr -a -g ggs git grep -iIn -8
 
     ## Abbrs em sistemas
     if test "$OS" = "artixlinux"; or test "$OS" = "archlinux"; or test "$OS" = "manjaro";
