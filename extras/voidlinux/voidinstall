@@ -123,7 +123,7 @@ main() {
     go install github.com/nametake/golangci-lint-langserver@latest
     go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 
-    xbps-install -S file-devel libmagic libcrypto1.1
+    xbps-install -S file-devel openssl-devel
     git clone https://github.com/NikitaIvanovV/ctpv/
     (
     cd ctpv || exit 1
@@ -146,8 +146,8 @@ main() {
     )
     rm -r gruvbox-material-gtk
 
-    echo "auth        optional    pam_gnupg.so store-only
-session     optional    pam_gnupg.so" >> /etc/pam.d/login
+    echo "auth 		optional 	pam_gnupg.so store-only
+session 	optional 	pam_gnupg.so" >> /etc/pam.d/login
 }
 
 main
