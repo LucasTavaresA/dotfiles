@@ -146,6 +146,12 @@ main() {
     )
     rm -r gruvbox-material-gtk
 
+    xbps-install -S wget unzip
+    wget https://github.com/sainnhe/capitaine-cursors/releases/download/r5/Linux.zip
+    mkdir cursors
+    unzip Linux.zip -d cursors && mv cursors/Capitaine\ Cursors\ \(Gruvbox\)/ \
+        /usr/share/icons/
+
     echo "auth 		optional 	pam_gnupg.so store-only
 session 	optional 	pam_gnupg.so" >> /etc/pam.d/login
 }

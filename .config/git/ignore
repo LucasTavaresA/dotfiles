@@ -2,7 +2,6 @@
 *log*
 .android/
 .cache/
-.icons/
 .config/cabal/
 .config/cheat/cheatsheets/
 .config/chromium/

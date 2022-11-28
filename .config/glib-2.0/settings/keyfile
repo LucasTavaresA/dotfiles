@@ -3,6 +3,8 @@ gtk-theme='Gruvbox-Material-Dark'
 
 icon-theme='Gruvbox-Material-Dark'
 
+cursor-theme='Capitaine Cursors (Gruvbox)'
+
 [org/gnome/desktop/wm/preferences]
 theme='Capitaine Cursors (Gruvbox)'
 
