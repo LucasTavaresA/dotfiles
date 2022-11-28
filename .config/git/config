@@ -1,0 +1,29 @@
+[user]
+	name = LucasTavaresA
+	email = tavares.lassuncao@gmail.com
+	signingKey = 0BB0E0780E17746E
+
+[init]
+	defaultBranch = main
+
+[core]
+	editor = nvim
+    pager = delta
+
+[commit]
+	gpgsign = true
+
+[github]
+	user = LucasTavaresA
+
+[interactive]
+    diffFilter = delta --color-only
+[add.interactive]
+    useBuiltin = false
+
+[delta]
+    navigate = true
+    light = false
+
+[diff]
+    colorMoved = default
