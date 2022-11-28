@@ -180,6 +180,7 @@ if status is-interactive
 
     ## Abbr ##
     abbr -a -g cd z
+    abbr -a -g irc irssi --home ~/.config/irssi
     abbr -a -g cat bat
     abbr -a -g att sgrade
     abbr -a -g cs criar_script sh script.sh

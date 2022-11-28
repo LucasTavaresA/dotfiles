@@ -66,6 +66,7 @@ hunspell-pt_BR
 i3blocks
 intel-ucode
 intel-video-accel
+irssi
 jq
 keepassxc
 kvantum

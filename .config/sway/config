@@ -66,8 +66,8 @@ for_window [app_id="^alacritty$"] focus
 for_window [app_id="^mpv$"] focus
 for_window [app_id="^Gimp$"] focus
 for_window [app_id="^discord$"] focus
-for_window [app_id="^emacsirc$"] focus
-for_window [instance="^emacsirc$"] focus
+for_window [app_id="^irc$"] focus
+for_window [instance="^irc$"] focus
 for_window [app_id="^TelegramDesktop$"] focus
 assign [app_id="org.qutebrowser.qutebrowser"] "1:Browser"
 assign [app_id="^Firefox$"] "1:Browser"
@@ -80,8 +80,8 @@ assign [app_id="^alacritty$"] "2:Code"
 assign [app_id="^mpv$"] "3:Fullscreen"
 assign [app_id="^Gimp$"] "3:Fullscreen"
 assign [app_id="^discord$"] "4:Message"
-assign [app_id="^emacsirc$"] "4:Message"
-assign [instance="^emacsirc$"] "4:Message"
+assign [app_id="^irc$"] "4:Message"
+assign [instance="^irc$"] "4:Message"
 assign [app_id="^TelegramDesktop$"] "4:Message"
 
 # Teclas
@@ -188,6 +188,7 @@ exec mako
 exec syncthing
 exec transmission-qt -m
 exec foot -s
+exec foot -T irc -a irc -e irssi --home ~/.config/irssi
 ## musica
 exec pipewire
 exec mpd
