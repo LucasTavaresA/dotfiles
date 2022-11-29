@@ -806,7 +806,7 @@ return require("packer").startup(function(use)
       })
 
       -- npm i -g bash-language-server
-      require'lspconfig'.bashls.setup({
+      require("lspconfig").bashls.setup({
         on_attach = On_attach,
         capabilities = capabilities,
       })
@@ -842,13 +842,10 @@ return require("packer").startup(function(use)
       })
 
       -- instale o omnisharp
-      if os.getenv("OS") == "artixlinux" then
-        DLL = "/usr/lib/omnisharp-roslyn/OmniSharp.dll"
-      end
       require("lspconfig").omnisharp.setup({
         on_attach = On_attach,
         capabilities = capabilities,
-        cmd = { "dotnet", DLL },
+        cmd = { "dotnet", os.getenv("XDG_DATA_HOME") .. "/omnisharp/OmniSharp.dll" },
 
         -- Enables support for reading code style, naming convention and analyzer
         -- settings from .editorconfig.
@@ -916,6 +913,7 @@ return require("packer").startup(function(use)
   -- debug
   use({
     "mfussenegger/nvim-dap",
+    rocks = "dap",
     opt = true,
     ft = { "cs" },
     requires = {
@@ -944,7 +942,7 @@ return require("packer").startup(function(use)
         -- netcoredbg
         require("dap").adapters.coreclr = {
           type = "executable",
-          command = "/usr/bin/netcoredbg",
+          command = os.getenv("XDG_DATA_HOME") .. "/netcoredbg/netcoredbg",
           args = { "--interpreter=vscode" },
         }
         require("dap").configurations.cs = {
@@ -952,11 +950,11 @@ return require("packer").startup(function(use)
           name = "launch - netcoredbg",
           request = "launch",
           program = function()
-            return vim.fn.input(
+            return vim.fn.input({
               "Project dll: ",
               vim.fn.getcwd() .. "/bin/Debug/",
-              "file"
-            )
+              "file",
+            })
           end,
         }
       end
