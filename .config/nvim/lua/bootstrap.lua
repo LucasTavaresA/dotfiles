@@ -558,18 +558,6 @@ return require("packer").startup(function(use)
           })
         end,
       },
-      -- mostra parâmetros ao digitar
-      {
-        "ray-x/lsp_signature.nvim",
-        config = function()
-          require("lsp_signature").setup({
-            bind = true,
-            handler_opts = {
-              border = "single",
-            },
-          })
-        end,
-      },
       -- mostra informação do código no cursor
       {
         "lewis6991/hover.nvim",
@@ -629,6 +617,7 @@ return require("packer").startup(function(use)
           { "bydlw98/cmp-env", ft = { "fish", "zsh", "sh", "bash" } },
           { "dcampos/cmp-snippy" },
           { "f3fora/cmp-spell" },
+          { "hrsh7th/cmp-nvim-lsp-signature-help" },
           { "amarakon/nvim-cmp-fonts", ft = { "conf", "config", "css" } },
           { "davidsierradz/cmp-conventionalcommits" },
           -- ícones em pop-ups da lsp
@@ -707,6 +696,7 @@ return require("packer").startup(function(use)
               { name = "nvim_lua" },
               { name = "path" },
               { name = "buffer" },
+              { name = "nvim_lsp_signature_help" },
               { name = "spell" },
               { name = "snippy" },
               { name = "fish" },
