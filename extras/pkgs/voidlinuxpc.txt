@@ -13,7 +13,6 @@ automake
 base-system
 bat
 cage
-cairo-devel
 cargo
 ccls
 chafa
@@ -27,6 +26,7 @@ curl
 dbus
 dejavu-fonts-ttf
 delta
+discord
 docx2txt
 enchant
 exiftool
@@ -36,11 +36,11 @@ ffmpegthumbnailer
 file-devel
 firefox
 fish-shell
+flake8
 font-fira-otf
 font-fira-ttf
 fonts-droid-ttf
 foot
-freetype-devel
 fzf
 gammastep
 gcc
@@ -74,7 +74,6 @@ kwayland
 libnotify
 libreoffice
 libva-intel-driver-32bit
-libxkbcommon-devel
 lsd
 lua
 lua-language-server
@@ -115,7 +114,6 @@ opusfile
 p7zip
 pam-gnupg
 pandoc
-pango-devel
 patch
 pdf.js
 pinentry-qt
@@ -141,6 +139,7 @@ shellcheck
 simple-mtpfs
 socklog-void
 starship
+streamlink
 sway
 swaybg
 swayidle
@@ -149,6 +148,7 @@ syncthing
 telegram-desktop
 terminus-font
 testdisk
+tofi
 translate-shell
 transmission-qt
 ugrep
@@ -161,12 +161,12 @@ void-repo-multilib-nonfree
 void-repo-nonfree
 vulkan-loader
 w3m
-wayland-devel
 wayland-protocols
 wget
 wireplumber
 wl-clipboard
 wtype
+xdg-desktop-portal-wlr
 xorg-server-xwayland
 xrdb
 xtools
