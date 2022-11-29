@@ -130,7 +130,9 @@ python3-devel
 python3-pip
 python3-pyclip
 qt5-wayland
+qt5ct
 qt6-wayland
+qt6ct
 qutebrowser
 rtags
 scdoc
