@@ -97,19 +97,6 @@ main() {
     xbps-install -S cargo openssl-devel
     cargo install cargo-update handlr-regex stylua tree-sitter-cli
 
-    xbps-install -S freetype-devel cairo-devel pango-devel wayland-devel \
-        libxkbcommon-devel harfbuzz meson scdoc wayland-protocols
-    git clone https://github.com/philj56/tofi.git
-    (
-    cd tofi || exit 1
-    meson build
-    ninja -C build install
-    cp build/tofi /usr/bin/
-    ln -s /usr/bin/tofi /usr/bin/tofi-run
-    ln -s /usr/bin/tofi /usr/bin/tofi-drun
-    )
-    rm -r tofi
-
     xbps-install -S go
     git clone https://github.com/horriblename/lf
     (
