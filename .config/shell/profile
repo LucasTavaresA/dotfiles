@@ -38,7 +38,8 @@ export TERM="xterm-256color"
 # navegador padrão
 export BROWSER="qutebrowser"
 # systema
-export HOSTNAME="$(uname -n)"
+HOSTNAME="$(uname -n)"
+export HOSTNAME
 case $HOSTNAME in
     *"artixlinux"*) export OS="artixlinux" ;;
     *"voidlinux"*) export OS="voidlinux" ;;
@@ -150,12 +151,13 @@ export VISUAL="term_open -a nvim nvim"
 ## GPG/SSH
 export SSH_ASKPASS="doas_askpass"
 export GIT_ASKPASS="doas_askpass"
-export SUDO_ASKPASS="$HOME/code/shellscripts/dmenu_pass"
-export DOAS_ASKPASS="dmenu -fn Terminus-18 -c -cw 500 -P -p Senha:"
-[ "$XDG_SESSION_TYPE" = "wayland" ] && export DOAS_ASKPASS="tofi"
+export SUDO_ASKPASS="menu_pass"
+export DOAS_ASKPASS="echo | tofi"
+[ -z "$WAYLAND_DISPLAY" ] && export DOAS_ASKPASS="echo | dmenu -fn Terminus-18 -c -cw 500 -P -p Senha:"
 
 export GNUPGHOME="$HOME/.gnupg"
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+export SSH_AUTH_SOCK
 pgrep -x ssh-agent || eval "$(ssh-agent -s)"
 
 # localização para datas
