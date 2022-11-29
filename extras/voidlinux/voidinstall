@@ -84,7 +84,7 @@ main() {
     ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
 
     xbps-install -S cmake Vulkan-Headers pkg-config
-    git clone https://github.com/lucastavaresa/fastfetch
+    git clone -b custom https://github.com/lucastavaresa/fastfetch
     (
     cd fastfetch || exit 1
     mkdir build
@@ -132,7 +132,7 @@ main() {
     rm -r ctpv
 
     xbps-install -S npm nodejs
-    npm i -g jshint vscode-langservers-extracted bash-language-server
+    npm i -g jshint vscode-langservers-extracted bash-language-server eslint
 
     xbps-install -S python3-pip python3-devel
     pip install keepmenu wheel certifi brotli websockets
