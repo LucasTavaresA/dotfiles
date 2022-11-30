@@ -78,10 +78,10 @@ vks(nv, "<leader><return>", ":!sh -c 'cd %:p:h ; term_open' &<CR><CR>", s)
 vks(nvi, "<M-CR>", TerminalToggle)
 vks("t", "<M-CR>", TerminalToggle)
 -- cria um macro
-vks("n", "M", "q", ns)
+vks("n", "@", "q", ns)
 vks("n", "q", "")
 -- executa um macro
-vks("n", "m", "@")
+vks("n", "2", "@")
 -- vai para diagnostico
 vks(nv, "[d", vim.diagnostic.goto_prev, ns)
 vks(nv, "]d", vim.diagnostic.goto_next, ns)

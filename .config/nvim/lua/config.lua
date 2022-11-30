@@ -176,7 +176,7 @@ Autocmd("FileType", { "gitcommit" }, "norm zr")
 Autocmd(
   "FileType",
   { "markdown", "org", "txt", "norg" },
-  "setlocal nolist laststatus=0 colorcolumn=0 nocursorline nocursorcolumn"
+  "setlocal nolist colorcolumn=0 nocursorline nocursorcolumn"
 )
 
 --- Netrw

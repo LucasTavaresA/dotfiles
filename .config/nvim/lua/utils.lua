@@ -43,7 +43,6 @@ function TerminalToggle()
     vc("buffer Terminal 1")
     lua_terminal_window = vf.win_getid()
   end
-  vc("startinsert")
 end
 
 --- Facilita a criação de autocmds
