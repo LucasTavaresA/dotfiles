@@ -118,7 +118,7 @@ main() {
     )
     rm -r ctpv
 
-    xbps-install -S npm nodejs
+    xbps-install -S nodejs
     npm i -g jshint vscode-langservers-extracted bash-language-server eslint
 
     xbps-install -S python3-pip python3-devel
