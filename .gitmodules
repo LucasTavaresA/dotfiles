@@ -1,0 +1,3 @@
+[submodule ".config/cheat/cheatsheets/community"]
+	path = .config/cheat/cheatsheets/community
+	url = https://github.com/cheat/cheatsheets

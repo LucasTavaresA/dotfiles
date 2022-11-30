@@ -3,7 +3,6 @@
 .android/
 .cache/
 .config/cabal/
-.config/cheat/cheatsheets/
 .config/chromium/
 .config/coc/
 .config/dconf/
