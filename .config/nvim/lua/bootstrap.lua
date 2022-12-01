@@ -637,7 +637,7 @@ return require("packer").startup(function(use)
                   format = function(entry, vim_item)
                     local kind = require("lspkind").cmp_format({
                       mode = "symbol_text",
-                      maxwidth = 50,
+                      maxwidth = 25,
                       ellipsis_char = "…", -- when pop-up menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
                     })(entry, vim_item)
                     local strings =
@@ -845,7 +845,10 @@ return require("packer").startup(function(use)
       require("lspconfig").omnisharp.setup({
         on_attach = On_attach,
         capabilities = capabilities,
-        cmd = { "dotnet", os.getenv("XDG_DATA_HOME") .. "/omnisharp/OmniSharp.dll" },
+        cmd = {
+          "dotnet",
+          os.getenv("XDG_DATA_HOME") .. "/omnisharp/OmniSharp.dll",
+        },
 
         -- Enables support for reading code style, naming convention and analyzer
         -- settings from .editorconfig.
