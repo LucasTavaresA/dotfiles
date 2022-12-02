@@ -265,6 +265,9 @@ if status is-interactive
     abbr -a -g gss git stash push -m
     abbr -a -g gssp git stash push --patch -m
     abbr -a -g gsss git stash push -S -m
+    abbr -a -g grr git restore
+    abbr -a -g grrh git reset --hard
+    abbr -a -g grrs git reset --soft
     abbr -a -g gri git rebase -i
     abbr -a -g grc git rebase --continue
     abbr -a -g grs git rebase --skip
