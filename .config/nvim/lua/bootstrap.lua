@@ -893,6 +893,9 @@ return require("packer").startup(function(use)
         analyze_open_documents_only = false,
       })
 
+      -- dotnet tool install --global csharp-ls
+      -- require("lspconfig").csharp_ls.setup({})
+
       -- instale o lua-language-server
       require("lspconfig").sumneko_lua.setup({
         on_attach = On_attach,
