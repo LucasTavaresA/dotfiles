@@ -663,6 +663,12 @@ return require("packer").startup(function(use)
         config = function()
           local cmp = require("cmp")
           cmp.setup({
+            experimental = {
+              ghost_text = true,
+            },
+            view = {
+              entries = "wildmenu", -- can be "custom", "wildmenu" or "native"
+            },
             snippet = {
               expand = function(args)
                 require("snippy").expand_snippet(args.body)
@@ -670,6 +676,7 @@ return require("packer").startup(function(use)
             },
             mapping = cmp.mapping.preset.insert({
               ["<A-e>"] = cmp.mapping.complete({}),
+              ["<CR>"] = cmp.mapping.confirm({ select = false }),
               ["<Up>"] = function(fallback)
                 fallback()
               end,
