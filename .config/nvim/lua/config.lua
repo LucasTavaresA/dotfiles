@@ -113,6 +113,9 @@ vansh(0, "CursorLine", { bg = "#151515" })
 vansh(0, "CursorColumn", { bg = "#151515" })
 -- indicação em 80 caracteres
 vansh(0, "ColorColumn", { bg = "#151515" })
+-- menus de compleção
+vansh(0, "Pmenu", { bg = "#000000", fg = nil })
+vansh(0, "PmenuSel", { bg = "#151515", undercurl = true })
 -- Indica texto copiado
 Autocmd("TextYankPost", { "*" }, function()
   vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
