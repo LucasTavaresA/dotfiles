@@ -22,12 +22,14 @@ vks(nv, "<Up>", "")
 vks(nv, "<Down>", "")
 vks(nv, "<Right>", "")
 vks(nv, "<Left>", "")
+-- treesitter incremental_selection
+vks("n", "<S-j>", "")
+-- não sai do insert mode com escape/C-c
+vks("i", "<esc>", "", ns)
+vks("i", "<C-c>", "", ns)
 -- sobe/desce uma tela
 vks(nvi, "<C-j>", "<C-d>", ns)
 vks(nvi, "<C-k>", "<C-u>", ns)
--- não sai do insert mode com espaço/Ctrl-c
-vks("i", "<esc>", "", ns)
-vks("i", "<C-c>", "", ns)
 -- colar na linha de baixo
 vks(nv, "P", ":norm o<CR>p", ns)
 -- trocar de split
@@ -113,9 +115,6 @@ vks(nv, "<leader>gb", ":Gitsigns toggle_current_line_blame<CR>", s)
 -- navega entre diffs - gitsigns
 vks(nv, "[g", ":Gitsigns prev_hunk<CR>", s)
 vks(nv, "]g", ":Gitsigns next_hunk<CR>", s)
--- expande região selecionada - expand region
-vks(nv, "<S-k>", "<Plug>(expand_region_expand)")
-vks(nv, "<S-j>", "<Plug>(expand_region_shrink)")
 -- move linha - move.nvim
 vks("n", "<A-j>", ":MoveLine(1)<CR>", ns)
 vks("n", "<A-k>", ":MoveLine(-1)<CR>", ns)

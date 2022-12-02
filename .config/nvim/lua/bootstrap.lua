@@ -188,8 +188,6 @@ return require("packer").startup(function(use)
       require("nvim-surround").setup()
     end,
   })
-  -- expande região selecionada
-  use("terryma/vim-expand-region")
   -- arvore de undos
   use({
     "jiaoshijie/undotree",
@@ -475,6 +473,14 @@ return require("packer").startup(function(use)
         },
         highlight = { -- Indicação de sintaxe
           enable = true,
+        },
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = "<S-k>",
+            node_incremental = "<S-k>",
+            node_decremental = "<S-j>",
+          },
         },
         indent = {
           enable = true, -- Indentação
