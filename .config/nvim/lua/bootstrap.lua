@@ -33,18 +33,6 @@ return require("packer").startup(function(use)
   use("nvim-lua/plenary.nvim")
 
   --- Miscelânea
-  -- melhora o undo
-  use({
-    "kevinhwang91/nvim-fundo",
-    requires = "kevinhwang91/promise-async",
-    run = function()
-      require("fundo").install()
-    end,
-    config = function()
-      vim.o.undofile = true
-      require("fundo").setup()
-    end,
-  })
   -- previne copia ao colar/deletar
   use({
     "tenxsoydev/karen-yank.nvim",
