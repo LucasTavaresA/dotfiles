@@ -64,7 +64,6 @@ return require("packer").startup(function(use)
   -- desativa funções em arquivos muito grandes
   use({
     "LunarVim/bigfile.nvim",
-    requires = { "nvim-treesitter/nvim-treesitter" },
     config = function()
       require("bigfile").setup()
     end,
