@@ -726,6 +726,9 @@ return require("packer").startup(function(use)
 
           -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
           cmp.setup.cmdline({ "/", "?" }, {
+            view = {
+              entries = "custom", -- can be "custom", "wildmenu" or "native"
+            },
             mapping = cmp.mapping.preset.cmdline(),
             sources = {
               { name = "buffer" },
@@ -734,6 +737,9 @@ return require("packer").startup(function(use)
 
           -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
           cmp.setup.cmdline(":", {
+            view = {
+              entries = "custom", -- can be "custom", "wildmenu" or "native"
+            },
             mapping = cmp.mapping.preset.cmdline(),
             sources = cmp.config.sources({
               { name = "path" },
