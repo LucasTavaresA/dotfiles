@@ -70,15 +70,18 @@ vo.textwidth = 80
 -- formatação nativa
 vo.formatoptions = "tcrqn1j"
 -- formatação ao salvar
-Autocmd("BufWritePost", { "*.cs" }, "call jobstart('dotnet format')")
 if vf.getcwd() == HOME then
   Autocmd(
     "BufWritePost",
     { "*.lua" },
-    "!stylua --config-path ./.config/nvim/stylua.toml %"
+    "!stylua --config-path $HOME/.config/nvim/stylua.toml %"
   )
 else
-  Autocmd("BufWritePost", { "*.lua" }, "!ls | grep -q stylua.toml && stylua %")
+  Autocmd(
+    "BufWritePost",
+    { "*.lua" },
+    "!stylua --config-path $(fd -t f -d 4 --max-results 1 stylua.toml .) %"
+  )
 end
 
 ----- Aparência -----

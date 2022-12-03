@@ -119,7 +119,8 @@ main() {
     rm -r ctpv
 
     xbps-install -S nodejs
-    npm i -g jshint vscode-langservers-extracted bash-language-server eslint
+    npm i -g jshint vscode-langservers-extracted bash-language-server eslint fixjson
+    npm i -g --save-dev stylelint stylelint-config-standard
 
     xbps-install -S python3-pip python3-devel
     pip install keepmenu wheel certifi brotli websockets

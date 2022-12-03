@@ -451,7 +451,7 @@ return require("packer").startup(function(use)
         },
         highlight = { -- Indicação de sintaxe
           enable = true,
-          disable = function(lang, buf)
+          disable = function(_, buf)
             local max_filesize = 100 * 1024 -- 100 KB
             local ok, stats =
               pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
@@ -572,14 +572,38 @@ return require("packer").startup(function(use)
           local null_ls = require("null-ls")
           null_ls.setup({
             sources = {
+              -- c
+              null_ls.builtins.diagnostics.clang_check,
               null_ls.builtins.formatting.clang_format,
-              null_ls.builtins.diagnostics.eslint,
+              -- git
+              null_ls.builtins.code_actions.gitsigns,
+              -- css
+              null_ls.builtins.diagnostics.stylelint,
+              -- go
+              null_ls.builtins.diagnostics.golangci_lint,
+              -- refactoring
+              null_ls.builtins.code_actions.refactoring,
+              -- make
               null_ls.builtins.diagnostics.checkmake,
+              -- fish
               null_ls.builtins.diagnostics.fish,
+              null_ls.builtins.formatting.fish_indent,
+              -- python
               null_ls.builtins.diagnostics.flake8,
-              null_ls.builtins.diagnostics.jshint,
+              -- javascript
+              null_ls.builtins.diagnostics.eslint,
+              null_ls.builtins.code_actions.eslint,
+              -- json
+              null_ls.builtins.formatting.fixjson,
+              -- shell
               null_ls.builtins.diagnostics.shellcheck,
+              null_ls.builtins.code_actions.shellcheck,
+              null_ls.builtins.formatting.shfmt.with({
+                extra_args = { "-i", "4", "-ci" },
+              }),
               null_ls.builtins.hover.printenv,
+              -- csharp
+              null_ls.builtins.formatting.csharpier,
             },
             on_attach = function(client, bufnr)
               if client.supports_method("textDocument/formatting") then
