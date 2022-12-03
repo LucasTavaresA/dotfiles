@@ -253,14 +253,6 @@ return require("packer").startup(function(use)
         bold = true,
         nocombine = true,
       })
-      vim.api.nvim_create_autocmd("User", {
-        pattern = "LeapEnter",
-        command = "set nohlsearch nospell",
-      })
-      vim.api.nvim_create_autocmd("User", {
-        pattern = "LeapLeave",
-        command = "let &hlsearch=&hlsearch | set spell",
-      })
       require("leap").opts.highlight_unlabeled_phase_one_targets = true
     end,
   })
