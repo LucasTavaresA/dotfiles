@@ -158,7 +158,7 @@ vo.showtabline = 0
 Autocmd(
   "FileType",
   { "help" },
-  "call timer_start(50, { tid -> execute('setlocal nolist laststatus=0 colorcolumn=0 nocursorline nocursorcolumn | only')})"
+  "call timer_start(50, { tid -> execute('setlocal nolist colorcolumn=0 nocursorline nocursorcolumn | only')})"
 )
 
 --- Números
