@@ -381,7 +381,7 @@ return require("packer").startup(function(use)
             max_lines = 5,
             trim_scope = "outer",
           })
-          vim.api.nvim_set_hl(0, "TreesitterContext", { bg = "#39260E" })
+          vim.api.nvim_set_hl(0, "TreesitterContext", { bg = "#505000" })
         end,
       },
       -- visualiza arvore treesitter
@@ -1048,7 +1048,7 @@ return require("packer").startup(function(use)
     "lewis6991/satellite.nvim",
     config = function()
       require("satellite").setup()
-      vim.api.nvim_set_hl(0, "ScrollView", { bg = "#39260E" })
+      vim.api.nvim_set_hl(0, "ScrollView", { bg = "#505000" })
     end,
   })
   -- mantem cursor no centro da tela
@@ -1078,7 +1078,7 @@ return require("packer").startup(function(use)
   use({
     "echasnovski/mini.cursorword",
     config = function()
-      vim.api.nvim_set_hl(0, "MiniCursorWord", { bg = "#39260E" })
+      vim.api.nvim_set_hl(0, "MiniCursorWord", { bg = "#505000" })
       require("mini.cursorword").setup({ delay = 1000 })
     end,
   })

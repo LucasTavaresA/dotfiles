@@ -104,19 +104,19 @@ vansh(0, "Normal", { bg = nil, ctermbg = nil })
 vansh(0, "NormalNC", { bg = nil, ctermbg = nil })
 vansh(0, "EndOfBuffer", { bg = nil, ctermbg = nil })
 -- cor das palavras procuradas
-vansh(0, "Search", { bg = "#ffff00", fg = "#000000" })
+vansh(0, "Search", { bg = "#ffff00", fg = "#202020" })
 -- signcolumn transparente
 vansh(0, "SignColumn", { bg = nil, ctermbg = nil })
 -- Palavras erradas
 vansh(0, "SpellBad", { fg = "#ff0000", ctermfg = "Red", undercurl = true })
 -- indicação de linha atual
-vansh(0, "CursorLine", { bg = "#151515" })
-vansh(0, "CursorColumn", { bg = "#151515" })
+vansh(0, "CursorLine", { bg = "#202020" })
+vansh(0, "CursorColumn", { bg = "#202020" })
 -- indicação em 80 caracteres
-vansh(0, "ColorColumn", { bg = "#151515" })
+vansh(0, "ColorColumn", { bg = "#202020" })
 -- menus de compleção
-vansh(0, "Pmenu", { bg = "#000000", fg = nil })
-vansh(0, "PmenuSel", { bg = "#151515", undercurl = true })
+vansh(0, "Pmenu", { bg = "#202020", fg = nil })
+vansh(0, "PmenuSel", { bg = "#202020", undercurl = true })
 -- Indica texto copiado
 Autocmd("TextYankPost", { "*" }, function()
   vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
