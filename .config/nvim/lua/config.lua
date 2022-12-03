@@ -51,6 +51,7 @@ vo.whichwrap:append("<,>,h,l,[,]")
 vo.spell = true
 -- Checagem ortográfica em varias línguas
 vo.spelllang = { "pt", "en" }
+Autocmd("FileType", { "diff" }, "setlocal nospell")
 
 --- Tabs/Espaços
 vo.tabstop = 4

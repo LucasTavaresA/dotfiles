@@ -438,7 +438,6 @@ return require("packer").startup(function(use)
           "sql",
           "nix",
           "zig",
-          "diff",
           "json",
           "yaml",
           "toml",
