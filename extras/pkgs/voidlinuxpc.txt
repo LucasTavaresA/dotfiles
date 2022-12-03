@@ -1,4 +1,5 @@
 ImageMagick
+StyLua
 Vulkan-Headers
 alsa-firmware
 alsa-pipewire
@@ -12,8 +13,11 @@ autoconf
 automake
 base-system
 bat
+bc
 cage
+cairo-devel
 cargo
+cargo-update
 ccls
 chafa
 cheat
@@ -21,6 +25,7 @@ checkbashisms
 clang
 clipman
 cmake
+ctpv
 curl
 dbus
 dejavu-fonts-ttf
@@ -32,7 +37,6 @@ exiftool
 expect
 fd
 ffmpegthumbnailer
-file-devel
 firefox
 fish-shell
 flake8
@@ -52,6 +56,7 @@ glow
 gnome-epub-thumbnailer
 gnupg
 go
+golangci-lint
 gopls
 grimshot
 grub
@@ -125,10 +130,14 @@ playerctl
 plocate
 pulseaudio-utils
 pulsemixer
+python3-Brotli
 python3-adblock
-python3-devel
+python3-evdev
+python3-neovim
 python3-pip
 python3-pyclip
+python3-websockets
+python3-wheel
 qt5-wayland
 qt5ct
 qt6-wayland
@@ -138,6 +147,7 @@ rtags
 scdoc
 seatd
 shellcheck
+shfmt
 simple-mtpfs
 socklog-void
 starship
@@ -173,6 +183,7 @@ xdg-desktop-portal-wlr
 xorg-server-xwayland
 xrdb
 xtools
+xz
 youtube-dl
 yt-dlp
 zathura

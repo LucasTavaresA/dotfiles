@@ -1,9 +1,22 @@
 #!/usr/bin/env sh
 # shellcheck disable=SC2016
 UID="$(id -u)"
+HOSTNAME="$(uname -n)"
+set -ex
+
+# executar apenas como root
+[ "$UID" != 0 ] && echo "root necessário!" && exit 1
+[ "$(pwd)" = /home/lucas ] && echo "Deve ser executado em /home/lucas" && exit 1
+[ ! -d /home/lucas/extras ] && echo "Diretório /home/lucas/extras não encontrado!" && exit 1
+[ ! -d /home/lucas/.dotfiles ] && echo "Clone e ajuste os dotfiles" && exit 1
+
+xbps-install -Su
+xbps-install -S "$(cat extras/pkgs/"$HOSTNAME".txt)"
+[ "$(xpkg | wc -l)" -lt "$(cat extras/pkgs/"$HOSTNAME".txt)" ] &&
+    echo "Faltam pacotes" && exit 1
 
 microcode() {
-    printf "Intel/Amd [i/a]? "
+    echo "microcode Intel/Amd [i/a]? "
     read -r marca
     case "$marca" in
         "i") xbps-install -S intel-ucode && xbps-reconfigure --force ;;
@@ -11,21 +24,42 @@ microcode() {
         *) microcode ;;
     esac
 }
+microcode
 
-dash() {
-    git clone https://git.kernel.org/pub/scm/utils/dash/dash.git
-    (
-    cd dash/ || exit 1
-    sed -i 's/\$HOME\/.profile/\$HOME\/.config\/shell\/profile/g' src/main.c
+sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/default/libc-locales
+xbps-reconfigure -f glibc-locales
+cp -f extras/locale.conf /etc/locale.conf
+
+chsh -s /bin/fish
+chsh -s /bin/sh lucas
+(
+    cd code/c/dash/
     ./autogen.sh
-    ./configure --bindir=/bin --mandir=/usr/share/man && make
+    ./configure --bindir=/bin --mandir=/usr/share/man
+    make
     make install
-    )
-    rm -r dash
-}
+)
+
+cp extras/voidlinux/ignore-sudo.conf /etc/xbps.d/
+xbps-remove -R sudo
+cp extras/doas.conf /etc/
+
+ln -s /etc/sv/socklog-unix /var/service/
+ln -s /etc/sv/nanoklogd /var/service/
+
+cp extras/voidlinux/rc.local /etc/rc.local
+
+ln -s /etc/sv/acpid /var/service/
+
+[ "$(wc -l /etc/hosts)" -lt 15 ] && cat extras/hosts >>/etc/hosts
+
+ln -s /etc/sv/dbus /var/service/
+
+ln -s /etc/sv/seatd /var/service/
+usermod -aG _seatd lucas
 
 gpu() {
-    printf "Intel/Amd-Ati [i/a]? "
+    echo "gpu Intel/Amd-Ati [i/a]? "
     read -r marca
     case "$marca" in
         "i") xbps-install -S linux-firmware-intel mesa-dri mesa-dri-32bit vulkan-loader vulkan-loader-32bit mesa-vulkan-intel mesa-vulkan-intel-32bit intel-video-accel libva-intel-driver libva-intel-driver-32bit ;;
@@ -33,115 +67,48 @@ gpu() {
         *) gpu ;;
     esac
 }
+gpu
 
-main() {
-    # executar apenas como root
-    [ "$UID" != 0 ] && echo "root necessário!" && exit 1
-    [ ! -d /home/lucas/extras ] && echo "Diretório /home/lucas/extras não encontrado!" && exit 1
+mkdir -p /etc/alsa/conf.d
+ln -s /usr/share/alsa/alsa.conf.d/50-pipewire.conf /etc/alsa/conf.d
+ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
 
-    xbps-install -S void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree git
+(
+    cd code/c/fastfetch
+    build.sh
+)
 
-    microcode
+cargo install handlr-regex tree-sitter-cli
 
-    sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/default/libc-locales
-    xbps-reconfigure -f glibc-locales
-    cp -f /home/lucas/extras/locale.conf /etc/locale.conf
-
-    xbps-install -S fish-shell make autoconf automake gcc
-    chsh -s /bin/fish
-    dash
-    chsh -s /bin/sh lucas
-
-    xbps-install -S opendoas
-    cp /home/lucas/extras/voidlinux/ignore-sudo.conf /etc/xbps.d/
-    xbps-remove -R sudo
-    cp /home/lucas/extras/doas.conf /etc/
-
-    xbps-install -S socklog-void
-    ln -s /etc/sv/socklog-unix /var/service/
-    ln -s /etc/sv/nanoklogd /var/service/
-
-    cp /home/lucas/extras/voidlinux/rc.local /etc/rc.local
-
-    ln -s /etc/sv/acpid /var/service/
-
-    [ "$(wc -l /etc/hosts)" -lt 15 ] && cat /home/lucas/extras/hosts >> /etc/hosts
-
-    xbps-install -S dbus
-    ln -s /etc/sv/dbus /var/service/
-
-    xbps-install -S seatd
-    ln -s /etc/sv/seatd /var/service/
-    usermod -aG _seatd lucas
-
-    gpu
-
-    xbps-install -S qt5-wayland kwayland xorg-server-xwayland
-
-    xbps-install -S pipewire pulseaudio-utils alsa-pipewire
-    mkdir -p /etc/alsa/conf.d
-    ln -s /usr/share/alsa/alsa.conf.d/50-pipewire.conf /etc/alsa/conf.d
-    ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
-
-    xbps-install -S cmake Vulkan-Headers pkg-config
-    git clone -b custom https://github.com/lucastavaresa/fastfetch
-    (
-    cd fastfetch || exit 1
-    mkdir build
-    cd build || exit 1
-    cmake .. && cmake --build . --target fastfetch --target flashfetch
-    cp flashfetch /home/lucas/.local/bin/
-    )
-    rm -r fastfetch
-
-    xbps-install -S cargo openssl-devel
-    cargo install cargo-update handlr-regex stylua tree-sitter-cli
-
-    xbps-install -S go
-    git clone https://github.com/horriblename/lf
-    (
-    cd lf || exit 1
+git clone https://github.com/horriblename/lf
+(
+    cd lf
     env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/horriblename/lf@latest
-    )
-    rm -r lf
+)
+rm -r lf
 
-    go install github.com/nao1215/gup@latest
-    go install github.com/mrtazz/checkmake/cmd/checkmake@latest
-    go install github.com/nametake/golangci-lint-langserver@latest
-    go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+go install github.com/nao1215/gup@latest
+go install github.com/mrtazz/checkmake/cmd/checkmake@latest
+go install github.com/nametake/golangci-lint-langserver@latest
 
-    xbps-install -S file-devel openssl-devel
-    git clone https://github.com/NikitaIvanovV/ctpv/
-    (
-    cd ctpv || exit 1
-    make install
-    )
-    rm -r ctpv
+npm i -g jshint vscode-langservers-extracted bash-language-server eslint fixjson
+npm i -g --save-dev stylelint stylelint-config-standard
 
-    xbps-install -S nodejs
-    npm i -g jshint vscode-langservers-extracted bash-language-server eslint fixjson
-    npm i -g --save-dev stylelint stylelint-config-standard
+xbps-install -S python3-devel
+pip install keepmenu wheel certifi brotli websockets
+xbps-remove -R python3-devel
 
-    xbps-install -S python3-pip python3-devel
-    pip install keepmenu wheel certifi brotli websockets
+git clone https://github.com/TheGreatMcPain/gruvbox-material-gtk
+(
+    cp -r gruvbox-material-gtk/icons/* /usr/share/icons/
+    cp -r gruvbox-material-gtk/themes/* /usr/share/themes/
+)
+rm -r gruvbox-material-gtk
 
-    xbps-install -S gtk-engine-murrine gtk+3
-    git clone https://github.com/TheGreatMcPain/gruvbox-material-gtk
-    (
-    cd gruvbox-material-gtk || exit 1
-    cp -r icons/* /usr/share/icons/
-    cp -r themes/* /usr/share/themes/
-    )
-    rm -r gruvbox-material-gtk
+wget https://github.com/sainnhe/capitaine-cursors/releases/download/r5/Linux.zip
+mkdir cursors
+unzip Linux.zip -d cursors
+mv cursors/Capitaine\ Cursors\ \(Gruvbox\)/ /usr/share/icons/
 
-    xbps-install -S wget unzip
-    wget https://github.com/sainnhe/capitaine-cursors/releases/download/r5/Linux.zip
-    mkdir cursors
-    unzip Linux.zip -d cursors && mv cursors/Capitaine\ Cursors\ \(Gruvbox\)/ \
-        /usr/share/icons/
-
-    echo "auth 		optional 	pam_gnupg.so store-only
-session 	optional 	pam_gnupg.so" >> /etc/pam.d/login
-}
-
-main
+echo "auth 		optional 	pam_gnupg.so store-only
+session 	optional 	pam_gnupg.so" >>/etc/pam.d/login

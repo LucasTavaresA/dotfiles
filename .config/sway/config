@@ -196,7 +196,7 @@ exec mpDris2 --music-dir="$HOME/media/musicas/"
 exec playerctld daemon
 exec mpc update
 ## aparência
-exec swaybg -i $HOME/media/imagens/wallpapers/kaiji_friends.png -m fill
+exec swaybg -i $HOME/media/imagens/wallpapers/kaiji_dice.png -m stretch
 exec xrdb -load $HOME/.config/x11/xresources
 ## sistema
 exec checar_updates

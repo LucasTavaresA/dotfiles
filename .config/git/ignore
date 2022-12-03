@@ -4,6 +4,7 @@
 .cache/
 .config/cabal/
 .config/chromium/
+.config/cni/
 .config/coc/
 .config/dconf/
 .config/Debauchee/
