@@ -59,7 +59,11 @@
 .pki/
 .ssh/
 .templateengine/
-code/
+code/lua
+code/web
+code/csharp
+code/unity
+code/python
 documentos/
 .dotfiles/
 Downloads/
