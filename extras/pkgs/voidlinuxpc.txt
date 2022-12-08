@@ -143,7 +143,6 @@ qt5ct
 qt6-wayland
 qt6ct
 qutebrowser
-rtags
 scdoc
 seatd
 shellcheck
