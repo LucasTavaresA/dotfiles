@@ -636,6 +636,36 @@ return require("packer").startup(function(use)
           { "hrsh7th/cmp-nvim-lsp-signature-help" },
           { "amarakon/nvim-cmp-fonts", ft = { "conf", "config", "css" } },
           { "davidsierradz/cmp-conventionalcommits" },
+          -- ícones em pop-ups da lsp
+          {
+            "onsails/lspkind.nvim",
+            config = function()
+              require("cmp").setup({
+                window = {
+                  completion = {
+                    winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+                    col_offset = -3,
+                    side_padding = 0,
+                  },
+                },
+                formatting = {
+                  fields = { "kind", "abbr", "menu" },
+                  format = function(entry, vim_item)
+                    local kind = require("lspkind").cmp_format({
+                      mode = "symbol_text",
+                      maxwidth = 25,
+                      ellipsis_char = "…", -- when pop-up menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+                    })(entry, vim_item)
+                    local strings =
+                      vim.split(kind.kind, "%s", { trimempty = true })
+                    kind.kind = " " .. strings[1] .. " "
+                    kind.menu = "    (" .. strings[2] .. ")"
+                    return kind
+                  end,
+                },
+              })
+            end,
+          },
           -- completa autores e plugins
           {
             "KadoBOT/cmp-plugins",
@@ -660,11 +690,8 @@ return require("packer").startup(function(use)
           local cmp = require("cmp")
           cmp.setup({
             preselect = cmp.PreselectMode.None,
-            experimental = {
-              ghost_text = true,
-            },
             view = {
-              entries = "wildmenu", -- can be "custom", "wildmenu" or "native"
+              entries = "custom", -- can be "custom", "wildmenu" or "native"
             },
             snippet = {
               expand = function(args)
