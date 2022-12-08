@@ -10,8 +10,6 @@ input type:touchpad {
     pointer_accel 0.3
 }
 ## janelas
-floating_minimum_size 500 x 300
-floating_maximum_size 1000 x 600
 default_orientation vertical
 workspace_layout tabbed
 title_align center
