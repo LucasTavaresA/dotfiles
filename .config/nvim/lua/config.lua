@@ -176,7 +176,7 @@ vo.foldmethod = "syntax"
 vo.foldcolumn = "0"
 vo.foldlevel = 1
 vo.foldnestmax = 3
-vo.foldopen:append("jump")
+vim.o.foldopen = "block,insert,jump,mark,percent,quickfix,search,tag,undo"
 Autocmd("FileType", { "gitcommit" }, "norm zr")
 
 --- Escrita

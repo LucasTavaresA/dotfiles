@@ -66,7 +66,7 @@ return require("packer").startup(function(use)
   })
   -- salva posição do cursor
   use({
-    "lucastavaresa/nvim-lastplace",
+    "ethanholz/nvim-lastplace",
     config = function()
       require("nvim-lastplace").setup({})
     end,
