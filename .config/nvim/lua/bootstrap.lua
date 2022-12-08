@@ -162,7 +162,7 @@ return require("packer").startup(function(use)
           ["nv"] = { "h", "j", "k", "l" },
         },
         grace_period = 2,
-        ignore_filetypes = { "Neogit" },
+        ignore_filetypes = { "Neogit", "netrw" },
       })
     end,
   })

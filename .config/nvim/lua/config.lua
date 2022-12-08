@@ -188,13 +188,11 @@ Autocmd(
 
 --- Netrw
 -- desabilita o netrw
-vg.loaded_netrw = 1
-vg.loaded_netrwPlugin = 1
+-- vg.loaded_netrw = 1
+-- vg.loaded_netrwPlugin = 1
 -- define o modo de listagem de arquivos
 vg.netrw_liststyle = 3
 -- remove o banner
 vg.netrw_banner = 0
--- define onde abrir arquivos
-vg.netrw_browse_split = 4
 -- tamanho da split
 vg.netrw_winsize = 20
