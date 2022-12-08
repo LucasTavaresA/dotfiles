@@ -101,7 +101,7 @@ bindsym $mods+Return exec term_open
 ## menu
 mode "Menu" {
     bindsym Menu exec pgrep tofi && pkill tofi || tofi-drun --drun-launch=true ; mode "default"
-    bindsym o exec orgmenu ~/documentos/favoritos.org ; mode "default"
+    bindsym o exec orgmenu ~/documentos/favs.md ; mode "default"
     bindsym m exec menu_mont ; mode "default"
     bindsym p exec keepmenu ; mode "default"
     bindsym c exec clipman pick --tool=CUSTOM --tool-args="tofi --padding-left 0" ; mode "default"
@@ -114,7 +114,7 @@ mode "Menu" {
     bindsym Shift+s exec pkill -x gammastep ; mode "default"
     bindsym t exec transmission-qt ; mode "default"
     bindsym a exec term_open -a nvim nvim ~/documentos/anotações.md ; mode "default"
-    bindsym i exec term_open -a nvim nvim ~/documentos/inf.md ; mode "default"
+    bindsym e exec term_open -a nvim nvim ~/documentos/ ; mode "default"
     bindsym l exec swaylock -c 000000ff --scaling fill ; mode "default"
     bindsym r reload
     bindsym Shift+q exit
