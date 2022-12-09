@@ -4,9 +4,6 @@
 [submodule "code/c/dash"]
 	path = code/c/dash
 	url = https://gitlab.com/lucastavaresa/dash
-[submodule "code/void-packages"]
-	path = code/void-packages
-	url = https://github.com/lucastavaresa/void-packages
 [submodule "code/shellscripts/shellscripts"]
 	path = code/shellscripts/shellscripts
 	url = https://github.com/lucastavaresa/shellscripts
