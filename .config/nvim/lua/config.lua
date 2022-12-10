@@ -120,6 +120,7 @@ vansh(0, "ColorColumn", { bg = "#202020" })
 -- menus de compleção
 vansh(0, "Pmenu", { bg = "#202020", fg = nil })
 vansh(0, "PmenuSel", { bg = "#202020", undercurl = true })
+vansh(0, "folded", { bg = "#505000", fg = "#fe8019" })
 -- Indica texto copiado
 Autocmd("TextYankPost", { "*" }, function()
   vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
