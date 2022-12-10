@@ -188,7 +188,6 @@ exec transmission-qt -m
 exec foot -s
 exec foot -T irc -a irc -e irssi --home ~/.config/irssi
 ## musica
-exec pipewire
 exec mpd
 exec mpDris2 --music-dir="$HOME/media/musicas/"
 exec playerctld daemon
