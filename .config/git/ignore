@@ -61,6 +61,7 @@
 .ssh/
 .templateengine/
 code/lua
+code/void-packages
 code/web
 code/csharp
 code/unity
