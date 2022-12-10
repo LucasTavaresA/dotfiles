@@ -3,7 +3,7 @@ if status is-interactive
     ## Fish ##
     # set fish_trace 1 # ativa modo debug
     set -U fish_greeting # desativa mensagem ao iniciar
-    set -x SHELL "/bin/fish"
+    set -x SHELL /bin/fish
     set -x GPG_TTY (tty)
     set fzf_fd_opts --base-directory $HOME -H -I -d 4 -t d -E '*cache*' -E '*git*'
     set fzf_git_log_opts --preview-window=bottom
@@ -46,7 +46,7 @@ if status is-interactive
     function ea
         set arquivo (locate -Ai "$argv" | fzf)
         if test -n "$arquivo"
-           eval $VISUAL "$arquivo"
+            eval $VISUAL "$arquivo"
         end
     end
 
@@ -54,20 +54,21 @@ if status is-interactive
     function ee
         set executavel (fd . $PATH | fzf)
         if test -x "$executavel"
-           eval $VISUAL "$executavel"
+            eval $VISUAL "$executavel"
         end
     end
 
     # Abre um processo e o separa
     function dis
         for arg in $argv
-            $arg >/dev/null 2>&1 &;disown
+            $arg >/dev/null 2>&1 &
+            disown
         end
     end
 
     # Git bare dotfiles
     function git
-        if test "$(pwd)" = "$HOME"; and test $argv[1] != init;
+        if test "$(pwd)" = "$HOME"; and test $argv[1] != init
             /usr/bin/git --git-dir="$HOME/.dotfiles/" $argv
         else
             /usr/bin/git $argv
@@ -83,12 +84,12 @@ if status is-interactive
 
             set cols (tput cols)
             set i 0
-            while test $i -lt $cols;
+            while test $i -lt $cols
                 echo -n "─"
                 set i (math $i + 1)
             end
 
-            if git status | grep nothing > /dev/null;
+            if git status | grep nothing >/dev/null
                 printf "\033[96m\033[1m%s\033[0m\n" "$repo"
             else
                 printf "\033[96m\033[1m%s\033[0m\n" "$repo"
@@ -107,7 +108,7 @@ if status is-interactive
 
             set cols (tput cols)
             set i 0
-            while test $i -lt $cols;
+            while test $i -lt $cols
                 echo -n "─"
                 set i (math $i + 1)
             end
@@ -131,7 +132,7 @@ if status is-interactive
 
         test $action = clear && git stash $action && return
 
-        if test $action = branch;
+        if test $action = branch
             read -l -P "Branch name: " name
             test -z $name && return
             git stash branch $name $stash && return
@@ -147,25 +148,44 @@ if status is-interactive
             if test -e "$arquivo"
                 switch "$arquivo"
                     case "*.7z" "*.arj" "*.cab" "*.cb7" "*.chm" "*.dmg" "*.iso" \
-                    "*.lzh" "*.msi" "*.pkg" "*.rpm" "*.udf" "*.wim" "*.xar"; 7z x "$arquivo"
-                    case "*.bz2";                                            bunzip2 "$arquivo"
-                    case "*.cba" "*.ace";                                    unace x "$arquivo"
-                    case "*.cbr";                                            unrar x -ad "$arquivo"
-                    case "*.cbt" "*.txz";                                    tar xvf "$arquivo"
-                    case "*.cbz" "*.epub" "*.zip";                           unzip "$arquivo"
-                    case "*.cpio";                                           cpio -id < "$arquivo"
-                    case "*.deb";                                            ar x "$arquivo"
-                    case "*.exe";                                            cabextract "$arquivo"
-                    case "*.gz";                                             gunzip "$arquivo"
-                    case "*.lzma";                                           unlzma "$arquivo"
-                    case "*.rar";                                            unrar x "$arquivo"
-                    case "*.tar.bz2" "*.tbz2";                               tar xjf "$arquivo"
-                    case "*.tar.gz" "*.tgz";                                 tar xzf "$arquivo"
-                    case "*.tar.xz" "*.tar";                                 tar xf "$arquivo"
-                    case "*.tar.zst";                                        unzstd "$arquivo"
-                    case "*.xz";                                             unxz "$arquivo"
-                    case "*.Z" "*.z";                                        uncompress "$arquivo"
-                    case "*";         echo "$arquivo não pode ser extraído com ex()!" && return 1
+                        "*.lzh" "*.msi" "*.pkg" "*.rpm" "*.udf" "*.wim" "*.xar"
+                        7z x "$arquivo"
+                    case "*.bz2"
+                        bunzip2 "$arquivo"
+                    case "*.cba" "*.ace"
+                        unace x "$arquivo"
+                    case "*.cbr"
+                        unrar x -ad "$arquivo"
+                    case "*.cbt" "*.txz"
+                        tar xvf "$arquivo"
+                    case "*.cbz" "*.epub" "*.zip"
+                        unzip "$arquivo"
+                    case "*.cpio"
+                        cpio -id <"$arquivo"
+                    case "*.deb"
+                        ar x "$arquivo"
+                    case "*.exe"
+                        cabextract "$arquivo"
+                    case "*.gz"
+                        gunzip "$arquivo"
+                    case "*.lzma"
+                        unlzma "$arquivo"
+                    case "*.rar"
+                        unrar x "$arquivo"
+                    case "*.tar.bz2" "*.tbz2"
+                        tar xjf "$arquivo"
+                    case "*.tar.gz" "*.tgz"
+                        tar xzf "$arquivo"
+                    case "*.tar.xz" "*.tar"
+                        tar xf "$arquivo"
+                    case "*.tar.zst"
+                        unzstd "$arquivo"
+                    case "*.xz"
+                        unxz "$arquivo"
+                    case "*.Z" "*.z"
+                        uncompress "$arquivo"
+                    case "*"
+                        echo "$arquivo não pode ser extraído com ex()!" && return 1
                 end
             else
                 echo "$arquivo arquivo não existe!"
@@ -175,7 +195,7 @@ if status is-interactive
     end
 
     function criar_script
-        printf "#!/usr/bin/env $argv[1]\n$argv[3..-1]" > $argv[2]
+        printf "#!/usr/bin/env $argv[1]\n$argv[3..-1]" >$argv[2]
     end
 
     ## Abbr ##
@@ -276,7 +296,7 @@ if status is-interactive
     abbr -a -g ggs git grep -iIn -8
 
     ## Abbrs em sistemas
-    if test "$OS" = "artixlinux"; or test "$OS" = "archlinux"; or test "$OS" = "manjaro";
+    if test "$OS" = artixlinux; or test "$OS" = archlinux; or test "$OS" = manjaro
         # pacman
         abbr -a -g ps doas pacman --noconfirm --color always -S
         abbr -a -g psi pacman --color always -Si
@@ -299,7 +319,7 @@ if status is-interactive
         abbr -a -g ppfyl paru --color always -Fyl
         abbr -a -g pprns paru --noconfirm --color always -Rns
         abbr -a -g sys doas systemctl
-    else if test "$OS" = "voidlinux";
+    else if test "$OS" = voidlinux
         abbr -a -g xs "./xbps-src"
         # xbps
         abbr -a -g xis doas xbps-install -Sy
@@ -317,7 +337,7 @@ if status is-interactive
         abbr -a -g xm xmandoc
         abbr -a -g xqr xq -R
         abbr -a -g sys doas sv
-    else if test "$OS" = "linuxmint";
+    else if test "$OS" = linuxmint
         abbr -a -g bat batcat
         abbr -a -g cat batcat
         # apt
