@@ -112,5 +112,4 @@ mv cursors/Capitaine\ Cursors\ \(Gruvbox\)/ /usr/share/icons/
 mkdir -p /home/lucas/.local/share/icons/default/
 cat extras/index.theme >/home/lucas/.local/share/icons/default/index.theme
 
-echo "auth 		optional 	pam_gnupg.so store-only
-session 	optional 	pam_gnupg.so" >>/etc/pam.d/login
+cat extras/pam_gnupg >>/etc/pam.d/login
