@@ -73,7 +73,9 @@ vks("n", "<leader>S", ":%s//gc<left><left><left>")
 -- procura e substitui na região selecionada
 vks("v", "<leader>S", ":s//gc<left><left><left>")
 -- compilar código e lembrar commando
-vks(nv, "<leader>c", Compile)
+vks(nv, "<leader>c", function()
+  require("command").command()
+end)
 -- abre terminal do sistema no local do arquivo atual
 vks(nv, "<leader><return>", ":!sh -c 'cd %:p:h ; term_open' &<CR><CR>", s)
 -- abre terminal nativo em uma split

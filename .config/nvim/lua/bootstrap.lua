@@ -258,6 +258,13 @@ return require("packer").startup(function(use)
   })
 
   --- Code
+  -- executar código dependendo do cwd
+  use({
+    "LucasTavaresA/command.nvim",
+    config = function()
+      require("command").setup()
+    end,
+  })
   -- refatorar código
   use({
     "ThePrimeagen/refactoring.nvim",

@@ -3,19 +3,6 @@ local vo = vim.opt
 local vf = vim.fn
 local va = vim.api
 
---- Executar e lembrar um commando
-function Compile()
-  vim.ui.input(
-    { prompt = "Compile with> ", default = Compile_cmd },
-    function(input)
-      Compile_cmd = input
-      if Compile_cmd ~= nil then
-        vc(":! " .. Compile_cmd)
-      end
-    end
-  )
-end
-
 local lua_terminal_window = nil
 local lua_terminal_buffer = nil
 local terminal_split_size = tonumber(va.nvim_exec("echo &lines", true)) / 2.5
