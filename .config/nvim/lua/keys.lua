@@ -81,11 +81,8 @@ vks(nv, "<leader><return>", ":!sh -c 'cd %:p:h ; term_open' &<CR><CR>", s)
 -- abre terminal nativo em uma split
 vks(nvi, "<M-CR>", TerminalToggle)
 vks("t", "<M-CR>", TerminalToggle)
--- cria um macro
-vks("n", "@", "q", ns)
-vks("n", "q", "")
 -- executa um macro
-vks("n", "2", "@")
+vks("n", "Q", "@")
 -- vai para diagnostico
 vks(nv, "[d", vim.diagnostic.goto_prev, ns)
 vks(nv, "]d", vim.diagnostic.goto_next, ns)
@@ -96,7 +93,7 @@ end)
 
 --- Plugins
 -- pula para palavras usando indicadores - leap
-vks(nv, "q", function()
+vks(nv, "s", function()
   require("leap").leap({
     target_windows = vim.tbl_filter(function(win)
       return vim.api.nvim_win_get_config(win).focusable
@@ -104,7 +101,7 @@ vks(nv, "q", function()
   })
 end)
 -- pula e faz uma ação no indicador - easyaction
-vks("n", "s", "<cmd>BasicEasyAction<cr>", { silent = true, remap = false })
+vks("n", "'", "<cmd>BasicEasyAction<cr>", { silent = true, remap = false })
 -- traduz - translate
 vks(nv, "<leader>t", "<cmd>Translate en<CR>")
 -- neogit
