@@ -736,19 +736,17 @@ return require("packer").startup(function(use)
               end, { "i", "s" }),
             }),
             sources = cmp.config.sources({
-              { name = "nvim_lsp" },
-              { name = "nvim_lua" },
               { name = "path" },
-              { name = "buffer" },
-              { name = "nvim_lsp_signature_help" },
-              { name = "spell" },
-              { name = "snippy" },
-              { name = "fish" },
               { name = "env" },
               { name = "plugins" },
-              { name = "fonts", option = { space_filter = "-" } },
-            }, {
+              { name = "fish" },
               { name = "buffer" },
+              { name = "snippy" },
+              { name = "nvim_lsp" },
+              { name = "nvim_lsp_signature_help" },
+              { name = "nvim_lua" },
+              { name = "fonts", option = { space_filter = "-" } },
+              { name = "spell" },
             }),
           })
 
