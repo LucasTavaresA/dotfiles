@@ -157,7 +157,7 @@ export SSH_AUTH_SOCK
 pgrep -x ssh-agent || eval "$(ssh-agent -s)"
 
 if ! pgrep -x pipewire; then
-    dbus-launch pipewire 2>&1 $XDG_CACHE_HOME/pipewire.log &
+    dbus-launch pipewire > "$XDG_CACHE_HOME/pipewire.log" &
 fi
 
 # localização para datas
