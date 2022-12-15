@@ -79,7 +79,7 @@ export WGETRC="${XDG_DATA_HOME:-$HOME/.local/share}/wget/wgetrc"
 export XAUTHORITY="${XDG_RUNTIME_DIR:-/run/user/$UID}/Xauthority"
 export XCURSOR_PATH="${XCURSOR_PATH}:~/.local/share/icons"
 export XCURSOR_THEME="Capitaine Cursors (Gruvbox)"
-export XCURSOR_SIZE="18"
+export XCURSOR_SIZE="14"
 # cargo
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 # omnisharp
