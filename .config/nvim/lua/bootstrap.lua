@@ -648,6 +648,7 @@ return require("packer").startup(function(use)
             "onsails/lspkind.nvim",
             config = function()
               require("cmp").setup({
+                experimental = { ghost_text = true },
                 window = {
                   completion = {
                     winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
