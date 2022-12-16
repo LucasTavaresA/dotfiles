@@ -9,8 +9,8 @@ export SHELL="/bin/bash"
 export GPG_TTY=$(tty)
 
 # ignora case-sensitivity quando completa comandos com tab
-if [ ! -a $HOME/.config/readline/inputrc ]; then echo '$include /etc/inputrc' > $HOME/.config/readline/inputrc; fi
-echo 'set completion-ignore-case On' >> $HOME/.config/readline/inputrc
+if [ ! -a $HOME/.config/readline/inputrc ]; then echo '$include /etc/inputrc' >$HOME/.config/readline/inputrc; fi
+echo 'set completion-ignore-case On' >>$HOME/.config/readline/inputrc
 # corrige automaticamente erros ao usar o cd
 shopt -s cdspell
 # salva comandos de múltiplas linhas como uma linha única
@@ -20,12 +20,12 @@ eval "$(zoxide init bash)"
 
 #### Funções ####
 # hersbstluftwm
-hc () {
+hc() {
     herbstclient "$@"
 }
 
 # localizar e editar arquivo
-ea () {
+ea() {
     arquivo=$(locate -Ai "$@" | fzf)
     if [ -n "$arquivo" ]; then
         eval $VISUAL "$arquivo"
@@ -33,7 +33,7 @@ ea () {
 }
 
 # localizar e editar executavel
-ee () {
+ee() {
     executavel=$(dmenu_path | fzf)
     if [ -x "$executavel" ]; then
         eval $VISUAL "$executavel"
@@ -41,7 +41,7 @@ ee () {
 }
 
 # git bare dotfiles
-git () {
+git() {
     if [ $(pwd) = $HOME ] && [ $1 != "init" ]; then
         /usr/bin/git --git-dir="$HOME/.dotfiles/" $@
     else
@@ -50,10 +50,9 @@ git () {
 }
 
 # git status recursivo
-gsr () {
+gsr() {
     cdir=$(pwd)
-    for repo in $(fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | ugrep '\.git/$');
-    do
+    for repo in $(fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | ugrep '\.git/$'); do
         repo=$(echo $repo | sed 's/\/.git\/$//')
         cd $repo
 
@@ -61,10 +60,10 @@ gsr () {
         i=0
         while [ $i -lt $cols ]; do
             echo -n "─"
-            i=$((i+1))
+            i=$((i + 1))
         done
 
-        if git status | grep nothing > /dev/null; then
+        if git status | grep nothing >/dev/null; then
             printf "\033[96m\033[1m%s\033[0m\n" "$repo"
         else
             printf "\033[96m\033[1m%s\033[0m\n" "$repo"
@@ -75,10 +74,9 @@ gsr () {
 }
 
 # git pull recursivo
-gpr () {
+gpr() {
     cdir=$(pwd)
-    for repo in $(fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | ugrep '\.git/$');
-    do
+    for repo in $(fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | ugrep '\.git/$'); do
         repo=$(echo $repo | sed 's/\/.git\/$//')
         cd $repo
 
@@ -86,14 +84,13 @@ gpr () {
         i=0
         while [ $i -lt $cols ]; do
             echo -n "─"
-            i=$((i+1))
+            i=$((i + 1))
         done
         echo
 
         read -p "pull $repo ? [y/N] " -n 1 -r
         echo
-        if [[ $REPLY =~ ^[Yy]$ ]]
-        then
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
             git pull
         fi
     done
@@ -102,7 +99,7 @@ gpr () {
 
 # git stash list
 # usa o fzf para selecionar uma stash e uma ação
-gsl () {
+gsl() {
     snum="$(git stash list | fzf | sed 's/^.*{//;s/}.*$//')"
     [ -z $snum ] && return
     action="$(printf "pop\napply\ndrop\nshow\nbranch\nclear" | fzf)"
@@ -121,31 +118,31 @@ gsl () {
 
 # facilita extrair arquivos
 # exemplo: ex <arquivo>
-ex () {
-    for arquivo in "$@"
-    do
+ex() {
+    for arquivo in "$@"; do
         if [ -f "$arquivo" ]; then
             case "$arquivo" in
-                "*.7z|*.arj|*.cab|*.cb7|*.chm|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar") \
-                                      7z x "$arquivo"        ;;
-                "*.bz2")              bunzip2 "$arquivo"     ;;
-                "*.cba|*.ace")        unace x "$arquivo"     ;;
-                "*.cbr")              unrar x -ad "$arquivo" ;;
-                "*.cbt|*.txz")        tar xvf "$arquivo"     ;;
-                "*.cbz|*.epub|*.zip") unzip "$arquivo"       ;;
-                "*.cpio")             cpio -id < "$arquivo"  ;;
-                "*.deb")              ar x "$arquivo"        ;;
-                "*.exe")              cabextract "$arquivo"  ;;
-                "*.gz")               gunzip "$arquivo"      ;;
-                "*.lzma")             unlzma "$arquivo"      ;;
-                "*.rar")              unrar x "$arquivo"     ;;
-                "*.tar.bz2|*.tbz2")   tar xjf "$arquivo"     ;;
-                "*.tar.gz|*.tgz")     tar xzf "$arquivo"     ;;
-                "*.tar.xz|*.tar")     tar xf "$arquivo"      ;;
-                "*.tar.zst")          unzstd "$arquivo"      ;;
-                "*.xz")               unxz "$arquivo"        ;;
-                "*.Z|*.z")            uncompress "$arquivo"  ;;
-                *)           echo "$arquivo não pode ser extraído com ex()!" && return 1 ;;
+                "*.7z|*.arj|*.cab|*.cb7|*.chm|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar")
+                    7z x "$arquivo"
+                    ;;
+                "*.bz2") bunzip2 "$arquivo" ;;
+                "*.cba|*.ace") unace x "$arquivo" ;;
+                "*.cbr") unrar x -ad "$arquivo" ;;
+                "*.cbt|*.txz") tar xvf "$arquivo" ;;
+                "*.cbz|*.epub|*.zip") unzip "$arquivo" ;;
+                "*.cpio") cpio -id <"$arquivo" ;;
+                "*.deb") ar x "$arquivo" ;;
+                "*.exe") cabextract "$arquivo" ;;
+                "*.gz") gunzip "$arquivo" ;;
+                "*.lzma") unlzma "$arquivo" ;;
+                "*.rar") unrar x "$arquivo" ;;
+                "*.tar.bz2|*.tbz2") tar xjf "$arquivo" ;;
+                "*.tar.gz|*.tgz") tar xzf "$arquivo" ;;
+                "*.tar.xz|*.tar") tar xf "$arquivo" ;;
+                "*.tar.zst") unzstd "$arquivo" ;;
+                "*.xz") unxz "$arquivo" ;;
+                "*.Z|*.z") uncompress "$arquivo" ;;
+                *) echo "$arquivo não pode ser extraído com ex()!" && return 1 ;;
             esac
         else
             echo "$arquivo arquivo não existe!"
@@ -154,10 +151,10 @@ ex () {
     done
 }
 
-criar_script () {
+criar_script() {
     lang=$1
     arquivo=$2
-    printf "#!/usr/bin/env $lang\n${*:3}" > $arquivo
+    printf "#!/usr/bin/env $lang\n${*:3}" >$arquivo
 }
 
 #### Aliases ####
