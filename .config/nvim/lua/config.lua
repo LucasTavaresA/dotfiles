@@ -104,7 +104,8 @@ vo.background = "dark"
 vc.colorscheme("gruvbox")
 -- transparência
 vansh(0, "Normal", { bg = nil, ctermbg = nil })
-vansh(0, "NormalNC", { bg = nil, ctermbg = nil })
+vansh(0, "NormalFloat", { bg = nil, ctermbg = nil })
+vansh(0, "NormalNC", { bg = "#000000", ctermbg = nil })
 vansh(0, "EndOfBuffer", { bg = nil, ctermbg = nil })
 -- cor das palavras procuradas
 vansh(0, "Search", { bg = "#ffff00", fg = "#202020" })

@@ -1116,15 +1116,6 @@ return require("packer").startup(function(use)
       require("simpleIndentGuides").setup("│", "·")
     end,
   })
-  -- escurece buffers sem foco
-  use({
-    "levouh/tint.nvim",
-    opt = true,
-    event = "WinLeave",
-    config = function()
-      require("tint").setup({})
-    end,
-  })
   -- indica instancias da palavra no cursor
   use({
     "echasnovski/mini.cursorword",
