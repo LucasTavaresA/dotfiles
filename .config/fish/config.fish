@@ -229,6 +229,7 @@ if status is-interactive
     abbr -a -g ping ping google.com
     abbr -a -g p "patch -p1 <"
     abbr -a -g pr "patch -R <"
+    abbr -a -g vol wpctl set-volume @DEFAULT_AUDIO_SINK@ 70%
     abbr -a -g yt yt-dlp -P ~/Downloads --write-subs
     if test "$HOSTNAME" = "$OS"note
         abbr -a -g yt "yt-dlp -P ~/Downloads --write-subs -f 'worstvideo*[height=720]+worstaudio/worst[height=720]'"
