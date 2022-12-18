@@ -149,6 +149,10 @@ export MERGEPROG="nvim -d"
 export EDITOR="nvim"
 # editor com interface gráfica
 export VISUAL="term_open -a nvim nvim"
+# localização para datas
+export LC_TIME="pt_BR.UTF-8"
+
+[ "$HOSTNAME" = "$OS"note ] && export LIBGL_ALWAYS_SOFTWARE=1
 
 ## GPG/SSH
 export GNUPGHOME="$HOME/.gnupg"
@@ -156,14 +160,15 @@ SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 export SSH_AUTH_SOCK
 pgrep -x ssh-agent || eval "$(ssh-agent -s)"
 
-if ! pgrep -x pipewire; then
-    dbus-launch pipewire > "$XDG_CACHE_HOME/pipewire.log" &
-fi
-
-# localização para datas
-export LC_TIME="pt_BR.UTF-8"
-
-[ "$HOSTNAME" = "$OS"note ] && export LIBGL_ALWAYS_SOFTWARE=1
+## Execute
+pgrep -x pipewire || dbus-launch pipewire >"$XDG_CACHE_HOME/pipewire.log" 2>&1 &
+pgrep -x syncthing || syncthing >"$XDG_CACHE_HOME/syncthing.log" 2>&1 &
+fzf_man update >/dev/null 2>&1
+# musica
+pgrep -x mpd || mpd >"$XDG_CACHE_HOME/mpd.log" 2>&1
+pgrep -x mpDris2 || dbus-launch mpDris2 --music-dir="$HOME/media/musicas/" >"$XDG_CACHE_HOME/mpdris2.log" 2>&1 &
+pgrep -x playerctld || dbus-launch playerctld daemon >"$XDG_CACHE_HOME/playerctld.log" 2>&1 &
+mpc update
 
 [ "$(tty)" != "/dev/tty1" ] && exec fish
 
