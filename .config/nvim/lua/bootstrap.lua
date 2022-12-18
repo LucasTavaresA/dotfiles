@@ -33,6 +33,16 @@ return require("packer").startup(function(use)
   use("nvim-lua/plenary.nvim")
 
   --- Miscelânea
+  -- interage com a openai
+  use({
+    "aduros/ai.vim",
+    setup = function()
+      vim.env.OPENAI_API_KEY =
+        io.open(os.getenv("HOME") .. "/.gnupg/openai_key", "r")
+          :read("*all")
+          :sub(1, -2)
+    end,
+  })
   -- previne copia ao colar/deletar
   use({
     "tenxsoydev/karen-yank.nvim",
