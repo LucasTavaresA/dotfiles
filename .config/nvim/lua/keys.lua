@@ -41,7 +41,13 @@ vks(nv, "<leader>ii", "{=}<C-o>")
 -- alinhar texto
 vks("v", "<leader>A", ":'<,'>!column -t -o ' '<CR>", s)
 -- abre arquivos no diretório atual
-vks(nv, "<leader>ff", ":e %:h")
+vks(nv, "<leader>fF", function()
+  local dir = vim.fn.expand("%:h")
+  if dir == "" then
+    dir = vim.fn.getcwd()
+  end
+  vim.cmd.Ex(dir)
+end)
 -- mudar o typo de arquivo
 vks(nv, "<leader>ft", ":setlocal filetype=")
 -- salvar e fechar buffer
@@ -139,14 +145,18 @@ vks(nvi, "<C-Tab>", "<esc>:Telescope buffers<CR>", s)
 vks(nv, "<leader>D", function()
   require("telescope.builtin").diagnostics({})
 end, ns)
--- abre arquivos no repositório atual - telescope
+-- abre arquivos no diretório atual - telescope
 vks(nv, "<leader>F", ":Telescope find_files<CR>", s)
+-- abre arquivos abertos recentemente - telescope
+vks(nv, "<leader><leader>", ":Telescope oldfiles<CR>", s)
+-- abre arquivos no repositório atual - telescope
+vks(nv, "<leader>ff", ":Telescope git_files<CR>", s)
 -- procura linhas no buffer - telescope
 vks(nv, "\\", ":Telescope current_buffer_fuzzy_find<CR>", s)
--- pesquisar por comandos - telescope
-vks(nv, "<leader>hc", ":Telescope commands<CR>", s)
 -- pesquisar por correções - telescope
 vks(nv, "z=", ":Telescope spell_suggest<CR>", s)
+-- pesquisar por comandos - telescope
+vks(nv, "<leader>hc", ":Telescope commands<CR>", s)
 -- pesquisar por opções - telescope
 vks(nv, "<leader>ho", ":Telescope vim_options<CR>", s)
 -- pesquisar por documentação - telescope
@@ -157,8 +167,6 @@ vks(nv, "<leader>hk", ":Telescope keymaps<CR>", s)
 vks(nv, "<leader>hH", ":Telescope highlights<CR>", s)
 -- pesquisar por manpages - telescope
 vks(nv, "<leader>hm", ":Telescope man_pages<CR>", s)
--- abre arquivos abertos recentemente - telescope
-vks(nv, "<leader><leader>", ":Telescope oldfiles<CR>", s)
 -- navegar por headings - telescope-heading
 vks(nv, "<leader>v", ":Telescope heading<CR>", s)
 -- procura e edita ocorrências de uma palavra - greplace
