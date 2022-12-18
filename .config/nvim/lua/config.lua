@@ -42,8 +42,8 @@ vo.undofile = true
 vo.scrolloff = 10
 -- desativa uso do mouse
 vo.mouse = ""
--- não vai automaticamente para os itens pesquisados
-vo.incsearch = false
+-- indica items quando procurando
+vo.incsearch = true
 -- da a volta entre linhas
 vo.whichwrap:append("<,>,h,l,[,]")
 
