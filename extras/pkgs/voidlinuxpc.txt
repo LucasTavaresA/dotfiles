@@ -132,6 +132,7 @@ pulseaudio-utils
 pulsemixer
 python3-Brotli
 python3-adblock
+python3-devel
 python3-evdev
 python3-neovim
 python3-pip
