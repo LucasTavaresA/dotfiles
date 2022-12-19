@@ -52,7 +52,7 @@ ea () {
     fi
 }
 
-# localizar e editar executavel
+# localizar e editar executável
 ee () {
     executavel=$(dmenu_path | fzf)
     if [ -x "$executavel" ]; then
@@ -190,8 +190,8 @@ alias pg="pgrep -ia"
 alias uma="doas usermod -aG"
 alias umr="doas usermod -rG"
 alias df="df -hT --total -x tmpfs -x devtmpfs"
-alias tep="tpe trans -s pt -l en"
-alias tpe="tpe trans -s pt -l en"
+alias tep="trans -s pt -l en"
+alias tpe="trans -s pt -l en"
 alias fm="fzf_man"
 alias hc="herbstclient"
 alias as="alias | ugrep --color -i"
