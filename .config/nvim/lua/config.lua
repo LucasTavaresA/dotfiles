@@ -25,11 +25,7 @@ vo.clipboard:append({ "unnamedplus" })
 -- procura ignorando maiúsculas
 vo.ignorecase = true
 vo.smartcase = true
--- dotfiles
-if vf.getcwd() == HOME then
-  vim.env.GIT_DIR = HOME .. "/.dotfiles"
-  vim.env.GIT_WORK_TREE = HOME
-end
+Update_cwd()
 
 --- Backups
 -- desabilita swapfile
@@ -69,20 +65,6 @@ vo.linebreak = true
 vo.textwidth = 80
 -- formatação nativa
 vo.formatoptions = "tcrqn1j"
--- formatação ao salvar
-if vf.getcwd() == HOME then
-  Autocmd(
-    "BufWritePost",
-    { "*.lua" },
-    "!stylua --config-path $HOME/.config/nvim/stylua.toml %"
-  )
-else
-  Autocmd(
-    "BufWritePost",
-    { "*.lua" },
-    "!stylua --config-path $(fd -t f -d 4 --max-results 1 stylua.toml .) %"
-  )
-end
 
 ----- Aparência -----
 --- Miscelânea
