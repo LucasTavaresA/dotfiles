@@ -1,6 +1,9 @@
 format = """
-[┌┤](bold green) $directory$shell$status$git_status$username$hostname$cmd_duration$package$jobs$container[├](bold green)$fill
+[┌┤](bold green) $os$directory$shell$status$git_status$username$hostname$cmd_duration$package$jobs$container[├](bold green)$fill
 [└─](bold green)$character"""
+
+[os]
+disabled = false
 
 [character]
 format = "$symbol"
