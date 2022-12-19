@@ -87,6 +87,13 @@ return require("packer").startup(function(use)
     requires = {
       { "nvim-telescope/telescope-ui-select.nvim" },
       { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+      {
+        "sudormrfbin/cheatsheet.nvim",
+        requires = {
+          { "nvim-lua/popup.nvim" },
+          { "nvim-lua/plenary.nvim" },
+        },
+      },
     },
     config = function()
       local actions = require("telescope.actions")
