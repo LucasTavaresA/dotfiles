@@ -565,6 +565,12 @@ return require("packer").startup(function(use)
           })
         end,
       },
+      -- mostra previsão de code-actions
+      {
+        "weilbith/nvim-code-action-menu",
+        opt = true,
+        cmd = "CodeActionMenu",
+      },
       -- mostra informação do código no cursor
       {
         "lewis6991/hover.nvim",
@@ -819,7 +825,7 @@ return require("packer").startup(function(use)
         buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
         local bns = { buffer = bufnr, noremap = true, silent = true }
-        vim.keymap.set({ "v", "n" }, "gf", vim.lsp.buf.code_action, bns)
+        vim.keymap.set({ "v", "n" }, "ga", vim.cmd.CodeActionMenu, bns)
         vim.keymap.set({ "n", "v" }, "gD", vim.lsp.buf.declaration, bns)
         vim.keymap.set(
           { "n", "v" },
