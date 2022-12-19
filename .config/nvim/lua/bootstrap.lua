@@ -819,16 +819,38 @@ return require("packer").startup(function(use)
         buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
         local bns = { buffer = bufnr, noremap = true, silent = true }
+        vim.keymap.set({ "v", "n" }, "gf", vim.lsp.buf.code_action, bns)
         vim.keymap.set({ "n", "v" }, "gD", vim.lsp.buf.declaration, bns)
-        vim.keymap.set({ "n", "v" }, "gd", function()
-          require("telescope.builtin").lsp_definitions({})
-        end, bns)
-        vim.keymap.set({ "n", "v" }, "gi", function()
-          require("telescope.builtin").lsp_implementations({})
-        end, bns)
-        vim.keymap.set({ "n", "v" }, "gr", function()
-          require("telescope.builtin").lsp_references({})
-        end, bns)
+        vim.keymap.set(
+          { "n", "v" },
+          "gd",
+          require("telescope.builtin").lsp_definitions,
+          bns
+        )
+        vim.keymap.set(
+          { "n", "v" },
+          "gi",
+          require("telescope.builtin").lsp_implementations,
+          bns
+        )
+        vim.keymap.set(
+          { "n", "v" },
+          "gr",
+          require("telescope.builtin").lsp_references,
+          bns
+        )
+        vim.keymap.set(
+          { "n", "v" },
+          "gs",
+          require("telescope.builtin").lsp_document_symbols,
+          bns
+        )
+        vim.keymap.set(
+          { "n", "v" },
+          "gS",
+          require("telescope.builtin").lsp_workspace_symbols,
+          bns
+        )
         vim.keymap.set({ "n", "v" }, "<C-h>", vim.lsp.buf.signature_help, bns)
         vim.keymap.set({ "n", "v" }, "<leader>I", function()
           vim.lsp.buf.format({ async = true })
