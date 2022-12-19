@@ -168,6 +168,8 @@ bindings = {
     "<Ctrl-Tab>": "tab-next",
     "<Ctrl-Left>": "tab-prev",
     "<Ctrl-Right>": "tab-next",
+    "A": "set-cmd-text -s :back",
+    "D": "set-cmd-text -s :forward",
     "<Ctrl-a>": "back",
     "<Ctrl-d>": "forward",
     "<Ctrl-j>": "scroll-page 0 0.5",
