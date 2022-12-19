@@ -578,6 +578,8 @@ return require("packer").startup(function(use)
           require("hover").setup({
             init = function()
               require("hover.providers.lsp")
+              require("hover.providers.man")
+              require("hover.providers.dictionary")
             end,
             -- Whether the contents of a currently open hover window should be moved
             -- to a :h preview-window when pressing the hover keymap.
