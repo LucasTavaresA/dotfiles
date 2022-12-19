@@ -28,7 +28,7 @@ hc() {
 ea() {
     arquivo=$(locate -Ai "$@" | fzf)
     if [ -n "$arquivo" ]; then
-        eval $VISUAL "$arquivo"
+        eval $EDITOR "$arquivo"
     fi
 }
 
@@ -36,7 +36,7 @@ ea() {
 ee() {
     executavel=$(dmenu_path | fzf)
     if [ -x "$executavel" ]; then
-        eval $VISUAL "$executavel"
+        eval $EDITOR "$executavel"
     fi
 }
 
@@ -176,12 +176,12 @@ alias ff="flashfetch"
 alias v="nvim"
 alias vc="nvim --clean"
 alias vu="nvim --headless -u NONE -c 'lua require(\"bootstrap\")' -c 'autocmd User PackerComplete quitall' -c 'PackerSync'"
-alias vv="term_open -s nvim"
+alias vv="term_open -a nvim nvim"
 alias h="htop"
 alias ed="emacs --daemon"
 alias ek="emacsclient -e '(kill-emacs)'"
 alias et="emacsclient -t -a 'nvim'"
-alias e="emacsclient -n -c -a 'term_open -s nvim'"
+alias e="emacsclient -n -c -a 'term_open -a nvim nvim'"
 alias copy="xclip -selection clipboard"
 alias sudo="doas"
 alias ping="ping google.com"

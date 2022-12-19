@@ -46,7 +46,7 @@ if status is-interactive
     function ea
         set arquivo (locate -Ai "$argv" | fzf)
         if test -n "$arquivo"
-            eval $VISUAL "$arquivo"
+            eval $EDITOR "$arquivo"
         end
     end
 
@@ -54,7 +54,7 @@ if status is-interactive
     function ee
         set executavel (fd . $PATH | fzf)
         if test -x "$executavel"
-            eval $VISUAL "$executavel"
+            eval $EDITOR "$executavel"
         end
     end
 
@@ -223,7 +223,7 @@ if status is-interactive
     abbr -a -g ed emacs --daemon
     abbr -a -g ek "emacsclient -e '(kill-emacs)'"
     abbr -a -g et "emacsclient -t -a 'nvim'"
-    abbr -a -g e "emacsclient -n -c -a 'term_open -s nvim'"
+    abbr -a -g e "emacsclient -n -c -a 'term_open -a nvim nvim'"
     abbr -a -g copy xclip -selection clipboard
     abbr -a -g sudo doas
     abbr -a -g ping ping google.com
