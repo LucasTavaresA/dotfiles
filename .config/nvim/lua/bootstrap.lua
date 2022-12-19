@@ -1186,6 +1186,21 @@ return require("packer").startup(function(use)
   -- statusline
   use({
     "famiu/feline.nvim",
+    requires = {
+      "rlch/github-notifications.nvim",
+      config = function()
+        require("github-notifications").setup({
+          username = "LucasTavaresA",
+          token = io.open(os.getenv("HOME") .. "/.gnupg/gh_token")
+            :read("*all")
+            :sub(1, -2),
+        })
+      end,
+      requires = {
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope.nvim",
+      },
+    },
     config = function()
       vim.opt.termguicolors = true
       require("statusline")
