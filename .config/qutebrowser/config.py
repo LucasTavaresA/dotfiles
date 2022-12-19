@@ -55,8 +55,8 @@ config.set('scrolling.bar', 'overlay')
 # encolhe janela de completação dependendo das opções
 config.set('completion.shrink', True)
 # barra escondida
-config.set("statusbar.show", "in-mode")
-config.set("tabs.show", "switching")
+config.set("statusbar.show", "always")
+config.set("tabs.show", "never")
 # formatação dos títulos das abas
 config.set("tabs.title.format", "{perc}{private}{current_title}")
 # formatação de horários
@@ -64,7 +64,7 @@ config.set('completion.timestamp_format', '%A %d/%m/%Y - %H:%M')
 # corretor ortográfico
 config.set('spellcheck.languages', ["pt-BR", "en-US"])
 # conteúdo da barra de status
-config.set('statusbar.widgets', ["keypress", "url", "progress"])
+config.set('statusbar.widgets', ["keypress", "url", "history", "progress"])
 # posição da barra de status
 config.set('statusbar.position', 'top')
 c.tabs.position = "top"
@@ -158,12 +158,12 @@ config.bind("<Down>", "move-to-next-line", mode='caret')
 config.bind("<Left>", "move-to-prev-char", mode='caret')
 config.bind("<Right>", "move-to-next-char", mode='caret')
 # previne bug https://github.com/qutebrowser/qutebrowser/issues/2236
-config.bind('o', 'set statusbar.show always;; set-cmd-text -s :open')
-config.bind('O', 'set statusbar.show always;; set-cmd-text -s :open -t')
-config.bind(':', 'set statusbar.show always;; set-cmd-text :')
-config.bind('<Escape>', 'mode-enter normal;; set statusbar.show in-mode', mode='command')
-config.bind('<Return>', 'command-accept;; set statusbar.show in-mode', mode='command')
-config.bind('/', 'set statusbar.show always;; set-cmd-text /')
+# config.bind('o', 'set statusbar.show always;; set-cmd-text -s :open')
+# config.bind('O', 'set statusbar.show always;; set-cmd-text -s :open -t')
+# config.bind(':', 'set statusbar.show always;; set-cmd-text :')
+# config.bind('<Escape>', 'mode-enter normal;; set statusbar.show in-mode', mode='command')
+# config.bind('<Return>', 'command-accept;; set statusbar.show in-mode', mode='command')
+# config.bind('/', 'set statusbar.show always;; set-cmd-text /')
 bindings = {
     "<Ctrl-Tab>": "tab-next",
     "<Ctrl-Left>": "tab-prev",
@@ -186,7 +186,7 @@ bindings = {
     # abre pagina no firefox
     "qf": "spawn firefox {url}",
     # ativa/desativa a barra
-    "qq": "config-cycle statusbar.show always in-mode;; config-cycle tabs.show always switching",
+    "qq": "config-cycle statusbar.show always never;; config-cycle tabs.show always never",
     # ativa/desativa stylesheets
     "qd": "config-cycle content.user_stylesheets ~/.config/qutebrowser/styles/dark.css ~/.config/qutebrowser/styles/custom-gruvbox-dark.css",
     # ativa/desativa javascript para um site
