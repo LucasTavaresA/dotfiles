@@ -619,7 +619,6 @@ return require("packer").startup(function(use)
               -- json
               null_ls.builtins.formatting.fixjson,
               -- shell
-              null_ls.builtins.diagnostics.shellcheck,
               null_ls.builtins.code_actions.shellcheck,
               null_ls.builtins.formatting.shfmt.with({
                 extra_args = { "-i", "4", "-ci" },
@@ -916,6 +915,12 @@ return require("packer").startup(function(use)
       })
 
       require("lspconfig").jedi_language_server.setup({
+        on_attach = On_attach,
+        capabilities = capabilities,
+      })
+
+      -- npm i -g bash-language-server
+      require("lspconfig").bashls.setup({
         on_attach = On_attach,
         capabilities = capabilities,
       })
