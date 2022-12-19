@@ -87,6 +87,7 @@ return require("packer").startup(function(use)
     requires = {
       { "nvim-telescope/telescope-ui-select.nvim" },
       { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+      { "jvgrootveld/telescope-zoxide" },
       {
         "sudormrfbin/cheatsheet.nvim",
         requires = {
@@ -130,6 +131,32 @@ return require("packer").startup(function(use)
           },
         },
         extensions = {
+          zoxide = {
+            prompt_title = "[ Zoxide ]",
+            mappings = {
+              default = {
+                after_action = function(selection)
+                  print(
+                    "Update to (" .. selection.z_score .. ") " .. selection.path
+                  )
+                  Update_cwd()
+                end,
+              },
+              ["<C-s>"] = {
+                before_action = function(_)
+                  print("before C-s")
+                end,
+                action = function(selection)
+                  vim.cmd("edit " .. selection.path)
+                end,
+              },
+              ["<C-q>"] = {
+                action = require("telescope._extensions.zoxide.utils").create_basic_command(
+                  "split"
+                ),
+              },
+            },
+          },
           fzf = {
             fuzzy = true,
             override_generic_sorter = true,
@@ -139,6 +166,7 @@ return require("packer").startup(function(use)
         },
       })
       require("telescope").load_extension("fzf")
+      require("telescope").load_extension("zoxide")
       require("telescope").load_extension("ui-select")
     end,
   })
