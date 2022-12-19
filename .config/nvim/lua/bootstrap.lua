@@ -92,9 +92,7 @@ return require("packer").startup(function(use)
       local actions = require("telescope.actions")
       require("telescope").setup({
         defaults = {
-          theme = "dropdown",
           border = true,
-          preview = false,
           mappings = {
             i = {
               ["<C-Tab>"] = actions.toggle_selection
@@ -125,9 +123,6 @@ return require("packer").startup(function(use)
           },
         },
         extensions = {
-          ["ui-select"] = {
-            require("telescope.themes").get_dropdown({}),
-          },
           fzf = {
             fuzzy = true,
             override_generic_sorter = true,
