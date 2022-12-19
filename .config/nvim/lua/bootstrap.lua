@@ -527,16 +527,6 @@ return require("packer").startup(function(use)
           require("neodev").setup()
         end,
       },
-      -- lista de ações no código
-      {
-        "aznhe21/actions-preview.nvim",
-        requires = { "nvim-telescope/telescope.nvim" },
-        config = function()
-          vim.keymap.set({ "v", "n" }, "gf", function()
-            require("actions-preview").code_actions()
-          end)
-        end,
-      },
       -- mostra parâmetros ao digitar
       {
         "ray-x/lsp_signature.nvim",
