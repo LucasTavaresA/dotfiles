@@ -40,6 +40,7 @@
 .config/qutebrowser/bookmarks/
 .config/qutebrowser/autoconfig.yml
 .config/transmission/
+.config/transmission-daemon/
 .config/VirtualBox/
 .config/NuGet/
 .config/syncthing/

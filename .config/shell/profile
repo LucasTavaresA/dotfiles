@@ -163,9 +163,10 @@ pgrep -x ssh-agent || eval "$(ssh-agent -s)"
 ## Execute
 fork() {
     fzf_man update >/dev/null 2>&1
+    pgrep -x syncthing || syncthing >"$XDG_CACHE_HOME/syncthing.log" 2>&1 &
+    pgrep -x transmission-da || transmission-daemon >/dev/null 2>&1
     # musica
     pgrep -x pipewire || dbus-launch pipewire >"$XDG_CACHE_HOME/pipewire.log" 2>&1 &
-    pgrep -x syncthing || syncthing >"$XDG_CACHE_HOME/syncthing.log" 2>&1 &
     pgrep -x mpd || mpd >/dev/null 2>&1
     pgrep -x mpDris2 || dbus-launch mpDris2 --music-dir="$HOME/media/musicas/" >"$XDG_CACHE_HOME/mpdris2.log" 2>&1 &
     pgrep -x playerctld || dbus-launch playerctld daemon >"$XDG_CACHE_HOME/playerctld.log" 2>&1 &

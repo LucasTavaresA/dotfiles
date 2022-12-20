@@ -113,3 +113,6 @@ mkdir -p /home/lucas/.local/share/icons/default/
 cat extras/index.theme >/home/lucas/.local/share/icons/default/index.theme
 
 cat extras/pam_gnupg >>/etc/pam.d/login
+
+mkdir -p /home/lucas/.local/share/applications/
+cp extras/transmission-remote.desktop .local/share/applications/

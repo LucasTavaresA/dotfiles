@@ -162,7 +162,8 @@ terminus-font
 testdisk
 tofi
 translate-shell
-transmission-qt
+transmission
+tremc
 ttf-ubuntu-font-family
 ugrep
 unicode-emoji

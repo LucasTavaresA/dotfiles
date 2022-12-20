@@ -111,7 +111,7 @@ mode "Menu" {
     bindsym h exec term_open -a float htop ; mode "default"
     bindsym s exec gammastep -O 3000 ; mode "default"
     bindsym Shift+s exec pkill -x gammastep ; mode "default"
-    bindsym t exec transmission-qt ; mode "default"
+    bindsym t exec term_open -a tremc tremc ; mode "default"
     bindsym a exec term_open -a nvim nvim ~/documentos/anotações.md ; mode "default"
     bindsym e exec term_open -a nvim nvim ~/documentos/ ; mode "default"
     bindsym l exec swaylock -c 000000ff --scaling fill ; mode "default"
@@ -183,7 +183,6 @@ bindsym $mods+4 move window to workspace number $ws4
 exec swayidle -w timeout 500 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
 exec wl-paste -t text --watch clipman store 1>> $XDG_DATA_HOME/clipman.log 2>&1 &
 exec mako
-exec transmission-qt -m
 exec foot -s
 exec foot -T irc -a irc -e irssi --home ~/.config/irssi
 ## aparência
