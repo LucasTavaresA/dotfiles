@@ -298,6 +298,11 @@ return require("packer").startup(function(use)
   })
 
   --- Code
+  -- fecha if case etc
+  use({
+    "RRethy/nvim-treesitter-endwise",
+    requires = "nvim-treesitter/nvim-treesitter",
+  })
   -- executar código dependendo do cwd
   use({
     "LucasTavaresA/command.nvim",
@@ -548,6 +553,9 @@ return require("packer").startup(function(use)
         --   enable = true,
         --   extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
         -- },
+        endwise = {
+          enable = true,
+        },
       })
     end,
   })
