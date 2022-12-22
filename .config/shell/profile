@@ -154,22 +154,30 @@ export LC_TIME="pt_BR.UTF-8"
 
 [ "$HOSTNAME" = "$OS"note ] && export LIBGL_ALWAYS_SOFTWARE=1
 
+running="$(ps cax)"
+is_running() {
+    if echo "$running" | grep -qF "$@"; then
+        return 0
+    fi
+    return 1
+}
+
 ## GPG/SSH
 export GNUPGHOME="$HOME/.gnupg"
 SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 export SSH_AUTH_SOCK
-pgrep -x ssh-agent || eval "$(ssh-agent -s)"
+is_running "ssh-agent" || eval "$(ssh-agent -s)"
 
 ## Execute
 fork() {
     fzf_man update >/dev/null 2>&1
-    pgrep -x syncthing || syncthing >"$XDG_CACHE_HOME/syncthing.log" 2>&1 &
-    pgrep -x transmission-da || transmission-daemon >/dev/null 2>&1
+    is_running "syncthing" || syncthing >"$XDG_CACHE_HOME/syncthing.log" 2>&1 &
+    is_running "transmission-da" || transmission-daemon >/dev/null 2>&1
     # musica
-    pgrep -x pipewire || dbus-launch pipewire >"$XDG_CACHE_HOME/pipewire.log" 2>&1 &
-    pgrep -x mpd || mpd >/dev/null 2>&1
-    pgrep -x mpDris2 || dbus-launch mpDris2 --music-dir="$HOME/media/musicas/" >"$XDG_CACHE_HOME/mpdris2.log" 2>&1 &
-    pgrep -x playerctld || dbus-launch playerctld daemon >"$XDG_CACHE_HOME/playerctld.log" 2>&1 &
+    is_running "pipewire" || dbus-launch pipewire >"$XDG_CACHE_HOME/pipewire.log" 2>&1 &
+    is_running "mpd" || mpd >/dev/null 2>&1
+    is_running "mpDris2" || dbus-launch mpDris2 --music-dir="$HOME/media/musicas/" >"$XDG_CACHE_HOME/mpdris2.log" 2>&1 &
+    is_running "playerctld" || dbus-launch playerctld daemon >"$XDG_CACHE_HOME/playerctld.log" 2>&1 &
     mpc update >/dev/null 2>&1
 }
 fork &
