@@ -31,6 +31,8 @@ if status is-interactive
         fisher install meaningful-ooo/sponge
         echo "Installing hydro! [lucas] >"
         fisher install jorgebucaran/hydro
+        echo "Installing puffer-fish! 🐡"
+        fisher install nickeb96/puffer-fish
     end
 
     ## Teclas ##
