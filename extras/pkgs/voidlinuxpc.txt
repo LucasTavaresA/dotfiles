@@ -150,7 +150,6 @@ shellcheck
 shfmt
 simple-mtpfs
 socklog-void
-starship
 streamlink
 sway
 swaybg

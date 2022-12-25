@@ -1,4 +1,5 @@
 ImageMagick
+StyLua
 Vulkan-Headers
 alsa-firmware
 alsa-pipewire
@@ -15,6 +16,7 @@ bc
 cage
 cairo-devel
 cargo
+cargo-update
 ccls
 chafa
 cheat
@@ -34,7 +36,6 @@ ffmpegthumbnailer
 file-devel
 firefox
 fish-shell
-flake8
 font-fira-otf
 font-fira-ttf
 font-inconsolata-otf
@@ -70,7 +71,6 @@ libnotify
 libreoffice
 lsd
 lua
-lua-language-server
 mako
 mdcat
 mediainfo
@@ -137,7 +137,6 @@ shellcheck
 shfmt
 simple-mtpfs
 socklog-void
-starship
 streamlink
 sway
 swayidle
@@ -146,7 +145,8 @@ syncthing
 terminus-font
 tofi
 translate-shell
-transmission-qt
+transmission
+tremc
 ttf-opensans
 ttf-ubuntu-font-family
 ugrep
