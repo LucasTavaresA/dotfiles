@@ -577,6 +577,14 @@ return require("packer").startup(function(use)
               ["[M"] = "@class.outer",
             },
           },
+          lsp_interop = {
+            enable = true,
+            border = "none",
+            peek_definition_code = {
+              ["gp"] = "@function.outer",
+              ["gP"] = "@class.outer",
+            },
+          },
         },
         -- rainbow = {
         --   enable = true,
