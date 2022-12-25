@@ -302,6 +302,15 @@ return require("packer").startup(function(use)
   })
 
   --- Code
+  -- cria prints para debug
+  use({
+    "rareitems/printer.nvim",
+    config = function()
+      require("printer").setup({
+        keymap = "<C-p>", -- Plugin doesn't have any keymaps by default
+      })
+    end,
+  })
   -- fecha if case etc
   use({
     "RRethy/nvim-treesitter-endwise",
