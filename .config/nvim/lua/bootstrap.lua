@@ -1055,7 +1055,6 @@ return require("packer").startup(function(use)
   -- debug
   use({
     "mfussenegger/nvim-dap",
-    rocks = "dap",
     opt = true,
     ft = { "cs" },
     requires = {
