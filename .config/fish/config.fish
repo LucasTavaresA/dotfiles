@@ -29,6 +29,8 @@ if status is-interactive
         fisher install jorgebucaran/autopair.fish
         echo "Installing sponge! 🧽"
         fisher install meaningful-ooo/sponge
+        echo "Installing hydro! [lucas] >"
+        fisher install jorgebucaran/hydro
     end
 
     ## Teclas ##
@@ -355,5 +357,11 @@ if status is-interactive
     end
 
     ## Prompt ##
-    starship init fish | source
+    set -g hydro_symbol_prompt '>'
+    set -g hydro_color_pwd cyan
+    set -g hydro_color_git magenta
+    set -g hydro_color_error red
+    set -g hydro_color_prompt green
+    set -g hydro_color_duration yellow
+    set -g fish_prompt_pwd_dir_length 0
 end

@@ -311,5 +311,4 @@ elif [ "$OS" = "linuxmint" ]; then
 fi
 
 # prompt
-# PS1="\e[01;37m[\u] \w\e[m \e[01;32m>\e[m"
-eval "$(starship init bash)"
+PS1="\[\e[01;37m\][\u] \w \[\e[01;32m>\e[m\]"
