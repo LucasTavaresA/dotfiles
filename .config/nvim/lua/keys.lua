@@ -139,8 +139,6 @@ end, s)
 Autocmd("FileType", { "TelescopePrompt" }, function()
   close()
 end)
--- trocar de buffer - telescope
-vks(nvi, "<C-Tab>", "<esc>:Telescope buffers<CR>", s)
 -- lista de diagnostico - telescope
 vks(nv, "<leader>D", function()
   require("telescope.builtin").diagnostics({})
