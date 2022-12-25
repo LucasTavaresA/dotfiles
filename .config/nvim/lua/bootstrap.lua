@@ -27,8 +27,6 @@ return require("packer").startup(function(use)
   use("lewis6991/impatient.nvim")
   -- gerenciador de pacotes
   use("wbthomason/packer.nvim")
-  -- mostra tempo para iniciar
-  use({ "dstein64/vim-startuptime", opt = true, cmd = { "StartupTime" } })
   -- dependência de múltiplos pacotes
   use("nvim-lua/plenary.nvim")
 
