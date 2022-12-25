@@ -704,6 +704,8 @@ return require("packer").startup(function(use)
               null_ls.builtins.hover.printenv,
               -- csharp
               null_ls.builtins.formatting.csharpier,
+              -- escrita
+              null_ls.builtins.diagnostics.write_good,
             },
             on_attach = function(client, bufnr)
               if client.supports_method("textDocument/formatting") then
@@ -1363,15 +1365,6 @@ return require("packer").startup(function(use)
   })
   -- previsão de markdown
   use({ "ellisonleao/glow.nvim", opt = true, cmd = { "Glow" } })
-  -- indica mals hábitos de escrita
-  use({
-    "davidbeckingsale/writegood.vim",
-    opt = true,
-    ft = { "markdown", "org", "norg", "txt" },
-    config = function()
-      vim.cmd("call timer_start(300, { tid -> execute('WritegoodEnable')})")
-    end,
-  })
   -- move entre headings
   use({
     "crispgm/telescope-heading.nvim",
