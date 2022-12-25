@@ -176,7 +176,6 @@ fork() {
     # musica
     is_running "pipewire" || dbus-launch pipewire >"$XDG_CACHE_HOME/pipewire.log" 2>&1 &
     is_running "mpd" || mpd >/dev/null 2>&1
-    is_running "mpDris2" || dbus-launch mpDris2 --music-dir="$HOME/media/musicas/" >"$XDG_CACHE_HOME/mpdris2.log" 2>&1 &
     is_running "playerctld" || dbus-launch playerctld daemon >"$XDG_CACHE_HOME/playerctld.log" 2>&1 &
     mpc update >/dev/null 2>&1
 }
