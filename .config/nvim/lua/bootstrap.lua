@@ -399,19 +399,6 @@ return require("packer").startup(function(use)
       vim.g["conjure#mapping#def_word"] = false
     end,
   })
-  -- troca parâmetros de lugar
-  use({
-    "Wansmer/sibling-swap.nvim",
-    requires = { "nvim-treesitter" },
-    config = function()
-      require("sibling-swap").setup({
-        keymaps = {
-          ["<A-l>"] = "swap_with_right",
-          ["<A-h>"] = "swap_with_left",
-        },
-      })
-    end,
-  })
   -- comenta linhas
   use({
     "echasnovski/mini.comment",
@@ -560,6 +547,15 @@ return require("packer").startup(function(use)
               },
             },
             include_surrounding_whitespace = true,
+          },
+          swap = {
+            enable = true,
+            swap_next = {
+              ["<A-l>"] = "@parameter.inner",
+            },
+            swap_previous = {
+              ["<A-h>"] = "@parameter.inner",
+            },
           },
         },
         -- rainbow = {
