@@ -133,7 +133,7 @@ gsl () {
     if [ $action = "branch" ]; then
         read "name?Branch name: "
         [ -z $name ] && return
-        git stash branch $name $stash && return
+        git stash branch $name $snum && return
     fi
 
     git stash $action $snum

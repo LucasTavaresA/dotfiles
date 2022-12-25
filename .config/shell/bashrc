@@ -6,11 +6,12 @@
 
 #### Bash exports ####
 export SHELL="/bin/bash"
-export GPG_TTY=$(tty)
+GPG_TTY="$(tty)"
+export GPG_TTY
 
 # ignora case-sensitivity quando completa comandos com tab
-if [ ! -a $HOME/.config/readline/inputrc ]; then echo '$include /etc/inputrc' >$HOME/.config/readline/inputrc; fi
-echo 'set completion-ignore-case On' >>$HOME/.config/readline/inputrc
+if [ ! -a "$HOME/.config/readline/inputrc" ]; then echo "\$include /etc/inputrc" >"$HOME/.config/readline/inputrc"; fi
+echo 'set completion-ignore-case On' >>"$HOME/.config/readline/inputrc"
 # corrige automaticamente erros ao usar o cd
 shopt -s cdspell
 # salva comandos de múltiplas linhas como uma linha única
@@ -28,7 +29,7 @@ hc() {
 ea() {
     arquivo=$(locate -Ai "$@" | fzf)
     if [ -n "$arquivo" ]; then
-        eval $EDITOR "$arquivo"
+        eval "$EDITOR" "$arquivo"
     fi
 }
 
@@ -36,84 +37,84 @@ ea() {
 ee() {
     executavel=$(dmenu_path | fzf)
     if [ -x "$executavel" ]; then
-        eval $EDITOR "$executavel"
+        eval "$EDITOR" "$executavel"
     fi
 }
 
 # git bare dotfiles
 git() {
-    if [ $(pwd) = $HOME ] && [ $1 != "init" ]; then
-        /usr/bin/git --git-dir="$HOME/.dotfiles/" $@
+    if [ "$(pwd)" = "$HOME" ] && [ "$1" != "init" ]; then
+        /usr/bin/git --git-dir="$HOME/.dotfiles/" "$@"
     else
-        /usr/bin/git $@
+        /usr/bin/git "$@"
     fi
 }
 
 # git status recursivo
 gsr() {
-    cdir=$(pwd)
-    for repo in $(fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | ugrep '\.git/$'); do
-        repo=$(echo $repo | sed 's/\/.git\/$//')
-        cd $repo
+    (
+        for repo in $(fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | ugrep '\.git/$'); do
+            repo=$(echo "$repo" | sed 's/\/.git\/$//')
+            cd "$repo" || echo "cant cd into $repo" && exit 1
 
-        cols=$(tput cols)
-        i=0
-        while [ $i -lt $cols ]; do
-            echo -n "─"
-            i=$((i + 1))
+            cols=$(tput cols)
+            i=0
+            while [ "$i" -lt "$cols" ]; do
+                echo -n "─"
+                i=$((i + 1))
+            done
+
+            if git status | grep nothing >/dev/null; then
+                printf "\033[96m\033[1m%s\033[0m\n" "$repo"
+            else
+                printf "\033[96m\033[1m%s\033[0m\n" "$repo"
+                git status
+            fi
         done
-
-        if git status | grep nothing >/dev/null; then
-            printf "\033[96m\033[1m%s\033[0m\n" "$repo"
-        else
-            printf "\033[96m\033[1m%s\033[0m\n" "$repo"
-            git status
-        fi
-    done
-    cd $cdir
+    )
 }
 
 # git pull recursivo
 gpr() {
-    cdir=$(pwd)
-    for repo in $(fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | ugrep '\.git/$'); do
-        repo=$(echo $repo | sed 's/\/.git\/$//')
-        cd $repo
+    (
+        for repo in $(fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | ugrep '\.git/$'); do
+            repo=$(echo "$repo" | sed 's/\/.git\/$//')
+            cd "$repo" || echo "cant cd into $repo" && exit 1
 
-        cols=$(tput cols)
-        i=0
-        while [ $i -lt $cols ]; do
-            echo -n "─"
-            i=$((i + 1))
+            cols=$(tput cols)
+            i=0
+            while [ "$i" -lt "$cols" ]; do
+                echo -n "─"
+                i=$((i + 1))
+            done
+            echo
+
+            read -p "pull $repo ? [y/N] " -n 1 -r
+            echo
+            if [[ "$REPLY" =~ ^[Yy]$ ]]; then
+                git pull
+            fi
         done
-        echo
-
-        read -p "pull $repo ? [y/N] " -n 1 -r
-        echo
-        if [[ $REPLY =~ ^[Yy]$ ]]; then
-            git pull
-        fi
-    done
-    cd $cdir
+    )
 }
 
 # git stash list
 # usa o fzf para selecionar uma stash e uma ação
 gsl() {
     snum="$(git stash list | fzf | sed 's/^.*{//;s/}.*$//')"
-    [ -z $snum ] && return
+    [ -z "$snum" ] && return
     action="$(printf "pop\napply\ndrop\nshow\nbranch\nclear" | fzf)"
-    [ -z $action ] && return
+    [ -z "$action" ] && return
 
-    [ "$action" = "clear" ] && git stash $action && return
+    [ "$action" = "clear" ] && git stash "$action" && return
 
-    if [ $action = "branch" ]; then
+    if [ "$action" = "branch" ]; then
         read -p "Branch name: " -r name
-        [ -z $name ] && return
-        git stash branch $name $stash && return
+        [ -z "$name" ] && return
+        git stash branch "$name" "$snum" && return
     fi
 
-    git stash $action $snum
+    git stash "$action" "$snum"
 }
 
 # facilita extrair arquivos
@@ -152,9 +153,9 @@ ex() {
 }
 
 criar_script() {
-    lang=$1
-    arquivo=$2
-    printf "#!/usr/bin/env $lang\n${*:3}" >$arquivo
+    lang="$1"
+    arquivo="$2"
+    printf "#!/usr/bin/env %s\n${*:3}" "$lang" >"$arquivo"
 }
 
 #### Aliases ####
