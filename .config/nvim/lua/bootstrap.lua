@@ -1379,14 +1379,6 @@ return require("packer").startup(function(use)
   })
   -- previsão de markdown
   use({ "ellisonleao/glow.nvim", opt = true, cmd = { "Glow" } })
-  -- move entre headings
-  use({
-    "crispgm/telescope-heading.nvim",
-    requires = { "nvim-telescope/telescope.nvim" },
-    config = function()
-      require("telescope").load_extension("heading")
-    end,
-  })
   -- edita blocos de código em um pop-up confiável
   use({
     "AckslD/nvim-FeMaco.lua",
