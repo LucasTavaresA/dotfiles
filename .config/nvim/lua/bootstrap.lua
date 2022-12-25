@@ -37,6 +37,10 @@ return require("packer").startup(function(use)
   use({
     "aduros/ai.vim",
     setup = function()
+      vim.api.nvim_set_keymap("n", "<A-a>", ":AI ", { noremap = true })
+      vim.api.nvim_set_keymap("v", "<A-a>", ":AI ", { noremap = true })
+      vim.api.nvim_set_keymap("i", "<A-a>", "<Esc>:AI<CR>a", { noremap = true })
+      vim.g.ai_no_mappings = true
       vim.env.OPENAI_API_KEY =
         io.open(os.getenv("HOME") .. "/.gnupg/openai_key", "r")
           :read("*all")
