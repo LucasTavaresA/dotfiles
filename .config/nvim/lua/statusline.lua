@@ -61,19 +61,6 @@ local comps = {
       hl = { fg = theme.cyan },
     },
   },
-  gh = {
-    provider = function()
-      local notifications =
-        require("github-notifications").statusline_notifications()
-      if notifications.count > 0 then
-        return tostring(notifications.count)
-      else
-        return ""
-      end
-    end,
-    icon = " ",
-    hl = { fg = theme.lightblue },
-  },
   git = {
     branch = {
       provider = "git_branch",
@@ -116,7 +103,6 @@ table.insert(components.inactive, {})
 table.insert(components.active[1], comps.separator)
 table.insert(components.active[1], comps.search_count)
 table.insert(components.active[1], comps.macro)
-table.insert(components.active[1], comps.gh)
 
 -- Center
 table.insert(components.active[2], comps.diagnos.err)
