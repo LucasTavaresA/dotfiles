@@ -360,10 +360,10 @@ if status is-interactive
 
     ## Prompt ##
     set -g hydro_symbol_prompt '>'
-    set -g hydro_color_pwd cyan
-    set -g hydro_color_git magenta
-    set -g hydro_color_error red
-    set -g hydro_color_prompt green
+    set -g hydro_color_pwd -o cyan
+    set -g hydro_color_git -o F50
+    set -g hydro_color_error -o red
+    set -g hydro_color_prompt brgreen
     set -g hydro_color_duration yellow
     set -g fish_prompt_pwd_dir_length 0
 end
