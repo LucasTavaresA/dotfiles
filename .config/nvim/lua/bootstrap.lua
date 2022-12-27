@@ -209,19 +209,6 @@ return require("packer").startup(function(use)
       })
     end,
   })
-  -- Previne o uso de teclas ineficientes
-  use({
-    "ja-ford/delaytrain.nvim",
-    config = function()
-      require("delaytrain").setup({
-        keys = { -- Which keys (in which modes) should be delayed
-          ["nv"] = { "h", "j", "k", "l" },
-        },
-        grace_period = 2,
-        ignore_filetypes = { "Neogit", "netrw" },
-      })
-    end,
-  })
 
   --- Editar
   -- troca/coloca aspas/parenteses

@@ -17,11 +17,6 @@ local nv = { "n", "v" }
 vg.mapleader = " "
 vg.maplocalleader = " "
 
--- desativa setas
-vks(nv, "<Up>", "")
-vks(nv, "<Down>", "")
-vks(nv, "<Right>", "")
-vks(nv, "<Left>", "")
 -- treesitter incremental_selection
 vks("n", "<S-j>", "")
 -- não sai do insert mode com escape/C-c

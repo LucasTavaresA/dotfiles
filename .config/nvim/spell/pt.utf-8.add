@@ -199,4 +199,4 @@ autocmds
 quickfix
 gruvbox
 flake8
-shellcheck
+shellscript
