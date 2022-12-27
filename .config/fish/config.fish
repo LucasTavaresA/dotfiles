@@ -359,11 +359,43 @@ if status is-interactive
     end
 
     ## Prompt ##
+    function fish_mode_prompt
+        if test "$fish_key_bindings" != fish_default_key_bindings
+            set --local vi_mode_color
+            set --local vi_mode_symbol
+            switch $fish_bind_mode
+                case default
+                    set vi_mode_color (set_color $fish_color_selection)
+                    set vi_mode_symbol N
+                case insert
+                    set vi_mode_color (set_color green -b 060)
+                    set vi_mode_symbol I
+                case replace replace_one
+                    set vi_mode_color (set_color -b red)
+                    set vi_mode_symbol R
+                case visual
+                    set vi_mode_color (set_color -b blue)
+                    set vi_mode_symbol V
+            end
+            set -g vi_mode_indicator "$vi_mode_color $vi_mode_symbol \x1b[0m"
+        end
+    end
+
     set -g hydro_symbol_prompt '>'
     set -g hydro_color_pwd -o cyan
     set -g hydro_color_git -o F50
     set -g hydro_color_error -o red
-    set -g hydro_color_prompt brgreen
+    set -g hydro_color_prompt -o brgreen
     set -g hydro_color_duration yellow
     set -g fish_prompt_pwd_dir_length 0
+    function fish_prompt --description Hydro
+        set -g hy_user "$(set_color green)$USER@$HOSTNAME$hydro_color_normal"
+        set -g hy_pwd "$_hydro_color_pwd$_hydro_pwd$hydro_color_normal"
+        set -g hy_git "$_hydro_color_git$$_hydro_git$hydro_color_normal"
+        set -g hy_duration "$_hydro_color_duration$_hydro_cmd_duration$hydro_color_normal"
+        set -g hy_prompt "$_hydro_color_status$_hydro_status$hydro_color_normal"
+        set -g hy_top "$hy_user $hy_pwd $hy_git $hy_duration"
+        set -g hy_bottom "$vi_mode_indicator$hy_prompt"
+        echo -e "$hy_top\n$hy_bottom"
+    end
 end
