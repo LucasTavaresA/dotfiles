@@ -91,7 +91,7 @@ cmd trash ${{
     printf "%s\n\t" "$fx"
     printf "deletar?[y/N]"
     read ans
-    [ $ans = "y" ] && lixo $fx
+    [ $ans = "y" ] && trash $fx
 }}
 
 cmd mkdir ${{

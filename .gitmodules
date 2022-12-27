@@ -16,3 +16,6 @@
 [submodule "code/c/fastfetch"]
 	path = code/c/fastfetch
 	url = https://github.com/lucastavaresa/fastfetch
+[submodule "code/shellscripts/trash"]
+	path = code/shellscripts/trash
+	url = https://github.com/lucastavaresa/posix-trash.git

@@ -249,8 +249,8 @@ if status is-interactive
     abbr -a -g xp xprop
     abbr -a -g xk xkill
     # arquivos e Diretórios
-    abbr -a -g rm lixo
-    abbr -a -g rml lixo limpar
+    abbr -a -g rm trash
+    abbr -a -g rml trash clean
     abbr -a -g g ugrep --color -iIn
     abbr -a -g l lsd -AX1 --group-dirs first
     abbr -a -g la lsd -lXA1 --group-dirs first
