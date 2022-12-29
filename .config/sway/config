@@ -46,6 +46,15 @@ client.placeholder      #555555 #555555 #ffffff #555555    #555555
 client.background       #ffffff
 
 # Regras
+for_window [app_id="^Picture-in-Picture$"] {
+  floating enable
+  resize set height 320
+  resize set width  600
+  border none
+  sticky toggle
+  move position 680 380
+  opacity 0.85
+}
 ## Não desliga a tela quando em tela cheia
 for_window [class="^.*"] inhibit_idle fullscreen
 for_window [app_id="^.*"] inhibit_idle fullscreen

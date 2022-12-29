@@ -239,7 +239,8 @@ if status is-interactive
         abbr -a -g yt "yt-dlp -P ~/Downloads --write-subs -f 'worstvideo*[height=720]+worstaudio/worst[height=720]'"
     end
     abbr -a -g yta yt-dlp -x
-    abbr -a -g ytw streamlink
+    abbr -a -g ytw "mpv --ytdl-format='worstvideo*[height=720]+worstaudio/worst[height=720]' --cache=yes --demuxer-max-bytes=2048Kib --wayland-app-id=Picture-in-Picture"
+    abbr -a -g sw "streamlink -a '--wayland-app-id=Picture-in-Picture'"
     abbr -a -g mi make install
     abbr -a -g mu make uninstall
     abbr -a -g dmi doas make install
