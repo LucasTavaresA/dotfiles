@@ -19,9 +19,6 @@ vg.maplocalleader = " "
 
 -- treesitter incremental_selection
 vks("n", "<S-j>", "")
--- não sai do insert mode com escape/C-c
-vks("i", "<esc>", "", ns)
-vks("i", "<C-c>", "", ns)
 -- sobe/desce uma tela
 vks(nvi, "<C-j>", "<C-d>", ns)
 vks(nvi, "<C-k>", "<C-u>", ns)
