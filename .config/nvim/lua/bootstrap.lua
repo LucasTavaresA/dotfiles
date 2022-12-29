@@ -438,7 +438,7 @@ return require("packer").startup(function(use)
       -- visualiza arvore treesitter
       { "nvim-treesitter/playground", opt = true, cmd = "TSPlaygroundToggle" },
       { "ziontee113/query-secretary" },
-      -- { "p00f/nvim-ts-rainbow" },
+      { "p00f/nvim-ts-rainbow" },
       -- melhor indicação de parâmetros e seu uso
       {
         "m-demare/hlargs.nvim",
@@ -585,10 +585,10 @@ return require("packer").startup(function(use)
             },
           },
         },
-        -- rainbow = {
-        --   enable = true,
-        --   extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-        -- },
+        rainbow = {
+          enable = true,
+          extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+        },
         endwise = {
           enable = true,
         },
