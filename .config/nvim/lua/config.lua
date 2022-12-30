@@ -84,24 +84,12 @@ local vansh = vim.api.nvim_set_hl
 vo.background = "dark"
 -- tema
 vc.colorscheme("gruvbox")
--- transparência
 vansh(0, "Normal", { bg = nil, ctermbg = nil })
 vansh(0, "NormalFloat", { bg = nil, ctermbg = nil })
-vansh(0, "NormalNC", { bg = "#000000", ctermbg = nil })
-vansh(0, "EndOfBuffer", { bg = nil, ctermbg = nil })
--- cor das palavras procuradas
-vansh(0, "Search", { bg = "#ffff00", fg = "#202020" })
--- signcolumn transparente
-vansh(0, "SignColumn", { bg = nil, ctermbg = nil })
--- Palavras erradas
-vansh(0, "SpellBad", { fg = "#ff0000", ctermfg = "Red", undercurl = true })
--- indicação de linha atual
-vansh(0, "CursorLine", { bg = "#202020" })
-vansh(0, "CursorColumn", { bg = "#202020" })
--- indicação em 80 caracteres
-vansh(0, "ColorColumn", { bg = "#202020" })
+vansh(0, "NormalNC", { bg = "#000000", ctermbg = "black" })
+vansh(0, "EndOfBuffer", { bg = "#000000", ctermbg = "black" })
 -- folds
-vansh(0, "folded", { bg = "#505000", fg = "#fe8019" })
+vansh(0, "folded", { bg = "#000000", fg = "#ff5500" })
 -- Indica texto copiado
 Autocmd("TextYankPost", { "*" }, function()
   vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
