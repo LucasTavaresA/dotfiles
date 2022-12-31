@@ -88,6 +88,7 @@ vansh(0, "Normal", { bg = nil, ctermbg = nil })
 vansh(0, "NormalFloat", { bg = nil, ctermbg = nil })
 vansh(0, "NormalNC", { bg = "#000000", ctermbg = "black" })
 vansh(0, "EndOfBuffer", { bg = "#000000", ctermbg = "black" })
+vansh(0, "SignColumn", { bg = nil, ctermbg = nil })
 -- folds
 vansh(0, "folded", { bg = "#000000", fg = "#ff5500" })
 -- Indica texto copiado
@@ -126,6 +127,8 @@ vo.laststatus = 3
 vo.cmdheight = 0
 -- mostra a tabline
 vo.showtabline = 0
+-- ativa a signcolumn
+vo.signcolumn = "yes:9"
 
 --- ajuda
 Autocmd(
@@ -136,7 +139,7 @@ Autocmd(
 
 --- Números
 vo.number = true
-vo.numberwidth = 1
+vo.numberwidth = 3
 vo.relativenumber = true
 Autocmd("TermOpen", { "*" }, "setlocal nonumber norelativenumber")
 
