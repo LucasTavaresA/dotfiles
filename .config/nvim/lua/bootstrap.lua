@@ -1218,14 +1218,6 @@ return require("packer").startup(function(use)
   })
   -- esconde palavras pesquisadas
   use("romainl/vim-cool")
-  -- informações na barra de scroll
-  use({
-    "lewis6991/satellite.nvim",
-    config = function()
-      require("satellite").setup()
-      vim.api.nvim_set_hl(0, "ScrollView", { bg = "#505000" })
-    end,
-  })
   -- mantem cursor no centro da tela
   use({
     "vvvvv/yfix.nvim",
