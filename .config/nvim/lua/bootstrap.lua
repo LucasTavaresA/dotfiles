@@ -407,9 +407,9 @@ return require("packer").startup(function(use)
   })
   -- fecha parenteses automaticamente
   use({
-    "echasnovski/mini.pairs",
+    "windwp/nvim-autopairs",
     config = function()
-      require("mini.pairs").setup({})
+      require("nvim-autopairs").setup({})
     end,
   })
   -- indentação e indicação de sintaxe
