@@ -220,7 +220,6 @@ if status is-interactive
     abbr -a -g as "abbr | ugrep --color -i"
     abbr -a -g ff flashfetch
     abbr -a -g v nvim
-    abbr -a -g vu "nvim --headless -u NONE -c 'lua require(\"bootstrap\")' -c 'autocmd User PackerComplete quitall' -c 'PackerSync'"
     abbr -a -g vc nvim --clean
     abbr -a -g vv term_open -a nvim nvim
     abbr -a -g h htop

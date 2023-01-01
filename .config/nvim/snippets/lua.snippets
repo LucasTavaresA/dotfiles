@@ -1,12 +1,12 @@
-# packer plugin
+# lazy plugin
 snippet use
-	use("$1")
+	"$1",
 
-# packer plugin with setup
+# lazy plugin with setup
 snippet usesetup
-	use({
+	{
 	  "$1",
 	  config = function()
-	    require("$2").setup()
-	  end$0
-	})
+	    require("$2").setup({$3})
+	  end,$0
+	},
