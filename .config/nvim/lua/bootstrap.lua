@@ -599,6 +599,7 @@ require("lazy").setup({
   {
     "neovim/nvim-lspconfig",
     dependencies = {
+      "Decodetalkers/csharpls-extended-lsp.nvim",
       -- neovim
       {
         "folke/neodev.nvim",
@@ -1058,6 +1059,9 @@ require("lazy").setup({
       require("lspconfig").csharp_ls.setup({
         on_attach = On_attach,
         capabilities = capabilities,
+        handlers = {
+          ["textDocument/definition"] = require("csharpls_extended").handler,
+        },
       })
 
       -- instale o lua-language-server
