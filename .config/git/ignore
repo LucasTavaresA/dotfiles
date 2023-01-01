@@ -32,6 +32,7 @@
 .config/ncmpcpp/error.log
 .config/nitrogen/
 .config/npm/_*
+.config/nvim/lazy-lock.json
 .config/nvim/plugin/
 .config/pulse/
 .config/rational-emacs/var/

@@ -112,17 +112,13 @@ vks(nv, "<leader>gb", ":Gitsigns toggle_current_line_blame<CR>", s)
 -- navega entre diffs - gitsigns
 vks(nv, "[g", ":Gitsigns prev_hunk<CR>", s)
 vks(nv, "]g", ":Gitsigns next_hunk<CR>", s)
--- move linha - move.nvim
+-- move.nvim
 vks("n", "<A-j>", ":MoveLine(1)<CR>", ns)
 vks("n", "<A-k>", ":MoveLine(-1)<CR>", ns)
 vks("v", "<A-j>", ":MoveBlock(1)<CR>", ns)
 vks("v", "<A-k>", ":MoveBlock(-1)<CR>", ns)
-vks("i", "<A-j>", "<esc>:MoveLine(1)<CR>", ns)
-vks("i", "<A-k>", "<esc>:MoveLine(-1)<CR>", ns)
--- alinhar texto - align
-vks("v", "<leader>a", function()
-  require("align").align_to_string(false, true, true)
-end, ns)
+vks("i", "<A-j>", "<esc>:MoveLine(1)<CR>i", ns)
+vks("i", "<A-k>", "<esc>:MoveLine(-1)<CR>i", ns)
 -- abre/fecha fold - fold-cycle
 vks(nvi, "<tab>", function()
   require("fold-cycle").open()
