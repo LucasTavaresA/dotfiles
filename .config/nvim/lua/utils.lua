@@ -55,17 +55,30 @@ function Update_cwd()
     vim.env.GIT_WORK_TREE = nil
   end
 
+  local group = vim.api.nvim_create_augroup("stylua", {})
+
   if vim.fn.getcwd() == HOME then
-    Autocmd(
-      "BufWritePost",
-      { "*.lua" },
-      "!stylua --config-path $HOME/.config/nvim/stylua.toml %"
-    )
+    vim.api.nvim_create_autocmd("BufWritePost", {
+      group = group,
+      pattern = "*.lua",
+      command = "!stylua --config-path $HOME/.config/nvim/stylua.toml %",
+    })
   else
-    Autocmd(
-      "BufWritePost",
-      { "*.lua" },
-      "!stylua --config-path $(fd -t f -d 4 --max-results 1 stylua.toml .) %"
-    )
+    vim.api.nvim_create_autocmd("BufWritePost", {
+      group = group,
+      pattern = "*.lua",
+      command = "!stylua --config-path $(fd -t f -d 4 --max-results 1 stylua.toml .) %",
+    })
+  end
+end
+
+function NetrwToggle()
+  if vim.o.ft == "netrw" then
+    vim.cmd.Lexplore()
+    vim.opt.signcolumn = "yes:9"
+  else
+    vim.opt.signcolumn = "no"
+    vim.cmd.Lexplore()
+    vim.opt.signcolumn = "yes"
   end
 end

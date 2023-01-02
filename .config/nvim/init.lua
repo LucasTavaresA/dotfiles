@@ -1,4 +1,4 @@
-require("bootstrap")
+require("lazy-setup")
 
 local ok, impatient = pcall(require, "impatient")
 if ok then

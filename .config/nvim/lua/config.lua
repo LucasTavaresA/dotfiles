@@ -83,11 +83,10 @@ local vansh = vim.api.nvim_set_hl
 -- prefere modo escuro
 vo.background = "dark"
 -- tema
-vc.colorscheme("gruvbox")
+pcall(vim.cmd.colorscheme, "gruvbox")
 vansh(0, "Normal", { bg = nil, ctermbg = nil })
 vansh(0, "NormalFloat", { bg = nil, ctermbg = nil })
 vansh(0, "NormalNC", { bg = "#000000", ctermbg = "black" })
-vansh(0, "EndOfBuffer", { bg = "#000000", ctermbg = "black" })
 vansh(0, "SignColumn", { bg = nil, ctermbg = nil })
 -- folds
 vansh(0, "folded", { bg = "#000000", fg = "#ff5500" })
@@ -148,7 +147,7 @@ vg.sh_fold_enabled = 1
 vo.foldmethod = "syntax"
 vo.foldcolumn = "0"
 vo.foldlevel = 1
-vo.foldnestmax = 3
+vo.foldnestmax = 5
 vim.o.foldopen = "block,insert,jump,mark,percent,quickfix,search,tag,undo"
 Autocmd("FileType", { "gitcommit" }, "norm zr")
 
@@ -164,7 +163,7 @@ Autocmd(
 -- vg.loaded_netrw = 1
 -- vg.loaded_netrwPlugin = 1
 -- define o modo de listagem de arquivos
-vg.netrw_liststyle = 3
+-- vg.netrw_liststyle = 3
 -- remove o banner
 vg.netrw_banner = 0
 -- tamanho da split
