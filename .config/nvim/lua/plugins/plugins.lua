@@ -326,17 +326,6 @@ return {
   },
 
   --- Code
-  -- cria prints para debug
-  {
-    "rareitems/printer.nvim",
-    lazy = true,
-    keys = { "<C-p>" },
-    config = function()
-      require("printer").setup({
-        keymap = "<C-p>", -- Plugin doesn't have any keymaps by default
-      })
-    end,
-  },
   -- executar código dependendo do cwd
   {
     "lucastavaresa/command.nvim",

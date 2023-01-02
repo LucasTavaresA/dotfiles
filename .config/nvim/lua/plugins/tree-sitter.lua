@@ -304,4 +304,16 @@ return {
       })
     end,
   },
+  {
+    "andrewferrier/debugprint.nvim",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    lazy = false,
+    keys = {
+      "g?V",
+      { "<C-s-p>", vim.cmd.DeleteDebugPrints },
+    },
+    config = function()
+      require("debugprint").setup()
+    end,
+  },
 }
