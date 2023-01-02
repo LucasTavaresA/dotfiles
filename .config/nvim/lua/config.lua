@@ -4,7 +4,6 @@ require("keys")
 local vo = vim.opt
 local vg = vim.g
 local vc = vim.cmd
-local vf = vim.fn
 local og = os.getenv
 local HOME = og("HOME")
 local XDG_DATA_HOME = og("XDG_DATA_HOME")
@@ -88,6 +87,8 @@ vansh(0, "Normal", { bg = nil, ctermbg = nil })
 vansh(0, "NormalFloat", { bg = nil, ctermbg = nil })
 vansh(0, "NormalNC", { bg = "#000000", ctermbg = "black" })
 vansh(0, "SignColumn", { bg = nil, ctermbg = nil })
+-- indica parentheses equivalente
+vansh(0, "MatchParen", { bold = true, fg = "#ff0000" })
 -- folds
 vansh(0, "folded", { bg = "#000000", fg = "#ff5500" })
 -- Indica texto copiado
