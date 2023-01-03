@@ -312,7 +312,6 @@ return {
   {
     "andrewferrier/debugprint.nvim",
     dependencies = "nvim-treesitter/nvim-treesitter",
-    lazy = false,
     keys = {
       "g?V",
       { "<C-s-p>", vim.cmd.DeleteDebugPrints },
