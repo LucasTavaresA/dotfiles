@@ -3,10 +3,11 @@ snippet use
 	"$1",
 
 # lazy plugin with setup
-snippet usesetup
+snippet usef
 	{
 	  "$1",
+	  lazy = ${2:true},$0
 	  config = function()
-	    require("$2").setup({$3})
-	  end,$0
+	    require("$3").setup({$4})
+	  end,
 	},
