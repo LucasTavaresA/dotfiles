@@ -8,7 +8,12 @@ return {
       ts_update()
     end,
     dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
+      {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        config = function()
+          vim.keymap.set("n", "<S-j>", "")
+        end,
+      },
       "JoosepAlviste/nvim-ts-context-commentstring",
       "p00f/nvim-ts-rainbow",
       "RRethy/nvim-treesitter-endwise",

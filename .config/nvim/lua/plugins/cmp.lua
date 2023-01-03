@@ -33,6 +33,20 @@ return {
         },
         mapping = cmp.mapping.preset.insert({
           ["<A-e>"] = cmp.mapping.complete({}),
+          ["<C-j>"] = cmp.mapping(function(fallback)
+            if snippy.is_active() then
+              snippy.next()
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+          ["<C-k>"] = cmp.mapping(function(fallback)
+            if snippy.is_active() then
+              snippy.previous()
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
           ["<CR>"] = cmp.mapping.confirm({ select = false }),
           ["<Up>"] = function(fallback)
             fallback()

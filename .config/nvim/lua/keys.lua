@@ -9,8 +9,6 @@ local nv = { "n", "v" }
 vg.mapleader = " "
 vg.maplocalleader = " "
 
--- treesitter incremental_selection
-vks("n", "<S-j>", "")
 -- sobe/desce uma tela
 vks(nvi, "<C-j>", "<C-d>", ns)
 vks(nvi, "<C-k>", "<C-u>", ns)

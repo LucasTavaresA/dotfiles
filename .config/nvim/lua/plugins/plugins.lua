@@ -430,14 +430,7 @@ return {
     dependencies = "honza/vim-snippets",
     lazy = false,
     config = function()
-      require("snippy").setup({
-        mappings = {
-          is = {
-            ["<Tab>"] = "next",
-            ["<S-Tab>"] = "previous",
-          },
-        },
-      })
+      require("snippy").setup({})
     end,
   },
   -- git
