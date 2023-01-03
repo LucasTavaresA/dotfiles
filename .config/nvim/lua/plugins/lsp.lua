@@ -132,12 +132,7 @@ return {
 
         local bns = { buffer = bufnr, noremap = true, silent = true }
         vim.keymap.set({ "n", "v" }, "gD", vim.lsp.buf.declaration, bns)
-        vim.keymap.set(
-          { "n", "v" },
-          "gd",
-          require("telescope.builtin").lsp_definitions,
-          bns
-        )
+        vim.keymap.set({ "n", "v" }, "gd", vim.lsp.buf.definition, bns)
         vim.keymap.set(
           { "n", "v" },
           "gi",
