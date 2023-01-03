@@ -71,7 +71,6 @@ vo.formatoptions = "tcrqn1j"
 vo.wrap = false
 -- indica linha selecionada no modo normal
 vo.cursorline = true
-vo.cursorcolumn = true
 -- esconde marcação
 vo.conceallevel = 3
 -- marcação em 80 caracteres
@@ -85,7 +84,6 @@ vo.background = "dark"
 pcall(vim.cmd.colorscheme, "gruvbox")
 vansh(0, "Normal", { bg = nil, ctermbg = nil })
 vansh(0, "NormalFloat", { bg = nil, ctermbg = nil })
-vansh(0, "NormalNC", { bg = "#000000", ctermbg = "black" })
 vansh(0, "SignColumn", { bg = nil, ctermbg = nil })
 -- indica parentheses equivalente
 vansh(0, "MatchParen", { bold = true, fg = "#ff0000" })
@@ -95,8 +93,8 @@ vansh(0, "folded", { bg = "#000000", fg = "#ff5500" })
 Autocmd("TextYankPost", { "*" }, function()
   vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
 end)
--- indicação de sintaxe
-vc.syntax("on")
+-- sintaxe com regex -- RUIM :(
+vc.syntax("off")
 -- melhora suporte de cores
 vo.termguicolors = true
 
@@ -145,7 +143,7 @@ Autocmd("TermOpen", { "*" }, "setlocal nonumber norelativenumber")
 
 --- Folding
 vg.sh_fold_enabled = 1
-vo.foldmethod = "syntax"
+-- vo.foldmethod = "syntax"
 vo.foldcolumn = "0"
 vo.foldlevel = 1
 vo.foldnestmax = 5

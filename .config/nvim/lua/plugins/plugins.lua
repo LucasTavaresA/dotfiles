@@ -499,17 +499,6 @@ return {
       require("simpleIndentGuides").setup("│", "·")
     end,
   },
-  -- indica instancias da palavra no cursor
-  {
-    "echasnovski/mini.cursorword",
-    lazy = false,
-    config = function()
-      vim.api.nvim_set_hl(0, "MiniCursorWord", { bg = "#505000" })
-      require("mini.cursorword").setup({ delay = 1000 })
-    end,
-  },
-  -- ícones usados em vários plugins
-  -- "kyazdani42/nvim-web-devicons",
   -- tema
   {
     "ellisonleao/gruvbox.nvim",
@@ -599,7 +588,7 @@ return {
     ft = { "markdown", "org", "norg", "txt" },
     config = function()
       vim.cmd([[
-      call timer_start(100, { tid -> execute("nnoremap <silent><buffer> zx :lua require('toggle-checkbox').toggle()<CR>")})
+        call timer_start(100, { tid -> execute("nnoremap <silent><buffer> zx :lua require('toggle-checkbox').toggle()<CR>")})
       ]])
     end,
   },
