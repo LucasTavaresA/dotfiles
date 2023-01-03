@@ -116,7 +116,7 @@ colors:
     focused_match:
       foreground: '#000000'
       background: '#ffff00'
-    bar:
+    footer_bar:
       background: '#000000'
       foreground: '#ffffff'
 
