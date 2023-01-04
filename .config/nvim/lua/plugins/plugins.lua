@@ -458,6 +458,17 @@ return {
           )
         end,
       })
+      require("neogit").setup({
+        disable_commit_confirmation = true,
+        use_magit_keybindings = true,
+        kind = "tab",
+        commit_popup = {
+          kind = "tab",
+        },
+        popup = {
+          kind = "tab",
+        },
+      })
     end,
   },
   -- balanceia parenteses
