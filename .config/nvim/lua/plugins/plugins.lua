@@ -508,6 +508,7 @@ return {
     config = function()
       require("gruvbox").setup({
         transparent_mode = true,
+        inverse = false, -- invert background for search, diffs, statuslines and errors
       })
     end,
   },
