@@ -93,8 +93,6 @@ vansh(0, "folded", { bg = "#000000", fg = "#ff5500" })
 Autocmd("TextYankPost", { "*" }, function()
   vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
 end)
--- sintaxe com regex -- RUIM :(
-vc.syntax("off")
 -- melhora suporte de cores
 vo.termguicolors = true
 
