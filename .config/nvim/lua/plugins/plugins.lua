@@ -492,14 +492,6 @@ return {
       require("unfocused-cursor").setup()
     end,
   },
-  -- mantem cursor no centro da tela
-  {
-    "vvvvv/yfix.nvim",
-    lazy = false,
-    config = function()
-      require("yfix").setup()
-    end,
-  },
   -- indicador de indentação
   {
     "lucastavaresa/simpleIndentGuides.nvim",
