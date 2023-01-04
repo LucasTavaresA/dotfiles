@@ -428,7 +428,8 @@ return {
   {
     "dcampos/nvim-snippy",
     dependencies = "honza/vim-snippets",
-    lazy = false,
+    lazy = true,
+    event = "InsertEnter",
     config = function()
       require("snippy").setup({})
     end,
