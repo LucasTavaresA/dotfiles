@@ -481,8 +481,6 @@ return {
       require("unfocused-cursor").setup()
     end,
   },
-  -- esconde palavras pesquisadas
-  { "romainl/vim-cool", lazy = true, keys = { "n", "N", [[/]], [[?]], [[\]] } },
   -- mantem cursor no centro da tela
   {
     "vvvvv/yfix.nvim",
