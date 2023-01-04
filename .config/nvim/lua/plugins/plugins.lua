@@ -592,16 +592,6 @@ return {
       ]])
     end,
   },
-  --  melhora aparência de headings, blocos de código, etc...
-  --  funciona em org, markdown e norg
-  {
-    "lukas-reineke/headlines.nvim",
-    lazy = true,
-    ft = { "markdown", "org", "norg" },
-    config = function()
-      require("headlines").setup()
-    end,
-  },
   -- previsão de markdown
   { "ellisonleao/glow.nvim", lazy = true, cmd = { "Glow" } },
   -- edita blocos de código em um pop-up confiável
