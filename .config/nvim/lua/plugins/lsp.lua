@@ -167,10 +167,10 @@ return {
       -- diagnostico
       vim.diagnostic.config({
         virtual_text = true,
-        signs = false,
-        underline = false,
+        signs = true,
+        underline = true,
         update_in_insert = false,
-        severity_sort = false,
+        severity_sort = true,
       })
 
       -- instale o clang e o ccls
