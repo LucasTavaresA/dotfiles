@@ -71,6 +71,8 @@ vo.formatoptions = "tcrqn1j"
 vo.wrap = false
 -- indica linha selecionada no modo normal
 vo.cursorline = true
+Autocmd("WinLeave", { "*" }, "set nocursorline")
+Autocmd("WinEnter", { "*" }, "set cursorline")
 -- esconde marcação
 vo.conceallevel = 3
 -- marcação em 80 caracteres

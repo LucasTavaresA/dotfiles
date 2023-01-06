@@ -485,14 +485,6 @@ return {
       require("stabilize").setup()
     end,
   },
-  -- esconde indicadores de cursor em janelas sem foco
-  {
-    "amarakon/nvim-unfocused-cursor",
-    lazy = false,
-    config = function()
-      require("unfocused-cursor").setup()
-    end,
-  },
   -- indicador de indentação
   {
     "lucastavaresa/simpleIndentGuides.nvim",
