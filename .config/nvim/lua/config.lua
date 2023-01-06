@@ -87,6 +87,7 @@ pcall(vim.cmd.colorscheme, "gruvbox")
 vansh(0, "Normal", { bg = nil, ctermbg = nil })
 vansh(0, "NormalFloat", { bg = nil, ctermbg = nil })
 vansh(0, "SignColumn", { bg = nil, ctermbg = nil })
+vansh(0, "FoldColumn", { bg = nil, ctermbg = nil })
 -- indica parentheses equivalente
 vansh(0, "MatchParen", { bold = true, fg = "#ff0000" })
 -- folds
@@ -125,8 +126,17 @@ vo.laststatus = 3
 vo.cmdheight = 0
 -- mostra a tabline
 vo.showtabline = 0
--- ativa a signcolumn
-vo.signcolumn = "yes:9"
+-- centraliza buffers quando ha espaço
+Autocmd("WinEnter", { "*" }, function()
+  if vim.api.nvim_win_get_width(0) < 80 then
+    vo.foldcolumn = "0"
+    vo.signcolumn = "yes:1"
+  else
+    vo.foldcolumn = "9"
+    vo.signcolumn = "yes:5"
+  end
+end)
+vo.signcolumn = "yes:5"
 
 --- ajuda
 Autocmd(
@@ -144,7 +154,7 @@ Autocmd("TermOpen", { "*" }, "setlocal nonumber norelativenumber")
 --- Folding
 vg.sh_fold_enabled = 1
 -- vo.foldmethod = "syntax"
-vo.foldcolumn = "0"
+vo.foldcolumn = "9"
 vo.foldlevel = 1
 vo.foldnestmax = 5
 vim.o.foldopen = "block,insert,jump,mark,percent,quickfix,search,tag,undo"
