@@ -23,7 +23,7 @@ chafa
 cheat
 checkbashisms
 clang
-clipman
+cliphist
 cmake
 ctpv
 curl
@@ -176,6 +176,7 @@ void-repo-nonfree
 vulkan-loader
 w3m
 wayland-protocols
+wev
 wget
 wireplumber
 wl-clipboard
@@ -184,6 +185,7 @@ xdg-desktop-portal-wlr
 xorg-server-xwayland
 xrdb
 xtools
+xxd
 xz
 youtube-dl
 yt-dlp
