@@ -26,6 +26,7 @@ input type:keyboard {
 }
 
 # Aparência
+output * bg $HOME/media/imagens/wallpapers/kaiji_dice.png stretch
 ## sem abas
 font pango:monospace 0
 titlebar_border_thickness 0
@@ -197,7 +198,6 @@ exec foot -T irc -a irc -e irssi --home ~/.config/irssi
 ## Musica
 exec pgrep -x "mpDris2" || mpDris2 --music-dir="$HOME/media/musicas/" >"$XDG_CACHE_HOME/mpdris2.log" 2>&1 &
 ## aparência
-exec swaybg -i $HOME/media/imagens/wallpapers/kaiji_dice.png -m stretch
 exec xrdb -load $HOME/.config/x11/xresources
 ## sistema
 exec checar_updates
