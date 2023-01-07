@@ -3,7 +3,22 @@ return {
   "lewis6991/impatient.nvim",
 
   --- Miscelânea
-  --- mostra informações no cursor
+  -- cria commandos com previsão
+  {
+    "smjonas/live-command.nvim",
+    lazy = true,
+    event = "CmdlineEnter",
+    config = function()
+      require("live-command").setup({
+        commands = {
+          Norm = { cmd = "norm" },
+          D = { cmd = "d" },
+          G = { cmd = "g" },
+        },
+      })
+    end,
+  },
+  -- mostra informações no cursor
   {
     "lewis6991/hover.nvim",
     lazy = true,
