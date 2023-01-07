@@ -85,8 +85,6 @@ Keymaps({
   { nv, "]d", vim.diagnostic.goto_next, ns },
   -- abre snippets
   { nv, "<leader>S", ":e ~/.config/nvim/snippets/" },
-  -- no cmd deleta palavras com backspace
-  { "c", "<backspace>", "<C-w>" },
 })
 
 -- fecha buffers de ajuda
