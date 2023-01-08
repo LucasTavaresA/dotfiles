@@ -341,6 +341,26 @@ return {
   },
 
   --- Code
+  -- commenta codigo
+  {
+    "lucastavaresa/SingleComment.nvim",
+    lazy = true,
+    keys = {
+      {
+        "gcc",
+        function()
+          require("SingleComment").SingleComment()
+        end,
+        mode = { "n", "v" },
+      },
+      {
+        "gca",
+        function()
+          require("SingleComment").SingleCommentAhead()
+        end,
+      },
+    },
+  },
   -- executar código dependendo do cwd
   {
     "lucastavaresa/command.nvim",
@@ -421,14 +441,6 @@ return {
       vim.g["conjure#mapping#eval_motion"] = "e"
       vim.g["conjure#mapping#def_word"] = false
       vim.g["conjure#mapping#doc_word"] = false
-    end,
-  },
-  -- comenta linhas
-  {
-    "echasnovski/mini.comment",
-    lazy = false,
-    config = function()
-      require("mini.comment").setup({})
     end,
   },
   -- fecha parenteses automaticamente

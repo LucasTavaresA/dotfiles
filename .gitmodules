@@ -25,3 +25,6 @@
 [submodule "code/lua/nvim/command.nvim"]
 	path = code/lua/nvim/command.nvim
 	url = https://github.com/lucastavaresa/command.nvim.git
+[submodule "code/lua/nvim/SingleComment.nvim"]
+	path = code/lua/nvim/SingleComment.nvim
+	url = https://github.com/lucastavaresa/SingleComment.nvim.git
