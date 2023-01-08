@@ -9,11 +9,6 @@
 .config/dconf/
 .config/Debauchee/
 .config/discord/
-.config/emacs/auto-save-list/
-.config/emacs/straight/
-.config/emacs/backups/
-.config/emacs/elpa/
-.config/emacs/var/
 .config/fish/completions/
 .config/fish/conf.d/
 .config/fish/functions/
@@ -23,20 +18,16 @@
 .config/GIMP/
 .config/gup/
 .config/gtk-2.0/gtkfilechooser.ini
-.config/hexchat/
 .config/irssi/
 .config/keepassxc/
 .config/libreoffice/
 .config/mpd/
 .config/mpv/watch_later/
 .config/ncmpcpp/error.log
-.config/nitrogen/
 .config/npm/_*
 .config/nvim/lazy-lock.json
 .config/nvim/plugin/
 .config/pulse/
-.config/rational-emacs/var/
-.config/QSyncthingTray/
 .config/qutebrowser/greasemonkey/
 .config/qutebrowser/bookmarks/
 .config/qutebrowser/autoconfig.yml
@@ -50,7 +41,6 @@
 .config/shell/plugins/fsh/
 .config/stumpwm/modules/
 .config/gtkfilechooser.ini
-.config/pam-gnupg
 .config/QtProject.conf
 .config/pmbootstrap.cfg
 .gnupg/
@@ -76,5 +66,4 @@ Sync/
 mnt/
 VirtualBox VMs/
 bkp/
-bin/
 quicklisp/
