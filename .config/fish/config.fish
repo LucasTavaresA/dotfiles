@@ -329,6 +329,8 @@ if status is-interactive
         abbr -a -g sys doas systemctl
     else if test "$OS" = voidlinux
         abbr -a -g xs "./xbps-src"
+        abbr -a -g xS "git clean -Xdf && ./xbps-src binary-bootstrap && ./xbps-src pkg "
+        abbr -a -g xSS "git clean -Xdf && ./xbps-src binary-bootstrap && ./xbps-src -a \*musl pkg "
         # xbps
         abbr -a -g xis doas xbps-install -Sy
         abbr -a -g xqrs xbps-query -Rs

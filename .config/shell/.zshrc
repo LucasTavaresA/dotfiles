@@ -304,6 +304,8 @@ if [ "$OS" = "artixlinux" ] || [ "$OS" = "archlinux" ] || [ "$OS" = "manjaro" ];
     alias sys="doas systemctl"
 elif [ "$OS" = "voidlinux" ]; then
     alias xs="./xbps-src"
+    alias xS="git clean -Xdf && ./xbps-src binary-bootstrap && ./xbps-src pkg"
+    alias xSS="git clean -Xdf && ./xbps-src binary-bootstrap && ./xbps-src -a \*musl pkg"
     # xbps
     alias xis="doas xbps-install -Sy"
     alias xqrs="xbps-query -Rs"
