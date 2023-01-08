@@ -19,3 +19,9 @@
 [submodule "code/shellscripts/trash"]
 	path = code/shellscripts/trash
 	url = https://github.com/lucastavaresa/posix-trash.git
+[submodule "code/lua/nvim/simpleIndentGuides.nvim"]
+	path = code/lua/nvim/simpleIndentGuides.nvim
+	url = https://github.com/lucastavaresa/simpleIndentGuides.nvim.git
+[submodule "code/lua/nvim/command.nvim"]
+	path = code/lua/nvim/command.nvim
+	url = https://github.com/lucastavaresa/command.nvim.git
