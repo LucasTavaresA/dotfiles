@@ -185,22 +185,22 @@ bindings = {
     "<Ctrl-k>": "scroll-page 0 -0.5",
     "u": "undo --window",
     # atalho para assistir link
-    "qvw": "hint links spawn mpv \
+    "qvw": "hint links spawn --detach mpv \
         --ytdl-format='worstvideo*[height=720]+worstaudio/worst[height=720]' \
         --cache=yes --demuxer-max-bytes=2048Kib --wayland-app-id=Picture-in-Picture \
         {hint-url}",
-    "qsw": "hint links spawn streamlink \
+    "qsw": "hint links spawn --detach streamlink \
         -a '--wayland-app-id=Picture-in-Picture' {hint-url}",
     # baixar video
-    "qvd": "hint links spawn term_open -a float yt-dlp -P ~/Downloads \
+    "qvd": "hint links spawn --detach term_open -a float yt-dlp -P ~/Downloads \
         --write-subs -f 'worstvideo*[height=720]+worstaudio/worst[height=720]' \
         {hint-url}",
     # baixar imagem
     "qid": "hint images download",
     # baixar audio
-    "qad": "hint links spawn term_open -a float yt-dlp -x {hint-url}",
+    "qad": "hint links spawn --detach term_open -a float yt-dlp -x {hint-url}",
     # abre pagina no firefox
-    "qf": "spawn firefox {url}",
+    "qf": "spawn --detach firefox {url}",
     # ativa/desativa a barra
     "qq": "config-cycle statusbar.show always never;; config-cycle tabs.show always never",
     # ativa/desativa stylesheets
