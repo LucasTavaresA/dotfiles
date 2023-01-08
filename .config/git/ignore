@@ -56,7 +56,6 @@
 .gnupg/
 .dbus/
 .dotnet/
-.omnisharp/
 .local/
 .mozilla/
 .nuget/
