@@ -1,8 +1,5 @@
 --- Variáveis
 local vg = vim.g
-local n = { noremap = true }
-local s = { silent = true }
-local ns = { noremap = true, silent = true }
 local nv = { "n", "v" }
 local nvi = { "n", "v", "i" }
 vg.mapleader = " "
@@ -19,10 +16,10 @@ end
 
 Keymaps({
   -- sobe/desce uma tela
-  { nvi, "<C-j>", "<C-d>", ns },
-  { nvi, "<C-k>", "<C-u>", ns },
+  { nvi, "<C-j>", "<C-d>" },
+  { nvi, "<C-k>", "<C-u>" },
   -- colar na linha de baixo
-  { nv, "P", ":norm o<CR>p", ns },
+  { nv, "P", "<cmd>norm o<cr>p" },
   -- trocar de split
   { nvi, "<A-Tab>", "<esc><C-w>w" },
   -- formatar buffer
@@ -30,7 +27,7 @@ Keymaps({
   -- formatar paragrafo
   { nv, "<leader>ii", "{=}<C-o>" },
   -- alinhar texto
-  { "v", "<leader>A", ":'<,'>!column -t -o ' '<CR>", s },
+  { "v", "<leader>A", ":!column -t -o ' '<cr>", { silent = true } },
   -- abre arquivos no diretório atual
   {
     nv,
@@ -46,27 +43,27 @@ Keymaps({
   -- mudar o typo de arquivo
   { nv, "<leader>ft", ":setlocal filetype=" },
   -- salvar e fechar buffer
-  { nv, "ZX", ":wq<CR>", s },
+  { nv, "ZX", "<cmd>wq<cr>" },
   -- salvar buffer
-  { nv, "ZZ", ":w<CR>:e<CR>", s },
+  { nv, "ZZ", "<cmd>w<cr><cmd>e<cr>" },
   -- deletar buffer
-  { nv, "<leader>k", ":bd<CR>", s },
+  { nv, "<leader>k", "<cmd>bd<cr>" },
   -- abre o buffer de mensagens
-  { nv, "<leader>m", ":message<CR>", s },
+  { nv, "<leader>m", "<cmd>message<cr>" },
   -- carregar buffer
-  { n, "<leader>eb", ":source %<CR>", s },
+  { "n", "<leader>eb", "<cmd>source %<cr>" },
   -- divide a tela do lado
-  { nvi, "<C-A-l>", "<esc>:vs<CR>", s },
+  { nvi, "<C-A-l>", "<esc><cmd>vs<cr>" },
   -- divide a tela abaixo
-  { nvi, "<C-A-j>", "<esc>:sp<CR>", s },
+  { nvi, "<C-A-j>", "<esc><cmd>sp<cr>" },
   -- copiar buffer
-  { nv, "<leader>bc", "ggVGy<C-o>zz", n },
+  { nv, "<leader>bc", "ggVGy<C-o>zz" },
   -- ativa/desativa números de linha
-  { nv, "zn", ":setlocal number! relativenumber!<CR>", s },
+  { nv, "zn", "<cmd>setlocal number! relativenumber!<cr>" },
   -- ativa/desativa indicação de linha
-  { nv, "zl", ":setlocal cursorline!<CR>", s },
+  { nv, "zl", "<cmd>setlocal cursorline!<cr>" },
   -- ativa/desativa o corretor ortográfico
-  { nv, "zs", ":setlocal spell!<CR>", s },
+  { nv, "zs", "<cmd>setlocal spell!<cr>" },
   -- procura palavra no cursor
   { nv, [[?]], [[*]] },
   -- procura e substitui no arquivo
@@ -74,17 +71,17 @@ Keymaps({
   -- procura e substitui na região selecionada
   { "v", "<leader>s", ":s//gc<left><left><left>" },
   -- abre terminal do sistema no local do arquivo atual
-  { nv, "<leader><return>", ":!sh -c 'cd %:p:h ; term_open' &<CR><CR>", s },
+  { "n", "<leader><return>", "<cmd>!sh -c 'term_open' &<cr><cr>" },
   -- abre terminal nativo em uma split
-  { nvi, "<M-CR>", TerminalToggle },
-  { "t", "<M-CR>", TerminalToggle },
+  { nvi, "<M-cr>", TerminalToggle },
+  { "t", "<M-cr>", TerminalToggle },
   -- executa um macro
   { "n", "Q", "@" },
   -- vai para diagnostico
-  { nv, "[d", vim.diagnostic.goto_prev, ns },
-  { nv, "]d", vim.diagnostic.goto_next, ns },
+  { "n", "[d", vim.diagnostic.goto_prev },
+  { "n", "]d", vim.diagnostic.goto_next },
   -- abre snippets
-  { nv, "<leader>S", ":e ~/.config/nvim/snippets/" },
+  { "n", "<leader>S", ":e ~/.config/nvim/snippets/" },
 })
 
 -- fecha buffers de ajuda
@@ -94,7 +91,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set(
       { "n", "i" },
       "<esc>",
-      "<esc>:bd!<CR>",
+      "<cmd>bd!<cr>",
       { buffer = true, noremap = true, silent = true }
     )
   end,
