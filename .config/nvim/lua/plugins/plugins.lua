@@ -511,15 +511,6 @@ return {
       })
     end,
   },
-  -- statusline
-  {
-    "famiu/feline.nvim",
-    lazy = false,
-    config = function()
-      vim.opt.termguicolors = true
-      require("statusline")
-    end,
-  },
   -- fold mais bonitas
   {
     "anuvyklack/pretty-fold.nvim",
