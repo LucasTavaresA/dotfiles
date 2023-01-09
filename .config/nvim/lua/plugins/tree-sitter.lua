@@ -325,4 +325,28 @@ return {
       require("debugprint").setup()
     end,
   },
+  -- comenta código
+  {
+    "lucastavaresa/SingleComment.nvim",
+    lazy = true,
+    dependencies = "JoosepAlviste/nvim-ts-context-commentstring",
+    init = function()
+      vim.g.SC_ts_context = true
+    end,
+    keys = {
+      {
+        "gcc",
+        function()
+          require("SingleComment").SingleComment()
+        end,
+        mode = { "n", "v" },
+      },
+      {
+        "gca",
+        function()
+          require("SingleComment").SingleCommentAhead()
+        end,
+      },
+    },
+  },
 }

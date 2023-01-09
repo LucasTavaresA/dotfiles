@@ -341,26 +341,6 @@ return {
   },
 
   --- Code
-  -- commenta codigo
-  {
-    "lucastavaresa/SingleComment.nvim",
-    lazy = true,
-    keys = {
-      {
-        "gcc",
-        function()
-          require("SingleComment").SingleComment()
-        end,
-        mode = { "n", "v" },
-      },
-      {
-        "gca",
-        function()
-          require("SingleComment").SingleCommentAhead()
-        end,
-      },
-    },
-  },
   -- executar código dependendo do cwd
   {
     "lucastavaresa/command.nvim",
