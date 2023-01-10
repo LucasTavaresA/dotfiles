@@ -65,7 +65,7 @@ Keymaps({
   -- ativa/desativa o corretor ortográfico
   { nv, "zs", "<cmd>setlocal spell!<cr>" },
   -- procura palavra no cursor
-  { nv, [[?]], [[*]] },
+  { nv, [[?]], "*", { remap = true } },
   -- procura e substitui no arquivo
   { "n", "<leader>s", ":%s//gc<left><left><left>" },
   -- procura e substitui na região selecionada
@@ -76,7 +76,7 @@ Keymaps({
   { nvi, "<M-cr>", TerminalToggle },
   { "t", "<M-cr>", TerminalToggle },
   -- executa um macro
-  { "n", "Q", "@" },
+  { "n", "Q", "@", { remap = true } },
   -- vai para diagnostico
   { "n", "[d", vim.diagnostic.goto_prev },
   { "n", "]d", vim.diagnostic.goto_next },
