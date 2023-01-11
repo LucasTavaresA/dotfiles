@@ -336,7 +336,11 @@ return {
   {
     "mg979/vim-visual-multi",
     lazy = true,
-    keys = { "<C-Down>", "<C-Up>", "<C-n>" },
+    keys = {
+      { "<C-Down>", mode = { "v", "n" } },
+      { "<C-Up>", mode = { "v", "n" } },
+      { "<C-n>", mode = { "v", "n" } },
+    },
     branch = "master",
   },
 
