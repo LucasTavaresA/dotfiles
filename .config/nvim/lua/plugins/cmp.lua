@@ -195,10 +195,10 @@ return {
     "amarakon/nvim-cmp-fonts",
     dependencies = "hrsh7th/nvim-cmp",
     lazy = true,
-    ft = { "conf", "config", "css" },
+    ft = { "conf", "config", "css", "yml", "toml", "dosini" },
     config = function()
       require("cmp").setup.filetype(
-        { "conf", "config", "css" },
+        { "conf", "config", "css", "yml", "toml", "dosini" },
         { sources = { { name = "fonts" } } }
       )
     end,
