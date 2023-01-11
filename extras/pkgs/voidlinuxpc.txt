@@ -62,6 +62,7 @@ gopls
 grimshot
 grub
 gtk-engine-murrine
+gtk2fontsel
 gtkspell3
 harfbuzz
 highlight
@@ -73,7 +74,6 @@ i3blocks
 intel-ucode
 intel-video-accel
 irssi
-irssi-perl
 jq
 keepassxc
 kvantum
