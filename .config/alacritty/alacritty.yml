@@ -43,16 +43,16 @@ window:
 
 font:
   normal:
-    family: Terminus
+    family: SauceCodePro Nerd Font
     style: Regular
   bold:
-    family: Terminus
+    family: SauceCodePro Nerd Font
     style: Bold
   italic:
-    family: Iosevka Term
+    family: SauceCodePro Nerd Font
     style: Italic
   bold_italic:
-    family: Iosevka Term
+    family: SauceCodePro Nerd Font
     style: Bold Italic
   size: 14.0
   #offset:

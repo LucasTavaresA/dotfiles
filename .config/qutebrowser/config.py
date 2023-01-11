@@ -255,17 +255,17 @@ config.source('gruvbox.py')
 
 #### Fontes ####
 # fonte padrão
-c.fonts.default_family = '"Terminus"'
+c.fonts.default_family = '"SauceCodePro Nerd Font"'
 # tamanho padrão das fontes
-c.fonts.default_size = '16px'
+c.fonts.default_size = '14px'
 # fonte usada nas abas de completação de comandos.
-c.fonts.completion.entry = '16px "Terminus"'
+c.fonts.completion.entry = '14px "SauceCodePro Nerd Font"'
 # fonte used for the debugging console.
-c.fonts.debug_console = '16px "Terminus"'
+c.fonts.debug_console = '14px "SauceCodePro Nerd Font"'
 # fonte usada nos prompts.
-c.fonts.prompts = 'default_size "Terminus"'
+c.fonts.prompts = 'default_size "SauceCodePro Nerd Font"'
 # fonte usada na barra de status.
-c.fonts.statusbar = '16px "Terminus"'
+c.fonts.statusbar = '14px "SauceCodePro Nerd Font"'
 
 #### Javascript ####
 config.set('content.javascript.enabled', True, '*://*.10.0.0.2/*')

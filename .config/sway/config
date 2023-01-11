@@ -212,7 +212,7 @@ bar {
         inactive_workspace #000000ff #000000ff #ffffffff
         urgent_workspace #ff0000ff #ff0000ff #000000ff
     }
-    font pango:Terminus 12
+    font pango:SauceCodePro Nerd Font 14px
     status_command i3blocks
     strip_workspace_numbers yes
     position top

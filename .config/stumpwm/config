@@ -161,7 +161,7 @@
 ;;(add-hook *focus-window-hook* 'janela-atual)
 
 ;;; Configuração
-(set-font "-*-terminus-*-*-*-*-14-*-*-*-*-*-*-*")
+(set-font "-*-SauceCodePro Nerd Font-*-*-*-*-14-*-*-*-*-*-*-*")
 (set-normal-gravity :center)
 (set-maxsize-gravity :center)
 (set-transient-gravity :center)
