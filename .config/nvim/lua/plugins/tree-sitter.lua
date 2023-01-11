@@ -329,7 +329,10 @@ return {
   {
     "lucastavaresa/SingleComment.nvim",
     lazy = true,
-    dependencies = "JoosepAlviste/nvim-ts-context-commentstring",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "JoosepAlviste/nvim-ts-context-commentstring",
+    },
     init = function()
       vim.g.SC_ts_context = true
     end,
