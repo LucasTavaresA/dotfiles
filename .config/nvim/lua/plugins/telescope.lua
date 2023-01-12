@@ -117,7 +117,42 @@ return {
           },
         },
         pickers = {
+          current_buffer_fuzzy_find = {
+            theme = "ivy",
+            previewer = false,
+          },
+          oldfiles = {
+            theme = "ivy",
+            previewer = false,
+          },
+          git_files = {
+            theme = "ivy",
+            previewer = false,
+          },
+          highlights = {
+            theme = "ivy",
+          },
+          man_pages = {
+            theme = "ivy",
+          },
+          commands = {
+            theme = "ivy",
+          },
+          vim_options = {
+            theme = "ivy",
+          },
+          help_tags = {
+            theme = "ivy",
+          },
+          keymaps = {
+            theme = "ivy",
+          },
+          diagnostics = {
+            theme = "ivy",
+          },
           find_files = {
+            theme = "ivy",
+            previewer = false,
             find_command = {
               "fd",
               "--strip-cwd-prefix",
