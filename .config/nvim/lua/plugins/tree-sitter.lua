@@ -335,21 +335,20 @@ return {
     },
     init = function()
       vim.g.SC_ts_context = true
-    end,
-    keys = {
-      {
+      vim.keymap.set(
+        "n",
         "gcc",
-        function()
-          require("SingleComment").SingleComment()
-        end,
-        mode = { "n", "v" },
-      },
-      {
+        require("SingleComment").SingleComment,
+        { expr = true }
+      )
+      vim.keymap.set("v", "gcc", require("SingleComment").Comment, {})
+      vim.keymap.set("n", "gcA", require("SingleComment").CommentAhead, {})
+      vim.keymap.set(
+        "n",
         "gca",
-        function()
-          require("SingleComment").SingleCommentAhead()
-        end,
-      },
-    },
+        require("SingleComment").ToggleCommentAhead,
+        {}
+      )
+    end,
   },
 }
