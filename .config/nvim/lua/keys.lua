@@ -75,8 +75,6 @@ Keymaps({
   -- abre terminal nativo em uma split
   { nvi, "<M-cr>", TerminalToggle },
   { "t", "<M-cr>", TerminalToggle },
-  -- executa um macro
-  { "n", "Q", "@", { remap = true } },
   -- vai para diagnostico
   { "n", "[d", vim.diagnostic.goto_prev },
   { "n", "]d", vim.diagnostic.goto_next },

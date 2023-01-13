@@ -3,6 +3,23 @@ return {
   "lewis6991/impatient.nvim",
 
   --- Miscelânea
+  -- melhores macros
+  {
+    "chrisgrieser/nvim-recorder",
+    lazy = false,
+    config = function()
+      require("recorder").setup({
+        mapping = {
+          startStopRecording = "q",
+          playMacro = "Q",
+          switchSlot = "<C-q>",
+          editMacro = "cq",
+          yankMacro = "yq",
+          addBreakPoint = "##",
+        },
+      })
+    end,
+  },
   -- cria commandos com previsão
   {
     "smjonas/live-command.nvim",
