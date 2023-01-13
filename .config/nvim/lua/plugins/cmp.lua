@@ -7,7 +7,6 @@ return {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "dcampos/cmp-snippy",
-      "f3fora/cmp-spell",
       {
         "onsails/lspkind.nvim",
         config = function()
@@ -113,7 +112,6 @@ return {
           { name = "nvim_lsp" },
           { name = "nvim_lua" },
           { name = "fonts", option = { space_filter = "-" } },
-          { name = "spell" },
         }),
       })
     end,
@@ -200,6 +198,18 @@ return {
       require("cmp").setup.filetype(
         { "conf", "config", "css", "yml", "toml", "dosini" },
         { sources = { { name = "fonts" } } }
+      )
+    end,
+  },
+  {
+    "f3fora/cmp-spell",
+    dependencies = "hrsh7th/nvim-cmp",
+    lazy = true,
+    ft = { "markdown", "org", "norg", "txt" },
+    config = function()
+      require("cmp").setup.filetype(
+        { "markdown", "org", "norg", "txt" },
+        { sources = { { name = "spell" } } }
       )
     end,
   },
