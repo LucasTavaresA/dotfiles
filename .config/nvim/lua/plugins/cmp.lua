@@ -107,10 +107,10 @@ return {
           { name = "path" },
           { name = "env" },
           { name = "fish" },
-          { name = "buffer" },
           { name = "snippy" },
           { name = "nvim_lsp" },
           { name = "nvim_lua" },
+          { name = "buffer" },
           { name = "fonts", option = { space_filter = "-" } },
         }),
       })
