@@ -354,6 +354,14 @@ return {
   },
 
   --- Code
+  -- lidar com conflitos git
+  {
+    "akinsho/git-conflict.nvim",
+    lazy = false,
+    config = function()
+      require("git-conflict").setup()
+    end,
+  },
   -- executar código dependendo do cwd
   {
     "lucastavaresa/command.nvim",
