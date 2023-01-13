@@ -233,19 +233,6 @@ return {
       require("undotree").setup()
     end,
   },
-  -- move linhas
-  {
-    "fedepujol/move.nvim",
-    lazy = true,
-    keys = {
-      { "<A-j>", ":MoveLine(1)<CR>", mode = "n", silent = true },
-      { "<A-k>", ":MoveLine(-1)<CR>", mode = "n", silent = true },
-      { "<A-j>", ":MoveBlock(1)<CR>", mode = "v", silent = true },
-      { "<A-k>", ":MoveBlock(-1)<CR>", mode = "v", silent = true },
-      { "<A-j>", "<esc>:MoveLine(1)<CR>i", mode = "i", silent = true },
-      { "<A-k>", "<esc>:MoveLine(-1)<CR>i", mode = "i", silent = true },
-    },
-  },
   -- remove espaços em linhas editadas
   {
     "lewis6991/spaceless.nvim",
@@ -282,36 +269,11 @@ return {
       },
     },
   },
-  -- movimento usando indicadores
-  {
-    "ggandor/leap.nvim",
-    lazy = true,
-    keys = {
-      {
-        "s",
-        function()
-          require("leap").leap({
-            target_windows = vim.tbl_filter(function(win)
-              return vim.api.nvim_win_get_config(win).focusable
-            end, vim.api.nvim_tabpage_list_wins(0)),
-          })
-        end,
-      },
-    },
-    config = function()
-      vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
-      vim.api.nvim_set_hl(0, "LeapMatch", {
-        fg = "white", -- for light themes, set to 'black' or similar
-        bold = true,
-        nocombine = true,
-      })
-      require("leap").opts.highlight_unlabeled_phase_one_targets = true
-    end,
-  },
   -- extende a funcionalidade de f,F,t,T
   {
     "ggandor/flit.nvim",
     dependencies = "ggandor/leap.nvim",
+    lazy = true,
     keys = { "f", "F", "t", "T" },
     config = function()
       require("flit").setup({})
