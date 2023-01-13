@@ -36,6 +36,18 @@ require("lazy").setup("plugins", {
   defaults = {
     lazy = true,
   },
+  performance = {
+    rtp = {
+      -- disable some rtp plugins
+      disabled_plugins = {
+        "gzip",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
   dev = {
     -- directory where you store your local plugin projects
     path = "~/code/lua/nvim/",
