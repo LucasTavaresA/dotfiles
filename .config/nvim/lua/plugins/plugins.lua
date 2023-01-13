@@ -282,38 +282,6 @@ return {
       },
     },
   },
-  -- ações usando indicadores
-  {
-    "Weissle/easy-action",
-    lazy = true,
-    dependencies = {
-      {
-        "kevinhwang91/promise-async",
-        module = { "async" },
-      },
-    },
-    keys = {
-      { [[']], vim.cmd.BasicEasyAction, { silent = true, noremap = true } },
-    },
-    config = function()
-      require("easy-action").setup({
-        jump_provider = "leap",
-        jump_provider_config = {
-          leap = {
-            action_select = {
-              default = function()
-                require("leap").leap({
-                  target_windows = vim.tbl_filter(function(win)
-                    return vim.api.nvim_win_get_config(win).focusable
-                  end, vim.api.nvim_tabpage_list_wins(0)),
-                })
-              end,
-            },
-          },
-        },
-      })
-    end,
-  },
   -- movimento usando indicadores
   {
     "ggandor/leap.nvim",
