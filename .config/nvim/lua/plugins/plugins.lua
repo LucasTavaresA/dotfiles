@@ -332,6 +332,15 @@ return {
       require("flit").setup({})
     end,
   },
+  -- hexadecimal
+  {
+    "RaafatTurki/hex.nvim",
+    lazy = true,
+    cmd = "HexToggle",
+    config = function()
+      require("hex").setup()
+    end,
+  },
   -- múltiplos cursores
   {
     "mg979/vim-visual-multi",
