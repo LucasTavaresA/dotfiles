@@ -22,8 +22,10 @@ chafa
 cheat
 checkbashisms
 clang
-clipman
+cliphist
+cloc
 cmake
+ctpv
 dbus
 dejavu-fonts-ttf
 delta
@@ -33,7 +35,6 @@ exiftool
 expect
 fd
 ffmpegthumbnailer
-file-devel
 firefox
 fish-shell
 font-fira-otf
@@ -109,6 +110,7 @@ pam-gnupg
 pandoc
 patch
 pdf.js
+perl-Net-DBus
 pinentry-qt
 pipewire
 pkgconf
@@ -130,7 +132,6 @@ qt5ct
 qt6-wayland
 qt6ct
 qutebrowser
-rtags
 scdoc
 seatd
 shellcheck
