@@ -206,7 +206,7 @@ if status is-interactive
     abbr -a -g cd z
     abbr -a -g irc irssi --home ~/.config/irssi
     abbr -a -g cat bat
-    abbr -a -g att sgrade
+    abbr -a -g sg sgrade
     abbr -a -g cs criar_script sh script.sh
     abbr -a -g pk pkill -i
     abbr -a -g pg pgrep -ia
@@ -223,16 +223,13 @@ if status is-interactive
     abbr -a -g vc nvim --clean
     abbr -a -g vv term_open -a nvim nvim
     abbr -a -g h htop
-    abbr -a -g ed emacs --daemon
-    abbr -a -g ek "emacsclient -e '(kill-emacs)'"
-    abbr -a -g et "emacsclient -t -a 'nvim'"
-    abbr -a -g e "emacsclient -n -c -a 'term_open -a nvim nvim'"
     abbr -a -g copy xclip -selection clipboard
     abbr -a -g sudo doas
-    abbr -a -g ping ping google.com
+    abbr -a -g ping ping gnu.org
     abbr -a -g p "patch -p1 <"
     abbr -a -g pr "patch -R <"
     abbr -a -g vol wpctl set-volume @DEFAULT_AUDIO_SINK@ 70%
+    abbr -a -g vols wpctl status
     abbr -a -g yt yt-dlp -P ~/Downloads --write-subs
     if test "$HOSTNAME" = "$OS"note
         abbr -a -g yt "yt-dlp -P ~/Downloads --write-subs -f 'worstvideo*[height=720]+worstaudio/worst[height=720]'"
@@ -246,17 +243,12 @@ if status is-interactive
     abbr -a -g dmu doas make uninstall
     abbr -a -g dnr dotnet run
     abbr -a -g dnn dotnet new
-    abbr -a -g xp xprop
-    abbr -a -g xk xkill
     # arquivos e Diretórios
-    abbr -a -g rm trash
-    abbr -a -g rml trash clean
+    abbr -a -g tr trash
+    abbr -a -g trc trash clean
     abbr -a -g g ugrep --color -iIn
     abbr -a -g l lsd -AX1 --group-dirs first
     abbr -a -g la lsd -lXA1 --group-dirs first
-    abbr -a -g .. "cd .."
-    abbr -a -g ... "cd ../.."
-    abbr -a -g .... "cd ../../.."
     abbr -a -g lo locate -Ai
     abbr -a -g u doas updatedb
     abbr -a -g ch chmod +x
@@ -268,40 +260,45 @@ if status is-interactive
     abbr -a -g mnt doas mount
     abbr -a -g umnt doas umount
     # git
-    abbr -a -g gi git init
-    abbr -a -g gc git clone
-    abbr -a -g gcr git clone --recurse-submodules
-    abbr -a -g gs git status
-    abbr -a -g gsa git submodule add https://github.com/
-    abbr -a -g gd git diff
-    abbr -a -g gds git diff --staged
-    abbr -a -g gl git log --oneline --graph
     abbr -a -g ga git add
     abbr -a -g gaf git add -f
     abbr -a -g gap git add -p
-    abbr -a -g gcm git commit
-    abbr -a -g gcam git commit --amend
-    abbr -a -g gca git commit --amend --no-edit
-    abbr -a -g gco git checkout
-    abbr -a -g gcob git checkout -b
-    abbr -a -g grv git remote -v
-    abbr -a -g grsu git remote set-url origin
     abbr -a -g gba git branch -a
     abbr -a -g gbd git branch -d
-    abbr -a -g gwa git worktree add
-    abbr -a -g gwr git worktree remove
-    abbr -a -g gss git stash push -m
-    abbr -a -g gssp git stash push --patch -m
-    abbr -a -g gsss git stash push -S -m
+    abbr -a -g gc git clone
+    abbr -a -g gca git commit --amend --no-edit
+    abbr -a -g gcam git commit --amend
+    abbr -a -g gcm git commit
+    abbr -a -g gco git checkout
+    abbr -a -g gcob git checkout -b
+    abbr -a -g gcr git clone --recurse-submodules
+    abbr -a -g gd git diff
+    abbr -a -g gds git diff --staged
+    abbr -a -g gf git fetch
+    abbr -a -g gg git grep -iIn
+    abbr -a -g ggs git grep -iIn -8
+    abbr -a -g gi git init
+    abbr -a -g gl git log --oneline --graph
+    abbr -a -g gpl git pull
+    abbr -a -g gps git push
+    abbr -a -g gpsf git push -f
+    abbr -a -g gra git rebase --abort
+    abbr -a -g grc git rebase --continue
+    abbr -a -g gri git rebase -i
     abbr -a -g grr git restore
     abbr -a -g grrh git reset --hard
     abbr -a -g grrs git reset --soft
-    abbr -a -g gri git rebase -i
-    abbr -a -g grc git rebase --continue
     abbr -a -g grs git rebase --skip
-    abbr -a -g gra git rebase --abort
-    abbr -a -g gg git grep -iIn
-    abbr -a -g ggs git grep -iIn -8
+    abbr -a -g grs git restore --staged
+    abbr -a -g grsu git remote set-url origin
+    abbr -a -g grv git remote -v
+    abbr -a -g gs git status
+    abbr -a -g gsa git submodule add https://github.com/
+    abbr -a -g gss git stash push -m
+    abbr -a -g gssp git stash push --patch -m
+    abbr -a -g gsss git stash push -S -m
+    abbr -a -g gwa git worktree add
+    abbr -a -g gwr git worktree remove
 
     ## Abbrs em sistemas
     if test "$OS" = artixlinux; or test "$OS" = archlinux; or test "$OS" = manjaro
@@ -329,8 +326,10 @@ if status is-interactive
         abbr -a -g sys doas systemctl
     else if test "$OS" = voidlinux
         abbr -a -g xs "./xbps-src"
-        abbr -a -g xS "git clean -Xdf && ./xbps-src binary-bootstrap && ./xbps-src pkg "
-        abbr -a -g xSS "git clean -Xdf && ./xbps-src binary-bootstrap && ./xbps-src -a \*musl pkg "
+        abbr -a -g xc "./xbps-src clean"
+        abbr -a -g xp "./xbps-src pkg"
+        abbr -a -g xpm "./xbps-src pkg -a \*musl"
+        abbr -a -g xbb "./xbps-src binary-bootstrap"
         # xbps
         abbr -a -g xis doas xbps-install -Sy
         abbr -a -g xqrs xbps-query -Rs
