@@ -83,8 +83,8 @@ Keymaps({
   -- move linhas
   { "n", "<A-j>", "<cmd>m .+1<CR>==" },
   { "n", "<A-k>", "<cmd>m .-2<CR>==" },
-  { "v", "<A-j>", ":m '>+1<CR>gv=gv", { silent = true } },
-  { "v", "<A-k>", ":m '<-2<CR>gv=gv", { silent = true } },
+  { "x", "<A-j>", ":<C-u> '<,'>move'>+<CR>gv=gv", { silent = true } },
+  { "x", "<A-k>", ":<C-u> '<,'>move-2<CR>gv=gv", { silent = true } },
   { "i", "<A-j>", "<cmd>m .+1<CR>" },
   { "i", "<A-k>", "<cmd>m .-2<CR>" },
 })
