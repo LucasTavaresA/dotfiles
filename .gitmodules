@@ -3,7 +3,7 @@
 	url = https://github.com/cheat/cheatsheets
 [submodule "code/c/dash"]
 	path = code/c/dash
-	url = https://gitlab.com/lucastavaresa/dash
+	url = https://codeberg.org/lucastavaresa/dash
 [submodule "code/shellscripts/shellscripts"]
 	path = code/shellscripts/shellscripts
 	url = https://github.com/lucastavaresa/shellscripts
@@ -15,7 +15,7 @@
 	url = https://github.com/lucastavaresa/sgrade
 [submodule "code/c/fastfetch"]
 	path = code/c/fastfetch
-	url = https://github.com/lucastavaresa/fastfetch
+	url = https://codeberg.org/lucastavaresa/fastfetch
 [submodule "code/shellscripts/trash"]
 	path = code/shellscripts/trash
 	url = https://github.com/lucastavaresa/posix-trash.git
