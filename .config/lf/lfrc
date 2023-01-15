@@ -63,16 +63,37 @@ cmd bulk-rename ${{
 }}
 
 cmd open ${{
-    case $(file --mime-type "$(readlink -f $f)" -b) in
-        application/vnd.openxmlformats-officedocument.wordprocessingml.document) libreoffice $f ;;
-        image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) zathura $fx ;;
-        application/vnd.oasis.opendocument.text) libreoffice $f ;;
-        application/pdf|application/vnd*|application/epub*) zathura $fx ;;
-        text/*) nvim $fx ;;
-        audio/*) mpv -no-video $fx ;;
-        image/*) vimiv $fx ;;
-        video/*) mpv $fx ;;
-        *) handlr open $fx ;;
+    case "${f##*.}" in
+        # musica
+        mp3) mpv --video=no $fx ;;
+        m4a) mpv --video=no $fx ;;
+        wav) mpv --video=no $fx ;;
+        opus) mpv --video=no $fx ;;
+        # imagem
+        jpg) vimiv $fx ;;
+        png) vimiv $fx ;;
+        jpeg) vimiv $fx ;;
+        # video
+        mp4) mpv $fx ;;
+        mkv) mpv $fx ;;
+        webm) mpv $fx ;;
+        # view docs
+        pdf) zathura $fx ;;
+        # edit docs
+        docx) libreoffice $f ;;
+        odt) libreoffice $f ;;
+        *)
+            case $(file --mime-type "$(readlink -f $f)" -b) in
+                application/vnd.openxmlformats-officedocument.wordprocessingml.document) libreoffice $f ;;
+                image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) zathura $fx ;;
+                application/vnd.oasis.opendocument.text) libreoffice $f ;;
+                application/pdf|application/vnd*|application/epub*) zathura $fx ;;
+                video/*) mpv $fx ;;
+                image/*) vimiv $fx ;;
+                text/*) nvim $fx ;;
+                *) handlr open $fx ;;
+            esac
+        ;;
     esac
 }}
 
