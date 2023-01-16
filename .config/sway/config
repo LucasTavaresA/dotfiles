@@ -39,9 +39,9 @@ default_border pixel 1
 default_floating_border pixel 4
 ## cores
 ### classe               borda   fundo   texto   indicador  child_border
-client.focused           #ffffff #282828 #d5c4a1 #83a598    #83a598
-client.focused_inactive  #000000 #282828 #d5c4a1 #282828    #282828
-client.unfocused         #000000 #282828 #d5c4a1 #282828    #282828
+client.focused           #d65d0e #282828 #d5c4a1 #83a598    #83a598
+client.focused_inactive  #282828 #282828 #d5c4a1 #282828    #282828
+client.unfocused         #282828 #282828 #d5c4a1 #282828    #282828
 client.urgent            #ff0000 #282828 #d5c4a1 #ff0000    #ff0000
 client.placeholder       #555555 #555555 #d5c4a1 #555555    #555555
 client.background        #000000
@@ -206,11 +206,11 @@ exec checar_updates
 ## Barra
 bar {
     colors {
-        background #282828
-        statusline #d5c4a1
+        background #000000
+        statusline #d65d0e
         separator #3c3836
-        focused_workspace #d5c4a1 #282828 #d5c4a1
-        inactive_workspace #3c3836 #282828 #d5c4a1
+        focused_workspace #d65d0e #000000 #d5c4a1
+        inactive_workspace #000000 #282828 #d5c4a1
         urgent_workspace #ff0000 #ff0000 #000000
     }
     font pango:SauceCodePro Nerd Font 14px
