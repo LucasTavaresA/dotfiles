@@ -244,8 +244,8 @@ if status is-interactive
     abbr -a -g dnr dotnet run
     abbr -a -g dnn dotnet new
     # arquivos e Diretórios
-    abbr -a -g tr trash
-    abbr -a -g trc trash clean
+    abbr -a -g rm trash
+    abbr -a -g rml trash clean
     abbr -a -g g ugrep --color -iIn
     abbr -a -g l lsd -AX1 --group-dirs first
     abbr -a -g la lsd -lXA1 --group-dirs first
