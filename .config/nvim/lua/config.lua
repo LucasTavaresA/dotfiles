@@ -55,6 +55,8 @@ vo.shiftwidth = 4
 vo.expandtab = true
 -- tabs em arquivos lua
 Autocmd("FileType", { "lua" }, "setlocal tabstop=2 shiftwidth=2")
+Autocmd("FileType", { "css" }, "setlocal tabstop=2 shiftwidth=2")
+Autocmd("FileType", { "html" }, "setlocal tabstop=2 shiftwidth=2")
 Autocmd("FileType", { "make" }, "setlocal tabstop=2 shiftwidth=2")
 
 --- Formatação
