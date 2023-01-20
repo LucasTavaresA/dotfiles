@@ -351,4 +351,11 @@ return {
       )
     end,
   },
+  -- esconde class em html
+  {
+    "dzfrias/nvim-classy",
+    lazy = true,
+    ft = "html",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+  },
 }
