@@ -3,6 +3,11 @@ return {
   "lewis6991/impatient.nvim",
 
   --- Miscelânea
+  -- abre arquivos encriptados
+  {
+    "jamessan/vim-gnupg",
+    lazy = false,
+  },
   -- melhores macros
   {
     "chrisgrieser/nvim-recorder",
