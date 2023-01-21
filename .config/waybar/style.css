@@ -1,0 +1,45 @@
+* {
+  font-family: "SauceCodePro Nerd Font Mono", "Noto Sans", "Monospace";
+  font-size: 14px;
+  border: none;
+  border-radius: 0;
+  margin: 0;
+  padding: 0 1px;
+}
+
+#waybar {
+  background-color: #282828;
+  color: #d5c4a1;
+}
+
+#workspaces button {
+  border: 1px solid #282828;
+}
+
+#workspaces button.urgent {
+  border: 1px solid #ff0000;
+}
+
+#workspaces button.focused {
+  border: 1px solid #d65d0e;
+  background-color: #000000;
+  color: #d65d0e;
+}
+
+#mode {
+  background-color: #ff0000;
+  padding: 0 10px;
+}
+
+#window {
+  background-color: #000000;
+  padding: 0 10px;
+}
+
+#mpd, #pulseaudio {
+  color: #00ffff;
+}
+
+#disk {
+  color: #ff0000;
+}

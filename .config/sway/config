@@ -205,20 +205,9 @@ exec checar_updates
 
 ## Barra
 bar {
-    colors {
-        background #000000
-        statusline #d65d0e
-        separator #3c3836
-        focused_workspace #d65d0e #000000 #d5c4a1
-        inactive_workspace #000000 #282828 #d5c4a1
-        urgent_workspace #ff0000 #ff0000 #000000
-    }
-    font pango:SauceCodePro Nerd Font 14px
-    status_command i3blocks
-    strip_workspace_numbers yes
-    position bottom
-    height 16
-    mode hide
-        hidden_state hide
-        modifier Mod4
+  swaybar_command waybar
+  mode hide
+  font pango:SauceCodePro Nerd Font 14px
+  hidden_state hide
+  modifier Mod4
 }

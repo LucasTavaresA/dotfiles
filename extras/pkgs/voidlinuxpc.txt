@@ -1,6 +1,7 @@
 ImageMagick
 StyLua
 Vulkan-Headers
+Waybar
 alsa-firmware
 alsa-pipewire
 alsa-utils

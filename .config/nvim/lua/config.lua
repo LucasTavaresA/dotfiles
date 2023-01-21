@@ -17,7 +17,6 @@ vc("filetype plugin on")
 vc("filetype indent on")
 -- muda o titulo da janela
 vo.title = true
-vo.titlestring = "nvim"
 vo.titleold = og("TERMINAL")
 -- copiar e colar para o neovim
 vo.clipboard:append({ "unnamedplus" })

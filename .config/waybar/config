@@ -1,0 +1,119 @@
+{
+    "spacing": 10,
+    "position": "bottom",
+    "ipc": true, // bar on-hold
+    "fixed-center": false, // center sway/window
+
+    // Choose the order of the modules
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["sway/window"],
+    "modules-right": ["mpd", "pulseaudio", "disk#1", "disk#2", "backlight",
+        "battery", "battery#bat2", "clock", "tray"],
+
+    // Modules configuration
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "<span font='22' line_height='0.2' rise='-10pt'>{icon}</span>",
+        "format-icons": {
+            "1:Browser": "",
+            "2:Code": "",
+            "3:Fullscreen": "",
+            "4:Message": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "sway/window": {
+        "format": "{title}",
+        "rewrite": {
+            "(.*) — Mozilla Firefox":  "<span font='22' line_height='0.2' rise='-7pt'>爵</span> $1",
+            "(.*) - qutebrowser": "<span font='22' line_height='0.2' rise='-7pt'>爵</span> $1",
+            "(.*) - NVIM": "<span font='22' line_height='0.2' rise='-7pt'></span> $1",
+            "^(~.*)": "$1<span font='14' rise='-2pt'>></span>",
+        }
+    },
+    "mpd": {
+        "format": "🎵 {filename} [{songPosition}/{queueLength}]",
+        "format-disconnected": "🎵 Disconnected",
+        "format-stopped": "🎵 Stopped",
+        "unknown-tag": "N/A",
+        "interval": 2,
+        "tooltip-format": "MPD (connected)",
+        "tooltip-format-disconnected": "MPD (disconnected)",
+        "on-click": "footclient -e ncmpcpp"
+    },
+    "mpris": {
+        "format": "{player_icon} {status_icon} {dynamic}",
+        "format-paused": "{player_icon} {status_icon} <i>{dynamic}</i>",
+        "max-length": 45,
+        "player-icons": {
+            "chromium": "爵",
+            "default": "",
+            "firefox": "",
+            "kdeconnect": "",
+            "mopidy": "",
+            "mpv": "",
+            "spotify": "阮"
+        },
+        "status-icons": {
+            "paused": "",
+            "playing": "契",
+            "stopped": "栗"
+        }
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon}{volume}%",
+        "format-bluetooth-muted": " {icon}",
+        "format-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["🔈", "🔉", "🔊"]
+        },
+        "on-click": "footclient -e pulsemixer"
+    },
+    "disk#1": {
+        "format": "{path} {free}",
+        "path": "/",
+    },
+    "disk#2": {
+        "format": "{path} {free}",
+        "path": "/home",
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "battery#bat2": {
+        "bat": "BAT2"
+    },
+    "clock": {
+        "format": "{:%a %d/%m/%Y - %H:%M}",
+    },
+}
+// vim: set ft=json:
