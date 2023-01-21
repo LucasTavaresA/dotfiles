@@ -65,6 +65,7 @@ grub
 gtk-engine-murrine
 gtk2fontsel
 gtkspell3
+gup
 harfbuzz
 highlight
 htop
@@ -129,6 +130,10 @@ pipewire
 pkg-config
 playerctl
 plocate
+polkit
+polkit-qt5
+poppler
+psmisc
 pulseaudio-utils
 pulsemixer
 python3-Brotli
