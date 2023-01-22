@@ -1,0 +1,144 @@
+" tema
+colourscheme shydactyl
+
+" Misc
+
+" Make Tridactyl work on more sites at the expense of some security
+" removed due to firefox request
+" set csp clobber
+fixamo_quiet
+
+set allowautofocus false
+
+set externalclipboardcmd wl-copy
+set yankto both
+
+set smoothscroll false
+
+" Sane hinting mode
+set hintfiltermode vimperator-reflow
+set hintchars asdfghjkl
+
+" remove native search engines
+setnull searchurls.google
+setnull searchurls.googlelucky
+setnull searchurls.scholar
+setnull searchurls.googleuk
+setnull searchurls.bing
+setnull searchurls.duckduckgo
+setnull searchurls.yahoo
+setnull searchurls.twitter
+setnull searchurls.wikipedia
+setnull searchurls.youtube
+setnull searchurls.amazon
+setnull searchurls.amazonuk
+setnull searchurls.startpage
+setnull searchurls.github
+setnull searchurls.searx
+setnull searchurls.cnrtl
+setnull searchurls.osm
+setnull searchurls.mdn
+setnull searchurls.gentoo_wiki
+setnull searchurls.qwant
+
+" search engines
+set searchengine g
+set searchurls.g    https://www.google.com/search?q=%s
+set searchurls.yt   https://www.youtube.com/search?q=%s
+set searchurls.alm  https://anilist.co/search/manga?search=%s&sort=SEARCH_MATCH
+set searchurls.al   https://anilist.co/search/anime?search=%s&sort=SEARCH_MATCH
+set searchurls.aur  https://aur.archlinux.org/packages?O=0&SeB=nd&K=%s&outdated=&SB=p&SO=d&PP=50&submit=Go
+set searchurls.aw   https://wiki.archlinux.org/index.php?search=%s
+set searchurls.br   https://brainly.com.br/app/ask?q=%s
+set searchurls.fp   https://www.freshports.org/search.php?query=%s&search=go&num=10&stype=name&method=match&deleted=excludedeleted&start=1&casesensitivity=caseinsensitive
+set searchurls.gf   https://greasyfork.org/en/scripts?q=%s
+set searchurls.gh   https://github.com/search?q=%s
+set searchurls.gl   https://gitlab.com/search?search=%s
+set searchurls.gm   https://www.google.com.br/maps/search/%s
+set searchurls.gt   https://translate.google.com/?sl=auto&tl=en&text=%s
+set searchurls.imdb https://www.imdb.com/find?q=%s&ref_=nv_sr_sm
+set searchurls.md   https://mangadex.org/titles?page=1&q=%s&order=relevance.desc
+set searchurls.od   https://odysee.com/search?q=%s
+set searchurls.r    https://www.reddit.com/search/?q=%s
+set searchurls.sc   https://soundcloud.com/search?q=%s
+set searchurls.se   https://stackexchange.com/search?q=%s
+set searchurls.sf   https://sourceforge.net/directory/?q=%s
+set searchurls.tw   https://twitter.com/search?q=%s
+set searchurls.tg   https://trends.google.com.br/trends/explore?q=%s
+set searchurls.ud   https://www.urbandictionary.com/define.php?term=%s
+set searchurls.vn   https://vndb.org/v?sq=%s
+set searchurls.wm   https://web.archive.org/web/*/%s
+
+" quickmarks - WORK LIKE SHIT
+" quickmark al   https://anilist.co/
+" quickmark ala  https://anilist.co/user/Lucastavares/animelist
+" quickmark alm  https://anilist.co/user/Lucastavares/mangalist
+" quickmark aur  https://aur.archlinux.org/
+" quickmark aw   https://wiki.archlinux.org/
+" quickmark br   https://brainly.com.br/
+" quickmark fb   https://www.facebook.com/
+" quickmark fp   https://www.freshports.org/
+" quickmark g    https://www.google.com/
+" quickmark gf   https://greasyfork.org/
+" quickmark gh   https://github.com/
+" quickmark gl   https://gitlab.com/
+" quickmark gm   https://www.google.com.br/maps/
+" quickmark gpt  https://chat.openai.com/chat
+" quickmark gt   https://translate.google.com/
+" quickmark imdb https://www.imdb.com/
+" quickmark md   https://mangadex.org/titles/feed
+" quickmark mj   https://tenhou.net/3/
+" quickmark od   https://odysee.com/
+" quickmark r    https://www.reddit.com/
+" quickmark sc   https://soundcloud.com/you/likes
+" quickmark se   https://stackexchange.com/
+" quickmark sf   https://sourceforge.net/
+" quickmark sync http://127.0.0.1:8384/
+" quickmark tc   https://twitch.com/
+" quickmark tw   https://twitter.com/
+" quickmark vn   https://vndb.org/
+" quickmark vt   https://www.virustotal.com/gui/
+" quickmark wa   https://web.whatsapp.com/
+" quickmark wm   https://web.archive.org/
+" quickmark yt   https://www.youtube.com/feed/subscriptions
+" quickmark ytb  https://www.youtube.com/feed/library
+
+" unbind in commandline
+unbind --mode=ex <C-c>
+unbind --mode=ex <C-w>
+
+unbind M
+unbind m
+unbind u
+unbind .
+unbind q
+unbind H
+unbind L
+unbind O
+
+" Hint only titles and menu options on yt
+bindurl youtube.com/feed f hint -Jc .yt-simple-endpoint:not(.ytd-thumbnail)
+bindurl youtube.com/feed F hint -Jc .yt-simple-endpoint:not(.ytd-thumbnail)
+bindurl youtube.com/channel f hint -Jc .yt-simple-endpoint:not(.ytd-thumbnail)
+bindurl youtube.com/channel F hint -Jc .yt-simple-endpoint:not(.ytd-thumbnail)
+
+" TODO: bindings
+bind O fillcmdline winopen
+bind j scrollline 4
+bind k scrollline -4
+bind <C-a> back
+bind <C-d> forward
+bind A fillcmdline back
+bind D fillcmdline forward
+bind ZZ composite sanitise tridactyllocal tridactylsync; qall
+
+" use native C-f
+unbind <C-f>
+" But also support Tridactyl search too.
+bind / fillcmdline find
+bind ? fillcmdline find -?
+bind n findnext 1
+bind N findnext -1
+set incsearch true
+
+" vi:ft=vim
