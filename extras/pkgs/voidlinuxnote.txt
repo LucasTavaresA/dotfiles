@@ -63,7 +63,6 @@ htop
 hunspell
 hunspell-en_US
 hunspell-pt_BR
-i3blocks
 irssi
 keepassxc
 kvantum
