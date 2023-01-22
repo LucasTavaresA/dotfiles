@@ -276,12 +276,11 @@ return {
   },
   -- extende a funcionalidade de f,F,t,T
   {
-    "ggandor/flit.nvim",
-    dependencies = "ggandor/leap.nvim",
+    "echasnovski/mini.jump",
     lazy = true,
     keys = { "f", "F", "t", "T" },
     config = function()
-      require("flit").setup({})
+      require("mini.jump").setup({})
     end,
   },
   -- hexadecimal
