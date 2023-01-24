@@ -70,10 +70,6 @@ vo.formatoptions = "tcrqn1j"
 --- Miscelânea
 -- linhas não dão a volta na tela
 vo.wrap = false
--- indica linha selecionada no modo normal
-vo.cursorline = true
-Autocmd("WinLeave", { "*" }, "set nocursorline")
-Autocmd("WinEnter", { "*" }, "set cursorline")
 -- esconde marcação
 vo.conceallevel = 3
 -- marcação em 80 caracteres
@@ -143,7 +139,7 @@ vo.signcolumn = "yes:5"
 Autocmd(
   "FileType",
   { "help" },
-  "call timer_start(50, { tid -> execute('setlocal nolist colorcolumn=0 nocursorline nocursorcolumn | only')})"
+  "call timer_start(50, { tid -> execute('setlocal nolist colorcolumn=0 | only')})"
 )
 
 --- Números
@@ -165,7 +161,7 @@ Autocmd("FileType", { "gitcommit" }, "norm zr")
 Autocmd(
   "FileType",
   { "markdown", "org", "txt", "norg" },
-  "setlocal nolist colorcolumn=0 nocursorline nocursorcolumn"
+  "setlocal nolist colorcolumn=0"
 )
 
 --- Netrw
