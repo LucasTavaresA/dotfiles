@@ -91,7 +91,9 @@ go install github.com/nao1215/gup@latest
 go install github.com/mrtazz/checkmake/cmd/checkmake@latest
 go install github.com/nametake/golangci-lint-langserver@latest
 
-npm i -g jshint vscode-langservers-extracted eslint fixjson write-good
+npm i -g cssmodules-language-server @tailwindcss/language-server typescript \
+    typescript-language-server jshint vscode-langservers-extracted eslint \
+    fixjson write-good
 npm i -g --save-dev stylelint stylelint-config-standard
 
 xbps-install -S python3-devel

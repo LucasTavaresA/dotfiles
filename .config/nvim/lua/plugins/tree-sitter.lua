@@ -84,6 +84,8 @@ return {
           "go",
           "html",
           "javascript",
+          "tsx",
+          "typescript",
           "make",
           "org",
           "python",
