@@ -4,9 +4,18 @@ return {
     lazy = true,
     event = "InsertEnter",
     dependencies = {
+      "dcampos/nvim-snippy",
+      "dcampos/cmp-snippy",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
-      "dcampos/cmp-snippy",
+      "hrsh7th/cmp-nvim-lua",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-cmdline",
+      "davidsierradz/cmp-conventionalcommits",
+      "mtoohey31/cmp-fish",
+      "bydlw98/cmp-env",
+      "amarakon/nvim-cmp-fonts",
+      "f3fora/cmp-spell",
       {
         "onsails/lspkind.nvim",
         config = function()
@@ -105,36 +114,38 @@ return {
         }),
         sources = cmp.config.sources({
           { name = "path" },
-          { name = "env" },
-          { name = "fish" },
+          { name = "env", ft = { "fish", "zsh", "sh", "bash" } },
+          { name = "fish", ft = "fish" },
+          { name = "nvim_lua", ft = "lua" },
+          { name = "cmp_git", ft = "gitcommit" },
+          { name = "conventionalcommits", ft = "gitcommit" },
           { name = "snippy" },
           { name = "nvim_lsp" },
-          { name = "nvim_lua" },
           { name = "buffer" },
-          { name = "fonts", option = { space_filter = "-" } },
+          {
+            name = "fonts",
+            option = { space_filter = "-" },
+            ft = { "conf", "config", "css", "yml", "toml", "dosini" },
+          },
+          {
+            name = "spell",
+            ft = {
+              "conf",
+              "config",
+              "css",
+              "yml",
+              "toml",
+              "dosini",
+              "gitcommit",
+              "markdown",
+              "org",
+              "norg",
+              "txt",
+            },
+          },
         }),
       })
-    end,
-  },
-  {
-    "hrsh7th/cmp-nvim-lsp",
-    dependencies = "hrsh7th/nvim-cmp",
-    lazy = true,
-    event = "LspAttach",
-  },
-  {
-    "hrsh7th/cmp-nvim-lua",
-    dependencies = { "hrsh7th/nvim-cmp", "neovim/nvim-lspconfig" },
-    lazy = true,
-    ft = "lua",
-  },
-  {
-    "hrsh7th/cmp-cmdline",
-    dependencies = "hrsh7th/nvim-cmp",
-    lazy = true,
-    keys = { ":", "?", [[/]] },
-    config = function()
-      local cmp = require("cmp")
+
       -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
       cmp.setup.cmdline({ "/", "?" }, {
         view = {
@@ -158,59 +169,6 @@ return {
           { name = "cmdline" },
         }),
       })
-    end,
-  },
-  {
-    "davidsierradz/cmp-conventionalcommits",
-    dependencies = "hrsh7th/nvim-cmp",
-    lazy = true,
-    ft = "gitcommit",
-    config = function()
-      local cmp = require("cmp")
-      cmp.setup.filetype("gitcommit", {
-        sources = cmp.config.sources({
-          { name = "cmp_git" }, -- You can specify the `cmp_git` source if you were installed it.
-        }, {
-          { name = "buffer" },
-          { name = "conventionalcommits" },
-        }),
-      })
-    end,
-  },
-  {
-    "mtoohey31/cmp-fish",
-    dependencies = "hrsh7th/nvim-cmp",
-    lazy = true,
-    ft = "fish",
-  },
-  {
-    "bydlw98/cmp-env",
-    dependencies = "hrsh7th/nvim-cmp",
-    lazy = true,
-    ft = { "fish", "zsh", "sh", "bash" },
-  },
-  {
-    "amarakon/nvim-cmp-fonts",
-    dependencies = "hrsh7th/nvim-cmp",
-    lazy = true,
-    ft = { "conf", "config", "css", "yml", "toml", "dosini" },
-    config = function()
-      require("cmp").setup.filetype(
-        { "conf", "config", "css", "yml", "toml", "dosini" },
-        { sources = { { name = "fonts" } } }
-      )
-    end,
-  },
-  {
-    "f3fora/cmp-spell",
-    dependencies = "hrsh7th/nvim-cmp",
-    lazy = true,
-    ft = { "markdown", "org", "norg", "txt" },
-    config = function()
-      require("cmp").setup.filetype(
-        { "markdown", "org", "norg", "txt" },
-        { sources = { { name = "spell" } } }
-      )
     end,
   },
 }
