@@ -7,12 +7,12 @@ set -ex
 # executar apenas como root
 [ "$UID" != 0 ] && echo "root necessário!" && exit 1
 [ "$(pwd)" = /home/lucas ] && echo "Deve ser executado em /home/lucas" && exit 1
-[ ! -d /home/lucas/extras ] && echo "Diretório /home/lucas/extras não encontrado!" && exit 1
-[ ! -d /home/lucas/.dotfiles ] && echo "Clone e ajuste os dotfiles" && exit 1
+[ ! -d /home/lucas/etc ] && echo "Diretório /home/lucas/etc não encontrado!" && exit 1
+[ ! -d /home/lucas/etc/.dotfiles ] && echo "Clone e ajuste os dotfiles" && exit 1
 
 xbps-install -Su
-xbps-install -S "$(cat extras/pkgs/"$HOSTNAME".txt)"
-[ "$(xpkg | wc -l)" -lt "$(cat extras/pkgs/"$HOSTNAME".txt)" ] &&
+xbps-install -S "$(cat etc/pkgs/"$HOSTNAME".txt)"
+[ "$(xpkg | wc -l)" -lt "$(cat etc/pkgs/"$HOSTNAME".txt)" ] &&
     echo "Faltam pacotes" && exit 1
 
 microcode() {
@@ -28,7 +28,7 @@ microcode
 
 sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/default/libc-locales
 xbps-reconfigure -f glibc-locales
-cp -f extras/locale.conf /etc/locale.conf
+cp -f etc/locale.conf /etc/locale.conf
 
 chsh -s /bin/fish
 chsh -s /bin/sh lucas
@@ -40,18 +40,18 @@ chsh -s /bin/sh lucas
     make install
 )
 
-cp extras/voidlinux/ignore-sudo.conf /etc/xbps.d/
+cp etc/voidlinux/ignore-sudo.conf /etc/xbps.d/
 xbps-remove -R sudo
-cp extras/doas.conf /etc/
+cp etc/doas.conf /etc/
 
 ln -s /etc/sv/socklog-unix /var/service/
 ln -s /etc/sv/nanoklogd /var/service/
 
-cp extras/voidlinux/rc.local /etc/rc.local
+cp etc/voidlinux/rc.local /etc/rc.local
 
 ln -s /etc/sv/acpid /var/service/
 
-[ "$(wc -l /etc/hosts)" -lt 15 ] && cat extras/hosts >>/etc/hosts
+[ "$(wc -l /etc/hosts)" -lt 15 ] && cat etc/hosts >>/etc/hosts
 
 ln -s /etc/sv/dbus /var/service/
 
@@ -112,9 +112,9 @@ mkdir cursors
 unzip Linux.zip -d cursors
 mv cursors/Capitaine\ Cursors\ \(Gruvbox\)/ /usr/share/icons/
 mkdir -p /home/lucas/.local/share/icons/default/
-cat extras/index.theme >/home/lucas/.local/share/icons/default/index.theme
+cat etc/index.theme >/home/lucas/.local/share/icons/default/index.theme
 
-cat extras/pam_gnupg >>/etc/pam.d/login
+cat etc/pam_gnupg >>/etc/pam.d/login
 
 mkdir -p /home/lucas/.local/share/applications/
-cp extras/transmission-remote.desktop .local/share/applications/
+cp etc/transmission-remote.desktop .local/share/applications/

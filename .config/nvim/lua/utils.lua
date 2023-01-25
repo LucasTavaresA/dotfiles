@@ -49,7 +49,7 @@ function Update_cwd()
   local HOME = os.getenv("HOME")
 
   if vim.fn.getcwd() == HOME then
-    vim.env.GIT_DIR = HOME .. "/.dotfiles"
+    vim.env.GIT_DIR = HOME .. "/etc/.dotfiles"
     vim.env.GIT_WORK_TREE = HOME
   else
     vim.env.GIT_DIR = nil

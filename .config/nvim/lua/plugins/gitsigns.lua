@@ -20,7 +20,7 @@ return {
       worktrees = {
         {
           toplevel = vim.env.HOME,
-          gitdir = vim.env.HOME .. "/.dotfiles",
+          gitdir = vim.env.HOME .. "/etc/.dotfiles",
         },
       },
     })

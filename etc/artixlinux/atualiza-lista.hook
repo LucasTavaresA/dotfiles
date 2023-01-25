@@ -7,4 +7,4 @@ Target = *
 [Action]
 Description = Atualizando lista de pacotes...
 When = PostTransaction
-Exec = /home/lucas/extras/pkgs/updatepkglist
+Exec = /home/lucas/etc/pkgs/updatepkglist
