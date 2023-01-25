@@ -114,7 +114,7 @@ mode "Menu" {
     bindsym m exec menu_mont ; mode "default"
     bindsym p exec keepmenu ; mode "default"
     bindsym c exec cliphist list | tofi --padding-left 0 --padding-top 0 | cliphist decode | wl-copy ; mode "default"
-    bindsym Shift+c exec term_open -a calculadora python ; mode "default"
+    bindsym Shift+c exec term_open -a calculadora bc ; mode "default"
     bindsym Shift+e exec term_open -a float fzf_emojis ; mode "default"
     bindsym q exec qutebrowser ; mode "default"
     bindsym f exec firefox ; mode "default"
