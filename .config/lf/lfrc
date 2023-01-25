@@ -180,21 +180,22 @@ map zi push :zi<space>
 map R bulk-rename
 
 #### Atalhos ####
-map g. cd ~/.config
-map gcc cd ~/code/c
-map gcs cd ~/code/shell
+map g.c cd ~/.config
+map g.l cd ~/.local
+map g/ cd /
 map gcS cd ~/code/csharp
-map gcw cd ~/code/webPages
+map gcc cd ~/code/c
+map gcl cd ~/code/lua
+map gcp cd ~/code/python
+map gcs cd ~/code/shellscripts
 map gcu cd ~/code/unity
-
-map gd cd ~/documentos
-map gD cd ~/Downloads
-map ge cd ~/extras
-map gj cd ~/jogos
-map gh cd ~
-map gM cd ~/mnt
-
-map gmv cd ~/media/videos
-map gmi cd ~/media/imagens
-map gmm cd ~/media/musicas
+map gcv cd ~/code/void-packages
+map gcw cd ~/code/web
+map gds cd ~/Downloads/sync
 map gmc cd ~/media/cursos
+map gmi cd ~/media/imagens
+map gmj cd ~/media/jogos
+map gmm cd ~/media/musicas
+map gmn cd ~/media/novels
+map gmv cd ~/media/videos
+map g~ cd ~
