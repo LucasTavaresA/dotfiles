@@ -204,6 +204,7 @@ if status is-interactive
 
     ## Abbr ##
     abbr -a -g cd z
+    abbr -a -g cage cage -s --
     abbr -a -g irc irssi --home ~/.config/irssi
     abbr -a -g cat bat
     abbr -a -g sg sgrade
@@ -266,8 +267,8 @@ if status is-interactive
     abbr -a -g gba git branch -a
     abbr -a -g gbd git branch -d
     abbr -a -g gc git clone
-    abbr -a -g gca git commit --amend --no-edit
-    abbr -a -g gcam git commit --amend
+    abbr -a -g gca git commit --amend
+    abbr -a -g gcan git commit --amend --no-edit
     abbr -a -g gcm git commit
     abbr -a -g gco git checkout
     abbr -a -g gcob git checkout -b
@@ -282,14 +283,15 @@ if status is-interactive
     abbr -a -g gpl git pull
     abbr -a -g gps git push
     abbr -a -g gpsf git push -f
+    abbr -a -g gr git restore
     abbr -a -g gra git rebase --abort
     abbr -a -g grc git rebase --continue
     abbr -a -g gri git rebase -i
-    abbr -a -g grr git restore
+    abbr -a -g grp git restore -p
     abbr -a -g grrh git reset --hard
     abbr -a -g grrs git reset --soft
-    abbr -a -g grs git rebase --skip
     abbr -a -g grs git restore --staged
+    abbr -a -g grsp git restore --staged -p
     abbr -a -g grsu git remote set-url origin
     abbr -a -g grv git remote -v
     abbr -a -g gs git status
