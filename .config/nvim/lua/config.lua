@@ -45,18 +45,12 @@ vo.whichwrap:append("<,>,h,l,[,]")
 vo.spell = true
 -- Checagem ortográfica em varias línguas
 vo.spelllang = { "pt", "en" }
-Autocmd("FileType", { "diff" }, "setlocal nospell")
 
 --- Tabs/Espaços
 vo.tabstop = 4
 vo.shiftwidth = 4
 -- troca tabs por espaços
 vo.expandtab = true
--- tabs em arquivos lua
-Autocmd("FileType", { "lua" }, "setlocal tabstop=2 shiftwidth=2")
-Autocmd("FileType", { "css" }, "setlocal tabstop=2 shiftwidth=2")
-Autocmd("FileType", { "html" }, "setlocal tabstop=2 shiftwidth=2")
-Autocmd("FileType", { "make" }, "setlocal tabstop=2 shiftwidth=2")
 
 --- Formatação
 -- divide linhas sem quebrar palavras
@@ -71,7 +65,7 @@ vo.formatoptions = "tcrqn1j"
 -- linhas não dão a volta na tela
 vo.wrap = false
 -- esconde marcação
-vo.conceallevel = 3
+vo.conceallevel = 0
 -- marcação em 80 caracteres
 vo.colorcolumn = "+1"
 
@@ -89,10 +83,6 @@ vansh(0, "FoldColumn", { bg = nil, ctermbg = nil })
 vansh(0, "MatchParen", { bold = true, fg = "#ff0000" })
 -- folds
 vansh(0, "folded", { bg = "#000000", fg = "#ff5500" })
--- Indica texto copiado
-Autocmd("TextYankPost", { "*" }, function()
-  vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
-end)
 -- melhora suporte de cores
 vo.termguicolors = true
 
@@ -123,30 +113,12 @@ vo.laststatus = 3
 vo.cmdheight = 0
 -- mostra a tabline
 vo.showtabline = 0
--- centraliza buffers quando ha espaço
-Autocmd("WinEnter", { "*" }, function()
-  if vim.api.nvim_win_get_width(0) < 80 then
-    vo.foldcolumn = "0"
-    vo.signcolumn = "yes:1"
-  else
-    vo.foldcolumn = "9"
-    vo.signcolumn = "yes:5"
-  end
-end)
 vo.signcolumn = "yes:5"
-
---- ajuda
-Autocmd(
-  "FileType",
-  { "help" },
-  "call timer_start(50, { tid -> execute('setlocal nolist colorcolumn=0 | only')})"
-)
 
 --- Números
 vo.number = true
 vo.numberwidth = 3
 vo.relativenumber = true
-Autocmd("TermOpen", { "*" }, "setlocal nonumber norelativenumber")
 
 --- Folding
 vg.sh_fold_enabled = 1
@@ -155,14 +127,6 @@ vo.foldcolumn = "9"
 vo.foldlevel = 1
 vo.foldnestmax = 5
 vim.o.foldopen = "block,insert,jump,mark,percent,quickfix,search,tag,undo"
-Autocmd("FileType", { "gitcommit" }, "norm zr")
-
---- Escrita
-Autocmd(
-  "FileType",
-  { "markdown", "org", "txt", "norg" },
-  "setlocal nolist colorcolumn=0"
-)
 
 --- Netrw
 -- desabilita o netrw
@@ -174,3 +138,44 @@ Autocmd(
 vg.netrw_banner = 0
 -- tamanho da split
 vg.netrw_winsize = 20
+
+--- autocmds
+-- TermOpen
+Autocmd("TermOpen", { "*" }, "setlocal nonumber norelativenumber")
+-- FileType
+Autocmd("FileType", { "gitcommit" }, "norm zr")
+Autocmd("FileType", { "diff" }, "setlocal nospell")
+Autocmd("FileType", { "css" }, "setlocal tabstop=2 shiftwidth=2")
+Autocmd("FileType", { "lua" }, "setlocal tabstop=2 shiftwidth=2")
+Autocmd("FileType", { "make" }, "setlocal tabstop=2 shiftwidth=2")
+Autocmd(
+  "FileType",
+  { "html" },
+  "setlocal conceallevel=3 tabstop=2 shiftwidth=2"
+)
+Autocmd(
+  "FileType",
+  { "markdown", "org", "txt", "norg" },
+  "setlocal nolist conceallevel=3 colorcolumn=0"
+)
+Autocmd(
+  "FileType",
+  { "help" },
+  "call timer_start(50, { tid -> execute('setlocal nolist colorcolumn=0 | only')})"
+)
+-- TextYankPost
+-- indica texto copiado
+Autocmd("TextYankPost", { "*" }, function()
+  vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
+end)
+-- WinEnter
+-- centraliza buffers quando ha espaço
+Autocmd("WinEnter", { "*" }, function()
+  if vim.api.nvim_win_get_width(0) < 80 then
+    vo.foldcolumn = "0"
+    vo.signcolumn = "yes:1"
+  else
+    vo.foldcolumn = "9"
+    vo.signcolumn = "yes:5"
+  end
+end)
