@@ -1,5 +1,4 @@
-*cache*
-*log*
+.ccls-cache/
 .android/
 .cache/
 .config/cabal/
@@ -28,6 +27,7 @@
 .config/nvim/lazy-lock.json
 .config/nvim/plugin/
 .config/pulse/
+.config/qutebrowser/__pycache__/
 .config/qutebrowser/greasemonkey/
 .config/qutebrowser/bookmarks/
 .config/qutebrowser/autoconfig.yml
