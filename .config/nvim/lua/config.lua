@@ -145,6 +145,11 @@ Autocmd("TermOpen", { "*" }, "setlocal nonumber norelativenumber")
 -- FileType
 Autocmd("FileType", { "gitcommit" }, "norm zr")
 Autocmd("FileType", { "diff" }, "setlocal nospell")
+Autocmd(
+  "FileType",
+  { "css" },
+  "setlocal formatoptions-=ro tabstop=2 shiftwidth=2"
+)
 Autocmd("FileType", { "css" }, "setlocal tabstop=2 shiftwidth=2")
 Autocmd("FileType", { "lua" }, "setlocal tabstop=2 shiftwidth=2")
 Autocmd("FileType", { "make" }, "setlocal tabstop=2 shiftwidth=2")
