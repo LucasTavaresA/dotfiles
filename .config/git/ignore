@@ -34,6 +34,8 @@
 .config/transmission/
 .config/transmission-daemon/
 .config/VirtualBox/
+.config/mangal/
+.config/pdfcpu
 .config/NuGet/
 .config/syncthing/
 .config/shell/.zcompdump
