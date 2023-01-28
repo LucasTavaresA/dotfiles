@@ -206,13 +206,22 @@ return {
       })
 
       -- npm i -g cssmodules-language-server
-      require("lspconfig").cssmodules_ls.setup({})
+      require("lspconfig").cssmodules_ls.setup({
+        on_attach = On_attach,
+        capabilities = capabilities,
+      })
 
       -- npm install -g @tailwindcss/language-server
-      require("lspconfig").tailwindcss.setup({})
+      require("lspconfig").tailwindcss.setup({
+        on_attach = On_attach,
+        capabilities = capabilities,
+      })
 
       -- npm install -g typescript typescript-language-server
-      require("lspconfig").tsserver.setup({})
+      require("lspconfig").tsserver.setup({
+        on_attach = On_attach,
+        capabilities = capabilities,
+      })
 
       -- go install github.com/nametake/golangci-lint-langserver@latest
       -- go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
