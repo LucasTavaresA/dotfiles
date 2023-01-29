@@ -2,6 +2,7 @@
 local vg = vim.g
 local nv = { "n", "v" }
 local nvi = { "n", "v", "i" }
+local vi = { "v", "i" }
 vg.mapleader = " "
 vg.maplocalleader = " "
 
@@ -15,6 +16,9 @@ function Keymaps(maps)
 end
 
 Keymaps({
+  -- mal hábito
+  { vi, "<C-c>", "" },
+  { "i", "<esc>", "" },
   -- sobe/desce uma tela
   { nvi, "<C-j>", "<C-d>" },
   { nvi, "<C-k>", "<C-u>" },
