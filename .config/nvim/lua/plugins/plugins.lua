@@ -558,7 +558,14 @@ return {
     end,
   },
   -- previsão de markdown
-  { "ellisonleao/glow.nvim", lazy = true, cmd = { "Glow" } },
+  {
+    "ellisonleao/glow.nvim",
+    lazy = true,
+    cmd = "Glow",
+    config = function()
+      require("glow").setup()
+    end,
+  },
   -- edita blocos de código em um pop-up confiável
   {
     "AckslD/nvim-FeMaco.lua",
