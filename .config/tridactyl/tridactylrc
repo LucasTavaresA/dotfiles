@@ -110,6 +110,7 @@ unbind --mode=ex <C-w>
 unbind M
 unbind m
 unbind u
+unbind d
 unbind .
 unbind q
 unbind H
@@ -126,6 +127,9 @@ bindurl youtube.com/channel F hint -Jc .yt-simple-endpoint:not(.ytd-thumbnail)
 bind O fillcmdline winopen
 bind j scrollline 4
 bind k scrollline -4
+bind <C-j> scrollpage 1
+bind <C-k> scrollpage -1
+bind u undo window
 bind <C-a> back
 bind <C-d> forward
 bind A fillcmdline back
