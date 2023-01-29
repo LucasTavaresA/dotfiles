@@ -102,8 +102,8 @@ return {
                   group = augroup,
                   buffer = bufnr,
                   callback = function()
-                    local ft = vim.o.ft
-                    if not ft == "c" and not ft == "cs" then
+                    local ft = vim.bo.ft
+                    if ft ~= "c" and ft ~= "cs" then
                       vim.lsp.buf.format({ bufnr = bufnr })
                     end
                   end,
