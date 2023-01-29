@@ -4,7 +4,13 @@ return {
     lazy = true,
     event = "InsertEnter",
     dependencies = {
-      "dcampos/nvim-snippy",
+      {
+        "dcampos/nvim-snippy",
+        dependencies = "honza/vim-snippets",
+        config = function()
+          require("snippy").setup({})
+        end,
+      },
       "dcampos/cmp-snippy",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",

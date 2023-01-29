@@ -403,16 +403,6 @@ return {
       require("nvim-autopairs").setup({})
     end,
   },
-  -- snippets
-  {
-    "dcampos/nvim-snippy",
-    dependencies = "honza/vim-snippets",
-    lazy = true,
-    event = "InsertEnter",
-    config = function()
-      require("snippy").setup({})
-    end,
-  },
   -- git
   {
     "TimUntersberger/neogit",
