@@ -22,9 +22,9 @@
 [submodule "code/lua/nvim/simpleIndentGuides.nvim"]
 	path = code/lua/nvim/simpleIndentGuides.nvim
 	url = https://github.com/lucastavaresa/simpleIndentGuides.nvim.git
-[submodule "code/lua/nvim/command.nvim"]
-	path = code/lua/nvim/command.nvim
-	url = https://github.com/lucastavaresa/command.nvim.git
 [submodule "code/lua/nvim/SingleComment.nvim"]
 	path = code/lua/nvim/SingleComment.nvim
 	url = https://github.com/lucastavaresa/SingleComment.nvim.git
+[submodule "code/lua/nvim/simpleCommand.nvim"]
+	path = code/lua/nvim/simpleCommand.nvim
+	url = https://github.com/lucastavaresa/simpleCommand.nvim.git

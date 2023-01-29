@@ -315,18 +315,18 @@ return {
   },
   -- executar código dependendo do cwd
   {
-    "lucastavaresa/command.nvim",
+    "lucastavaresa/simpleCommand.nvim",
     lazy = true,
     keys = {
       {
         "<leader>c",
         function()
-          require("command").command()
+          require("simpleCommand").command()
         end,
       },
     },
     config = function()
-      require("command").setup()
+      require("simpleCommand").setup()
     end,
   },
   -- avaliar código
