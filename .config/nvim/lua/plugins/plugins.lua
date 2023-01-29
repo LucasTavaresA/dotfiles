@@ -133,18 +133,6 @@ return {
       require("karen-yank").setup()
     end,
   },
-  -- seletor de cores
-  {
-    "ziontee113/color-picker.nvim",
-    lazy = true,
-    cmd = "PickColor",
-    keys = {
-      { "<leader>C", vim.cmd.PickColor, noremap = true },
-    },
-    config = function()
-      require("color-picker")
-    end,
-  },
   -- desativa funções em arquivos muito grandes
   {
     "LunarVim/bigfile.nvim",
