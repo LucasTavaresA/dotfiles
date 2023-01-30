@@ -1,8 +1,7 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    lazy = true,
-    event = "InsertEnter",
+    lazy = false,
     dependencies = {
       {
         "dcampos/nvim-snippy",
