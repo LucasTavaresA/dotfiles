@@ -1,6 +1,7 @@
 .ccls-cache/
 .android/
 .cache/
+.config/asciinema/
 .config/cabal/
 .config/chromium/
 .config/cni/

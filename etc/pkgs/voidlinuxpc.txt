@@ -6,6 +6,7 @@ alsa-firmware
 alsa-pipewire
 alsa-utils
 android-tools
+asciinema
 aspell
 aspell-en
 aspell-pt_BR
@@ -87,6 +88,7 @@ lua
 lua-language-server
 make
 mako
+mangal
 mdcat
 mediainfo
 mesa-dri
