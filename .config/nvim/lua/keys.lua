@@ -71,9 +71,11 @@ Keymaps({
   -- procura palavra no cursor
   { nv, [[?]], "*", { remap = true } },
   -- procura e substitui no arquivo
-  { "n", "<leader>s", ":%s//gc<left><left><left>" },
+  { "n", "<leader>s", ":%s///gc<left><left><left><left>" },
   -- procura e substitui na região selecionada
-  { "v", "<leader>s", ":s//gc<left><left><left>" },
+  { "v", "<leader>s", ":s///gc<left><left><left><left>" },
+  -- deleta linhas
+  { nv, "<leader>d", ":G//d<left><left>" },
   -- abre terminal do sistema no local do arquivo atual
   { "n", "<leader><return>", "<cmd>!sh -c 'term_open' &<cr><cr>" },
   -- abre terminal nativo em uma split
@@ -89,6 +91,8 @@ Keymaps({
   { "n", "<A-k>", "<cmd>m .-2<CR>==" },
   { "i", "<A-j>", "<cmd>m .+1<CR>" },
   { "i", "<A-k>", "<cmd>m .-2<CR>" },
+  { "v", "<A-j>", ":m '>+1<CR>gv==-gv-gv", { silent = true } },
+  { "v", "<A-k>", ":m '<-2<CR>gv==-gv-gv", { silent = true } },
 })
 
 -- fecha buffers de ajuda
