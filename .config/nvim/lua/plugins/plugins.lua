@@ -280,17 +280,6 @@ return {
       require("hex").setup()
     end,
   },
-  -- múltiplos cursores
-  {
-    "mg979/vim-visual-multi",
-    lazy = true,
-    keys = {
-      { "<C-Down>", mode = { "v", "n" } },
-      { "<C-Up>", mode = { "v", "n" } },
-      { "<C-n>", mode = { "v", "n" } },
-    },
-    branch = "master",
-  },
 
   --- Code
   -- lidar com conflitos git

@@ -70,6 +70,8 @@ Keymaps({
   { nv, "zs", "<cmd>setlocal spell!<cr>" },
   -- procura palavra no cursor
   { nv, [[?]], "*", { remap = true } },
+  -- substitui seleção
+  { "v", "<leader>S", ReplaceSel },
   -- procura e substitui no arquivo
   { "n", "<leader>s", ":%s///gc<left><left><left><left>" },
   -- procura e substitui na região selecionada
