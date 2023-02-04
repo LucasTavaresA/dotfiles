@@ -236,17 +236,17 @@ return {
   },
   -- procura e edita varias ocorrências de uma palavra
   {
-    "yegappan/greplace",
+    "gabrielpoca/replacer.nvim",
     lazy = true,
-    cmd = { "Gsearch" },
     keys = {
-      { "<leader>gs", ":Gsearch  ./<left><left><left>", mode = { "n", "v" } },
-      { "<leader>gr", vim.cmd.Greplace, mode = { "n", "v" }, silent = true },
+      {
+        "<Leader>R",
+        function()
+          require("replacer").run()
+        end,
+        { nowait = true, noremap = true, silent = true },
+      },
     },
-    config = function()
-      -- usa o git grep
-      vim.opt.grepprg = "git grep -nIi"
-    end,
   },
   -- alinha texto
   {

@@ -24,6 +24,7 @@ vo.clipboard:append({ "unnamedplus" })
 vo.ignorecase = true
 vo.smartcase = true
 Update_cwd()
+vim.opt.grepprg = "git grep -iIn $*"
 
 --- Backups
 -- desabilita swapfile

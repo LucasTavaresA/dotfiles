@@ -190,4 +190,5 @@ vim.api.nvim_create_user_command("Redir", function(ctx)
   vim.cmd("new")
   vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
   vim.opt_local.modified = false
+  vim.bo.filetype = "qf"
 end, { nargs = "+", complete = "command" })
