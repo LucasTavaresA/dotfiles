@@ -398,7 +398,7 @@ return {
     "lucastavaresa/simpleIndentGuides.nvim",
     lazy = false,
     config = function()
-      require("simpleIndentGuides").setup("│", "·")
+      require("simpleIndentGuides").setup()
     end,
   },
   -- tema
