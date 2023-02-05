@@ -243,6 +243,7 @@ return {
         capabilities = capabilities,
       })
 
+      -- pip install --user jedi-language-server
       require("lspconfig").jedi_language_server.setup({
         on_attach = On_attach,
         capabilities = capabilities,
