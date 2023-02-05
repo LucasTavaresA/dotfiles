@@ -96,9 +96,7 @@ npm i -g cssmodules-language-server @tailwindcss/language-server typescript \
     fixjson write-good
 npm i -g --save-dev stylelint stylelint-config-standard
 
-xbps-install -S python3-devel
-pip install keepmenu wheel certifi brotli websockets
-xbps-remove -R python3-devel
+pip install --user lucas keepmenu
 
 git clone https://github.com/TheGreatMcPain/gruvbox-material-gtk
 (
