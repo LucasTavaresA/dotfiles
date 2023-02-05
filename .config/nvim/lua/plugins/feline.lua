@@ -4,6 +4,8 @@ return {
   config = function()
     vim.opt.termguicolors = true
 
+    local navic = require("nvim-navic")
+
     -- gruvbox
     local theme = {
       bg = "#000000",
@@ -31,6 +33,14 @@ return {
         provider = { name = "search_count" },
         hl = { fg = theme.lightgreen },
         left_sep = " ",
+      },
+      navic = {
+        provider = function()
+          return navic.get_location()
+        end,
+        enabled = function()
+          return navic.is_available()
+        end,
       },
       file = {
         info = {
@@ -106,9 +116,10 @@ return {
     table.insert(components.inactive, {})
 
     -- Right section
-    table.insert(components.active[1], comps.separator)
     table.insert(components.active[1], comps.search_count)
     table.insert(components.active[1], comps.macro)
+    table.insert(components.active[1], comps.separator)
+    table.insert(components.active[1], comps.navic)
 
     -- Center
     table.insert(components.active[2], comps.diagnos.err)
