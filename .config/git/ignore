@@ -6,6 +6,7 @@
 .config/chromium/
 .config/cni/
 .config/coc/
+.config/csharp.history
 .config/dconf/
 .config/Debauchee/
 .config/discord/
