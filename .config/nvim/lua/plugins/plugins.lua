@@ -240,7 +240,7 @@ return {
     lazy = true,
     keys = {
       {
-        "<Leader>R",
+        "<Leader>gr",
         function()
           require("replacer").run()
         end,
@@ -473,17 +473,6 @@ return {
     },
     config = function()
       require("translate").setup({})
-    end,
-  },
-  -- marca checkboxes
-  {
-    "opdavies/toggle-checkbox.nvim",
-    lazy = true,
-    ft = { "markdown", "org", "norg", "txt" },
-    config = function()
-      vim.cmd([[
-        call timer_start(100, { tid -> execute("nnoremap <silent><buffer> zx :lua require('toggle-checkbox').toggle()<CR>")})
-      ]])
     end,
   },
   -- previsão de markdown
