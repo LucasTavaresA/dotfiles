@@ -49,11 +49,20 @@ client.background        #000000
 # Regras
 for_window [app_id="^Picture-in-Picture$"] {
   floating enable
-  resize set height 320
+  resize set height 350
   resize set width  600
   border none
   sticky toggle
-  move position 680 380
+  move position 680 370
+  opacity 0.85
+}
+for_window [title="^Picture-in-Picture$"] {
+  floating enable
+  resize set height 350
+  resize set width  600
+  border none
+  sticky toggle
+  move position 680 370
   opacity 0.85
 }
 ## Não desliga a tela quando em tela cheia
@@ -106,6 +115,7 @@ bindsym $mod+tab exec sway-overfocus split-rw group-rw float-rw
 bindsym $mod+Mod1+period exec sway-overfocus split-rw group-rw float-rw
 bindsym Print exec wayland_print
 bindsym $mod+e exec term_open -a nvim nvim
+bindsym $mod+o exec menu_pesquisar
 bindsym $mods+Return exec term_open
 ## menu
 mode "Menu" {
@@ -116,7 +126,6 @@ mode "Menu" {
     bindsym c exec cliphist list | tofi --padding-left 0 --padding-top 0 | cliphist decode | wl-copy ; mode "default"
     bindsym Shift+c exec term_open -a calculadora bc ; mode "default"
     bindsym Shift+e exec term_open -a float fzf_emojis ; mode "default"
-    bindsym q exec qutebrowser ; mode "default"
     bindsym f exec firefox ; mode "default"
     bindsym h exec term_open -a float htop ; mode "default"
     bindsym s exec gammastep -O 3000 ; mode "default"
