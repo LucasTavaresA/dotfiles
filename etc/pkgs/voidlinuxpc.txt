@@ -35,6 +35,8 @@ dejavu-fonts-ttf
 delta
 discord
 docx2txt
+dotnet6
+dotnet7
 enchant
 exiftool
 expect
