@@ -1,8 +1,4 @@
-" tema
-colourscheme shydactyl
-
-" Misc
-
+""" Misc
 " Make Tridactyl work on more sites at the expense of some security
 " removed due to firefox request
 " set csp clobber
@@ -125,7 +121,6 @@ bindurl youtube.com/feed F hint -Jc .yt-simple-endpoint:not(.ytd-thumbnail)
 bindurl youtube.com/channel f hint -Jc .yt-simple-endpoint:not(.ytd-thumbnail)
 bindurl youtube.com/channel F hint -Jc .yt-simple-endpoint:not(.ytd-thumbnail)
 
-" TODO: bindings
 bind O fillcmdline winopen
 bind j scrollline 4
 bind k scrollline -4
@@ -137,6 +132,15 @@ bind <C-d> forward
 bind A fillcmdline back
 bind D fillcmdline forward
 bind ZZ composite sanitise tridactyllocal tridactylsync; qall
+bind qvw hint -W js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('mpv --ytdl-format=\'worstvideo*[height=720]+worstaudio/worst[height=720]\' --cache=yes --demuxer-max-bytes=2048Kib --wayland-app-id=Picture-in-Picture ' + url))
+bind qsw hint -W js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('streamlink -a \'--wayland-app-id=Picture-in-Picture\' ' + url))
+bind qvd hint -W js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('term_open -a float yt-dlp -P ~/Downloads --write-subs -f \'worstvideo*[height=720]+worstaudio/worst[height=720]\' ' + url))
+bind qid hint -A
+bind qad hint -W js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('term_open -a float yt-dlp -x ' + url))
+bind qq hint -W js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('qutebrowser ' + url))
+bind cl hint -y
+bind cc hint -p
+bind z hint -W js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('echo ' + url + ' >> ~/copied.txt'))
 
 " use native C-f
 unbind <C-f>
