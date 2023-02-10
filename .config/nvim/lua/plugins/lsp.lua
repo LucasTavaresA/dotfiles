@@ -19,7 +19,6 @@ return {
       "python",
     },
     dependencies = {
-      "SmiteshP/nvim-navic",
       {
         "j-hui/fidget.nvim",
         lazy = true,
@@ -130,14 +129,6 @@ return {
       On_attach = function(client, bufnr)
         local function buf_set_option(...)
           vim.api.nvim_buf_set_option(bufnr, ...)
-        end
-
-        if
-          client.server_capabilities.documentSymbolProvider
-          and vim.api.nvim_buf_line_count(bufnr) < 2000
-        then
-          require("nvim-navic").setup({ depth_limit = 3 })
-          require("nvim-navic").attach(client, bufnr)
         end
 
         buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
