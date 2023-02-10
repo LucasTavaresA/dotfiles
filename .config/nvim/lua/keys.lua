@@ -100,7 +100,7 @@ Keymaps({
   -- marca/desmarca checkboxes
   {
     "n",
-    "zx",
+    "cx",
     function()
       local line = vim.api.nvim_get_current_line()
 

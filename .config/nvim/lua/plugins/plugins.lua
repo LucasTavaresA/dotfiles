@@ -287,7 +287,7 @@ return {
     "akinsho/git-conflict.nvim",
     lazy = false,
     config = function()
-      require("git-conflict").setup()
+      require("git-conflict").setup({})
     end,
   },
   -- executar código dependendo do cwd
@@ -418,7 +418,6 @@ return {
     config = function()
       require("gruvbox").setup({
         transparent_mode = true,
-        inverse = false, -- invert background for search, diffs, statuslines and errors
       })
     end,
   },
