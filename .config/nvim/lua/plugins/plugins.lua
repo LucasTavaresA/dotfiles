@@ -393,6 +393,16 @@ return {
       require("stabilize").setup()
     end,
   },
+  -- indica palavra selecionada
+  {
+    "tzachar/local-highlight.nvim",
+    lazy = false,
+    config = function()
+      require("local-highlight").setup({
+        hlgroup = "CursorLine",
+      })
+    end,
+  },
   -- indicador de indentação
   {
     "lucastavaresa/simpleIndentGuides.nvim",
