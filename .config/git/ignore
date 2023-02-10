@@ -26,8 +26,6 @@
 .config/mpv/watch_later/
 .config/ncmpcpp/error.log
 .config/npm/_*
-.config/nvim/lazy-lock.json
-.config/nvim/plugin/
 .config/pulse/
 .config/qutebrowser/__pycache__/
 .config/qutebrowser/greasemonkey/
