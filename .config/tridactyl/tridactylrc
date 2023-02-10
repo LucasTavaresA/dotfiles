@@ -42,7 +42,8 @@ setnull searchurls.gentoo_wiki
 setnull searchurls.qwant
 
 " search engines
-set searchengine g
+set searchengine s
+set searchurls.s    https://search.unlocked.link/search?q=%s
 set searchurls.g    https://www.google.com/search?q=%s
 set searchurls.yt   https://www.youtube.com/search?q=%s
 set searchurls.alm  https://anilist.co/search/manga?search=%s&sort=SEARCH_MATCH
@@ -78,6 +79,7 @@ set searchurls.wm   https://web.archive.org/web/*/%s
 " quickmark br   https://brainly.com.br/
 " quickmark fb   https://www.facebook.com/
 " quickmark fp   https://www.freshports.org/
+" quickmark s    https://search.unlocked.link/
 " quickmark g    https://www.google.com/
 " quickmark gf   https://greasyfork.org/
 " quickmark gh   https://github.com/

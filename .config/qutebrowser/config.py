@@ -125,7 +125,8 @@ config.set('content.geolocation', False, 'https://www.google.com')
 config.set('content.register_protocol_handler', False, 'https://mail.google.com?extsrc=mailto&url=%25s')
 
 #### Ferramentas de pesquisa ####
-c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
+c.url.searchengines = {'DEFAULT': 'https://search.unlocked.link/search?q={}'
+                    ,  'g':    'https://www.google.com/search?q={}'
                     ,  'alm':  'https://anilist.co/search/manga?search={}&sort=SEARCH_MATCH'
                     ,  'al':   'https://anilist.co/search/anime?search={}&sort=SEARCH_MATCH'
                     ,  'aur':  'https://aur.archlinux.org/packages?O=0&SeB=nd&K={}&outdated=&SB=p&SO=d&PP=50&submit=Go'
@@ -245,8 +246,8 @@ c.downloads.location.directory = '~/Downloads'
 
 # pagina inicial e novas abas
 # quando usando comandos como :open -t e :open -w .
-c.url.default_page = 'https://www.google.com/'
-c.url.start_pages = 'https://www.google.com/'
+c.url.default_page = 'https://search.unlocked.link/'
+c.url.start_pages = 'https://search.unlocked.link/'
 
 #### CORES ####
 # pedir modo escuro aos sites que o suportam
@@ -503,6 +504,7 @@ config.set('content.javascript.enabled', True, '*://*.www.gnome-look.org/*')
 config.set('content.javascript.enabled', True, '*://*.www.gnu.org/*')
 config.set('content.javascript.enabled', True, '*://*.www.google.com.br/*')
 config.set('content.javascript.enabled', True, '*://*.www.google.com/*')
+config.set('content.javascript.enabled', True, '*://*.search.unlocked.link/*')
 config.set('content.javascript.enabled', True, '*://*.www.gov.br/*')
 config.set('content.javascript.enabled', True, '*://*.www.howtogeek.com/*')
 config.set('content.javascript.enabled', True, '*://*.www.ibm.com/*')
