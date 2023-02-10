@@ -19,6 +19,7 @@ return {
       "python",
     },
     dependencies = {
+      "folke/neodev.nvim",
       {
         "j-hui/fidget.nvim",
         lazy = true,
@@ -313,6 +314,8 @@ return {
       -- })
 
       -- instale o lua-language-server
+      require("neodev").setup()
+
       require("lspconfig").sumneko_lua.setup({
         on_attach = On_attach,
         capabilities = capabilities,
@@ -349,15 +352,6 @@ return {
         noremap = true,
       },
     },
-  },
-  {
-    "folke/neodev.nvim",
-    lazy = true,
-    dependencies = "neovim/nvim-lspconfig",
-    ft = "lua",
-    config = function()
-      require("neodev").setup()
-    end,
   },
   --- csharp
   {
