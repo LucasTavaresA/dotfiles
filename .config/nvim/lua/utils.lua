@@ -192,3 +192,27 @@ vim.api.nvim_create_user_command("Redir", function(ctx)
   vim.opt_local.modified = false
   vim.bo.filetype = "qf"
 end, { nargs = "+", complete = "command" })
+
+--- Marca/Desmarca checkboxes
+function ToggleCheckbox()
+  local line = vim.api.nvim_get_current_line()
+
+  if line:find("%- %[ %]") then
+    line = line:gsub("%- %[ %]", "- [x]")
+  else
+    line = line:gsub("%- %[x%]", "- [ ]")
+  end
+
+  vim.api.nvim_set_current_line(line)
+end
+
+--- Abre o netrw na pasta do arquivo atual
+function NetrwCurrent()
+  local dir = vim.fn.expand("%:h")
+
+  if dir == "" then
+    dir = vim.fn.getcwd()
+  end
+
+  vim.cmd.Ex(dir)
+end

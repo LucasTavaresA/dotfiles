@@ -33,19 +33,7 @@ Keymaps({
   -- alinhar texto
   { "v", "<leader>A", ":!column -t -o ' '<cr>", { silent = true } },
   -- abre arquivos no diretório atual
-  {
-    nv,
-    "<leader>fF",
-    function()
-      local dir = vim.fn.expand("%:h")
-
-      if dir == "" then
-        dir = vim.fn.getcwd()
-      end
-
-      vim.cmd.Ex(dir)
-    end,
-  },
+  { nv, "<leader>fF", NetrwCurrent },
   -- mudar o typo de arquivo
   { nv, "<leader>ft", ":setlocal filetype=" },
   -- salvar e fechar buffer
@@ -98,22 +86,9 @@ Keymaps({
   { "v", "<A-j>", ":m '>+1<CR>gv==-gv-gv", { silent = true } },
   { "v", "<A-k>", ":m '<-2<CR>gv==-gv-gv", { silent = true } },
   -- marca/desmarca checkboxes
-  {
-    "n",
-    "cx",
-    function()
-      local line = vim.api.nvim_get_current_line()
-
-      if line:find("%- %[ %]") then
-        line = line:gsub("%- %[ %]", "- [x]")
-      else
-        line = line:gsub("%- %[x%]", "- [ ]")
-      end
-
-      vim.api.nvim_set_current_line(line)
-    end,
-  },
+  { "n", "cx", ToggleCheckbox },
   { "n", "<leader>gs", ":Redir grep!" },
+  { "n", "<A-f>", NetrwToggle },
 })
 
 -- fecha buffers de ajuda
