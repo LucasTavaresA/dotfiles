@@ -73,23 +73,6 @@ return {
       })
     end,
   },
-  -- pequenas melhorias ao netrw
-  {
-    "prichrd/netrw.nvim",
-    dependencies = "nvim-tree/nvim-web-devicons",
-    lazy = true,
-    keys = {
-      {
-        "<A-f>",
-        function()
-          NetrwToggle()
-        end,
-      },
-    },
-    config = function()
-      require("netrw").setup()
-    end,
-  },
   -- Popup enquanto cicla por buffers
   {
     "ghillb/cybu.nvim",
