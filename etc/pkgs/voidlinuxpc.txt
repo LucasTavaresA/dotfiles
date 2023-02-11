@@ -146,6 +146,7 @@ python3-devel
 python3-evdev
 python3-neovim
 python3-pip
+python3-pipx
 python3-pyclip
 python3-websockets
 python3-wheel
@@ -166,6 +167,7 @@ swaybg
 swayidle
 swaylock
 syncthing
+teeworlds
 telegram-desktop
 terminus-font
 testdisk

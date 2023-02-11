@@ -97,7 +97,7 @@ npm i -g cssmodules-language-server @tailwindcss/language-server typescript \
     neovim write-good
 npm i -g --save-dev stylelint stylelint-config-standard
 
-pip install --user lucas keepmenu
+pipx install keepmenu scdl spotdl jedi-language-server
 
 git clone https://github.com/TheGreatMcPain/gruvbox-material-gtk
 (
