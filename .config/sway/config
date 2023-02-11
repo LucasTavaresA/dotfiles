@@ -111,8 +111,8 @@ bindsym $mod+q kill
 bindsym $mod+w floating toggle
 bindsym $mod+f fullscreen toggle
 bindsym $mod+b bar hidden_state toggle
-bindsym $mod+tab exec sway-overfocus split-rw group-rw float-rw
-bindsym $mod+Mod1+period exec sway-overfocus split-rw group-rw float-rw
+bindsym $mod+tab exec swayr next-window current-workspace
+bindsym $mod+Mod1+period exec swayr next-window current-workspace
 bindsym Print exec wayland_print
 bindsym $mod+e exec term_open -a nvim nvim
 bindsym $mod+o exec menu_pesquisar
@@ -199,6 +199,7 @@ bindsym $mods+3 move window to workspace number $ws3
 bindsym $mods+4 move window to workspace number $ws4
 
 # Iniciar
+exec swayrd
 exec swayidle -w timeout 500 'swaymsg "output * power off"' resume 'swaymsg "output * power on"'
 exec wl-paste --watch cliphist store
 exec mako

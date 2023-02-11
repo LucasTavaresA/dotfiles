@@ -166,6 +166,7 @@ sway
 swaybg
 swayidle
 swaylock
+swayr
 syncthing
 teeworlds
 telegram-desktop
