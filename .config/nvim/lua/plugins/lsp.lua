@@ -313,10 +313,10 @@ return {
       --   },
       -- })
 
-      -- instale o lua-language-server
       require("neodev").setup()
 
-      require("lspconfig").sumneko_lua.setup({
+      -- instale o lua-language-server
+      require("lspconfig").lua_ls.setup({
         on_attach = On_attach,
         capabilities = capabilities,
         settings = {
