@@ -21,6 +21,7 @@ return {
       "bydlw98/cmp-env",
       "amarakon/nvim-cmp-fonts",
       "f3fora/cmp-spell",
+      { "petertriho/cmp-git", dependencies = "nvim-lua/plenary.nvim" },
       {
         "onsails/lspkind.nvim",
         config = function()
@@ -122,7 +123,7 @@ return {
           { name = "env", ft = { "fish", "zsh", "sh", "bash" } },
           { name = "fish", ft = "fish" },
           { name = "nvim_lua", ft = "lua" },
-          { name = "cmp_git", ft = "gitcommit" },
+          { name = "git" },
           { name = "conventionalcommits", ft = "gitcommit" },
           { name = "snippy" },
           { name = "nvim_lsp" },
@@ -141,7 +142,9 @@ return {
               "yml",
               "toml",
               "dosini",
+              "git",
               "gitcommit",
+              "gitrebase",
               "markdown",
               "org",
               "norg",
@@ -150,6 +153,8 @@ return {
           },
         }),
       })
+
+      require("cmp_git").setup()
 
       -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
       cmp.setup.cmdline({ "/", "?" }, {

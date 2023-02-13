@@ -57,6 +57,7 @@ gdu
 gettext
 gimp
 git
+github-cli
 glow
 gnome-epub-thumbnailer
 gnupg
