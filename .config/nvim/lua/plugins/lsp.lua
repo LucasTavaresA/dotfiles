@@ -214,7 +214,7 @@ return {
       capabilities.textDocument.completion.completionItem.snippetSupport = true
 
       -- Ativa quando o lsp esta ativo
-      On_attach = function(client, bufnr)
+      On_attach = function(_, bufnr)
         local function buf_set_option(...)
           vim.api.nvim_buf_set_option(bufnr, ...)
         end
