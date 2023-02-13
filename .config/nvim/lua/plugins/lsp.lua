@@ -253,7 +253,8 @@ return {
         vim.keymap.set({ "n", "v" }, "<leader>I", function()
           vim.lsp.buf.format({ async = true })
         end, bns)
-        vim.keymap.set({ "n", "v" }, "<C-S-r>", vim.lsp.buf.rename, bns)
+        -- usando lspsaga
+        -- vim.keymap.set({ "n", "v" }, "<leader>r", vim.lsp.buf.rename, bns)
       end
 
       -- diagnostico

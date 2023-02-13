@@ -16,9 +16,6 @@ function Keymaps(maps)
 end
 
 Keymaps({
-  -- mal hábito
-  { vi, "<C-c>", "" },
-  { "i", "<esc>", "" },
   -- sobe/desce uma tela
   { nvi, "<C-j>", "<C-d>" },
   { nvi, "<C-k>", "<C-u>" },
@@ -63,9 +60,9 @@ Keymaps({
   -- substitui seleção
   { "v", "<leader>S", ReplaceSel },
   -- procura e substitui no arquivo
-  { "n", "<leader>ss", ":%s//gc<left><left><left><left>" },
+  { "n", "<leader>ss", ":%s//gc<left><left><left>" },
   -- procura e substitui na região selecionada
-  { "v", "<leader>ss", ":s//gc<left><left><left><left>" },
+  { "v", "<leader>ss", ":s//gc<left><left><left>" },
   -- deleta linhas
   { nv, "<leader>sd", ":G//d<left><left>" },
   -- abre terminal do sistema no local do arquivo atual
@@ -87,7 +84,6 @@ Keymaps({
   { "v", "<A-k>", ":m '<-2<CR>gv==-gv-gv", { silent = true } },
   -- marca/desmarca checkboxes
   { "n", "cx", ToggleCheckbox },
-  { "n", "<leader>gs", ":Redir grep!" },
   { "n", "<A-f>", NetrwToggle },
 })
 
