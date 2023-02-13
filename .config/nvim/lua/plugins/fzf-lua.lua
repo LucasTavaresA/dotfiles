@@ -5,7 +5,14 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("fzf-lua").setup({
-        winopts = { preview = { default = "bat", layout = "vertical" } },
+        winopts = {
+          width = 1,
+          height = 0.6,
+          row = 1,
+          col = 1,
+          border = "none",
+          preview = { default = "bat", layout = "vertical" },
+        },
       })
       require("fzf-lua").register_ui_select()
     end,
@@ -14,27 +21,10 @@ return {
       { "<leader>ff", "<cmd>FzfLua git_files<cr>" },
       { "<leader>F", "<cmd>FzfLua files<cr>" },
       { "<leader>hh", "<cmd>FzfLua help_tags<cr>" },
-      {
-        "<leader>hH",
-        function()
-          require("fzf-lua").highlights({
-            -- BUG in fzf-lua
-            actions = {},
-          })
-        end,
-      },
+      { "<leader>hH", "<cmd>FzfLua highlights<cr>" },
       { "<leader>hc", "<cmd>FzfLua commands<cr>" },
-      { "<leader>hC", "<cmd>FzfLua colorschemes<cr>" },
       { "<leader>hm", "<cmd>FzfLua man_pages<cr>" },
-      {
-        "<leader>hk",
-        function()
-          require("fzf-lua").keymaps({
-            -- BUG in fzf-lua
-            actions = {},
-          })
-        end,
-      },
+      { "<leader>hk", "<cmd>FzfLua keymaps<cr>" },
       { "z=", "<cmd>FzfLua spell_suggest<cr>" },
       { [[\]], "<cmd>FzfLua blines<cr>" },
       { "<leader>q", "<cmd>FzfLua quickfix<cr>" },
@@ -59,8 +49,6 @@ return {
               },
               preview = "git show {1}:{2} | "
                 .. "bat --style=default --color=always --file-name={2} --highlight-line={3}",
-              -- BUG in fzf-lua
-              actions = {},
             }
           )
         end,

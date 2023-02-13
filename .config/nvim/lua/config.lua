@@ -168,7 +168,7 @@ Autocmd(
 Autocmd(
   "FileType",
   { "help" },
-  "call timer_start(50, { tid -> execute('setlocal nolist colorcolumn=0 | only')})"
+  "call timer_start(50, { tid -> execute('setlocal nolist colorcolumn=0')})"
 )
 -- TextYankPost
 -- indica texto copiado
