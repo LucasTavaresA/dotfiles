@@ -323,22 +323,35 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "JoosepAlviste/nvim-ts-context-commentstring",
     },
+    keys = {
+      {
+        "gcc",
+        function()
+          require("SingleComment").SingleComment()
+        end,
+        expr = true,
+      },
+      {
+        "gcc",
+        function()
+          require("SingleComment").Comment()
+        end,
+      },
+      {
+        "gcA",
+        function()
+          require("SingleComment").CommentAhead()
+        end,
+      },
+      {
+        "gca",
+        function()
+          require("SingleComment").ToggleCommentAhead()
+        end,
+      },
+    },
     init = function()
       vim.g.SC_ts_context = true
-      vim.keymap.set(
-        "n",
-        "gcc",
-        require("SingleComment").SingleComment,
-        { expr = true }
-      )
-      vim.keymap.set("v", "gcc", require("SingleComment").Comment, {})
-      vim.keymap.set("n", "gcA", require("SingleComment").CommentAhead, {})
-      vim.keymap.set(
-        "n",
-        "gca",
-        require("SingleComment").ToggleCommentAhead,
-        {}
-      )
     end,
   },
   -- esconde class em html
