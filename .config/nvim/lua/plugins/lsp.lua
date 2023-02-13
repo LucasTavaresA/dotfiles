@@ -83,21 +83,21 @@ return {
             "<cmd>Lspsaga show_buf_diagnostics ++unfocus<CR>"
           )
 
-          -- Diagnostic jump
-          vks("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
-          vks("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>")
+          -- -- Diagnostic jump BUGADO
+          -- vks("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
+          -- vks("n", "]d", vks("n", "zo", "<cmd>Lspsaga outline<CR>"))
 
-          -- Diagnostic jump with filters such as only jumping to an error
-          vks("n", "[D", function()
-            require("lspsaga.diagnostic"):goto_prev({
-              severity = vim.diagnostic.severity.ERROR,
-            })
-          end)
-          vks("n", "]D", function()
-            require("lspsaga.diagnostic"):goto_next({
-              severity = vim.diagnostic.severity.ERROR,
-            })
-          end)
+          -- -- Diagnostic jump with filters such as only jumping to an error
+          -- vks("n", "[D", function()
+          --   require("lspsaga.diagnostic"):goto_prev({
+          --     severity = vim.diagnostic.severity.ERROR,
+          --   })
+          -- end)
+          -- vks("n", "]D", function()
+          --   require("lspsaga.diagnostic"):goto_next({
+          --     severity = vim.diagnostic.severity.ERROR,
+          --   })
+          -- end)
 
           -- Toggle outline
           vks("n", "zo", "<cmd>Lspsaga outline<CR>")

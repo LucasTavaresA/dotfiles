@@ -73,9 +73,9 @@ Keymaps({
   -- abre terminal nativo em uma split
   { nvi, "<M-cr>", TerminalToggle },
   { "t", "<M-cr>", TerminalToggle },
-  -- usando lspsaga - vai para diagnostico
-  -- { "n", "[d", vim.diagnostic.goto_prev },
-  -- { "n", "]d", vim.diagnostic.goto_next },
+  -- vai para diagnostico
+  { "n", "[d", vim.diagnostic.goto_prev },
+  { "n", "]d", vim.diagnostic.goto_next },
   -- abre snippets
   { "n", "<leader>S", ":e ~/.config/nvim/snippets/" },
   -- move linhas
