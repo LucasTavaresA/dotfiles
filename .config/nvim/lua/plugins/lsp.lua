@@ -20,6 +20,7 @@ return {
     },
     dependencies = {
       "folke/neodev.nvim",
+      "ibhagwan/fzf-lua",
       {
         "glepnir/lspsaga.nvim",
         dependencies = {
@@ -226,26 +227,26 @@ return {
         vim.keymap.set(
           { "n", "v" },
           "gi",
-          require("telescope.builtin").lsp_implementations,
+          "<cmd>FzfLua lsp_implementations<cr>",
           bns
         )
         -- usando lsp_saga
         -- vim.keymap.set(
         --   { "n", "v" },
         --   "gr",
-        --   require("telescope.builtin").lsp_references,
+        --   "<cmd>FzfLua lsp_references<cr>",
         --   bns
         -- )
         vim.keymap.set(
           { "n", "v" },
           "gs",
-          require("telescope.builtin").lsp_document_symbols,
+          "<cmd>FzfLua lsp_document_symbols<cr>",
           bns
         )
         vim.keymap.set(
           { "n", "v" },
           "gS",
-          require("telescope.builtin").lsp_workspace_symbols,
+          "<cmd>FzfLua lsp_workspace_symbols<cr>",
           bns
         )
         vim.keymap.set({ "n", "v" }, "<C-h>", vim.lsp.buf.signature_help, bns)

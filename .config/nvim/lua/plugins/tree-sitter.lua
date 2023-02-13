@@ -186,7 +186,7 @@ return {
     lazy = true,
     keys = {
       {
-        "<leader>Q",
+        "zq",
         function()
           require("query-secretary").query_window_initiate()
         end,
