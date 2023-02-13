@@ -23,6 +23,14 @@ return {
       "f3fora/cmp-spell",
       { "petertriho/cmp-git", dependencies = "nvim-lua/plenary.nvim" },
       {
+        "KadoBOT/cmp-plugins",
+        config = function()
+          require("cmp-plugins").setup({
+            files = { ".config/nvim/" }, -- Recommended: use static filenames or partial paths
+          })
+        end,
+      },
+      {
         "onsails/lspkind.nvim",
         config = function()
           require("cmp").setup({
@@ -122,6 +130,7 @@ return {
           { name = "path" },
           { name = "env", ft = { "fish", "zsh", "sh", "bash" } },
           { name = "fish", ft = "fish" },
+          { name = "plugins" },
           { name = "nvim_lua", ft = "lua" },
           { name = "git" },
           { name = "conventionalcommits", ft = "gitcommit" },
