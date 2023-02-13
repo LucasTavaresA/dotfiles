@@ -40,39 +40,6 @@ return {
       })
     end,
   },
-  -- mostra informações no cursor
-  {
-    "lewis6991/hover.nvim",
-    lazy = true,
-    keys = {
-      {
-        "H",
-        function()
-          require("hover").hover()
-        end,
-        mode = { "n", "v" },
-      },
-      {
-        "gH",
-        function()
-          require("hover").hover_select()
-        end,
-        mode = { "n", "v" },
-      },
-    },
-    config = function()
-      require("hover").setup({
-        init = function()
-          require("hover.providers.lsp")
-          require("hover.providers.man")
-          require("hover.providers.dictionary")
-        end,
-        -- Whether the contents of a currently open hover window should be moved
-        -- to a :h preview-window when pressing the hover keymap.
-        preview_window = true,
-      })
-    end,
-  },
   -- Popup enquanto cicla por buffers
   {
     "ghillb/cybu.nvim",

@@ -7,14 +7,15 @@ return {
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
     keys = {
-      {
-        "<leader>D",
-        function()
-          require("telescope.builtin").diagnostics({})
-        end,
-        mode = { "n", "v" },
-        silent = true,
-      },
+      -- usando lspsaga
+      -- {
+      --   "<leader>D",
+      --   function()
+      --     require("telescope.builtin").diagnostics({})
+      --   end,
+      --   mode = { "n", "v" },
+      --   silent = true,
+      -- },
       {
         "<leader>F",
         function()

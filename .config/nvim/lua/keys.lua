@@ -63,19 +63,19 @@ Keymaps({
   -- substitui seleção
   { "v", "<leader>S", ReplaceSel },
   -- procura e substitui no arquivo
-  { "n", "<leader>s", ":%s///gc<left><left><left><left>" },
+  { "n", "<leader>ss", ":%s//gc<left><left><left><left>" },
   -- procura e substitui na região selecionada
-  { "v", "<leader>s", ":s///gc<left><left><left><left>" },
+  { "v", "<leader>ss", ":s//gc<left><left><left><left>" },
   -- deleta linhas
-  { nv, "<leader>d", ":G//d<left><left>" },
+  { nv, "<leader>sd", ":G//d<left><left>" },
   -- abre terminal do sistema no local do arquivo atual
   { "n", "<leader><return>", "<cmd>!sh -c 'term_open' &<cr><cr>" },
   -- abre terminal nativo em uma split
   { nvi, "<M-cr>", TerminalToggle },
   { "t", "<M-cr>", TerminalToggle },
-  -- vai para diagnostico
-  { "n", "[d", vim.diagnostic.goto_prev },
-  { "n", "]d", vim.diagnostic.goto_next },
+  -- usando lspsaga - vai para diagnostico
+  -- { "n", "[d", vim.diagnostic.goto_prev },
+  -- { "n", "]d", vim.diagnostic.goto_next },
   -- abre snippets
   { "n", "<leader>S", ":e ~/.config/nvim/snippets/" },
   -- move linhas

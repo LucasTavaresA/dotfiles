@@ -21,6 +21,92 @@ return {
     dependencies = {
       "folke/neodev.nvim",
       {
+        "glepnir/lspsaga.nvim",
+        dependencies = {
+          { "nvim-tree/nvim-web-devicons" },
+          --Please make sure you install markdown and markdown_inline parser
+          { "nvim-treesitter/nvim-treesitter" },
+        },
+        config = function()
+          require("lspsaga").setup({
+            lightbulb = {
+              enable = false,
+            },
+            diagnostic = {
+              --1 is max
+              max_width = 1,
+              keys = {
+                quit = { "q", "<esc>" },
+              },
+            },
+            symbol_in_winbar = {
+              enable = false,
+            },
+          })
+
+          local vks = vim.keymap.set
+
+          -- LSP finder - Find current symbol's references
+          vks("n", "gr", "<cmd>Lspsaga lsp_finder<CR>")
+
+          -- Code action
+          vks({ "n", "v" }, "ga", "<cmd>Lspsaga code_action<CR>")
+
+          -- Rename all occurrences of the hovered word for the entire file
+          vks("n", "<leader>r", "<cmd>Lspsaga rename<CR>")
+          -- Rename all occurrences of the hovered word for the selected files
+          vks("n", "<leader>R", "<cmd>Lspsaga rename ++project<CR>")
+
+          -- using treesitter-textobjects instead
+          -- vks("n", "gp", "<cmd>Lspsaga peek_definition<CR>")
+
+          -- using the default vim.lsp.buf.definition()
+          -- vks("n", "gd", "<cmd>Lspsaga goto_definition<CR>")
+
+          -- Peek type definition
+          vks("n", "gt", "<cmd>Lspsaga peek_type_definition<CR>")
+
+          -- Go to type definition
+          vks("n", "gT", "<cmd>Lspsaga goto_type_definition<CR>")
+
+          -- Show line diagnostics
+          vks(
+            "n",
+            "<leader>d",
+            "<cmd>Lspsaga show_line_diagnostics ++unfocus<CR>"
+          )
+
+          -- Show buffer diagnostics
+          vks(
+            "n",
+            "<leader>D",
+            "<cmd>Lspsaga show_buf_diagnostics ++unfocus<CR>"
+          )
+
+          -- Diagnostic jump
+          vks("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
+          vks("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>")
+
+          -- Diagnostic jump with filters such as only jumping to an error
+          vks("n", "[D", function()
+            require("lspsaga.diagnostic"):goto_prev({
+              severity = vim.diagnostic.severity.ERROR,
+            })
+          end)
+          vks("n", "]D", function()
+            require("lspsaga.diagnostic"):goto_next({
+              severity = vim.diagnostic.severity.ERROR,
+            })
+          end)
+
+          -- Toggle outline
+          vks("n", "zo", "<cmd>Lspsaga outline<CR>")
+
+          -- keep the hover window in the top right hand corner
+          vks("n", "H", "<cmd>Lspsaga hover_doc ++keep<CR>")
+        end,
+      },
+      {
         "j-hui/fidget.nvim",
         lazy = true,
         config = function()
@@ -143,12 +229,13 @@ return {
           require("telescope.builtin").lsp_implementations,
           bns
         )
-        vim.keymap.set(
-          { "n", "v" },
-          "gr",
-          require("telescope.builtin").lsp_references,
-          bns
-        )
+        -- usando lsp_saga
+        -- vim.keymap.set(
+        --   { "n", "v" },
+        --   "gr",
+        --   require("telescope.builtin").lsp_references,
+        --   bns
+        -- )
         vim.keymap.set(
           { "n", "v" },
           "gs",
@@ -341,17 +428,6 @@ return {
         },
       })
     end,
-  },
-  {
-    "weilbith/nvim-code-action-menu",
-    lazy = true,
-    keys = {
-      {
-        "ga",
-        vim.cmd.CodeActionMenu,
-        noremap = true,
-      },
-    },
   },
   --- csharp
   {
