@@ -15,7 +15,7 @@ return {
         end,
       },
       "JoosepAlviste/nvim-ts-context-commentstring",
-      -- "p00f/nvim-ts-rainbow",
+      "HiPhish/nvim-ts-rainbow2",
       "RRethy/nvim-treesitter-endwise",
       -- melhor indicação de parâmetros e seu uso
       {
@@ -170,10 +170,10 @@ return {
             },
           },
         },
-        -- rainbow = {
-        --   enable = true,
-        --   extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-        -- },
+        rainbow = {
+          enable = true,
+          extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+        },
         endwise = {
           enable = true,
         },
