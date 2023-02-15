@@ -38,6 +38,7 @@
   "lspsaga.nvim": { "branch": "main", "commit": "397201abffa681419a610ecbfd5d3c0fed45d20a" },
   "mini.jump": { "branch": "main", "commit": "75ab14dd05deecb125726e7996067c03ec8affa2" },
   "monark.nvim": { "branch": "main", "commit": "e04d36c8430e81d49b69b38bcbc381eee857fe00" },
+  "nelua.vim": { "branch": "main", "commit": "ff0a733a586ef0b48cda4999170ed4ca1653a144" },
   "neodev.nvim": { "branch": "main", "commit": "a81e749d0fe8429cd340b2e40f274b344bef42ac" },
   "null-ls.nvim": { "branch": "main", "commit": "2d89e1a38e3bdebd43984c23c861c33c0e36bd7a" },
   "nvim-FeMaco.lua": { "branch": "main", "commit": "469465fc1adf8bddc2c9bbe549d38304de95e9f7" },

@@ -232,6 +232,8 @@ return {
   },
 
   --- Code
+  -- indicação de syntaxe nelua
+  { "stefanos82/nelua.vim", lazy = true, ft = "nelua" },
   -- lidar com conflitos git
   {
     "akinsho/git-conflict.nvim",
