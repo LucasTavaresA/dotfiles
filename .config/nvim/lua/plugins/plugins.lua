@@ -345,6 +345,14 @@ return {
       require("stabilize").setup()
     end,
   },
+  -- notificações menos intrusivas
+  {
+    "vigoux/notifier.nvim",
+    lazy = false,
+    config = function()
+      require("notifier").setup()
+    end,
+  },
   -- indica palavra selecionada
   {
     "tzachar/local-highlight.nvim",
