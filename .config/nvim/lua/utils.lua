@@ -94,6 +94,7 @@ local function toggle_hlsearch(char)
     if vim.opt.hlsearch:get() ~= new_hlsearch then
       vim.opt.hlsearch = new_hlsearch
     end
+    vim.notify(SearchCount(), 2)
   end
 end
 vim.on_key(toggle_hlsearch, ns)
@@ -215,4 +216,22 @@ function NetrwCurrent()
   end
 
   vim.cmd.Ex(dir)
+end
+
+function SearchCount()
+  if vim.v.hlsearch == 0 then
+    return ""
+  end
+
+  local result = vim.fn.searchcount({ maxcount = 999, timeout = 250 })
+
+  if result.incomplete == 1 or next(result) == nil then
+    return ""
+  end
+
+  return string.format(
+    "[%d/%d]",
+    result.current,
+    math.min(result.total, result.maxcount)
+  )
 end
