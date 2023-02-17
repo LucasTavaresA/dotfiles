@@ -94,7 +94,6 @@ local function toggle_hlsearch(char)
     if vim.opt.hlsearch:get() ~= new_hlsearch then
       vim.opt.hlsearch = new_hlsearch
     end
-    vim.notify(SearchCount(), 2)
   end
 end
 vim.on_key(toggle_hlsearch, ns)
