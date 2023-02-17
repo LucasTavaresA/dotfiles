@@ -1,0 +1,2 @@
+GOPROXY=direct
+GOTELEMETRY=off
