@@ -18,7 +18,6 @@
   "conjure": { "branch": "master", "commit": "d2e69a13b32e8574decfe81ea275292234eba6ea" },
   "cybu.nvim": { "branch": "main", "commit": "395791b1e1177e3459c85415970ab8216b19a5dc" },
   "debugprint.nvim": { "branch": "main", "commit": "e99becd707f50012684db00d8eaff2f50fe72b97" },
-  "fold-cycle.nvim": { "branch": "main", "commit": "35bb75c17c364776db8544c7b0a46093f33caa0e" },
   "foldsigns.nvim": { "branch": "main", "commit": "6abc76a3eed8a76f1eb94170d349258b6ca2139f" },
   "fzf-lua": { "branch": "main", "commit": "7a70a76d3db76cee3ae30dfc290ab5d936ecbbea" },
   "git-conflict.nvim": { "branch": "main", "commit": "9b25ee5fcde7ec9a6eb96714de72fc8a763af445" },

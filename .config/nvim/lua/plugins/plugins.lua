@@ -111,24 +111,6 @@ return {
       require("nvim-lastplace").setup({})
     end,
   },
-  -- cicla estado de folds
-  {
-    "jghauser/fold-cycle.nvim",
-    lazy = true,
-    keys = {
-      {
-        "<tab>",
-        function()
-          require("fold-cycle").open()
-        end,
-        mode = { "n", "v", "i" },
-        silent = true,
-      },
-    },
-    config = function()
-      require("fold-cycle").setup()
-    end,
-  },
   -- Trata jj como escape
   {
     "max397574/better-escape.nvim",
