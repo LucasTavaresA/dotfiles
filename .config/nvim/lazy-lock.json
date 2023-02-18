@@ -67,6 +67,7 @@
   "query-secretary": { "branch": "master", "commit": "88e518d8230e4969d6a545eea6f2e49941d79379" },
   "refactoring.nvim": { "branch": "master", "commit": "57c32c6b7a211e5a3a5e4ddc4ad2033daff5cf9a" },
   "replacer.nvim": { "branch": "master", "commit": "8b45f6086d3174359176320d182e5c00b677f8c9" },
+  "smartcolumn.nvim": { "branch": "main", "commit": "3b5c156686242ae65cab41d0edf2b37c093d0c9d" },
   "sniprun": { "branch": "master", "commit": "6511fd71e751ed80ea374ef096ec5187682241cd" },
   "spaceless.nvim": { "branch": "main", "commit": "8b4afe9e51bdc3fc901ed54e719dd17e7790d9b9" },
   "stabilize.nvim": { "branch": "master", "commit": "34069870a8e72632c5447188e638e1c6bfebc353" },

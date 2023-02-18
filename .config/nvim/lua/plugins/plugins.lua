@@ -327,6 +327,8 @@ return {
       require("stabilize").setup()
     end,
   },
+  -- indica colorcolumn apenas quando necessário
+  { "m4xshen/smartcolumn.nvim", lazy = false, config = true },
   -- notificações menos intrusivas
   {
     "vigoux/notifier.nvim",
