@@ -110,7 +110,7 @@ vo.splitbelow = true
 vo.splitright = true
 vo.diffopt:append({ "horizontal" })
 -- mostra a statusline
-vo.laststatus = 0
+vo.laststatus = 3
 -- mostra o echo buffer
 vo.cmdheight = 0
 -- mostra a tabline

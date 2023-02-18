@@ -19,6 +19,7 @@ return {
       "python",
     },
     dependencies = {
+      "SmiteshP/nvim-navic",
       "folke/neodev.nvim",
       "ibhagwan/fzf-lua",
       {
@@ -191,9 +192,17 @@ return {
       capabilities.textDocument.completion.completionItem.snippetSupport = true
 
       -- Ativa quando o lsp esta ativo
-      On_attach = function(_, bufnr)
+      On_attach = function(client, bufnr)
         local function buf_set_option(...)
           vim.api.nvim_buf_set_option(bufnr, ...)
+        end
+
+        if
+          client.server_capabilities.documentSymbolProvider
+          and vim.api.nvim_buf_line_count(bufnr) < 2000
+        then
+          require("nvim-navic").setup()
+          require("nvim-navic").attach(client, bufnr)
         end
 
         buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
