@@ -126,8 +126,8 @@ vo.relativenumber = true
 vg.sh_fold_enabled = 1
 -- vo.foldmethod = "syntax"
 vo.foldcolumn = "9"
-vo.foldlevel = 1
-vo.foldnestmax = 5
+vo.foldlevel = 0
+vo.foldnestmax = 3
 vim.o.foldopen = "block,insert,jump,mark,percent,quickfix,search,tag,undo"
 
 --- Netrw
