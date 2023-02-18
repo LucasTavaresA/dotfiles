@@ -6,7 +6,7 @@ if status is-interactive
     set -x SHELL /bin/fish
     set -x GPG_TTY (tty)
     set fzf_fd_opts --base-directory $HOME -H -I -d 4 -t d -E '*cache*' -E '*git*'
-    set fzf_git_log_opts --preview-window=bottom
+    set fzf_git_log_opts --preview-window=bottom --no-sort -e
     set fish_color_normal white
     set fish_color_autosuggestion '#444444'
     set fish_color_command green
