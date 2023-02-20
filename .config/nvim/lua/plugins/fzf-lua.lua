@@ -30,7 +30,7 @@ return {
       { "<leader>q", "<cmd>FzfLua quickfix<cr>" },
       { "<leader>Q", "<cmd>FzfLua quickfix_stack<cr>" },
       {
-        "<leader>gg",
+        "<leader>lg",
         function()
           require("fzf-lua").live_grep({
             cmd = "git grep -Ini --column --color=always",
@@ -38,7 +38,7 @@ return {
         end,
       },
       {
-        "<leader>GG",
+        "<leader>lG",
         function()
           require("fzf-lua").fzf_live(
             "git rev-list --all | xargs git grep --line-number --column --color=always <query>",
