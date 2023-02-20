@@ -20,9 +20,7 @@ return {
       -- melhor indicação de parâmetros e seu uso
       {
         "m-demare/hlargs.nvim",
-        config = function()
-          require("hlargs").setup()
-        end,
+        config = true,
       },
     },
     config = function()
@@ -180,10 +178,9 @@ return {
       })
     end,
   },
-  { "nvim-treesitter/playground", lazy = true, cmd = "TSPlaygroundToggle" },
+  { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
   {
     "ziontee113/query-secretary",
-    lazy = true,
     keys = {
       {
         "zq",
@@ -195,7 +192,6 @@ return {
   },
   {
     "ThePrimeagen/refactoring.nvim",
-    lazy = true,
     keys = {
       {
         "<leader>re",
@@ -311,14 +307,11 @@ return {
       "g?V",
       { "<C-s-p>", vim.cmd.DeleteDebugPrints },
     },
-    config = function()
-      require("debugprint").setup()
-    end,
+    config = true,
   },
   -- comenta código
   {
     "lucastavaresa/SingleComment.nvim",
-    lazy = true,
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "JoosepAlviste/nvim-ts-context-commentstring",
@@ -344,13 +337,11 @@ return {
   -- esconde class em html
   {
     "dzfrias/nvim-classy",
-    lazy = true,
     ft = "html",
     dependencies = "nvim-treesitter/nvim-treesitter",
   },
   {
     "atusy/tsnode-marker.nvim",
-    lazy = true,
     dependencies = "nvim-treesitter/nvim-treesitter",
     filetype = "markdown",
     init = function()

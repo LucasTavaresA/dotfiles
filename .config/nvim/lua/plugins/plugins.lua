@@ -28,7 +28,6 @@ return {
   -- cria commandos com previsão
   {
     "smjonas/live-command.nvim",
-    lazy = true,
     event = "CmdlineEnter",
     config = function()
       require("live-command").setup({
@@ -43,7 +42,6 @@ return {
   -- Popup enquanto cicla por buffers
   {
     "ghillb/cybu.nvim",
-    lazy = true,
     dependencies = { "nvim-tree/nvim-web-devicons", "nvim-lua/plenary.nvim" },
     keys = {
       { "<c-s-tab>", "<plug>(CybuLastusedPrev)" },
@@ -60,7 +58,6 @@ return {
   -- interage com a openai
   {
     "aduros/ai.vim",
-    lazy = true,
     cmd = "AI",
     keys = {
       { "<A-a>", ":AI ", noremap = true },
@@ -79,17 +76,13 @@ return {
   {
     "tenxsoydev/karen-yank.nvim",
     lazy = false,
-    config = function()
-      require("karen-yank").setup()
-    end,
+    config = true,
   },
   -- desativa funções em arquivos muito grandes
   {
     "LunarVim/bigfile.nvim",
     lazy = false,
-    config = function()
-      require("bigfile").setup()
-    end,
+    config = true,
   },
   -- previsão e seleção de cores
   {
@@ -98,23 +91,20 @@ return {
     keys = {
       { "zc", vim.cmd.ColorizerToggle },
     },
-    config = function()
+    init = function()
       vim.opt.termguicolors = true
-      require("colorizer").setup({})
     end,
+    config = true,
   },
   -- salva posição do cursor
   {
     "ethanholz/nvim-lastplace",
     lazy = false,
-    config = function()
-      require("nvim-lastplace").setup({})
-    end,
+    config = true,
   },
   -- Trata jj como escape
   {
     "max397574/better-escape.nvim",
-    lazy = true,
     event = "InsertEnter",
     config = function()
       require("better_escape").setup({
@@ -132,15 +122,12 @@ return {
   -- troca/coloca aspas/parenteses
   {
     "kylechui/nvim-surround",
-    lazy = true,
     keys = {
       { "S", mode = "v" },
       { "ds" },
       { "cs" },
     },
-    config = function()
-      require("nvim-surround").setup()
-    end,
+    config = true,
   },
   -- arvore de undos
   {
@@ -154,22 +141,17 @@ return {
         noremap = true,
       },
     },
-    config = function()
-      require("undotree").setup()
-    end,
+    config = true,
   },
   -- remove espaços em linhas editadas
   {
     "lewis6991/spaceless.nvim",
     lazy = false,
-    config = function()
-      require("spaceless").setup()
-    end,
+    config = true,
   },
   -- procura e edita varias ocorrências de uma palavra
   {
     "gabrielpoca/replacer.nvim",
-    lazy = true,
     keys = {
       {
         "<Leader>gr",
@@ -183,7 +165,6 @@ return {
   -- alinha texto
   {
     "Vonr/align.nvim",
-    lazy = true,
     keys = {
       {
         "<leader>a",
@@ -197,37 +178,28 @@ return {
   -- extende a funcionalidade de f,F,t,T
   {
     "echasnovski/mini.jump",
-    lazy = true,
     keys = { "f", "F", "t", "T" },
-    config = function()
-      require("mini.jump").setup({})
-    end,
+    config = true,
   },
   -- hexadecimal
   {
     "RaafatTurki/hex.nvim",
-    lazy = true,
     cmd = "HexToggle",
-    config = function()
-      require("hex").setup()
-    end,
+    config = true,
   },
 
   --- Code
   -- indicação de syntaxe nelua
-  { "stefanos82/nelua.vim", lazy = true, ft = "nelua" },
+  { "stefanos82/nelua.vim", ft = "nelua" },
   -- lidar com conflitos git
   {
     "akinsho/git-conflict.nvim",
     lazy = false,
-    config = function()
-      require("git-conflict").setup({})
-    end,
+    config = true,
   },
   -- executar código dependendo do cwd
   {
     "lucastavaresa/simpleCommand.nvim",
-    lazy = true,
     keys = {
       {
         "<leader>c",
@@ -236,14 +208,11 @@ return {
         end,
       },
     },
-    config = function()
-      require("simpleCommand").setup()
-    end,
+    config = true,
   },
   -- avaliar código
   {
     "michaelb/sniprun",
-    lazy = true,
     ft = {
       "sh",
       "bash",
@@ -274,7 +243,6 @@ return {
   -- avalia mais código
   {
     "Olical/conjure",
-    lazy = true,
     dependencies = "nvim-treesitter/nvim-treesitter",
     ft = { "lisp", "fennel", "lua", "python", "clojure", "cl", "scheme" },
     config = function()
@@ -310,9 +278,7 @@ return {
   {
     "windwp/nvim-autopairs",
     lazy = false,
-    config = function()
-      require("nvim-autopairs").setup({})
-    end,
+    config = true,
   },
   -- balanceia parenteses
   { "gpanders/nvim-parinfer", lazy = false },
@@ -326,7 +292,6 @@ return {
   {
     "TimUntersberger/neogit",
     dependencies = "nvim-lua/plenary.nvim",
-    lazy = true,
     cmd = "Neogit",
     keys = {
       { "<leader>gg", vim.cmd.Neogit },
@@ -367,9 +332,7 @@ return {
   {
     "luukvbaal/stabilize.nvim",
     lazy = false,
-    config = function()
-      require("stabilize").setup()
-    end,
+    config = true,
   },
   -- indica colorcolumn apenas quando necessário
   { "m4xshen/smartcolumn.nvim", lazy = false, config = true },
@@ -377,9 +340,7 @@ return {
   {
     "vigoux/notifier.nvim",
     lazy = false,
-    config = function()
-      require("notifier").setup()
-    end,
+    config = true,
   },
   -- indica palavra selecionada
   {
@@ -458,7 +419,6 @@ return {
   -- traduz texto
   {
     "uga-rosa/translate.nvim",
-    lazy = true,
     keys = {
       {
         "<leader>t",
@@ -468,25 +428,18 @@ return {
         mode = { "n", "v" },
       },
     },
-    config = function()
-      require("translate").setup({})
-    end,
+    config = true,
   },
   -- previsão de markdown
   {
     "ellisonleao/glow.nvim",
-    lazy = true,
-    cmd = "Glow",
-    config = function()
-      require("glow").setup()
-    end,
+    keys = { { "<leader>mp", vim.cmd.Glow } },
+    config = true,
   },
   -- edita blocos de código em um pop-up confiável
   {
     "AckslD/nvim-FeMaco.lua",
-    cmd = "FeMaco",
-    config = function()
-      require("femaco").setup()
-    end,
+    keys = { { "mf", vim.cmd.FeMaco } },
+    config = true,
   },
 }

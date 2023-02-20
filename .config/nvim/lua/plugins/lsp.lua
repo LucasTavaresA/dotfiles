@@ -1,7 +1,6 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    lazy = true,
     ft = {
       "lua",
       "c",
@@ -421,13 +420,11 @@ return {
   {
     "Hoffs/omnisharp-extended-lsp.nvim",
     dependencies = "neovim/nvim-lspconfig",
-    lazy = true,
     ft = "cs",
   },
   -- {
   --   "Decodetalkers/csharpls-extended-lsp.nvim",
   --   dependencies = "neovim/nvim-lspconfig",
-  --   lazy = true,
   --   ft = "cs",
   -- },
 }

@@ -6,9 +6,7 @@ return {
       {
         "dcampos/nvim-snippy",
         dependencies = "honza/vim-snippets",
-        config = function()
-          require("snippy").setup({})
-        end,
+        config = true,
       },
       "dcampos/cmp-snippy",
       "hrsh7th/cmp-buffer",
