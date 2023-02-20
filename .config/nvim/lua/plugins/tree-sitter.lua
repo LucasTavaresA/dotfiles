@@ -9,6 +9,18 @@ return {
     end,
     dependencies = {
       {
+        "ckolkey/ts-node-action",
+        opts = {},
+        keys = {
+          {
+            "<C-s>",
+            function()
+              require("ts-node-action").node_action()
+            end,
+          },
+        },
+      },
+      {
         "nvim-treesitter/nvim-treesitter-textobjects",
         config = function()
           vim.keymap.set("n", "<S-j>", "")

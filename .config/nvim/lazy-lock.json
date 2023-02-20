@@ -78,6 +78,7 @@
   "stabilize.nvim": { "branch": "master", "commit": "34069870a8e72632c5447188e638e1c6bfebc353" },
   "translate.nvim": { "branch": "main", "commit": "7b2fd50c21ecfe536d572d62dcd3fa83acad3743" },
   "tsnode-marker.nvim": { "branch": "main", "commit": "8b8e4b3b40e07107638a2d2313407bd2a9c3e974" },
+  "ts-node-action": { "branch": "master", "commit": "52046b6d31031115046e4f09e9a9f4b68aa1123d" },
   "undotree": { "branch": "main", "commit": "6cb7e65e03871d2567d2c44745d3de57d07ca1fd" },
   "vim-gnupg": { "branch": "main", "commit": "f9b608f29003dfde6450931dc0f495a912973a88" },
   "vim-snippets": { "branch": "master", "commit": "68dfbccbe97b87ec9c80fa6d5ee144befc3f3a3b" }
