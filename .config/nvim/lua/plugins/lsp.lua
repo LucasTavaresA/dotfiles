@@ -53,8 +53,8 @@ return {
           -- Code action
           vks({ "n", "v" }, "ga", "<cmd>Lspsaga code_action<CR>")
 
-          -- Rename all occurrences of the hovered word for the entire file
-          vks("n", "<leader>r", "<cmd>Lspsaga rename<CR>")
+          -- -- Rename all occurrences of the hovered word for the entire file
+          -- vks("n", "<leader>r", "<cmd>Lspsaga rename<CR>")
           -- Rename all occurrences of the hovered word for the selected files
           vks("n", "<leader>R", "<cmd>Lspsaga rename ++project<CR>")
 

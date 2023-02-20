@@ -2,14 +2,38 @@ return {
   "lewis6991/gitsigns.nvim",
   lazy = false,
   keys = {
+    { "[g", ":Gitsigns prev_hunk<CR>", mode = { "n", "v" }, silent = true },
+    { "]g", ":Gitsigns next_hunk<CR>", mode = { "n", "v" }, silent = true },
     {
       "<leader>gb",
       ":Gitsigns toggle_current_line_blame<CR>",
-      mode = { "n", "v" },
       silent = true,
     },
-    { "[g", ":Gitsigns prev_hunk<CR>", mode = { "n", "v" }, silent = true },
-    { "]g", ":Gitsigns next_hunk<CR>", mode = { "n", "v" }, silent = true },
+    {
+      "<leader>gp",
+      ":Gitsigns preview_hunk<CR>",
+      silent = true,
+    },
+    {
+      "<leader>gs",
+      ":Gitsigns stage_hunk<CR>",
+      silent = true,
+    },
+    {
+      "<leader>gS",
+      ":Gitsigns stage_buffer<CR>",
+      silent = true,
+    },
+    {
+      "<leader>gr",
+      ":Gitsigns reset_hunk<CR>",
+      silent = true,
+    },
+    {
+      "<leader>gR",
+      ":Gitsigns reset_buffer<CR>",
+      silent = true,
+    },
   },
   config = function()
     require("gitsigns").setup({

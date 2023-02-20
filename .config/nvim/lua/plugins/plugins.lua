@@ -181,7 +181,7 @@ return {
     "gabrielpoca/replacer.nvim",
     keys = {
       {
-        "<Leader>gr",
+        "<Leader>rr",
         function()
           require("replacer").run()
         end,
