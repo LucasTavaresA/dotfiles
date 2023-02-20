@@ -67,6 +67,7 @@
   "omnisharp-extended-lsp.nvim": { "branch": "main", "commit": "55cb3d7310e07e38d0d420d195f353c51eb603fb" },
   "playground": { "branch": "master", "commit": "c481c660fa903a0e295902b1765ecfbd6e76a556" },
   "plenary.nvim": { "branch": "master", "commit": "9a0d3bf7b832818c042aaf30f692b081ddd58bd9" },
+  "pounce.nvim": { "branch": "master", "commit": "a573820b20882c70d241a1ac94aa27670442c027" },
   "pretty-fold.nvim": { "branch": "master", "commit": "a7d8b424abe0eedf50116c460fbe6dfd5783b1d5" },
   "query-secretary": { "branch": "master", "commit": "88e518d8230e4969d6a545eea6f2e49941d79379" },
   "refactoring.nvim": { "branch": "master", "commit": "57c32c6b7a211e5a3a5e4ddc4ad2033daff5cf9a" },

@@ -214,6 +214,11 @@ return {
     cmd = "HexToggle",
     config = true,
   },
+  -- pula usando pesquisas
+  {
+    "rlane/pounce.nvim",
+    keys = { { "s", "<cmd>Pounce<cr>", mode = { "n", "v" } } },
+  },
 
   --- Code
   -- indicação de syntaxe nelua
