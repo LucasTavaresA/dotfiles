@@ -76,11 +76,11 @@ end
 --- alterna aba do netrw
 function NetrwToggle()
   if vim.o.ft == "netrw" then
-    vim.cmd.Lexplore()
+    vim.cmd.Ex()
     vim.opt.signcolumn = "yes:9"
   else
     vim.opt.signcolumn = "no"
-    vim.cmd.Lexplore()
+    vim.cmd.Ex()
     vim.opt.signcolumn = "yes"
   end
 end

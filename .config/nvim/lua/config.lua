@@ -132,8 +132,8 @@ vim.o.foldopen = "block,insert,jump,mark,percent,quickfix,search,tag,undo"
 
 --- Netrw
 -- desabilita o netrw
--- vg.loaded_netrw = 1
--- vg.loaded_netrwPlugin = 1
+vg.loaded_netrw = 1
+vg.loaded_netrwPlugin = 1
 -- define o modo de listagem de arquivos
 -- vg.netrw_liststyle = 3
 -- remove o banner
