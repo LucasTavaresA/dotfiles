@@ -24,7 +24,7 @@ return {
         "KadoBOT/cmp-plugins",
         config = function()
           require("cmp-plugins").setup({
-            files = { ".config/nvim/" }, -- Recommended: use static filenames or partial paths
+            files = { ".config/nvim/lua/plugins" }, -- Recommended: use static filenames or partial paths
           })
         end,
       },
