@@ -1,3 +1,5 @@
+set colorscheme shydactyl
+
 """ Misc
 " Make Tridactyl work on more sites at the expense of some security
 " removed due to firefox request
