@@ -86,7 +86,7 @@ export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 # omnisharp
 export OMNISHARPHOME="${XDG_DATA_HOME:-$HOME/.local/share}/omnisharp"
 # dotnet
-[ -n "$DOTNET_ROOT" ] && export DOTNET_ROOT="${XDG_DATA_HOME:-$HOME/.local/share}/dotnet"
+# export DOTNET_ROOT="${XDG_DATA_HOME:-$HOME/.local/share}/dotnet"
 # nuget
 export NUGET_PACKAGES="${XDG_CACHE_HOME:-$HOME/.cache}/NuGetPackages"
 # npm

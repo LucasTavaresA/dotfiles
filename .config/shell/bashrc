@@ -198,6 +198,7 @@ alias dmi="doas make install"
 alias dmu="doas make uninstall"
 alias dnr="dotnet run"
 alias dnn="dotnet new"
+alias dnp="dotnet publish"
 # arquivos e Diretórios
 alias g="ugrep --color -iIn"
 alias rm="trash"

@@ -245,6 +245,7 @@ if status is-interactive
     abbr -a -g dmu doas make uninstall
     abbr -a -g dnr dotnet run
     abbr -a -g dnn dotnet new
+    abbr -a -g dnp dotnet publish
     # arquivos e Diretórios
     abbr -a -g rm trash
     abbr -a -g rml trash clean
