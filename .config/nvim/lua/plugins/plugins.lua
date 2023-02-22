@@ -1,7 +1,4 @@
 return {
-  -- vim mais rápido
-  "lewis6991/impatient.nvim",
-
   --- Miscelânea
   -- explorador de arquivos
   {
