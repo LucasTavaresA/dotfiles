@@ -87,7 +87,6 @@ git clone https://github.com/horriblename/lf
 )
 rm -r lf
 
-go install github.com/nao1215/gup@latest
 go install github.com/mrtazz/checkmake/cmd/checkmake@latest
 go install github.com/nametake/golangci-lint-langserver@latest
 
