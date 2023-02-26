@@ -203,7 +203,9 @@ return {
   {
     "echasnovski/mini.jump",
     keys = { "f", "F", "t", "T" },
-    config = true,
+    config = function()
+      require("mini.jump").setup()
+    end,
   },
   -- hexadecimal
   {
