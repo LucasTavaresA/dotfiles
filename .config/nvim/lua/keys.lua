@@ -84,6 +84,16 @@ Keymaps({
   { "v", "<A-k>", ":m '<-2<CR>gv==-gv-gv", { silent = true } },
   -- marca/desmarca checkboxes
   { "n", "cx", ToggleCheckbox },
+  {
+    nvi,
+    "<C-s>",
+    "<cmd>normal! n<cr>",
+  },
+  {
+    nvi,
+    "<C-S-s>",
+    "<cmd>normal! N<cr>",
+  },
 })
 
 -- fecha buffers de ajuda
