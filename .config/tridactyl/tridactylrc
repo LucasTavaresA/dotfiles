@@ -1,4 +1,4 @@
-set colorscheme shydactyl
+colorscheme shydactyl
 
 """ Misc
 " Make Tridactyl work on more sites at the expense of some security
@@ -41,67 +41,41 @@ setnull searchurls.qwant
 
 " search engines
 set searchengine s
-set searchurls.s    https://searx.be/search?q=%s
-set searchurls.g    https://www.google.com/search?q=%s
-set searchurls.yt   https://www.youtube.com/search?q=%s
-set searchurls.alm  https://anilist.co/search/manga?search=%s&sort=SEARCH_MATCH
-set searchurls.al   https://anilist.co/search/anime?search=%s&sort=SEARCH_MATCH
-set searchurls.aur  https://aur.archlinux.org/packages?O=0&SeB=nd&K=%s&outdated=&SB=p&SO=d&PP=50&submit=Go
-set searchurls.aw   https://wiki.archlinux.org/index.php?search=%s
-set searchurls.br   https://brainly.com.br/app/ask?q=%s
-set searchurls.fp   https://www.freshports.org/search.php?query=%s&search=go&num=10&stype=name&method=match&deleted=excludedeleted&start=1&casesensitivity=caseinsensitive
-set searchurls.gf   https://greasyfork.org/en/scripts?q=%s
-set searchurls.gh   https://github.com/search?q=%s
-set searchurls.gl   https://gitlab.com/search?search=%s
-set searchurls.gm   https://www.google.com.br/maps/search/%s
-set searchurls.gt   https://translate.google.com/?sl=auto&tl=en&text=%s
-set searchurls.imdb https://www.imdb.com/find?q=%s&ref_=nv_sr_sm
-set searchurls.md   https://mangadex.org/titles?page=1&q=%s&order=relevance.desc
-set searchurls.od   https://odysee.com/search?q=%s
-set searchurls.r    https://www.reddit.com/search/?q=%s
-set searchurls.sc   https://soundcloud.com/search?q=%s
-set searchurls.se   https://stackexchange.com/search?q=%s
-set searchurls.sf   https://sourceforge.net/directory/?q=%s
-set searchurls.tw   https://twitter.com/search?q=%s
-set searchurls.tg   https://trends.google.com.br/trends/explore?q=%s
-set searchurls.ud   https://www.urbandictionary.com/define.php?term=%s
-set searchurls.vn   https://vndb.org/v?sq=%s
-set searchurls.wm   https://web.archive.org/web/*/%s
-
-" quickmarks - WORK LIKE SHIT
-" quickmark al   https://anilist.co/
-" quickmark ala  https://anilist.co/user/Lucastavares/animelist
-" quickmark alm  https://anilist.co/user/Lucastavares/mangalist
-" quickmark aur  https://aur.archlinux.org/
-" quickmark aw   https://wiki.archlinux.org/
-" quickmark br   https://brainly.com.br/
-" quickmark fb   https://www.facebook.com/
-" quickmark fp   https://www.freshports.org/
-" quickmark s    https://searx.be/
-" quickmark g    https://www.google.com/
-" quickmark gf   https://greasyfork.org/
-" quickmark gh   https://github.com/
-" quickmark gl   https://gitlab.com/
-" quickmark gm   https://www.google.com.br/maps/
-" quickmark gpt  https://chat.openai.com/chat
-" quickmark gt   https://translate.google.com/
-" quickmark imdb https://www.imdb.com/
-" quickmark md   https://mangadex.org/titles/feed
-" quickmark mj   https://tenhou.net/3/
-" quickmark od   https://odysee.com/
-" quickmark r    https://www.reddit.com/
-" quickmark sc   https://soundcloud.com/you/likes
-" quickmark se   https://stackexchange.com/
-" quickmark sf   https://sourceforge.net/
-" quickmark sync http://127.0.0.1:8384/
-" quickmark tc   https://twitch.com/
-" quickmark tw   https://twitter.com/
-" quickmark vn   https://vndb.org/
-" quickmark vt   https://www.virustotal.com/gui/
-" quickmark wa   https://web.whatsapp.com/
-" quickmark wm   https://web.archive.org/
-" quickmark yt   https://www.youtube.com/feed/subscriptions
-" quickmark ytb  https://www.youtube.com/feed/library
+set jsurls.s    query => query == "" ? "https://searx.be" : "https://searx.be/search?q=" + query
+set jsurls.g    query => query == "" ? "https://www.google.com" : "https://www.google.com/search?q=" + query
+set jsurls.yt   query => query == "" ? "https://www.youtube.com/feed/subscriptions" : "https://www.youtube.com/search?q=" + query
+set jsurls.ytb  query => query == "" ? "https://www.youtube.com/feed/library" : "https://www.youtube.com/search?q=" + query
+quickmark  al   https://anilist.co/
+set jsurls.alm  query => query == "" ? "https://anilist.co/user/Lucastavares/animelist" : "https://anilist.co/search/manga?search=" + query + "&sort=SEARCH_MATCH"
+set jsurls.ala  query => query == "" ? "https://anilist.co/user/Lucastavares/mangalist" : "https://anilist.co/search/anime?search=" + query + "&sort=SEARCH_MATCH"
+set jsurls.aur  query => query == "" ? "https://aur.archlinux.org" : "https://aur.archlinux.org/packages?O=0&SeB=nd&K=" + query + "&outdated=&SB=p&SO=d&PP=50&submit=Go"
+set jsurls.aw   query => query == "" ? "https://wiki.archlinux.org" : "https://wiki.archlinux.org/index.php?search=" + query
+set jsurls.br   query => query == "" ? "https://brainly.com.br" : "https://brainly.com.br/app/ask?q=" + query
+quickmark  fb   https://www.facebook.com/
+set jsurls.fp   query => query == "" ? "https://www.freshports.org" : "https://www.freshports.org/search.php?query=" + query + "&search=go&num=10&stype=name&method=match&deleted=excludedeleted&start=1&casesensitivity=caseinsensitive"
+set jsurls.gf   query => query == "" ? "https://greasyfork.org" : "https://greasyfork.org/en/scripts?q=" + query
+set jsurls.gh   query => query == "" ? "https://github.com" : "https://github.com/search?q=" + query
+set jsurls.gl   query => query == "" ? "https://gitlab.com" : "https://gitlab.com/search?search=" + query
+set jsurls.gm   query => query == "" ? "https://www.google.com.br/maps" : "https://www.google.com.br/maps/search/" + query
+quickmark  gpt  https://chat.openai.com/chat
+set jsurls.gt   query => query == "" ? "https://translate.google.com" : "https://translate.google.com/?sl=auto&tl=en&text=" + query
+set jsurls.imdb query => query == "" ? "https://www.imdb.com" : "https://www.imdb.com/find?q=" + query + "&ref_=nv_sr_sm"
+set jsurls.md   query => query == "" ? "https://mangadex.org/titles/feed" : "https://mangadex.org/titles?page=1&q=" + query + "&order=relevance.desc"
+quickmark  th   https://tenhou.net/3/
+set jsurls.od   query => query == "" ? "https://odysee.com" : "https://odysee.com/search?q=" + query
+set jsurls.r    query => query == "" ? "https://www.reddit.com" : "https://www.reddit.com/search/?q=" + query
+set jsurls.sc   query => query == "" ? "https://soundcloud.com/you/likes" : "https://soundcloud.com/search?q=" + query
+set jsurls.se   query => query == "" ? "https://stackexchange.com" : "https://stackexchange.com/search?q=" + query
+set jsurls.sf   query => query == "" ? "https://sourceforge.net" : "https://sourceforge.net/directory/?q=" + query
+quickmark  sync http://127.0.0.1:8384/
+set jsurls.tc   query => query == "" ? "https://twitch.com" : "https://www.twitch.tv/search?term=" + query
+set jsurls.tw   query => query == "" ? "https://twitter.com" : "https://twitter.com/search?q=" + query
+set jsurls.tg   query => query == "" ? "https://trends.google.com.br" : "https://trends.google.com.br/trends/explore?q=" + query
+set jsurls.ud   query => query == "" ? "https://www.urbandictionary.com" : "https://www.urbandictionary.com/define.php?term=" + query
+set jsurls.vn   query => query == "" ? "https://vndb.org" : "https://vndb.org/v?sq=" + query
+quickmark  vt   https://www.virustotal.com/gui/
+quickmark  wa   https://web.whatsapp.com/
+set jsurls.wm   query => query == "" ? "https://web.archive.org" : "https://web.archive.org/web/*/" + query
 
 " unbind in commandline
 unbind --mode=ex <C-c>
