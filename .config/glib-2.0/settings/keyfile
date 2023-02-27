@@ -9,7 +9,7 @@ cursor-theme='Capitaine Cursors (Gruvbox)'
 theme='Capitaine Cursors (Gruvbox)'
 
 [org/gtk/settings/file-chooser]
-window-position=(176, 97)
+window-position=(56, 50)
 window-size=(921, 519)
 date-format='regular'
 location-mode='path-bar'

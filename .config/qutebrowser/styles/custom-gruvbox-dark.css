@@ -1,2202 +1,3310 @@
-* {
-    border-color: #fabd2f !important;
-}
-.s-topbar {
-    background-color: #ff5555 !important;
-    border-color: #fabd2f !important;
-}
-#question-header .question-hyperlink {
-    color: #ffbb00 !important;
-}
-#question-header .question-hyperlink:visited {
-    color: #ff5555 !important;
-}
-#content {
-    background-color: #000000 !important;
-}
-.s-prose *:not(.s-code-block) > code {
-    color: #ffffff !important;
-    background-color: #3c3836 !important;
-}
-.s-sidebarwidget__yellow .s-sidebarwidget--header {
-    background-color: #000000 !important;
-}
-.s-sidebarwidget__yellow {
-    background-color: #000000 !important;
-}
-a {
-    color: #ffbb00 !important;
-}
-a:visited {
-    color: #ff5555 !important;
-}
-body {
-    background-color: #000000 !important;
-    color: #00a598 !important;
-}
-html {
-    background-color: #000000 !important;
-}
-ytd-app {
-    background-color: #000000 !important;
-    color: #ffffff !important;
-}
-input,
-textarea {
-    background-color: #3c3836 !important;
-    color: #00a598 !important;
-}
-blockquote,
-pre {
-    background-color: #3c3836 !important;
-    color: #00a598 !important;
-}
-.post-actions {
-    background-color: #3c3836 !important;
-}
-.textarea-wrapper {
-    background-color: #000000 !important;
-    color: #00a598 !important;
-}
-.search--adv {
-    background-color: #3c3836 !important;
-}
-.search__autocomplete > .acp-wrap {
-    background-color: #000000 !important;
-}
-.search__autocomplete > .acp-wrap > .acp--highlight {
-    background-color: #3c3836 !important;
-    color: #a89984 !important;
-}
-.search__autocomplete > .acp-wrap strong {
-    color: #a89984 !important;
-}
-.site-wrapper > #header_wrapper {
-    background-color: #000000 !important;
-}
-.site-wrapper > #header_wrapper > #header {
-    background-color: #000000 !important;
-}
-.search--header {
-    background-color: #3c3836 !important;
-}
-.zci {
-    background-color: #3c3836 !important;
-    color: #00a598 !important;
-}
-.tile--info {
-    background-color: #000000 !important;
-}
-.tile--info__expand {
-    background-color: #b8bb26 !important;
-}
-.tile--c {
-    background-color: #b8bb26 !important;
-    color: #a89984 !important;
-}
-.module__text {
-    color: #00a598 !important;
-}
-.about-info-box__heading {
-    color: #8ec07c !important;
-}
-.result.highlight {
-    background-color: #3c3836 !important;
-}
-.result__snippet {
-    color: #00a598 !important;
-}
-.result__snippet b {
-    color: #8ec07c !important;
-}
-.btn--top {
-    background-color: #3c3836 !important;
-    color: #00a598 !important;
-}
-.btn--top:hover {
-    background-color: #b8bb26 !important;
-}
-.result--sep--hr:before {
-    background-color: #b8bb26 !important;
-}
-* {
-    border-color: #3c3836 !important;
-}
-.news .alert .pull-info {
-    background-color: #403c3a !important;
-}
-.link-gray-dark,
-.text-gray-dark {
-    color: #00a598 !important;
-}
-.bg-white {
-    background-color: #000000 !important;
-}
-.border {
-    border-color: #fabd2f !important;
-}
-.breadcrumb .repo-root.js-repo-root a {
-    color: #ffbb00 !important;
-}
-.breadcrumb strong.final-path {
-    color: #00a598 !important;
-}
-button.ajax-pagination-btn {
-    background-color: #3c3836 !important;
-    color: #8ec07c !important;
-}
-button.ajax-pagination-btn:hover {
-    background-color: #b8bb26 !important;
-}
-.comment-reactions .btn-link {
-    color: #00a598 !important;
-}
-.comment-reactions .user-has-reacted {
-    background-color: #3c3836 !important;
-}
-.text-gray-dark {
-    color: #00a598 !important;
-}
-.contrib-number {
-    color: #8ec07c !important;
-}
-.counter {
-    background-color: #44403e !important;
-    color: #8ec07c !important;
-}
-.diffstat-bar {
-    color: #00a598 !important;
-}
-.file-header {
-    background-color: #3c3836 !important;
-}
-.file-history-tease .participation {
-    background-color: #000000 !important;
-    color: #00a598 !important;
-}
-.file-history-tease .participation .quickstat strong {
-    color: #00a598 !important;
-}
-.file-history-tease .participation a {
-    color: #b8bb26 !important;
-}
-.file-history-tease .author a {
-    color: #00a598 !important;
-}
-.file-history-tease-header {
-    background-color: #3c3836 !important;
-}
-.file-info-divider {
-    background-color: #b8bb26 !important;
-}
-.file-wrap {
-    color: #00a598 !important;
-}
-.file-wrap * {
-    background-color: transparent !important;
-}
-.filter-bar {
-    background-color: #403c3a !important;
-}
-a.filter-item,
-.filter-item {
-    color: #00a598 !important;
-}
-a.filter-item.selected,
-.filter-item.selected {
-    background-color: #3c3836 !important;
-    color: #8ec07c !important;
-}
-a.filter-item:hover,
-.filter-item:hover {
-    background-color: #b8bb26 !important;
-    color: #8ec07c !important;
-}
-.flash {
-    background-color: #3c3836 !important;
-    color: #8ec07c !important;
-}
-.gh-header {
-    background-color: #000000 !important;
-}
-.gh-header-number {
-    color: #b8bb26 !important;
-}
-.ellipsis-expander,
-.hidden-text-expander a {
-    background-color: #3c3836 !important;
-}
-.issue-meta {
-    color: #b8bb26 !important;
-}
-.issues-listing a {
-    color: #00a598 !important;
-}
-.muted-link {
-    color: #00a598 !important;
-}
-.new-user-avatar-cta {
-    background-color: #3c3836 !important;
-    border-color: #b8bb26 !important;
-    color: #8ec07c !important;
-}
-.overall-summary {
-    border-color: #b8bb26 !important;
-}
-.pinned-repo-item.border {
-    border-color: #b8bb26 !important;
-}
-.progress-bar {
-    background-color: #b8bb26 !important;
-}
-.simple-box {
-    background-color: #3c3836 !important;
-}
-.social-count {
-    background-color: #3c3836 !important;
-    border-color: #b8bb26 !important;
-    color: #8ec07c !important;
-}
-.scope-badge {
-    background-color: #b8bb26 !important;
-    color: #8ec07c !important;
-}
-.stats-switcher-wrapper {
-    background-color: #000000 !important;
-}
-.stats-switcher-wrapper .numbers-summary li a {
-    color: #00a598 !important;
-}
-.table-list-header-toggle .btn-link {
-    color: #b8bb26 !important;
-}
-.table-list-header-toggle .btn-link.selected {
-    color: #00a598 !important;
-}
-.text-emphasized {
-    color: #8ec07c !important;
-}
-.text-diff-added {
-    color: #98971a !important;
-}
-.text-diff-deleted {
-    color: #cc241d !important;
-}
-.blob-code {
-    background-color: #000000 !important;
-    color: #00a598 !important;
-}
-.blob-code-addition {
-    background-color: rgba(231, 230, 113, 0.1) !important;
-}
-.blob-code-addition .x {
-    background-color: #727113 !important;
-    color: #c1d2cb !important;
-}
-.blob-code-deletion {
-    background-color: rgba(204, 36, 29, 0.2) !important;
-}
-.blob-code-deletion .x {
-    background-color: #66120f !important;
-    color: #c1d2cb !important;
-}
-.blob-code-hunk {
-    background-color: #3c3836 !important;
-    border-color: #b8bb26 !important;
-}
-.blob-code-inner {
-    color: #00a598 !important;
-}
-.blob-num {
-    background-color: #000000 !important;
-    color: #b8bb26 !important;
-}
-.file {
-    color: #00a598 !important;
-}
-.form-control {
-    background-color: #3c3836 !important;
-    border-color: #b8bb26 !important;
-}
-.pl-c {
-    color: #b8bb26 !important;
-}
-.pl-c1 {
-    color: #ffbb00 !important;
-}
-.pl-e {
-    color: #d79921 !important;
-}
-.pl-en {
-    color: #ffbb00 !important;
-}
-.pl-k {
-    color: #98971a !important;
-    font-weight: bold !important;
-}
-.pl-pds {
-    color: #689d6a !important;
-}
-.pl-s {
-    color: #689d6a !important;
-}
-.pl-smi {
-    color: #00a598 !important;
-}
-.pl-v {
-    color: #98971a !important;
-    font-weight: bold !important;
-}
-.pl-mi1 {
-    color: #98971a !important;
-    background-color: transparent !important;
-}
-.pl-md {
-    color: #cc241d !important;
-    background-color: transparent !important;
-}
-.border-bottom,
-.border-top {
-    border-color: #3c3836 !important;
-}
-.boxed-group * {
-    border-color: #b8bb26 !important;
-}
-.boxed-group article {
-    background-color: #000000 !important;
-    color: #00a598 !important;
-}
-.boxed-group > h3 {
-    background-color: #44403e !important;
-    color: #8ec07c !important;
-}
-.more-repos {
-    background-color: #44403e !important;
-}
-.boxed-group-inner {
-    background-color: #000000 !important;
-}
-.branch-action-body {
-    background-color: #3c3836 !important;
-    border-color: #b8bb26 !important;
-}
-.branch-action-body div {
-    border-color: #b8bb26 !important;
-}
-.branch-action-state-clean .branch-action-icon {
-    background-color: #98971a !important;
-}
-.branch-action-state-dirty .branch-action-icon,
-.branch-action-state-unstable .branch-action-icon,
-.branch-action-state-unknown .branch-action-icon {
-    background-color: #d79921 !important;
-    color: #fff !important;
-}
-.text-shadow-light,
-.branch-group-name,
-.branch-summary {
-    color: #00a598 !important;
-    text-shadow: none !important;
-}
-.branch-a-b-count .meter {
-    background-color: #d79921 !important;
-}
-.more-branches,
-.branch-group-heading,
-.branch-infobar,
-.branch-name {
-    border-color: #b8bb26 !important;
-    background-color: #3c3836 !important;
-}
-.State,
-.State:visited {
-    color: #fff !important;
-}
-.State--red {
-    background-color: #cc241d !important;
-    color: #ffffff !important;
-}
-.State--green {
-    background-color: #98971a !important;
-    color: #ffffff !important;
-}
-.select-menu-filters {
-    background-color: #403c3a !important;
-    color: #8ec07c !important;
-}
-.js-select-menu-tab {
-    background-color: #44403e !important;
-    color: #8ec07c !important;
-}
-.select-menu-tabs a.selected,
-.select-menu-tab-nav.selected {
-    background-color: #b8bb26 !important;
-    color: #ffffff !important;
-}
-.signed-commit-header {
-    background-color: #000000 !important;
-}
-.build-status-item {
-    background-color: #44403e !important;
-    color: #8ec07c !important;
-}
-.build-status-item .build-status-details {
-    color: #ffbb00 !important;
-}
-.capped-card h3 {
-    background-color: #44403e !important;
-}
-.capped-card h3 a {
-    color: #8ec07c !important;
-}
-.capped-card-content {
-    background-color: #000000 !important;
-}
-.capped-list th {
-    background-color: #403c3a !important;
-    color: #8ec07c !important;
-}
-.capped-list tr:nth-child(2n) {
-    background-color: #3c3836 !important;
-}
-.commit,
-.commit-meta,
-.commit-icon .octicon,
-.commit-group-title .octicon-git-commit {
-    background-color: #000000 !important;
-}
-.commit *,
-.commit-meta *,
-.commit-icon .octicon *,
-.commit-group-title .octicon-git-commit * {
-    border-color: #b8bb26 !important;
-}
-.commit-author {
-    color: #00a598 !important;
-}
-.commit-author-section {
-    color: #00a598 !important;
-}
-.commit-meta {
-    color: #b8bb26 !important;
-}
-.commit-meta .sha-block {
-    color: #b8bb26 !important;
-}
-.commit-meta .sha-block .sha {
-    color: #00a598 !important;
-}
-.commit-ref,
-code.commit-sha {
-    background-color: #3c3836 !important;
-    color: #8ec07c !important;
-}
-.commit-ref .user,
-code.commit-sha .user {
-    color: #689d6a !important;
-}
-.commit-branches *,
-.commit-tease,
-.commit-title {
-    background-color: rgba(185, 255, 255, 0.2) !important;
-    border: none !important;
-}
-.commit-branches * *,
-.commit-tease *,
-.commit-title * {
-    color: #8ec07c !important;
-}
-.commit-tease-contributors {
-    background-color: #3c3836 !important;
-}
-div.commit-branches,
-div.commit.full-commit p.commit-title,
-qul.branches-list {
-    background-color: #3c3836 !important;
-    color: #8ec07c !important;
-}
-div.commit-branches *,
-div.commit.full-commit p.commit-title *,
-qul.branches-list * {
-    background-color: #3c3836 !important;
-    color: #8ec07c !important;
-}
-.commit-meta {
-    background-color: #3c3836 !important;
-    color: #00a598 !important;
-}
-.commits-listing:before {
-    background-color: #3c3836 !important;
-}
-.full-commit {
-    background-color: #3c3836 !important;
-    border-color: #b8bb26 !important;
-}
-.full-commit * {
-    text-shadow: none !important;
-}
-.commit-desc pre {
-    background-color: transparent !important;
-    color: #00a598 !important;
-}
-.commit.table-list-item {
-    border-color: #3c3836 !important;
-}
-.commit-meta.commit-author-section {
-    background-color: transparent !important;
-    color: #00a598 !important;
-}
-.table-list-cell .commit-title {
-    background-color: transparent !important;
-    color: #00a598 !important;
-}
-.completeness-indicator-success {
-    background-color: #98971a !important;
-}
-.completeness-indicator-problem {
-    background-color: #d79921 !important;
-    color: #fff !important;
-}
-.copyable-terminal {
-    background-color: #3c3836 !important;
-}
-.blankslate {
-    background-color: #3c3836 !important;
-    color: #8ec07c !important;
-}
-.comment-form-head.tabnav {
-    background-color: #000000 !important;
-}
-.conversation-list-heading .inner {
-    background-color: #000000 !important;
-}
-.discussion-item-closed .discussion-item-icon {
-    background-color: #cc241d !important;
-    color: #8ec07c !important;
-}
-.discussion-item-icon {
-    background-color: #b8bb26 !important;
-    color: #8ec07c !important;
-}
-.discussion-item-icon.octicon {
-    color: #8ec07c !important;
-}
-.discussion-item-entity,
-.discussion-item .renamed-was,
-.discussion-item .renamed-is {
-    color: #8ec07c !important;
-}
-.discussion-timeline:before {
-    background-color: #fabd2f !important;
-}
-.btn {
-    border-color: #b8bb26 !important;
-    color: #8ec07c !important;
-}
-.btn-primary,
-.issues-listing .btn-primary {
-    background-color: #98971a !important;
-    color: #000 !important;
-}
-.discussion-timeline-actions {
-    background-color: #000000 !important;
-}
-.drag-and-drop {
-    background-color: #3c3836 !important;
-}
-.new-discussion-timeline .closed-banner {
-    background-color: #fabd2f !important;
-    border-color: #282828 !important;
-}
-.markdown-body img,
-.markdown-body table * img {
-    background-color: #282828 !important;
-}
-div.vectorTabs span {
-    background-color: #3c3836 !important;
-}
-#tabs a,
-#tabs a,
-a.youarehere {
-    color: #ebdbb2 !important;
-    background-color: transparent !important;
-}
-#tabs a.youarehere {
-    color: #ebdbb2 !important;
-}
-div.vectorTabs li.selected,
-div.vectorTabs li.selected span {
-    background-color: transparent !important;
-}
-.timeline-comment {
-    background-color: #000000 !important;
-    border-color: #b8bb26 !important;
-}
-.timeline-comment-header {
-    background-color: #3c3836 !important;
-}
-.timeline-comment-wrapper {
-    border-color: #282828 !important;
-}
-.donut-chart > .pending {
-    fill: #d79921 !important;
-}
-.dropdown-divider {
-    background-color: #fabd2f !important;
-}
-.dropdown-item {
-    color: #00a598 !important;
-}
-.dropdown-item:hover {
-    background-color: #b8bb26 !important;
-    color: #8ec07c !important;
-}
-.dropdown-menu {
-    background-color: #44403e !important;
-    color: #8ec07c !important;
-    border-color: #fabd2f !important;
-}
-.files * {
-    color: #00a598 !important;
-}
-.files tbody tr {
-    border-color: #3c3836 !important;
-}
-.files tbody tr:nth-child(even) {
-    background-color: #2c2c2c !important;
-}
-.files tbody tr:nth-child(odd) {
-    background-color: #000000 !important;
-}
-.files tbody tr:hover * {
-    background-color: #44403e !important;
-}
-.btn:hover {
-    background-color: #403c3a !important;
-}
-.entry-title a {
-    color: #ffbb00 !important;
-}
-.Header {
-    background-color: #403c3a !important;
-    border-bottom-color: #b8bb26 !important;
-}
-.Header a {
-    color: #8ec07c !important;
-}
-.lang {
-    color: #8ec07c !important;
-}
-.reponav-item,
-.pagehead-tabs-item {
-    background-color: #3c3836 !important;
-    border-color: transparent !important;
-    color: #00a598 !important;
-}
-.reponav-item:visited,
-.pagehead-tabs-item:visited {
-    color: #00a598 !important;
-}
-.reponav-item.selected,
-.pagehead-tabs-item.selected {
-    background-color: #000000 !important;
-    border-color: #cc241d #44403e transparent !important;
-}
-.site-footer-links * {
-    color: #00a598 !important;
-}
-.Box-row--focus-gray.navigation-focus {
-    background-color: #403c3a !important;
-    color: #8ec07c !important;
-}
-.js-directory-link {
-    color: #ffbb00 !important;
-}
-.js-site-search-form input,
-.js-chromeless-input-container {
-    background-color: #000000 !important;
-    border-color: #b8bb26 !important;
-}
-a.label {
-    color: #282828 !important;
-}
-.notifications-list a {
-    color: #00a598 !important;
-}
-.notifications-list li {
-    background-color: #000000 !important;
-}
-.octicon-repo {
-    color: #8ec07c !important;
-}
-.type-icon-state-closed {
-    color: rgba(255, 34, 23, 0.65) !important;
-}
-.type-icon-state-merged {
-    color: #d38600 !important;
-}
-.type-icon-state-open {
-    color: rgba(212, 211, 18, 0.65) !important;
-}
-.octicon-alert {
-    color: #fff !important;
-}
-.octicon-x {
-    color: #cc241d !important;
-}
-.octicon-check {
-    color: #98971a !important;
-}
-.octicon-primitive-dot {
-    color: #d79921 !important;
-}
-.octicon-clippy {
-    color: #8ec07c !important;
-}
-.octicon-diff {
-    color: #fff !important;
-}
-.octicon-markdown {
-    color: #b8bb26 !important;
-}
-.orghead {
-    background-color: #3c3836 !important;
-    border-color: #fabd2f !important;
-    border-bottom: 0px !important;
-    color: #8ec07c !important;
-}
-.org-name {
-    color: #8ec07c !important;
-}
-.pagehead.orghead {
-    background-color: #3c3836 !important;
-}
-.outline-box-highlighted {
-    background-color: #3c3836 !important;
-    color: #8ec07c !important;
-}
-.pagination .current {
-    background-color: #b8bb26 !important;
-    color: #8ec07c !important;
-}
-.pagination .disabled {
-    background-color: #3c3836 !important;
-    color: #b8bb26 !important;
-}
-.pagination .disabled:hover {
-    background-color: #3c3836 !important;
-}
-.pagination .gap {
-    background-color: #3c3836 !important;
-    color: #b8bb26 !important;
-}
-.pagination a {
-    background-color: #3c3836 !important;
-    border-color: #282828 !important;
-    color: #00a598 !important;
-}
-.pagination a:hover {
-    background-color: #b8bb26 !important;
-    color: #ffffff !important;
-}
-.empty-cell,
-.diffbar {
-    background-color: #000000 !important;
-}
-.merge-status-item {
-    background-color: #44403e !important;
-}
-.merge-message {
-    background-color: #403c3a !important;
-}
-.pr-toolbar {
-    background-color: #000000 !important;
-}
-.review-thread-reply {
-    background-color: #3c3836 !important;
-}
-.review-thread-reply .inline-comment-form {
-    background-color: #000000 !important;
-}
-.merged.octicon,
-.octicon-git-merge {
-    color: #ff6500 !important;
-}
-.uploaded-files {
-    background-color: #000000 !important;
-}
-.upload-progress {
-    background-color: #3c3836 !important;
-}
-#readme .plain {
-    background-color: #000000 !important;
-}
-.markdown-body,
-.markdown-body table * {
-    background-color: #000000 !important;
-    border-color: #fabd2f !important;
-    color: #00a598 !important;
-}
-.markdown-body a,
-.markdown-body table * a {
-    color: #ffbb00 !important;
-}
-.markdown-body code,
-.markdown-body table * code,
-.markdown-body pre,
-.markdown-body table * pre {
-    background-color: #3c3836 !important;
-}
-.markdown-body hr,
-.markdown-body table * hr {
-    background-color: #b8bb26 !important;
-}
-.task-list-item.hovered {
-    background-color: #3c3836 !important;
-}
-.range-editor {
-    background-color: #3c3836 !important;
-}
-.compare-pr-placeholder {
-    background-color: #403c3a !important;
-}
-ul.comparison-list > li.title {
-    background-color: #44403e !important;
-}
-ul.comparison-list {
-    background-color: #403c3a !important;
-}
-.repository-description {
-    color: #00a598 !important;
-}
-.repository-meta .edit-repository-meta label {
-    color: #00a598 !important;
-}
-.pagehead.repohead {
-    background-color: #3c3836 !important;
-}
-.repository-content .RecentBranches {
-    background-color: #3c3836 !important;
-    border-color: #fabd2f !important;
-}
-.repohead-details-container a {
-    color: #00a598 !important;
-}
-.select-menu-modal {
-    border-color: #83a598 !important;
-}
-.select-menu-modal * {
-    color: #00a598 !important;
-}
-.select-menu-header,
-.select-menu-header * {
-    background-color: #3c3836 !important;
-    color: #8ec07c !important;
-    text-shadow: none !important;
-}
-.select-menu-item {
-    background-color: #000000 !important;
-}
-.select-menu-item.navigation-focus,
-.select-menu-item.navigation-focus.selected,
-.select-menu-item.navigation-focus.select-menu-action,
-.select-menu-item-text.navigation-focus {
-    background-color: #b8bb26 !important;
-    color: #8ec07c !important;
-}
-.repository-sidebar {
-    background-color: #000000 !important;
-}
-.thread-subscription-status {
-    background-color: #000000 !important;
-}
-.sunken-menu-item {
-    border-color: #282828 !important;
-}
-.sunken-menu-item.selected {
-    background-color: #000000 !important;
-    border-color: #44403e !important;
-    color: #8ec07c !important;
-}
-.sunken-menu-item.selected:after {
-    background-color: #fb4934 !important;
-}
-.state {
-    color: #8ec07c !important;
-}
-.state-closed {
-    background-color: #cc241d !important;
-}
-.state-open {
-    background-color: #98971a !important;
-}
-.subnav-item {
-    color: #00a598 !important;
-}
-.subnav-item:hover {
-    background-color: #403c3a !important;
-}
-.subnav-item:visited {
-    color: #00a598 !important;
-}
-.subnav-item.selected {
-    background-color: #3c3836 !important;
-}
-.subnav-links a:hover {
-    background-color: #3c3836 !important;
-}
-.subnav-search input {
-    border-color: #b8bb26 !important;
-}
-.right .tabnav-extra {
-    color: #b8bb26 !important;
-}
-a.tabnav-tab,
-.tabnav-tab {
-    border-color: transparent !important;
-    color: #b8bb26 !important;
-}
-a.tabnav-tab.selected,
-.tabnav-tab.selected {
-    background-color: #000000 !important;
-    border-color: #fabd2f !important;
-    color: #8ec07c !important;
-}
-.table-list tr,
-.table-list li {
-    background-color: #000000 !important;
-}
-.table-list tr:hover,
-.table-list li:hover {
-    background-color: #44403e !important;
-}
-.table-list-header {
-    background-color: #3c3836 !important;
-}
-.text-pending {
-    color: #d79921 !important;
-}
-.text-pending .octicon-primitive-dot {
-    color: #d79921 !important;
-}
-.text-red {
-    color: #cc241d !important;
-}
-.timeline-commits .commit-meta {
-    background-color: #000000 !important;
-}
-.timeline-commits .commit-meta .commit-id {
-    color: #b8bb26 !important;
-}
-.topic-tag.topic-tag-link {
-    background-color: #3c3836 !important;
-    color: #00a598 !important;
-}
-.underline-nav-item {
-    color: #00a598 !important;
-}
-.underline-nav-item.selected {
-    border-bottom-color: #cc241d !important;
-    color: #00a598 !important;
-}
-.user-profile-nav {
-    background-color: #3c3836 !important;
-    border-color: #fabd2f !important;
-}
-.user-profile-sticky-bar:after {
-    background-color: #3c3836 !important;
-    border-color: #fabd2f !important;
-}
-.graphs .area {
-    fill: #98971a;
-}
-.summary-stats li .num {
-    color: #8ec07c !important;
-}
-.viz {
-    background-color: #403c3a !important;
-}
-.facebox-popup {
-    color: #00a598 !important;
-    background-color: #000000 !important;
-}
-.facebox-popup .octicon {
-    color: #fff !important;
-}
-.facebox-popup .owner-select-target {
-    color: #00a598 !important;
-    background-color: #3c3836 !important;
-}
-.facebox-popup .owner-select-target:hover {
-    background-color: #b8bb26 !important;
-}
-.suggester {
-    background-color: #44403e !important;
-}
-.suggester li.navigation-focus {
-    background-color: #b8bb26 !important;
-}
-.menu {
-    background-color: #3c3836 !important;
-}
-.menu-item.selected {
-    background-color: #44403e !important;
-}
-.menu-item:hover {
-    background-color: #b8bb26 !important;
-}
-.Box {
-    background-color: #000000 !important;
-}
-.Box-header {
-    background-color: #3c3836 !important;
-}
-svg > * text {
-    color: #00a598 !important;
-    fill: #83a598 !important;
-}
-.insertions {
-    color: #98971a !important;
-}
-.deletions {
-    color: #cc241d !important;
-}
-.sfbgg {
-    background-color: #3c3836 !important;
-}
-input#lst-ib,
-#sb_ifc0.sbib_b,
-#gs_taif0 {
-    background: transparent !important;
-}
-#lst-ib,
-.sbsb_a {
-    background-color: #000000 !important;
-}
-#hdtbSum {
-    background-color: #000000 !important;
-}
-#hdtbMenus.hdtb-td-o {
-    background-color: #000000 !important;
-}
-#appbar {
-    background-color: #000000 !important;
-}
-cite {
-    color: #98971a !important;
-}
-.ab_dropdown {
-    background-color: #000000 !important;
-}
-div.crp {
-    background-color: #000000 !important;
-}
-#fbar {
-    background-color: #3c3836 !important;
-}
-tr.Even {
-    background-color: #3c3836 !important;
-}
-.BigQuote {
-    background-color: #3c3836 !important;
-    color: #fb4934 !important;
-}
-.Cat1HL {
-    background-color: #b8bb26 !important;
-    color: #8ec07c !important;
-}
-.Cat2HL {
-    background-color: #44403e !important;
-}
-.Cat3HL {
-    background-color: #403c3a !important;
-}
-.FeatureByline {
-    background-color: #3c3836 !important;
-    border: none !important;
-}
-.Headline {
-    background-color: #44403e !important;
-}
-.QuotedText {
-    color: #ff5555 !important;
-}
-DIV.GAByline {
-    background-color: #3c3836 !important;
-    border: none !important;
-}
-table.OddEven tr:nth-child(even) {
-    background-color: #2c2c2c !important;
-}
-table.OddEven tr:nth-child(odd) {
-    background-color: #000000 !important;
-}
-DIV.CommentBox {
-    border-color: #3c3836 !important;
-}
-DIV.CommentBox P.CommentTitle {
-    background-color: #44403e !important;
-}
-#menu,
-.topnav-container {
-    background-color: #3c3836 !important;
-}
-.navmenu ul {
-    background-color: #3c3836 !important;
-}
-body * {
-    border-color: #44403e !important;
-}
-#content {
-    background-color: #000000 !important;
-    color: #00a598 !important;
-}
-#mw-head,
-#mw-panel {
-    background-color: #3c3836 !important;
-    color: #8ec07c !important;
-}
-#mw-head {
-    background-color: #3c3836 !important;
-}
-div.vectorTabs ul li {
-    background-color: #3c3836 !important;
-    padding: 0px 1px 0px 1px !important;
-}
-div#simpleSearch #searchInput {
-    background-color: #000000 !important;
-    padding: 0.05em 0px 0.2em 0.2em !important;
-}
-.ambox,
-.infobox,
-#toc,
-#toctitle,
-.toclevel-1 {
-    background-color: #3c3836 !important;
-    border-color: #44403e !important;
-    color: #8ec07c !important;
-}
-.catlinks {
-    background-color: #3c3836 !important;
-    border-color: #44403e !important;
-    color: #8ec07c !important;
-}
-.navbox {
-    background-color: #3c3836 !important;
-    border-color: #44403e !important;
-    color: #8ec07c !important;
-}
-.navbox .th,
-.navbox .navbox-title {
-    background-color: #44403e !important;
-}
-.navbox-abovebelow,
-th.navbox-group,
-.navbox-subgroup,
-.navbox-title {
-    background-color: #403c3a !important;
-}
-.navbox-even {
-    background-color: #000000 !important;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    border-color: #44403e !important;
-    color: #8ec07c !important;
-}
-code {
-    background-color: #44403e !important;
-    border-color: #44403e !important;
-    color: #8ec07c !important;
-}
-div.thumbinner {
-    background-color: #3c3836 !important;
-    border-color: #44403e !important;
-}
-table.wikitable {
-    background-color: #000000 !important;
-    border-color: #44403e !important;
-    color: #00a598 !important;
-}
-table.wikitable > * > tr > th {
-    background-color: #3c3836 !important;
-}
-table {
-    background-color: #000000 !important;
-}
-#hnmain > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > table,
-#hnmain > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > table {
-    background-color: #fb4934 !important;
-}
-#hnmain > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) a,
-#hnmain > tbody:nth-child(1) > tr:nth-child(1) a {
-    color: #282828 !important;
-}
-#hnmain > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > tbody:nth-child(1) > tr:nth-child(2),
-#hnmain > tbody:nth-child(1) > tr:nth-child(2) {
-    background-color: #000000 !important;
-}
-#hnmain > tbody:nth-child(1) > tr:nth-child(2) {
-    background-color: #000000 !important;
-}
-.title a {
-    color: #00a598 !important;
-}
-.title a:visited {
-    color: #b8bb26 !important;
-}
-a.storylink {
-    color: #8ec07c !important;
-    font-weight: bold;
-}
-.sitestr {
-    color: #ffbb00 !important;
-}
-#hnmain > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(1) {
-    background-color: #000000 !important;
-}
-#hnmain .comhead {
-    color: #8ec07c !important;
-}
-#hnmain .c00 {
-    color: #00a598 !important;
-}
-#hnmain a.hnuser {
-    color: #d79921 !important;
-}
-#hnmain span.age a {
-    color: #b8bb26 !important;
-}
-.cdd {
-    color: rgba(255, 34, 23, 0.65) !important;
-}
-.comment i {
-    color: #ff5555 !important;
-}
-#hnmain > tbody:nth-child(1) > tr:nth-child(4) {
-    background-color: #000000 !important;
-}
-#hnmain > tbody:nth-child(1) > tr:nth-child(4) > td:nth-child(1) > table:nth-child(2) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) {
-    background-color: #fb4934 !important;
-}
-div#page div#header {
-    background-color: #000000 !important;
-}
-div#page div#header a {
-    color: #ff5555 !important;
-}
-.post {
-    background-color: #000000 !important;
-}
-.post * {
-    overflow: auto !important;
-}
-.post h2 {
-    background-color: #3c3836 !important;
-}
-.post h2 a {
-    color: #8ec07c !important;
-}
-.post div.entry {
-    background-color: #000000 !important;
-    color: #00a598 !important;
-}
-.post div.entry blockquote {
-    background-color: #3c3836 !important;
-}
-.post div.entry kbd {
-    background-color: #3c3836 !important;
-    border-color: #b8bb26 !important;
-    color: #8ec07c !important;
-}
-.post pre.mode-line {
-    overflow: visible !important;
-}
-#sr-header-area {
-    background-color: #3c3836 !important;
-}
-#sr-header-area .srdrop .selected {
-    color: #00a598 !important;
-}
-#sr-header-area #sr-more-link {
-    background-color: #3c3836 !important;
-}
-.link.promotedlink.promoted {
-    background-color: #3c3836 !important;
-}
-.link .usertext .md {
-    background-color: #3c3836 !important;
-}
-.linkinfo {
-    background-color: #3c3836 !important;
-}
-.linklisting .odd {
-    background-color: #3c3836 !important;
-}
-.thing .title {
-    color: #00a598 !important;
-}
-div.md {
-    color: #00a598 !important;
-}
-body.comment {
-    background-color: #000000 !important;
-}
-.commentarea > .usertext {
-    background-color: #000000 !important;
-}
-.commentarea .menuarea {
-    background-color: #000000 !important;
-}
-.comments-page .panestack-title {
-    background-color: #000000 !important;
-}
-.listing-chooser {
-    background-color: #000000 !important;
-}
-.listing-chooser .intro {
-    background-color: #b8bb26 !important;
-    color: #8ec07c !important;
-}
-.listing-chooser .grippy {
-    background-color: #000000 !important;
-}
-.listing-chooser .grippy:after {
-    border-right: none !important;
-}
-.listing-chooser li {
-    background-color: #3c3836 !important;
-}
-.listing-chooser li.selected {
-    background-color: #b8bb26 !important;
-}
-.listing-chooser li a {
-    color: #00a598 !important;
-}
-.listing-chooser li a .description {
-    color: #8ec07c !important;
-}
-.titlebox {
-    background-color: #3c3836 !important;
-}
-.titlebox form.toggle {
-    background-color: #3c3836 !important;
-    color: #00a598 !important;
-}
-.side .usertext-body .md {
-    background-color: #3c3836 !important;
-}
-.side {
-    background-color: #3c3836 !important;
-}
-.sidebox .spacer {
-    background-color: #3c3836 !important;
-    color: #8ec07c !important;
-}
-.tabmenu li a {
-    background-color: #3c3836 !important;
-}
-#header-bottom-right {
-    background-color: #3c3836 !important;
-}
-.morelink .nub {
-    background-color: #3c3836 !important;
-}
-* {
-    border-color: #fabd2f !important;
-}
-a {
-    color: #ffbb00 !important;
-}
-a:visited {
-    color: #ff5555 !important;
-}
-body {
-    background-color: #000000 !important;
-    color: #00a598 !important;
-}
-html {
-    background-color: #000000 !important;
-}
-input,
-textarea {
-    background-color: #3c3836 !important;
-    color: #00a598 !important;
-}
-tr:hover,
-blockquote,
-pre {
-    background-color: #3c3836 !important;
-    color: #00a598 !important;
-}
-#toolMenu li {
-    background-color: #000000 !important;
-}
-.navPanel,
-.navIntraTool {
-    background-color: #000000 !important;
-}
-.instruction,
-.sakaiCopyrightInfo {
-    color: #00a598 !important;
-}
-.listHier th {
-    background-color: #44403e !important;
-}
-ul.makeMenu {
-    background-color: #44403e !important;
-    border: 1px solid #44403e !important;
-}
-tr.external {
-    background-color: #44403e !important;
-}
-hr {
-    background-color: #44403e !important;
-    color: #44403e !important;
-}
-.bounty-indicator,
-.bounty-indicator-tab {
-    background-color: #ff5555 !important;
-}
-.bottom-notice {
-    background-color: #3c3836 !important;
-}
-.comments-link {
-    color: #98971a !important;
-}
-.page-numbers {
-    background-color: #98971a !important;
-    color: #a89984 !important;
-}
-.page-numbers.current {
-    background-color: #fb4934 !important;
-    color: #ffffff !important;
-}
-.post-menu a {
-    color: #ff5555 !important;
-}
-.question-status {
-    background-color: #3c3836 !important;
-}
-.bg-black-050 {
-    background-color: transparent !important;
-}
-.val-info {
-    background-color: transparent !important;
-    color: #00a598 !important;
-}
-.s-label {
-    color: #00a598 !important;
-}
-pre code {
-    background-color: #3c3836 !important;
-    color: #8ec07c !important;
-}
-pre code .atn {
-    color: #ffbb00 !important;
-}
-pre code .atv {
-    color: #689d6a !important;
-}
-pre code .com {
-    color: #b8bb26 !important;
-}
-pre code .kwd {
-    color: #98971a !important;
-}
-pre code .lit {
-    color: #b16286 !important;
-}
-pre code .pln,
-pre code .pun {
-    color: #00a598 !important;
-}
-pre code .str {
-    color: #689d6a !important;
-}
-pre code .tag {
-    color: #98971a !important;
-}
-pre code .typ {
-    color: #d79921 !important;
-}
-#footer {
-    background-color: #403c3a !important;
-    color: #00a598 !important;
-}
-#footer #footer-sites th {
-    color: #8ec07c !important;
-}
-.top-footer-links a {
-    color: #98971a !important;
-}
-.so-header {
-    background-color: #44403e !important;
-    color: #8ec07c !important;
-}
-.so-header a {
-    color: #98971a !important;
-}
-.so-header .navigation .-list .-item :hover {
-    background-color: #98971a !important;
-    color: #ebdbb2 !important;
-}
-.topbar-dialog {
-    background-color: #000000 !important;
-}
-.topbar-dialog .current-site-container {
-    background-color: #000000 !important;
-}
-.topbar-dialog .header {
-    background-color: #3c3836 !important;
-}
-.topbar-dialog .header a {
-    color: #8ec07c !important;
-}
-.topbar-dialog .site-link {
-    color: #8ec07c !important;
-}
-#header {
-    background-color: #44403e !important;
-}
-#question-header .question-hyperlink {
-    color: #8ec07c !important;
-}
-.new-post-activity {
-    background-color: #3c3836 !important;
-}
-.tagged-interesting {
-    background-color: #44403e !important;
-}
-div.answered-accepted {
-    background-color: #98971a !important;
-    color: #a89984 !important;
-}
-div.answered-accepted .mini-counts {
-    background-color: #98971a !important;
-    color: #a89984 !important;
-}
-.answered .mini-counts span {
-    color: #98971a !important;
-}
-.unanswered .mini-counts span {
-    color: #00a598 !important;
-}
-#hot-network-questions a {
-    color: #689d6a !important;
-}
-#hot-network-questions h4 a.js-gps-track {
-    color: #8ec07c !important;
-}
-#sidebar .community-bulletin .bulletin-item-content a {
-    color: #8ec07c !important;
-}
-#sidebar .module.community-bulletin {
-    background-color: #3c3836 !important;
-    color: #8ec07c !important;
-}
-#sidebar .question-hyperlink {
-    color: #689d6a !important;
-}
-.newuser {
-    background-color: #3c3836 !important;
-    color: #8ec07c !important;
-}
-.label-key {
-    color: #00a598 !important;
-}
-.label-key b {
-    color: #8ec07c !important;
-}
-#h-chat-link {
-    color: #8ec07c !important;
-}
-.ad502-room {
-    background-color: #3c3836 !important;
-    color: #8ec07c !important;
-}
-.post-tag {
-    background-color: #b8bb26 !important;
-    color: #ffffff !important;
-}
-.post-tag::before {
-    background-color: #000000 !important;
-}
-a.comment-user.owner {
-    background-color: #98971a !important;
-    color: #a89984 !important;
-}
-.post-signature {
-    background-color: #3c3836 !important;
-    color: #8ec07c !important;
-}
-.post-signature a {
-    color: #689d6a !important;
-}
-.post-signature.owner .user-info .user-details a {
-    color: #98971a !important;
-}
-.post-signature span.relativetime {
-    color: #8ec07c !important;
-}
-.vote {
-    background-color: #3c3836 !important;
-}
-.answer-votes {
-    background-color: #b8bb26 !important;
-    color: #ffffff !important;
+.s-topbar
+{
+  background-color: #ff5555 !important;
+  border-color: #fabd2f !important;
+}
+
+#question-header .question-hyperlink
+{
+  color: #ffbb00 !important;
+}
+
+#question-header .question-hyperlink:visited
+{
+  color: #ff5555 !important;
+}
+
+#content
+{
+  background-color: #000000 !important;
+}
+
+.s-prose *:not(.s-code-block) > code
+{
+  color: #ffffff !important;
+  background-color: #3c3836 !important;
+}
+
+.s-sidebarwidget__yellow .s-sidebarwidget--header
+{
+  background-color: #000000 !important;
+}
+
+.s-sidebarwidget__yellow
+{
+  background-color: #000000 !important;
+}
+
+*
+{
+  border-color: #3c3836 !important;
+}
+
+a
+{
+  color: #ffbb00 !important;
+}
+
+a:visited
+{
+  color: #ff5555 !important;
+}
+
+body *
+{
+  border-color: #44403e !important;
+}
+
+body
+{
+  background-color: #000000 !important;
+  color: #00a598 !important;
+}
+
+*
+{
+  font-family: SauceCodePro Nerd Font;
+}
+
+ytd-app
+{
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+input, textarea
+{
+  background-color: #3c3836 !important;
+  color: #00a598 !important;
+}
+
+blockquote, pre
+{
+  background-color: #3c3836 !important;
+  color: #00a598 !important;
+}
+
+.post-actions
+{
+  background-color: #3c3836 !important;
+}
+
+.textarea-wrapper
+{
+  background-color: #000000 !important;
+  color: #00a598 !important;
+}
+
+.search--adv
+{
+  background-color: #3c3836 !important;
+}
+
+.search__autocomplete > .acp-wrap
+{
+  background-color: #000000 !important;
+}
+
+.search__autocomplete > .acp-wrap > .acp--highlight
+{
+  background-color: #3c3836 !important;
+  color: #a89984 !important;
+}
+
+.search__autocomplete > .acp-wrap strong
+{
+  color: #a89984 !important;
+}
+
+.site-wrapper > #header_wrapper
+{
+  background-color: #000000 !important;
+}
+
+.site-wrapper > #header_wrapper > #header
+{
+  background-color: #000000 !important;
+}
+
+.search--header
+{
+  background-color: #3c3836 !important;
+}
+
+.zci
+{
+  background-color: #3c3836 !important;
+  color: #00a598 !important;
+}
+
+.tile--info
+{
+  background-color: #000000 !important;
+}
+
+.tile--info__expand
+{
+  background-color: #b8bb26 !important;
+}
+
+.tile--c
+{
+  background-color: #b8bb26 !important;
+  color: #a89984 !important;
+}
+
+.module__text
+{
+  color: #00a598 !important;
+}
+
+.about-info-box__heading
+{
+  color: #8ec07c !important;
+}
+
+.result.highlight
+{
+  background-color: #3c3836 !important;
+}
+
+.result__snippet
+{
+  color: #00a598 !important;
+}
+
+.result__snippet b
+{
+  color: #8ec07c !important;
+}
+
+.btn--top
+{
+  background-color: #3c3836 !important;
+  color: #00a598 !important;
+}
+
+.btn--top:hover
+{
+  background-color: #b8bb26 !important;
+}
+
+.result--sep--hr:before
+{
+  background-color: #b8bb26 !important;
+}
+
+.news .alert .pull-info
+{
+  background-color: #403c3a !important;
+}
+
+.link-gray-dark, .text-gray-dark
+{
+  color: #00a598 !important;
+}
+
+.bg-white
+{
+  background-color: #000000 !important;
+}
+
+.border
+{
+  border-color: #fabd2f !important;
+}
+
+.breadcrumb .repo-root.js-repo-root a
+{
+  color: #ffbb00 !important;
+}
+
+.breadcrumb strong.final-path
+{
+  color: #00a598 !important;
+}
+
+button.ajax-pagination-btn
+{
+  background-color: #3c3836 !important;
+  color: #8ec07c !important;
+}
+
+button.ajax-pagination-btn:hover
+{
+  background-color: #b8bb26 !important;
+}
+
+.comment-reactions .btn-link
+{
+  color: #00a598 !important;
+}
+
+.comment-reactions .user-has-reacted
+{
+  background-color: #3c3836 !important;
+}
+
+.text-gray-dark
+{
+  color: #00a598 !important;
+}
+
+.contrib-number
+{
+  color: #8ec07c !important;
+}
+
+.counter
+{
+  background-color: #44403e !important;
+  color: #8ec07c !important;
+}
+
+.diffstat-bar
+{
+  color: #00a598 !important;
+}
+
+.file-header
+{
+  background-color: #3c3836 !important;
+}
+
+.file-history-tease .participation
+{
+  background-color: #000000 !important;
+  color: #00a598 !important;
+}
+
+.file-history-tease .participation .quickstat strong
+{
+  color: #00a598 !important;
+}
+
+.file-history-tease .participation a
+{
+  color: #b8bb26 !important;
+}
+
+.file-history-tease .author a
+{
+  color: #00a598 !important;
+}
+
+.file-history-tease-header
+{
+  background-color: #3c3836 !important;
+}
+
+.file-info-divider
+{
+  background-color: #b8bb26 !important;
+}
+
+.file-wrap
+{
+  color: #00a598 !important;
+}
+
+.file-wrap *
+{
+  background-color: transparent !important;
+}
+
+.filter-bar
+{
+  background-color: #403c3a !important;
+}
+
+a.filter-item, .filter-item
+{
+  color: #00a598 !important;
+}
+
+a.filter-item.selected, .filter-item.selected
+{
+  background-color: #3c3836 !important;
+  color: #8ec07c !important;
+}
+
+a.filter-item:hover, .filter-item:hover
+{
+  background-color: #b8bb26 !important;
+  color: #8ec07c !important;
+}
+
+.flash
+{
+  background-color: #3c3836 !important;
+  color: #8ec07c !important;
+}
+
+.gh-header
+{
+  background-color: #000000 !important;
+}
+
+.gh-header-number
+{
+  color: #b8bb26 !important;
+}
+
+.ellipsis-expander, .hidden-text-expander a
+{
+  background-color: #3c3836 !important;
+}
+
+.issue-meta
+{
+  color: #b8bb26 !important;
+}
+
+.issues-listing a
+{
+  color: #00a598 !important;
+}
+
+.muted-link
+{
+  color: #00a598 !important;
+}
+
+.new-user-avatar-cta
+{
+  background-color: #3c3836 !important;
+  border-color: #b8bb26 !important;
+  color: #8ec07c !important;
+}
+
+.overall-summary
+{
+  border-color: #b8bb26 !important;
+}
+
+.pinned-repo-item.border
+{
+  border-color: #b8bb26 !important;
+}
+
+.progress-bar
+{
+  background-color: #b8bb26 !important;
+}
+
+.simple-box
+{
+  background-color: #3c3836 !important;
+}
+
+.social-count
+{
+  background-color: #3c3836 !important;
+  border-color: #b8bb26 !important;
+  color: #8ec07c !important;
+}
+
+.scope-badge
+{
+  background-color: #b8bb26 !important;
+  color: #8ec07c !important;
+}
+
+.stats-switcher-wrapper
+{
+  background-color: #000000 !important;
+}
+
+.stats-switcher-wrapper .numbers-summary li a
+{
+  color: #00a598 !important;
+}
+
+.table-list-header-toggle .btn-link
+{
+  color: #b8bb26 !important;
+}
+
+.table-list-header-toggle .btn-link.selected
+{
+  color: #00a598 !important;
+}
+
+.text-emphasized
+{
+  color: #8ec07c !important;
+}
+
+.text-diff-added
+{
+  color: #98971a !important;
+}
+
+.text-diff-deleted
+{
+  color: #cc241d !important;
+}
+
+.blob-code
+{
+  background-color: #000000 !important;
+  color: #00a598 !important;
+}
+
+.blob-code-addition
+{
+  background-color: rgba(231, 230, 113, 0.1) !important;
+}
+
+.blob-code-addition .x
+{
+  background-color: #727113 !important;
+  color: #c1d2cb !important;
+}
+
+.blob-code-deletion
+{
+  background-color: rgba(204, 36, 29, 0.2) !important;
+}
+
+.blob-code-deletion .x
+{
+  background-color: #66120f !important;
+  color: #c1d2cb !important;
+}
+
+.blob-code-hunk
+{
+  background-color: #3c3836 !important;
+  border-color: #b8bb26 !important;
+}
+
+.blob-code-inner
+{
+  color: #00a598 !important;
+}
+
+.blob-num
+{
+  background-color: #000000 !important;
+  color: #b8bb26 !important;
+}
+
+.file
+{
+  color: #00a598 !important;
+}
+
+.form-control
+{
+  background-color: #3c3836 !important;
+  border-color: #b8bb26 !important;
+}
+
+.pl-c
+{
+  color: #b8bb26 !important;
+}
+
+.pl-c1
+{
+  color: #ffbb00 !important;
+}
+
+.pl-e
+{
+  color: #d79921 !important;
+}
+
+.pl-en
+{
+  color: #ffbb00 !important;
+}
+
+.pl-k
+{
+  color: #98971a !important;
+  font-weight: bold !important;
+}
+
+.pl-pds
+{
+  color: #689d6a !important;
+}
+
+.pl-s
+{
+  color: #689d6a !important;
+}
+
+.pl-smi
+{
+  color: #00a598 !important;
+}
+
+.pl-v
+{
+  color: #98971a !important;
+  font-weight: bold !important;
+}
+
+.pl-mi1
+{
+  color: #98971a !important;
+  background-color: transparent !important;
+}
+
+.pl-md
+{
+  color: #cc241d !important;
+  background-color: transparent !important;
+}
+
+.border-bottom, .border-top
+{
+  border-color: #3c3836 !important;
+}
+
+.boxed-group *
+{
+  border-color: #b8bb26 !important;
+}
+
+.boxed-group article
+{
+  background-color: #000000 !important;
+  color: #00a598 !important;
+}
+
+.boxed-group > h3
+{
+  background-color: #44403e !important;
+  color: #8ec07c !important;
+}
+
+.more-repos
+{
+  background-color: #44403e !important;
+}
+
+.boxed-group-inner
+{
+  background-color: #000000 !important;
+}
+
+.branch-action-body
+{
+  background-color: #3c3836 !important;
+  border-color: #b8bb26 !important;
+}
+
+.branch-action-body div
+{
+  border-color: #b8bb26 !important;
+}
+
+.branch-action-state-clean .branch-action-icon
+{
+  background-color: #98971a !important;
+}
+
+.branch-action-state-dirty .branch-action-icon, .branch-action-state-unstable .branch-action-icon, .branch-action-state-unknown .branch-action-icon
+{
+  background-color: #d79921 !important;
+  color: #fff !important;
+}
+
+.text-shadow-light, .branch-group-name, .branch-summary
+{
+  color: #00a598 !important;
+  text-shadow: none !important;
+}
+
+.branch-a-b-count .meter
+{
+  background-color: #d79921 !important;
+}
+
+.more-branches, .branch-group-heading, .branch-infobar, .branch-name
+{
+  border-color: #b8bb26 !important;
+  background-color: #3c3836 !important;
+}
+
+.State, .State:visited
+{
+  color: #fff !important;
+}
+
+.State--red
+{
+  background-color: #cc241d !important;
+  color: #ffffff !important;
+}
+
+.State--green
+{
+  background-color: #98971a !important;
+  color: #ffffff !important;
+}
+
+.select-menu-filters
+{
+  background-color: #403c3a !important;
+  color: #8ec07c !important;
+}
+
+.js-select-menu-tab
+{
+  background-color: #44403e !important;
+  color: #8ec07c !important;
+}
+
+.select-menu-tabs a.selected, .select-menu-tab-nav.selected
+{
+  background-color: #b8bb26 !important;
+  color: #ffffff !important;
+}
+
+.signed-commit-header
+{
+  background-color: #000000 !important;
+}
+
+.build-status-item
+{
+  background-color: #44403e !important;
+  color: #8ec07c !important;
+}
+
+.build-status-item .build-status-details
+{
+  color: #ffbb00 !important;
+}
+
+.capped-card h3
+{
+  background-color: #44403e !important;
+}
+
+.capped-card h3 a
+{
+  color: #8ec07c !important;
+}
+
+.capped-card-content
+{
+  background-color: #000000 !important;
+}
+
+.capped-list th
+{
+  background-color: #403c3a !important;
+  color: #8ec07c !important;
+}
+
+.capped-list tr:nth-child(2n)
+{
+  background-color: #3c3836 !important;
+}
+
+.commit, .commit-meta, .commit-icon .octicon, .commit-group-title .octicon-git-commit
+{
+  background-color: #000000 !important;
+}
+
+.commit *, .commit-meta *, .commit-icon .octicon *, .commit-group-title .octicon-git-commit *
+{
+  border-color: #b8bb26 !important;
+}
+
+.commit-author
+{
+  color: #00a598 !important;
+}
+
+.commit-author-section
+{
+  color: #00a598 !important;
+}
+
+.commit-meta
+{
+  color: #b8bb26 !important;
+}
+
+.commit-meta .sha-block
+{
+  color: #b8bb26 !important;
+}
+
+.commit-meta .sha-block .sha
+{
+  color: #00a598 !important;
+}
+
+.commit-ref, code.commit-sha
+{
+  background-color: #3c3836 !important;
+  color: #8ec07c !important;
+}
+
+.commit-ref .user, code.commit-sha .user
+{
+  color: #689d6a !important;
+}
+
+.commit-branches *, .commit-tease, .commit-title
+{
+  background-color: rgba(185, 255, 255, 0.2) !important;
+  border: none !important;
+}
+
+.commit-branches * *, .commit-tease *, .commit-title *
+{
+  color: #8ec07c !important;
+}
+
+.commit-tease-contributors
+{
+  background-color: #3c3836 !important;
+}
+
+div.commit-branches, div.commit.full-commit p.commit-title, qul.branches-list
+{
+  background-color: #3c3836 !important;
+  color: #8ec07c !important;
+}
+
+div.commit-branches *, div.commit.full-commit p.commit-title *, qul.branches-list *
+{
+  background-color: #3c3836 !important;
+  color: #8ec07c !important;
+}
+
+.commit-meta
+{
+  background-color: #3c3836 !important;
+  color: #00a598 !important;
+}
+
+.commits-listing:before
+{
+  background-color: #3c3836 !important;
+}
+
+.full-commit
+{
+  background-color: #3c3836 !important;
+  border-color: #b8bb26 !important;
+}
+
+.full-commit *
+{
+  text-shadow: none !important;
+}
+
+.commit-desc pre
+{
+  background-color: transparent !important;
+  color: #00a598 !important;
+}
+
+.commit.table-list-item
+{
+  border-color: #3c3836 !important;
+}
+
+.commit-meta.commit-author-section
+{
+  background-color: transparent !important;
+  color: #00a598 !important;
+}
+
+.table-list-cell .commit-title
+{
+  background-color: transparent !important;
+  color: #00a598 !important;
+}
+
+.completeness-indicator-success
+{
+  background-color: #98971a !important;
+}
+
+.completeness-indicator-problem
+{
+  background-color: #d79921 !important;
+  color: #fff !important;
+}
+
+.copyable-terminal
+{
+  background-color: #3c3836 !important;
+}
+
+.blankslate
+{
+  background-color: #3c3836 !important;
+  color: #8ec07c !important;
+}
+
+.comment-form-head.tabnav
+{
+  background-color: #000000 !important;
+}
+
+.conversation-list-heading .inner
+{
+  background-color: #000000 !important;
+}
+
+.discussion-item-closed .discussion-item-icon
+{
+  background-color: #cc241d !important;
+  color: #8ec07c !important;
+}
+
+.discussion-item-icon
+{
+  background-color: #b8bb26 !important;
+  color: #8ec07c !important;
+}
+
+.discussion-item-icon.octicon
+{
+  color: #8ec07c !important;
+}
+
+.discussion-item-entity, .discussion-item .renamed-was, .discussion-item .renamed-is
+{
+  color: #8ec07c !important;
+}
+
+.discussion-timeline:before
+{
+  background-color: #fabd2f !important;
+}
+
+.btn
+{
+  border-color: #b8bb26 !important;
+  color: #8ec07c !important;
+}
+
+.btn-primary, .issues-listing .btn-primary
+{
+  background-color: #98971a !important;
+  color: #000 !important;
+}
+
+.discussion-timeline-actions
+{
+  background-color: #000000 !important;
+}
+
+.drag-and-drop
+{
+  background-color: #3c3836 !important;
+}
+
+.new-discussion-timeline .closed-banner
+{
+  background-color: #fabd2f !important;
+  border-color: #282828 !important;
+}
+
+.markdown-body img, .markdown-body table * img
+{
+  background-color: #282828 !important;
+}
+
+div.vectorTabs span
+{
+  background-color: #3c3836 !important;
+}
+
+#tabs a, #tabs a, a.youarehere
+{
+  color: #ebdbb2 !important;
+  background-color: transparent !important;
+}
+
+#tabs a.youarehere
+{
+  color: #ebdbb2 !important;
+}
+
+div.vectorTabs li.selected, div.vectorTabs li.selected span
+{
+  background-color: transparent !important;
+}
+
+.timeline-comment
+{
+  background-color: #000000 !important;
+  border-color: #b8bb26 !important;
+}
+
+.timeline-comment-header
+{
+  background-color: #3c3836 !important;
+}
+
+.timeline-comment-wrapper
+{
+  border-color: #282828 !important;
+}
+
+.donut-chart > .pending
+{
+  fill: #d79921 !important;
+}
+
+.dropdown-divider
+{
+  background-color: #fabd2f !important;
+}
+
+.dropdown-item
+{
+  color: #00a598 !important;
+}
+
+.dropdown-item:hover
+{
+  background-color: #b8bb26 !important;
+  color: #8ec07c !important;
+}
+
+.dropdown-menu
+{
+  background-color: #44403e !important;
+  color: #8ec07c !important;
+  border-color: #fabd2f !important;
+}
+
+.files *
+{
+  color: #00a598 !important;
+}
+
+.files tbody tr
+{
+  border-color: #3c3836 !important;
+}
+
+.files tbody tr:nth-child(even)
+{
+  background-color: #2c2c2c !important;
+}
+
+.files tbody tr:nth-child(odd)
+{
+  background-color: #000000 !important;
+}
+
+.files tbody tr:hover *
+{
+  background-color: #44403e !important;
+}
+
+.btn:hover
+{
+  background-color: #403c3a !important;
+}
+
+.entry-title a
+{
+  color: #ffbb00 !important;
+}
+
+.Header
+{
+  background-color: #403c3a !important;
+  border-bottom-color: #b8bb26 !important;
+}
+
+.Header a
+{
+  color: #8ec07c !important;
+}
+
+.lang
+{
+  color: #8ec07c !important;
+}
+
+.reponav-item, .pagehead-tabs-item
+{
+  background-color: #3c3836 !important;
+  border-color: transparent !important;
+  color: #00a598 !important;
+}
+
+.reponav-item:visited, .pagehead-tabs-item:visited
+{
+  color: #00a598 !important;
+}
+
+.reponav-item.selected, .pagehead-tabs-item.selected
+{
+  background-color: #000000 !important;
+  border-color: #cc241d #44403e transparent !important;
+}
+
+.site-footer-links *
+{
+  color: #00a598 !important;
+}
+
+.Box-row--focus-gray.navigation-focus
+{
+  background-color: #403c3a !important;
+  color: #8ec07c !important;
+}
+
+.js-directory-link
+{
+  color: #ffbb00 !important;
+}
+
+.js-site-search-form input, .js-chromeless-input-container
+{
+  background-color: #000000 !important;
+  border-color: #b8bb26 !important;
+}
+
+a.label
+{
+  color: #282828 !important;
+}
+
+.notifications-list a
+{
+  color: #00a598 !important;
+}
+
+.notifications-list li
+{
+  background-color: #000000 !important;
+}
+
+.octicon-repo
+{
+  color: #8ec07c !important;
+}
+
+.type-icon-state-closed
+{
+  color: rgba(255, 34, 23, 0.65) !important;
+}
+
+.type-icon-state-merged
+{
+  color: #d38600 !important;
+}
+
+.type-icon-state-open
+{
+  color: rgba(212, 211, 18, 0.65) !important;
+}
+
+.octicon-alert
+{
+  color: #fff !important;
+}
+
+.octicon-x
+{
+  color: #cc241d !important;
+}
+
+.octicon-check
+{
+  color: #98971a !important;
+}
+
+.octicon-primitive-dot
+{
+  color: #d79921 !important;
+}
+
+.octicon-clippy
+{
+  color: #8ec07c !important;
+}
+
+.octicon-diff
+{
+  color: #fff !important;
+}
+
+.octicon-markdown
+{
+  color: #b8bb26 !important;
+}
+
+.orghead
+{
+  background-color: #3c3836 !important;
+  border-color: #fabd2f !important;
+  border-bottom: 0px !important;
+  color: #8ec07c !important;
+}
+
+.org-name
+{
+  color: #8ec07c !important;
+}
+
+.pagehead.orghead
+{
+  background-color: #3c3836 !important;
+}
+
+.outline-box-highlighted
+{
+  background-color: #3c3836 !important;
+  color: #8ec07c !important;
+}
+
+.pagination .current
+{
+  background-color: #b8bb26 !important;
+  color: #8ec07c !important;
+}
+
+.pagination .disabled
+{
+  background-color: #3c3836 !important;
+  color: #b8bb26 !important;
+}
+
+.pagination .disabled:hover
+{
+  background-color: #3c3836 !important;
+}
+
+.pagination .gap
+{
+  background-color: #3c3836 !important;
+  color: #b8bb26 !important;
+}
+
+.pagination a
+{
+  background-color: #3c3836 !important;
+  border-color: #282828 !important;
+  color: #00a598 !important;
+}
+
+.pagination a:hover
+{
+  background-color: #b8bb26 !important;
+  color: #ffffff !important;
+}
+
+.empty-cell, .diffbar
+{
+  background-color: #000000 !important;
+}
+
+.merge-status-item
+{
+  background-color: #44403e !important;
+}
+
+.merge-message
+{
+  background-color: #403c3a !important;
+}
+
+.pr-toolbar
+{
+  background-color: #000000 !important;
+}
+
+.review-thread-reply
+{
+  background-color: #3c3836 !important;
+}
+
+.review-thread-reply .inline-comment-form
+{
+  background-color: #000000 !important;
+}
+
+.merged.octicon, .octicon-git-merge
+{
+  color: #ff6500 !important;
+}
+
+.uploaded-files
+{
+  background-color: #000000 !important;
+}
+
+.upload-progress
+{
+  background-color: #3c3836 !important;
+}
+
+#readme .plain
+{
+  background-color: #000000 !important;
+}
+
+.markdown-body, .markdown-body table *
+{
+  background-color: #000000 !important;
+  border-color: #fabd2f !important;
+  color: #00a598 !important;
+}
+
+.markdown-body a, .markdown-body table * a
+{
+  color: #ffbb00 !important;
+}
+
+.markdown-body code, .markdown-body table * code, .markdown-body pre, .markdown-body table * pre
+{
+  background-color: #3c3836 !important;
+}
+
+.markdown- hr, .markdown-body table * hr
+{
+  background-color: #b8bb26 !important;
+}
+
+.task-list-item.hovered
+{
+  background-color: #3c3836 !important;
+}
+
+.range-editor
+{
+  background-color: #3c3836 !important;
+}
+
+.compare-pr-placeholder
+{
+  background-color: #403c3a !important;
+}
+
+ul.comparison-list > li.title
+{
+  background-color: #44403e !important;
+}
+
+ul.comparison-list
+{
+  background-color: #403c3a !important;
+}
+
+.repository-description
+{
+  color: #00a598 !important;
+}
+
+.repository-meta .edit-repository-meta label
+{
+  color: #00a598 !important;
+}
+
+.pagehead.repohead
+{
+  background-color: #3c3836 !important;
+}
+
+.repository-content .RecentBranches
+{
+  background-color: #3c3836 !important;
+  border-color: #fabd2f !important;
+}
+
+.repohead-details-container a
+{
+  color: #00a598 !important;
+}
+
+.select-menu-modal
+{
+  border-color: #83a598 !important;
+}
+
+.select-menu-modal *
+{
+  color: #00a598 !important;
+}
+
+.select-menu-header, .select-menu-header *
+{
+  background-color: #3c3836 !important;
+  color: #8ec07c !important;
+  text-shadow: none !important;
+}
+
+.select-menu-item
+{
+  background-color: #000000 !important;
+}
+
+.select-menu-item.navigation-focus, .select-menu-item.navigation-focus.selected, .select-menu-item.navigation-focus.select-menu-action, .select-menu-item-text.navigation-focus
+{
+  background-color: #b8bb26 !important;
+  color: #8ec07c !important;
+}
+
+.repository-sidebar
+{
+  background-color: #000000 !important;
+}
+
+.thread-subscription-status
+{
+  background-color: #000000 !important;
+}
+
+.sunken-menu-item
+{
+  border-color: #282828 !important;
+}
+
+.sunken-menu-item.selected
+{
+  background-color: #000000 !important;
+  border-color: #44403e !important;
+  color: #8ec07c !important;
+}
+
+.sunken-menu-item.selected:after
+{
+  background-color: #fb4934 !important;
+}
+
+.state
+{
+  color: #8ec07c !important;
+}
+
+.state-closed
+{
+  background-color: #cc241d !important;
+}
+
+.state-open
+{
+  background-color: #98971a !important;
+}
+
+.subnav-item
+{
+  color: #00a598 !important;
+}
+
+.subnav-item:hover
+{
+  background-color: #403c3a !important;
+}
+
+.subnav-item:visited
+{
+  color: #00a598 !important;
+}
+
+.subnav-item.selected
+{
+  background-color: #3c3836 !important;
+}
+
+.subnav-links a:hover
+{
+  background-color: #3c3836 !important;
+}
+
+.subnav-search input
+{
+  border-color: #b8bb26 !important;
+}
+
+.right .tabnav-extra
+{
+  color: #b8bb26 !important;
+}
+
+a.tabnav-tab, .tabnav-tab
+{
+  border-color: transparent !important;
+  color: #b8bb26 !important;
+}
+
+a.tabnav-tab.selected, .tabnav-tab.selected
+{
+  background-color: #000000 !important;
+  border-color: #fabd2f !important;
+  color: #8ec07c !important;
+}
+
+.table-list tr, .table-list li
+{
+  background-color: #000000 !important;
+}
+
+.table-list tr:hover, .table-list li:hover
+{
+  background-color: #44403e !important;
+}
+
+.table-list-header
+{
+  background-color: #3c3836 !important;
+}
+
+.text-pending
+{
+  color: #d79921 !important;
+}
+
+.text-pending .octicon-primitive-dot
+{
+  color: #d79921 !important;
+}
+
+.text-red
+{
+  color: #cc241d !important;
+}
+
+.timeline-commits .commit-meta
+{
+  background-color: #000000 !important;
+}
+
+.timeline-commits .commit-meta .commit-id
+{
+  color: #b8bb26 !important;
+}
+
+.topic-tag.topic-tag-link
+{
+  background-color: #3c3836 !important;
+  color: #00a598 !important;
+}
+
+.underline-nav-item
+{
+  color: #00a598 !important;
+}
+
+.underline-nav-item.selected
+{
+  border-bottom-color: #cc241d !important;
+  color: #00a598 !important;
+}
+
+.user-profile-nav
+{
+  background-color: #3c3836 !important;
+  border-color: #fabd2f !important;
+}
+
+.user-profile-sticky-bar:after
+{
+  background-color: #3c3836 !important;
+  border-color: #fabd2f !important;
+}
+
+.graphs .area
+{
+  fill: #98971a;
+}
+
+.summary-stats li .num
+{
+  color: #8ec07c !important;
+}
+
+.viz
+{
+  background-color: #403c3a !important;
+}
+
+.facebox-popup
+{
+  color: #00a598 !important;
+  background-color: #000000 !important;
+}
+
+.facebox-popup .octicon
+{
+  color: #fff !important;
+}
+
+.facebox-popup .owner-select-target
+{
+  color: #00a598 !important;
+  background-color: #3c3836 !important;
+}
+
+.facebox-popup .owner-select-target:hover
+{
+  background-color: #b8bb26 !important;
+}
+
+.suggester
+{
+  background-color: #44403e !important;
+}
+
+.suggester li.navigation-focus
+{
+  background-color: #b8bb26 !important;
+}
+
+.menu
+{
+  background-color: #3c3836 !important;
+}
+
+.menu-item.selected
+{
+  background-color: #44403e !important;
+}
+
+.menu-item:hover
+{
+  background-color: #b8bb26 !important;
+}
+
+.Box
+{
+  background-color: #000000 !important;
+}
+
+.Box-header
+{
+  background-color: #3c3836 !important;
+}
+
+svg > * text
+{
+  color: #00a598 !important;
+  fill: #83a598 !important;
+}
+
+.insertions
+{
+  color: #98971a !important;
+}
+
+.deletions
+{
+  color: #cc241d !important;
+}
+
+.sfbgg
+{
+  background-color: #3c3836 !important;
+}
+
+input#lst-ib, #sb_ifc0.sbib_b, #gs_taif0
+{
+  background: transparent !important;
+}
+
+#lst-ib, .sbsb_a
+{
+  background-color: #000000 !important;
+}
+
+#hdtbSum
+{
+  background-color: #000000 !important;
+}
+
+#hdtbMenus.hdtb-td-o
+{
+  background-color: #000000 !important;
+}
+
+#appbar
+{
+  background-color: #000000 !important;
+}
+
+cite
+{
+  color: #98971a !important;
+}
+
+.ab_dropdown
+{
+  background-color: #000000 !important;
+}
+
+div.crp
+{
+  background-color: #000000 !important;
+}
+
+#fbar
+{
+  background-color: #3c3836 !important;
+}
+
+tr.Even
+{
+  background-color: #3c3836 !important;
+}
+
+.BigQuote
+{
+  background-color: #3c3836 !important;
+  color: #fb4934 !important;
+}
+
+.Cat1HL
+{
+  background-color: #b8bb26 !important;
+  color: #8ec07c !important;
+}
+
+.Cat2HL
+{
+  background-color: #44403e !important;
+}
+
+.Cat3HL
+{
+  background-color: #403c3a !important;
+}
+
+.FeatureByline
+{
+  background-color: #3c3836 !important;
+  border: none !important;
+}
+
+.Headline
+{
+  background-color: #44403e !important;
+}
+
+.QuotedText
+{
+  color: #ff5555 !important;
+}
+
+DIV.GAByline
+{
+  background-color: #3c3836 !important;
+  border: none !important;
+}
+
+table.OddEven tr:nth-child(even)
+{
+  background-color: #2c2c2c !important;
+}
+
+table.OddEven tr:nth-child(odd)
+{
+  background-color: #000000 !important;
+}
+
+DIV.CommentBox
+{
+  border-color: #3c3836 !important;
+}
+
+DIV.CommentBox P.CommentTitle
+{
+  background-color: #44403e !important;
+}
+
+#menu, .topnav-container
+{
+  background-color: #3c3836 !important;
+}
+
+.navmenu ul
+{
+  background-color: #3c3836 !important;
+}
+
+#content
+{
+  background-color: #000000 !important;
+  color: #00a598 !important;
+}
+
+#mw-head, #mw-panel
+{
+  background-color: #3c3836 !important;
+  color: #8ec07c !important;
+}
+
+#mw-head
+{
+  background-color: #3c3836 !important;
+}
+
+div.vectorTabs ul li
+{
+  background-color: #3c3836 !important;
+  padding: 0px 1px 0px 1px !important;
+}
+
+div#simpleSearch #searchInput
+{
+  background-color: #000000 !important;
+  padding: 0.05em 0px 0.2em 0.2em !important;
+}
+
+.ambox, .infobox, #toc, #toctitle, .toclevel-1
+{
+  background-color: #3c3836 !important;
+  border-color: #44403e !important;
+  color: #8ec07c !important;
+}
+
+.catlinks
+{
+  background-color: #3c3836 !important;
+  border-color: #44403e !important;
+  color: #8ec07c !important;
+}
+
+.navbox
+{
+  background-color: #3c3836 !important;
+  border-color: #44403e !important;
+  color: #8ec07c !important;
+}
+
+.navbox .th, .navbox .navbox-title
+{
+  background-color: #44403e !important;
+}
+
+.navbox-abovebelow, th.navbox-group, .navbox-subgroup, .navbox-title
+{
+  background-color: #403c3a !important;
+}
+
+.navbox-even
+{
+  background-color: #000000 !important;
+}
+
+h1, h2, h3, h4, h5, h6
+{
+  border-color: #44403e !important;
+  color: #8ec07c !important;
+}
+
+code
+{
+  background-color: #44403e !important;
+  border-color: #44403e !important;
+  color: #8ec07c !important;
+}
+
+div.thumbinner
+{
+  background-color: #3c3836 !important;
+  border-color: #44403e !important;
+}
+
+table.wikitable
+{
+  background-color: #000000 !important;
+  border-color: #44403e !important;
+  color: #00a598 !important;
+}
+
+table.wikitable > * > tr > th
+{
+  background-color: #3c3836 !important;
+}
+
+table
+{
+  background-color: #000000 !important;
+}
+
+#hnmain > t:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > table, #hnmain > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > table
+{
+  background-color: #fb4934 !important;
+}
+
+#hnmain > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) a, #hnmain > tbody:nth-child(1) > tr:nth-child(1) a
+{
+  color: #282828 !important;
+}
+
+#hnmain > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > tbody:nth-child(1) > tr:nth-child(2), #hnmain > tbody:nth-child(1) > tr:nth-child(2)
+{
+  background-color: #000000 !important;
+}
+
+#hnmain > tbody:nth-child(1) > tr:nth-child(2)
+{
+  background-color: #000000 !important;
+}
+
+.title a
+{
+  color: #00a598 !important;
+}
+
+.title a:visited
+{
+  color: #b8bb26 !important;
+}
+
+a.storylink
+{
+  color: #8ec07c !important;
+  font-weight: bold;
+}
+
+.sitestr
+{
+  color: #ffbb00 !important;
+}
+
+#hnmain > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(1)
+{
+  background-color: #000000 !important;
+}
+
+#hnmain .comhead
+{
+  color: #8ec07c !important;
+}
+
+#hnmain .c00
+{
+  color: #00a598 !important;
+}
+
+#hnmain a.hnuser
+{
+  color: #d79921 !important;
+}
+
+#hnmain span.age a
+{
+  color: #b8bb26 !important;
+}
+
+.cdd
+{
+  color: rgba(255, 34, 23, 0.65) !important;
+}
+
+.comment i
+{
+  color: #ff5555 !important;
+}
+
+#hnmain > tbody:nth-child(1) > tr:nth-child(4)
+{
+  background-color: #000000 !important;
+}
+
+#hnmain > tbody:nth-child(1) > tr:nth-child(4) > td:nth-child(1) > table:nth-child(2) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1)
+{
+  background-color: #fb4934 !important;
+}
+
+div#page div#header
+{
+  background-color: #000000 !important;
+}
+
+div#page div#header a
+{
+  color: #ff5555 !important;
+}
+
+.post
+{
+  background-color: #000000 !important;
+}
+
+.post *
+{
+  overflow: auto !important;
+}
+
+.post h2
+{
+  background-color: #3c3836 !important;
+}
+
+.post h2 a
+{
+  color: #8ec07c !important;
+}
+
+.post div.entry
+{
+  background-color: #000000 !important;
+  color: #00a598 !important;
+}
+
+.post div.entry blockquote
+{
+  background-color: #3c3836 !important;
+}
+
+.post div.entry kbd
+{
+  background-color: #3c3836 !important;
+  border-color: #b8bb26 !important;
+  color: #8ec07c !important;
+}
+
+.post pre.mode-line
+{
+  overflow: visible !important;
+}
+
+#sr-header-area
+{
+  background-color: #3c3836 !important;
+}
+
+#sr-header-area .srdrop .selected
+{
+  color: #00a598 !important;
+}
+
+#sr-header-area #sr-more-link
+{
+  background-color: #3c3836 !important;
+}
+
+.link.promotedlink.promoted
+{
+  background-color: #3c3836 !important;
+}
+
+.link .usertext .md
+{
+  background-color: #3c3836 !important;
+}
+
+.linkinfo
+{
+  background-color: #3c3836 !important;
+}
+
+.linklisting .odd
+{
+  background-color: #3c3836 !important;
+}
+
+.thing .title
+{
+  color: #00a598 !important;
+}
+
+div.md
+{
+  color: #00a598 !important;
+}
+
+body.comment
+{
+  background-color: #000000 !important;
+}
+
+.commentarea > .usertext
+{
+  background-color: #000000 !important;
+}
+
+.commentarea .menuarea
+{
+  background-color: #000000 !important;
+}
+
+.comments-page .panestack-title
+{
+  background-color: #000000 !important;
+}
+
+.listing-chooser
+{
+  background-color: #000000 !important;
+}
+
+.listing-chooser .intro
+{
+  background-color: #b8bb26 !important;
+  color: #8ec07c !important;
+}
+
+.listing-chooser .grippy
+{
+  background-color: #000000 !important;
+}
+
+.listing-chooser .grippy:after
+{
+  border-right: none !important;
+}
+
+.listing-chooser li
+{
+  background-color: #3c3836 !important;
+}
+
+.listing-chooser li.selected
+{
+  background-color: #b8bb26 !important;
+}
+
+.listing-chooser li a
+{
+  color: #00a598 !important;
+}
+
+.listing-chooser li a .description
+{
+  color: #8ec07c !important;
+}
+
+.titlebox
+{
+  background-color: #3c3836 !important;
+}
+
+.titlebox form.toggle
+{
+  background-color: #3c3836 !important;
+  color: #00a598 !important;
+}
+
+.side .usertext-body .md
+{
+  background-color: #3c3836 !important;
+}
+
+.side
+{
+  background-color: #3c3836 !important;
+}
+
+.sidebox .spacer
+{
+  background-color: #3c3836 !important;
+  color: #8ec07c !important;
+}
+
+.tabmenu li a
+{
+  background-color: #3c3836 !important;
+}
+
+#header-bottom-right
+{
+  background-color: #3c3836 !important;
+}
+
+.morelink .nub
+{
+  background-color: #3c3836 !important;
+}
+
+a
+{
+  color: #ffbb00 !important;
+}
+
+a:visited
+{
+  color: #ff5555 !important;
+}
+
+input, textarea
+{
+  background-color: #3c3836 !important;
+  color: #00a598 !important;
+}
+
+tr:hover, blockquote, pre
+{
+  background-color: #3c3836 !important;
+  color: #00a598 !important;
+}
+
+#toolMenu li
+{
+  background-color: #000000 !important;
+}
+
+.navPanel, .navIntraTool
+{
+  background-color: #000000 !important;
+}
+
+.instruction, .sakaiCopyrightInfo
+{
+  color: #00a598 !important;
+}
+
+.listHier th
+{
+  background-color: #44403e !important;
+}
+
+ul.makeMenu
+{
+  background-color: #44403e !important;
+  border: 1px solid #44403e !important;
+}
+
+tr.external
+{
+  background-color: #44403e !important;
+}
+
+hr
+{
+  background-color: #44403e !important;
+  color: #44403e !important;
+}
+
+.bounty-indicator, .bounty-indicator-tab
+{
+  background-color: #ff5555 !important;
+}
+
+.bottom-notice
+{
+  background-color: #3c3836 !important;
+}
+
+.comments-link
+{
+  color: #98971a !important;
+}
+
+.page-numbers
+{
+  background-color: #98971a !important;
+  color: #a89984 !important;
+}
+
+.page-numbers.current
+{
+  background-color: #fb4934 !important;
+  color: #ffffff !important;
+}
+
+.post-menu a
+{
+  color: #ff5555 !important;
+}
+
+.question-status
+{
+  background-color: #3c3836 !important;
+}
+
+.bg-black-050
+{
+  background-color: transparent !important;
+}
+
+.val-info
+{
+  background-color: transparent !important;
+  color: #00a598 !important;
+}
+
+.s-label
+{
+  color: #00a598 !important;
+}
+
+pre code
+{
+  background-color: #3c3836 !important;
+  color: #8ec07c !important;
+}
+
+pre code .atn
+{
+  color: #ffbb00 !important;
+}
+
+pre code .atv
+{
+  color: #689d6a !important;
+}
+
+pre code .com
+{
+  color: #b8bb26 !important;
+}
+
+pre code .kwd
+{
+  color: #98971a !important;
+}
+
+pre code .lit
+{
+  color: #b16286 !important;
+}
+
+pre code .pln, pre code .pun
+{
+  color: #00a598 !important;
+}
+
+pre code .str
+{
+  color: #689d6a !important;
+}
+
+pre code .tag
+{
+  color: #98971a !important;
+}
+
+pre code .typ
+{
+  color: #d79921 !important;
+}
+
+#footer
+{
+  background-color: #403c3a !important;
+  color: #00a598 !important;
+}
+
+#footer #footer-sites th
+{
+  color: #8ec07c !important;
+}
+
+.top-footer-links a
+{
+  color: #98971a !important;
+}
+
+.so-header
+{
+  background-color: #44403e !important;
+  color: #8ec07c !important;
+}
+
+.so-header a
+{
+  color: #98971a !important;
+}
+
+.so-header .navigation .-list .-item :hover
+{
+  background-color: #98971a !important;
+  color: #ebdbb2 !important;
+}
+
+.topbar-dialog
+{
+  background-color: #000000 !important;
+}
+
+.topbar-dialog .current-site-container
+{
+  background-color: #000000 !important;
+}
+
+.topbar-dialog .header
+{
+  background-color: #3c3836 !important;
+}
+
+.topbar-dialog .header a
+{
+  color: #8ec07c !important;
+}
+
+.topbar-dialog .site-link
+{
+  color: #8ec07c !important;
+}
+
+#header
+{
+  background-color: #44403e !important;
+}
+
+#question-header .question-hyperlink
+{
+  color: #8ec07c !important;
+}
+
+.new-post-activity
+{
+  background-color: #3c3836 !important;
+}
+
+.tagged-interesting
+{
+  background-color: #44403e !important;
+}
+
+div.answered-accepted
+{
+  background-color: #98971a !important;
+  color: #a89984 !important;
+}
+
+div.answered-accepted .mini-counts
+{
+  background-color: #98971a !important;
+  color: #a89984 !important;
+}
+
+.answered .mini-counts span
+{
+  color: #98971a !important;
+}
+
+.unanswered .mini-counts span
+{
+  color: #00a598 !important;
+}
+
+#hot-network-questions a
+{
+  color: #689d6a !important;
+}
+
+#hot-network-questions h4 a.js-gps-track
+{
+  color: #8ec07c !important;
+}
+
+#sidebar .community-bulletin .bulletin-item-content a
+{
+  color: #8ec07c !important;
+}
+
+#sidebar .module.community-bulletin
+{
+  background-color: #3c3836 !important;
+  color: #8ec07c !important;
+}
+
+#sidebar .question-hyperlink
+{
+  color: #689d6a !important;
+}
+
+.newuser
+{
+  background-color: #3c3836 !important;
+  color: #8ec07c !important;
+}
+
+.label-key
+{
+  color: #00a598 !important;
+}
+
+.label-key b
+{
+  color: #8ec07c !important;
+}
+
+#h-chat-link
+{
+  color: #8ec07c !important;
+}
+
+.ad502-room
+{
+  background-color: #3c3836 !important;
+  color: #8ec07c !important;
+}
+
+.post-tag
+{
+  background-color: #b8bb26 !important;
+  color: #ffffff !important;
+}
+
+.post-tag::before
+{
+  background-color: #000000 !important;
+}
+
+a.comment-user.owner
+{
+  background-color: #98971a !important;
+  color: #a89984 !important;
+}
+
+.post-signature
+{
+  background-color: #3c3836 !important;
+  color: #8ec07c !important;
+}
+
+.post-signature a
+{
+  color: #689d6a !important;
+}
+
+.post-signature.owner .user-info .user-details a
+{
+  color: #98971a !important;
+}
+
+.post-signature span.relativetime
+{
+  color: #8ec07c !important;
+}
+
+.vote
+{
+  background-color: #3c3836 !important;
+}
+
+.answer-votes
+{
+  background-color: #b8bb26 !important;
+  color: #ffffff !important;
 }
 
 /*---SOUNDCLOUD---*/
-.playControls__inner,
-.playControls__bg {
-    background-color: #000000 !important;
-}
-.playControl {
-    filter: invert(100%) !important;
-}
-.skipControl__previous {
-    filter: invert(100%) !important;
-}
-.skipControl__next {
-    filter: invert(100%) !important;
-}
-.shuffleControl {
-    filter: invert(100%) !important;
-}
-.repeatControl.m-none {
-    filter: invert(100%) !important;
-}
-.volume[data-level='6'] .volume__button,
-.volume[data-level='7'] .volume__button,
-.volume[data-level='8'] .volume__button,
-.volume[data-level='9'] .volume__button,
-.volume[data-level='10'] .volume__button {
-    filter: invert(100%) !important;
-}
-.volume[data-level='1'] .volume__button,
-.volume[data-level='2'] .volume__button,
-.volume[data-level='3'] .volume__button,
-.volume[data-level='4'] .volume__button,
-.volume[data-level='5'] .volume__button {
-    filter: invert(100%) !important;
-}
-.volume.muted .volume__button {
-    filter: invert(100%) !important;
-}
-.volume__button {
-    filter: invert(100%) !important;
-}
-.playbackTimeline__duration {
-    filter: invert(100%) !important;
-}
-.l-container {
-    background-color: #000000 !important;
-}
-.g-tabs-link,
-.g-tabs-link:visited {
-    color: #ffffff !important
-}
-.g-tabs-link.active {
-    color: #00f !important
-}
-.sc-button-small.sc-button-icon:not(.sc-button-stretch-icon),
-.sc-button-small.sc-button-responsive:not(.sc-button-stretch-icon) {
-    background-color: #000 !important
-}
-.sound__soundActions {
-    background-color: transparent !important
-}
-.soundActions {
-    background-color: transparent !important
-}
-.soundContext__line .sc-ministats {
-    color: #fff !important
-}
-.sc-border-light-right {
-    border-right: 1px solid #ffffff !important
-}
-.sc-border-light-bottom {
-    border-bottom: 1px solid #fff !important
-}
-.playControls__inner,
-.playControls__bg {
-    border-top: unset !important
-}
-.playbackSoundBadge__showQueue {
-    filter: invert(100%) !important;
-}
-.sc-button {
-    color: #fff !important;
-    border: 0px solid #fff !important
-}
-.sc-button-small.sc-button-share:before {
-    filter: invert(100%) !important;
-}
-.sc-button-small.sc-button-more:before {
-    filter: invert(100%) !important;
-}
-.sc-buylink,
-.sc-buylink:visited {
-    filter: invert(100%) !important;
-}
-.dialog {
-    background: #000000 !important;
-    border: 0px solid #ffffff !important
-}
-.dialog__arrow {
-    background: #000000 !important
-}
-.volume__sliderWrapper {
-    background-color: #000000 !important;
-    border: 0px solid transparent !important
-}
-.listenEngagement {
-    border: 0px solid #fff !important;
-    box-shadow: 0 1px 0 0 #44494f !important
-}
-.l-listen-wrapper .l-about-rows {
-    border-right: 1px solid #44494f !important
-}
-.sc-button {
-    background-color: #000 !important
-}
-.commentForm.m-active .commentForm__wrapper {
-    background: unset !important
-}
-.commentForm__wrapper {
-    background: unset !important;
-    border: 0px solid #000 !important
-}
-.commentForm__input {
-    background: #000000;
-    border: 1px solid #303133 !important
-}
-.g-dark textarea,
-.g-dark select,
-.g-dark input[type="text"],
-.g-dark input[type="password"],
-.g-dark input[type="search"] {
-    color: #ccc !important
-}
-.g-tabs {
-    border-bottom: 1px solid #44494f !important
-}
-.sc-tag,
-.sc-tag:visited {
-    background: #000000 !important;
-    border: 1px solid #353535 !important
-}
-.sc-button-medium.sc-button-share:before {
-    filter: invert(100%) !important
-}
-.sc-button-selected.sc-button-medium.sc-button-more:before,
-.sc-button-active.sc-button-medium.sc-button-more:before {
-    filter: invert(0%) !important;
-}
-.sc-button-medium.sc-button-more:before {
-    filter: invert(100%) !important
-}
-.modal__modal {
-    background: #000000 !important
-}
-.modal.modalWhiteout {
-    background-color: rgba(1, 1, 1, .9) !important
-}
-.composeTextfield .textfield__input {
-    background: #000 !important
-}
-.recipientChooser .tokenInput__wrapper {
-    background-color: #000 !important
-}
-.tokenInput__token {
-    background: #000000 !important
-}
-.fullHero {
-    background: #000000 !important
-}
-.moreActions__button,
-.moreActions__link {
-    background-color: #0b0c0c !important
-}
-.moreActions__button:not(:last-child),
-.moreActions__link {
-    border-bottom: 1px solid #333333 !important
-}
-.sc-button-queue:before {
-    filter: invert(100%) !important;
-}
-.sc-button-medium.sc-button-addtoset:before {
-    filter: invert(100%) !important;
-}
-.sc-button-medium.sc-button-startstation:before {
-    filter: invert(100%) !important;
-}
-.moreActions {
-    border: 1px solid #333333 !important
-}
-.g-modal-section {
-    background: #000000 !important
-}
-.tabs__tabs,
-.tabs__headingContainer {
-    background: #000000 !important
-}
-.queue {
-    background-color: #000000 !important
-}
-.queue__hide:focus,
-.queue__hide:hover,
-.queue__hide {
-    filter: invert(100%) !important;
-}
-.queue__itemWrapper {
-    background-color: #000000 !important
-}
-.queueFallback__stationMode {
-    border-top: 1px solid #333333 !important
-}
-.queueItemView:hover,
-.queueItemView.m-active {
-    background: #000000 !important
-}
-.header {
-    background: #000000 !important
-}
-.sc-border-light-top {
-    border-top: 1px solid #444444 !important
-}
-.profileHeaderBackground {
-    background: #000000 !important
-}
-.l-fixed-top-one-column > .l-top {
-    background: #000000 !important
-}
+.playControls__inner, .playControls__bg
+{
+  background-color: #000000 !important;
+}
+
+.playControl
+{
+  filter: invert(100%) !important;
+}
+
+.skipControl__previous
+{
+  filter: invert(100%) !important;
+}
+
+.skipControl__next
+{
+  filter: invert(100%) !important;
+}
+
+.shuffleControl
+{
+  filter: invert(100%) !important;
+}
+
+.repeatControl.m-none
+{
+  filter: invert(100%) !important;
+}
+
+.volume[data-level='6'] .volume__button, .volume[data-level='7'] .volume__button, .volume[data-level='8'] .volume__button, .volume[data-level='9'] .volume__button, .volume[data-level='10'] .volume__button
+{
+  filter: invert(100%) !important;
+}
+
+.volume[data-level='1'] .volume__button, .volume[data-level='2'] .volume__button, .volume[data-level='3'] .volume__button, .volume[data-level='4'] .volume__button, .volume[data-level='5'] .volume__button
+{
+  filter: invert(100%) !important;
+}
+
+.volume.muted .volume__button
+{
+  filter: invert(100%) !important;
+}
+
+.volume__button
+{
+  filter: invert(100%) !important;
+}
+
+.playbackTimeline__duration
+{
+  filter: invert(100%) !important;
+}
+
+.l-container
+{
+  background-color: #000000 !important;
+}
+
+.g-tabs-link, .g-tabs-link:visited
+{
+  color: #ffffff !important
+}
+
+.g-tabs-link.active
+{
+  color: #00f !important
+}
+
+.sc-button-small.sc-button-icon:not(.sc-button-stretch-icon), .sc-button-small.sc-button-responsive:not(.sc-button-stretch-icon)
+{
+  background-color: #000 !important
+}
+
+.sound__soundActions
+{
+  background-color: transparent !important
+}
+
+.soundActions
+{
+  background-color: transparent !important
+}
+
+.soundContext__line .sc-ministats
+{
+  color: #fff !important
+}
+
+.sc-border-light-right
+{
+  border-right: 1px solid #ffffff !important
+}
+
+.sc-border-light-bottom
+{
+  border-bottom: 1px solid #fff !important
+}
+
+.playControls__inner, .playControls__bg
+{
+  border-top: unset !important
+}
+
+.playbackSoundBadge__showQueue
+{
+  filter: invert(100%) !important;
+}
+
+.sc-button
+{
+  color: #fff !important;
+  border: 0px solid #fff !important
+}
+
+.sc-button-small.sc-button-share:before
+{
+  filter: invert(100%) !important;
+}
+
+.sc-button-small.sc-button-more:before
+{
+  filter: invert(100%) !important;
+}
+
+.sc-buylink, .sc-buylink:visited
+{
+  filter: invert(100%) !important;
+}
+
+.dialog
+{
+  background: #000000 !important;
+  border: 0px solid #ffffff !important
+}
+
+.dialog__arrow
+{
+  background: #000000 !important
+}
+
+.volume__sliderWrapper
+{
+  background-color: #000000 !important;
+  border: 0px solid transparent !important
+}
+
+.listenEngagement
+{
+  border: 0px solid #fff !important;
+  box-shadow: 0 1px 0 0 #44494f !important
+}
+
+.l-listen-wrapper .l-about-rows
+{
+  border-right: 1px solid #44494f !important
+}
+
+.sc-button
+{
+  background-color: #000 !important
+}
+
+.commentForm.m-active .commentForm__wrapper
+{
+  background: unset !important
+}
+
+.commentForm__wrapper
+{
+  background: unset !important;
+  border: 0px solid #000 !important
+}
+
+.commentForm__input
+{
+  background: #000000;
+  border: 1px solid #303133 !important
+}
+
+.g-dark textarea, .g-dark select, .g-dark input[type="text"], .g-dark input[type="password"], .g-dark input[type="search"]
+{
+  color: #ccc !important
+}
+
+.g-tabs
+{
+  border-bottom: 1px solid #44494f !important
+}
+
+.sc-tag, .sc-tag:visited
+{
+  background: #000000 !important;
+  border: 1px solid #353535 !important
+}
+
+.sc-button-medium.sc-button-share:before
+{
+  filter: invert(100%) !important
+}
+
+.sc-button-selected.sc-button-medium.sc-button-more:before, .sc-button-active.sc-button-medium.sc-button-more:before
+{
+  filter: invert(0%) !important;
+}
+
+.sc-button-medium.sc-button-more:before
+{
+  filter: invert(100%) !important
+}
+
+.modal__modal
+{
+  background: #000000 !important
+}
+
+.modal.modalWhiteout
+{
+  background-color: rgba(1, 1, 1, .9) !important
+}
+
+.composeTextfield .textfield__input
+{
+  background: #000 !important
+}
+
+.recipientChooser .tokenInput__wrapper
+{
+  background-color: #000 !important
+}
+
+.tokenInput__token
+{
+  background: #000000 !important
+}
+
+.fullHero
+{
+  background: #000000 !important
+}
+
+.moreActions__button, .moreActions__link
+{
+  background-color: #0b0c0c !important
+}
+
+.moreActions__button:not(:last-child), .moreActions__link
+{
+  border-bottom: 1px solid #333333 !important
+}
+
+.sc-button-queue:before
+{
+  filter: invert(100%) !important;
+}
+
+.sc-button-medium.sc-button-addtoset:before
+{
+  filter: invert(100%) !important;
+}
+
+.sc-button-medium.sc-button-startstation:before
+{
+  filter: invert(100%) !important;
+}
+
+.moreActions
+{
+  border: 1px solid #333333 !important
+}
+
+.g-modal-section
+{
+  background: #000000 !important
+}
+
+.tabs__tabs, .tabs__headingContainer
+{
+  background: #000000 !important
+}
+
+.queue
+{
+  background-color: #000000 !important
+}
+
+.queue__hide:focus, .queue__hide:hover, .queue__hide
+{
+  filter: invert(100%) !important;
+}
+
+.queue__itemWrapper
+{
+  background-color: #000000 !important
+}
+
+.queueFallback__stationMode
+{
+  border-top: 1px solid #333333 !important
+}
+
+.queueItemView:hover, .queueItemView.m-active
+{
+  background: #000000 !important
+}
+
+.header
+{
+  background: #000000 !important
+}
+
+.sc-border-light-top
+{
+  border-top: 1px solid #444444 !important
+}
+
+.profileHeaderBackground
+{
+  background: #000000 !important
+}
+
+.l-fixed-top-one-column > .l-top
+{
+  background: #000000 !important
+}
+
 /* Fixes profile's likes page header */
-.sc-button-medium.sc-button-message:before {
-    filter: invert(100%) !important;
-}
-.g-tabs-link:hover,
-.g-tabs-link:focus {
-    border-color: #fff !important
-}
-.dropbar__content {
-    background-color: #000000 !important
-}
-.infoStats__value {
-    color: #fff !important
-}
-.truncatedAudioInfo.m-overflow.m-collapsed .truncatedAudioInfo__wrapper::after {
-    background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, .1)90%, #000) !important
-}
-.sc-button-selected.sc-button-medium.sc-button-like:before {
-    filter: invert(0%) !important;
-}
-.sc-button-medium.sc-button-like:before {
-    filter: invert(100%) !important;
-}
-.sc-button-selected.sc-button-medium.sc-button-repost:before {
-    filter: invert(0%) !important;
-}
-.sc-button-medium.sc-button-repost:before {
-    filter: invert(100%) !important
-}
-.commentItem.m-creatorComment {
-    background-color: #333333 !important
-}
-.volume__sliderWrapper:before {
-    border-color: transparent transparent #000000 #000000 !important
-}
-.volume__sliderWrapper:after {
-    border-color: transparent transparent #000000 #000000 !important
-}
-.sc-button-medium.sc-button-edit:before {
-    filter: invert(100%) !important;
-}
-.sc-button-small.sc-button-more.sc-button-lightfg:before {
-    filter: invert(0%) !important;
-}
-.uploadLoggedOut__testimonialsTitle {
-    color: #000 !important
-}
-.uploadLoggedOut__testimonialsText,
-.uploadLoggedOut__toolsText {
-    color: #000 !important
-}
-.uploadLoggedOut__testimonialListItemQuote {
-    color: #000000 !important
-}
-.uploadLoggedOut__toolsText {
-    color: #fff !important
-}
-.productsMiniTable {
-    color: #000000 !important
-}
-.listenLogin {
-    background-color: #000000 !important;
-    border: 1px solid #fff !important
-}
-.g-scrollable-v .g-scrollable-inner {
-    background-color: #000000 !important
-}
-.chartTrack.m-playing,
-.chartTrack:hover {
-    background: #000000 !important
-}
-.sc-button-small.sc-button-like:before {
-    filter: invert(100%) !important;
-}
-.sc-button-small.sc-button-repost:before {
-    filter: invert(100%) !important;
-}
-.sc-button-small.sc-button-selected.sc-button-more:before,
-.sc-button-small.sc-button-active.sc-button-more:before {
-    filter: invert(0%) !important;
-}
-.linkMenu {
-    background-color: #000000 !important;
-}
-.sidebarInfoBox__body {
-    background-color: #000000 !important;
-}
-.sc-text {
-    color: #ffffff !important;
-}
-.sc-button-small.sc-button-selected.sc-button-like:before,
-.sc-button-small.sc-button-selected.sc-button-like.sc-button-lightfg:before,
-.sc-button-small.sc-button-selected.sc-button-like.sc-button-visual:before {
-    filter: invert(0%) !important;
-}
-.sc-button-small.sc-button-selected.sc-button-repost:before,
-.sc-button-small.sc-button-selected.sc-button-repost.sc-button-lightfg:before,
-.sc-button-small.sc-button-selected.sc-button-repost.sc-button-visual:before {
-    filter: invert(0%) !important;
-}
-.soundBadge__additional {
-    background: unset !important
-}
-.searchTitle {
-    background-color: #000000 !important
-}
-.g-nav-item > .g-nav-link {
-    color: #fff !important
-}
-.uploadMain__chooserContainer {
-    background-color: #000000 !important
-}
-.sc-border-light {
-    border: 1px solid #fff !important
-}
-.uploadMain__foot {
-    background-color: unset !important
-}
-.sc-background-white {
-    background-color: unset !important
-}
-.sc-background-light {
-    background-color: unset !important
-}
-.statsOverview__separator {
-    background-color: unset !important
-}
-.dateSelectStats__datepicker {
-    background: #000000 !important
-}
-.sc-button-small.sc-button-edit:before {
-    filter: invert(100%) !important;
-}
-.sc-button-medium.sc-button-addtoset:before {
-    filter: invert(100%) !important;
-}
-.conversation__actions {
-    background: #000000 !important;
-    box-shadow: 0 1px 0 #ff0 !important;
-}
-.inboxItem:hover,
-.inboxItem:focus,
-.inboxItem.unread,
-.inboxItem.active {
-    background-color: #000000 !important;
-}
-.inbox__item:before {
-    background-color: #00f !important;
-}
-.g-type-marketing-header {
-    color: black !important;
-}
-.g-type-marketing-info {
-    color: black !important;
-}
-.playControls__castControl > button {
-    filter: invert(100%) !important;
-}
-.removeFromNextUp:hover,
-.removeFromNextUp {
-    background-color: #444444 !important;
-}
-.queue__hide:focus,
-.queue__hide:hover,
-.queue__hide {
-    background-color: white !important;
-}
-.queue__dragCover .m-active {
-    background-color: black !important;
-}
-.trackItem.hover,
-.trackItem.active {
-    background-color: black !important;
-}
-.trackItem:not(.m-disabled).hover .trackItem__additional {
-    background: linear-gradient(to right, rgba(11, 12, 12, .1), black 17px) !important;
-}
-.trackItem:not(.m-disabled).active .trackItem__additional {
-    background: linear-gradient(to right, rgba(11, 12, 12, .1), black 17px) !important;
-}
-.sc-snippet-badge-small {
-    filter: invert(100%) !important;
-}
-.compactTrackListItem.clickToPlay.active {
-    background-color: black !important;
-}
-.compactTrackListItem.clickToPlay:hover {
-    background-color: #000000 !important;
-}
-.compactTrackListItem.clickToPlay.active .compactTrackListItem__additional {
-    background: black !important;
-}
-.compactTrackListItem.clickToPlay:hover .compactTrackListItem__additional {
-    background: #000000 !important;
-}
-.compactTrackListItem__trackTitle {
-    color: #757575 !important;
-}
-.compactTrackListItem__user {
-    color: #ffffff !important;
-}
-.activeUpload.m-hq-upload-note .activeUpload__hqNote {
-    background-color: #0002 !important;
-}
-.activeUpload__form {
-    background-color: transparent !important;
-}
-.suggestedTags {
-    background-color: black !important;
-}
-.suggestedTags__listItem.selected {
-    background-color: #00f !important;
-}
-.tagInput__wrapper {
-    background-color: transparent !important;
-}
-.sc-button-dropdown:focus:not(.sc-button-disabled):not(:disabled) {
-    box-shadow: 0 0 0 4px #000000 !important;
-}
-.g-upsell-container {
-    background: transparent !important;
-}
-.ui-datepicker {
-    background: #000000 !important;
-}
-.activeUpload__shareContainer {
-    background-color: transparent !important;
-}
-.audibleEditForm__form {
-    background-color: transparent !important;
-}
-.audibleEditForm__audio {
-    background-color: #000000 !important;
-}
-.commentPopover.darkText .commentPopover__body {
-    color: #8d8d8d !important;
-}
+.sc-button-medium.sc-button-message:before
+{
+  filter: invert(100%) !important;
+}
+
+.g-tabs-link:hover, .g-tabs-link:focus
+{
+  border-color: #fff !important
+}
+
+.dropbar__content
+{
+  background-color: #000000 !important
+}
+
+.infoStats__value
+{
+  color: #fff !important
+}
+
+.truncatedAudioInfo.m-overflow.m-collapsed .truncatedAudioInfo__wrapper::after
+{
+  background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, .1)90%, #000) !important
+}
+
+.sc-button-selected.sc-button-medium.sc-button-like:before
+{
+  filter: invert(0%) !important;
+}
+
+.sc-button-medium.sc-button-like:before
+{
+  filter: invert(100%) !important;
+}
+
+.sc-button-selected.sc-button-medium.sc-button-repost:before
+{
+  filter: invert(0%) !important;
+}
+
+.sc-button-medium.sc-button-repost:before
+{
+  filter: invert(100%) !important
+}
+
+.commentItem.m-creatorComment
+{
+  background-color: #333333 !important
+}
+
+.volume__sliderWrapper:before
+{
+  border-color: transparent transparent #000000 #000000 !important
+}
+
+.volume__sliderWrapper:after
+{
+  border-color: transparent transparent #000000 #000000 !important
+}
+
+.sc-button-medium.sc-button-edit:before
+{
+  filter: invert(100%) !important;
+}
+
+.sc-button-small.sc-button-more.sc-button-lightfg:before
+{
+  filter: invert(0%) !important;
+}
+
+.uploadLoggedOut__testimonialsTitle
+{
+  color: #000 !important
+}
+
+.uploadLoggedOut__testimonialsText, .uploadLoggedOut__toolsText
+{
+  color: #000 !important
+}
+
+.uploadLoggedOut__testimonialListItemQuote
+{
+  color: #000000 !important
+}
+
+.uploadLoggedOut__toolsText
+{
+  color: #fff !important
+}
+
+.productsMiniTable
+{
+  color: #000000 !important
+}
+
+.listenLogin
+{
+  background-color: #000000 !important;
+  border: 1px solid #fff !important
+}
+
+.g-scrollable-v .g-scrollable-inner
+{
+  background-color: #000000 !important
+}
+
+.chartTrack.m-playing, .chartTrack:hover
+{
+  background: #000000 !important
+}
+
+.sc-button-small.sc-button-like:before
+{
+  filter: invert(100%) !important;
+}
+
+.sc-button-small.sc-button-repost:before
+{
+  filter: invert(100%) !important;
+}
+
+.sc-button-small.sc-button-selected.sc-button-more:before, .sc-button-small.sc-button-active.sc-button-more:before
+{
+  filter: invert(0%) !important;
+}
+
+.linkMenu
+{
+  background-color: #000000 !important;
+}
+
+.sidebarInfoBox__body
+{
+  background-color: #000000 !important;
+}
+
+.sc-text
+{
+  color: #ffffff !important;
+}
+
+.sc-button-small.sc-button-selected.sc-button-like:before, .sc-button-small.sc-button-selected.sc-button-like.sc-button-lightfg:before, .sc-button-small.sc-button-selected.sc-button-like.sc-button-visual:before
+{
+  filter: invert(0%) !important;
+}
+
+.sc-button-small.sc-button-selected.sc-button-repost:before, .sc-button-small.sc-button-selected.sc-button-repost.sc-button-lightfg:before, .sc-button-small.sc-button-selected.sc-button-repost.sc-button-visual:before
+{
+  filter: invert(0%) !important;
+}
+
+.soundBadge__additional
+{
+  background: unset !important
+}
+
+.searchTitle
+{
+  background-color: #000000 !important
+}
+
+.g-nav-item > .g-nav-link
+{
+  color: #fff !important
+}
+
+.uploadMain__chooserContainer
+{
+  background-color: #000000 !important
+}
+
+.sc-border-light
+{
+  border: 1px solid #fff !important
+}
+
+.uploadMain__foot
+{
+  background-color: unset !important
+}
+
+.sc-background-white
+{
+  background-color: unset !important
+}
+
+.sc-background-light
+{
+  background-color: unset !important
+}
+
+.statsOverview__separator
+{
+  background-color: unset !important
+}
+
+.dateSelectStats__datepicker
+{
+  background: #000000 !important
+}
+
+.sc-button-small.sc-button-edit:before
+{
+  filter: invert(100%) !important;
+}
+
+.sc-button-medium.sc-button-addtoset:before
+{
+  filter: invert(100%) !important;
+}
+
+.conversation__actions
+{
+  background: #000000 !important;
+  box-shadow: 0 1px 0 #ff0 !important;
+}
+
+.inboxItem:hover, .inboxItem:focus, .inboxItem.unread, .inboxItem.active
+{
+  background-color: #000000 !important;
+}
+
+.inbox__item:before
+{
+  background-color: #00f !important;
+}
+
+.g-type-marketing-header
+{
+  color: black !important;
+}
+
+.g-type-marketing-info
+{
+  color: black !important;
+}
+
+.playControls__castControl > button
+{
+  filter: invert(100%) !important;
+}
+
+.removeFromNextUp:hover, .removeFromNextUp
+{
+  background-color: #444444 !important;
+}
+
+.queue__hide:focus, .queue__hide:hover, .queue__hide
+{
+  background-color: white !important;
+}
+
+.queue__dragCover .m-active
+{
+  background-color: black !important;
+}
+
+.trackItem.hover, .trackItem.active
+{
+  background-color: black !important;
+}
+
+.trackItem:not(.m-disabled).hover .trackItem__additional
+{
+  background: linear-gradient(to right, rgba(11, 12, 12, .1), black 17px) !important;
+}
+
+.trackItem:not(.m-disabled).active .trackItem__additional
+{
+  background: linear-gradient(to right, rgba(11, 12, 12, .1), black 17px) !important;
+}
+
+.sc-snippet-badge-small
+{
+  filter: invert(100%) !important;
+}
+
+.compactTrackListItem.clickToPlay.active
+{
+  background-color: black !important;
+}
+
+.compactTrackListItem.clickToPlay:hover
+{
+  background-color: #000000 !important;
+}
+
+.compactTrackListItem.clickToPlay.active .compactTrackListItem__additional
+{
+  background: black !important;
+}
+
+.compactTrackListItem.clickToPlay:hover .compactTrackListItem__additional
+{
+  background: #000000 !important;
+}
+
+.compactTrackListItem__trackTitle
+{
+  color: #757575 !important;
+}
+
+.compactTrackListItem__user
+{
+  color: #ffffff !important;
+}
+
+.activeUpload.m-hq-upload-note .activeUpload__hqNote
+{
+  background-color: #0002 !important;
+}
+
+.activeUpload__form
+{
+  background-color: transparent !important;
+}
+
+.suggestedTags
+{
+  background-color: black !important;
+}
+
+.suggestedTags__listItem.selected
+{
+  background-color: #00f !important;
+}
+
+.tagInput__wrapper
+{
+  background-color: transparent !important;
+}
+
+.sc-button-dropdown:focus:not(.sc-button-disabled):not(:disabled)
+{
+  box-shadow: 0 0 0 4px #000000 !important;
+}
+
+.g-upsell-container
+{
+  background: transparent !important;
+}
+
+.ui-datepicker
+{
+  background: #000000 !important;
+}
+
+.activeUpload__shareContainer
+{
+  background-color: transparent !important;
+}
+
+.audibleEditForm__form
+{
+  background-color: transparent !important;
+}
+
+.audibleEditForm__audio
+{
+  background-color: #000000 !important;
+}
+
+.commentPopover.darkText .commentPopover__body
+{
+  color: #8d8d8d !important;
+}
+
 /* Makes logo at the bottom of pages dark */
-.paging-eof {
-    filter: invert(90.6%) !important;
+.paging-eof
+{
+  filter: invert(90.6%) !important;
 }
+
 /* Removes ugly border from notification icon alert (1/2) */
-.newItemBadge.newItems__some {
-    border: none !important;
+.newItemBadge.newItems__some
+{
+  border: none !important;
 }
+
 /* Removes ugly border from notification icon alert (2/2) */
-.newItemBadge {
-    width: 120% !important;
-    height: 120% !important;
+.newItemBadge
+{
+  width: 120% !important;
+  height: 120% !important;
 }
+
 /* Fixes dark text in dashbox (1/2) */
-.dashbox__titleLine {
-    color: #ffffff !important;
+.dashbox__titleLine
+{
+  color: #ffffff !important;
 }
+
 /* Fixes dark text in dashbox (2/2) */
-.dashbox__bodyLine {
-    color: #ffffff !important;
+.dashbox__bodyLine
+{
+  color: #ffffff !important;
 }
+
 /* Gradient in truncated user description */
-.truncatedUserDescription.m-overflow.m-collapsed .truncatedUserDescription__wrapper::after {
-    background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, .1)) !important;
+.truncatedUserDescription.m-overflow.m-collapsed .truncatedUserDescription__wrapper::after
+{
+  background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, .1)) !important;
 }
+
 /* Old style album layout interact area */
-.visualSound__wrapper {
-    background-color: #000000 !important;
+.visualSound__wrapper
+{
+  background-color: #000000 !important;
 }
+
 /* Fixes blur behind View all button as the invert filter breaks it */
-.readMoreTile__countWrapper {
-    background-color: #ffffff !important;
+.readMoreTile__countWrapper
+{
+  background-color: #ffffff !important;
 }
+
 /* Make font on small buttons thicker, or its too thin */
-.sc-button-small {
-    font-weight: 500 !important;
+.sc-button-small
+{
+  font-weight: 500 !important;
 }
+
 /* Fixes informational pop-ups shown to new users (1/2) */
-.callout__bubble {
-    background-color: #000000 !important;
+.callout__bubble
+{
+  background-color: #000000 !important;
 }
+
 /* Fixes informational pop-ups shown to new users (2/2) */
-.callout__bubble::before {
-    background-color: black !important;
+.callout__bubble::before
+{
+  background-color: black !important;
 }
+
 /* Fixes free upload limit background */
-.quotaMeterWrapper {
-    background-color: unset !important;
+.quotaMeterWrapper
+{
+  background-color: unset !important;
 }
+
 /* Fixes stream playlist expand btn */
-.compactTrackList__moreLink:focus,
-.compactTrackList__moreLink:hover {
-    background-color: black !important;
-    color: white !important
+.compactTrackList__moreLink:focus, .compactTrackList__moreLink:hover
+{
+  background-color: black !important;
+  color: white !important
 }
+
 /* Fixes background of Comments Disabled box */
-.commentFormDisabled {
-    background-color: black !important;
+.commentFormDisabled
+{
+  background-color: black !important;
 }
+
 /* In-stream banners */
-.streamHTUpsell {
-    background-color: #000000 !important;
+.streamHTUpsell
+{
+  background-color: #000000 !important;
 }
+
 /* Fix empty profile page */
-.emptyNetworkPage__image {
-    filter: invert(80%) !important;
+.emptyNetworkPage__image
+{
+  filter: invert(80%) !important;
 }
+
 /* Make body font slightly thicker for readability */
-.sc-font-body {
-    font-weight: 500 !important;
+.sc-font-body
+{
+  font-weight: 500 !important;
 }
+
 /* Fix featured profiles text 1/2 */
-.featuredProfiles__item h3 {
-    filter: invert(100%) !important;
+.featuredProfiles__item h3
+{
+  filter: invert(100%) !important;
 }
+
 /* Fix featured profiles text 2/2 */
-.featuredProfiles__list .sc-status-icon {
-    filter: invert(100) !important;
+.featuredProfiles__list .sc-status-icon
+{
+  filter: invert(100) !important;
 }
+
 /* Fix delete playlist button */
-.sc-button-delete::before {
-    filter: invert(100%) !important;
+.sc-button-delete::before
+{
+  filter: invert(100%) !important;
 }
+
 /* Fix playlist preview song buttons */
-.sc-button-small.sc-button-lightfg:before {
-    filter: unset !important;
+.sc-button-small.sc-button-lightfg:before
+{
+  filter: unset !important;
 }
