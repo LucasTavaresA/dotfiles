@@ -94,6 +94,16 @@ Keymaps({
     "<C-S-s>",
     "<cmd>normal! N<cr>",
   },
+  {
+    "i",
+    "<C-c>",
+    "<C-o>S",
+  },
+  {
+    "i",
+    "<A-w>",
+    "<C-o>de",
+  },
 })
 
 -- fecha buffers de ajuda
