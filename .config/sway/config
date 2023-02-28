@@ -203,8 +203,7 @@ exec swayrd
 exec swayidle -w timeout 500 'swaymsg "output * power off"' resume 'swaymsg "output * power on"'
 exec wl-paste --watch cliphist store
 exec mako
-exec foot -s
-exec foot -T irc -a irc -e irssi --home ~/.config/irssi
+exec alacritty --class irc -e irssi --home ~/.config/irssi
 ## Musica
 exec pgrep -x "playerctld" || playerctld daemon
 exec pgrep -x "mpDris2" || mpDris2 --music-dir="$HOME/media/musicas/" >"$XDG_CACHE_HOME/mpdris2.log" 2>&1 &

@@ -56,7 +56,7 @@ if [ "$WM" = "sway" ] || [ "$WM" = "dwl" ] || [ "$WM" = "cagebreak" ]; then
     export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
     export SDL_VIDEODRIVER=wayland
     export _JAVA_AWT_WM_NONREPARENTING=1
-    export TERMINAL="footclient"
+    export TERMINAL="alacritty"
     export LIBSEAT_BACKEND=seatd
     export ELM_DISPLAY=wl
 fi
@@ -193,3 +193,4 @@ case "$(printf 'sway\nfish\ndwl\ncagebreak\nxorg' | fzf --disabled)" in
 esac
 
 exec fish
+# vim: set ft=sh:
