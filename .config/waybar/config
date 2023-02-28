@@ -5,16 +5,30 @@
     "fixed-center": false, // center sway/window
 
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["sway/window"],
-    "modules-right": ["mpd", "pulseaudio", "disk#1", "disk#2", "backlight",
-        "battery", "battery#bat2", "clock", "tray"],
+    "modules-left": [
+        "sway/workspaces",
+        "sway/mode"
+    ],
+    "modules-center": [
+        "sway/window"
+    ],
+    "modules-right": [
+        "mpd",
+        "pulseaudio",
+        "disk#1",
+        "disk#2",
+        "backlight",
+        "battery",
+        "battery#bat2",
+        "clock",
+        "tray"
+    ],
 
     // Modules configuration
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
-        "format": "<span font='22' line_height='0.2' rise='-10pt'>{icon}</span>",
+        "format": "<span font_family='Symbols Nerd Font Mono'>{icon}</span>",
         "format-icons": {
             "1:Browser": "",
             "2:Code": "",
@@ -31,14 +45,14 @@
     "sway/window": {
         "format": "{title}",
         "rewrite": {
-            "(.*) — Mozilla Firefox":  "<span font='22' line_height='0.2' rise='-7pt'>爵</span> $1",
-            "(.*) - qutebrowser": "<span font='22' line_height='0.2' rise='-7pt'>爵</span> $1",
-            "(.*) - NVIM": "<span font='22' line_height='0.2' rise='-7pt'></span> $1",
+            "(.*) — Mozilla Firefox": "<span font_family='Symbols Nerd Font Mono'>爵</span> $1",
+            "(.*) - qutebrowser": "<span font_family='Symbols Nerd Font Mono'>爵</span> $1",
+            "(.*) - NVIM": "<span font_family='Symbols Nerd Font Mono'></span> $1",
             "^(~.*)": "$1<span font='14' rise='-2pt'>></span>",
         }
     },
     "mpd": {
-        "format": "🎵 {filename} [{songPosition}/{queueLength}]",
+        "format": "🎵 {filename:.40} [{songPosition}/{queueLength}]",
         "format-disconnected": "🎵 Disconnected",
         "format-stopped": "🎵 Stopped",
         "unknown-tag": "N/A",

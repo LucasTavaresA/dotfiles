@@ -43,18 +43,18 @@ window:
 
 font:
   normal:
-    family: SauceCodePro Nerd Font
+    family: Terminus
     style: Regular
   bold:
-    family: SauceCodePro Nerd Font
+    family: Terminus
     style: Bold
   italic:
-    family: SauceCodePro Nerd Font
+    family: Terminus
     style: Italic
   bold_italic:
-    family: SauceCodePro Nerd Font
+    family: Terminus
     style: Bold Italic
-  size: 14.0
+  # size: 18.0
   #offset:
   #  x: 0
   #  y: 0

@@ -217,7 +217,6 @@ exec checar_updates
 bar {
   swaybar_command waybar
   mode hide
-  font pango:SauceCodePro Nerd Font 14px
   hidden_state hide
   modifier Mod4
 }

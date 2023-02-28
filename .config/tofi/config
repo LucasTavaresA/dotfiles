@@ -1,8 +1,7 @@
 hide-cursor=true
 fuzzy-match=true
 require-match=false
-font=SauceCodePro Nerd Font
-font-size=14px
+font=Terminus
 prompt-text=>
 hint-font=false
 width = 100%
