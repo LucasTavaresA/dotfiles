@@ -2,6 +2,7 @@ ImageMagick
 StyLua
 Vulkan-Headers
 Waybar
+alacritty
 alsa-firmware
 alsa-pipewire
 alsa-utils
@@ -50,7 +51,6 @@ font-fira-otf
 font-fira-ttf
 font-inconsolata-otf
 fonts-droid-ttf
-foot
 fzf
 gammastep
 gcc
@@ -70,6 +70,7 @@ grub
 gtk-engine-murrine
 gtk2fontsel
 gtkspell3
+gucharmap
 guilt
 gup
 harfbuzz
