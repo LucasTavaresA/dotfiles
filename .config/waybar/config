@@ -130,4 +130,4 @@
         "format": "{:%a %d/%m/%Y - %H:%M}",
     },
 }
-// vim: set ft=json:
+// vim: set ft=jsonc:

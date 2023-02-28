@@ -93,8 +93,9 @@ go install github.com/nametake/golangci-lint-langserver@latest
 npm i -g cssmodules-language-server @tailwindcss/language-server typescript \
     typescript-language-server vscode-langservers-extracted eslint \
     fixjson write-good bash-language-server vscode-css-languageserver-bin \
-    neovim write-good
-npm i -g --save-dev stylelint stylelint-config-standard
+    neovim write-good prettier-eslint-cli
+npm i -g --save-dev prettier-eslint
+npm i -g --save-dev --save-exact prettier
 
 pipx install keepmenu scdl spotdl jedi-language-server
 

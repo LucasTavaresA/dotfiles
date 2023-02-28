@@ -13,6 +13,8 @@ return {
       "typescript",
       "typescriptreact",
       "css",
+      "json",
+      "jsonc",
       "html",
       "go",
       "python",
@@ -144,11 +146,12 @@ return {
               null_ls.builtins.formatting.fish_indent,
               -- python
               null_ls.builtins.diagnostics.flake8,
-              -- javascript
+              -- web
               null_ls.builtins.diagnostics.eslint,
               null_ls.builtins.code_actions.eslint,
-              -- json
-              null_ls.builtins.formatting.fixjson,
+              null_ls.builtins.formatting.eslint,
+              null_ls.builtins.formatting.prettier,
+              null_ls.builtins.formatting.prettier_eslint,
               -- shell
               null_ls.builtins.code_actions.shellcheck,
               null_ls.builtins.formatting.shfmt.with({
