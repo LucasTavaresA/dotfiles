@@ -146,7 +146,7 @@ vg.netrw_winsize = 20
 Autocmd("TermOpen", { "*" }, "setlocal nonumber norelativenumber")
 -- FileType
 Autocmd("FileType", { "gitcommit" }, "norm zr")
-Autocmd("FileType", { "diff", "dired" }, "setlocal nospell")
+Autocmd("FileType", { "diff" }, "setlocal nospell")
 Autocmd(
   "FileType",
   { "css" },

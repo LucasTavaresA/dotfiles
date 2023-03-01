@@ -23,6 +23,7 @@ return {
             "<cmd>bd!<cr>",
             { buffer = true, noremap = true, silent = true }
           )
+          vim.opt_local.spell = false
         end,
       })
     end,
