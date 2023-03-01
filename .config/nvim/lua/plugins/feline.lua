@@ -81,9 +81,7 @@ return {
         branch = {
           provider = "git_branch",
           icon = " ",
-          hl = { fg = theme.bg, bg = theme.pink, style = "bold" },
-          left_sep = "🭅",
-          right_sep = "🭡",
+          hl = { bg = theme.bg, fg = theme.pink },
         },
         add = {
           provider = "git_diff_added",
@@ -138,6 +136,7 @@ return {
     table.insert(components.active[3], comps.git.remove)
     table.insert(components.active[3], comps.separator)
     table.insert(components.active[3], comps.git.branch)
+    table.insert(components.active[3], comps.separator)
     table.insert(components.active[3], comps.separator)
     table.insert(components.active[3], comps.file.info)
     table.insert(components.inactive[3], comps.file.info)
