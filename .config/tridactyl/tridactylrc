@@ -90,6 +90,8 @@ unbind q
 unbind H
 unbind L
 unbind O
+unbind p
+unbind P
 
 bind O fillcmdline winopen
 bind j scrollline 4

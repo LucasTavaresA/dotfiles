@@ -103,20 +103,22 @@ assign [instance="^irc$"] "4:Message"
 assign [app_id="^TelegramDesktop$"] "4:Message"
 
 # Teclas
-set $mod Mod4
-set $mods Mod4+Shift
-floating_modifier $mod normal
+set $A Mod1
+set $S Mod4
+set $s Shift
+floating_modifier $S normal
 ## sway
-bindsym $mod+q kill
-bindsym $mod+w floating toggle
-bindsym $mod+f fullscreen toggle
-bindsym $mod+b bar hidden_state toggle
-bindsym $mod+tab exec swayr next-window current-workspace
-bindsym $mod+Mod1+period exec swayr next-window current-workspace
+bindsym $S+q kill
+bindsym $S+w floating toggle
+bindsym $S+f fullscreen toggle
+bindsym $S+s sticky toggle
+bindsym $S+b bar hidden_state toggle
+bindsym $S+tab exec swayr next-window current-workspace
+bindsym $S+$A+period exec swayr next-window current-workspace
 bindsym Print exec wayland_print
-bindsym $mod+e exec term_open -a nvim nvim
-bindsym $mod+o exec menu_pesquisar
-bindsym $mods+Return exec term_open
+bindsym $S+e exec term_open -a nvim nvim
+bindsym $S+o exec menu_pesquisar
+bindsym $S+$s+Return exec term_open
 ## menu
 mode "Menu" {
     bindsym Menu exec pgrep tofi && pkill tofi || tofi-drun --drun-launch=true ; mode "default"
@@ -153,50 +155,50 @@ mode "resize" {
         bindsym Right resize grow width 10 px or 10 ppt
         bindsym Return mode "default"
         bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+        bindsym $S+r mode "default"
 }
-bindsym $mod+r mode "resize"
+bindsym $S+r mode "resize"
 ## musica
-bindsym $mod+a exec term_open -a float ncmpcpp
-bindsym $mods+a exec term_open -a float pulsemixer
-bindsym $mod+space exec playerctl play-pause || mpc toggle
+bindsym $S+a exec term_open -a float ncmpcpp
+bindsym $S+$s+a exec term_open -a float pulsemixer
+bindsym $S+space exec playerctl play-pause || mpc toggle
 bindsym XF86AudioPlay exec playerctl play-pause || mpc toggle
-bindsym $mod+comma exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
-bindsym $mod+period exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindsym $S+comma exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym $S+period exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
 bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
 bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
-bindsym $mods+comma exec musica ante
-bindsym $mods+period exec musica prox
+bindsym $S+$s+comma exec musica ante
+bindsym $S+$s+period exec musica prox
 ## setas/vimkeys
-bindsym $mod+Up focus up
-bindsym $mod+Down focus down
-bindsym $mod+Left focus left
-bindsym $mod+Right focus right
-bindsym $mods+Up move up
-bindsym $mods+Down move down
-bindsym $mods+Left move left
-bindsym $mods+Right move right
-bindsym $mod+k focus up
-bindsym $mod+j focus down
-bindsym $mod+h focus left
-bindsym $mod+l focus right
-bindsym $mods+k move up
-bindsym $mods+j move down
-bindsym $mods+h move left
-bindsym $mods+l move right
+bindsym $S+Up focus up
+bindsym $S+Down focus down
+bindsym $S+Left focus left
+bindsym $S+Right focus right
+bindsym $S+$s+Up move up
+bindsym $S+$s+Down move down
+bindsym $S+$s+Left move left
+bindsym $S+$s+Right move right
+bindsym $S+k focus up
+bindsym $S+j focus down
+bindsym $S+h focus left
+bindsym $S+l focus right
+bindsym $S+$s+k move up
+bindsym $S+$s+j move down
+bindsym $S+$s+h move left
+bindsym $S+$s+l move right
 ## workspaces
 set $ws1 "1:Browser"
 set $ws2 "2:Code"
 set $ws3 "3:Fullscreen"
 set $ws4 "4:Message"
-bindsym $mod+1 workspace number $ws1
-bindsym $mod+2 workspace number $ws2
-bindsym $mod+3 workspace number $ws3
-bindsym $mod+4 workspace number $ws4
-bindsym $mods+1 move window to workspace number $ws1
-bindsym $mods+2 move window to workspace number $ws2
-bindsym $mods+3 move window to workspace number $ws3
-bindsym $mods+4 move window to workspace number $ws4
+bindsym $S+1 workspace number $ws1
+bindsym $S+2 workspace number $ws2
+bindsym $S+3 workspace number $ws3
+bindsym $S+4 workspace number $ws4
+bindsym $S+$s+1 move window to workspace number $ws1
+bindsym $S+$s+2 move window to workspace number $ws2
+bindsym $S+$s+3 move window to workspace number $ws3
+bindsym $S+$s+4 move window to workspace number $ws4
 
 # Iniciar
 exec swayrd
