@@ -116,6 +116,7 @@ config.set('content.notifications.enabled', True, 'https://www.youtube.com/*')
 config.set('content.notifications.enabled', True, 'https://twitter.com/*')
 config.set('content.notifications.enabled', True, 'https://facebook.com/*')
 config.set('content.notifications.enabled', True, 'https://www.reddit.com')
+config.set('content.notifications.enabled', True, 'https://old.reddit.com')
 config.set('content.notifications.enabled', False, 'https://www.infojobs.com.br')
 
 # geolocalização
@@ -141,7 +142,7 @@ c.url.searchengines = {'DEFAULT': 'https://searx.be/search?q={}'
                     ,  'imdb': 'https://www.imdb.com/find?q={}&ref_=nv_sr_sm'
                     ,  'md':   'https://mangadex.org/titles?page=1&q={}&order=relevance.desc'
                     ,  'od':   'https://odysee.com/search?q={}'
-                    ,  'r':    'https://www.reddit.com/search/?q={}'
+                    ,  'r':    'https://old.reddit.com/search/?q={}'
                     ,  'sc':   'https://soundcloud.com/search?q={}'
                     ,  'se':   'https://stackexchange.com/search?q={}'
                     ,  'sf':   'https://sourceforge.net/directory/?q={}'
@@ -533,7 +534,7 @@ config.set('content.javascript.enabled', True, '*://*.www.pluralsight.com/*')
 config.set('content.javascript.enabled', True, '*://*.www.qt.io/*')
 config.set('content.javascript.enabled', True, '*://*.www.quora.com/*')
 config.set('content.javascript.enabled', True, '*://*.www.qutebrowser.org/*')
-config.set('content.javascript.enabled', True, '*://*.www.reddit.com/*')
+config.set('content.javascript.enabled', True, '*://*reddit.com/*')
 config.set('content.javascript.enabled', True, '*://*.www.rokfin.com/*')
 config.set('content.javascript.enabled', True, '*://*.www.shells.com/*')
 config.set('content.javascript.enabled', True, '*://*.www.spacemacs.org/*')
