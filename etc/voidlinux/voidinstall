@@ -117,3 +117,4 @@ cat etc/pam_gnupg >>/etc/pam.d/login
 
 mkdir -p /home/lucas/.local/share/applications/
 cp etc/transmission-remote.desktop .local/share/applications/
+cp etc/term_open.desktop .local/share/applications/

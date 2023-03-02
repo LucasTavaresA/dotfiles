@@ -59,7 +59,7 @@
         "interval": 2,
         "tooltip-format": "MPD (connected)",
         "tooltip-format-disconnected": "MPD (disconnected)",
-        "on-click": "alacritty -e ncmpcpp"
+        "on-click": "term_open -a float ncmpcpp"
     },
     "mpris": {
         "format": "{player_icon} {status_icon} {dynamic}",
@@ -94,7 +94,7 @@
             "car": "",
             "default": ["🔈", "🔉", "🔊"]
         },
-        "on-click": "alacritty -e pulsemixer"
+        "on-click": "term_open -a float pulsemixer"
     },
     "disk#1": {
         "format": "{path} {free}",

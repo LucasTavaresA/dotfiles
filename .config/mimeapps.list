@@ -22,7 +22,7 @@ x-scheme-handler/chrome=firefox.desktop
 x-scheme-handler/http=firefox.desktop
 x-scheme-handler/https=firefox.desktop
 x-scheme-handler/magnet=transmission-remote.desktop;
-x-scheme-handler/terminal=Alacritty.desktop;
+x-scheme-handler/terminal=term_open.desktop;
 x-scheme-handler/tg=org.telegram.desktop.desktop.desktop;
 
 [Default Applications]
