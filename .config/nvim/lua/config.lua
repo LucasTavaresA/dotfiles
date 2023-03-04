@@ -87,12 +87,14 @@ vansh(0, "MatchParen", { bold = true, fg = "#ff0000" })
 vansh(0, "folded", { bg = "#000000", fg = "#ff5500" })
 -- melhora suporte de cores
 vo.termguicolors = true
+-- listchars
+vansh(0, "Whitespace", { fg = "#222222" })
 
 --- Tabs/Espaços
 -- indicação de espaços e tabs
 vo.list = true
 vo.listchars = {
-  tab = "> ",
+  tab = "│ ",
   extends = "⟩",
   precedes = "⟨",
   trail = "~",
