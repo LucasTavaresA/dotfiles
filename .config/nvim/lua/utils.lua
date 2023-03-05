@@ -188,12 +188,27 @@ end, { nargs = "+", complete = "command" })
 --- Marca/Desmarca checkboxes
 function ToggleCheckbox()
   local line = vim.api.nvim_get_current_line()
+  local ft = vim.o.ft
+  ---@type table<string, string>
+  local checkboxes = {
+    org = " X",
+    neorg = " x",
+    markdown = " x",
+  }
+  local checked = checkboxes[ft]:sub(-1)
 
-  if line:find("%- %[ %]") then
-    line = line:gsub("%- %[ %]", "- [x]")
-  else
-    line = line:gsub("%- %[x%]", "- [ ]")
-  end
+  line = line:gsub(
+    "^(%s*[%-%+%*]?[%w]*[%)%.]? %[)([" .. checkboxes[ft] .. "])(%])",
+    function(left, state, right)
+      if state == checked then
+        state = " "
+      elseif state == " " then
+        state = checked
+      end
+
+      return left .. state .. right
+    end
+  )
 
   vim.api.nvim_set_current_line(line)
 end
