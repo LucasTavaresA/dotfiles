@@ -99,54 +99,46 @@ end
 vim.on_key(toggle_hlsearch, ns)
 
 local function get_visual_selection(nl_literal)
-  -- this will exit visual mode
-  -- use 'gv' to reselect the text
-  local _, csrow, cscol, cerow, cecol
+  local sr, sc, er, ec
   local mode = vim.fn.mode()
 
   if mode == "v" or mode == "V" or mode == "" then
-    -- if we are in visual mode use the live position
-    _, csrow, cscol, _ = unpack(vim.fn.getpos("."))
-    _, cerow, cecol, _ = unpack(vim.fn.getpos("v"))
+    -- use the live position
+    _, sr, sc, _ = unpack(vim.fn.getpos("."))
+    _, er, ec, _ = unpack(vim.fn.getpos("v"))
 
+    -- visual line doesn't provide columns
     if mode == "V" then
-      -- visual line doesn't provide columns
-      cscol, cecol = 0, 999
+      sc, ec = 0, 999
     end
-
-    -- exit visual mode
-    --vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
   else
-    -- otherwise, use the last known visual position
-    _, csrow, cscol, _ = unpack(vim.fn.getpos("'<"))
-    _, cerow, cecol, _ = unpack(vim.fn.getpos("'>"))
+    -- use the last known visual position
+    _, sr, sc, _ = unpack(vim.fn.getpos("'<"))
+    _, er, ec, _ = unpack(vim.fn.getpos("'>"))
   end
 
-  -- swap vars if needed
-  if cerow < csrow then
-    csrow, cerow = cerow, csrow
+  -- swap back reverse selection
+  if er < sr then
+    sr, er = er, sr
+  end
+  if ec < sc then
+    sc, ec = ec, sc
   end
 
-  if cecol < cscol then
-    cscol, cecol = cecol, cscol
-  end
-
-  local lines = vim.fn.getline(csrow, cerow)
-
-  -- local n = cerow-csrow+1
+  local lines = vim.fn.getline(sr, er)
   local n = #lines
 
   if n <= 0 then
     return ""
   end
 
-  -- we don't support multi-line selections
+  -- does support multi-line selections
   if n > 1 then
     return nil
   end
 
-  lines[n] = string.sub(lines[n], 1, cecol)
-  lines[1] = string.sub(lines[1], cscol)
+  lines[n] = lines[n]:sub(1, ec)
+  lines[1] = lines[1]:sub(sc)
 
   return table.concat(lines, nl_literal and "\\n" or "\n")
 end
