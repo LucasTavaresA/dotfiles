@@ -85,7 +85,7 @@ Keymaps({
   -- marca/desmarca checkboxes
   { "n", "cx", ToggleCheckbox },
   {
-    nvi,
+    vi,
     "<C-s>",
     "<cmd>normal! n<cr>",
   },
