@@ -28,7 +28,7 @@ input type:keyboard {
 # Aparência
 output * bg $HOME/media/imagens/wallpapers/kaiji_dice.png stretch
 ## sem abas
-font pango:monospace 0.001
+font pango:monospace 0
 titlebar_border_thickness 0
 titlebar_padding 0
 ## bordas
