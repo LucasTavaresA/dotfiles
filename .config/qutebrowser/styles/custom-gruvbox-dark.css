@@ -1,3 +1,9 @@
+p.warning
+{
+  color: #fff !important;
+  background-color: #000 !important;
+}
+
 .s-topbar
 {
   background-color: #ff5555 !important;
@@ -12,11 +18,6 @@
 #question-header .question-hyperlink:visited
 {
   color: #ff5555 !important;
-}
-
-#content
-{
-  background-color: #000000 !important;
 }
 
 .s-prose *:not(.s-code-block) > code
@@ -43,6 +44,11 @@ a
 a:visited
 {
   color: #ff5555 !important;
+}
+
+a.label
+{
+  color: #00a598 !important;
 }
 
 body *
@@ -1076,11 +1082,6 @@ div.vectorTabs li.selected, div.vectorTabs li.selected span
   border-color: #b8bb26 !important;
 }
 
-a.label
-{
-  color: #282828 !important;
-}
-
 .notifications-list a
 {
   color: #00a598 !important;
@@ -1254,13 +1255,6 @@ a.label
 #readme .plain
 {
   background-color: #000000 !important;
-}
-
-.markdown-body, .markdown-body table *
-{
-  background-color: #000000 !important;
-  border-color: #fabd2f !important;
-  color: #00a598 !important;
 }
 
 .markdown-body a, .markdown-body table * a
@@ -1723,20 +1717,9 @@ DIV.CommentBox P.CommentTitle
   background-color: #44403e !important;
 }
 
-#menu, .topnav-container
-{
-  background-color: #3c3836 !important;
-}
-
 .navmenu ul
 {
   background-color: #3c3836 !important;
-}
-
-#content
-{
-  background-color: #000000 !important;
-  color: #00a598 !important;
 }
 
 #mw-head, #mw-panel
@@ -2132,12 +2115,6 @@ a:visited
 }
 
 input, textarea
-{
-  background-color: #3c3836 !important;
-  color: #00a598 !important;
-}
-
-tr:hover, blockquote, pre
 {
   background-color: #3c3836 !important;
   color: #00a598 !important;
