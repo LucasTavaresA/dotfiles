@@ -203,7 +203,7 @@ return {
           client.server_capabilities.documentSymbolProvider
           and vim.api.nvim_buf_line_count(bufnr) < 2000
         then
-          require("nvim-navic").setup()
+          require("nvim-navic").setup({ depth_limit = 3 })
           require("nvim-navic").attach(client, bufnr)
         end
 
