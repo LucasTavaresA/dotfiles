@@ -131,7 +131,7 @@ if status is-interactive
     function gsl
         set snum (git stash list | fzf | sed 's/^.*{//;s/}.*$//')
         test -z $snum && return
-        set action (printf "pop\napply\ndrop\nshow\nbranch\nclear" | fzf)
+        set action (printf "apply\ndrop\nshow\nbranch\nclear" | fzf)
         test -z $action && return
 
         test $action = clear && git stash $action && return

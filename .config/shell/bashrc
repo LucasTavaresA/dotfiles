@@ -103,7 +103,7 @@ gpr() {
 gsl() {
     snum="$(git stash list | fzf | sed 's/^.*{//;s/}.*$//')"
     [ -z "$snum" ] && return
-    action="$(printf "pop\napply\ndrop\nshow\nbranch\nclear" | fzf)"
+    action="$(printf "apply\ndrop\nshow\nbranch\nclear" | fzf)"
     [ -z "$action" ] && return
 
     [ "$action" = "clear" ] && git stash "$action" && return
