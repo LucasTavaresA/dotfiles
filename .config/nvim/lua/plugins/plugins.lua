@@ -239,6 +239,12 @@ return {
           require("simpleCommand").command()
         end,
       },
+      {
+        "<leader>C",
+        function()
+          require("simpleCommand").command(":split term://")
+        end,
+      },
     },
     config = true,
   },
