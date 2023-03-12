@@ -69,15 +69,33 @@ return {
     "ghillb/cybu.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons", "nvim-lua/plenary.nvim" },
     keys = {
-      { "<c-s-tab>", "<plug>(CybuLastusedPrev)" },
-      { "<c-tab>", "<plug>(CybuLastusedNext)" },
+      { "<c-s-tab>", "<plug>(CybuPrev)" },
+      { "<c-tab>", "<plug>(CybuNext)" },
     },
     config = function()
-      local ok, cybu = pcall(require, "cybu")
-      if not ok then
-        return
-      end
-      cybu.setup()
+      require("cybu").setup({
+        style = {
+          border = "single", -- single, double, rounded, none
+          hide_buffer_id = true, -- hide buffer IDs in window
+        },
+        behavior = {
+          mode = {
+            default = {
+              switch = "immediate", -- immediate, on_close
+              view = "rolling", -- paging, rolling
+            },
+            last_used = {
+              switch = "immediate", -- immediate, on_close
+              view = "rolling", -- paging, rolling
+            },
+            auto = {
+              view = "rolling", -- paging, rolling
+            },
+          },
+          show_on_autocmd = true,
+        },
+        display_time = 600,
+      })
     end,
   },
   -- interage com a openai
