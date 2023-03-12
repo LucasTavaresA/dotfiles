@@ -81,6 +81,8 @@ c.tabs.position = "top"
 config.set('completion.height', '100%')
 # editor
 c.editor.command = ["term_open", "-a", "nvim", "nvim", "{}"]
+# não mostra barra de downloads
+config.set("downloads.remove_finished", 200)
 
 #### Adblock ####
 config.set('content.blocking.method', 'both')
