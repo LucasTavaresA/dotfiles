@@ -143,48 +143,74 @@ vg.netrw_banner = 0
 -- tamanho da split
 vg.netrw_winsize = 20
 
---- autocmds
--- TermOpen
-Autocmd("TermOpen", { "*" }, "setlocal nonumber norelativenumber")
--- FileType
-Autocmd("FileType", { "gitcommit" }, "norm zr")
-Autocmd("FileType", { "diff" }, "setlocal nospell")
-Autocmd(
-  "FileType",
-  { "css" },
-  "setlocal formatoptions-=ro tabstop=2 shiftwidth=2"
-)
-Autocmd("FileType", { "css" }, "setlocal tabstop=2 shiftwidth=2")
-Autocmd("FileType", { "lua" }, "setlocal tabstop=2 shiftwidth=2")
-Autocmd("FileType", { "make" }, "setlocal tabstop=2 shiftwidth=2")
-Autocmd(
-  "FileType",
-  { "html" },
-  "setlocal conceallevel=3 tabstop=2 shiftwidth=2"
-)
-Autocmd(
-  "FileType",
-  { "markdown", "org", "txt", "norg" },
-  "setlocal nolist conceallevel=3 colorcolumn=0"
-)
-Autocmd(
-  "FileType",
-  { "help" },
-  "call timer_start(50, { tid -> execute('setlocal nolist colorcolumn=0')})"
-)
--- TextYankPost
--- indica texto copiado
-Autocmd("TextYankPost", { "*" }, function()
-  vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
-end)
--- WinEnter
--- centraliza buffers quando ha espaço
-Autocmd("WinEnter", { "*" }, function()
-  if vim.api.nvim_win_get_width(0) < 80 then
-    vo.foldcolumn = "0"
-    vo.signcolumn = "yes:1"
-  else
-    vo.foldcolumn = "9"
-    vo.signcolumn = "yes:5"
+--- autocmds helper
+--@param autocmds table
+function Autocmd(autocmds)
+  for i, _ in pairs(autocmds) do
+    if type(autocmds[i][3]) == "string" then
+      vim.api.nvim_create_autocmd(
+        autocmds[i][1],
+        { pattern = autocmds[i][2], command = autocmds[i][3] }
+      )
+    elseif type(autocmds[i][3]) == "function" then
+      vim.api.nvim_create_autocmd(
+        autocmds[i][1],
+        { pattern = autocmds[i][2], callback = autocmds[i][3] }
+      )
+    end
   end
-end)
+end
+
+Autocmd({
+  -- TermOpen
+  { "TermOpen", { "*" }, "setlocal nonumber norelativenumber" },
+
+  -- FileType
+  { "FileType", { "gitcommit" }, "norm zr" },
+  { "FileType", { "diff" }, "setlocal nospell" },
+  {
+    "FileType",
+    { "css" },
+    "setlocal formatoptions-=ro tabstop=2 shiftwidth=2",
+  },
+  { "FileType", { "css" }, "setlocal tabstop=2 shiftwidth=2" },
+  { "FileType", { "lua" }, "setlocal tabstop=2 shiftwidth=2" },
+  { "FileType", { "make" }, "setlocal tabstop=2 shiftwidth=2" },
+  {
+    "FileType",
+    { "html" },
+    "setlocal conceallevel=3 tabstop=2 shiftwidth=2",
+  },
+  {
+    "FileType",
+    { "markdown", "org", "txt", "norg" },
+    "setlocal nolist conceallevel=3 colorcolumn=0",
+  },
+  { "FileType", { "help" }, "setlocal nolist colorcolumn=0" },
+
+  -- TextYankPost
+  -- indica texto copiado
+  {
+    "TextYankPost",
+    { "*" },
+    function()
+      vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
+    end,
+  },
+
+  -- WinEnter
+  -- centraliza buffers quando ha espaço
+  {
+    "WinEnter",
+    { "*" },
+    function()
+      if vim.api.nvim_win_get_width(0) < 80 then
+        vo.foldcolumn = "0"
+        vo.signcolumn = "yes:1"
+      else
+        vo.foldcolumn = "9"
+        vo.signcolumn = "yes:5"
+      end
+    end,
+  },
+})

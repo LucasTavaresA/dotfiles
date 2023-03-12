@@ -32,18 +32,6 @@ function TerminalToggle()
   end
 end
 
---- Facilita a criação de autocmds
----@param event string
----@param pattern table
----@param cmd string|function
-function Autocmd(event, pattern, cmd)
-  if type(cmd) == "string" then
-    vim.api.nvim_create_autocmd(event, { pattern = pattern, command = cmd })
-  elseif type(cmd) == "function" then
-    vim.api.nvim_create_autocmd(event, { pattern = pattern, callback = cmd })
-  end
-end
-
 --- atualiza cwd
 function Update_cwd()
   local HOME = os.getenv("HOME")
