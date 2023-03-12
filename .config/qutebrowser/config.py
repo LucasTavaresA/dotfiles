@@ -257,17 +257,17 @@ config.source('gruvbox.py')
 
 #### Fontes ####
 # fonte padrão
-c.fonts.default_family = '"Terminus"'
+c.fonts.default_family = '"Iosevka Nerd Font Mono"'
 # tamanho padrão das fontes
-c.fonts.default_size = '18px'
+c.fonts.default_size = '14px'
 # fonte usada nas abas de completação de comandos.
-c.fonts.completion.entry = '18px "Terminus"'
+c.fonts.completion.entry = '14px "Iosevka Nerd Font Mono"'
 # fonte used for the debugging console.
-c.fonts.debug_console = '18px "Terminus"'
+c.fonts.debug_console = '14px "Iosevka Nerd Font Mono"'
 # fonte usada nos prompts.
-c.fonts.prompts = 'default_size "Terminus"'
+c.fonts.prompts = 'default_size "Iosevka Nerd Font Mono"'
 # fonte usada na barra de status.
-c.fonts.statusbar = '18px "Terminus"'
+c.fonts.statusbar = '14px "Iosevka Nerd Font Mono"'
 
 #### Javascript ####
 config.set('content.javascript.enabled', True, '*://*.10.0.0.2/*')
@@ -534,7 +534,7 @@ config.set('content.javascript.enabled', True, '*://*.www.pluralsight.com/*')
 config.set('content.javascript.enabled', True, '*://*.www.qt.io/*')
 config.set('content.javascript.enabled', True, '*://*.www.quora.com/*')
 config.set('content.javascript.enabled', True, '*://*.www.qutebrowser.org/*')
-config.set('content.javascript.enabled', True, '*://*reddit.com/*')
+config.set('content.javascript.enabled', True, '*://*.reddit.com/*')
 config.set('content.javascript.enabled', True, '*://*.www.rokfin.com/*')
 config.set('content.javascript.enabled', True, '*://*.www.shells.com/*')
 config.set('content.javascript.enabled', True, '*://*.www.spacemacs.org/*')

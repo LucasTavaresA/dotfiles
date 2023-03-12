@@ -50,6 +50,7 @@ flake8
 font-fira-otf
 font-fira-ttf
 font-inconsolata-otf
+font-iosevka
 fonts-droid-ttf
 fzf
 gammastep

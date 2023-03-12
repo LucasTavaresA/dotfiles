@@ -43,18 +43,18 @@ window:
 
 font:
   normal:
-    family: Terminus
+    family: Iosevka Nerd Font Mono
     style: Regular
   bold:
-    family: Terminus
+    family: Iosevka Nerd Font Mono
     style: Bold
   italic:
-    family: Terminus
+    family: Iosevka Nerd Font Mono
     style: Italic
   bold_italic:
-    family: Terminus
+    family: Iosevka Nerd Font Mono
     style: Bold Italic
-  # size: 18.0
+  size: 12.0
   #offset:
   #  x: 0
   #  y: 0
