@@ -173,7 +173,7 @@ return {
           },
           lsp_interop = {
             enable = true,
-            border = "none",
+            border = "single",
             peek_definition_code = {
               ["gp"] = "@function.outer",
               ["gP"] = "@class.outer",

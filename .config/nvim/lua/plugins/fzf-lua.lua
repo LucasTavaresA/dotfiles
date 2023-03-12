@@ -10,7 +10,7 @@ return {
           height = 0.6,
           row = 1,
           col = 1,
-          border = "none",
+          border = "single",
           preview = { default = "bat", layout = "vertical" },
         },
       })
