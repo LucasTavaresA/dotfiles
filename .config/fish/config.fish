@@ -246,6 +246,18 @@ if status is-interactive
     abbr -a -g dnr dotnet run
     abbr -a -g dnn dotnet new
     abbr -a -g dnp dotnet publish
+    abbr -a -g nit npm init -y
+    abbr -a -g ni npm install
+    abbr -a -g nii npm info
+    abbr -a -g nig npm install -g
+    abbr -a -g nid npm install -D
+    abbr -a -g nrg npm remove -g
+    abbr -a -g nrd npm remove -D
+    abbr -a -g ns npm search
+    abbr -a -g nl npm list
+    abbr -a -g nlg npm list -g
+    abbr -a -g nr npm run
+    abbr -a -g nrb npm run build
     # arquivos e Diretórios
     abbr -a -g rm trash
     abbr -a -g rml trash clean
