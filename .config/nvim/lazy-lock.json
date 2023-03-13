@@ -26,7 +26,7 @@
   "git-conflict.nvim": { "branch": "main", "commit": "2957f747e1a34f1854e4e0efbfbfa59a1db04af5" },
   "gitsigns.nvim": { "branch": "main", "commit": "b1f9cf7c5c5639c006c937fc1819e09f358210fc" },
   "glow.nvim": { "branch": "main", "commit": "5a8ccfb1876b1b2e29ea32c63221be6df45870d1" },
-  "gruvbox.nvim": { "branch": "main", "commit": "3e31f9ab01fed42ebac75738c681daacb8c82bff" },
+  "gruvbox.nvim": { "branch": "main", "commit": "f03cea2e0e4b1265699e89b344f425e3d33a94e3" },
   "hex.nvim": { "branch": "master", "commit": "317915ffcb160a2039be5250825f658002435c39" },
   "hlargs.nvim": { "branch": "main", "commit": "a7ad6ed8d6e27ea4dd13fda63fa732e9196ba4ea" },
   "karen-yank.nvim": { "branch": "main", "commit": "19173ebc9542f42ad419f1c96d74c4e4feb1c094" },
