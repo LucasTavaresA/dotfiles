@@ -344,6 +344,7 @@ return {
 				{}
 			)
 			vim.keymap.set("n", "gcA", require("SingleComment").CommentAhead, {})
+			vim.keymap.set({ "n", "v" }, "gcb", require("SingleComment").BlockComment)
 		end,
 	},
 	-- esconde class em html

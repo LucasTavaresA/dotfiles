@@ -196,6 +196,7 @@ vulkan-loader
 w3m
 wayland-protocols
 wev
+wf-recorder
 wget
 wiggle
 wireplumber
