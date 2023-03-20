@@ -81,6 +81,8 @@ pcall(vim.cmd.colorscheme, "gruvbox")
 vo.termguicolors = true
 -- listchars
 vansh(0, "Whitespace", { fg = "#222222" })
+-- causa muita lentidão - previamente ativado pelo gruvbox.nvim
+vansh(0, "NormalNC", {})
 
 --- Tabs/Espaços
 -- indicação de espaços e tabs
