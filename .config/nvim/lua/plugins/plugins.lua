@@ -348,6 +348,14 @@ return {
 			{ "<leader>gd", ":DiffviewOpen" },
 			{ "<leader>gc", "<cmd>DiffviewClose<cr>" },
 		},
+		config = function()
+			require("diffview").setup({
+				enhanced_diff_hl = true, -- See ':h diffview-config-enhanced_diff_hl'
+				file_panel = {
+					listing_style = "list", -- One of 'list' or 'tree'
+				},
+			})
+		end,
 	},
 	-- git
 	{
