@@ -342,7 +342,12 @@ return {
 	{
 		"sindrets/diffview.nvim",
 		lazy = false,
-		dependencies = "nvim-lua/plenary.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons" },
+		keys = {
+			{ "<leader>gf", ":DiffviewFileHistory" },
+			{ "<leader>gd", ":DiffviewOpen" },
+			{ "<leader>gc", "<cmd>DiffviewClose<cr>" },
+		},
 	},
 	-- git
 	{

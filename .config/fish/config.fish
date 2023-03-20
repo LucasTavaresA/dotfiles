@@ -287,13 +287,12 @@ if status is-interactive
     abbr -a -g gco git checkout
     abbr -a -g gcob git checkout -b
     abbr -a -g gcr git clone --recurse-submodules
-    abbr -a -g gd git diff
-    abbr -a -g gds git diff --staged
+    abbr -a -g gd git d
     abbr -a -g gf git fetch
     abbr -a -g gg git grep -iIn
     abbr -a -g ggs git grep -iIn -8
     abbr -a -g gi git init
-    abbr -a -g gl git log --oneline --graph
+    abbr -a -g gl git l
     abbr -a -g gpl git pull
     abbr -a -g gps git push
     abbr -a -g gpsf git push -f
