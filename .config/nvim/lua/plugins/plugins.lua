@@ -344,7 +344,7 @@ return {
 		lazy = false,
 		dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons" },
 		keys = {
-			{ "<leader>gf", ":DiffviewFileHistory" },
+			{ "<leader>gf", ":DiffviewFileHistory", mode = { "n", "v" } },
 			{ "<leader>gd", ":DiffviewOpen" },
 			{ "<leader>gc", "<cmd>DiffviewClose<cr>" },
 		},
