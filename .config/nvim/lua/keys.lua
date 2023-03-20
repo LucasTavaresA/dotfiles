@@ -33,6 +33,8 @@ Keymaps({
 	{ nv, "<leader>fF", NetrwCurrent },
 	-- mudar o typo de arquivo
 	{ nv, "<leader>ft", ":setlocal filetype=" },
+	-- Fechar neovim completamente
+	{ nv, "<leader>q", "<cmd>qa!<cr>" },
 	-- salvar e fechar buffer
 	{ nv, "ZX", "<cmd>wq<cr>" },
 	-- salvar buffer
