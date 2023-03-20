@@ -70,6 +70,7 @@ vo.wrap = false
 vo.conceallevel = 3
 -- marcação em 80 caracteres
 vo.colorcolumn = "+1"
+vo.fillchars:append({ diff = "╱" })
 
 --- Cores
 local vansh = vim.api.nvim_set_hl
