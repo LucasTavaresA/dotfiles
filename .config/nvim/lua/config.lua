@@ -67,7 +67,7 @@ vo.formatoptions = "tcrqn1j"
 -- linhas não dão a volta na tela
 vo.wrap = false
 -- esconde marcação
-vo.conceallevel = 0
+vo.conceallevel = 3
 -- marcação em 80 caracteres
 vo.colorcolumn = "+1"
 
@@ -164,11 +164,6 @@ Autocmd({
 		"FileType",
 		{ "css" },
 		"setlocal formatoptions-=ro",
-	},
-	{
-		"FileType",
-		{ "html" },
-		"setlocal conceallevel=3",
 	},
 	{
 		"FileType",
