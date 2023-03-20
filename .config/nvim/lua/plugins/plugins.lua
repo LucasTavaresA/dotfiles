@@ -354,6 +354,16 @@ return {
 				file_panel = {
 					listing_style = "list", -- One of 'list' or 'tree'
 				},
+				hooks = {
+					diff_buf_read = function(bufnr)
+						vim.opt_local.wrap = false
+						vim.opt_local.list = false
+						vim.opt_local.colorcolumn = "+1"
+						vim.opt_local.foldcolumn = "0"
+						vim.opt_local.spell = false
+						vim.opt_local.signcolumn = "no"
+					end,
+				},
 			})
 		end,
 	},
