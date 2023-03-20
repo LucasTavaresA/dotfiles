@@ -22,140 +22,140 @@ eval "$(zoxide init bash)"
 #### Funções ####
 # herbstluftwm
 hc() {
-    herbstclient "$@"
+	herbstclient "$@"
 }
 
 # localizar e editar arquivo
 ea() {
-    arquivo=$(locate -Ai "$@" | fzf)
-    if [ -n "$arquivo" ]; then
-        eval "$EDITOR" "$arquivo"
-    fi
+	arquivo=$(locate -Ai "$@" | fzf)
+	if [ -n "$arquivo" ]; then
+		eval "$EDITOR" "$arquivo"
+	fi
 }
 
 # localizar e editar executável
 ee() {
-    executavel=$(dmenu_path | fzf)
-    if [ -x "$executavel" ]; then
-        eval "$EDITOR" "$executavel"
-    fi
+	executavel=$(dmenu_path | fzf)
+	if [ -x "$executavel" ]; then
+		eval "$EDITOR" "$executavel"
+	fi
 }
 
 # git bare dotfiles
 git() {
-    if [ "$(pwd)" = "$HOME" ] && [ "$1" != "init" ]; then
-        /usr/bin/git --git-dir="$HOME/etc/.dotfiles/" "$@"
-    else
-        /usr/bin/git "$@"
-    fi
+	if [ "$(pwd)" = "$HOME" ] && [ "$1" != "init" ]; then
+		/usr/bin/git --git-dir="$HOME/etc/.dotfiles/" "$@"
+	else
+		/usr/bin/git "$@"
+	fi
 }
 
 # git status recursivo
 gsr() {
-    (
-        for repo in $(fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | ugrep '\.git/$'); do
-            repo=$(echo "$repo" | sed 's/\/.git\/$//')
-            cd "$repo" || echo "cant cd into $repo" && exit 1
+	(
+		for repo in $(fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | ugrep '\.git/$'); do
+			repo=$(echo "$repo" | sed 's/\/.git\/$//')
+			cd "$repo" || echo "cant cd into $repo" && exit 1
 
-            cols=$(tput cols)
-            i=0
-            while [ "$i" -lt "$cols" ]; do
-                echo -n "─"
-                i=$((i + 1))
-            done
+			cols=$(tput cols)
+			i=0
+			while [ "$i" -lt "$cols" ]; do
+				echo -n "─"
+				i=$((i + 1))
+			done
 
-            if git status | grep nothing >/dev/null; then
-                printf "\033[96m\033[1m%s\033[0m\n" "$repo"
-            else
-                printf "\033[96m\033[1m%s\033[0m\n" "$repo"
-                git status
-            fi
-        done
-    )
+			if git status | grep nothing >/dev/null; then
+				printf "\033[96m\033[1m%s\033[0m\n" "$repo"
+			else
+				printf "\033[96m\033[1m%s\033[0m\n" "$repo"
+				git status
+			fi
+		done
+	)
 }
 
 # git pull recursivo
 gpr() {
-    (
-        for repo in $(fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | ugrep '\.git/$'); do
-            repo=$(echo "$repo" | sed 's/\/.git\/$//')
-            cd "$repo" || echo "cant cd into $repo" && exit 1
+	(
+		for repo in $(fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | ugrep '\.git/$'); do
+			repo=$(echo "$repo" | sed 's/\/.git\/$//')
+			cd "$repo" || echo "cant cd into $repo" && exit 1
 
-            cols=$(tput cols)
-            i=0
-            while [ "$i" -lt "$cols" ]; do
-                echo -n "─"
-                i=$((i + 1))
-            done
-            echo
+			cols=$(tput cols)
+			i=0
+			while [ "$i" -lt "$cols" ]; do
+				echo -n "─"
+				i=$((i + 1))
+			done
+			echo
 
-            read -p "pull $repo ? [y/N] " -n 1 -r
-            echo
-            if [[ "$REPLY" =~ ^[Yy]$ ]]; then
-                git pull
-            fi
-        done
-    )
+			read -p "pull $repo ? [y/N] " -n 1 -r
+			echo
+			if [[ "$REPLY" =~ ^[Yy]$ ]]; then
+				git pull
+			fi
+		done
+	)
 }
 
 # git stash list
 # usa o fzf para selecionar uma stash e uma ação
 gsl() {
-    snum="$(git stash list | fzf | sed 's/^.*{//;s/}.*$//')"
-    [ -z "$snum" ] && return
-    action="$(printf "apply\ndrop\nshow\nbranch\nclear" | fzf)"
-    [ -z "$action" ] && return
+	snum="$(git stash list | fzf | sed 's/^.*{//;s/}.*$//')"
+	[ -z "$snum" ] && return
+	action="$(printf "apply\ndrop\nshow\nbranch\nclear" | fzf)"
+	[ -z "$action" ] && return
 
-    [ "$action" = "clear" ] && git stash "$action" && return
+	[ "$action" = "clear" ] && git stash "$action" && return
 
-    if [ "$action" = "branch" ]; then
-        read -p "Branch name: " -r name
-        [ -z "$name" ] && return
-        git stash branch "$name" "$snum" && return
-    fi
+	if [ "$action" = "branch" ]; then
+		read -p "Branch name: " -r name
+		[ -z "$name" ] && return
+		git stash branch "$name" "$snum" && return
+	fi
 
-    git stash "$action" "$snum"
+	git stash "$action" "$snum"
 }
 
 # facilita extrair arquivos
 # exemplo: ex <arquivo>
 ex() {
-    for arquivo in "$@"; do
-        if [ -f "$arquivo" ]; then
-            case "$arquivo" in
-                "*.7z|*.arj|*.cab|*.cb7|*.chm|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar")
-                    7z x "$arquivo"
-                    ;;
-                "*.bz2") bunzip2 "$arquivo" ;;
-                "*.cba|*.ace") unace x "$arquivo" ;;
-                "*.cbr") unrar x -ad "$arquivo" ;;
-                "*.cbt|*.txz") tar xvf "$arquivo" ;;
-                "*.cbz|*.epub|*.zip") unzip "$arquivo" ;;
-                "*.cpio") cpio -id <"$arquivo" ;;
-                "*.deb") ar x "$arquivo" ;;
-                "*.exe") cabextract "$arquivo" ;;
-                "*.gz") gunzip "$arquivo" ;;
-                "*.lzma") unlzma "$arquivo" ;;
-                "*.rar") unrar x "$arquivo" ;;
-                "*.tar.bz2|*.tbz2") tar xjf "$arquivo" ;;
-                "*.tar.gz|*.tgz") tar xzf "$arquivo" ;;
-                "*.tar.xz|*.tar") tar xf "$arquivo" ;;
-                "*.tar.zst") unzstd "$arquivo" ;;
-                "*.xz") unxz "$arquivo" ;;
-                "*.Z|*.z") uncompress "$arquivo" ;;
-                *) echo "$arquivo não pode ser extraído com ex()!" && return 1 ;;
-            esac
-        else
-            echo "$arquivo arquivo não existe!"
-            return 1
-        fi
-    done
+	for arquivo in "$@"; do
+		if [ -f "$arquivo" ]; then
+			case "$arquivo" in
+				"*.7z|*.arj|*.cab|*.cb7|*.chm|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar")
+					7z x "$arquivo"
+					;;
+				"*.bz2") bunzip2 "$arquivo" ;;
+				"*.cba|*.ace") unace x "$arquivo" ;;
+				"*.cbr") unrar x -ad "$arquivo" ;;
+				"*.cbt|*.txz") tar xvf "$arquivo" ;;
+				"*.cbz|*.epub|*.zip") unzip "$arquivo" ;;
+				"*.cpio") cpio -id <"$arquivo" ;;
+				"*.deb") ar x "$arquivo" ;;
+				"*.exe") cabextract "$arquivo" ;;
+				"*.gz") gunzip "$arquivo" ;;
+				"*.lzma") unlzma "$arquivo" ;;
+				"*.rar") unrar x "$arquivo" ;;
+				"*.tar.bz2|*.tbz2") tar xjf "$arquivo" ;;
+				"*.tar.gz|*.tgz") tar xzf "$arquivo" ;;
+				"*.tar.xz|*.tar") tar xf "$arquivo" ;;
+				"*.tar.zst") unzstd "$arquivo" ;;
+				"*.xz") unxz "$arquivo" ;;
+				"*.Z|*.z") uncompress "$arquivo" ;;
+				*) echo "$arquivo não pode ser extraído com ex()!" && return 1 ;;
+			esac
+		else
+			echo "$arquivo arquivo não existe!"
+			return 1
+		fi
+	done
 }
 
 criar_script() {
-    lang="$1"
-    arquivo="$2"
-    printf "#!/usr/bin/env %s\n${*:3}" "$lang" >"$arquivo"
+	lang="$1"
+	arquivo="$2"
+	printf "#!/usr/bin/env %s\n${*:3}" "$lang" >"$arquivo"
 }
 
 #### Aliases ####
@@ -273,61 +273,61 @@ alias gwr="git worktree remove"
 
 ## aliases em sistemas
 if [ "$OS" = "artixlinux" ] || [ "$OS" = "archlinux" ] || [ "$OS" = "manjaro" ]; then
-    # pacman
-    alias ps="doas pacman --noconfirm --color always -S"
-    alias psi="pacman --color always -Si"
-    alias pss="pacman --color always -Ss"
-    alias psyu="doas pacman --noconfirm --color always -Syu"
-    alias pq="pacman --color always -Q"
-    alias pqi="pacman --color always -Qi"
-    alias pqs="pacman --color always -Qs"
-    alias pfyl="doas pacman --color always -Fyl"
-    alias prns="doas pacman --noconfirm --color always -Rns"
-    alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n 100"
-    # paru
-    alias pps="paru --noconfirm --color always -S"
-    alias ppsi="paru --color always -Si"
-    alias ppss="paru --color always -Ss"
-    alias ppsyu="paru -Pw;paru --noconfirm --color always -Syu"
-    alias ppq="paru --color always -Q"
-    alias ppqi="paru --color always -Qi"
-    alias ppqs="paru --color always -Qs"
-    alias ppfyl="paru --color always -Fyl"
-    alias pprns="paru --noconfirm --color always -Rns"
-    alias sys="doas systemctl"
+	# pacman
+	alias ps="doas pacman --noconfirm --color always -S"
+	alias psi="pacman --color always -Si"
+	alias pss="pacman --color always -Ss"
+	alias psyu="doas pacman --noconfirm --color always -Syu"
+	alias pq="pacman --color always -Q"
+	alias pqi="pacman --color always -Qi"
+	alias pqs="pacman --color always -Qs"
+	alias pfyl="doas pacman --color always -Fyl"
+	alias prns="doas pacman --noconfirm --color always -Rns"
+	alias exp="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n 100"
+	# paru
+	alias pps="paru --noconfirm --color always -S"
+	alias ppsi="paru --color always -Si"
+	alias ppss="paru --color always -Ss"
+	alias ppsyu="paru -Pw;paru --noconfirm --color always -Syu"
+	alias ppq="paru --color always -Q"
+	alias ppqi="paru --color always -Qi"
+	alias ppqs="paru --color always -Qs"
+	alias ppfyl="paru --color always -Fyl"
+	alias pprns="paru --noconfirm --color always -Rns"
+	alias sys="doas systemctl"
 elif [ "$OS" = "voidlinux" ]; then
-    alias xs="./xbps-src"
-    alias xc="./xbps-src clean"
-    alias xp="./xbps-src pkg"
-    alias xpm="./xbps-src -a \*musl pkg"
-    alias xbb="./xbps-src binary-bootstrap"
-    # xbps
-    alias xis="doas xbps-install -Sy"
-    alias xqrs="xbps-query -Rs"
-    alias xisu="doas xbps-install -Suy"
-    alias xql="xbps-query -l"
-    alias xqlg="xbps-query -l | ugrep --color -i"
-    alias xrr="doas xbps-remove -Ry"
-    # xtools
-    alias xch="xchroot"
-    alias xg="xgrep"
-    alias xh="xhog"
-    alias xil="xilog"
-    alias xl="xlocate -S && xlocate"
-    alias xm="xmandoc"
-    alias xqr="xq -R"
-    alias sys="doas sv"
+	alias xs="./xbps-src"
+	alias xc="./xbps-src clean"
+	alias xp="./xbps-src pkg"
+	alias xpm="./xbps-src -a \*musl pkg"
+	alias xbb="./xbps-src binary-bootstrap"
+	# xbps
+	alias xis="doas xbps-install -Sy"
+	alias xqrs="xbps-query -Rs"
+	alias xisu="doas xbps-install -Suy"
+	alias xql="xbps-query -l"
+	alias xqlg="xbps-query -l | ugrep --color -i"
+	alias xrr="doas xbps-remove -Ry"
+	# xtools
+	alias xch="xchroot"
+	alias xg="xgrep"
+	alias xh="xhog"
+	alias xil="xilog"
+	alias xl="xlocate -S && xlocate"
+	alias xm="xmandoc"
+	alias xqr="xq -R"
+	alias sys="doas sv"
 elif [ "$OS" = "linuxmint" ]; then
-    alias bat="batcat"
-    alias cat="batcat"
-    # apt
-    alias ai="doas apt install -y"
-    alias as="apt show"
-    alias ass="apt search"
-    alias auau="doas apt update -y && doas apt upgrade -y"
-    alias ali="apt list --installed"
-    alias ar="doas apt remove -y"
-    alias sys="doas systemctl"
+	alias bat="batcat"
+	alias cat="batcat"
+	# apt
+	alias ai="doas apt install -y"
+	alias as="apt show"
+	alias ass="apt search"
+	alias auau="doas apt update -y && doas apt upgrade -y"
+	alias ali="apt list --installed"
+	alias ar="doas apt remove -y"
+	alias sys="doas systemctl"
 fi
 
 # prompt
