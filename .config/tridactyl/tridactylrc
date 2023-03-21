@@ -63,7 +63,7 @@ set jsurls.imdb query => query == "" ? "https://www.imdb.com" : "https://www.imd
 set jsurls.md   query => query == "" ? "https://mangadex.org/titles/feed" : "https://mangadex.org/titles?page=1&q=" + query + "&order=relevance.desc"
 set jsurls.th   query => query == "https://tenhou.net/3/"
 set jsurls.od   query => query == "" ? "https://odysee.com" : "https://odysee.com/search?q=" + query
-set jsurls.r    query => query == "" ? "https://old.reddit.com" : "https://old.reddit.com/search/?q=" + query
+set jsurls.r    query => query == "" ? "https://www.reddit.com" : "https://www.reddit.com/search/?q=" + query
 set jsurls.sc   query => query == "" ? "https://soundcloud.com/you/likes" : "https://soundcloud.com/search?q=" + query
 set jsurls.se   query => query == "" ? "https://stackexchange.com" : "https://stackexchange.com/search?q=" + query
 set jsurls.sf   query => query == "" ? "https://sourceforge.net" : "https://sourceforge.net/directory/?q=" + query
