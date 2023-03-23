@@ -6,7 +6,9 @@ alacritty
 alsa-firmware
 alsa-pipewire
 alsa-utils
+android-file-transfer-linux
 android-tools
+android-udev-rules
 asciinema
 aspell
 aspell-en
