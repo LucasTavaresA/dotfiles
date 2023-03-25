@@ -34,7 +34,7 @@ export XDG_BIN_HOME="$HOME/.local/bin"
 # window manager
 export WM="sway"
 # terminal
-export TERMINAL="st"
+export TERMINAL="alacritty"
 export TERM="xterm-256color"
 # navegador padrão
 export BROWSER="firefox"
@@ -42,26 +42,25 @@ export BROWSER="firefox"
 HOSTNAME="$(uname -n)"
 export HOSTNAME
 case $HOSTNAME in
-    *"artixlinux"*) export OS="artixlinux" ;;
-    *"voidlinux"*) export OS="voidlinux" ;;
-    *"archlinux"*) export OS="archlinux" ;;
-    *"manjaro"*) export OS="manjaro" ;;
-    *"linuxmint"*) export OS="linuxmint" ;;
+	*"artixlinux"*) export OS="artixlinux" ;;
+	*"voidlinux"*) export OS="voidlinux" ;;
+	*"archlinux"*) export OS="archlinux" ;;
+	*"manjaro"*) export OS="manjaro" ;;
+	*"linuxmint"*) export OS="linuxmint" ;;
 esac
 # Wayland
 if [ "$WM" = "sway" ] || [ "$WM" = "dwl" ] || [ "$WM" = "cagebreak" ]; then
-    export XDG_SESSION_TYPE=wayland
-    export MOZ_ENABLE_WAYLAND=1
-    export QT_QPA_PLATFORM=wayland-egl
-    export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-    export SDL_VIDEODRIVER=wayland
-    export _JAVA_AWT_WM_NONREPARENTING=1
-    export TERMINAL="alacritty"
-    export LIBSEAT_BACKEND=seatd
-    export ELM_DISPLAY=wl
+	export XDG_SESSION_TYPE=wayland
+	export MOZ_ENABLE_WAYLAND=1
+	export QT_QPA_PLATFORM=wayland-egl
+	export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+	export SDL_VIDEODRIVER=wayland
+	export _JAVA_AWT_WM_NONREPARENTING=1
+	export LIBSEAT_BACKEND=seatd
+	export ELM_DISPLAY=wl
 fi
 # onde procurar manpages
-export MANPATH="/usr/local/man:/usr/local/share/man:/usr/share/man:/usr/lib/jvm/default/man:/usr/lib/jvm/java-11-openjdk/man"
+export MANPATH="$MANPATH:/usr/lib/jvm/default/man:/usr/lib/jvm/java-11-openjdk/man"
 # bat como o manpager
 [ ! "$OS" = "voidlinux" ] && export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 [ "$OS" = "linuxmint" ] && export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
@@ -158,10 +157,10 @@ export LC_TIME="pt_BR.UTF-8"
 
 running="$(ps cax)"
 is_running() {
-    if echo "$running" | grep -qF "$@"; then
-        return 0
-    fi
-    return 1
+	if echo "$running" | grep -qF "$@"; then
+		return 0
+	fi
+	return 1
 }
 
 ## GPG/SSH
@@ -172,13 +171,13 @@ is_running "ssh-agent" || eval "$(ssh-agent -s)"
 
 ## Execute
 fork() {
-    fzf_man update >/dev/null 2>&1
-    is_running "syncthing" || syncthing >"$XDG_CACHE_HOME/syncthing.log" 2>&1 &
-    is_running "transmission-da" || transmission-daemon >/dev/null 2>&1
-    # musica
-    is_running "pipewire" || dbus-launch pipewire >"$XDG_CACHE_HOME/pipewire.log" 2>&1 &
-    is_running "mpd" || mpd >/dev/null 2>&1
-    mpc update >/dev/null 2>&1
+	fzf_man update >/dev/null 2>&1
+	is_running "syncthing" || syncthing >"$XDG_CACHE_HOME/syncthing.log" 2>&1 &
+	is_running "transmission-da" || transmission-daemon >/dev/null 2>&1
+	# musica
+	is_running "pipewire" || dbus-launch pipewire >"$XDG_CACHE_HOME/pipewire.log" 2>&1 &
+	is_running "mpd" || mpd >/dev/null 2>&1
+	mpc update >/dev/null 2>&1
 }
 fork &
 
@@ -193,4 +192,3 @@ case "$(printf 'sway\nfish\ndwl\ncagebreak\nxorg' | fzf --disabled)" in
 esac
 
 exec fish
-# vim: set ft=sh:

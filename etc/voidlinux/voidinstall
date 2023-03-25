@@ -13,16 +13,16 @@ set -ex
 xbps-install -Su
 xbps-install -S "$(cat etc/pkgs/"$HOSTNAME".txt)"
 [ "$(xpkg | wc -l)" -lt "$(cat etc/pkgs/"$HOSTNAME".txt)" ] &&
-    echo "Faltam pacotes" && exit 1
+	echo "Faltam pacotes" && exit 1
 
 microcode() {
-    echo "microcode Intel/Amd [i/a]? "
-    read -r marca
-    case "$marca" in
-        "i") xbps-install -S intel-ucode && xbps-reconfigure --force ;;
-        "a") xbps-install -S linux-firmware-amd ;;
-        *) microcode ;;
-    esac
+	echo "microcode Intel/Amd [i/a]? "
+	read -r marca
+	case "$marca" in
+		"i") xbps-install -S intel-ucode && xbps-reconfigure --force ;;
+		"a") xbps-install -S linux-firmware-amd ;;
+		*) microcode ;;
+	esac
 }
 microcode
 
@@ -33,11 +33,11 @@ cp -f etc/locale.conf /etc/locale.conf
 chsh -s /bin/fish
 chsh -s /bin/sh lucas
 (
-    cd code/c/dash/
-    ./autogen.sh
-    ./configure --bindir=/bin --mandir=/usr/share/man
-    make
-    make install
+	cd code/c/dash/
+	./autogen.sh
+	./configure --bindir=/bin --mandir=/usr/share/man
+	make
+	make install
 )
 
 cp etc/voidlinux/ignore-sudo.conf /etc/xbps.d/
@@ -59,13 +59,13 @@ ln -s /etc/sv/seatd /var/service/
 usermod -aG _seatd lucas
 
 gpu() {
-    echo "gpu Intel/Amd-Ati [i/a]? "
-    read -r marca
-    case "$marca" in
-        "i") xbps-install -S linux-firmware-intel mesa-dri mesa-dri-32bit vulkan-loader vulkan-loader-32bit mesa-vulkan-intel mesa-vulkan-intel-32bit intel-video-accel libva-intel-driver libva-intel-driver-32bit ;;
-        "a") xbps-install -S linux-firmware-amd mesa-dri mesa-dri-32bit vulkan-loader vulkan-loader-32bit mesa-vulkan-radeon-32bit amdvlk amdvlk-32bit mesa-vdpau mesa-vdpau-32bit mesa-vaapi mesa-vaapi-32bit ;;
-        *) gpu ;;
-    esac
+	echo "gpu Intel/Amd-Ati [i/a]? "
+	read -r marca
+	case "$marca" in
+		"i") xbps-install -S linux-firmware-intel mesa-dri mesa-dri-32bit vulkan-loader vulkan-loader-32bit mesa-vulkan-intel mesa-vulkan-intel-32bit intel-video-accel libva-intel-driver libva-intel-driver-32bit ;;
+		"a") xbps-install -S linux-firmware-amd mesa-dri mesa-dri-32bit vulkan-loader vulkan-loader-32bit mesa-vulkan-radeon-32bit amdvlk amdvlk-32bit mesa-vdpau mesa-vdpau-32bit mesa-vaapi mesa-vaapi-32bit ;;
+		*) gpu ;;
+	esac
 }
 gpu
 
@@ -73,35 +73,31 @@ mkdir -p /etc/alsa/conf.d
 ln -s /usr/share/alsa/alsa.conf.d/50-pipewire.conf /etc/alsa/conf.d
 ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
 
+mkdir -p /etc/X11
+cp -r etc/xorg.conf.d/ /etc/X11/
+
 (
-    cd code/c/fastfetch
-    build.sh
+	cd code/c/fastfetch
+	build.sh
 )
 
 cargo install handlr-regex tree-sitter-cli
-
-git clone https://github.com/horriblename/lf
-(
-    cd lf
-    env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/horriblename/lf@latest
-)
-rm -r lf
 
 go install github.com/mrtazz/checkmake/cmd/checkmake@latest
 go install github.com/nametake/golangci-lint-langserver@latest
 
 npm i -g cssmodules-language-server @tailwindcss/language-server typescript \
-    typescript-language-server vscode-langservers-extracted \
-    fixjson bash-language-server vscode-css-languageserver-bin \
-    neovim write-good
+	typescript-language-server vscode-langservers-extracted \
+	fixjson bash-language-server vscode-css-languageserver-bin \
+	neovim write-good
 npm i -g --save-exact prettier
 
 pipx install keepmenu scdl spotdl jedi-language-server
 
 git clone https://github.com/TheGreatMcPain/gruvbox-material-gtk
 (
-    cp -r gruvbox-material-gtk/icons/* /usr/share/icons/
-    cp -r gruvbox-material-gtk/themes/* /usr/share/themes/
+	cp -r gruvbox-material-gtk/icons/* /usr/share/icons/
+	cp -r gruvbox-material-gtk/themes/* /usr/share/themes/
 )
 rm -r gruvbox-material-gtk
 
