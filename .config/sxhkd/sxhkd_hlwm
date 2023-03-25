@@ -1,65 +1,57 @@
 # Menus
-## dmenu_run
 Menu;Menu
-    dmenu_run
-## fzf_sys
-Menu;{Escape,XF86Launch2}
-    term_open -a fzf fzf_sys
-## org_dmenu
+  dmenu_run -b -i -l 15 -p '>' -fn 'Iosevka Nerd Font Mono:pixelsize=18'
+
 Menu;o
-    org_dmenu ~/documentos/favoritos.org
-## dmenu_mont
+  orgmenu ~/documentos/favs.md
+
 Menu;m
-    dmenu_mont
-## passmenu
+  menu_mont
+
 Menu;p
-    passmenu --type
-## fzf_wifi
-Menu;w
-    term_open -a fzf fzf_wifi
-## fzf_xephyr
-Menu;x
-    term_open -a fzf fzf_xephyr
-## fzf_clip
+  keepmenu
+
 Menu;c
-    term_open -a fzf fzf_clip
-## fzf_emoji
+  clipmenu -b -i -l 15 -p '>' -fn 'Iosevka Nerd Font Mono:pixelsize=18'
+
 Menu;E
-    term_open -a fzf fzf_emojis
-## fzf_sxhkd
-Menu;slash
-    term_open -a fzf fzf_sxhkd
-## dmenu_print
+  term_open -a float fzf_emojis
+
 Print
-    dmenu_print
+  xorg_print
 
-# Outros
-## qutebrowser
+# herbstluftwm
 Menu;q
-    qutebrowser
-## firefox
-Menu;f
-    firefox
-## htop
-Menu;h
-    term_open -a htop htop
-## picom
-Menu;P
-    pkill -x picom || picom -b --unredir-if-possible --backend xr_glx_hybrid --vsync --use-damage --glx-no-stencil
-## sct
-Menu;{s,S}
-    {sct,sct 2000}
-## transmission
-Menu;t
-    transmission-qt
-## calculadora
-Menu;C
-    term_open -a calculadora python
+  herbstclient quit
 
-# arquivos
-## abre o emacs
+Menu;r
+  herbstclient reload
+
+# outros
+Menu;f
+  firefox
+
+Menu;h
+  term_open -a float htop
+
+Menu;P
+  pkill -x picom || picom
+
+Menu;{s,S}
+  {sct,sct 2000}
+
+Menu;t
+  term_open -a float tremc
+
+Menu;C
+  term_open -a calculadora python
+
+Menu;l
+  slock
+
+# editar
 Menu;e
-    emacsclient -n -c -a 'term_open nvim'
-## anotações
+  term_open -a nvim nvim ~/documentos/
+
 Menu;a
-    emacsclient -n -c -a 'term_open nvim' ~/documentos/anotações.org
+  term_open -a nvim nvim ~/documentos/anotações.md
