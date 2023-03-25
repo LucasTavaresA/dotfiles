@@ -126,6 +126,7 @@ noto-fonts-cjk
 noto-fonts-emoji
 noto-fonts-ttf
 noto-fonts-ttf-extra
+nsxiv
 nuspell
 opendoas
 openssl-devel
@@ -190,7 +191,6 @@ ugrep
 unicode-emoji
 unrar
 unzip
-vimiv
 void-repo-multilib
 void-repo-multilib-nonfree
 void-repo-nonfree
