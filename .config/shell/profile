@@ -32,7 +32,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_RUNTIME_DIR="/run/user/$UID"
 export XDG_BIN_HOME="$HOME/.local/bin"
 # window manager
-export WM="sway"
+export WM="herbstluftwm"
 # terminal
 export TERMINAL="alacritty"
 export TERM="xterm-256color"
@@ -183,12 +183,12 @@ fork &
 
 [ "$(tty)" != "/dev/tty1" ] && exec fish
 
-case "$(printf 'sway\nfish\ndwl\ncagebreak\nxorg' | fzf --disabled)" in
-    'sway') exec dbus-launch --sh-syntax --exit-with-session sway ;;
-    'fish') exec fish ;;
-    'dwl') exec dbus-run-session dwl -s "${XDG_CONFIG_HOME:-$HOME/.config}/dwl/dwlrc" ;;
-    'cagebreak') exec cagebreak ;;
-    'xorg') exec sx sh "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc" ;;
+case "$(printf 'xorg\nsway\nfish\ndwl\ncagebreak' | fzf --disabled)" in
+	'xorg') exec sx sh "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc" ;;
+	'sway') exec dbus-launch --sh-syntax --exit-with-session sway ;;
+	'fish') exec fish ;;
+	'dwl') exec dbus-run-session dwl -s "${XDG_CONFIG_HOME:-$HOME/.config}/dwl/dwlrc" ;;
+	'cagebreak') exec cagebreak ;;
 esac
 
 exec fish

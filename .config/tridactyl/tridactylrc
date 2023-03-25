@@ -8,7 +8,7 @@ fixamo_quiet
 
 set allowautofocus false
 
-set externalclipboardcmd wl-copy
+set externalclipboardcmd xclip
 set yankto both
 
 set smoothscroll false

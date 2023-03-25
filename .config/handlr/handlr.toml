@@ -1,2 +1,2 @@
 enable_selector = true
-selector = "tofi --prompt-text 'Abrir com: '"
+selector = "dmenu -b -i -l 15 -p 'Open with: ' -fn 'Iosevka Nerd Font Mono:pixelsize=18'"
