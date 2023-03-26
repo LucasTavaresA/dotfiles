@@ -40,6 +40,11 @@ chsh -s /bin/sh lucas
 	make install
 )
 
+(
+	cd code/c/st/
+	make install
+)
+
 cp etc/voidlinux/ignore-sudo.conf /etc/xbps.d/
 xbps-remove -R sudo
 cp etc/doas.conf /etc/

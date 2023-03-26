@@ -34,7 +34,7 @@ export XDG_BIN_HOME="$HOME/.local/bin"
 # window manager
 export WM="herbstluftwm"
 # terminal
-export TERMINAL="alacritty"
+export TERMINAL="st"
 export TERM="xterm-256color"
 # navegador padrão
 export BROWSER="firefox"

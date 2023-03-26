@@ -167,7 +167,7 @@ return {
 									buffer = bufnr,
 									callback = function()
 										local ft = vim.bo.ft
-										if ft ~= "c" and ft ~= "cs" then
+										if ft ~= "c" and ft ~= "cs" and ft ~= "cpp" then
 											vim.lsp.buf.format({ bufnr = bufnr, async = false })
 										end
 									end,

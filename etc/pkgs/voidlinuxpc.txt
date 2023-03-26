@@ -1,7 +1,6 @@
 ImageMagick
 StyLua
 Vulkan-Headers
-alacritty
 alsa-firmware
 alsa-pipewire
 alsa-utils
@@ -50,6 +49,7 @@ fish-shell
 flake8
 font-fira-otf
 font-fira-ttf
+font-firacode
 font-inconsolata-otf
 font-iosevka
 fonts-droid-ttf
@@ -74,6 +74,7 @@ gucharmap
 guilt
 gup
 harfbuzz
+harfbuzz-devel
 herbstluftwm
 highlight
 htop
@@ -87,6 +88,7 @@ jq
 keepassxc
 kvantum
 lf
+libXft-devel
 libnotify
 libreoffice
 libva-intel-driver-32bit
