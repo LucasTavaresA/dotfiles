@@ -348,12 +348,6 @@ return {
 			vim.keymap.set({ "n", "v" }, "gcb", require("SingleComment").BlockComment)
 		end,
 	},
-	-- esconde class em html
-	{
-		"dzfrias/nvim-classy",
-		ft = "html",
-		dependencies = "nvim-treesitter/nvim-treesitter",
-	},
 	{
 		"atusy/tsnode-marker.nvim",
 		dependencies = "nvim-treesitter/nvim-treesitter",
