@@ -67,7 +67,7 @@ return {
 					"toml",
 					"http",
 					"rust",
-					"help",
+					"vimdoc",
 					"norg",
 					"scheme",
 					"haskell",

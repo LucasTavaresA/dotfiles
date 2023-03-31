@@ -470,6 +470,8 @@ return {
 	-- indica modo atual no cursor
 	{
 		"doums/monark.nvim",
+		-- TODO: Remove limitation on neovim 9
+		commit = "83e5f9d6e12cada04cd731ef439d63d0b1dcbeaa",
 		lazy = false,
 		config = function()
 			require("monark").setup({

@@ -43,6 +43,7 @@
 .config/shell/history
 .config/shell/plugins/fsh/
 .config/scdl/
+.config/snes9x/
 .config/stumpwm/modules/
 .config/gtkfilechooser.ini
 .config/QtProject.conf

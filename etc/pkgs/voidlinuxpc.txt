@@ -12,12 +12,10 @@ aspell
 aspell-en
 aspell-pt_BR
 atool
-autoconf
 automake
 base-system
 bat
 bc
-cage
 cairo-devel
 cargo
 cargo-update
@@ -74,7 +72,6 @@ gucharmap
 guilt
 gup
 harfbuzz
-harfbuzz-devel
 herbstluftwm
 highlight
 htop
@@ -88,7 +85,6 @@ jq
 keepassxc
 kvantum
 lf
-libXft-devel
 libnotify
 libreoffice
 libva-intel-driver-32bit
@@ -119,8 +115,6 @@ msttcorefonts
 ncmpcpp
 neovim
 nerd-fonts
-nerd-fonts-otf
-nerd-fonts-ttf
 nitrogen
 nodejs
 noto-fonts-cjk
@@ -174,6 +168,7 @@ shellcheck
 shfmt
 simple-mtpfs
 slock
+snes9x-gtk
 socklog-void
 streamlink
 sx
