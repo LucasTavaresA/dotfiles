@@ -29,6 +29,12 @@ return {
 			"JoosepAlviste/nvim-ts-context-commentstring",
 			"HiPhish/nvim-ts-rainbow2",
 			"RRethy/nvim-treesitter-endwise",
+			{
+				"nvim-treesitter/nvim-treesitter-context",
+				opts = {
+					max_lines = 3, -- How many lines the window should span. Values <= 0 mean no limit.
+				},
+			},
 			-- melhor indicação de parâmetros e seu uso
 			{
 				"m-demare/hlargs.nvim",
