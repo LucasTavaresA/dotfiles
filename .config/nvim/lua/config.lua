@@ -26,7 +26,7 @@ vo.ignorecase = true
 vo.smartcase = true
 Update_cwd()
 vim.opt.grepprg = "git grep -iIn $*"
-vo.updatetime = 500
+vo.updatetime = 1000
 
 --- Backups
 -- desabilita swapfile
@@ -72,6 +72,8 @@ vo.conceallevel = 3
 -- marcação em 80 caracteres
 vo.colorcolumn = "+1"
 vo.fillchars:append({ diff = "╱" })
+-- indica linha atual
+vo.cursorline = true
 
 --- Cores
 local vansh = vim.api.nvim_set_hl
@@ -159,7 +161,7 @@ end
 
 Autocmd({
 	-- TermOpen
-	{ "TermOpen", { "*" }, "setlocal nonumber norelativenumber" },
+	{ "TermOpen", { "*" }, "setlocal nocursorline nonumber norelativenumber" },
 
 	-- FileType
 	{ "FileType", { "gitcommit" }, "norm zr" },
@@ -172,9 +174,9 @@ Autocmd({
 	{
 		"FileType",
 		{ "markdown", "org", "txt", "norg" },
-		"setlocal nolist conceallevel=3 colorcolumn=0",
+		"setlocal nolist conceallevel=3 nocursorline colorcolumn=0",
 	},
-	{ "FileType", { "help" }, "setlocal nolist colorcolumn=0" },
+	{ "FileType", { "help" }, "setlocal nolist nocursorline colorcolumn=0" },
 
 	-- TextYankPost
 	-- indica texto copiado
