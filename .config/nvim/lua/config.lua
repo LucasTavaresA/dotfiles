@@ -87,6 +87,8 @@ vo.termguicolors = true
 vansh(0, "Whitespace", { fg = "#222222" })
 -- causa muita lentidão - previamente ativado pelo gruvbox.nvim
 vansh(0, "NormalNC", {})
+-- erros de escrita/sintaxe
+vansh(0, "SpellBad", { underline = true, special = "#ff0000" })
 
 --- Tabs/Espaços
 -- indicação de espaços e tabs
