@@ -260,7 +260,6 @@
   (0 t t :class "Xephyr"))
 (define-frame-preference "Message"
   (0 t t :class "discord")
-  (0 t t :class "Hexchat")
   (0 t t :class "TelegramDesktop"))
 
 ;;; Teclas

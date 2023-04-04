@@ -205,7 +205,6 @@ if status is-interactive
     ## Abbr ##
     abbr -a -g cd z
     abbr -a -g cage cage -s --
-    abbr -a -g irc irssi --home ~/.config/irssi
     abbr -a -g cat bat
     abbr -a -g sg sgrade
     abbr -a -g cs criar_script sh script.sh

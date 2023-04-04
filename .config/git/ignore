@@ -21,6 +21,7 @@
 .config/gup/
 .config/gtk-2.0/gtkfilechooser.ini
 .config/irssi/
+.config/hexchat/
 .config/keepassxc/
 .config/libreoffice/
 .config/mpd/

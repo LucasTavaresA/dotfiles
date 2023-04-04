@@ -68,7 +68,6 @@ htop
 hunspell
 hunspell-en_US
 hunspell-pt_BR
-irssi
 jq
 keepassxc
 kvantum

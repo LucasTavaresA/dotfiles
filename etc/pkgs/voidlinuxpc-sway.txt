@@ -84,7 +84,6 @@ hunspell-en_US
 hunspell-pt_BR
 intel-ucode
 intel-video-accel
-irssi
 jq
 keepassxc
 kvantum
