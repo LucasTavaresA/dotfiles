@@ -1,26 +1,40 @@
 format = """
-[┌┤](bold green) $os$directory$shell$status$git_status$username$hostname$cmd_duration$package$jobs$container[├](bold green)$fill
-[└─](bold green)$character"""
+[┌┤](green)$os$shell$username$hostname$directory$cmd_duration$git_status$git_branch$jobs$container[├](green)$fill
+[└─](green)$status$character
+"""
+
+[hostname]
+format = "[@$hostname](green) "
+ssh_only = false
+
+[username]
+show_always = true
+format = "[$user](green)"
+
+[status]
+disabled = false
+symbol = " X "
 
 [os]
+format = " $symbol"
 disabled = false
 
 [character]
 format = "$symbol"
-success_symbol = "[I>](bold green)"
-error_symbol = "[X>](bold red)"
-vicmd_symbol = "[N>](bold white)"
+success_symbol = "[I>](green)"
+error_symbol = "[>](red)"
+vimcmd_symbol = "[N>](white)"
+vimcmd_replace_symbol = "[R>](red)"
+vimcmd_replace_one_symbol = "[1R>](red)"
+vimcmd_visual_symbol = "[V>](blue)"
 
 [shell]
 unknown_indicator = "unknown shell"
 zsh_indicator = "zsh"
 fish_indicator = ""
 bash_indicator = "bash"
-style = "white bold"
+style = "bold white"
 disabled = false # Ativa esse modulo
-
-[time]
-disabled = false # Ativa o relógio
 
 [line_break]
 disabled = true
@@ -28,8 +42,8 @@ disabled = true
 [directory]
 style = "bold #00ccFF"
 truncation_length = 4
-truncate_to_repo = false
+truncate_to_repo = true
 
 [fill]
 symbol = "─"
-style = "bold green"
+style = "green"

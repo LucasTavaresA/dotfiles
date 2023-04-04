@@ -171,6 +171,7 @@ simple-mtpfs
 slock
 snes9x-gtk
 socklog-void
+starship
 stc
 streamlink
 sx

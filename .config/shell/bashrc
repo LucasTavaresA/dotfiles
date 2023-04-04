@@ -339,3 +339,5 @@ fi
 
 # prompt
 PS1="\[\e[01;37m\][\u] \w \[\e[01;32m>\e[m\]"
+
+eval "$(starship init bash)"
