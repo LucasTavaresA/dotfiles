@@ -182,6 +182,7 @@ terminus-font
 testdisk
 translate-shell
 transmission
+trash-cli
 tremc
 ttf-ubuntu-font-family
 ueberzug

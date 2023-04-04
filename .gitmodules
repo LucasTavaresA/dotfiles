@@ -16,9 +16,6 @@
 [submodule "code/c/fastfetch"]
 	path = code/c/fastfetch
 	url = https://codeberg.org/lucastavaresa/fastfetch
-[submodule "code/shellscripts/trash"]
-	path = code/shellscripts/trash
-	url = https://github.com/lucastavaresa/posix-trash.git
 [submodule "code/lua/nvim/simpleIndentGuides.nvim"]
 	path = code/lua/nvim/simpleIndentGuides.nvim
 	url = https://github.com/lucastavaresa/simpleIndentGuides.nvim.git

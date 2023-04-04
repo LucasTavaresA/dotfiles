@@ -260,7 +260,10 @@ if status is-interactive
     abbr -a -g nrb npm run build
     # arquivos e Diretórios
     abbr -a -g rm trash
-    abbr -a -g rml trash clean
+    abbr -a -g rme trash-empty
+    abbr -a -g rml trash-list
+    abbr -a -g rmr trash-restore
+    abbr -a -g rmrm trash-rm
     abbr -a -g g ugrep --color -iIn
     abbr -a -g l lsd -AX1 --group-dirs first
     abbr -a -g la lsd -lXA1 --group-dirs first

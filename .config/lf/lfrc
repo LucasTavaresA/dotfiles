@@ -169,7 +169,6 @@ cmd open-with %"$@" $fx
 map o push :open-with<space>
 
 map <delete> trash
-map <backspace2> trash
 map t mkfile
 map c chmod
 map C clear

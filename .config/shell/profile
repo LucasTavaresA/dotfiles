@@ -141,7 +141,6 @@ export PATH="${XDG_BIN_HOME:-$HOME/.local/bin}:$PATH"
 export PATH="$HOME/bin:$PATH"
 export PATH="$PATH:$HOME/code/shellscripts/shellscripts"
 export PATH="$HOME/code/shellscripts/orgmenu:$PATH"
-export PATH="$HOME/code/shellscripts/trash:$PATH"
 # diffprog
 export DIFFPROG="nvim -d"
 # mergeprog
