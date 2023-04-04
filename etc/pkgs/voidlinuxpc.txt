@@ -170,6 +170,7 @@ simple-mtpfs
 slock
 snes9x-gtk
 socklog-void
+stc
 streamlink
 sx
 sxhkd

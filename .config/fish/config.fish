@@ -217,6 +217,7 @@ if status is-interactive
     abbr -a -g tep trans -s en -l pt
     abbr -a -g tpe trans -s pt -l en
     abbr -a -g hc herbstclient
+    abbr -a -g stc stc -homedir $HOME/.config/syncthing/
     abbr -a -g fm fzf_man
     abbr -a -g as "abbr | ugrep --color -i"
     abbr -a -g ff flashfetch
