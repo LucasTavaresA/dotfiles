@@ -139,54 +139,11 @@ gsl () {
     git stash $action $snum
 }
 
-# facilita extrair arquivos
-# exemplo: ex (arquivo).zip
-ex () {
-    for arquivo in "$@"
-    do
-        if [ -f "$arquivo" ]; then
-            case "$arquivo" in
-                "*.7z|*.arj|*.cab|*.cb7|*.chm|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar") \
-                                      7z x "$arquivo"        ;;
-                "*.bz2")              bunzip2 "$arquivo"     ;;
-                "*.cba|*.ace")        unace x "$arquivo"     ;;
-                "*.cbr")              unrar x -ad "$arquivo" ;;
-                "*.cbt|*.txz")        tar xvf "$arquivo"     ;;
-                "*.cbz|*.epub|*.zip") unzip "$arquivo"       ;;
-                "*.cpio")             cpio -id < "$arquivo"  ;;
-                "*.deb")              ar x "$arquivo"        ;;
-                "*.exe")              cabextract "$arquivo"  ;;
-                "*.gz")               gunzip "$arquivo"      ;;
-                "*.lzma")             unlzma "$arquivo"      ;;
-                "*.rar")              unrar x "$arquivo"     ;;
-                "*.tar.bz2|*.tbz2")   tar xjf "$arquivo"     ;;
-                "*.tar.gz|*.tgz")     tar xzf "$arquivo"     ;;
-                "*.tar.xz|*.tar")     tar xf "$arquivo"      ;;
-                "*.tar.zst")          unzstd "$arquivo"      ;;
-                "*.xz")               unxz "$arquivo"        ;;
-                "*.Z|*.z")            uncompress "$arquivo"  ;;
-                *)           echo "$arquivo não pode ser extraído com ex()!" && return 1 ;;
-            esac
-        else
-            echo "$arquivo arquivo não existe!"
-            return 1
-        fi
-    done
-}
-
-criar_script () {
-    lang=$1
-    arquivo=$2
-    printf "#!/usr/bin/env $lang\n${*:3}" > $arquivo
-}
-
 #### Aliases ####
 alias cd="z"
 alias cage="cage -s --"
 alias cat="bat"
 alias sg="sgrade"
-alias cs="criar_script"
-alias css="criar_script sh script.sh"
 alias pk="pkill -i"
 alias pg="pgrep -ia"
 alias uma="doas usermod -aG"
@@ -196,7 +153,7 @@ alias tep="trans -s pt -l en"
 alias tpe="trans -s pt -l en"
 alias fm="fzf_man"
 alias hc="herbstclient"
-alias stc="stc -homedir $HOME/.config/syncthing/"
+alias stc="stc -homedir ~/.config/syncthing/"
 alias as="alias | ugrep --color -i"
 alias ff="flashfetch"
 alias v="nvim"
@@ -263,21 +220,22 @@ alias gap="git add -p"
 alias gba="git branch -a"
 alias gbd="git branch -d"
 alias gc="git clone"
+alias gcd="git clone --depth"
+alias gcr="git clone --recurse-submodules"
 alias gca="git commit --amend"
 alias gcan="git commit --amend --no-edit"
 alias gcm="git commit"
 alias gco="git checkout"
 alias gcob="git checkout -b"
-alias gcr="git clone --recurse-submodules"
-alias gd="git d"
-alias gdd="git diff"
+alias gd="git diff"
 alias gds="git diff --staged"
+alias gdd="git d"
 alias gf="git fetch"
 alias gg="git grep -iIn"
 alias ggs="git grep -iIn -8"
 alias gi="git init"
-alias gl="git l"
-alias gll="git log --oneline --graph"
+alias gl="git log --oneline --graph"
+alias gll="git l"
 alias gpl="git pull"
 alias gps="git push"
 alias gpsf="git push -f"

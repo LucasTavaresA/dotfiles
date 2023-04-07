@@ -16,7 +16,7 @@ if status is-interactive
     zoxide init fish | source
 
     ## Plugins ##
-    if test ! -e $HOME/.config/fish/fish_plugins
+    if test ! -e /home/lucas/.config/fish/fish_plugins
         echo "Installing fisher! 🎣"
         curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
         echo "Installing fzf! 🔍"
@@ -27,8 +27,6 @@ if status is-interactive
         fisher install gazorby/fish-abbreviation-tips
         echo "Installing autopair! (\"\")"
         fisher install jorgebucaran/autopair.fish
-        echo "Installing sponge! 🧽"
-        fisher install meaningful-ooo/sponge
         echo "Installing puffer-fish! 🐡"
         fisher install nickeb96/puffer-fish
     end
@@ -52,7 +50,7 @@ if status is-interactive
         end
     end
 
-    # localizar e editar executavel
+    # localizar e editar executável
     function ee
         set executavel (fd . $PATH | fzf)
         if test -x "$executavel"
@@ -62,10 +60,8 @@ if status is-interactive
 
     # Abre um processo e o separa
     function dis
-        for arg in $argv
-            $arg >/dev/null 2>&1 &
-            disown
-        end
+        $argv >/dev/null 2>&1 &
+        disown
     end
 
     # Git bare dotfiles
@@ -143,78 +139,20 @@ if status is-interactive
         git stash $action $snum
     end
 
-    # Facilita extrair arquivos
-    # exemplo: ex <arquivo>.zip
-    function ex
-        for arquivo in "$argv"
-            if test -e "$arquivo"
-                switch "$arquivo"
-                    case "*.7z" "*.arj" "*.cab" "*.cb7" "*.chm" "*.dmg" "*.iso" \
-                        "*.lzh" "*.msi" "*.pkg" "*.rpm" "*.udf" "*.wim" "*.xar"
-                        7z x "$arquivo"
-                    case "*.bz2"
-                        bunzip2 "$arquivo"
-                    case "*.cba" "*.ace"
-                        unace x "$arquivo"
-                    case "*.cbr"
-                        unrar x -ad "$arquivo"
-                    case "*.cbt" "*.txz"
-                        tar xvf "$arquivo"
-                    case "*.cbz" "*.epub" "*.zip"
-                        unzip "$arquivo"
-                    case "*.cpio"
-                        cpio -id <"$arquivo"
-                    case "*.deb"
-                        ar x "$arquivo"
-                    case "*.exe"
-                        cabextract "$arquivo"
-                    case "*.gz"
-                        gunzip "$arquivo"
-                    case "*.lzma"
-                        unlzma "$arquivo"
-                    case "*.rar"
-                        unrar x "$arquivo"
-                    case "*.tar.bz2" "*.tbz2"
-                        tar xjf "$arquivo"
-                    case "*.tar.gz" "*.tgz"
-                        tar xzf "$arquivo"
-                    case "*.tar.xz" "*.tar"
-                        tar xf "$arquivo"
-                    case "*.tar.zst"
-                        unzstd "$arquivo"
-                    case "*.xz"
-                        unxz "$arquivo"
-                    case "*.Z" "*.z"
-                        uncompress "$arquivo"
-                    case "*"
-                        echo "$arquivo não pode ser extraído com ex()!" && return 1
-                end
-            else
-                echo "$arquivo arquivo não existe!"
-                return 1
-            end
-        end
-    end
-
-    function criar_script
-        printf "#!/usr/bin/env $argv[1]\n$argv[3..-1]" >$argv[2]
-    end
-
     ## Abbr ##
     abbr -a -g cd z
     abbr -a -g cage cage -s --
     abbr -a -g cat bat
     abbr -a -g sg sgrade
-    abbr -a -g cs criar_script sh script.sh
     abbr -a -g pk pkill -i
     abbr -a -g pg pgrep -ia
     abbr -a -g uma doas usermod -aG
     abbr -a -g umr doas usermod -rG
     abbr -a -g df df -hT --total -x tmpfs -x devtmpfs
-    abbr -a -g tep trans -s en -l pt
-    abbr -a -g tpe trans -s pt -l en
+    abbr -a -g tep trans -s en -hl pt
+    abbr -a -g tpe trans -s pt -hl en
     abbr -a -g hc herbstclient
-    abbr -a -g stc stc -homedir $HOME/.config/syncthing/
+    abbr -a -g stc stc -homedir ~/.config/syncthing/
     abbr -a -g fm fzf_man
     abbr -a -g as "abbr | ugrep --color -i"
     abbr -a -g ff flashfetch
@@ -282,21 +220,22 @@ if status is-interactive
     abbr -a -g gba git branch -a
     abbr -a -g gbd git branch -d
     abbr -a -g gc git clone
+    abbr -a -g gcd git clone --depth
+    abbr -a -g gcr git clone --recurse-submodules
     abbr -a -g gca git commit --amend
     abbr -a -g gcan git commit --amend --no-edit
     abbr -a -g gcm git commit
     abbr -a -g gco git checkout
     abbr -a -g gcob git checkout -b
-    abbr -a -g gcr git clone --recurse-submodules
-    abbr -a -g gd git d
-    abbr -a -g gdd git diff
+    abbr -a -g gd git diff
     abbr -a -g gds git diff --staged
+    abbr -a -g gdd git d
     abbr -a -g gf git fetch
     abbr -a -g gg git grep -iIn
     abbr -a -g ggs git grep -iIn -8
     abbr -a -g gi git init
-    abbr -a -g gl git l
-    abbr -a -g gll git log --oneline --graph
+    abbr -a -g gl git log --oneline --graph
+    abbr -a -g gll git l
     abbr -a -g gpl git pull
     abbr -a -g gps git push
     abbr -a -g gpsf git push -f
