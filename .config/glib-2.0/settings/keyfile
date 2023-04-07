@@ -1,9 +1,8 @@
 [org/gnome/desktop/interface]
 gtk-theme='Gruvbox-Material-Dark'
-
 icon-theme='Gruvbox-Material-Dark'
-
 cursor-theme='Capitaine Cursors (Gruvbox)'
+font='Iosevka Nerd Font Mono 12'
 
 [org/gnome/desktop/wm/preferences]
 theme='Capitaine Cursors (Gruvbox)'
