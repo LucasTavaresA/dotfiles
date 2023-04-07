@@ -240,7 +240,7 @@ return {
 
 	--- Code
 	-- indicação de syntaxe nelua
-	{ "stefanos82/nelua.vim", ft = "nelua" },
+	{ "edubart/nelua-vim", ft = "nelua" },
 	-- lidar com conflitos git
 	{
 		"akinsho/git-conflict.nvim",
@@ -406,13 +406,6 @@ return {
 	},
 
 	--- Aparência
-	-- estabiliza janela ao abrir splits
-	-- TODO: Adicionada no neovim 9
-	{
-		"luukvbaal/stabilize.nvim",
-		lazy = false,
-		config = true,
-	},
 	-- notificações menos intrusivas
 	{
 		"vigoux/notifier.nvim",
@@ -470,8 +463,6 @@ return {
 	-- indica modo atual no cursor
 	{
 		"doums/monark.nvim",
-		-- TODO: Remove limitation on neovim 9
-		commit = "83e5f9d6e12cada04cd731ef439d63d0b1dcbeaa",
 		lazy = false,
 		config = function()
 			require("monark").setup({

@@ -167,7 +167,7 @@ Autocmd({
 
 	-- FileType
 	{ "FileType", { "gitcommit" }, "norm zr" },
-	{ "FileType", { "diff" }, "setlocal nospell" },
+	{ "FileType", { "diff", "checkhealth" }, "setlocal nospell" },
 	{
 		"FileType",
 		{ "css" },

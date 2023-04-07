@@ -196,8 +196,6 @@ return {
 			})
 		end,
 	},
-	-- TODO: Use `:InspectTree` in neovim 9
-	{ "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
 	{
 		"ziontee113/query-secretary",
 		keys = {

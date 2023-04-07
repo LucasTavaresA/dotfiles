@@ -71,7 +71,6 @@ gtkspell3
 gucharmap
 guilt
 gup
-harfbuzz
 herbstluftwm
 hexchat
 hexchat-python3
