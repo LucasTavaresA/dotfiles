@@ -26,8 +26,6 @@
 
 [interactive]
     diffFilter = delta --color-only
-[add.interactive]
-    useBuiltin = false
 
 [delta]
     navigate = true
