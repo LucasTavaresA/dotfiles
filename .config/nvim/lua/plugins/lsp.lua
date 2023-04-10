@@ -35,11 +35,8 @@ return {
 							enable = false,
 						},
 						diagnostic = {
-							--1 is max
+							-- 1 is max
 							max_width = 1,
-							keys = {
-								quit = { "q", "<esc>" },
-							},
 						},
 						symbol_in_winbar = {
 							enable = false,
@@ -84,22 +81,6 @@ return {
 						"<leader>D",
 						"<cmd>Lspsaga show_buf_diagnostics ++unfocus<CR>"
 					)
-
-					-- -- Diagnostic jump BUGADO
-					-- vks("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
-					-- vks("n", "]d", vks("n", "zo", "<cmd>Lspsaga outline<CR>"))
-
-					-- -- Diagnostic jump with filters such as only jumping to an error
-					-- vks("n", "[D", function()
-					--   require("lspsaga.diagnostic"):goto_prev({
-					--     severity = vim.diagnostic.severity.ERROR,
-					--   })
-					-- end)
-					-- vks("n", "]D", function()
-					--   require("lspsaga.diagnostic"):goto_next({
-					--     severity = vim.diagnostic.severity.ERROR,
-					--   })
-					-- end)
 
 					-- Toggle outline
 					vks("n", "zo", "<cmd>Lspsaga outline<CR>")
@@ -192,6 +173,12 @@ return {
 			On_attach = function(client, bufnr)
 				local function buf_set_option(...)
 					vim.api.nvim_buf_set_option(bufnr, ...)
+				end
+
+				-- TODO: Remove when omnisharp get his shit together
+				-- https://github.com/OmniSharp/omnisharp-roslyn/issues/2483#issuecomment-1492605642
+				if vim.o.ft == "cs" then
+					client.server_capabilities.semanticTokensProvider = nil
 				end
 
 				buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
