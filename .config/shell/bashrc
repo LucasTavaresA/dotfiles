@@ -44,7 +44,7 @@ ee() {
 # git bare dotfiles
 git() {
 	if [ "$(pwd)" = "$HOME" ] && [ "$1" != "init" ]; then
-		/usr/bin/git --git-dir="$HOME/etc/.dotfiles/" "$@"
+		/usr/bin/git --work-tree=. --git-dir="$HOME/etc/.dotfiles/" "$@"
 	else
 		/usr/bin/git "$@"
 	fi

@@ -1,19 +1,22 @@
 #!/usr/bin/env sh
-# shellcheck disable=SC2016
-UID="$(id -u)"
-HOSTNAME="$(uname -n)"
 set -ex
+HOSTNAME="$(uname -n)"
+home="$HOME"
+user="$USER"
 
-# executar apenas como root
-[ "$UID" != 0 ] && echo "root necessário!" && exit 1
-[ "$(pwd)" = /home/lucas ] && echo "Deve ser executado em /home/lucas" && exit 1
-[ ! -d /home/lucas/etc ] && echo "Diretório /home/lucas/etc não encontrado!" && exit 1
-[ ! -d /home/lucas/etc/.dotfiles ] && echo "Clone e ajuste os dotfiles" && exit 1
+[ "$(pwd)" = "$HOME" ] && echo "Not in your home folder!" && exit 1
 
+su -c 'xbps-install -S git'
+
+git clone --bare https://codeberg.org/lucastavaresa/dotfiles etc/.dotfiles
+git --work-tree=. --git-dir=etc/.dotfiles/ restore -WS .
+git --work-tree=. --git-dir=etc/.dotfiles/ submodule update --init --recursive
+
+su
+
+pkgs="$(cat etc/pkgs/"$HOSTNAME".txt)"
 xbps-install -Su
-xbps-install -S "$(cat etc/pkgs/"$HOSTNAME".txt)"
-[ "$(xpkg | wc -l)" -lt "$(cat etc/pkgs/"$HOSTNAME".txt)" ] &&
-	echo "Faltam pacotes" && exit 1
+xbps-install -S "$pkgs"
 
 microcode() {
 	echo "microcode Intel/Amd [i/a]? "
@@ -26,24 +29,16 @@ microcode() {
 }
 microcode
 
-sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/default/libc-locales
+sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g;s/^#pt_BR.UTF-8 UTF-8/pt_BR.UTF-8 UTF-8/g' /etc/default/libc-locales
 xbps-reconfigure -f glibc-locales
 cp -f etc/locale.conf /etc/locale.conf
 
-chsh -s /bin/fish
-chsh -s /bin/sh lucas
-(
-	cd code/c/dash/
-	./autogen.sh
-	./configure --bindir=/bin --mandir=/usr/share/man
-	make
-	make install
-)
+cp -f etc/voidlinux/grub /etc/default/grub
 
-(
-	cd code/c/st/
-	make install
-)
+echo ". $HOME/.config/shell/bashrc" >>/etc/bash/bashrc
+
+chsh -s /bin/fish
+chsh -s /bin/sh "$user"
 
 cp etc/voidlinux/ignore-sudo.conf /etc/xbps.d/
 xbps-remove -R sudo
@@ -60,8 +55,9 @@ ln -s /etc/sv/acpid /var/service/
 
 ln -s /etc/sv/dbus /var/service/
 
-ln -s /etc/sv/seatd /var/service/
-usermod -aG _seatd lucas
+[ -e "/etc/sv/seatd" ] &&
+	ln -s /etc/sv/seatd /var/service/ &&
+	usermod -aG _seatd "$user"
 
 gpu() {
 	echo "gpu Intel/Amd-Ati [i/a]? "
@@ -77,14 +73,10 @@ gpu
 mkdir -p /etc/alsa/conf.d
 ln -s /usr/share/alsa/alsa.conf.d/50-pipewire.conf /etc/alsa/conf.d
 ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
+xbps-reconfigure -f alsa-pipewire
 
 mkdir -p /etc/X11
 cp -r etc/xorg.conf.d/ /etc/X11/
-
-(
-	cd code/c/fastfetch
-	build.sh
-)
 
 cargo install handlr-regex tree-sitter-cli
 
@@ -101,21 +93,29 @@ npm i -g --save-exact prettier
 pipx install keepmenu scdl spotdl jedi-language-server
 
 git clone https://github.com/TheGreatMcPain/gruvbox-material-gtk
-(
-	cp -r gruvbox-material-gtk/icons/* /usr/share/icons/
-	cp -r gruvbox-material-gtk/themes/* /usr/share/themes/
-)
+cp -r gruvbox-material-gtk/icons/* "$home/.local/share/icons/"
+cp -r gruvbox-material-gtk/themes/* "$home/.local/share/themes/"
 rm -r gruvbox-material-gtk
 
 wget https://github.com/sainnhe/capitaine-cursors/releases/download/r5/Linux.zip
 mkdir cursors
 unzip Linux.zip -d cursors
-mv cursors/Capitaine\ Cursors\ \(Gruvbox\)/ /usr/share/icons/
-mkdir -p /home/lucas/.local/share/icons/default/
-cat etc/index.theme >/home/lucas/.local/share/icons/default/index.theme
+mv cursors/Capitaine\ Cursors\ \(Gruvbox\)/ "$home/.local/share/icons/"
+mkdir -p "$home/.local/share/icons/default/"
+cat etc/index.theme >"$home/.local/share/icons/default/index.theme"
 
 cat etc/pam_gnupg >>/etc/pam.d/login
 
-mkdir -p /home/lucas/.local/share/applications/
-cp etc/transmission-remote.desktop .local/share/applications/
-cp etc/term_open.desktop .local/share/applications/
+mkdir -p "$home/.local/share/applications/"
+cp etc/transmission-remote.desktop "$home/.local/share/applications/"
+cp etc/term_open.desktop "$home/.local/share/applications/"
+
+(
+	cd code/c/st/
+	./build.sh
+)
+
+(
+	cd code/c/fastfetch
+	./build.sh
+)
