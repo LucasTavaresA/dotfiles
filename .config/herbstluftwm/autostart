@@ -127,6 +127,7 @@ hck Mod4-Shift-comma spawn musica ante
 hck Mod4-Shift-period spawn musica prox
 ## outros
 hck Mod4-e spawn term_open -a nvim nvim
+hck Mod4-o spawn menu_pesquisar
 hck Mod4-Shift-Return spawn term_open
 hck Mod4-Return spawn term_scratchpad
 

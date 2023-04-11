@@ -22,7 +22,7 @@ Keymaps({
 	-- colar na linha de baixo
 	{ nv, "P", "<cmd>norm o<cr>p" },
 	-- trocar de split
-	{ nvi, "<A-Tab>", "<esc><C-w>w" },
+	{ nvi, "<A-w>", "<esc><C-w>w" },
 	-- formatar buffer
 	{ nv, "<leader>I", "gg=G<C-o>" },
 	-- formatar paragrafo
@@ -45,10 +45,10 @@ Keymaps({
 	{ nv, "<leader>m", "<cmd>message<cr>" },
 	-- carregar buffer
 	{ "n", "<leader>eb", "<cmd>source %<cr>" },
-	-- divide a tela do lado
-	{ nvi, "<C-A-l>", "<esc><cmd>vs<cr>" },
 	-- divide a tela abaixo
-	{ nvi, "<C-A-j>", "<esc><cmd>sp<cr>" },
+	{ nvi, "<A-s>", "<esc><cmd>sp<cr>" },
+	-- divide a tela do lado
+	{ nvi, "<A-S-s>", "<esc><cmd>vs<cr>" },
 	-- copiar buffer
 	{ nv, "<leader>bc", "ggVGy<C-o>zz" },
 	-- ativa/desativa números de linha
