@@ -1,9 +1,6 @@
 [submodule ".config/cheat/cheatsheets/community"]
 	path = .config/cheat/cheatsheets/community
 	url = https://github.com/cheat/cheatsheets
-[submodule "code/c/dash"]
-	path = code/c/dash
-	url = https://codeberg.org/lucastavaresa/dash
 [submodule "code/shellscripts/shellscripts"]
 	path = code/shellscripts/shellscripts
 	url = https://github.com/lucastavaresa/shellscripts
