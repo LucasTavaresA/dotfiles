@@ -28,6 +28,7 @@ return {
 			},
 			"JoosepAlviste/nvim-ts-context-commentstring",
 			"HiPhish/nvim-ts-rainbow2",
+			"windwp/nvim-ts-autotag",
 			"RRethy/nvim-treesitter-endwise",
 			{
 				"nvim-treesitter/nvim-treesitter-context",
@@ -191,6 +192,9 @@ return {
 					max_file_lines = 2000,
 				},
 				endwise = {
+					enable = true,
+				},
+				autotag = {
 					enable = true,
 				},
 			})
