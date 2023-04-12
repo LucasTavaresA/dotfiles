@@ -1,6 +1,6 @@
 format = """
-[┌┤](green)$os$shell$username$hostname$directory$cmd_duration$git_status$git_branch$jobs$container[├](green)$fill
-[└─](green)$status$character
+[┌┤](bold green)$os$shell$username$hostname$directory$cmd_duration$git_status$git_branch$jobs$container[├](bold green)$fill
+[└─](bold green)$status$character
 """
 
 [hostname]
@@ -21,7 +21,7 @@ disabled = false
 
 [character]
 format = "$symbol"
-success_symbol = "[I>](green)"
+success_symbol = "[I>](bold green)"
 error_symbol = "[>](red)"
 vimcmd_symbol = "[N>](white)"
 vimcmd_replace_symbol = "[R>](red)"
@@ -46,4 +46,4 @@ truncate_to_repo = true
 
 [fill]
 symbol = "─"
-style = "green"
+style = "bold green"
