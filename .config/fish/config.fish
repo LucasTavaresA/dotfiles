@@ -66,7 +66,7 @@ if status is-interactive
 
     # Git bare dotfiles
     function git
-        if test "$(pwd)" = "$HOME"; and test $argv[1] != init
+        if test "$(pwd)" = "$HOME" && test $argv[1] != init && test $argv[1] != clone
             /usr/bin/git --work-tree=. --git-dir="$HOME/etc/.dotfiles/" $argv
         else
             /usr/bin/git $argv
@@ -259,7 +259,7 @@ if status is-interactive
     abbr -a -g gwr git worktree remove
 
     ## Abbrs em sistemas
-    if test "$OS" = artixlinux; or test "$OS" = archlinux; or test "$OS" = manjaro
+    if test "$OS" = artixlinux || test "$OS" = archlinux || test "$OS" = manjaro
         # pacman
         abbr -a -g ps doas pacman --noconfirm --color always -S
         abbr -a -g psi pacman --color always -Si
