@@ -9,8 +9,14 @@ user="$USER"
 su -c 'xbps-install -S git'
 
 git clone --bare https://codeberg.org/lucastavaresa/dotfiles etc/.dotfiles
-git --work-tree=. --git-dir=etc/.dotfiles/ restore -WS .
-git --work-tree=. --git-dir=etc/.dotfiles/ submodule update --init --recursive
+
+# git was a mistake
+GIT_FLAGS="--work-tree=. --git-dir=etc/.dotfiles/"
+git "$GIT_FLAGS" restore -WS .
+git "$GIT_FLAGS" submodule update --init --recursive
+git "$GIT_FLAGS" config --local --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
+git "$GIT_FLAGS" fetch
+git "$GIT_FLAGS" branch --set-upstream-to=origin/main main
 
 su
 
