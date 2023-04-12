@@ -1,33 +1,5 @@
 return {
 	--- Miscelânea
-	-- explorador de arquivos
-	{
-		"X3eRo0/dired.nvim",
-		dependencies = "MunifTanjim/nui.nvim",
-		lazy = false,
-		keys = { { "<A-f>", vim.cmd.Dired } },
-		config = function()
-			require("dired").setup({
-				path_separator = "/",
-				show_banner = false,
-				show_hidden = true,
-				show_dot_dirs = true,
-				show_colors = true,
-			})
-			vim.api.nvim_create_autocmd("FileType", {
-				pattern = { "dired" },
-				callback = function()
-					vim.keymap.set(
-						{ "n", "i" },
-						"<A-f>",
-						"<cmd>bd!<cr>",
-						{ buffer = true, noremap = true, silent = true }
-					)
-					vim.opt_local.spell = false
-				end,
-			})
-		end,
-	},
 	-- abre arquivos encriptados
 	{
 		"jamessan/vim-gnupg",

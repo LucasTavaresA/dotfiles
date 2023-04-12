@@ -20,15 +20,15 @@ function TerminalToggle()
 			detach = 1,
 		})
 		vc("silent file Terminal 1")
-		lua_terminal_window = vf.win_getid()
-		lua_terminal_buffer = vf.bufnr("%")
+		lua_terminal_window = va.nvim_get_current_win()
+		lua_terminal_buffer = va.nvim_get_current_buf()
 		vo.buflisted = false
 	elseif vf.win_gotoid(lua_terminal_window) == 0 then
 		vc("sp")
 		vc("wincmd J")
 		vc("resize " .. terminal_split_size)
 		vc("buffer Terminal 1")
-		lua_terminal_window = vf.win_getid()
+		lua_terminal_window = va.nvim_get_current_win()
 	end
 end
 
@@ -44,16 +44,16 @@ function Update_cwd()
 		vim.env.GIT_WORK_TREE = nil
 	end
 
-	local group = vim.api.nvim_create_augroup("stylua", {})
+	local group = va.nvim_create_augroup("stylua", {})
 
 	if vim.fn.getcwd() == HOME then
-		vim.api.nvim_create_autocmd("BufWritePost", {
+		va.nvim_create_autocmd("BufWritePost", {
 			group = group,
 			pattern = "*.lua",
 			command = "!stylua --config-path $HOME/.config/nvim/stylua.toml %",
 		})
 	else
-		vim.api.nvim_create_autocmd("BufWritePost", {
+		va.nvim_create_autocmd("BufWritePost", {
 			group = group,
 			pattern = "*.lua",
 			command = "!stylua --config-path $(fd -t f -d 4 --max-results 1 stylua.toml .) %",
@@ -64,17 +64,14 @@ end
 --- alterna aba do netrw
 function NetrwToggle()
 	if vim.o.ft == "netrw" then
-		vim.cmd.Ex()
-		vim.opt.signcolumn = "yes:9"
+		vim.cmd.bd()
 	else
-		vim.opt.signcolumn = "no"
 		vim.cmd.Ex()
-		vim.opt.signcolumn = "yes"
 	end
 end
 
 --- alterna indicadores de pesquisa
-local ns = vim.api.nvim_create_namespace("toggle_hlsearch")
+local ns = va.nvim_create_namespace("toggle_hlsearch")
 local function toggle_hlsearch(char)
 	if vim.fn.mode() == "n" then
 		local keys = { "<CR>", "n", "N", "*", "#", "?", "/" }
@@ -164,18 +161,17 @@ function ReplaceSel()
 end
 
 --- places command output in a buffer
-vim.api.nvim_create_user_command("Redir", function(ctx)
-	local lines =
-		vim.split(vim.api.nvim_exec(ctx.args, true), "\n", { plain = true })
+va.nvim_create_user_command("Redir", function(ctx)
+	local lines = vim.split(va.nvim_exec(ctx.args, true), "\n", { plain = true })
 	vim.cmd("new")
-	vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+	va.nvim_buf_set_lines(0, 0, -1, false, lines)
 	vim.opt_local.modified = false
 	vim.bo.filetype = "qf"
 end, { nargs = "+", complete = "command" })
 
 --- Marca/Desmarca checkboxes
 function ToggleCheckbox()
-	local line = vim.api.nvim_get_current_line()
+	local line = va.nvim_get_current_line()
 	local ft = vim.o.ft
 	---@type table<string, string>
 	local checkboxes = {
@@ -198,18 +194,7 @@ function ToggleCheckbox()
 		end
 	)
 
-	vim.api.nvim_set_current_line(line)
-end
-
---- Abre o netrw na pasta do arquivo atual
-function NetrwCurrent()
-	local dir = vim.fn.expand("%:h")
-
-	if dir == "" then
-		dir = vim.fn.getcwd()
-	end
-
-	vim.cmd.Ex(dir)
+	va.nvim_set_current_line(line)
 end
 
 function SearchCount()

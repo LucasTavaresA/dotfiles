@@ -23,14 +23,14 @@ Keymaps({
 	{ nv, "P", "<cmd>norm o<cr>p" },
 	-- trocar de split
 	{ nvi, "<A-w>", "<esc><C-w>w" },
+	-- toggle netrw
+	{ nvi, "<A-f>", NetrwToggle },
 	-- formatar buffer
 	{ nv, "<leader>I", "gg=G<C-o>" },
 	-- formatar paragrafo
 	{ nv, "<leader>ii", "{=}<C-o>" },
 	-- alinhar texto
 	{ "v", "<leader>A", ":!column -t -o ' '<cr>", { silent = true } },
-	-- abre arquivos no diretório atual
-	{ nv, "<leader>fF", NetrwCurrent },
 	-- mudar o typo de arquivo
 	{ nv, "<leader>ft", ":setlocal filetype=" },
 	-- Fechar neovim completamente
