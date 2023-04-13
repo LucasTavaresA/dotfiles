@@ -71,6 +71,7 @@
   "replacer.nvim": { "branch": "master", "commit": "8b45f6086d3174359176320d182e5c00b677f8c9" },
   "sniprun": { "branch": "master", "commit": "52ecf6ad06304e46722118af2aaea5647b157ab8" },
   "spaceless.nvim": { "branch": "main", "commit": "d84eb8b05fca9748ef7e118afe94e1a483ca3b81" },
+  "statuscol.nvim": { "branch": "main", "commit": "8b6ed0e19bdc7d4d40b33fcc0db1c96c95c6566c" },
   "translate.nvim": { "branch": "main", "commit": "7b2fd50c21ecfe536d572d62dcd3fa83acad3743" },
   "ts-node-action": { "branch": "master", "commit": "578a9ce3c035908a47843c6b1394e1a5b81e594e" },
   "tsnode-marker.nvim": { "branch": "main", "commit": "f60632a5a785b5bafa589b759a6986c2832aed5e" },

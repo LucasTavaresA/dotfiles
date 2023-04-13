@@ -117,7 +117,7 @@ vo.laststatus = 3
 vo.cmdheight = 0
 -- mostra a tabline
 vo.showtabline = 0
-vo.signcolumn = "yes:5"
+vo.signcolumn = "yes:1"
 
 --- Números
 vo.number = true
@@ -127,7 +127,7 @@ vo.relativenumber = true
 --- Folding
 vg.sh_fold_enabled = 1
 -- vo.foldmethod = "syntax"
-vo.foldcolumn = "9"
+vo.foldcolumn = "1"
 vo.foldlevel = 0
 vo.foldnestmax = 3
 vim.o.foldopen = "block,insert,jump,mark,percent,quickfix,search,tag,undo"
@@ -187,22 +187,6 @@ Autocmd({
 		{ "*" },
 		function()
 			vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
-		end,
-	},
-
-	-- WinEnter
-	-- centraliza buffers quando ha espaço
-	{
-		"WinEnter",
-		{ "*" },
-		function()
-			if vim.api.nvim_win_get_width(0) < 80 then
-				vo.foldcolumn = "0"
-				vo.signcolumn = "yes:1"
-			else
-				vo.foldcolumn = "9"
-				vo.signcolumn = "yes:5"
-			end
 		end,
 	},
 })

@@ -338,9 +338,7 @@ return {
 						vim.opt_local.wrap = false
 						vim.opt_local.list = false
 						vim.opt_local.colorcolumn = "+1"
-						vim.opt_local.foldcolumn = "0"
 						vim.opt_local.spell = false
-						vim.opt_local.signcolumn = "no"
 					end,
 				},
 			})
@@ -385,6 +383,39 @@ return {
 	},
 
 	--- Aparência
+	-- statuscolumn
+	{
+		"luukvbaal/statuscol.nvim",
+		lazy = false,
+		config = function()
+			local builtin = require("statuscol.builtin")
+
+			require("statuscol").setup({
+				setopt = true, -- Whether to set the 'statuscolumn' option
+				ft_ignore = { "netrw" }, -- lua table with filetypes for which 'statuscolumn' will be unset
+				bt_ignore = nil, -- lua table with 'buftype' values for which 'statuscolumn' will be unset
+				segments = {
+					{
+						text = { "              " },
+						condition = {
+							function()
+								return vim.api.nvim_win_get_width(0) > 80
+							end,
+						},
+						hl = "Normal",
+					},
+					{
+						text = { builtin.lnumfunc, " " },
+						condition = { true, builtin.not_empty },
+						click = "v:lua.ScLa",
+					},
+					{ text = { "%s" }, click = "v:lua.ScSa" },
+					{ text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+					{ text = { " " }, hl = "ColorColumn" },
+				},
+			})
+		end,
+	},
 	-- notificações menos intrusivas
 	{
 		"vigoux/notifier.nvim",
