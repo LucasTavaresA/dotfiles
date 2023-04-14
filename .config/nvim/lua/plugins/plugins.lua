@@ -399,7 +399,7 @@ return {
 						text = { "              " },
 						condition = {
 							function()
-								return vim.api.nvim_win_get_width(0) > 80
+								return vim.api.nvim_win_get_width(0) > 90
 							end,
 						},
 						hl = "Normal",
@@ -411,7 +411,7 @@ return {
 					},
 					{ text = { "%s" }, click = "v:lua.ScSa" },
 					{ text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-					{ text = { " " }, hl = "ColorColumn" },
+					{ text = { "🮇" }, hl = "Normal" },
 				},
 			})
 		end,

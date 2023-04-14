@@ -89,6 +89,7 @@ vansh(0, "Whitespace", { fg = "#222222" })
 vansh(0, "NormalNC", {})
 -- erros de escrita/sintaxe
 vansh(0, "SpellBad", { underline = true, special = "#ff0000" })
+vansh(0, "LineNr", { fg = "#ffffff" })
 
 --- Tabs/Espaços
 -- indicação de espaços e tabs
