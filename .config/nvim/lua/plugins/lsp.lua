@@ -111,7 +111,9 @@ return {
 						sources = {
 							-- c
 							null_ls.builtins.diagnostics.clang_check,
-							null_ls.builtins.formatting.clang_format,
+							null_ls.builtins.formatting.clang_format.with({
+								disabled_filetypes = { "cs" },
+							}),
 							-- git
 							null_ls.builtins.code_actions.gitsigns,
 							-- css
@@ -148,7 +150,7 @@ return {
 									buffer = bufnr,
 									callback = function()
 										local ft = vim.bo.ft
-										if ft ~= "c" and ft ~= "cs" and ft ~= "cpp" then
+										if ft ~= "c" and ft ~= "cpp" then
 											vim.lsp.buf.format({ bufnr = bufnr, async = false })
 										end
 									end,

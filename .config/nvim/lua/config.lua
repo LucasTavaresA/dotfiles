@@ -180,6 +180,7 @@ Autocmd({
 		"setlocal nolist conceallevel=3 nocursorline colorcolumn=0",
 	},
 	{ "FileType", { "help" }, "setlocal nolist nocursorline colorcolumn=0" },
+	{ "FileType", { "cs" }, "setlocal tabstop=4 shiftwidth=4 expandtab" },
 
 	-- TextYankPost
 	-- indica texto copiado
