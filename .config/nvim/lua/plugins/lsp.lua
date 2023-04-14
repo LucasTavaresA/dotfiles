@@ -98,6 +98,7 @@ return {
 							border = "single",
 						},
 						hint_prefix = "! ",
+						floating_window = false, -- show hint in a floating window
 					})
 				end,
 			},
@@ -211,7 +212,12 @@ return {
 					"<cmd>FzfLua lsp_workspace_symbols<cr>",
 					bns
 				)
-				vim.keymap.set({ "n", "v" }, "<C-h>", vim.lsp.buf.signature_help, bns)
+				vim.keymap.set(
+					{ "n", "v", "i" },
+					"<C-h>",
+					vim.lsp.buf.signature_help,
+					bns
+				)
 				vim.keymap.set({ "n", "v" }, "<leader>I", function()
 					vim.lsp.buf.format({ async = true })
 				end, bns)

@@ -27,6 +27,18 @@ return {
 				hl = { bold = true, fg = theme.red },
 				left_sep = " ",
 			},
+			signature = {
+				provider = function()
+					if not pcall(require, "lsp_signature") then
+						return
+					end
+					local sig = require("lsp_signature").status_line(100)
+					if sig.label then
+						return sig.label
+					end
+					return ""
+				end,
+			},
 			search_count = {
 				provider = { name = "search_count" },
 				hl = { fg = theme.lightgreen },
@@ -106,6 +118,7 @@ return {
 		-- Right section
 		table.insert(components.active[1], comps.search_count)
 		table.insert(components.active[1], comps.macro)
+		table.insert(components.active[1], comps.signature)
 		table.insert(components.active[1], comps.separator)
 
 		-- Center
