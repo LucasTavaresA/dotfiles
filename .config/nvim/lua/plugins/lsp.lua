@@ -1,24 +1,7 @@
 return {
 	{
 		"neovim/nvim-lspconfig",
-		ft = {
-			"lua",
-			"c",
-			"cpp",
-			"cs",
-			"bash",
-			"sh",
-			"javascript",
-			"javascriptreact",
-			"typescript",
-			"typescriptreact",
-			"css",
-			"json",
-			"jsonc",
-			"html",
-			"go",
-			"python",
-		},
+		lazy = false,
 		dependencies = {
 			"folke/neodev.nvim",
 			"ibhagwan/fzf-lua",
