@@ -286,21 +286,12 @@ return {
 			})
 
 			-- instale o omnisharp
-			local pid = vim.fn.getpid()
-			local omnisharp_bin = os.getenv("XDG_DATA_HOME") .. "/omnisharp/OmniSharp"
 			require("lspconfig").omnisharp.setup({
 				on_attach = On_attach,
 				capabilities = capabilities,
 				cmd = {
-					omnisharp_bin,
-					"--languageserver",
-					"--hostPID",
-					tostring(pid),
+					os.getenv("XDG_DATA_HOME") .. "/omnisharp/OmniSharp",
 				},
-				-- cmd = {
-				--   "dotnet",
-				--   os.getenv("XDG_DATA_HOME") .. "/omnisharp/OmniSharp.dll",
-				-- },
 
 				handlers = {
 					["textDocument/definition"] = require("omnisharp_extended").handler,
@@ -316,6 +307,7 @@ return {
 				-- for projects that are relevant to code that is being edited. With this
 				-- setting enabled OmniSharp may load fewer projects and may thus display
 				-- incomplete reference lists for symbols.
+				-- REALLY SLOW
 				enable_ms_build_load_projects_on_demand = false,
 
 				-- Enables support for roslyn analyzers, code fixes and rulesets.
@@ -331,7 +323,7 @@ return {
 				-- have a negative impact on initial completion responsiveness,
 				-- particularly for the first few completion sessions after opening a
 				-- solution.
-				enable_import_completion = false,
+				enable_import_completion = true,
 
 				-- Specifies whether to include preview versions of the .NET SDK when
 				-- determining which version to use for project loading.
@@ -339,7 +331,7 @@ return {
 
 				-- Only run analyzers against open files when 'enableRoslynAnalyzers' is
 				-- true
-				analyze_open_documents_only = false,
+				analyze_open_documents_only = true,
 			})
 
 			-- dotnet tool install --global csharp-ls
