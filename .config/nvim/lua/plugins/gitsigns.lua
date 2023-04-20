@@ -18,6 +18,7 @@ return {
 			"<leader>gs",
 			":Gitsigns stage_hunk<CR>",
 			silent = true,
+			mode = { "n", "v" },
 		},
 		{
 			"<leader>gS",
@@ -28,6 +29,7 @@ return {
 			"<leader>gr",
 			":Gitsigns reset_hunk<CR>",
 			silent = true,
+			mode = { "n", "v" },
 		},
 		{
 			"<leader>gR",
