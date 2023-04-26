@@ -396,15 +396,6 @@ return {
 				bt_ignore = nil, -- lua table with 'buftype' values for which 'statuscolumn' will be unset
 				segments = {
 					{
-						text = { "              " },
-						condition = {
-							function()
-								return vim.api.nvim_win_get_width(0) > 90
-							end,
-						},
-						hl = "Normal",
-					},
-					{
 						text = { builtin.lnumfunc, " " },
 						condition = { true, builtin.not_empty },
 						click = "v:lua.ScLa",
