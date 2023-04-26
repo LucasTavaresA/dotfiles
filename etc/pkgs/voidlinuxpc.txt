@@ -53,6 +53,7 @@ font-iosevka
 fonts-droid-ttf
 fzf
 gcc
+gdb
 gdu
 gettext
 gimp
