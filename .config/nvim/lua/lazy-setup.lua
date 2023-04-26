@@ -12,25 +12,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-function LazyCWD()
-	vim.cmd("Lazy")
-
-	vim.env.GIT_DIR = nil
-	vim.env.GIT_WORK_TREE = nil
-
-	vim.keymap.set("n", "q", function()
-		Update_cwd()
-		vim.cmd.close()
-	end, { buffer = true })
-
-	vim.keymap.set("n", "<esc>", function()
-		Update_cwd()
-		vim.cmd.close()
-	end, { buffer = true })
-end
-
 vim.g.mapleader = " " -- make sure to set `mapleader` before lazy so your mappings are correct
-vim.keymap.set("n", "<leader>l", LazyCWD)
+vim.keymap.set("n", "<leader>l", vim.cmd.Lazy)
 
 require("lazy").setup("plugins", {
 	defaults = {
