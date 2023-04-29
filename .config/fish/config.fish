@@ -142,7 +142,6 @@ if status is-interactive
     ## Abbr ##
     abbr -a -g cd z
     abbr -a -g cage cage -s --
-    abbr -a -g cat bat
     abbr -a -g sg sgrade
     abbr -a -g pk pkill -i
     abbr -a -g pg pgrep -ia
@@ -306,7 +305,6 @@ if status is-interactive
         abbr -a -g sys doas sv
     else if test "$OS" = linuxmint
         abbr -a -g bat batcat
-        abbr -a -g cat batcat
         # apt
         abbr -a -g ai doas apt install -y
         abbr -a -g as apt show

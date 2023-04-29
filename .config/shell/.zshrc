@@ -142,7 +142,6 @@ gsl () {
 #### Aliases ####
 alias cd="z"
 alias cage="cage -s --"
-alias cat="bat"
 alias sg="sgrade"
 alias pk="pkill -i"
 alias pg="pgrep -ia"
@@ -306,7 +305,6 @@ elif [ "$OS" = "voidlinux" ]; then
     alias sys="doas sv"
 elif [ "$OS" = "linuxmint" ]; then
     alias bat="batcat"
-    alias cat="batcat"
     # apt
     alias ai="doas apt install -y"
     alias as="apt show"
