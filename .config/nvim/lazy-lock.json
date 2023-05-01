@@ -48,6 +48,7 @@
   "nvim-cmp": { "branch": "main", "commit": "11102d3db12c7f8b35265ad0e17a21511e5b1e68" },
   "nvim-cmp-fonts": { "branch": "master", "commit": "43be83eb24ff8aec124c3aae64d053a095e03bd0" },
   "nvim-colorizer.lua": { "branch": "master", "commit": "dde3084106a70b9a79d48f426f6d6fec6fd203f7" },
+  "nvim-hl-mdcodeblock.lua": { "branch": "master", "commit": "a652470bfed791d5026f6a35bacdfe90a9d8ac2f" },
   "nvim-lastplace": { "branch": "main", "commit": "75a2b78bdbbd20467d499defceb5b20c0967a1ca" },
   "nvim-lspconfig": { "branch": "master", "commit": "427378a03ffc1e1bc023275583a49b1993e524d0" },
   "nvim-parinfer": { "branch": "master", "commit": "c0d95d9f4c5f921872ba11790b76efbb02cc8af5" },
@@ -74,7 +75,6 @@
   "statuscol.nvim": { "branch": "main", "commit": "b115b5d7a4ea5d4b152d61d89457cc874e08a7d1" },
   "translate.nvim": { "branch": "main", "commit": "35b71090a398eaca4d7cd2478f6a09d0fa3130bd" },
   "ts-node-action": { "branch": "master", "commit": "0440eaa24e2334aa593b38ab4e42c8efa8dd187b" },
-  "tsnode-marker.nvim": { "branch": "main", "commit": "c60f75520fcc8d9519bbc5bd3ca99fb41e014ba1" },
   "undotree": { "branch": "main", "commit": "7786948ac85b352fdef744f31c0f210f72cf40d8" },
   "vim-gnupg": { "branch": "main", "commit": "f9b608f29003dfde6450931dc0f495a912973a88" },
   "vim-snippets": { "branch": "master", "commit": "5094d3658023cf743379f45c4c34bcc0a39ca4a2" }
