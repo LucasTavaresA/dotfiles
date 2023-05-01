@@ -26,6 +26,7 @@ return {
 					vim.keymap.set("n", "<S-j>", "")
 				end,
 			},
+			{ "haringsrob/nvim_context_vt", config = true },
 			"JoosepAlviste/nvim-ts-context-commentstring",
 			"HiPhish/nvim-ts-rainbow2",
 			"windwp/nvim-ts-autotag",
