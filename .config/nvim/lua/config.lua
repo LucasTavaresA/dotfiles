@@ -80,10 +80,10 @@ vo.cursorline = true
 local vansh = vim.api.nvim_set_hl
 -- prefere modo escuro
 vo.background = "dark"
--- tema
-pcall(vim.cmd.colorscheme, "gruvbox")
 -- melhora suporte de cores
 vo.termguicolors = true
+-- tema
+pcall(vim.cmd.colorscheme, "gruvbox")
 -- listchars
 vansh(0, "Whitespace", { fg = "#222222" })
 -- causa muita lentidão - previamente ativado pelo gruvbox.nvim
