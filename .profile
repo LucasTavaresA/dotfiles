@@ -85,7 +85,8 @@ export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 # omnisharp
 export OMNISHARPHOME="${XDG_DATA_HOME:-$HOME/.local/share}/omnisharp"
 # dotnet
-# export DOTNET_ROOT="${XDG_DATA_HOME:-$HOME/.local/share}/dotnet"
+# export DOTNET_CLI_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/dotnet"
+export DOTNET_CLI_TELEMETRY_OPTOUT=true
 # nuget
 export NUGET_PACKAGES="${XDG_CACHE_HOME:-$HOME/.cache}/NuGetPackages"
 # npm
@@ -130,8 +131,7 @@ export HISTCONTROL=ignoredups:erasedups
 
 # adiciona diretórios bin e scripts ao path
 export PATH="$GOPATH/bin:$PATH"
-export PATH="/usr/lib/jvm/java-11-openjdk/bin:$PATH"
-export PATH="$PATH:${XDG_DATA_HOME:-$HOME/.local/share}/dotnet"
+# export PATH="$PATH:${XDG_DATA_HOME:-$HOME/.local/share}/dotnet"
 export PATH="$PATH:$HOME/.dotnet/tools"
 export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/omnisharp:$PATH"
 export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/netcoredbg:$PATH"

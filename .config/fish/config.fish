@@ -179,8 +179,22 @@ if status is-interactive
     abbr -a -g dmi doas make install
     abbr -a -g dmu doas make uninstall
     abbr -a -g dnr dotnet run
+    abbr -a -g dnrp dotnet run --project
     abbr -a -g dnn dotnet new
+    abbr -a -g dnb dotnet build
+    abbr -a -g dnbp dotnet build --project
     abbr -a -g dnp dotnet publish
+    abbr -a -g dnap dotnet add package
+    abbr -a -g dnar dotnet add reference
+    abbr -a -g dnw dotnet watch
+    abbr -a -g dnwp dotnet watch --project
+    abbr -a -g dti dotnet tool install -g
+    abbr -a -g dtu dotnet tool uninstall -g
+    abbr -a -g dts dotnet tool search
+    abbr -a -g dtl dotnet tool list -g
+    abbr -a -g dnsa dotnet sln add
+    abbr -a -g dnsl dotnet sln list
+    abbr -a -g dnsr dotnet sln remove
     abbr -a -g nit npm init -y
     abbr -a -g ni npm install
     abbr -a -g nii npm info
