@@ -43,22 +43,6 @@ function Update_cwd()
 		vim.env.GIT_DIR = nil
 		vim.env.GIT_WORK_TREE = nil
 	end
-
-	local group = va.nvim_create_augroup("stylua", {})
-
-	if vim.fn.getcwd() == HOME then
-		va.nvim_create_autocmd("BufWritePost", {
-			group = group,
-			pattern = "*.lua",
-			command = "!stylua --config-path $HOME/.config/nvim/stylua.toml %",
-		})
-	else
-		va.nvim_create_autocmd("BufWritePost", {
-			group = group,
-			pattern = "*.lua",
-			command = "!stylua --config-path $(fd -t f -d 4 --max-results 1 stylua.toml .) %",
-		})
-	end
 end
 
 --- alterna aba do netrw

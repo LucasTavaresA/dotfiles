@@ -88,7 +88,6 @@ return {
 			{
 				"jose-elias-alvarez/null-ls.nvim",
 				config = function()
-					local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 					local null_ls = require("null-ls")
 					null_ls.setup({
 						sources = {
@@ -122,24 +121,11 @@ return {
 							null_ls.builtins.hover.printenv,
 							-- csharp
 							null_ls.builtins.formatting.csharpier,
+							-- lua
+							null_ls.builtins.formatting.stylua,
 							-- escrita
 							null_ls.builtins.diagnostics.write_good,
 						},
-						on_attach = function(client, bufnr)
-							if client.supports_method("textDocument/formatting") then
-								vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-								vim.api.nvim_create_autocmd("BufWritePre", {
-									group = augroup,
-									buffer = bufnr,
-									callback = function()
-										local ft = vim.bo.ft
-										if ft ~= "c" and ft ~= "cpp" then
-											vim.lsp.buf.format({ bufnr = bufnr, async = false })
-										end
-									end,
-								})
-							end
-						end,
 					})
 				end,
 			},
@@ -285,13 +271,13 @@ return {
 				-- https://github.com/OmniSharp/omnisharp-roslyn/issues/2483#issuecomment-1492605642
 				on_attach = function(client, bufnr)
 					local tokenModifiers =
-						client.server_capabilities.semanticTokensProvider.legend.tokenModifiers
+							client.server_capabilities.semanticTokensProvider.legend.tokenModifiers
 					for i, v in ipairs(tokenModifiers) do
 						local tmp = string.gsub(v, " ", "_")
 						tokenModifiers[i] = string.gsub(tmp, "-_", "")
 					end
 					local tokenTypes =
-						client.server_capabilities.semanticTokensProvider.legend.tokenTypes
+							client.server_capabilities.semanticTokensProvider.legend.tokenTypes
 					for i, v in ipairs(tokenTypes) do
 						local tmp = string.gsub(v, " ", "_")
 						tokenTypes[i] = string.gsub(tmp, "-_", "")
@@ -302,15 +288,12 @@ return {
 				cmd = {
 					os.getenv("XDG_DATA_HOME") .. "/omnisharp/OmniSharp",
 				},
-
 				handlers = {
 					["textDocument/definition"] = require("omnisharp_extended").handler,
 				},
-
 				-- Enables support for reading code style, naming convention and analyzer
 				-- settings from .editorconfig.
 				enable_editorconfig_support = true,
-
 				-- If true, MSBuild project system will only load projects for files that
 				-- were opened in the editor. This setting is useful for big C# codebases
 				-- and allows for faster initialization of code navigation features only
@@ -319,14 +302,11 @@ return {
 				-- incomplete reference lists for symbols.
 				-- REALLY SLOW
 				enable_ms_build_load_projects_on_demand = false,
-
 				-- Enables support for roslyn analyzers, code fixes and rulesets.
 				enable_roslyn_analyzers = true,
-
 				-- Specifies whether 'using' directives should be grouped and sorted during
 				-- document formatting.
 				organize_imports_on_format = false,
-
 				-- Enables support for showing unimported types and unimported extension
 				-- methods in completion lists. When committed, the appropriate using
 				-- directive will be added at the top of the current file. This option can
@@ -334,11 +314,9 @@ return {
 				-- particularly for the first few completion sessions after opening a
 				-- solution.
 				enable_import_completion = true,
-
 				-- Specifies whether to include preview versions of the .NET SDK when
 				-- determining which version to use for project loading.
 				sdk_include_prereleases = true,
-
 				-- Only run analyzers against open files when 'enableRoslynAnalyzers' is
 				-- true
 				analyze_open_documents_only = true,
