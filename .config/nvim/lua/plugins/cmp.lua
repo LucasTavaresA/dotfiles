@@ -10,6 +10,7 @@ return {
 			},
 			"dcampos/cmp-snippy",
 			"hrsh7th/cmp-buffer",
+			"JMarkin/cmp-diag-codes",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-nvim-lsp",
@@ -125,10 +126,14 @@ return {
 					end, { "i", "s" }),
 				}),
 				sources = cmp.config.sources({
+					{
+						name = "diag-codes",
+						option = { in_comment = true }
+					},
 					{ name = "path" },
 					{ name = "env", ft = { "fish", "zsh", "sh", "bash" } },
 					{ name = "fish", ft = "fish" },
-					{ name = "plugins" },
+					{ name = "plugins", ft = "lua" },
 					{ name = "nvim_lua", ft = "lua" },
 					{ name = "git" },
 					{ name = "conventionalcommits", ft = "gitcommit" },
