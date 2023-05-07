@@ -63,15 +63,18 @@ hck Mod4-Alt-f chain , attr clients.focus.ewmhrequests off , attr clients.focus.
 hck Mod4-w and . attr clients.focus.fullscreen off . attr clients.focus.floating toggle
 hck Mod4-Tab cycle 1
 hck Mod4-Alt-period cycle 1
+## troca entre frames pulando janelas invisíveis
+hck Mod4-Escape cycle_all --skip-invisible 1
+hck Mod4-Alt-comma cycle_all --skip-invisible 1
 ## troca entre layouts pulando layouts que não mudam janelas de posição
-hck Mod4-Escape or , and . compare tags.focus.curframe_wcount = 2 . cycle_layout +1 vertical horizontal max vertical grid , cycle_layout +1
-hck Mod4-Alt-comma or , and . compare tags.focus.curframe_wcount = 2 . cycle_layout +1 vertical horizontal max vertical grid , cycle_layout +1
+# hck Mod4-Escape or , and . compare tags.focus.curframe_wcount = 2 . cycle_layout +1 vertical horizontal max vertical grid , cycle_layout +1
+# hck Mod4-Alt-comma or , and . compare tags.focus.curframe_wcount = 2 . cycle_layout +1 vertical horizontal max vertical grid , cycle_layout +1
 ## direcionais
 ## troca foco de janela e tag
 hck Mod4-Up focus up
 hck Mod4-Down focus down
-hck Mod4-Left or . focus left . use_index -1
-hck Mod4-Right or . focus right . use_index +1
+hck Mod4-Left focus left
+hck Mod4-Right focus right
 # troca posição da janela
 hck Mod4-Shift-Up shift up
 hck Mod4-Shift-Down shift down
@@ -94,8 +97,8 @@ hck Mod4-Ctrl-Shift-Right resize right +0.05
 ## troca foco de janela e tag
 hck Mod4-k focus up
 hck Mod4-j focus down
-hck Mod4-h or . focus left . use_index -1
-hck Mod4-l or . focus right . use_index +1
+hck Mod4-h focus left
+hck Mod4-l focus right
 ## troca posição da janela
 hck Mod4-Shift-k shift up
 hck Mod4-Shift-j shift down
