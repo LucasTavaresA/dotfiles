@@ -140,6 +140,7 @@ gsl () {
 }
 
 #### Aliases ####
+alias code="code-oss"
 alias cd="z"
 alias cage="cage -s --"
 alias sg="sgrade"

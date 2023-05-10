@@ -140,6 +140,7 @@ if status is-interactive
     end
 
     ## Abbr ##
+    abbr -a -g code code-oss
     abbr -a -g cd z
     abbr -a -g cage cage -s --
     abbr -a -g sg sgrade

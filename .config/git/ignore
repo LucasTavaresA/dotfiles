@@ -57,6 +57,8 @@
 .nuget/
 .pki/
 .ssh/
+.vscode-oss/
+.config/Code - OSS/
 .templateengine/
 code/void-packages
 code/web

@@ -194,6 +194,7 @@ unzip
 void-repo-multilib
 void-repo-multilib-nonfree
 void-repo-nonfree
+vscode
 vulkan-loader
 w3m
 wget
