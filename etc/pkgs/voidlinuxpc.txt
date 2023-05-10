@@ -45,6 +45,7 @@ ffmpegthumbnailer
 firefox
 fish-shell
 flake8
+flatpak
 font-fira-otf
 font-fira-ttf
 font-firacode

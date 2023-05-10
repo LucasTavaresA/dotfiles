@@ -49,6 +49,7 @@
 .config/gtkfilechooser.ini
 .config/QtProject.conf
 .config/pmbootstrap.cfg
+.config/xnp21kai/
 .gnupg/
 .dbus/
 .dotnet/
@@ -57,6 +58,7 @@
 .nuget/
 .pki/
 .ssh/
+.var/
 .vscode-oss/
 .config/Code - OSS/
 .templateengine/
