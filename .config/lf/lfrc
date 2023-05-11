@@ -6,9 +6,9 @@ set period 1
 # novas linhas
 set ifs "\n"
 # icones
-set icons on
+set icons true
 # arquivos ocultos
-set hidden on
+set hidden true
 # informação mostrada do lado do arquivo
 set info "size"
 # previa de arquivos
@@ -19,11 +19,11 @@ set cleaner ctpvclear
 # fração das abas
 set ratios 1:2
 # da a volta nos items
-set wrapscroll on
+set wrapscroll true
 # informação no topo das abas
 set promptfmt "\033[32;1m\033[0m\033[34;1m%d\033[0m\033[1m%f\033[0m"
 # borda ao redor das abas
-set drawbox on
+set drawbox true
 # abre espaço na parte superior e inferior da tela
 set scrolloff 0
 
