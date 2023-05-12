@@ -256,7 +256,7 @@ if status is-interactive
     abbr -a -g gr git restore
     abbr -a -g gra git rebase --abort
     abbr -a -g grc git rebase --continue
-    abbr -a -g gri git rebase -i
+    abbr -a -g gri git rebase -i --autostash
     abbr -a -g grp git restore -p
     abbr -a -g grrh git reset --hard
     abbr -a -g grrs git reset --soft
