@@ -33,7 +33,7 @@ return {
 				"onsails/lspkind.nvim",
 				config = function()
 					require("cmp").setup({
-						experimental = { ghost_text = true },
+						experimental = { ghost_text = { hl_group = 'Comment' } },
 						window = {
 							completion = {
 								winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
