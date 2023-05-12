@@ -44,16 +44,6 @@ return {
 			},
 		},
 		config = function()
-			require("nvim-treesitter").define_modules({
-				fold = {
-					attach = function()
-						vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
-						vim.opt_local.foldmethod = "expr"
-						vim.cmd.normal("zx") -- recompute folds
-					end,
-					detach = function() end,
-				},
-			})
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = {
 					"c",
@@ -126,7 +116,7 @@ return {
 					enable = true, -- Indentação
 				},
 				fold = {
-					enable = true,
+					enable = false,
 					disable = { "rst", "make" },
 				},
 				context_commentstring = { enable = true },

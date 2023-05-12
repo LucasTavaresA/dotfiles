@@ -127,9 +127,9 @@ vo.numberwidth = 3
 vo.relativenumber = true
 
 --- Folding
-vg.sh_fold_enabled = 1
+vg.sh_fold_enabled = 0
 -- vo.foldmethod = "syntax"
-vo.foldcolumn = "1"
+vo.foldcolumn = "0"
 vo.foldlevel = 0
 vo.foldnestmax = 3
 vim.o.foldopen = "block,insert,jump,mark,percent,quickfix,search,tag,undo"
