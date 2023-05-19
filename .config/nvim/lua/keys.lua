@@ -16,9 +16,8 @@ function Keymaps(maps)
 end
 
 Keymaps({
-	-- sobe/desce uma tela
-	{ nvi, "<C-j>", "<C-d>" },
-	{ nvi, "<C-k>", "<C-u>" },
+	-- join lines
+	{ nvi, "<C-j>", [[:s/\n\s*/ /<cr>]] },
 	-- colar na linha de baixo
 	{ nv, "P", "<cmd>norm o<cr>p" },
 	-- trocar de split
