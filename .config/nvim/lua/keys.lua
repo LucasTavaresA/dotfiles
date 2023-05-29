@@ -17,7 +17,7 @@ end
 
 Keymaps({
 	-- join lines
-	{ nvi, "<C-j>", [[:s/\n\s*/ /<cr>]] },
+	{ nvi, "<C-j>", JoinLines },
 	-- colar na linha de baixo
 	{ nv, "P", "<cmd>norm o<cr>p" },
 	-- trocar de split

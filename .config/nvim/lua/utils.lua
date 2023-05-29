@@ -198,3 +198,27 @@ function SearchCount()
 		math.min(result.total, result.maxcount)
 	)
 end
+
+-- joins lines while removing comments
+function JoinLines()
+	local mode = vim.api.nvim_get_mode()
+	local comment = require("SingleComment").GetComment()
+	local space = " "
+	local cmd = ":"
+
+	if mode == "v" or mode == "V" or mode == "CTRL-V" then
+		space = ""
+	elseif mode == "i" then
+		space = ""
+		-- insert mode can't use ´:´ and visual modes can't use ´<cmd>´
+		cmd = [[<cmd>]]
+	end
+
+	if comment[1] == "" then
+		-- prevent failure on \%[]
+		comment[1] = " "
+	end
+
+	local input = vim.api.nvim_replace_termcodes(cmd .. [[s/\n\s*\%[]] .. comment[1] .. [[]\s*/]] .. space .. [[/<cr><end>]], true, false, true)
+	vim.api.nvim_feedkeys(input, "n", false)
+end
