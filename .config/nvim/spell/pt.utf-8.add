@@ -201,3 +201,10 @@ gruvbox
 flake8
 shellscript
 stdin
+paren
+parens
+structs
+struct
+variadic
+args
+arg

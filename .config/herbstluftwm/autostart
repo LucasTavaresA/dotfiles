@@ -190,6 +190,7 @@ hc rule class="Emacs" tag=2 switchtag=on
 hc rule class="nvim" tag=2 switchtag=on
 hc rule class="st-256color" tag=2 switchtag=on
 hc rule class="St" tag=2 switchtag=on
+hc rule class="Code - OSS" tag=2 switchtag=on
 hc rule class="alacritty" tag=2 switchtag=on
 hc rule class="mpv" tag=3 switchtag=on
 hc rule class="Gimp" tag=3 switchtag=on
