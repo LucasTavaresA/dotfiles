@@ -182,6 +182,8 @@ Autocmd({
 	},
 	{ "FileType", { "help" }, "setlocal nolist nocursorline colorcolumn=0" },
 	{ "FileType", { "cs" }, "setlocal tabstop=4 shiftwidth=4 expandtab" },
+	{ "FileType", { "nelua" }, "setlocal tabstop=2 shiftwidth=2 expandtab" },
+	{ "FileType", { "lua" }, "setlocal tabstop=2 shiftwidth=2 expandtab" },
 
 	-- TextYankPost
 	-- indica texto copiado

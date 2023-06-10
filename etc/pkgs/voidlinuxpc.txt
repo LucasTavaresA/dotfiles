@@ -81,6 +81,7 @@ htop
 hunspell
 hunspell-en_US
 hunspell-pt_BR
+hyperfine
 intel-ucode
 intel-video-accel
 jq
@@ -140,6 +141,7 @@ pipewire
 pkg-config
 playerctl
 plocate
+podman
 polkit
 polkit-qt5
 polybar

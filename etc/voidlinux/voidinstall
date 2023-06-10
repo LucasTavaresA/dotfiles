@@ -93,7 +93,7 @@ go install github.com/tenox7/stc@latest
 npm i -g cssmodules-language-server @tailwindcss/language-server typescript \
 	typescript-language-server vscode-langservers-extracted \
 	fixjson bash-language-server vscode-css-languageserver-bin \
-	neovim write-good quick-lint-js
+	neovim write-good quick-lint-js stylelint
 npm i -g --save-exact prettier
 
 pipx install keepmenu scdl spotdl jedi-language-server

@@ -91,6 +91,7 @@ return {
 					local null_ls = require("null-ls")
 					null_ls.setup({
 						sources = {
+							null_ls.builtins.diagnostics.nelua,
 							-- c
 							null_ls.builtins.diagnostics.clang_check,
 							null_ls.builtins.formatting.clang_format.with({
@@ -194,7 +195,7 @@ return {
 			vim.diagnostic.config({
 				virtual_text = false,
 				signs = true,
-				underline = false,
+				underline = true,
 				update_in_insert = false,
 				severity_sort = true,
 			})
@@ -264,6 +265,18 @@ return {
 
 			-- npm i -g bash-language-server
 			require("lspconfig").bashls.setup({
+				on_attach = On_attach,
+				capabilities = capabilities,
+			})
+
+			require("lspconfig").nelua_lsp.setup({
+				cmd = {
+					"nelua",
+					"-L",
+					"/usr/lib/nelua-lsp/",
+					"--script",
+					"/usr/lib/nelua-lsp/nelua-lsp.lua",
+				},
 				on_attach = On_attach,
 				capabilities = capabilities,
 			})

@@ -201,7 +201,7 @@ end
 
 -- joins lines while removing comments
 function JoinLines()
-	local mode = vim.api.nvim_get_mode()
+	local mode = vim.api.nvim_get_mode()["mode"]
 	local comment = require("SingleComment").GetComment()
 	local space = " "
 	local cmd = ":"
@@ -211,7 +211,7 @@ function JoinLines()
 	elseif mode == "i" then
 		space = ""
 		-- insert mode can't use ´:´ and visual modes can't use ´<cmd>´
-		cmd = [[<cmd>]]
+		cmd = "<cmd>"
 	end
 
 	if comment[1] == "" then
