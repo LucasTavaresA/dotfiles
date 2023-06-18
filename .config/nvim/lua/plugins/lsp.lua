@@ -4,6 +4,7 @@ return {
 		lazy = false,
 		dependencies = {
 			"folke/neodev.nvim",
+			"jose-elias-alvarez/typescript.nvim",
 			"ibhagwan/fzf-lua",
 			{
 				"glepnir/lspsaga.nvim",
@@ -91,6 +92,9 @@ return {
 					local null_ls = require("null-ls")
 					null_ls.setup({
 						sources = {
+							-- typescript
+							require("typescript.extensions.null-ls.code-actions"),
+							-- nelua
 							null_ls.builtins.diagnostics.nelua,
 							-- c
 							null_ls.builtins.diagnostics.clang_check,
@@ -238,9 +242,22 @@ return {
 			})
 
 			-- npm i -g typescript typescript-language-server
-			require("lspconfig").tsserver.setup({
-				on_attach = On_attach,
-				capabilities = capabilities,
+			-- require("lspconfig").tsserver.setup({
+			-- 	on_attach = On_attach,
+			-- 	capabilities = capabilities,
+			-- })
+			require("typescript").setup({
+				disable_commands = false, -- prevent the plugin from creating Vim commands
+				debug = false, -- enable debug logging for commands
+				go_to_source_definition = {
+					-- fall back to standard LSP definition on failure
+					fallback = true,
+				},
+				-- pass options to lspconfig's setup method
+				server = {
+					on_attach = On_attach,
+					capabilities = capabilities,
+				},
 			})
 
 			-- npm i -g quick-lint-js

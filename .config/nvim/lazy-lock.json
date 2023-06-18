@@ -75,6 +75,7 @@
   "statuscol.nvim": { "branch": "main", "commit": "98d335ca2c0781ad0d06189441cf7d9e4b0cf073" },
   "translate.nvim": { "branch": "main", "commit": "35b71090a398eaca4d7cd2478f6a09d0fa3130bd" },
   "ts-node-action": { "branch": "master", "commit": "266bbe493f1285107341dd27875875ec1d80553d" },
+  "typescript.nvim": { "branch": "main", "commit": "5b3680e5c386e8778c081173ea0c978c14a40ccb" },
   "undotree": { "branch": "main", "commit": "2685ce282702ab0b79c65916f352db2265b245dd" },
   "vim-gnupg": { "branch": "main", "commit": "f9b608f29003dfde6450931dc0f495a912973a88" },
   "vim-snippets": { "branch": "master", "commit": "76e35f37aa9e47a8b7f2909de222844ae38c7007" }
