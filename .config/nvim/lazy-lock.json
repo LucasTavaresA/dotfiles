@@ -27,6 +27,7 @@
   "glow.nvim": { "branch": "main", "commit": "bbd0473d72a45094495ee5600b5577823543eefe" },
   "gruvbox.nvim": { "branch": "main", "commit": "df149bccb19a02c5c2b9fa6ec0716f0c0487feb0" },
   "hex.nvim": { "branch": "master", "commit": "d47b87d49b870e2170e992fa6301fc08c9590388" },
+  "highlight-undo.nvim": { "branch": "main", "commit": "7c87a7803d347c1311a12401c6958d27d3739708" },
   "hlargs.nvim": { "branch": "main", "commit": "bd16884ef4dd3553550313d767505a0f44a3a852" },
   "karen-yank.nvim": { "branch": "main", "commit": "19173ebc9542f42ad419f1c96d74c4e4feb1c094" },
   "lazy.nvim": { "branch": "main", "commit": "10d4371745f88837c78c8daab00c5be6e48abea4" },
