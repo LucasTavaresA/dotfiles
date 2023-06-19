@@ -409,13 +409,13 @@ return {
 				ft_ignore = { "netrw" }, -- lua table with filetypes for which 'statuscolumn' will be unset
 				bt_ignore = nil, -- lua table with 'buftype' values for which 'statuscolumn' will be unset
 				segments = {
+					{ text = { "%s" }, click = "v:lua.ScSa" },
 					{
-						text = { builtin.lnumfunc, " " },
+						text = { builtin.lnumfunc },
 						condition = { true, builtin.not_empty },
 						click = "v:lua.ScLa",
 					},
-					{ text = { "%s" }, click = "v:lua.ScSa" },
-					{ text = { "🮇" }, hl = "Normal" },
+					{ text = { "🮇" } },
 				},
 			})
 		end,
@@ -446,13 +446,18 @@ return {
 	},
 	-- tema
 	{
-		"ellisonleao/gruvbox.nvim",
+		"folke/tokyonight.nvim",
 		lazy = false,
-		config = function()
-			require("gruvbox").setup({
-				transparent_mode = true,
-			})
-		end,
+		priority = 1000,
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			style = "night", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+			transparent = true, -- Enable this to disable setting the background color
+			sidebars = { "qf", "help", "netrw" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
+			hide_inactive_statusline = false, -- Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine** and **LuaLine**.
+			dim_inactive = false, -- dims inactive windows
+		},
 	},
 	-- indica modo atual no cursor
 	{

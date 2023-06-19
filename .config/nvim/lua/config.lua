@@ -83,14 +83,9 @@ vo.background = "dark"
 -- melhora suporte de cores
 vo.termguicolors = true
 -- tema
-pcall(vim.cmd.colorscheme, "gruvbox")
--- listchars
-vansh(0, "Whitespace", { fg = "#222222" })
--- causa muita lentidão - previamente ativado pelo gruvbox.nvim
+pcall(vim.cmd.colorscheme, "tokyonight-night")
+-- causa muita lentidão - comumente ativado por temas
 vansh(0, "NormalNC", {})
--- erros de escrita/sintaxe
-vansh(0, "SpellBad", { underline = true, special = "#ff0000" })
-vansh(0, "LineNr", { fg = "#ffffff" })
 
 --- Tabs/Espaços
 -- indicação de espaços e tabs

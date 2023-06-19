@@ -6,7 +6,7 @@ return {
 
 		-- gruvbox
 		local theme = {
-			bg = "#000000",
+			bg = "#16161e",
 			fg = "#ffffff",
 			red = "#ff0000",
 			lightgreen = "#00ff00",
