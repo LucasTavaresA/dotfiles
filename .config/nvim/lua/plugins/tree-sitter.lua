@@ -313,22 +313,12 @@ return {
 		end,
 	},
 	{
-		"andrewferrier/debugprint.nvim",
-		dependencies = "nvim-treesitter/nvim-treesitter",
-		keys = {
-			"g?V",
-			{ "<C-s-p>", vim.cmd.DeleteDebugPrints },
-		},
-		config = true,
-	},
-	{
 		"lucastavaresa/SingleComment.nvim",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 			"JoosepAlviste/nvim-ts-context-commentstring",
 		},
 		init = function()
-			vim.g.SC_ts_context = true
 			vim.keymap.set(
 				"n",
 				"gcc",
@@ -345,11 +335,5 @@ return {
 			vim.keymap.set("n", "gcA", require("SingleComment").CommentAhead, {})
 			vim.keymap.set({ "n", "v" }, "gcb", require("SingleComment").BlockComment)
 		end,
-	},
-	{
-		"yaocccc/nvim-hl-mdcodeblock.lua",
-		ft = "markdown",
-		dependencies = "nvim-treesitter/nvim-treesitter",
-		opts = { hl_group = "CursorLine" },
 	},
 }

@@ -18,7 +18,10 @@ return {
 			"davidsierradz/cmp-conventionalcommits",
 			"mtoohey31/cmp-fish",
 			"bydlw98/cmp-env",
-			"amarakon/nvim-cmp-fonts",
+			{
+				"amarakon/nvim-cmp-fonts",
+				ft = { "conf", "config", "css", "yml", "toml", "dosini" },
+			},
 			"f3fora/cmp-spell",
 			{ "petertriho/cmp-git", dependencies = "nvim-lua/plenary.nvim" },
 			{
@@ -127,7 +130,7 @@ return {
 				sources = cmp.config.sources({
 					{
 						name = "diag-codes",
-						option = { in_comment = true }
+						option = { in_comment = true },
 					},
 					{ name = "path" },
 					{ name = "env", ft = { "fish", "zsh", "sh", "bash" } },

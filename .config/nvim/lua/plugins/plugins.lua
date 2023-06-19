@@ -5,23 +5,6 @@ return {
 		"jamessan/vim-gnupg",
 		lazy = false,
 	},
-	-- melhores macros
-	{
-		"chrisgrieser/nvim-recorder",
-		lazy = false,
-		config = function()
-			require("recorder").setup({
-				mapping = {
-					startStopRecording = "q",
-					playMacro = "Q",
-					switchSlot = "<C-q>",
-					editMacro = "cq",
-					yankMacro = "yq",
-					addBreakPoint = "##",
-				},
-			})
-		end,
-	},
 	-- cria commandos com previsão
 	{
 		"smjonas/live-command.nvim",
@@ -34,57 +17,6 @@ return {
 					G = { cmd = "g" },
 				},
 			})
-		end,
-	},
-	-- Popup enquanto cicla por buffers
-	{
-		"ghillb/cybu.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons", "nvim-lua/plenary.nvim" },
-		keys = {
-			{ "<c-s-tab>", "<plug>(CybuPrev)" },
-			{ "<c-tab>", "<plug>(CybuNext)" },
-		},
-		config = function()
-			require("cybu").setup({
-				style = {
-					border = "single", -- single, double, rounded, none
-					hide_buffer_id = true, -- hide buffer IDs in window
-				},
-				behavior = {
-					mode = {
-						default = {
-							switch = "immediate", -- immediate, on_close
-							view = "rolling", -- paging, rolling
-						},
-						last_used = {
-							switch = "immediate", -- immediate, on_close
-							view = "rolling", -- paging, rolling
-						},
-						auto = {
-							view = "rolling", -- paging, rolling
-						},
-					},
-					show_on_autocmd = true,
-				},
-				display_time = 600,
-			})
-		end,
-	},
-	-- interage com a openai
-	{
-		"aduros/ai.vim",
-		cmd = "AI",
-		keys = {
-			{ "<A-a>", ":AI ", noremap = true },
-			{ "<A-a>", ":AI ", mode = "v", noremap = true },
-			{ "<A-a>", "<Esc>:AI ", mode = "i", noremap = true },
-		},
-		init = function()
-			vim.g.ai_no_mappings = true
-			vim.env.OPENAI_API_KEY =
-				io.open(os.getenv("HOME") .. "/.gnupg/openai_key", "r")
-					:read("*all")
-					:sub(1, -2)
 		end,
 	},
 	-- previne copia ao colar/deletar
@@ -263,51 +195,20 @@ return {
 			"javascript",
 			"typescript",
 			"rust",
+			"lisp",
+			"fennel",
+			"lua",
+			"python",
+			"clojure",
+			"cl",
+			"scheme",
 		},
 		build = "bash ./install.sh",
-		config = function()
-			vim.keymap.set(
-				"n",
-				"<leader>e",
-				"<Plug>SnipRunOperator",
-				{ silent = true }
-			)
-			vim.keymap.set({ "v", "n" }, "<leader>ee", vim.cmd.SnipRun)
-		end,
-	},
-	-- avalia mais código
-	{
-		"Olical/conjure",
-		dependencies = "nvim-treesitter/nvim-treesitter",
-		ft = { "lisp", "fennel", "lua", "python", "clojure", "cl", "scheme" },
-		config = function()
-			vim.g["conjure#extract#tree_sitter#enabled"] = true
-			vim.g["conjure#mapping#log_jump_to_latest"] = false
-			vim.g["conjure#mapping#log_split"] = false
-			vim.g["conjure#mapping#log_vsplit"] = false
-			vim.g["conjure#mapping#log_tab"] = false
-			vim.g["conjure#mapping#log_buf"] = false
-			vim.g["conjure#mapping#log_toggle"] = false
-			vim.g["conjure#mapping#log_reset_soft"] = false
-			vim.g["conjure#mapping#log_reset_hard"] = false
-			vim.g["conjure#mapping#log_jump_to_latest"] = false
-			vim.g["conjure#mapping#log_close_visible"] = false
-			vim.g["conjure#mapping#eval_current_form"] = "ee"
-			vim.g["conjure#mapping#eval_comment_current_form"] = false
-			vim.g["conjure#mapping#eval_root_form"] = false
-			vim.g["conjure#mapping#eval_comment_root_form"] = false
-			vim.g["conjure#mapping#eval_word"] = false
-			vim.g["conjure#mapping#eval_comment_word"] = false
-			vim.g["conjure#mapping#eval_replace_form"] = false
-			vim.g["conjure#mapping#eval_marked_form"] = false
-			vim.g["conjure#mapping#eval_comment_form"] = false
-			vim.g["conjure#mapping#eval_file"] = false
-			vim.g["conjure#mapping#eval_buf"] = "eb"
-			vim.g["conjure#mapping#eval_visual"] = "e"
-			vim.g["conjure#mapping#eval_motion"] = "e"
-			vim.g["conjure#mapping#def_word"] = false
-			vim.g["conjure#mapping#doc_word"] = false
-		end,
+		opts = { display = { "Terminal" } },
+		keys = {
+			{ "<leader>ee", function() require("sniprun").run() end },
+			{ "<leader>ee", function() require("sniprun").run("v") end, mode = {"v"} },
+		},
 	},
 	-- fecha parenteses automaticamente
 	{
@@ -499,16 +400,10 @@ return {
 		},
 		config = true,
 	},
-	-- previsão de markdown
-	{
-		"ellisonleao/glow.nvim",
-		keys = { { "<leader>mp", vim.cmd.Glow } },
-		config = true,
-	},
 	-- edita blocos de código em um pop-up confiável
 	{
 		"AckslD/nvim-FeMaco.lua",
-		keys = { { "mf", vim.cmd.FeMaco } },
+		keys = { { "<leader>fm", vim.cmd.FeMaco } },
 		config = true,
 	},
 }
