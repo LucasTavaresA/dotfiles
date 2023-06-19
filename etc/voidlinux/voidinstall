@@ -125,3 +125,6 @@ cp etc/term_open.desktop "$home/.local/share/applications/"
 	cd code/c/fastfetch
 	./build.sh
 )
+
+mkdir -p "$home/.mozilla/firefox/myprofile/chrome/"
+cp etc/userChrome.css "$home/.mozilla/firefox/myprofile/chrome/"
