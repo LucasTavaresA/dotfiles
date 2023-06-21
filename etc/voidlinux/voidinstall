@@ -86,9 +86,9 @@ cp -r etc/xorg.conf.d/ /etc/X11/
 
 cargo install handlr-regex tree-sitter-cli
 
+go install github.com/nao1215/gup@latest
 go install github.com/mrtazz/checkmake/cmd/checkmake@latest
 go install github.com/nametake/golangci-lint-langserver@latest
-go install github.com/tenox7/stc@latest
 
 npm i -g cssmodules-language-server @tailwindcss/language-server typescript \
 	typescript-language-server vscode-langservers-extracted \

@@ -201,24 +201,35 @@ end
 
 -- joins lines while removing comments
 function JoinLines()
-	local mode = vim.api.nvim_get_mode()["mode"]
-	local comment = require("SingleComment").GetComment()
-	local space = " "
-	local cmd = ":"
+  local mode = vim.api.nvim_get_mode()["mode"]
+  local line = vim.api.nvim_get_current_line()
+  local comment = require("SingleComment").GetComment()
+  local space = " "
+  local cmd = ":"
 
-	if mode == "v" or mode == "V" or mode == "CTRL-V" then
-		space = ""
-	elseif mode == "i" then
-		space = ""
-		-- insert mode can't use ´:´ and visual modes can't use ´<cmd>´
-		cmd = "<cmd>"
-	end
+  -- don't delete comment if current line is not commented
+  if not line:find("^%s*" .. comment[1]) then
+    comment[1] = ""
+  end
 
-	if comment[1] == "" then
-		-- prevent failure on \%[]
-		comment[1] = " "
-	end
+  if mode == "v" or mode == "V" or mode == "CTRL-V" then
+    space = ""
+  elseif mode == "i" then
+    space = ""
+    -- insert mode can't use ´:´ and visual modes can't use ´<cmd>´
+    cmd = "<cmd>"
+  end
 
-	local input = vim.api.nvim_replace_termcodes(cmd .. [[s/\n\s*\%[]] .. comment[1] .. [[]\s*/]] .. space .. [[/<cr><end>]], true, false, true)
-	vim.api.nvim_feedkeys(input, "n", false)
+  if comment[1] == "" then
+    -- prevent error on \%[] with nothing inside
+    comment[1] = " "
+  end
+
+  local input = vim.api.nvim_replace_termcodes(
+    cmd .. [[s/\n\s*\%[]] .. comment[1] .. [[]\s*/]] .. space .. [[/<cr><end>]],
+    true,
+    false,
+    true
+  )
+  vim.api.nvim_feedkeys(input, "n", false)
 end

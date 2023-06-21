@@ -72,7 +72,6 @@ gtk2fontsel
 gtkspell3
 gucharmap
 guilt
-gup
 herbstluftwm
 hexchat
 hexchat-python3
@@ -201,6 +200,7 @@ void-repo-nonfree
 vscode
 vulkan-loader
 w3m
+wendy
 wget
 wiggle
 wireplumber

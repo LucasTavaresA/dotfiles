@@ -16,6 +16,8 @@ function Keymaps(maps)
 end
 
 Keymaps({
+	-- switch buffers
+	{ nvi, "<C-Tab>", vim.cmd.bn },
 	-- WHY THIS RETARDED BINDING EXISTS?
 	{ nvi, "<C-z>", "" },
 	-- join lines

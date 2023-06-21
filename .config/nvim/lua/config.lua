@@ -70,6 +70,7 @@ vo.formatoptions = "tcrqn1j"
 vo.wrap = false
 -- esconde marcação
 vo.conceallevel = 3
+vo.concealcursor = "n"
 -- marcação em 80 caracteres
 vo.colorcolumn = "+1"
 vo.fillchars:append({ diff = "╱" })
