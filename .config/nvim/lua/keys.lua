@@ -16,6 +16,8 @@ function Keymaps(maps)
 end
 
 Keymaps({
+	-- WHY THIS RETARDED BINDING EXISTS?
+	{ nvi, "<C-z>", "" },
 	-- join lines
 	{ nvi, "<C-j>", JoinLines },
 	-- colar na linha de baixo
