@@ -200,36 +200,38 @@ function SearchCount()
 end
 
 -- joins lines while removing comments
-function JoinLines()
+---@param separator string separator when joining lines
+function JoinLines(separator)
+  separator = separator or " "
+  local view = vim.fn.winsaveview()
   local mode = vim.api.nvim_get_mode()["mode"]
   local line = vim.api.nvim_get_current_line()
-  local comment = require("SingleComment").GetComment()
-  local space = " "
-  local cmd = ":"
+  local comment = require("SingleComment").GetComment()[1]
+  local cmd
+
+  -- insert mode can't use ´:´
+  if mode == "i" then
+    cmd = "<cmd>"
+  else
+    cmd = ":"
+  end
 
   -- don't delete comment if current line is not commented
-  if not line:find("^%s*" .. comment[1]) then
-    comment[1] = ""
+  if not line:find(vim.pesc(comment)) then
+    comment = ""
   end
 
-  if mode == "v" or mode == "V" or mode == "CTRL-V" then
-    space = ""
-  elseif mode == "i" then
-    space = ""
-    -- insert mode can't use ´:´ and visual modes can't use ´<cmd>´
-    cmd = "<cmd>"
-  end
-
-  if comment[1] == "" then
+  if comment == "" then
     -- prevent error on \%[] with nothing inside
-    comment[1] = " "
+    comment = " "
   end
 
   local input = vim.api.nvim_replace_termcodes(
-    cmd .. [[s/\n\s*\%[]] .. comment[1] .. [[]\s*/]] .. space .. [[/<cr><end>]],
+    cmd .. [[s/\n\s*\%[]] .. comment .. [[]\s*/]] .. separator .. [[/<cr><end><esc>==]],
     true,
     false,
     true
   )
   vim.api.nvim_feedkeys(input, "n", false)
+  vim.fn.winrestview(view)
 end

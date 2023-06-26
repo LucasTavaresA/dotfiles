@@ -3,6 +3,7 @@ local vg = vim.g
 local nv = { "n", "v" }
 local nvi = { "n", "v", "i" }
 local vi = { "v", "i" }
+local ni = { "n", "i" }
 vg.mapleader = " "
 vg.maplocalleader = " "
 
@@ -21,7 +22,8 @@ Keymaps({
 	-- WHY THIS RETARDED BINDING EXISTS?
 	{ nvi, "<C-z>", "" },
 	-- join lines
-	{ nvi, "<C-j>", JoinLines },
+	{ ni, "<C-j>", function() JoinLines(" ") end },
+	{ "v", "<C-j>", function() JoinLines("") end },
 	-- colar na linha de baixo
 	{ nv, "P", "<cmd>norm o<cr>p" },
 	-- trocar de split
