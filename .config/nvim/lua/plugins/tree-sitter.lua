@@ -189,6 +189,14 @@ return {
 					enable = true,
 				},
 			})
+
+			require "nvim-treesitter.parsers".get_parser_configs().nelua = {
+				install_info = {
+					url = "~/code/nelua/tree-sitter-nelua",
+					files = { "src/parser.c", "src/scanner.cc" },
+					branch = "🧬", -- default branch in case of git repo if different from master
+				},
+			}
 		end,
 	},
 	{
