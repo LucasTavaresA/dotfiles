@@ -299,6 +299,9 @@ return {
 			-- })
 
 			-- instale o omnisharp
+			local pid = vim.fn.getpid()
+			local omnisharp_bin = vim.fn.getenv('XDG_DATA_HOME') .. '/omnisharp/run'
+
 			require("lspconfig").omnisharp.setup({
 				-- TODO: Remove when omnisharp get his shit together
 				-- https://github.com/OmniSharp/omnisharp-roslyn/issues/2483#issuecomment-1492605642
@@ -318,9 +321,10 @@ return {
 					On_attach(client, bufnr)
 				end,
 				capabilities = capabilities,
-				cmd = {
-					os.getenv("XDG_DATA_HOME") .. "/omnisharp/OmniSharp",
-				},
+				-- stdio version
+				cmd = { omnisharp_bin, '--languageserver', '--hostPID', tostring(pid) },
+				-- http version
+				-- cmd = { os.getenv("XDG_DATA_HOME") .. "/omnisharp/OmniSharp",  },
 				handlers = {
 					["textDocument/definition"] = require("omnisharp_extended").handler,
 				},
