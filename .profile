@@ -155,6 +155,7 @@ export VISUAL="term_open -a nvim nvim"
 export LC_TIME="pt_BR.UTF-8"
 
 [ "$HOSTNAME" = "$OS"note ] && export LIBGL_ALWAYS_SOFTWARE=1
+[ "$HOSTNAME" = "$OS"pc ] && export LIBGL_ALWAYS_SOFTWARE=1
 
 running="$(ps cax)"
 is_running() {

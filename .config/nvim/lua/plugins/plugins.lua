@@ -165,13 +165,13 @@ return {
 			{
 				"<leader>c",
 				function()
-					require("simpleCommand").command()
+					require("simpleCommand").command(":split term://")
 				end,
 			},
 			{
 				"<leader>C",
 				function()
-					require("simpleCommand").command(":split term://")
+					require("simpleCommand").command()
 				end,
 			},
 		},

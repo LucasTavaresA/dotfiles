@@ -118,6 +118,7 @@ gsl() {
 }
 
 #### Aliases ####
+alias wget="wget --hsts-file=\"\$XDG_CACHE_HOME/wget-hsts\""
 alias code="code-oss"
 alias cd="z"
 alias cage="cage -s --"
