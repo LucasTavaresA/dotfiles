@@ -128,7 +128,7 @@ config.set('content.geolocation', False, 'https://www.google.com')
 config.set('content.register_protocol_handler', False, 'https://mail.google.com?extsrc=mailto&url=%25s')
 
 #### Ferramentas de pesquisa ####
-c.url.searchengines = {'DEFAULT': 'https://searx.be/search?q={}'
+c.url.searchengines = {'DEFAULT': 'https://baresearch.org/search?q={}'
                     ,  'g':    'https://www.google.com/search?q={}'
                     ,  'alm':  'https://anilist.co/search/manga?search={}&sort=SEARCH_MATCH'
                     ,  'al':   'https://anilist.co/search/anime?search={}&sort=SEARCH_MATCH'
@@ -249,8 +249,8 @@ c.downloads.location.directory = '~/Downloads'
 
 # pagina inicial e novas abas
 # quando usando comandos como :open -t e :open -w .
-c.url.default_page = 'https://searx.be/'
-c.url.start_pages = 'https://searx.be/'
+c.url.default_page = 'https://baresearch.org/'
+c.url.start_pages = 'https://baresearch.org/'
 
 #### CORES ####
 # pedir modo escuro aos sites que o suportam
@@ -507,7 +507,7 @@ config.set('content.javascript.enabled', True, '*://*.www.gnome-look.org/*')
 config.set('content.javascript.enabled', True, '*://*.www.gnu.org/*')
 config.set('content.javascript.enabled', True, '*://*.www.google.com.br/*')
 config.set('content.javascript.enabled', True, '*://*.www.google.com/*')
-config.set('content.javascript.enabled', True, '*://*.searx.be/*')
+config.set('content.javascript.enabled', True, '*://*.baresearch.org/*')
 config.set('content.javascript.enabled', True, '*://*.www.gov.br/*')
 config.set('content.javascript.enabled', True, '*://*.www.howtogeek.com/*')
 config.set('content.javascript.enabled', True, '*://*.www.ibm.com/*')
