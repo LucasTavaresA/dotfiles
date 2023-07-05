@@ -34,8 +34,6 @@ dejavu-fonts-ttf
 delta
 discord
 docx2txt
-dotnet6
-dotnet7
 dunst
 enchant
 exiftool
@@ -200,7 +198,6 @@ void-repo-nonfree
 vscode
 vulkan-loader
 w3m
-wendy
 wget
 wiggle
 wireplumber
