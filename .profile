@@ -187,12 +187,4 @@ fork &
 
 [ "$(tty)" != "/dev/tty1" ] && exec fish
 
-case "$(printf 'xorg\nsway\nfish\ndwl\ncagebreak' | fzf --disabled)" in
-	'xorg') exec sx sh "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc" ;;
-	'sway') exec sway ;;
-	'fish') exec fish ;;
-	'dwl') exec dwl -s "${XDG_CONFIG_HOME:-$HOME/.config}/dwl/dwlrc" ;;
-	'cagebreak') exec cagebreak ;;
-esac
-
-exec fish
+exec sx sh "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
