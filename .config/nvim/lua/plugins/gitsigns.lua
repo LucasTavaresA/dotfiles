@@ -50,5 +50,19 @@ return {
 				},
 			},
 		})
+
+		-- Remove fundo cinza e melhores cores - gitsigns
+		vim.api.nvim_set_hl(0, "GitSignsDeleteNr", {
+			fg = "#ff0000",
+			ctermfg = "Red",
+		})
+		vim.api.nvim_set_hl(0, "GitSignsChangeNr", {
+			fg = "#ffff00",
+			ctermfg = "yellow",
+		})
+		vim.api.nvim_set_hl(0, "GitSignsAddNr", {
+			fg = "#00aa00",
+			ctermfg = "green",
+		})
 	end,
 }
