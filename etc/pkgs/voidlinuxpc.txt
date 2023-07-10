@@ -181,6 +181,7 @@ teeworlds
 telegram-desktop
 terminus-font
 testdisk
+toot
 translate-shell
 transmission
 trash-cli

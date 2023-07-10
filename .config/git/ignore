@@ -33,6 +33,7 @@
 .config/qutebrowser/greasemonkey/
 .config/qutebrowser/bookmarks/
 .config/qutebrowser/autoconfig.yml
+.config/toot/
 .config/transmission/
 .config/transmission-daemon/
 .config/VirtualBox/

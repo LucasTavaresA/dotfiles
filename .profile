@@ -58,6 +58,8 @@ if [ "$WM" = "sway" ] || [ "$WM" = "dwl" ] || [ "$WM" = "cagebreak" ]; then
 	export _JAVA_AWT_WM_NONREPARENTING=1
 	export LIBSEAT_BACKEND=seatd
 	export ELM_DISPLAY=wl
+else
+	export XDG_SESSION_TYPE="x11"
 fi
 # onde procurar manpages
 export MANPATH="/usr/local/man:/usr/local/share/man:/usr/share/man:/usr/lib/jvm/default/man:/usr/lib/jvm/java-11-openjdk/man"
