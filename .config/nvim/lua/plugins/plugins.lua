@@ -1,5 +1,14 @@
 return {
 	--- Miscelânea
+	{
+		"Darazaki/indent-o-matic",
+    lazy = false,
+		opts = {
+			max_lines = 2048,
+			standard_widths = { 2, 4, 8 },
+			skip_multiline = true,
+		},
+	},
 	-- abre arquivos encriptados
 	{
 		"jamessan/vim-gnupg",
@@ -206,8 +215,19 @@ return {
 		build = "bash ./install.sh",
 		opts = { display = { "Terminal" } },
 		keys = {
-			{ "<leader>ee", function() require("sniprun").run() end },
-			{ "<leader>ee", function() require("sniprun").run("v") end, mode = {"v"} },
+			{
+				"<leader>ee",
+				function()
+					require("sniprun").run()
+				end,
+			},
+			{
+				"<leader>ee",
+				function()
+					require("sniprun").run("v")
+				end,
+				mode = { "v" },
+			},
 		},
 	},
 	-- fecha parenteses automaticamente
