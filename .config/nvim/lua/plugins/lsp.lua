@@ -300,23 +300,6 @@ return {
 
 			-- instale o omnisharp
 			require("lspconfig").omnisharp.setup({
-				-- TODO: Remove when omnisharp get his shit together
-				-- https://github.com/OmniSharp/omnisharp-roslyn/issues/2483#issuecomment-1492605642
-				on_attach = function(client, bufnr)
-					local tokenModifiers =
-							client.server_capabilities.semanticTokensProvider.legend.tokenModifiers
-					for i, v in ipairs(tokenModifiers) do
-						local tmp = string.gsub(v, " ", "_")
-						tokenModifiers[i] = string.gsub(tmp, "-_", "")
-					end
-					local tokenTypes =
-							client.server_capabilities.semanticTokensProvider.legend.tokenTypes
-					for i, v in ipairs(tokenTypes) do
-						local tmp = string.gsub(v, " ", "_")
-						tokenTypes[i] = string.gsub(tmp, "-_", "")
-					end
-					On_attach(client, bufnr)
-				end,
 				capabilities = capabilities,
 				cmd = { os.getenv("XDG_DATA_HOME") .. "/omnisharp/OmniSharp", },
 				handlers = {
