@@ -141,11 +141,35 @@ hc attr theme.active.color '#83a598'
 hc attr theme.normal.color '#282828'
 hc attr theme.urgent.color '#ff0000'
 hc attr theme.inner_color '#282828'
-hc attr theme.active.inner_color '#83a598'
-hc attr theme.active.outer_color '#83a598'
 hc attr theme.background_color '#282828'
 hc attr theme.inner_width 0
 hc attr theme.border_width 1
+hc attr theme.title_font 'monospace:pixelsize=0'
+hc attr theme.title_height 1
+
+hc set frame_border_active_color '#d65d0e'
+hc set frame_border_normal_color '#282828'
+hc set frame_bg_active_color '#282828'
+hc set frame_bg_normal_color '#282828'
+hc set auto_detect_panels false
+hc set tabbed_max 1
+hc set frame_border_width 1
+hc set show_frame_decorations nonempty
+hc set frame_bg_transparent 1
+hc set frame_transparent_width 0
+hc set frame_padding 0
+hc set frame_gap 0
+hc set smart_frame_surroundings 1
+hc set smart_window_surroundings 0
+hc set window_gap 0
+hc set window_border_width 0
+hc set focus_follows_mouse 0
+hc set raise_on_focus 1
+hc set mouse_recenter_gap 0
+hc set swap_monitors_to_get_tag 1
+hc set tree_style '╾│ ├└╼─┐'
+hc set snap_gap 0
+
 hc attr theme.floating.border_width 4
 hc attr theme.floating.inner_width 3
 hc attr theme.floating.outer_width 1
@@ -154,27 +178,6 @@ hc attr theme.floating.inner_color '#282828'
 hc attr theme.floating.active.inner_color '#d65d0e'
 hc attr theme.floating.active.outer_color '#282828'
 
-hc set frame_border_active_color '#d65d0e'
-hc set frame_border_normal_color '#282828'
-hc set frame_bg_active_color '#282828'
-hc set frame_bg_normal_color '#282828'
-hc set auto_detect_panels false
-hc set tabbed_max 1
-hc set always_show_frame 0
-hc set frame_border_width 1
-hc set frame_bg_transparent 1
-hc set frame_transparent_width 0
-hc set frame_padding 0
-hc set frame_gap 0
-hc set smart_frame_surroundings 1
-hc set smart_window_surroundings 1
-hc set window_gap 0
-hc set focus_follows_mouse 0
-hc set raise_on_focus 1
-hc set mouse_recenter_gap 0
-hc set swap_monitors_to_get_tag 1
-hc set tree_style '╾│ ├└╼─┐'
-hc set snap_gap 0
 
 # regras
 hc unrule -F
