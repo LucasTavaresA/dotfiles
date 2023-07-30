@@ -404,6 +404,8 @@ return {
 	-- indica modo atual no cursor
 	{
 		"doums/monark.nvim",
+		-- FIXME: i suppose this dumbass uses nightly? there is no vim.uv its vim.loop
+		commit = 'edeb80a258f8bfeeef84ad1e2d6fa7989206d0d1',
 		lazy = false,
 		config = function()
 			require("monark").setup({

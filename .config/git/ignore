@@ -10,6 +10,7 @@
 .config/dconf/
 .config/Debauchee/
 .config/discord/
+.config/discordo/
 .config/fish/completions/
 .config/fish/conf.d/
 .config/fish/functions/

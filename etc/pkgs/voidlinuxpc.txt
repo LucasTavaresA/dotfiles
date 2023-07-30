@@ -85,9 +85,11 @@ jq
 keepassxc
 kvantum
 lf
+libllvm12
 libnotify
 libreoffice
 libva-intel-driver-32bit
+llvm12
 lsd
 lua
 lua-language-server
@@ -225,5 +227,7 @@ zathura
 zathura-cb
 zathura-djvu
 zathura-pdf-mupdf
+zig
 zip
+zls
 zoxide
