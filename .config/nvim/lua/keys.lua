@@ -31,7 +31,13 @@ Keymaps({
 	-- toggle netrw
 	{ nvi, "<A-f>", NetrwToggle },
 	-- formatar buffer
-	{ nv, "<leader>I", "gg=G<C-o>" },
+	{
+		nv,
+		"<leader>I",
+		function()
+			vim.lsp.buf.format({ async = true })
+		end
+	},
 	-- formatar paragrafo
 	{ nv, "<leader>ii", "{=}<C-o>" },
 	-- alinhar texto
