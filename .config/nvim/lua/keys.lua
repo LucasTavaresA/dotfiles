@@ -17,6 +17,12 @@ function Keymaps(maps)
 end
 
 Keymaps({
+	{
+		nvi,
+		"<C-h>",
+		vim.lsp.buf.signature_help,
+		{ noremap = true, silent = true },
+	},
 	-- switch buffers
 	{ nvi, "<C-Tab>", vim.cmd.bn },
 	-- WHY THIS RETARDED BINDING EXISTS?
@@ -36,7 +42,8 @@ Keymaps({
 		"<leader>I",
 		function()
 			vim.lsp.buf.format({ async = true })
-		end
+		end,
+		{ noremap = true, silent = true }
 	},
 	-- formatar paragrafo
 	{ nv, "<leader>ii", "{=}<C-o>" },
@@ -84,8 +91,8 @@ Keymaps({
 	{ nvi, "<M-cr>", TerminalToggle },
 	{ "t", "<M-cr>", TerminalToggle },
 	-- vai para diagnostico
-	{ "n", "[d", vim.diagnostic.goto_prev },
-	{ "n", "]d", vim.diagnostic.goto_next },
+	-- { "n", "[d", vim.diagnostic.goto_prev },
+	-- { "n", "]d", vim.diagnostic.goto_next },
 	-- abre snippets
 	{ "n", "<leader>S", ":e ~/.config/nvim/snippets/" },
 	-- move linhas

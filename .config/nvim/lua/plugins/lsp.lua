@@ -30,7 +30,7 @@ return {
 					local vks = vim.keymap.set
 
 					-- LSP finder - Find current symbol's references
-					vks("n", "gr", "<cmd>Lspsaga lsp_finder<CR>")
+					vks("n", "gr", "<cmd>Lspsaga finder ref+tyd+imp+def<CR>")
 
 					-- Code action
 					vks({ "n", "v" }, "ga", "<cmd>Lspsaga code_action<CR>")
@@ -40,16 +40,14 @@ return {
 					-- Rename all occurrences of the hovered word for the selected files
 					vks("n", "<leader>R", "<cmd>Lspsaga rename ++project<CR>")
 
-					-- using treesitter-textobjects instead
-					-- vks("n", "gp", "<cmd>Lspsaga peek_definition<CR>")
+					vks("n", "gp", "<cmd>Lspsaga peek_definition<CR>")
 
-					-- using the default vim.lsp.buf.definition()
-					-- vks("n", "gd", "<cmd>Lspsaga goto_definition<CR>")
+					vks("n", "gd", "<cmd>Lspsaga goto_definition<CR>")
 
-					-- Peek type definition
+					vks("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
+					vks("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>")
+
 					vks("n", "gt", "<cmd>Lspsaga peek_type_definition<CR>")
-
-					-- Go to type definition
 					vks("n", "gT", "<cmd>Lspsaga goto_type_definition<CR>")
 
 					-- Show line diagnostics
@@ -156,7 +154,6 @@ return {
 
 				local bns = { buffer = bufnr, noremap = true, silent = true }
 				vim.keymap.set({ "n", "v" }, "gD", vim.lsp.buf.declaration, bns)
-				vim.keymap.set({ "n", "v" }, "gd", vim.lsp.buf.definition, bns)
 				vim.keymap.set(
 					{ "n", "v" },
 					"gi",
@@ -182,15 +179,6 @@ return {
 					"<cmd>FzfLua lsp_workspace_symbols<cr>",
 					bns
 				)
-				vim.keymap.set(
-					{ "n", "v", "i" },
-					"<C-h>",
-					vim.lsp.buf.signature_help,
-					bns
-				)
-				vim.keymap.set({ "n", "v" }, "<leader>I", function()
-					vim.lsp.buf.format({ async = true })
-				end, bns)
 				-- usando lspsaga
 				-- vim.keymap.set({ "n", "v" }, "<leader>r", vim.lsp.buf.rename, bns)
 			end

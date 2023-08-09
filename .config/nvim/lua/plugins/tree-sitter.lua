@@ -205,14 +205,6 @@ return {
 							["[M"] = "@class.outer",
 						},
 					},
-					lsp_interop = {
-						enable = true,
-						border = "single",
-						peek_definition_code = {
-							["gp"] = "@function.outer",
-							["gP"] = "@class.outer",
-						},
-					},
 				},
 				endwise = {
 					enable = true,
