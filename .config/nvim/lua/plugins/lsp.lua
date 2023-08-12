@@ -4,6 +4,7 @@ return {
 		lazy = false,
 		dependencies = {
 			"folke/neodev.nvim",
+			-- TODO(LucasTA): switch to maintained solution
 			"jose-elias-alvarez/typescript.nvim",
 			"ibhagwan/fzf-lua",
 			{
@@ -85,6 +86,7 @@ return {
 				end,
 			},
 			{
+				-- TODO(LucasTA): switch to a maintained solution
 				"jose-elias-alvarez/null-ls.nvim",
 				config = function()
 					local null_ls = require("null-ls")

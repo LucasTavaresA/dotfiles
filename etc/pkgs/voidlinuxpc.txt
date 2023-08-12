@@ -16,6 +16,7 @@ automake
 base-system
 bat
 bc
+bsdtar
 cairo-devel
 cargo
 cargo-update
@@ -126,6 +127,7 @@ noto-fonts-ttf-extra
 nsxiv
 nuspell
 opendoas
+openjdk17
 openssl-devel
 opusfile
 p7zip

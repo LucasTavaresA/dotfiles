@@ -66,6 +66,7 @@
 .templateengine/
 code/void-packages
 code/web
+code/c/odin
 code/csharp
 code/nelua
 code/unity
