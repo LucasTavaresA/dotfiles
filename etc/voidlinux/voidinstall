@@ -69,8 +69,8 @@ gpu() {
 	echo "gpu Intel/Amd-Ati [i/a]? "
 	read -r marca
 	case "$marca" in
-		"i") xbps-install -S linux-firmware-intel mesa-dri mesa-dri-32bit vulkan-loader vulkan-loader-32bit mesa-vulkan-intel mesa-vulkan-intel-32bit intel-video-accel libva-intel-driver libva-intel-driver-32bit ;;
-		"a") xbps-install -S linux-firmware-amd mesa-dri mesa-dri-32bit vulkan-loader vulkan-loader-32bit mesa-vulkan-radeon-32bit amdvlk amdvlk-32bit mesa-vdpau mesa-vdpau-32bit mesa-vaapi mesa-vaapi-32bit ;;
+		"i") xbps-install -S linux-firmware-intel mesa-dri vulkan-loader mesa-vulkan-intel intel-video-accel libva-intel-driver ;;
+		"a") xbps-install -S linux-firmware-amd mesa-dri vulkan-loader amdvlk mesa-vdpau mesa-vaapi ;;
 		*) gpu ;;
 	esac
 }
@@ -99,11 +99,17 @@ npm i -g cssmodules-language-server @tailwindcss/language-server typescript \
 	neovim write-good quick-lint-js stylelint
 npm i -g --save-exact prettier
 
-pipx install keepmenu scdl spotdl jedi-language-server
+pipx install keepmenu
+pipx install scdl
+pipx install spotdl
+pipx install jedi-language-server
 
+mkdir -p "$home/.local/share/icons/"
+mkdir -p "$home/.local/share/themes/"
 git clone https://github.com/TheGreatMcPain/gruvbox-material-gtk
-cp -r gruvbox-material-gtk/icons/* "$home/.local/share/icons/"
-cp -r gruvbox-material-gtk/themes/* "$home/.local/share/themes/"
+cp -r gruvbox-material-gtk/icons/Gruvbox-Material-Dark/ "$home/.local/share/icons/"
+cp -r gruvbox-material-gtk/themes/Gruvbox-Material-Dark/ "$home/.local/share/themes/"
+cp -r gruvbox-material-gtk/themes/Gruvbox-Material-Dark-HIDPI/ "$home/.local/share/themes/"
 rm -r gruvbox-material-gtk
 
 wget https://github.com/sainnhe/capitaine-cursors/releases/download/r5/Linux.zip
@@ -112,6 +118,7 @@ unzip Linux.zip -d cursors
 mv cursors/Capitaine\ Cursors\ \(Gruvbox\)/ "$home/.local/share/icons/"
 mkdir -p "$home/.local/share/icons/default/"
 cat etc/index.theme >"$home/.local/share/icons/default/index.theme"
+rm -r cursors Linux.zip .wget-hsts
 
 cat etc/pam_gnupg >>/etc/pam.d/login
 
@@ -131,3 +138,12 @@ cp etc/term_open.desktop "$home/.local/share/applications/"
 
 mkdir -p "$home/.mozilla/firefox/myprofile/chrome/"
 cp etc/userChrome.css "$home/.mozilla/firefox/myprofile/chrome/"
+
+mkdir -p "$home/.local/share/wget"
+touch "$home/.local/share/wget/wgetrc"
+
+dd if=/dev/zero of=/swapfile bs=1M count=6k status=progress
+chmod 0600 /swapfile
+mkswap -U clear /swapfile
+swapon /swapfile
+echo "/swapfile none swap defaults 0 0" >>/etc/fstab

@@ -94,8 +94,6 @@ return {
 						sources = {
 							-- typescript
 							require("typescript.extensions.null-ls.code-actions"),
-							-- nelua
-							null_ls.builtins.diagnostics.nelua,
 							-- c
 							null_ls.builtins.diagnostics.clang_check,
 							null_ls.builtins.formatting.clang_format.with({
