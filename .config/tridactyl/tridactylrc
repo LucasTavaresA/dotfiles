@@ -41,7 +41,7 @@ setnull searchurls.qwant
 
 " search engines
 set searchengine s
-set jsurls.s    query => query == "" ? "https://baresearch.org/" : "https://baresearch.org/search?q=" + query
+set jsurls.s    query => query == "" ? "https://searx.be/" : "https://searx.be/search?q=" + query
 set jsurls.g    query => query == "" ? "https://www.google.com" : "https://www.google.com/search?q=" + query
 set jsurls.yt   query => query == "" ? "https://www.youtube.com/feed/subscriptions" : "https://www.youtube.com/search?q=" + query
 set jsurls.ytb  query => query == "" ? "https://www.youtube.com/feed/library" : "https://www.youtube.com/search?q=" + query
