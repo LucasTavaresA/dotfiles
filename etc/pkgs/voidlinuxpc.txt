@@ -27,7 +27,6 @@ clang
 clipmenu
 cloc
 cmake
-ctpv
 darcs
 dbus
 dejavu-fonts-ttf
@@ -111,8 +110,6 @@ nitrogen
 nodejs
 noto-fonts-cjk
 noto-fonts-emoji
-noto-fonts-ttf
-noto-fonts-ttf-extra
 nsxiv
 nuspell
 opendoas
@@ -184,14 +181,11 @@ ueberzug
 ugrep
 unicode-emoji
 unrar
-void-repo-multilib
-void-repo-multilib-nonfree
 void-repo-nonfree
 vscode
 w3m
 wget
 wiggle
-wireplumber
 xautolock
 xbanish
 xclip

@@ -3,6 +3,8 @@ set shell sh
 set shellopts '-eu'
 set period 1
 
+# sixel
+set sixel true
 # novas linhas
 set ifs "\n"
 # icones

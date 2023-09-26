@@ -1,88 +1,25 @@
 #!/usr/bin/env sh
 set -ex
-HOSTNAME="$(uname -n)"
-home="$HOME"
-user="$USER"
 
-[ "$(pwd)" = "$HOME" ] && echo "Not in your home folder!" && exit 1
+export HOSTNAME="$(uname -n)"
+export home="$HOME"
+export user="$USER"
+
+[ "$(pwd)" != "$HOME" ] && echo "Not in your home folder!" && exit 1
 
 su -c 'xbps-install -S git'
 
-git clone --bare https://codeberg.org/lucastavaresa/dotfiles etc/.dotfiles
-
 # git was a mistake
 GIT_FLAGS="--work-tree=. --git-dir=etc/.dotfiles/"
-git "$GIT_FLAGS" restore -WS .
-git "$GIT_FLAGS" submodule update --init --recursive
-git "$GIT_FLAGS" config --local --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
-git "$GIT_FLAGS" fetch
-git "$GIT_FLAGS" branch --set-upstream-to=origin/main main
+[ -d etc/.dotfiles ] ||
+	git clone --bare https://codeberg.org/lucastavaresa/dotfiles etc/.dotfiles &&
+	git "$GIT_FLAGS" restore -WS . &&
+	git "$GIT_FLAGS" submodule update --init --recursive &&
+	git "$GIT_FLAGS" config --local --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*' &&
+	git "$GIT_FLAGS" fetch &&
+	git "$GIT_FLAGS" branch --set-upstream-to=origin/main main
 
-su
-
-pkgs="$(cat etc/pkgs/"$HOSTNAME".txt)"
-xbps-install -Su
-xbps-install -S "$pkgs"
-
-microcode() {
-	echo "microcode Intel/Amd [i/a]? "
-	read -r marca
-	case "$marca" in
-		"i") xbps-install -S intel-ucode && xbps-reconfigure --force ;;
-		"a") xbps-install -S linux-firmware-amd ;;
-		*) microcode ;;
-	esac
-}
-microcode
-
-sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g;s/^#pt_BR.UTF-8 UTF-8/pt_BR.UTF-8 UTF-8/g' /etc/default/libc-locales
-xbps-reconfigure -f glibc-locales
-cp -f etc/locale.conf /etc/locale.conf
-
-cp -f etc/voidlinux/grub /etc/default/grub
-
-echo ". $HOME/.config/shell/bashrc" >>/etc/bash/bashrc
-
-chsh -s /bin/fish
-chsh -s /bin/sh "$user"
-
-cp etc/voidlinux/ignore-sudo.conf /etc/xbps.d/
-xbps-remove -R sudo
-cp etc/doas.conf /etc/
-
-ln -s /etc/sv/socklog-unix /var/service/
-ln -s /etc/sv/nanoklogd /var/service/
-
-cp etc/voidlinux/rc.local /etc/rc.local
-
-ln -s /etc/sv/acpid /var/service/
-
-[ "$(wc -l /etc/hosts)" -lt 15 ] && cat etc/hosts >>/etc/hosts
-
-ln -s /etc/sv/dbus /var/service/
-
-[ -e "/etc/sv/seatd" ] &&
-	ln -s /etc/sv/seatd /var/service/ &&
-	usermod -aG _seatd "$user"
-
-gpu() {
-	echo "gpu Intel/Amd-Ati [i/a]? "
-	read -r marca
-	case "$marca" in
-		"i") xbps-install -S linux-firmware-intel mesa-dri vulkan-loader mesa-vulkan-intel intel-video-accel libva-intel-driver ;;
-		"a") xbps-install -S linux-firmware-amd mesa-dri vulkan-loader amdvlk mesa-vdpau mesa-vaapi ;;
-		*) gpu ;;
-	esac
-}
-gpu
-
-mkdir -p /etc/alsa/conf.d
-ln -s /usr/share/alsa/alsa.conf.d/50-pipewire.conf /etc/alsa/conf.d
-ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
-xbps-reconfigure -f alsa-pipewire
-
-mkdir -p /etc/X11
-cp -r etc/xorg.conf.d/ /etc/X11/
+su -c "$HOME/etc/voidlinux/voidinstallroot"
 
 cargo install handlr-regex tree-sitter-cli
 
@@ -93,57 +30,17 @@ go install github.com/segmentio/golines@latest
 go install github.com/cespare/reflex@latest
 go install github.com/ayn2op/discordo@latest
 
-npm i -g cssmodules-language-server @tailwindcss/language-server typescript \
-	typescript-language-server vscode-langservers-extracted \
-	fixjson bash-language-server vscode-css-languageserver-bin \
-	neovim write-good quick-lint-js stylelint
-npm i -g --save-exact prettier
-
 pipx install keepmenu
 pipx install scdl
 pipx install spotdl
 pipx install jedi-language-server
 
-mkdir -p "$home/.local/share/icons/"
-mkdir -p "$home/.local/share/themes/"
-git clone https://github.com/TheGreatMcPain/gruvbox-material-gtk
-cp -r gruvbox-material-gtk/icons/Gruvbox-Material-Dark/ "$home/.local/share/icons/"
-cp -r gruvbox-material-gtk/themes/Gruvbox-Material-Dark/ "$home/.local/share/themes/"
-cp -r gruvbox-material-gtk/themes/Gruvbox-Material-Dark-HIDPI/ "$home/.local/share/themes/"
-rm -r gruvbox-material-gtk
-
-wget https://github.com/sainnhe/capitaine-cursors/releases/download/r5/Linux.zip
-mkdir cursors
-unzip Linux.zip -d cursors
-mv cursors/Capitaine\ Cursors\ \(Gruvbox\)/ "$home/.local/share/icons/"
-mkdir -p "$home/.local/share/icons/default/"
-cat etc/index.theme >"$home/.local/share/icons/default/index.theme"
-rm -r cursors Linux.zip .wget-hsts
-
-cat etc/pam_gnupg >>/etc/pam.d/login
-
 mkdir -p "$home/.local/share/applications/"
 cp etc/transmission-remote.desktop "$home/.local/share/applications/"
 cp etc/term_open.desktop "$home/.local/share/applications/"
-
-(
-	cd code/c/st/
-	./build.sh
-)
-
-(
-	cd code/c/fastfetch
-	./build.sh
-)
 
 mkdir -p "$home/.mozilla/firefox/myprofile/chrome/"
 cp etc/userChrome.css "$home/.mozilla/firefox/myprofile/chrome/"
 
 mkdir -p "$home/.local/share/wget"
 touch "$home/.local/share/wget/wgetrc"
-
-dd if=/dev/zero of=/swapfile bs=1M count=6k status=progress
-chmod 0600 /swapfile
-mkswap -U clear /swapfile
-swapon /swapfile
-echo "/swapfile none swap defaults 0 0" >>/etc/fstab

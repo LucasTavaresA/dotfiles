@@ -1,0 +1,118 @@
+#!/usr/bin/env sh
+set -ex
+
+xbps-install -Su
+xbps-install -S void-repo-nonfree
+xbps-install -S $(cat etc/pkgs/"$HOSTNAME".txt)
+
+microcode() {
+	echo "microcode Intel/Amd [i/a]? "
+	read -r marca
+	case "$marca" in
+		"i") xbps-install -S intel-ucode && xbps-reconfigure --force linux ;;
+		"a") xbps-install -S linux-firmware-amd ;;
+		*) microcode ;;
+	esac
+}
+microcode
+
+sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g;s/^#pt_BR.UTF-8 UTF-8/pt_BR.UTF-8 UTF-8/g' /etc/default/libc-locales
+xbps-reconfigure -f glibc-locales
+cp -f etc/locale.conf /etc/locale.conf
+
+cp -f etc/voidlinux/grub /etc/default/grub
+
+echo ". $HOME/.config/shell/bashrc" >>/etc/bash/bashrc
+
+chsh -s /bin/fish
+chsh -s /bin/sh "$user"
+
+cp etc/voidlinux/ignore-sudo.conf /etc/xbps.d/
+xbps-remove -R sudo
+cp etc/doas.conf /etc/
+
+ln -s /etc/sv/socklog-unix /var/service/
+ln -s /etc/sv/nanoklogd /var/service/
+
+cp etc/voidlinux/rc.local /etc/rc.local
+
+ln -s /etc/sv/acpid /var/service/
+
+[ "$(cat /etc/hosts | wc -l)" -lt 15 ] && cat etc/hosts >>/etc/hosts
+
+ln -s /etc/sv/dbus /var/service/
+
+[ -e "/etc/sv/seatd" ] &&
+	ln -s /etc/sv/seatd /var/service/ &&
+	usermod -aG _seatd "$user"
+
+gpu() {
+	echo "gpu Intel/Amd-Ati [i/a]? "
+	read -r marca
+	case "$marca" in
+		"i") xbps-install -S linux-firmware-intel mesa-dri vulkan-loader mesa-vulkan-intel intel-video-accel libva-intel-driver ;;
+		"a") xbps-install -S linux-firmware-amd mesa-dri vulkan-loader amdvlk mesa-vdpau mesa-vaapi ;;
+		*) gpu ;;
+	esac
+}
+gpu
+
+mkdir -p /etc/alsa/conf.d
+ln -s /usr/share/alsa/alsa.conf.d/50-pipewire.conf /etc/alsa/conf.d
+ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
+xbps-reconfigure -f alsa-pipewire
+
+mkdir -p /etc/X11
+cp -r etc/xorg.conf.d/ /etc/X11/
+
+mkdir -p "/usr/share/icons/"
+mkdir -p "/usr/share/themes/"
+git clone https://github.com/TheGreatMcPain/gruvbox-material-gtk
+cp -r gruvbox-material-gtk/icons/Gruvbox-Material-Dark/ /usr/share/icons/
+cp -r gruvbox-material-gtk/themes/Gruvbox-Material-Dark/ /usr/share/themes/
+cp -r gruvbox-material-gtk/themes/Gruvbox-Material-Dark-HIDPI/ /usr/share/themes/
+rm -r gruvbox-material-gtk
+
+wget https://github.com/sainnhe/capitaine-cursors/releases/download/r5/Linux.zip
+mkdir cursors
+unzip Linux.zip -d cursors
+cp -r cursors/Capitaine\ Cursors\ \(Gruvbox\)/ /usr/share/icons/
+mkdir -p /usr/share/icons/default/
+cat etc/index.theme >/usr/share/icons/default/index.theme
+rm -r cursors Linux.zip
+
+cat etc/pam_gnupg >>/etc/pam.d/login
+
+(
+	cd code/c/st/
+	./build.sh
+)
+
+(
+	cd code/c/ctpv
+	make
+	sudo make install
+)
+
+(
+	cd code/c/fastfetch
+	mkdir -p build
+	cd build
+	xbps-install -S sqlite-devel pulseaudio-devel
+	cmake ..
+	cmake --build . --target fastfetch --target flashfetch
+	cp ./flashfetch $home/.local/bin/
+	xbps-remove -R sqlite-devel pulseaudio-devel
+)
+
+dd if=/dev/zero of=/swapfile bs=1M count=6k status=progress
+chmod 0600 /swapfile
+mkswap -U clear /swapfile
+swapon /swapfile
+echo "/swapfile none swap defaults 0 0" >>/etc/fstab
+
+npm i -g cssmodules-language-server @tailwindcss/language-server typescript \
+	typescript-language-server vscode-langservers-extracted \
+	fixjson bash-language-server vscode-css-languageserver-bin \
+	neovim write-good quick-lint-js stylelint
+npm i -g --save-exact prettier
