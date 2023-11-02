@@ -44,6 +44,7 @@ set searchengine s
 set jsurls.s    query => query == "" ? "https://searx.be/" : "https://searx.be/search?q=" + query
 set jsurls.g    query => query == "" ? "https://www.google.com" : "https://www.google.com/search?q=" + query
 set jsurls.yt   query => query == "" ? "https://www.youtube.com/feed/subscriptions" : "https://www.youtube.com/search?q=" + query
+set jsurls.ytm  query => query == "" ? "https://music.youtube.com/" : "https://music.youtube.com/search?q=" + query
 set jsurls.ytb  query => query == "" ? "https://www.youtube.com/feed/library" : "https://www.youtube.com/search?q=" + query
 set jsurls.al   query => query == "" ? "https://anilist.co/" : "https://anilist.co/"
 set jsurls.alm  query => query == "" ? "https://anilist.co/user/Lucastavares/animelist" : "https://anilist.co/search/manga?search=" + query + "&sort=SEARCH_MATCH"

@@ -153,7 +153,8 @@ c.url.searchengines = {'DEFAULT': 'https://searx.be/search?q={}'
                     ,  'ud':   'https://www.urbandictionary.com/define.php?term={}'
                     ,  'vn':   'https://vndb.org/v?sq={}'
                     ,  'wm':   'https://web.archive.org/web/*/{}'
-                    ,  'yt':   'https://www.youtube.com/results?search_query={}'
+                    ,  'yt':   'https://www.youtube.com/search?q={}'
+                    ,  'ytm':   'https://music.youtube.com/search?q={}'
                     }
 
 #### Atalhos ####
