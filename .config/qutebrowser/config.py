@@ -130,8 +130,9 @@ config.set('content.register_protocol_handler', False, 'https://mail.google.com?
 #### Ferramentas de pesquisa ####
 c.url.searchengines = {'DEFAULT': 'https://searx.be/search?q={}'
                     ,  'g':    'https://www.google.com/search?q={}'
-                    ,  'alm':  'https://anilist.co/search/manga?search={}&sort=SEARCH_MATCH'
                     ,  'al':   'https://anilist.co/search/anime?search={}&sort=SEARCH_MATCH'
+                    ,  'ala':  'https://anilist.co/search/anime?search={}&sort=SEARCH_MATCH'
+                    ,  'alm':  'https://anilist.co/search/manga?search={}&sort=SEARCH_MATCH'
                     ,  'aur':  'https://aur.archlinux.org/packages?O=0&SeB=nd&K={}&outdated=&SB=p&SO=d&PP=50&submit=Go'
                     ,  'aw':   'https://wiki.archlinux.org/index.php?search={}'
                     ,  'br':   'https://brainly.com.br/app/ask?q={}'

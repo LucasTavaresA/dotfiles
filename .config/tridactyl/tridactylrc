@@ -47,8 +47,8 @@ set jsurls.yt   query => query == "" ? "https://www.youtube.com/feed/subscriptio
 set jsurls.ytm  query => query == "" ? "https://music.youtube.com/" : "https://music.youtube.com/search?q=" + query
 set jsurls.ytb  query => query == "" ? "https://www.youtube.com/feed/library" : "https://www.youtube.com/search?q=" + query
 set jsurls.al   query => query == "" ? "https://anilist.co/" : "https://anilist.co/"
-set jsurls.alm  query => query == "" ? "https://anilist.co/user/Lucastavares/animelist" : "https://anilist.co/search/manga?search=" + query + "&sort=SEARCH_MATCH"
-set jsurls.ala  query => query == "" ? "https://anilist.co/user/Lucastavares/mangalist" : "https://anilist.co/search/anime?search=" + query + "&sort=SEARCH_MATCH"
+set jsurls.ala  query => query == "" ? "https://anilist.co/user/Lucastavares/animelist" : "https://anilist.co/search/anime?search=" + query + "&sort=SEARCH_MATCH"
+set jsurls.alm  query => query == "" ? "https://anilist.co/user/Lucastavares/mangalist" : "https://anilist.co/search/manga?search=" + query + "&sort=SEARCH_MATCH"
 set jsurls.aur  query => query == "" ? "https://aur.archlinux.org" : "https://aur.archlinux.org/packages?O=0&SeB=nd&K=" + query + "&outdated=&SB=p&SO=d&PP=50&submit=Go"
 set jsurls.aw   query => query == "" ? "https://wiki.archlinux.org" : "https://wiki.archlinux.org/index.php?search=" + query
 set jsurls.br   query => query == "" ? "https://brainly.com.br" : "https://brainly.com.br/app/ask?q=" + query
