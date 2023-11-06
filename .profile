@@ -112,7 +112,8 @@ export GHCUP_INSTALL_BASE_PREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/"
 export CABAL_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/cabal/config"
 export CABAL_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/cabal"
 # android sdk
-export ANDROID_SDK_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/android"
+export ANDROID_SDK_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cmdline-tools"
+export ANDROID_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cmdline-tools"
 # wine
 export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
 # ls colors
@@ -133,6 +134,9 @@ export HISTFILESIZE=10000
 export HISTCONTROL=ignoredups:erasedups
 
 # adiciona diretórios bin e scripts ao path
+export PATH="$PATH:$ANDROID_HOME/bin"
+export PATH="$PATH:$ANDROID_HOME/lib"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
 export PATH="$GOPATH/bin:$PATH"
 export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/dotnet:$PATH"
 export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/dotnet-cli/tools:$PATH"
