@@ -63,6 +63,8 @@
 .var/
 .vscode-oss/
 .config/Code - OSS/
+.config/obs-studio/
+.config/olivevideoeditor.org/
 .templateengine/
 code/void-packages
 code/web

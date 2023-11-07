@@ -2,7 +2,7 @@
 set -ex
 
 xbps-install -Su
-xbps-install -S void-repo-nonfree
+xbps-install -S void-repo-nonfree void-repo-multilib
 xbps-install -S $(cat etc/pkgs/"$HOSTNAME".txt)
 
 microcode() {

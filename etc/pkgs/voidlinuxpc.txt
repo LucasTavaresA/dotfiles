@@ -112,6 +112,8 @@ noto-fonts-cjk
 noto-fonts-emoji
 nsxiv
 nuspell
+obs
+olive
 opendoas
 openjdk17
 openssl-devel
@@ -182,11 +184,16 @@ ueberzug
 ugrep
 unicode-emoji
 unrar
+void-repo-multilib
 void-repo-nonfree
 vscode
 w3m
 wget
 wiggle
+wine
+wine-32bit
+wine-mono
+winetricks
 xautolock
 xbanish
 xclip
