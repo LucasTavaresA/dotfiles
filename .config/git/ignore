@@ -65,6 +65,7 @@
 .config/Code - OSS/
 .config/obs-studio/
 .config/olivevideoeditor.org/
+.config/go/telemetry/
 .templateengine/
 code/void-packages
 code/web
