@@ -123,6 +123,7 @@ return {
 					"python",
 					"vim",
 					"regex",
+					"nim",
 				},
 				highlight = { -- Indicação de sintaxe
 					enable = true,
