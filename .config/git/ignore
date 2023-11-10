@@ -58,6 +58,7 @@
 .local/
 .mozilla/
 .nuget/
+.net/
 .pki/
 .ssh/
 .var/
