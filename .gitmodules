@@ -28,3 +28,6 @@
 [submodule "code/c/ctpv"]
 	path = code/c/ctpv
 	url = https://github.com/NikitaIvanovV/ctpv
+[submodule "code/lua/nvim/ts-node-action"]
+	path = code/lua/nvim/ts-node-action
+	url = https://github.com/lucastavaresa/ts-node-action
