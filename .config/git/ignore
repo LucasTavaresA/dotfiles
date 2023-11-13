@@ -2,6 +2,8 @@
 .android/
 .cache/
 .config/asciinema/
+.config/Android Open Source Project/
+.config/.android/
 .config/cabal/
 .config/chromium/
 .config/cni/
@@ -19,6 +21,7 @@
 .config/galculator/
 .config/gh/
 .config/GIMP/
+.config/Google/
 .config/gup/
 .config/gtk-2.0/gtkfilechooser.ini
 .config/irssi/
@@ -53,8 +56,10 @@
 .config/pmbootstrap.cfg
 .config/xnp21kai/
 .gnupg/
+.gradle/
 .dbus/
 .dotnet/
+.java/
 .local/
 .mozilla/
 .nuget/
@@ -68,10 +73,12 @@
 .config/olivevideoeditor.org/
 .config/go/telemetry/
 .templateengine/
+.emulator_console_auth_token
 code/void-packages
 code/web
 code/c/odin
 code/csharp
+code/java
 code/nelua
 code/unity
 code/python
