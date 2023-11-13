@@ -13,6 +13,7 @@ aspell-en
 aspell-pt_BR
 atool
 automake
+base-devel
 base-system
 bat
 bc
@@ -48,6 +49,7 @@ font-firacode
 font-inconsolata-otf
 font-iosevka
 fonts-droid-ttf
+fonts-roboto-ttf
 fzf
 gcc
 gdb
@@ -115,6 +117,7 @@ nuspell
 obs
 olive
 opendoas
+openjdk11
 openjdk17
 openssl-devel
 opusfile
