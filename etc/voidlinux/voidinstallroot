@@ -1,9 +1,10 @@
 #!/usr/bin/env sh
+# shellcheck disable=3028
 set -ex
 
 xbps-install -Su
 xbps-install -S void-repo-nonfree void-repo-multilib
-xbps-install -S $(cat etc/pkgs/"$HOSTNAME".txt)
+xbps-install -S "$(cat "etc/pkgs/$HOSTNAME.txt")"
 
 microcode() {
 	echo "microcode Intel/Amd [i/a]? "
@@ -22,7 +23,7 @@ cp -f etc/locale.conf /etc/locale.conf
 
 cp -f etc/voidlinux/grub /etc/default/grub
 
-echo ". $HOME/.config/shell/bashrc" >>/etc/bash/bashrc
+echo ". $home/.config/shell/bashrc" >>/etc/bash/bashrc
 
 chsh -s /bin/fish
 chsh -s /bin/sh "$user"
@@ -38,7 +39,7 @@ cp etc/voidlinux/rc.local /etc/rc.local
 
 ln -s /etc/sv/acpid /var/service/
 
-[ "$(cat /etc/hosts | wc -l)" -lt 15 ] && cat etc/hosts >>/etc/hosts
+[ "$(wc -l /etc/hosts)" -lt 15 ] && cat etc/hosts >>/etc/hosts
 
 ln -s /etc/sv/dbus /var/service/
 
@@ -65,22 +66,6 @@ xbps-reconfigure -f alsa-pipewire
 mkdir -p /etc/X11
 cp -r etc/xorg.conf.d/ /etc/X11/
 
-mkdir -p "/usr/share/icons/"
-mkdir -p "/usr/share/themes/"
-git clone https://github.com/TheGreatMcPain/gruvbox-material-gtk
-cp -r gruvbox-material-gtk/icons/Gruvbox-Material-Dark/ /usr/share/icons/
-cp -r gruvbox-material-gtk/themes/Gruvbox-Material-Dark/ /usr/share/themes/
-cp -r gruvbox-material-gtk/themes/Gruvbox-Material-Dark-HIDPI/ /usr/share/themes/
-rm -r gruvbox-material-gtk
-
-wget https://github.com/sainnhe/capitaine-cursors/releases/download/r5/Linux.zip
-mkdir cursors
-unzip Linux.zip -d cursors
-cp -r cursors/Capitaine\ Cursors\ \(Gruvbox\)/ /usr/share/icons/
-mkdir -p /usr/share/icons/default/
-cat etc/index.theme >/usr/share/icons/default/index.theme
-rm -r cursors Linux.zip
-
 cat etc/pam_gnupg >>/etc/pam.d/login
 
 (
@@ -101,7 +86,7 @@ cat etc/pam_gnupg >>/etc/pam.d/login
 	xbps-install -S sqlite-devel pulseaudio-devel
 	cmake ..
 	cmake --build . --target fastfetch --target flashfetch
-	cp ./flashfetch $home/.local/bin/
+	cp ./flashfetch "$home/.local/bin/"
 	xbps-remove -R sqlite-devel pulseaudio-devel
 )
 

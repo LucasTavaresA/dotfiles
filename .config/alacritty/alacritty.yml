@@ -43,16 +43,16 @@ window:
 
 font:
   normal:
-    family: Iosevka Nerd Font Mono
+    family: Iosevka
     style: Regular
   bold:
-    family: Iosevka Nerd Font Mono
+    family: Iosevka
     style: Bold
   italic:
-    family: Iosevka Nerd Font Mono
+    family: Iosevka
     style: Italic
   bold_italic:
-    family: Iosevka Nerd Font Mono
+    family: Iosevka
     style: Bold Italic
   size: 12.0
   #offset:

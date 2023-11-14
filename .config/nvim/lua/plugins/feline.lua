@@ -4,7 +4,6 @@ return {
 	config = function()
 		vim.opt.termguicolors = true
 
-		-- gruvbox
 		local theme = {
 			bg = "#16161e",
 			fg = "#ffffff",
@@ -50,7 +49,7 @@ return {
 						name = "file_info",
 						opts = {
 							type = "unique",
-							file_modified_icon = "",
+							file_modified_icon = "*",
 						},
 					},
 					hl = { fg = theme.lightgreen },
@@ -60,17 +59,17 @@ return {
 			diagnos = {
 				err = {
 					provider = "diagnostic_errors",
-					icon = "⚠ ",
+					icon = "X",
 					hl = { fg = theme.red },
 				},
 				warn = {
 					provider = "diagnostic_warnings",
-					icon = " ",
+					icon = "!",
 					hl = { fg = theme.yellow },
 				},
 				info = {
 					provider = "diagnostic_info",
-					icon = " ",
+					icon = "i",
 					hl = { fg = theme.lightblue },
 				},
 				hint = {

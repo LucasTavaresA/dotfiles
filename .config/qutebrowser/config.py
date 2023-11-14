@@ -210,7 +210,7 @@ bindings = {
     # ativa/desativa a barra
     "qq": "config-cycle statusbar.show always never;; config-cycle tabs.show always never",
     # ativa/desativa stylesheets
-    "qd": "config-cycle content.user_stylesheets ~/.config/qutebrowser/styles/dark.css ~/.config/qutebrowser/styles/custom-gruvbox-dark.css",
+    "qd": "config-cycle content.user_stylesheets ~/.config/qutebrowser/styles/dark.css ''",
     # ativa/desativa javascript para um site
     "qj": "config-cycle -p -u *://*.{url:host}/* content.javascript.enabled ;; reload",
     # ativa/desativa adblocking para um site
@@ -257,21 +257,20 @@ c.url.start_pages = 'https://searx.be/'
 #### CORES ####
 # pedir modo escuro aos sites que o suportam
 config.set('colors.webpage.preferred_color_scheme', 'dark')
-config.source('gruvbox.py')
 
 #### Fontes ####
 # fonte padrão
-c.fonts.default_family = '"Iosevka Nerd Font Mono"'
+c.fonts.default_family = '"Iosevka"'
 # tamanho padrão das fontes
 c.fonts.default_size = '14px'
 # fonte usada nas abas de completação de comandos.
-c.fonts.completion.entry = '14px "Iosevka Nerd Font Mono"'
+c.fonts.completion.entry = '14px "Iosevka"'
 # fonte used for the debugging console.
-c.fonts.debug_console = '14px "Iosevka Nerd Font Mono"'
+c.fonts.debug_console = '14px "Iosevka"'
 # fonte usada nos prompts.
-c.fonts.prompts = 'default_size "Iosevka Nerd Font Mono"'
+c.fonts.prompts = 'default_size "Iosevka"'
 # fonte usada na barra de status.
-c.fonts.statusbar = '14px "Iosevka Nerd Font Mono"'
+c.fonts.statusbar = '14px "Iosevka"'
 
 #### Javascript ####
 config.set('content.javascript.enabled', True, '*://*.10.0.0.2/*')

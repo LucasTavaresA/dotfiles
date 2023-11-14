@@ -1,7 +1,7 @@
 hide-cursor=true
 fuzzy-match=true
 require-match=false
-font=Iosevka Nerd Font Mono
+font=Iosevka
 prompt-text=>
 hint-font=false
 width = 100%

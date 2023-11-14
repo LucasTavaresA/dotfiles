@@ -28,28 +28,15 @@
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
-        "format": "<span font_family='Symbols Nerd Font Mono'>{icon}</span>",
+        "format": "<span>{icon}</span>",
         "format-icons": {
-            "1:Browser": "",
-            "2:Code": "",
-            "3:Fullscreen": "",
-            "4:Message": "",
-            "urgent": "",
-            "focused": "",
-            "default": ""
+            "urgent": "!",
+            "focused": "X",
+            "default": ""
         }
     },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
-    },
-    "sway/window": {
-        "format": "{title}",
-        "rewrite": {
-            "(.*) — Mozilla Firefox": "<span font_family='Symbols Nerd Font Mono'>爵</span> $1",
-            "(.*) - qutebrowser": "<span font_family='Symbols Nerd Font Mono'>爵</span> $1",
-            "(.*) - NVIM": "<span font_family='Symbols Nerd Font Mono'></span> $1",
-            "^(~.*)": "$1<span font='14' rise='-2pt'>></span>",
-        }
     },
     "mpd": {
         "format": "🎵 {filename:.40} [{songPosition}/{queueLength}]",

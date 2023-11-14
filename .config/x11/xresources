@@ -1,4 +1,4 @@
-Xcursor.theme:Capitaine Cursors (Gruvbox)
+Xcursor.theme:Adwaita
 Xcursor.size:14
 
 Xft.antialias: true
@@ -8,30 +8,10 @@ Xft.autohint: true
 Xft.hintstyle: hintfull
 Xft.lcdfilter: lcdfilter
 
-XTerm.vt100.faceName: Iosevka Nerd Font Mono:pixelsize=18:antialias=true:autohint=true
+XTerm.vt100.faceName: Iosevka:pixelsize=18
 XTerm.vt100.font: 7x13
 XTerm.vt100.internalBorder: 2
 XTerm.vt100.saveLines: 4096
 XTerm.vt100.selectToClipboard: true
 XTerm.vt100.scrollBar: false
 XTerm*metaSendsEscape: true
-
-! Gruvbox
-*background: #1d2021
-*foreground: #ebdbb2
-*color0:  #282828
-*color8:  #928374
-*color1:  #cc241d
-*color9:  #fb4934
-*color2:  #98971a
-*color10: #b8bb26
-*color3:  #d79921
-*color11: #fabd2f
-*color4:  #458588
-*color12: #83a598
-*color5:  #b16286
-*color13: #d3869b
-*color6:  #689d6a
-*color14: #8ec07c
-*color7:  #a89984
-*color15: #ebdbb2

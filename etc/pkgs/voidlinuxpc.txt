@@ -82,7 +82,6 @@ intel-ucode
 intel-video-accel
 jq
 keepassxc
-kvantum
 lf
 libllvm12
 libreoffice
@@ -107,7 +106,6 @@ mpv-mpris
 msbuild-bin
 ncmpcpp
 neovim
-nerd-fonts
 nitrogen
 nodejs
 noto-fonts-cjk

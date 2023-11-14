@@ -1,11 +1,11 @@
 #!/usr/bin/env sh
 #### Exports ####
 # adiciona ícones no lf
-export LF_ICONS="di=:fi=🗒️:tw=🤝:st=:ow=📂:dt=📁:ln=:or=❌:ex=🎯:*.txt=🗒:*.mom=🗒:*.me=🗒️:*.ms=🗒:,*hosts=:\
-*.hook=🪝:*.ttf=:*.otf=:*.woff=:*.woff2=:*.png=🖼:*.webp=🖼:*.ico=🖼:*.bmp=🖼:*.pbm=🖼:*.pgm=🖼:*.ppm=🖼:\
+export LF_ICONS="di=📁:fi=🗒️:tw=🤝:ow=📂:dt=📁:ln=🔗:or=❌:ex=🎯:*.txt=🗒:*.mom=🗒:*.me=🗒️:*.ms=🗒:,*hosts=:\
+*.hook=🪝:*.ttf=:*.otf=:*.woff=:*.woff2=:*.png=🖼:*.webp=🖼:*.ico=🖼:*.bmp=🖼:*.pbm=🖼:*.pgm=🖼:*.ppm=🖼:\
 *.tga=🖼:*.xbm=🖼:*.xpm=🖼:*.jpg=📸:*.jpe=📸:*.jpeg=📸:*.mjpg=📸:*.mjpeg=📸:*.gif=🖼:*.svg=🗺:*.svgz=🗺:\
 *.mng=🗺:*.pcx=🗺:*.tif=🖼:*.tiff=🖼:*.xwd=🖼:*.yuv=🖼:*.gl=🖼:*.dl=🖼:*.cgm=🖼:*.emf=🖼:*.xcf=🖌:*.html=🌎:\
-*.xml=📰:*.qt=📰:*.yml=:*.toml=:*.ini=:*.conf=:*.cfg=:*.config=:*.git=:*.gitignore=:*.gitmodules=:*.gpg=🔒:\
+*.xml=📰:*.qt=📰:*.yml=⚙ :*.toml=⚙ :*.ini=⚙ :*.conf=⚙ :*.cfg=⚙ :*.config=⚙ :*.gpg=🔒:\
 *.css=🎨:*.dic=📖:*.pdf=📚:*.djvu=📚:*.epub=📚:*.csv=📓:*.xlsx=📓:*.xspf=📓:*.tex=📜:*.md=📘:*.org=🦄:*.r=📊:\
 *.R=📊:*.rmd=📊:*.Rmd=📊:*.m=📊:*.mp3=🎵:*.opus=🎵:*.ogg=🎵:*.m4a=🎵:*.midi=🎵:*.mid=🎵:*.aac=🎵:*.au=🎵:\
 *.mka=🎵:*.mpc=🎵:*.ra=🎵:*.oga=🎵:*.spx=🎵:*.flac=🎼:*.wav=🎼:*.asf=🎥:*.rm=🎥:*.rmvb=🎥:*.flc=🎥:*.mkv=🎥:\
@@ -14,12 +14,12 @@ export LF_ICONS="di=:fi=🗒️:tw=🤝:st=:ow=📂:dt=📁:ln=:or=❌:
 *.arj=📦:*.taz=📦:*.lha=📦:*.lz4=📦:*.lzh=📦:*.lzma=📦:*.tlz=📦:*.txz=📦:*.tzo=📦:*.t7z=📦:*.z=📦:*.dz=📦:*.gz=📦:\
 *.lrz=📦:*.lz=📦:*.lzo=📦:*.xz=📦:*.zst=📦:*.tzst=📦:*.bz2=📦:*.bz=📦:*.tbz=📦:*.tbz2=📦:*.tz=📦:*.deb=📦:*.rpm=📦:\
 *.war=📦:*.ear=📦:*.sar=📦:*.alz=📦:*.ace=📦:*.zoo=📦:*.cpio=📦:*.rz=📦:*.cab=📦:*.wim=📦:*.swm=📦:*.dwm=📦:*.esd=📦:\
-*.sqlite=:*.db=:*.rom=🎮:*.nds=🎮:*.z64=🎮:*.v64=🎮:*.n64=🎮:*.gba=🎮:*.nes=🎮:*.gdi=🎮:*.1=ℹ:*.nfo=ℹ:*.info=ℹ:\
+*.rom=🎮:*.nds=🎮:*.z64=🎮:*.v64=🎮:*.n64=🎮:*.gba=🎮:*.nes=🎮:*.gdi=🎮:*.1=ℹ:*.nfo=ℹ:*.info=ℹ:\
 *.log=📙:*.bin=🎯:*.exe=🎯:*.dll=🎯:*.iso=📀:*.img=📀:*.vdi=📀:*.bib=🎓:*.ged=👪:*.part=💔:*.torrent=🔽:*.jar=♨:\
-*.java=♨:*.el=():*.lisp=():*.csproj=:*.sln=:*.cs=:*.c=:*.cpp=:*.cc=:*.clj=:*.coffee=:*.d=:*.dart=:*.erl=:\
-*.exs=:*.fs=:*.go=:*.h=:*.hh=:*.hpp=:*.hs=:*.jl=:*.js=:*.json=:*.lua=:*.php=:*.pl=:*.pro=:\
-*.py=:*.rb=:*.rs=:*.scala=:*.ts=:*.vim=:*.cmd=>:*.ps1=>:*.sh=\$:*.bash=\$:*.zsh=\$:*.profile=\$:*.fish=🐟:\
-*.mk=🔨:*.nix=:*.vimrc=:*.viminfo="
+*.java=♨:*.el=():*.lisp=():*.cs=C#:*.c=C:*.cpp=C++:*.coffee=☕:*.d=D:*.dart=🎯:\
+*.fs=F#:*.go=🐹:*.h=H:*.hh=HH:*.hpp=H++:*.js=📜:*.json={}:*.lua=🌙:*.php=🐘:\
+*.py=🐍:*.rs=🦀:*.cmd=>:*.ps1=>:*.sh=\$:*.bash=\$:*.zsh=\$:*.profile=\$:*.fish=🐟:\
+*.mk=🔨"
 
 # muda o local padrão de alguns dotfiles limpando a $HOME ou ~
 # define diretórios com o padrão xdg
@@ -80,7 +80,7 @@ export WGETRC="${XDG_DATA_HOME:-$HOME/.local/share}/wget/wgetrc"
 # xauthority
 export XAUTHORITY="${XDG_RUNTIME_DIR:-/run/user/$UID}/Xauthority"
 export XCURSOR_PATH="${XCURSOR_PATH}:~/.local/share/icons"
-export XCURSOR_THEME="Capitaine Cursors (Gruvbox)"
+export XCURSOR_THEME="Adwaita"
 export XCURSOR_SIZE="14"
 # cargo
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
@@ -100,7 +100,7 @@ export TERMINFO="${XDG_DATA_HOME:-$HOME/.local/share}/terminfo"
 export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/readline/inputrc"
 # gtk 2
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc"
-export GTK_THEME="Gruvbox-Material-Dark"
+export GTK_THEME="Raleigh"
 # w3m
 export W3M_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/w3m"
 # go

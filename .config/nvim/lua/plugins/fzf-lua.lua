@@ -13,6 +13,9 @@ return {
 					border = "single",
 					preview = { default = "bat", layout = "vertical" },
 				},
+				defaults = {
+					file_icons = false,
+				},
 			})
 			require("fzf-lua").register_ui_select()
 		end,

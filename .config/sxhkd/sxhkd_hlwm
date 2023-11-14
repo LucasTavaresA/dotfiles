@@ -1,6 +1,6 @@
 # Menus
 Menu;Menu
-  dmenu_run -b -i -l 15 -p '>' -fn 'Iosevka Nerd Font Mono:pixelsize=18'
+  dmenu_run -b -i -l 15 -p '>' -fn 'Iosevka:pixelsize=18'
 
 Menu;o
   orgmenu ~/documentos/favs.md
@@ -12,7 +12,7 @@ Menu;p
   keepmenu
 
 Menu;c
-  clipmenu -b -i -l 15 -p '>' -fn 'Iosevka Nerd Font Mono:pixelsize=18'
+  clipmenu -b -i -l 15 -p '>' -fn 'Iosevka:pixelsize=18'
 
 Menu;E
   term_open -a float fzf_emojis

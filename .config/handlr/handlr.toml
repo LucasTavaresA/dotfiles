@@ -1,2 +1,2 @@
 enable_selector = true
-selector = "dmenu -b -i -l 15 -p 'Open with: ' -fn 'Iosevka Nerd Font Mono:pixelsize=18'"
+selector = "dmenu -b -i -l 15 -p 'Open with: ' -fn 'Iosevka:pixelsize=18'"
