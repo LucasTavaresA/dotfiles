@@ -128,7 +128,7 @@ mode "Menu" {
     bindsym c exec cliphist list | tofi --padding-left 0 --padding-top 0 | cliphist decode | wl-copy ; mode "default"
     bindsym Shift+c exec term_open -a calculadora bc ; mode "default"
     bindsym Shift+e exec term_open -a float fzf_emojis ; mode "default"
-    bindsym f exec firefox ; mode "default"
+    bindsym f exec qutebrowser ; mode "default"
     bindsym h exec term_open -a float htop ; mode "default"
     bindsym s exec gammastep -O 3000 ; mode "default"
     bindsym Shift+s exec pkill -x gammastep ; mode "default"

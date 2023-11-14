@@ -29,7 +29,7 @@ Menu;r
 
 # outros
 Menu;f
-  firefox
+  qutebrowser
 
 Menu;h
   term_open -a float htop
