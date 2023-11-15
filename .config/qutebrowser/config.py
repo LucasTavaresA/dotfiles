@@ -173,18 +173,18 @@ config.bind("<Down>", "move-to-next-line", mode='caret')
 config.bind("<Left>", "move-to-prev-char", mode='caret')
 config.bind("<Right>", "move-to-next-char", mode='caret')
 # previne bug https://github.com/qutebrowser/qutebrowser/issues/2236
-# config.bind('o', 'set statusbar.show always;; set-cmd-text -s :open')
-# config.bind('O', 'set statusbar.show always;; set-cmd-text -s :open -t')
-# config.bind(':', 'set statusbar.show always;; set-cmd-text :')
+# config.bind('o', 'set statusbar.show always;; cmd-set-text -s :open')
+# config.bind('O', 'set statusbar.show always;; cmd-set-text -s :open -t')
+# config.bind(':', 'set statusbar.show always;; cmd-set-text :')
 # config.bind('<Escape>', 'mode-enter normal;; set statusbar.show in-mode', mode='command')
 # config.bind('<Return>', 'command-accept;; set statusbar.show in-mode', mode='command')
-# config.bind('/', 'set statusbar.show always;; set-cmd-text /')
+# config.bind('/', 'set statusbar.show always;; cmd-set-text /')
 bindings = {
     "<Ctrl-Tab>": "tab-next",
     "<Ctrl-Left>": "tab-prev",
     "<Ctrl-Right>": "tab-next",
-    "A": "set-cmd-text -s :back",
-    "D": "set-cmd-text -s :forward",
+    "A": "cmd-set-text -s :back",
+    "D": "cmd-set-text -s :forward",
     "<Ctrl-a>": "back",
     "<Ctrl-d>": "forward",
     "<Ctrl-j>": "scroll-page 0 0.5",
