@@ -84,6 +84,12 @@ intel-video-accel
 jq
 keepassxc
 lf
+libXcursor-devel
+libXi-devel
+libXinerama-devel
+libXrandr-devel
+libXxf86vm-devel
+libglvnd-devel
 libllvm12
 libreoffice
 llvm12
