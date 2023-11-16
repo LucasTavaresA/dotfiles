@@ -143,6 +143,7 @@ return {
 				vim.lsp.protocol.make_client_capabilities()
 			)
 			capabilities.textDocument.completion.completionItem.snippetSupport = true
+			capabilities.offsetEncoding = { "utf-16" }
 
 			-- Ativa quando o lsp esta ativo
 			On_attach = function(client, bufnr)
@@ -192,19 +193,10 @@ return {
 				severity_sort = true,
 			})
 
-			-- instale o clang e o ccls
-			require("lspconfig").ccls.setup({
+			-- instale o clang
+			require("lspconfig").clangd.setup({
 				on_attach = On_attach,
 				capabilities = capabilities,
-				init_options = {
-					compilationDatabaseDirectory = "build",
-					index = {
-						threads = 0,
-					},
-					clang = {
-						excludeArgs = { "-frounding-math" },
-					},
-				},
 			})
 
 			-- npm i -g vscode-langservers-extracted

@@ -25,6 +25,7 @@ ccls
 cheat
 checkbashisms
 clang
+clang-tools-extra
 clipmenu
 cloc
 cmake
