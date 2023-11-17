@@ -10,6 +10,10 @@ local XDG_DATA_HOME = og("XDG_DATA_HOME")
 if XDG_DATA_HOME == "" then
 	XDG_DATA_HOME = HOME .. "/.local/share"
 end
+local XDG_STATE_HOME = og("XDG_STATE_HOME")
+if XDG_STATE_HOME == "" then
+	XDG_STATE_HOME = HOME .. ".local/state"
+end
 
 ----- Configuração -----
 --- Miscelânea
@@ -31,7 +35,9 @@ vo.shell = "sh"
 
 --- Backups
 -- desabilita swapfile
-vo.swapfile = false
+vo.swapfile = true
+vo.backup = true
+vo.backupdir = XDG_STATE_HOME .. "/nvim/backup/"
 -- undo persistente
 vo.undofile = true
 
