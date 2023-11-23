@@ -83,6 +83,8 @@ config.set('completion.height', '100%')
 c.editor.command = ["term_open", "-a", "nvim", "nvim", "{}"]
 # não mostra barra de downloads
 config.set("downloads.remove_finished", 200)
+# permite copiar/colar
+config.set('content.javascript.clipboard', 'access-paste')
 
 #### Adblock ####
 config.set('content.blocking.method', 'both')
