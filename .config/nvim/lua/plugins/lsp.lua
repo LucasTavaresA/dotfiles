@@ -86,8 +86,7 @@ return {
 				end,
 			},
 			{
-				-- TODO(LucasTA): switch to a maintained solution
-				"jose-elias-alvarez/null-ls.nvim",
+				"nvimtools/none-ls.nvim",
 				config = function()
 					local null_ls = require("null-ls")
 					null_ls.setup({
