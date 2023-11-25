@@ -140,6 +140,7 @@ gsl () {
 }
 
 #### Aliases ####
+alias y="yazi"
 alias wget="wget --hsts-file=\"\$XDG_CACHE_HOME/wget-hsts\""
 alias code="code-oss"
 alias cd="z"

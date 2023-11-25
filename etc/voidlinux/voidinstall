@@ -38,6 +38,7 @@ pipx install jedi-language-server
 mkdir -p "$home/.local/share/applications/"
 cp etc/transmission-remote.desktop "$home/.local/share/applications/"
 cp etc/term_open.desktop "$home/.local/share/applications/"
+cp etc/yazi.desktop "$home/.local/share/applications/"
 
 mkdir -p "$home/.mozilla/firefox/myprofile/chrome/"
 cp etc/userChrome.css "$home/.mozilla/firefox/myprofile/chrome/"

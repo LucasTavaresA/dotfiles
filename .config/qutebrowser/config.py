@@ -110,10 +110,10 @@ c.content.blocking.adblock.lists = [
         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt"
         ]
 
-# usa o lf para mandar arquivos
+# usa o terminal para mandar arquivos
 config.set("fileselect.handler", "external")
-config.set("fileselect.single_file.command", ["term_open", "-a", "float", "lf", "-selection-path", "{}"])
-config.set("fileselect.multiple_files.command", ["term_open", "-a", "float", "lf", "-selection-path", "{}"])
+config.set("fileselect.single_file.command", ["term_open", "-a", "float", "yazi", "--chooser-file", "{}"])
+config.set("fileselect.multiple_files.command", ["term_open", "-a", "float", "yazi", "--chooser-file", "{}"])
 
 # notificações.
 config.set('content.notifications.enabled', True, 'https://www.youtube.com/*')

@@ -1,26 +1,6 @@
 #!/usr/bin/env sh
 #### Exports ####
-# adiciona ícones no lf
-export LF_ICONS="di=📁:fi=🗒️:tw=🤝:ow=📂:dt=📁:ln=🔗:or=❌:ex=🎯:*.txt=🗒:*.mom=🗒:*.me=🗒️:*.ms=🗒:,*hosts=:\
-*.hook=🪝:*.ttf=:*.otf=:*.woff=:*.woff2=:*.png=🖼:*.webp=🖼:*.ico=🖼:*.bmp=🖼:*.pbm=🖼:*.pgm=🖼:*.ppm=🖼:\
-*.tga=🖼:*.xbm=🖼:*.xpm=🖼:*.jpg=📸:*.jpe=📸:*.jpeg=📸:*.mjpg=📸:*.mjpeg=📸:*.gif=🖼:*.svg=🗺:*.svgz=🗺:\
-*.mng=🗺:*.pcx=🗺:*.tif=🖼:*.tiff=🖼:*.xwd=🖼:*.yuv=🖼:*.gl=🖼:*.dl=🖼:*.cgm=🖼:*.emf=🖼:*.xcf=🖌:*.html=🌎:\
-*.xml=📰:*.qt=📰:*.yml=⚙ :*.toml=⚙ :*.ini=⚙ :*.conf=⚙ :*.cfg=⚙ :*.config=⚙ :*.gpg=🔒:\
-*.css=🎨:*.dic=📖:*.pdf=📚:*.djvu=📚:*.epub=📚:*.csv=📓:*.xlsx=📓:*.xspf=📓:*.tex=📜:*.md=📘:*.org=🦄:*.r=📊:\
-*.R=📊:*.rmd=📊:*.Rmd=📊:*.m=📊:*.mp3=🎵:*.opus=🎵:*.ogg=🎵:*.m4a=🎵:*.midi=🎵:*.mid=🎵:*.aac=🎵:*.au=🎵:\
-*.mka=🎵:*.mpc=🎵:*.ra=🎵:*.oga=🎵:*.spx=🎵:*.flac=🎼:*.wav=🎼:*.asf=🎥:*.rm=🎥:*.rmvb=🎥:*.flc=🎥:*.mkv=🎥:\
-*.m2v=🎥:*.mp4=🎥:*.webm=🎥:*.mpeg=🎥:*.avi=🎥:*.mov=🎥:*.mpg=🎥:*.wmv=🎥:*.m4b=🎥:*.flv=🎥:*.ogm=🎥:*.m4v=🎥:\
-*.mp4v=🎥:*.vob=🎥:*.nuv=🎥:*.fli=🎥:*.ogv=🎥:*.ogx=🎥:*.zip=:*.rar=📦:*.7z=📦:*.tar.gz=📦:*.tar=📦:*.tgz=📦:*.arc=📦:\
-*.arj=📦:*.taz=📦:*.lha=📦:*.lz4=📦:*.lzh=📦:*.lzma=📦:*.tlz=📦:*.txz=📦:*.tzo=📦:*.t7z=📦:*.z=📦:*.dz=📦:*.gz=📦:\
-*.lrz=📦:*.lz=📦:*.lzo=📦:*.xz=📦:*.zst=📦:*.tzst=📦:*.bz2=📦:*.bz=📦:*.tbz=📦:*.tbz2=📦:*.tz=📦:*.deb=📦:*.rpm=📦:\
-*.war=📦:*.ear=📦:*.sar=📦:*.alz=📦:*.ace=📦:*.zoo=📦:*.cpio=📦:*.rz=📦:*.cab=📦:*.wim=📦:*.swm=📦:*.dwm=📦:*.esd=📦:\
-*.rom=🎮:*.nds=🎮:*.z64=🎮:*.v64=🎮:*.n64=🎮:*.gba=🎮:*.nes=🎮:*.gdi=🎮:*.1=ℹ:*.nfo=ℹ:*.info=ℹ:\
-*.log=📙:*.bin=🎯:*.exe=🎯:*.dll=🎯:*.iso=📀:*.img=📀:*.vdi=📀:*.bib=🎓:*.ged=👪:*.part=💔:*.torrent=🔽:*.jar=♨:\
-*.java=♨:*.el=():*.lisp=():*.cs=C#:*.c=C:*.cpp=C++:*.coffee=☕:*.d=D:*.dart=🎯:\
-*.fs=F#:*.go=🐹:*.h=H:*.hh=HH:*.hpp=H++:*.js=📜:*.json={}:*.lua=🌙:*.php=🐘:\
-*.py=🐍:*.rs=🦀:*.cmd=>:*.ps1=>:*.sh=\$:*.bash=\$:*.zsh=\$:*.profile=\$:*.fish=🐟:\
-*.mk=🔨"
-
+#
 # muda o local padrão de alguns dotfiles limpando a $HOME ou ~
 # define diretórios com o padrão xdg
 UID="$(id -u)" # Pega o id de usuário

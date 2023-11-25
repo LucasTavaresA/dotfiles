@@ -22,6 +22,8 @@ cairo-devel
 cargo
 cargo-update
 ccls
+chafa
+chafa-devel
 cheat
 checkbashisms
 clang
@@ -83,7 +85,6 @@ intel-ucode
 intel-video-accel
 jq
 keepassxc
-lf
 libXcursor-devel
 libXi-devel
 libXinerama-devel
@@ -91,7 +92,10 @@ libXrandr-devel
 libXxf86vm-devel
 libglvnd-devel
 libllvm12
+libopencv-devel
 libreoffice
+libsixel-devel
+libvips-devel
 llvm12
 lsd
 lua
@@ -177,6 +181,7 @@ streamlink
 sx
 sxhkd
 syncthing
+tbb-devel
 teeworlds
 telegram-desktop
 terminus-font
@@ -188,10 +193,11 @@ trash-cli
 tremc
 ttf-ubuntu-font-family
 typioca
-ueberzug
 ugrep
+unar
 unicode-emoji
 unrar
+vlc
 void-repo-multilib
 void-repo-nonfree
 vscode
@@ -204,6 +210,7 @@ wine-mono
 winetricks
 xautolock
 xbanish
+xcb-util-image-devel
 xclip
 xdo
 xdotool

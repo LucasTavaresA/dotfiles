@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=yazi
+Comment=Launches the yazi file manager
+Icon=utilities-terminal
+Terminal=true
+Exec=yazi
+Categories=ConsoleOnly;System;FileTools;FileManager
+MimeType=inode/directory;

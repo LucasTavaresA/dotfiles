@@ -23,6 +23,7 @@ export AUTO_NOTIFY_VERSION="0.8.0"
         'nano'
         'emacs'
         'lf'
+        'yazi'
     )
 
 function _auto_notify_format() {
