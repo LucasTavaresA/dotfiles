@@ -74,9 +74,10 @@ cat etc/pam_gnupg >>/etc/pam.d/login
 )
 
 (
-	cd code/c/ctpv
-	make
-	sudo make install
+	mkdir build && cd build
+	cmake -DCMAKE_BUILD_TYPE=Release ..
+	cmake --build .
+	cp ./ueberzug ./ueberzugpp "$home/.local/bin/"
 )
 
 (

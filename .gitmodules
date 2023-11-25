@@ -25,9 +25,9 @@
 [submodule "code/c/st"]
 	path = code/c/st
 	url = https://codeberg.org/lucastavaresa/st
-[submodule "code/c/ctpv"]
-	path = code/c/ctpv
-	url = https://github.com/NikitaIvanovV/ctpv
 [submodule "code/lua/nvim/ts-node-action"]
 	path = code/lua/nvim/ts-node-action
 	url = https://github.com/lucastavaresa/ts-node-action
+[submodule "code/c/ueberzugpp"]
+	path = code/c/ueberzugpp
+	url = https://github.com/jstkdng/ueberzugpp.git
