@@ -136,7 +136,10 @@ return {
 			{
 				"<leader>a",
 				function()
-					require("align").align_to_string(false, true, true)
+					require("align").align_to_string({
+						reverse = false,
+						preview = false
+					})
 				end,
 				mode = "v",
 			},
@@ -259,7 +262,7 @@ return {
 					listing_style = "list", -- One of 'list' or 'tree'
 				},
 				hooks = {
-					diff_buf_read = function(bufnr)
+					diff_buf_read = function()
 						vim.opt_local.wrap = false
 						vim.opt_local.list = false
 						vim.opt_local.colorcolumn = "+1"
