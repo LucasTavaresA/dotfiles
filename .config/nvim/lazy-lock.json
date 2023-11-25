@@ -71,7 +71,7 @@
   "statuscol.nvim": { "branch": "main", "commit": "98d02fc90ebd7c4674ec935074d1d09443d49318" },
   "tokyonight.nvim": { "branch": "main", "commit": "f247ee700b569ed43f39320413a13ba9b0aef0db" },
   "translate.nvim": { "branch": "main", "commit": "30cc9e9f339b61e7bd40bc1ba7af73ea193bf589" },
-  "typescript.nvim": { "branch": "main", "commit": "4de85ef699d7e6010528dcfbddc2ed4c2c421467" },
+  "typescript-tools.nvim": { "branch": "master", "commit": "89675239daee17ea9cdd369d56e9622dc841ef88" },
   "undotree": { "branch": "main", "commit": "a88c8ab7f780bc14ab9356c2311c44f49213d47c" },
   "vim-gnupg": { "branch": "main", "commit": "f9b608f29003dfde6450931dc0f495a912973a88" },
   "vim-snippets": { "branch": "master", "commit": "b039190177d97a968d80518470910aae7faf182a" }

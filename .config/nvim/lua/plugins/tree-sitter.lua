@@ -117,7 +117,6 @@ return {
 					"html",
 					"javascript",
 					"tsx",
-					"typescript",
 					"make",
 					"org",
 					"python",
