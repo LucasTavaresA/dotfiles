@@ -186,6 +186,7 @@ Autocmd({
 	{ "FileType", { "cs" }, "setlocal tabstop=4 shiftwidth=4 expandtab" },
 	{ "FileType", { "nelua" }, "setlocal tabstop=2 shiftwidth=2 expandtab" },
 	{ "FileType", { "lua" }, "setlocal tabstop=2 shiftwidth=2 expandtab" },
+	{ "FileType", { "c" }, "setlocal tabstop=2 shiftwidth=2 expandtab" },
 
 	-- TextYankPost
 	-- indica texto copiado

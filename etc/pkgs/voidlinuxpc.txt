@@ -89,6 +89,7 @@ libXcursor-devel
 libXi-devel
 libXinerama-devel
 libXrandr-devel
+libXtst-devel
 libXxf86vm-devel
 libglvnd-devel
 libllvm12
@@ -96,6 +97,7 @@ libopencv-devel
 libreoffice
 libsixel-devel
 libvips-devel
+libxkbcommon-devel
 llvm12
 lsd
 lua
@@ -117,6 +119,7 @@ mpv-mpris
 msbuild-bin
 ncmpcpp
 neovim
+nim
 nitrogen
 nodejs
 noto-fonts-cjk
@@ -202,6 +205,7 @@ void-repo-multilib
 void-repo-nonfree
 vscode
 w3m
+wayland-devel
 wget
 wiggle
 wine
