@@ -55,6 +55,7 @@ done
 ## herbstluftwm
 hck Release-Super_L spawn polybar-msg cmd hide
 hck Super_L spawn polybar-msg cmd show
+hck Alt-d spawn warpd --hint --click 1
 hck Mod4-q close
 hck Mod4-Shift-q remove
 hck Mod4-f and . attr clients.focus.floating off . attr clients.focus.fullscreen toggle
