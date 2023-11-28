@@ -180,7 +180,7 @@ Autocmd({
 	{
 		"FileType",
 		{ "markdown", "org", "txt", "norg" },
-		"setlocal nolist conceallevel=3 nocursorline colorcolumn=0",
+		"setlocal nolist concealcursor=nvic conceallevel=0 nocursorline colorcolumn=0",
 	},
 	{ "FileType", { "help" }, "setlocal nolist nocursorline colorcolumn=0" },
 	{ "FileType", { "cs" }, "setlocal tabstop=4 shiftwidth=4 expandtab" },
