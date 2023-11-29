@@ -108,3 +108,5 @@ npm i -g cssmodules-language-server @tailwindcss/language-server typescript \
 	fixjson bash-language-server vscode-css-languageserver-bin \
 	neovim write-good quick-lint-js stylelint
 npm i -g --save-exact prettier
+
+cat etc/registries.conf >>/etc/containers/registries.conf
