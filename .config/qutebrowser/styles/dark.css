@@ -1,6 +1,9 @@
 .note {
     Background-Color: #000000 !important;
 }
+* :not(path) {
+    color: #ffffff;
+}
 .blank-state-link:hover {
     background-color: #222222 !important;
 }
