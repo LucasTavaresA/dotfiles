@@ -45,3 +45,5 @@ cp etc/userChrome.css "$home/.mozilla/firefox/myprofile/chrome/"
 
 mkdir -p "$home/.local/share/wget"
 touch "$home/.local/share/wget/wgetrc"
+
+nimble install nimlangserver

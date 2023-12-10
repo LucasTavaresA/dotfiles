@@ -116,6 +116,7 @@ export HISTCONTROL=ignoredups:erasedups
 # adiciona diretórios bin e scripts ao path
 export PATH="$PATH:$ANDROID_STUDIO_HOME/bin"
 export PATH="$GOPATH/bin:$PATH"
+export PATH="$HOME/.nimble/bin:$PATH"
 export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/dotnet:$PATH"
 export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/dotnet-cli/tools:$PATH"
 # export PATH="$HOME/.dotnet/tools:$PATH"

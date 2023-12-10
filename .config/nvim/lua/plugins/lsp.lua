@@ -199,6 +199,9 @@ return {
 				capabilities = capabilities,
 			})
 
+			-- nimble install nimlangserver
+			require("lspconfig").nim_langserver.setup({})
+
 			-- npm i -g vscode-langservers-extracted
 			require("lspconfig").cssls.setup({
 				on_attach = On_attach,
