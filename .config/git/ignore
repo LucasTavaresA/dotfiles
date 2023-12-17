@@ -77,7 +77,7 @@
 .emulator_console_auth_token
 code/void-packages
 code/web
-code/c/odin
+code/c
 code/csharp
 code/java
 code/nelua
