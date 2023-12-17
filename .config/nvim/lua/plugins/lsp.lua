@@ -139,8 +139,10 @@ return {
 				XDG_DATA_HOME = os.getenv("HOME") .. "/.local/share"
 			end
 
-			local capabilities = require("cmp_nvim_lsp").default_capabilities(
-				vim.lsp.protocol.make_client_capabilities()
+			local capabilities = vim.tbl_deep_extend(
+				"force",
+				vim.lsp.protocol.make_client_capabilities(),
+				require("cmp_nvim_lsp").default_capabilities()
 			)
 			capabilities.textDocument.completion.completionItem.snippetSupport = true
 			capabilities.offsetEncoding = { "utf-16" }
@@ -270,7 +272,7 @@ return {
 			-- instale o omnisharp
 			require("lspconfig").omnisharp.setup({
 				capabilities = capabilities,
-				cmd = { os.getenv("XDG_DATA_HOME") .. "/omnisharp/OmniSharp", },
+				cmd = { os.getenv("XDG_DATA_HOME") .. "/omnisharp/OmniSharp" },
 				handlers = {
 					["textDocument/definition"] = require("omnisharp_extended").handler,
 				},
