@@ -272,43 +272,6 @@ return {
 			})
 		end,
 	},
-	-- git
-	{
-		"NeogitOrg/neogit",
-		dependencies = "nvim-lua/plenary.nvim",
-		cmd = "Neogit",
-		keys = {
-			{ "<leader>gg", vim.cmd.Neogit },
-		},
-		config = function()
-			vim.api.nvim_create_autocmd("User", {
-				pattern = "NeogitStatusRefreshed",
-				command = "setlocal nospell",
-			})
-			vim.api.nvim_create_autocmd("FileType", {
-				pattern = { "NeogitStatus" },
-				callback = function()
-					vim.keymap.set(
-						{ "n", "i" },
-						"<esc>",
-						"<esc>:bd!<CR>",
-						{ buffer = true, noremap = true, silent = true }
-					)
-				end,
-			})
-			require("neogit").setup({
-				disable_commit_confirmation = true,
-				use_magit_keybindings = true,
-				kind = "tab",
-				commit_popup = {
-					kind = "tab",
-				},
-				popup = {
-					kind = "tab",
-				},
-			})
-		end,
-	},
 
 	--- Aparência
 	-- fold mais bonitas

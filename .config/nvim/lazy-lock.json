@@ -36,7 +36,6 @@
   "monark.nvim": { "branch": "main", "commit": "edeb80a258f8bfeeef84ad1e2d6fa7989206d0d1" },
   "nelua-vim": { "branch": "main", "commit": "ff0a733a586ef0b48cda4999170ed4ca1653a144" },
   "neodev.nvim": { "branch": "main", "commit": "8526ce7de23e04735827a4e3f78ff634880181c5" },
-  "neogit": { "branch": "master", "commit": "13af9db37bb4255c40459352d0c535a47118042e" },
   "none-ls.nvim": { "branch": "main", "commit": "e7382de51b4cf629e56f1fa18192e716e5ba8145" },
   "notifier.nvim": { "branch": "master", "commit": "eea2d368ffd1b527e6f0c454c2cd907fd63420d8" },
   "nvim-FeMaco.lua": { "branch": "main", "commit": "6af458f0196215f397db31a6e1fb2df795811693" },
