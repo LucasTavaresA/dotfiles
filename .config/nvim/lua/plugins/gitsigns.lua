@@ -2,8 +2,36 @@ return {
 	"lewis6991/gitsigns.nvim",
 	lazy = false,
 	keys = {
-		{ "[g", ":Gitsigns prev_hunk<CR>", mode = { "n", "v" }, silent = true },
-		{ "]g", ":Gitsigns next_hunk<CR>", mode = { "n", "v" }, silent = true },
+		{
+			"[g",
+			function()
+				if vim.wo.diff then
+					return "[g"
+				end
+				vim.schedule(function()
+					package.loaded.gitsigns.prev_hunk()
+				end)
+				return "<Ignore>"
+			end,
+			mode = { "n", "v", "i" },
+			silent = true,
+			expr = true,
+		},
+		{
+			"]g",
+			function()
+				if vim.wo.diff then
+					return "]g"
+				end
+				vim.schedule(function()
+					package.loaded.gitsigns.next_hunk()
+				end)
+				return "<Ignore>"
+			end,
+			mode = { "n", "v", "i" },
+			silent = true,
+			expr = true,
+		},
 		{
 			"<leader>gb",
 			":Gitsigns toggle_current_line_blame<CR>",
@@ -40,8 +68,8 @@ return {
 	config = function()
 		require("gitsigns").setup({
 			signcolumn = false, -- Toggle with `:Gitsigns toggle_signs`
-			numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
-			linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
+			numhl = true,    -- Toggle with `:Gitsigns toggle_numhl`
+			linehl = false,  -- Toggle with `:Gitsigns toggle_linehl`
 			word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
 			worktrees = {
 				{
