@@ -12,6 +12,7 @@ if status is-interactive
     set fish_color_command green
     set fish_color_error '#ff0000'
     set fish_color_param cyan
+    set fish_sequence_key_delay_ms 200
 
     zoxide init fish | source
 
