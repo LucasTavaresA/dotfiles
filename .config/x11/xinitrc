@@ -22,13 +22,7 @@ xrdb -load "$HOME/.config/x11/xresources"
 # teclado
 # acelera repetição de teclas
 xset r rate 300 100
-# troca capslock por escape
-setxkbmap -option caps:swapescape # grep escape /usr/share/X11/xkb/rules/base.lst
-# teclas
-xmodmap -e "keycode 58 = m M m M apostrophe mu mu"                                             # alt + m = '
-xmodmap -e "keycode 59 = comma less comma less Escape multiply U2022"                          # alt + , = Escape
-xmodmap -e "keycode 60 = period greater period greater Tab division periodcentered"            # alt + . = Tab
-xmodmap -e "keycode 61 = semicolon colon semicolon colon quotedbl dead_abovedot dead_belowdot" # alt + ; = "
+setxkbmap -layout us -option caps:swapescape # grep escape /usr/share/X11/xkb/rules/base.lst
 
 # sistema
 checar_updates &
