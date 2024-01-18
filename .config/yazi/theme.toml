@@ -257,6 +257,7 @@ rules = [
 	{ name = "*.woff", text = "" },
 	{ name = "*.woff2", text = "" },
 	{ name = "*.iso", text = "📀" },
+	{ name = "*.img", text = "📀" },
 	{ name = "*.vdi", text = "📀" },
 	{ name = "*.hdi", text = "📀" },
 	{ name = "*.ged", text = "👪" },
