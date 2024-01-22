@@ -121,10 +121,10 @@ hck Mod4-a spawn term_open -a float ncmpcpp
 hck Mod4-Shift-a spawn term_open -a float pulsemixer
 hck Mod4-space or . spawn playerctl play-pause . spawn mpc toggle
 hck XF86AudioPlay or . spawn playerctl play-pause . spawn mpc toggle
-hck Mod4-comma spawn wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
-hck Mod4-period spawn wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
-hck XF86AudioLowerVolume spawn wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
-hck XF86AudioRaiseVolume spawn wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+hck Mod4-comma spawn pactl -- set-sink-volume @DEFAULT_SINK@ -5%
+hck Mod4-period spawn pactl -- set-sink-volume @DEFAULT_SINK@ +5%
+hck XF86AudioLowerVolume spawn pactl -- set-sink-volume @DEFAULT_SINK@ -5%
+hck XF86AudioRaiseVolume spawn pactl -- set-sink-volume @DEFAULT_SINK@ +5%
 hck Mod4-Shift-comma spawn musica ante
 hck Mod4-Shift-period spawn musica prox
 ## outros
