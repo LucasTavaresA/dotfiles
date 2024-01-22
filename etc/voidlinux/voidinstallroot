@@ -64,9 +64,9 @@ ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
 xbps-reconfigure -f alsa-pipewire
 
 mkdir -p /etc/X11
-cp -r etc/xorg.conf.d/ /etc/X11/
+cp -r etc/X11/xorg.conf.d/ /etc/X11/
 
-cat etc/pam_gnupg >>/etc/pam.d/login
+cat etc/pam.d/login >>/etc/pam.d/login
 
 (
 	cd code/c/st/
@@ -109,4 +109,4 @@ npm i -g cssmodules-language-server @tailwindcss/language-server typescript \
 	neovim write-good quick-lint-js stylelint
 npm i -g --save-exact prettier
 
-cat etc/registries.conf >>/etc/containers/registries.conf
+cat etc/containers/registries.conf >>/etc/containers/registries.conf
