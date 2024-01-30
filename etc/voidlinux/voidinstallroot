@@ -3,30 +3,16 @@
 set -ex
 
 xbps-install -Su
-xbps-install -S void-repo-nonfree void-repo-multilib
+xbps-install -S void-repo-nonfree
 xbps-install -S "$(cat "etc/pkgs/$HOSTNAME.txt")"
-
-microcode() {
-	echo "microcode Intel/Amd [i/a]? "
-	read -r marca
-	case "$marca" in
-		"i") xbps-install -S intel-ucode && xbps-reconfigure --force linux ;;
-		"a") xbps-install -S linux-firmware-amd ;;
-		*) microcode ;;
-	esac
-}
-microcode
 
 sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g;s/^#pt_BR.UTF-8 UTF-8/pt_BR.UTF-8 UTF-8/g' /etc/default/libc-locales
 xbps-reconfigure -f glibc-locales
 cp -f etc/locale.conf /etc/locale.conf
-
 cp -f etc/voidlinux/grub /etc/default/grub
 
-echo ". $home/.config/shell/bashrc" >>/etc/bash/bashrc
-
-chsh -s /bin/fish
-chsh -s /bin/sh "$user"
+chsh -s /bin/fish root
+chsh -s /bin/sh lucas
 
 cp etc/voidlinux/ignore-sudo.conf /etc/xbps.d/
 xbps-remove -R sudo
@@ -45,23 +31,17 @@ ln -s /etc/sv/dbus /var/service/
 
 [ -e "/etc/sv/seatd" ] &&
 	ln -s /etc/sv/seatd /var/service/ &&
-	usermod -aG _seatd "$user"
+	usermod -aG _seatd lucas
 
-gpu() {
-	echo "gpu Intel/Amd-Ati [i/a]? "
-	read -r marca
-	case "$marca" in
-		"i") xbps-install -S linux-firmware-intel mesa-dri vulkan-loader mesa-vulkan-intel intel-video-accel libva-intel-driver ;;
-		"a") xbps-install -S linux-firmware-amd mesa-dri vulkan-loader amdvlk mesa-vdpau mesa-vaapi ;;
-		*) gpu ;;
-	esac
-}
-gpu
+xbps-install -S linux-firmware-amd mesa-dri vulkan-loader amdvlk mesa-vdpau mesa-vaapi
 
 mkdir -p /etc/alsa/conf.d
 ln -s /usr/share/alsa/alsa.conf.d/50-pipewire.conf /etc/alsa/conf.d
 ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
 xbps-reconfigure -f alsa-pipewire
+
+echo "/usr/lib/pipewire-0.3/jack" > /etc/ld.so.conf.d/pipewire-jack.conf
+ldconfig
 
 mkdir -p /etc/X11
 cp -r etc/X11/xorg.conf.d/ /etc/X11/
@@ -76,14 +56,14 @@ cat etc/pam.d/login >>/etc/pam.d/login
 (
 	cd code/c/warpd/
 	make
-	cp ./bin/warpd "$home/.local/bin/"
+	cp ./bin/warpd /home/lucas/.local/bin/
 )
 
 (
 	mkdir build && cd build
 	cmake -DCMAKE_BUILD_TYPE=Release ..
 	cmake --build .
-	cp ./ueberzug ./ueberzugpp "$home/.local/bin/"
+	cp ./ueberzug ./ueberzugpp /home/lucas/.local/bin/
 )
 
 (
@@ -93,15 +73,9 @@ cat etc/pam.d/login >>/etc/pam.d/login
 	xbps-install -S sqlite-devel pulseaudio-devel
 	cmake ..
 	cmake --build . --target fastfetch --target flashfetch
-	cp ./flashfetch "$home/.local/bin/"
+	cp ./flashfetch /home/lucas/.local/bin/
 	xbps-remove -R sqlite-devel pulseaudio-devel
 )
-
-dd if=/dev/zero of=/swapfile bs=1M count=6k status=progress
-chmod 0600 /swapfile
-mkswap -U clear /swapfile
-swapon /swapfile
-echo "/swapfile none swap defaults 0 0" >>/etc/fstab
 
 npm i -g cssmodules-language-server @tailwindcss/language-server typescript \
 	typescript-language-server vscode-langservers-extracted \
@@ -109,4 +83,4 @@ npm i -g cssmodules-language-server @tailwindcss/language-server typescript \
 	neovim write-good quick-lint-js stylelint
 npm i -g --save-exact prettier
 
-cat etc/containers/registries.conf >>/etc/containers/registries.conf
+cp etc/containers/ /etc/
