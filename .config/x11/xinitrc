@@ -12,8 +12,7 @@ pgrep -x "mpDris2" || mpDris2 --music-dir="$HOME/media/musicas/" >"$XDG_CACHE_HO
 pgrep -x "playerctld" || playerctld daemon
 
 # aparência
-[ "$HOSTNAME" = "$OS"pc ] && xrandr --output VGA-1 --mode 1280x720 --rate 75.02
-[ "$HOSTNAME" = "$OS"note ] && xrandr --output LVDS --set TearFree on
+[ "$HOSTNAME" = "$OS"pc ] && xrandr --output DisplayPort-0 --mode 1280x720 --set TearFree on --rate 60.00
 picom &
 nitrogen --restore
 xsetroot -cursor_name left_ptr

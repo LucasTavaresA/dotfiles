@@ -139,9 +139,6 @@ export VISUAL="term_open -a nvim nvim"
 # localização para datas
 export LC_TIME="pt_BR.UTF-8"
 
-[ "$HOSTNAME" = "$OS"note ] && export LIBGL_ALWAYS_SOFTWARE=1
-[ "$HOSTNAME" = "$OS"pc ] && export LIBGL_ALWAYS_SOFTWARE=1
-
 running="$(ps cax)"
 is_running() {
 	if echo "$running" | grep -qF "$@"; then

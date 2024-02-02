@@ -171,9 +171,6 @@ if status is-interactive
     abbr -a -g vol wpctl set-volume @DEFAULT_AUDIO_SINK@ 70%
     abbr -a -g vols wpctl status
     abbr -a -g yt yt-dlp -P ~/Downloads --write-subs
-    if test "$HOSTNAME" = "$OS"note
-        abbr -a -g yt "yt-dlp -P ~/Downloads --write-subs -f 'worstvideo*[height=720]+worstaudio/worst[height=720]'"
-    end
     abbr -a -g yta yt-dlp -x
     abbr -a -g ytw "mpv --ytdl-format='worstvideo*[height=720]+worstaudio/worst[height=720]' --cache=yes --demuxer-max-bytes=2048Kib --wayland-app-id=Picture-in-Picture"
     abbr -a -g sw "streamlink -a '--wayland-app-id=Picture-in-Picture'"

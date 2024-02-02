@@ -29,11 +29,6 @@ config.set('content.javascript.enabled', True, 'chrome://*/*')
 config.set('content.javascript.enabled', True, 'qute://*/*')
 
 #### Minhas configurações ####
-import os
-if os.getenv('HOSTNAME') == os.getenv('OS') + 'pc':
-    config.set('qt.force_software_rendering', 'qt-quick')
-if os.getenv('HOSTNAME') == os.getenv('OS') + 'note':
-    config.set('qt.force_software_rendering', 'software-opengl')
 # tela cheia limitada a janela do navegador
 config.set('content.fullscreen.window', False)
 # diminuiu javascript lento nos sites
