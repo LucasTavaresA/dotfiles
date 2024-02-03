@@ -94,7 +94,6 @@ return {
 					null_ls.setup({
 						sources = {
 							-- c
-							null_ls.builtins.diagnostics.clang_check,
 							null_ls.builtins.formatting.clang_format.with({
 								disabled_filetypes = { "cs" },
 							}),
