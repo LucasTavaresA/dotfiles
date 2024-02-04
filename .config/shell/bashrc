@@ -118,6 +118,7 @@ gsl() {
 }
 
 #### Aliases ####
+alias adb="HOME=$XDG_DATA_HOME/android adb"
 alias y="yazi"
 alias wget="wget --hsts-file=\"\$XDG_CACHE_HOME/wget-hsts\""
 alias code="code-oss"

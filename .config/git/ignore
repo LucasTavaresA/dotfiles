@@ -1,9 +1,7 @@
 .ccls-cache/
-.android/
 .cache/
 .config/asciinema/
 .config/Android Open Source Project/
-.config/.android/
 .config/cabal/
 .config/chromium/
 .config/cni/
@@ -55,15 +53,14 @@
 .config/QtProject.conf
 .config/pmbootstrap.cfg
 .config/xnp21kai/
+.config/java/
 .gnupg/
 .gradle/
 .dbus/
 .dotnet/
-.java/
 .local/
 .mozilla/
 .nuget/
-.nimble/
 .net/
 .pki/
 .ssh/

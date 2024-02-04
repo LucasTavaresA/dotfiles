@@ -66,6 +66,8 @@ export XCURSOR_SIZE="14"
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 # omnisharp
 export OMNISHARPHOME="${XDG_DATA_HOME:-$HOME/.local/share}/omnisharp"
+# java
+export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=${XDG_CONFIG_HOME:-$HOME/.config}/java"
 # dotnet
 export DOTNET_ROOT="${XDG_DATA_HOME:-$HOME/.local/share}/dotnet"
 export DOTNET_CLI_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/dotnet-cli"
@@ -94,12 +96,15 @@ export CABAL_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/cabal"
 # android sdk
 export ANDROID_STUDIO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/android-studio"
 export ANDROID_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/Android/Sdk"
+export ANDROID_USER_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/android"
 # wine
 export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
 # ls colors
 export LS_COLORS="di=1;34:ln=1;36:so=1;33:pi=1;35:ex=32:bd=1;0;44:cd=1;36;42:su=1;32;42:sg=1;32;44:tw=0;45:ow=30;43"
 # fzf
 export FZF_ALT_C_COMMAND="fd --base-directory $HOME -H -I -d 4 -t d -E '*cache*' -E '*git*'"
+# nimble
+export NIMBLE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/nimble"
 
 # shell
 export SHELL="/bin/sh"
@@ -116,7 +121,7 @@ export HISTCONTROL=ignoredups:erasedups
 # adiciona diretórios bin e scripts ao path
 export PATH="$PATH:$ANDROID_STUDIO_HOME/bin"
 export PATH="$GOPATH/bin:$PATH"
-export PATH="$HOME/.nimble/bin:$PATH"
+export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/nimble/bin:$PATH"
 export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/dotnet:$PATH"
 export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/dotnet-cli/tools:$PATH"
 # export PATH="$HOME/.dotnet/tools:$PATH"

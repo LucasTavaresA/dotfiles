@@ -141,6 +141,7 @@ if status is-interactive
     end
 
     ## Abbr ##
+    abbr -a -g adb "HOME=$XDG_DATA_HOME/android adb"
     abbr -a -g y yazi
     abbr -a -g wget wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"
     abbr -a -g code code-oss
