@@ -110,12 +110,9 @@ return {
 							-- fish
 							null_ls.builtins.diagnostics.fish,
 							null_ls.builtins.formatting.fish_indent,
-							-- python
-							null_ls.builtins.diagnostics.flake8,
 							-- web
 							null_ls.builtins.formatting.prettier,
 							-- shell
-							null_ls.builtins.code_actions.shellcheck,
 							null_ls.builtins.formatting.shfmt.with({
 								extra_args = { "-ci" },
 							}),
