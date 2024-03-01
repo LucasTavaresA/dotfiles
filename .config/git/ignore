@@ -1,4 +1,5 @@
 .ccls-cache/
+.android
 .cache/
 .config/asciinema/
 .config/Android Open Source Project/

@@ -81,6 +81,7 @@ hunspell
 hunspell-en_US
 hunspell-pt_BR
 hyperfine
+jdupes
 jq
 keepassxc
 libXcursor-devel
