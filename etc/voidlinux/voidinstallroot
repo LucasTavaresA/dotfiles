@@ -54,6 +54,12 @@ cat etc/pam.d/login >>/etc/pam.d/login
 )
 
 (
+	cd code/c/gf/
+	./build.sh
+	cp ./gf2 /home/lucas/.local/bin/
+)
+
+(
 	mkdir build && cd build
 	cmake -DCMAKE_BUILD_TYPE=Release ..
 	cmake --build .
