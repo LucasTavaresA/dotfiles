@@ -6,11 +6,10 @@ return {
 			require("fzf-lua").setup({
 				winopts = {
 					width = 1,
-					height = 0.6,
+					height = 1,
 					row = 1,
 					col = 1,
-					border = "single",
-					preview = { default = "bat", layout = "vertical" },
+					preview = { default = "bat" },
 				},
 				defaults = {
 					file_icons = false,
