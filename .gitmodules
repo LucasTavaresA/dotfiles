@@ -31,6 +31,3 @@
 [submodule "code/c/ueberzugpp"]
 	path = code/c/ueberzugpp
 	url = https://github.com/jstkdng/ueberzugpp.git
-[submodule "code/c/warpd"]
-	path = code/c/warpd
-	url = https://github.com/rvaiya/warpd.git
