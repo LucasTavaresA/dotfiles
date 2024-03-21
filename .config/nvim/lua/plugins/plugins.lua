@@ -237,12 +237,6 @@ return {
 			},
 		},
 	},
-	-- fecha parenteses automaticamente
-	{
-		"windwp/nvim-autopairs",
-		lazy = false,
-		config = true,
-	},
 	-- balanceia parenteses
 	{ "gpanders/nvim-parinfer", lazy = false },
 	-- melhora visualização de diffs
