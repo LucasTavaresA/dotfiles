@@ -65,6 +65,7 @@ export XCURSOR_THEME="Adwaita"
 export XCURSOR_SIZE="14"
 # cargo
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
+export CARGO_INSTALL_OPTS="--locked"
 # omnisharp
 export OMNISHARPHOME="${XDG_DATA_HOME:-$HOME/.local/share}/omnisharp"
 # java
