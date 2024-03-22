@@ -38,6 +38,7 @@ dejavu-fonts-ttf
 delta
 docx2txt
 dunst
+easyeffects
 exiftool
 expect
 fd
@@ -100,6 +101,7 @@ libxkbcommon-devel
 lld
 llvm12
 lsd
+lsp-plugins
 lua
 lua-language-server
 maim
