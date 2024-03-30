@@ -55,6 +55,7 @@
 .config/pmbootstrap.cfg
 .config/xnp21kai/
 .config/java/
+.config/libresprite/
 .gnupg/
 .gradle/
 .dbus/
