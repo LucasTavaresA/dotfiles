@@ -87,9 +87,6 @@ Keymaps({
 	{ nv, "<leader>sd", ":G//d<left><left>" },
 	-- abre terminal do sistema no local do arquivo atual
 	{ "n", "<leader><return>", "<cmd>!sh -c 'term_open' &<cr><cr>" },
-	-- abre terminal nativo em uma split
-	{ nvi, "<M-cr>", TerminalToggle },
-	{ "t", "<M-cr>", TerminalToggle },
 	-- vai para diagnostico
 	-- { "n", "[d", vim.diagnostic.goto_prev },
 	-- { "n", "]d", vim.diagnostic.goto_next },
