@@ -158,25 +158,6 @@ return {
 		lazy = false,
 		config = true,
 	},
-	-- executar código dependendo do cwd
-	{
-		"lucastavaresa/simpleCommand.nvim",
-		keys = {
-			{
-				"<leader>c",
-				function()
-					require("simpleCommand").command(":split term://")
-				end,
-			},
-			{
-				"<leader>C",
-				function()
-					require("simpleCommand").command()
-				end,
-			},
-		},
-		config = true,
-	},
 	-- avaliar código
 	{
 		"michaelb/sniprun",
