@@ -26,42 +26,6 @@ return {
 				hl = { bold = true, fg = theme.red },
 				left_sep = " ",
 			},
-			signature = {
-				provider = function()
-					if not pcall(require, "lsp_signature") then
-						return
-					end
-
-					local maxLength = 100
-					local sig = require("lsp_signature").status_line(1000)
-
-					if sig.range then
-						local start = sig.range.start
-						local finish = sig.range["end"]
-						local argSize = finish - start
-						local labelSize = #sig.label
-
-						if start > maxLength then
-							local trimLength = labelSize - maxLength
-							sig.label = string.sub(sig.label, trimLength + 1)
-							start = start - trimLength
-							finish = finish - trimLength
-						elseif labelSize > maxLength then
-							sig.label = string.sub(sig.label, 0, maxLength + argSize)
-						end
-
-						local highlightedLabel = string.sub(sig.label, 1, start - 1)
-								.. "[["
-								.. string.sub(sig.label, start, finish)
-								.. "]]"
-								.. string.sub(sig.label, finish + 1)
-
-						return highlightedLabel
-					end
-
-					return ""
-				end,
-			},
 			search_count = {
 				provider = { name = "search_count" },
 				hl = { fg = theme.lightgreen },
@@ -141,7 +105,6 @@ return {
 		-- Right section
 		table.insert(components.active[1], comps.search_count)
 		table.insert(components.active[1], comps.macro)
-		table.insert(components.active[1], comps.signature)
 
 		-- Left Section
 		table.insert(components.active[3], comps.diagnos.err)

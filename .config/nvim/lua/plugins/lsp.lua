@@ -75,19 +75,6 @@ return {
 				end,
 			},
 			{
-				"ray-x/lsp_signature.nvim",
-				config = function()
-					require("lsp_signature").setup({
-						bind = true,
-						handler_opts = {
-							border = "single",
-						},
-						hint_prefix = "! ",
-						floating_window = false, -- show hint in a floating window
-					})
-				end,
-			},
-			{
 				"nvimtools/none-ls.nvim",
 				config = function()
 					local null_ls = require("null-ls")

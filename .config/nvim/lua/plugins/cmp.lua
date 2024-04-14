@@ -8,6 +8,7 @@ return {
 				dependencies = "honza/vim-snippets",
 				config = true,
 			},
+			"hrsh7th/cmp-nvim-lsp-signature-help",
 			"dcampos/cmp-snippy",
 			"hrsh7th/cmp-buffer",
 			"JMarkin/cmp-diag-codes",
@@ -141,6 +142,7 @@ return {
 					{ name = "conventionalcommits", ft = "gitcommit" },
 					{ name = "snippy" },
 					{ name = "nvim_lsp" },
+					{ name = "nvim_lsp_signature_help" },
 					{ name = "buffer" },
 					{
 						name = "fonts",
