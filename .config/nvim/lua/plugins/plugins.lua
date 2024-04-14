@@ -252,26 +252,6 @@ return {
 	},
 
 	--- Aparência
-	-- fold mais bonitas
-	{
-		"anuvyklack/pretty-fold.nvim",
-		lazy = false,
-		config = function()
-			require("pretty-fold").setup({
-				fill_char = "─",
-			})
-		end,
-	},
-	-- indicadores em foldings
-	{
-		"lewis6991/foldsigns.nvim",
-		lazy = false,
-		config = function()
-			require("foldsigns").setup({
-				exclude = { "GitSigns.*" },
-			})
-		end,
-	},
 	{
 		"tzachar/highlight-undo.nvim",
 		lazy = false,
