@@ -26,14 +26,6 @@ return {
 			"f3fora/cmp-spell",
 			{ "petertriho/cmp-git", dependencies = "nvim-lua/plenary.nvim" },
 			{
-				"KadoBOT/cmp-plugins",
-				config = function()
-					require("cmp-plugins").setup({
-						files = { ".config/nvim/lua/plugins" }, -- Recommended: use static filenames or partial paths
-					})
-				end,
-			},
-			{
 				"onsails/lspkind.nvim",
 				config = function()
 					require("cmp").setup({
@@ -66,10 +58,10 @@ return {
 			local has_words_before = function()
 				local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 				return col ~= 0
-					and vim.api
-							.nvim_buf_get_lines(0, line - 1, line, true)[1]
-							:sub(col, col)
-							:match("%s")
+						and vim.api
+						.nvim_buf_get_lines(0, line - 1, line, true)[1]
+						:sub(col, col)
+						:match("%s")
 						== nil
 			end
 			local snippy = require("snippy")
@@ -134,12 +126,14 @@ return {
 						option = { in_comment = true },
 					},
 					{ name = "path" },
-					{ name = "env", ft = { "fish", "zsh", "sh", "bash" } },
-					{ name = "fish", ft = "fish" },
-					{ name = "plugins", ft = "lua" },
-					{ name = "nvim_lua", ft = "lua" },
+					{
+						name = "env",
+						ft = { "fish", "zsh", "sh", "bash" },
+					},
+					{ name = "fish",                   ft = "fish" },
+					{ name = "nvim_lua",               ft = "lua" },
 					{ name = "git" },
-					{ name = "conventionalcommits", ft = "gitcommit" },
+					{ name = "conventionalcommits",    ft = "gitcommit" },
 					{ name = "snippy" },
 					{ name = "nvim_lsp" },
 					{ name = "nvim_lsp_signature_help" },
