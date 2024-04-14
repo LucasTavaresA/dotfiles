@@ -1,3 +1,7 @@
+local search_paths = function()
+	return [[printf "%s\n%s" "]] .. vim.fn.getcwd() .. [[" "$(zoxide query -l)"]]
+end
+
 return {
 	{
 		"ibhagwan/fzf-lua",
@@ -31,10 +35,50 @@ return {
 			{ "<leader>q", "<cmd>FzfLua quickfix<cr>" },
 			{ "<leader>Q", "<cmd>FzfLua quickfix_stack<cr>" },
 			{
-				"<leader>lg",
+				"<leader>gg",
 				function()
-					require("fzf-lua").live_grep({
-						cmd = "git grep -Ini --column --color=always",
+					local old_cwd = vim.fn.getcwd()
+
+					require("fzf-lua").fzf_exec(search_paths(), {
+						actions = {
+							["default"] = {
+								function(folder)
+									vim.cmd.cd(folder[1])
+									Update_cwd()
+
+									require("fzf-lua").live_grep({
+										cmd = "git grep -Ini --column --color=always",
+										actions = {
+											["default"] = function(selected, opts)
+												require("fzf-lua.actions").vimcmd_file(
+													"e",
+													selected,
+													opts
+												)
+												vim.cmd.cd(old_cwd)
+												Update_cwd()
+											end,
+										},
+									})
+								end,
+							},
+						},
+					})
+				end,
+			},
+			{
+				"<leader>G",
+				function()
+					require("fzf-lua").fzf_exec(search_paths(), {
+						actions = {
+							["default"] = {
+								function(folder)
+									require("fzf-lua").live_grep({
+										cwd = folder[1],
+									})
+								end,
+							},
+						},
 					})
 				end,
 			},
@@ -57,7 +101,7 @@ return {
 			{
 				"<leader>z",
 				function()
-					require("fzf-lua").fzf_exec("zoxide query -l", {
+					require("fzf-lua").fzf_exec(search_paths(), {
 						actions = {
 							["default"] = {
 								function(selected)
