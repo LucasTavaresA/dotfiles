@@ -129,22 +129,6 @@ return {
 			},
 		},
 	},
-	-- alinha texto
-	{
-		"Vonr/align.nvim",
-		keys = {
-			{
-				"<leader>a",
-				function()
-					require("align").align_to_string({
-						reverse = false,
-						preview = false
-					})
-				end,
-				mode = "v",
-			},
-		},
-	},
 	-- extende a funcionalidade de f,F,t,T
 	{
 		"echasnovski/mini.jump",
