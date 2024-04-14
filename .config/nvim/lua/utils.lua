@@ -116,10 +116,12 @@ function ReplaceSel()
 end
 
 --- places command output in a buffer
-va.nvim_create_user_command("Redir", function(ctx)
-	local lines = vim.split(va.nvim_exec(ctx.args, true), "\n", { plain = true })
+-- example: `:Redir !echo hello`
+vim.api.nvim_create_user_command("Redir", function(ctx)
+	local output = vim.api.nvim_exec2(ctx.args, {output = true}).output
+	local lines = vim.split(output or "", "\n", { plain = true })
 	vim.cmd("new")
-	va.nvim_buf_set_lines(0, 0, -1, false, lines)
+	vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
 	vim.opt_local.modified = false
 	vim.bo.filetype = "qf"
 end, { nargs = "+", complete = "command" })
