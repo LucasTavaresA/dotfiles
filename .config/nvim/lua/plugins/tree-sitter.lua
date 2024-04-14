@@ -223,17 +223,6 @@ return {
 		end,
 	},
 	{
-		"ziontee113/query-secretary",
-		keys = {
-			{
-				"zq",
-				function()
-					require("query-secretary").query_window_initiate()
-				end,
-			},
-		},
-	},
-	{
 		"ThePrimeagen/refactoring.nvim",
 		keys = {
 			{
