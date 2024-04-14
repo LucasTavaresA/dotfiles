@@ -239,17 +239,17 @@ return {
 				capabilities = capabilities,
 			})
 
-			-- require("lspconfig").nelua_lsp.setup({
-			-- 	cmd = {
-			-- 		"nelua",
-			-- 		"-L",
-			-- 		"/usr/lib/nelua-lsp/",
-			-- 		"--script",
-			-- 		"/usr/lib/nelua-lsp/nelua-lsp.lua",
-			-- 	},
-			-- 	on_attach = On_attach,
-			-- 	capabilities = capabilities,
-			-- })
+			require("lspconfig").nelua_lsp.setup({
+				cmd = {
+					"nelua",
+					"-L",
+					"/usr/lib/nelua-lsp/",
+					"--script",
+					"/usr/lib/nelua-lsp/nelua-lsp.lua",
+				},
+				on_attach = On_attach,
+				capabilities = capabilities,
+			})
 
 			-- instale o omnisharp
 			require("lspconfig").omnisharp.setup({
