@@ -116,19 +116,6 @@ return {
 		lazy = false,
 		config = true,
 	},
-	-- procura e edita varias ocorrências de uma palavra
-	{
-		"gabrielpoca/replacer.nvim",
-		keys = {
-			{
-				"<Leader>rr",
-				function()
-					require("replacer").run()
-				end,
-				{ nowait = true, noremap = true, silent = true },
-			},
-		},
-	},
 	-- extende a funcionalidade de f,F,t,T
 	{
 		"echasnovski/mini.jump",
