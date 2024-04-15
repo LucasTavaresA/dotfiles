@@ -9,7 +9,7 @@ return {
 		end,
 		dependencies = {
 			{
-				"lucastavaresa/ts-node-action",
+				"ckolkey/ts-node-action",
 				opts = {},
 				keys = {
 					{
