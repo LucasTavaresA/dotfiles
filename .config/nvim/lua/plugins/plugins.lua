@@ -2,7 +2,7 @@ return {
 	--- Miscelânea
 	{
 		"Darazaki/indent-o-matic",
-    lazy = false,
+		lazy = false,
 		opts = {
 			max_lines = 2048,
 			standard_widths = { 2, 4, 8 },
@@ -68,7 +68,7 @@ return {
 		event = "InsertEnter",
 		config = function()
 			require("better_escape").setup({
-				mapping = { "jj" }, -- a table with mappings to use
+				mapping = { "jj" },     -- a table with mappings to use
 				timeout = vim.o.timeoutlen, -- the time in which the keys must be hit in ms. Use option timeoutlen by default
 				clear_empty_lines = false, -- clear line after escaping if there is only whitespace
 				keys = function()
@@ -138,7 +138,7 @@ return {
 
 	--- Code
 	-- indicação de syntaxe nelua
-	{ "edubart/nelua-vim", ft = "nelua" },
+	{ "edubart/nelua-vim",      ft = "nelua" },
 	-- lidar com conflitos git
 	{
 		"akinsho/git-conflict.nvim",
@@ -233,9 +233,9 @@ return {
 			local builtin = require("statuscol.builtin")
 
 			require("statuscol").setup({
-				setopt = true, -- Whether to set the 'statuscolumn' option
+				setopt = true,       -- Whether to set the 'statuscolumn' option
 				ft_ignore = { "netrw" }, -- lua table with filetypes for which 'statuscolumn' will be unset
-				bt_ignore = nil, -- lua table with 'buftype' values for which 'statuscolumn' will be unset
+				bt_ignore = nil,     -- lua table with 'buftype' values for which 'statuscolumn' will be unset
 				segments = {
 					{ text = { "%s" }, click = "v:lua.ScSa" },
 					{
@@ -251,9 +251,9 @@ return {
 	},
 	-- notificações menos intrusivas
 	{
-		"vigoux/notifier.nvim",
+		"j-hui/fidget.nvim",
 		lazy = false,
-		config = true,
+		opts = {},
 	},
 	-- indica palavra selecionada
 	{
@@ -281,11 +281,11 @@ return {
 		opts = {
 			-- your configuration comes here
 			-- or leave it empty to use the default settings
-			style = "night", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
-			transparent = true, -- Enable this to disable setting the background color
+			style = "night",                   -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+			transparent = true,                -- Enable this to disable setting the background color
 			sidebars = { "qf", "help", "netrw" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
-			hide_inactive_statusline = false, -- Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine** and **LuaLine**.
-			dim_inactive = false, -- dims inactive windows
+			hide_inactive_statusline = false,  -- Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine** and **LuaLine**.
+			dim_inactive = false,              -- dims inactive windows
 		},
 	},
 	-- indica modo atual no cursor
