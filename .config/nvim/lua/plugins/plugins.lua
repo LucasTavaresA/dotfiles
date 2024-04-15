@@ -191,33 +191,6 @@ return {
 	},
 	-- balanceia parenteses
 	{ "gpanders/nvim-parinfer", lazy = false },
-	-- melhora visualização de diffs
-	{
-		"sindrets/diffview.nvim",
-		lazy = false,
-		dependencies = { "nvim-lua/plenary.nvim" },
-		keys = {
-			{ "<leader>gf", ":DiffviewFileHistory", mode = { "n", "v" } },
-			{ "<leader>gd", ":DiffviewOpen" },
-			{ "<leader>gc", "<cmd>DiffviewClose<cr>" },
-		},
-		config = function()
-			require("diffview").setup({
-				enhanced_diff_hl = true, -- See ':h diffview-config-enhanced_diff_hl'
-				file_panel = {
-					listing_style = "list", -- One of 'list' or 'tree'
-				},
-				hooks = {
-					diff_buf_read = function()
-						vim.opt_local.wrap = false
-						vim.opt_local.list = false
-						vim.opt_local.colorcolumn = "+1"
-						vim.opt_local.spell = false
-					end,
-				},
-			})
-		end,
-	},
 
 	--- Aparência
 	{

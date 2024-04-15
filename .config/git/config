@@ -10,14 +10,6 @@
 	editor = nvim
     pager = delta
 
-[alias]
-	# Open log history in nvim diffview
-	l = "! args=$@; shift $#; nvim -c \"DiffviewFileHistory $args\""
-	# Open a diff in nvim diffview
-	d = "! args=$@; shift $#; nvim -c \"DiffviewOpen $args\""
-	# Open PR in nvim diffview
-	pr = "!f(){ branch=${1:-$(git branch --show-current)}; target=${2:-origin/master}; nvim -c \"DiffviewOpen $target...$branch\"; };f"
-
 [commit]
 	gpgsign = true
 
