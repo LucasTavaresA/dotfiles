@@ -37,7 +37,6 @@
   "nvim-FeMaco.lua": { "branch": "main", "commit": "6af458f0196215f397db31a6e1fb2df795811693" },
   "nvim-alt-substitute": { "branch": "main", "commit": "e338393ad7fe742ddeedb3c19996d98707982fd7" },
   "nvim-cmp": { "branch": "main", "commit": "ce16de5665c766f39c271705b17fff06f7bcb84f" },
-  "nvim-cmp-fonts": { "branch": "master", "commit": "43be83eb24ff8aec124c3aae64d053a095e03bd0" },
   "nvim-colorizer.lua": { "branch": "master", "commit": "85855b38011114929f4058efc97af1059ab3e41d" },
   "nvim-lastplace": { "branch": "main", "commit": "0bb6103c506315044872e0f84b1f736c4172bb20" },
   "nvim-lspconfig": { "branch": "master", "commit": "b3014f2209503944f2714cf27c95591433a0c7d8" },

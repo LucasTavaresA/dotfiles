@@ -19,10 +19,6 @@ return {
 			"davidsierradz/cmp-conventionalcommits",
 			"mtoohey31/cmp-fish",
 			"bydlw98/cmp-env",
-			{
-				"amarakon/nvim-cmp-fonts",
-				ft = { "conf", "config", "css", "yml", "toml", "dosini" },
-			},
 			"f3fora/cmp-spell",
 			{ "petertriho/cmp-git", dependencies = "nvim-lua/plenary.nvim" },
 		},
@@ -110,11 +106,6 @@ return {
 					{ name = "nvim_lsp" },
 					{ name = "nvim_lsp_signature_help" },
 					{ name = "buffer" },
-					{
-						name = "fonts",
-						option = { space_filter = "-" },
-						ft = { "conf", "config", "css", "yml", "toml", "dosini" },
-					},
 					{
 						name = "spell",
 						ft = {
