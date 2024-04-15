@@ -27,7 +27,6 @@
   "lazy.nvim": { "branch": "main", "commit": "31ddbea7c10b6920c9077b66c97951ca8682d5c8" },
   "live-command.nvim": { "branch": "main", "commit": "d460067d47948725a6f25b20f31ea8bbfdfe4622" },
   "local-highlight.nvim": { "branch": "master", "commit": "9003107e94291fc628318b34837c1ad3fe6461c7" },
-  "lspkind.nvim": { "branch": "master", "commit": "1735dd5a5054c1fb7feaf8e8658dbab925f4f0cf" },
   "lspsaga.nvim": { "branch": "main", "commit": "a4d442896a9ff1f83ee3db965d81b659ebc977d5" },
   "mini.jump": { "branch": "main", "commit": "7d6dc73bd1a28c41545973cab0e10292a3accc56" },
   "monark.nvim": { "branch": "main", "commit": "d0d22aaaaa41b294b43a4244b8c33ac9a10a49cf" },
