@@ -84,15 +84,15 @@ vo.fillchars:append({ diff = "╱" })
 vo.cursorline = true
 
 --- Cores
-local vansh = vim.api.nvim_set_hl
 -- prefere modo escuro
-vo.background = "dark"
+vim.opt.background = "dark"
 -- melhora suporte de cores
-vo.termguicolors = true
+vim.opt.termguicolors = true
 -- tema
-pcall(vim.cmd.colorscheme, "tokyonight-night")
--- causa muita lentidão - comumente ativado por temas
-vansh(0, "NormalNC", {})
+vim.cmd("colorscheme habamax")
+-- NormalNC causa muita lentidão - comumente ativado por temas
+vim.api.nvim_set_hl(0, "NormalNC", { bg = "#222222" })
+vim.api.nvim_set_hl(0, "Normal", { bg = "#000000" })
 
 --- Tabs/Espaços
 -- indicação de espaços e tabs
