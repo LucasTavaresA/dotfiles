@@ -141,7 +141,7 @@ vim.o.foldopen = "block,insert,jump,mark,percent,quickfix,search,tag,undo"
 -- vg.loaded_netrw = 1
 -- vg.loaded_netrwPlugin = 1
 -- define o modo de listagem de arquivos
--- vg.netrw_liststyle = 3
+vg.netrw_liststyle = 3
 -- remove o banner
 vg.netrw_banner = 0
 -- tamanho da split
@@ -167,10 +167,10 @@ end
 
 Autocmd({
 	-- TermOpen
-	{ "TermOpen", { "*" }, "setlocal nocursorline nonumber norelativenumber" },
+	{ "TermOpen", { "*" },                   "setlocal nocursorline nonumber norelativenumber" },
 
 	-- FileType
-	{ "FileType", { "gitcommit" }, "norm zr" },
+	{ "FileType", { "gitcommit" },           "norm zr" },
 	{ "FileType", { "diff", "checkhealth" }, "setlocal nospell" },
 	{
 		"FileType",
@@ -182,11 +182,11 @@ Autocmd({
 		{ "markdown", "org", "txt", "norg" },
 		"setlocal nolist concealcursor=nvic conceallevel=0 nocursorline colorcolumn=0",
 	},
-	{ "FileType", { "help" }, "setlocal nolist nocursorline colorcolumn=0" },
-	{ "FileType", { "cs" }, "setlocal tabstop=4 shiftwidth=4 expandtab" },
+	{ "FileType", { "help" },  "setlocal nolist nocursorline colorcolumn=0" },
+	{ "FileType", { "cs" },    "setlocal tabstop=4 shiftwidth=4 expandtab" },
 	{ "FileType", { "nelua" }, "setlocal tabstop=2 shiftwidth=2 expandtab" },
-	{ "FileType", { "lua" }, "setlocal tabstop=2 shiftwidth=2 expandtab" },
-	{ "FileType", { "c" }, "setlocal tabstop=2 shiftwidth=2 expandtab" },
+	{ "FileType", { "lua" },   "setlocal tabstop=2 shiftwidth=2 expandtab" },
+	{ "FileType", { "c" },     "setlocal tabstop=2 shiftwidth=2 expandtab" },
 
 	-- TextYankPost
 	-- indica texto copiado

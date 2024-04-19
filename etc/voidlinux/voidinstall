@@ -21,8 +21,7 @@ GIT_FLAGS="--work-tree=. --git-dir=etc/.dotfiles/"
 
 su -c "$HOME/etc/voidlinux/voidinstallroot"
 
-cargo install handlr-regex tree-sitter-cli
-cargo install --locked yazi-fm
+cargo install --locked yazi-fm handlr-regex tree-sitter-cli
 
 go install github.com/nao1215/gup@latest
 go install github.com/mrtazz/checkmake/cmd/checkmake@latest

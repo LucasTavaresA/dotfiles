@@ -81,7 +81,7 @@ hexchat-python3
 highlight
 htop
 hunspell
-hunspell-en_US
+hunspell-en
 hunspell-pt_BR
 hyperfine
 jdupes
@@ -93,6 +93,8 @@ libXinerama-devel
 libXrandr-devel
 libXtst-devel
 libXxf86vm-devel
+libcxx-devel
+libcxxabi-devel
 libglvnd-devel
 libjack-pipewire
 libopencv-devel

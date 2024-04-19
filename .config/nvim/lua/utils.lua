@@ -1,8 +1,3 @@
-local vc = vim.cmd
-local vo = vim.opt
-local vf = vim.fn
-local va = vim.api
-
 --- atualiza cwd
 function Update_cwd()
 	local HOME = os.getenv("HOME")
@@ -26,7 +21,7 @@ function NetrwToggle()
 end
 
 --- alterna indicadores de pesquisa
-local ns = va.nvim_create_namespace("toggle_hlsearch")
+local ns = vim.api.nvim_create_namespace("toggle_hlsearch")
 local function toggle_hlsearch(char)
 	if vim.fn.mode() == "n" then
 		local keys = { "<CR>", "n", "N", "*", "#", "?", "/" }
@@ -97,28 +92,28 @@ function ReplaceSel()
 
 	vim.cmd(
 		':call feedkeys(":'
-			.. backspace_keypresses
-			.. "%s/"
-			.. vim.fn.escape(
-				vim.fn.escape(visual_selection, escape_characters),
-				escape_characters
-			)
-			.. "/"
-			.. vim.fn.escape(
-				vim.fn.escape(visual_selection, escape_characters),
-				escape_characters
-			)
-			.. "/"
-			.. "gcI"
-			.. left_keypresses
-			.. '")'
+		.. backspace_keypresses
+		.. "%s/"
+		.. vim.fn.escape(
+			vim.fn.escape(visual_selection, escape_characters),
+			escape_characters
+		)
+		.. "/"
+		.. vim.fn.escape(
+			vim.fn.escape(visual_selection, escape_characters),
+			escape_characters
+		)
+		.. "/"
+		.. "gcI"
+		.. left_keypresses
+		.. '")'
 	)
 end
 
 --- places command output in a buffer
 -- example: `:Redir !echo hello`
 vim.api.nvim_create_user_command("Redir", function(ctx)
-	local output = vim.api.nvim_exec2(ctx.args, {output = true}).output
+	local output = vim.api.nvim_exec2(ctx.args, { output = true }).output
 	local lines = vim.split(output or "", "\n", { plain = true })
 	vim.cmd("new")
 	vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
@@ -128,7 +123,7 @@ end, { nargs = "+", complete = "command" })
 
 --- Marca/Desmarca checkboxes
 function ToggleCheckbox()
-	local line = va.nvim_get_current_line()
+	local line = vim.api.nvim_get_current_line()
 	local ft = vim.o.ft
 	---@type table<string, string>
 	local checkboxes = {
@@ -151,7 +146,7 @@ function ToggleCheckbox()
 		end
 	)
 
-	va.nvim_set_current_line(line)
+	vim.api.nvim_set_current_line(line)
 end
 
 function SearchCount()
@@ -175,36 +170,41 @@ end
 -- joins lines while removing comments
 ---@param separator string separator when joining lines
 function JoinLines(separator)
-  separator = separator or " "
-  local view = vim.fn.winsaveview()
-  local mode = vim.api.nvim_get_mode()["mode"]
-  local line = vim.api.nvim_get_current_line()
-  local comment = require("SingleComment").GetComment()[1]
-  local cmd
+	separator = separator or " "
+	local view = vim.fn.winsaveview()
+	local mode = vim.api.nvim_get_mode()["mode"]
+	local line = vim.api.nvim_get_current_line()
+	local comment = require("SingleComment").GetComment()[1]
+	local cmd
 
-  -- insert mode can't use ´:´
-  if mode == "i" then
-    cmd = "<cmd>"
-  else
-    cmd = ":"
-  end
+	-- insert mode can't use ´:´
+	if mode == "i" then
+		cmd = "<cmd>"
+	else
+		cmd = ":"
+	end
 
-  -- don't delete comment if current line is not commented
-  if not line:find(vim.pesc(comment)) then
-    comment = ""
-  end
+	-- don't delete comment if current line is not commented
+	if not line:find(vim.pesc(comment)) then
+		comment = ""
+	end
 
-  if comment == "" then
-    -- prevent error on \%[] with nothing inside
-    comment = " "
-  end
+	if comment == "" then
+		-- prevent error on \%[] with nothing inside
+		comment = " "
+	end
 
-  local input = vim.api.nvim_replace_termcodes(
-    cmd .. [[s/\n\s*\%[]] .. comment .. [[]\s*/]] .. separator .. [[/<cr><end><esc>==]],
-    true,
-    false,
-    true
-  )
-  vim.api.nvim_feedkeys(input, "n", false)
-  vim.fn.winrestview(view)
+	local input = vim.api.nvim_replace_termcodes(
+		cmd
+		.. [[s/\n\s*\%[]]
+		.. comment
+		.. [[]\s*/]]
+		.. separator
+		.. [[/<cr><end><esc>==]],
+		true,
+		false,
+		true
+	)
+	vim.api.nvim_feedkeys(input, "n", false)
+	vim.fn.winrestview(view)
 end

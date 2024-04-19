@@ -9,7 +9,7 @@ return {
 		end,
 		dependencies = {
 			{
-				"ckolkey/ts-node-action",
+				"CKolkey/ts-node-action",
 				opts = {},
 				keys = {
 					{
@@ -26,7 +26,7 @@ return {
 					vim.keymap.set("n", "<S-j>", "")
 				end,
 			},
-			{ "haringsrob/nvim_context_vt", config = true },
+			{ "andersevenrud/nvim_context_vt", config = true },
 			"JoosepAlviste/nvim-ts-context-commentstring",
 			{
 				"HiPhish/rainbow-delimiters.nvim",
