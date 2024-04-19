@@ -145,50 +145,6 @@ return {
 		lazy = false,
 		config = true,
 	},
-	-- avaliar código
-	{
-		"michaelb/sniprun",
-		ft = {
-			"sh",
-			"bash",
-			"markdown",
-			"org",
-			"norg",
-			"haskell",
-			"c",
-			"cs",
-			"cpp",
-			"go",
-			"java",
-			"javascript",
-			"typescript",
-			"rust",
-			"lisp",
-			"fennel",
-			"lua",
-			"python",
-			"clojure",
-			"cl",
-			"scheme",
-		},
-		build = "bash ./install.sh",
-		opts = { display = { "Terminal" } },
-		keys = {
-			{
-				"<leader>ee",
-				function()
-					require("sniprun").run()
-				end,
-			},
-			{
-				"<leader>ee",
-				function()
-					require("sniprun").run("v")
-				end,
-				mode = { "v" },
-			},
-		},
-	},
 	-- balanceia parenteses
 	{ "gpanders/nvim-parinfer", lazy = false },
 
