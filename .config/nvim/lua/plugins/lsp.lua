@@ -90,8 +90,6 @@ return {
 							null_ls.builtins.diagnostics.stylelint,
 							-- go
 							null_ls.builtins.diagnostics.golangci_lint,
-							-- refactoring
-							null_ls.builtins.code_actions.refactoring,
 							-- make
 							null_ls.builtins.diagnostics.checkmake,
 							-- fish
