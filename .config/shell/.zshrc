@@ -72,7 +72,7 @@ git () {
 # git status recursivo
 gsr () {
     cdir=$(pwd)
-    for repo in $(fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | ugrep '\.git/$');
+    for repo in $(fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | rg '\.git/$');
     do
         repo=$(echo $repo | sed 's/\/.git\/$//')
         cd $repo
@@ -97,7 +97,7 @@ gsr () {
 # git pull recursivo
 gpr () {
     cdir=$(pwd)
-    for repo in $(fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | ugrep '\.git/$');
+    for repo in $(fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | rg '\.git/$');
     do
         repo=$(echo $repo | sed 's/\/.git\/$//')
         cd $repo
@@ -157,7 +157,7 @@ alias tpe="trans -s pt -l en"
 alias fm="fzf_man"
 alias hc="herbstclient"
 alias stc="stc -homedir ~/.config/syncthing/"
-alias as="alias | ugrep --color -i"
+alias as="alias | rg -i"
 alias ff="flashfetch"
 alias v="nvim"
 alias vc="nvim --clean"
@@ -208,7 +208,7 @@ alias nlg="npm list -g"
 alias nr="npm run"
 alias nrb="npm run build"
 # arquivos e Diretórios
-alias g="ugrep --color -iIn"
+alias g="rg -iIn"
 alias rm="trash"
 alias rme="trash-empty"
 alias rml="trash-list"
@@ -309,7 +309,7 @@ elif [ "$OS" = "voidlinux" ]; then
     alias xqrs="xbps-query -Rs"
     alias xisu="doas xbps-install -Suy"
     alias xql="xbps-query -l"
-    alias xqlg="xbps-query -l | ugrep --color -i"
+    alias xqlg="xbps-query -l | rg -i"
     alias xrr="doas xbps-remove -Ry"
     # xtools
     alias xch="xchroot"

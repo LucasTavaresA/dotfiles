@@ -185,7 +185,6 @@ translate-shell
 transmission
 tremc
 ttf-ubuntu-font-family
-ugrep
 unicode-emoji
 unrar
 unzip

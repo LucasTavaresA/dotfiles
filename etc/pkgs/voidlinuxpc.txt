@@ -201,7 +201,6 @@ trash-cli
 tremc
 ttf-ubuntu-font-family
 typioca
-ugrep
 unar
 unicode-emoji
 unrar

@@ -77,7 +77,7 @@ if status is-interactive
     # git status recursivo
     function gsr
         set cdir (pwd)
-        for repo in (fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | ugrep '\.git/$')
+        for repo in (fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | rg '\.git/$')
             set repo (echo $repo | sed 's/\/.git\/$//')
             cd $repo
 
@@ -101,7 +101,7 @@ if status is-interactive
     # git pull recursivo
     function gpr
         set cdir (pwd)
-        for repo in (fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | ugrep '\.git/$')
+        for repo in (fd -a -t d -u -E '*cache*' -E '*.local*' -E '*.config/emacs*' | rg '\.git/$')
             set repo (echo $repo | sed 's/\/.git\/$//')
             cd $repo
 
@@ -158,7 +158,7 @@ if status is-interactive
     abbr -a -g hc herbstclient
     abbr -a -g stc stc -homedir ~/.config/syncthing/
     abbr -a -g fm fzf_man
-    abbr -a -g as "abbr | ugrep --color -i"
+    abbr -a -g as "abbr | rg -i"
     abbr -a -g ff flashfetch
     abbr -a -g v nvim
     abbr -a -g vc nvim --clean
@@ -215,7 +215,7 @@ if status is-interactive
     abbr -a -g rml trash-list
     abbr -a -g rmr trash-restore
     abbr -a -g rmrm trash-rm
-    abbr -a -g g ugrep --color -iIn
+    abbr -a -g g rg -iIn
     abbr -a -g l lsd -AX1 --group-dirs first
     abbr -a -g la lsd -lXA1 --group-dirs first
     abbr -a -g lo locate -Ai
@@ -308,7 +308,7 @@ if status is-interactive
         abbr -a -g xqrs xbps-query -Rs
         abbr -a -g xisu doas xbps-install -Suy
         abbr -a -g xql xbps-query -l
-        abbr -a -g xqlg "xbps-query -l | ugrep --color -i"
+        abbr -a -g xqlg "xbps-query -l | rg -i"
         abbr -a -g xrr doas xbps-remove -Ry
         # xtools
         abbr -a -g xch xchroot

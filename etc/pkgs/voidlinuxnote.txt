@@ -165,7 +165,6 @@ transmission
 tremc
 ttf-ubuntu-font-family
 ueberzug
-ugrep
 unicode-emoji
 unrar
 void-repo-multilib
