@@ -149,6 +149,7 @@ if status is-interactive
     end
 
     ## Abbr ##
+    abbr --set-cursor=% -a -g 0x0 "curl -F'file=@%' https://0x0.st"
     abbr -a -g adb "HOME=$XDG_DATA_HOME/android adb"
     abbr -a -g y yazi
     abbr -a -g wget wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"
