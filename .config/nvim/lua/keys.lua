@@ -25,8 +25,8 @@ Keymaps({
 	},
 	-- switch buffers
 	{ nvi, "<C-Tab>", vim.cmd.bn },
-	-- WHY THIS RETARDED BINDING EXISTS?
-	{ nvi, "<C-z>", "" },
+	-- suspend nvim, goto terminal
+	{ nvi, "<A-q>", "<C-z>" },
 	-- join lines
 	{ ni, "<C-j>", function() JoinLines(" ") end },
 	{ "v", "<C-j>", function() JoinLines("") end },

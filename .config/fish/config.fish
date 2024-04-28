@@ -40,6 +40,14 @@ if status is-interactive
         bind -M insert jj "if commandline -P; commandline -f cancel; else; set fish_bind_mode default; commandline -f backward-char force-repaint; end"
         # fzf
         fzf_configure_bindings --history=\cS --git_log=\cA --variables=\cV --processes=\cX
+
+        # go to whatever was last suspended
+        function foreground
+            if jobs -q
+                fg
+            end
+        end
+        bind -M insert \eq foreground
     end
 
     ## funções ##
