@@ -221,7 +221,7 @@ if status is-interactive
     # arquivos e Diretórios
     abbr -a -g rm trash
     abbr -a -g rme trash-empty
-    abbr -a -g rml trash-list
+    abbr -a -g rml "trash-list | sort -k 1,1 -k 2,2"
     abbr -a -g rmr trash-restore
     abbr -a -g rmrm trash-rm
     abbr -a -g g rg -iIn
