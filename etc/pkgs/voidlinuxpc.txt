@@ -18,6 +18,8 @@ automake
 base-system
 bat
 bc
+bluez
+bluez-alsa
 bsdtar
 cairo-devel
 cargo
@@ -100,6 +102,7 @@ libjack-pipewire
 libopencv-devel
 libreoffice
 libsixel-devel
+libspa-bluetooth
 libvips-devel
 libxkbcommon-devel
 lld

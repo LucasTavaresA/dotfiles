@@ -208,6 +208,7 @@ hc rule class="GParted" floating=on floatplacement=center
 hc rule class="Nitrogen" floating=on floatplacement=center
 hc rule class="pinentry-qt" floating=on floatplacement=center
 hc rule instance="Places" floating=on floatplacement=center
+hc rule title="Galaxy Buds Manager (Popup)" floating=on floatplacement=center floating_geometry=300x200
 hc rule title="Picture-in-Picture" floating=on floating_geometry=600x350
 ## notificações, pop-ups, etc.
 hc rule class="qutebrowser" windowtype='_NET_WM_WINDOW_TYPE_UTILITY' floating=on

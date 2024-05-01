@@ -84,3 +84,6 @@ npm i -g cssmodules-language-server @tailwindcss/language-server typescript \
 npm i -g --save-exact prettier
 
 cp etc/containers/ /etc/
+
+ln -s /etc/sv/bluetoothd /var/service/
+usermod -aG bluetooth lucas
