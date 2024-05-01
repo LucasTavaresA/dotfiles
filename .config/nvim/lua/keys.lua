@@ -36,6 +36,8 @@ Keymaps({
 	{ nvi, "<A-w>", "<esc><C-w>w" },
 	-- toggle netrw
 	-- { nvi, "<A-f>", NetrwToggle },
+	-- Editar começo das linhas
+	{ "v", "I", ":Norm I" },
 	-- formatar buffer
 	{
 		nv,
