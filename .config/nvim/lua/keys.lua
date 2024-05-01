@@ -35,7 +35,7 @@ Keymaps({
 	-- trocar de split
 	{ nvi, "<A-w>", "<esc><C-w>w" },
 	-- toggle netrw
-	{ nvi, "<A-f>", NetrwToggle },
+	-- { nvi, "<A-f>", NetrwToggle },
 	-- formatar buffer
 	{
 		nv,
