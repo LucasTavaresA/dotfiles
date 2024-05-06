@@ -1,8 +1,16 @@
 return {
 	{
 		"neovim/nvim-lspconfig",
-		lazy = false,
+		cmd = "LspStart",
 		dependencies = {
+			{
+				"Hoffs/omnisharp-extended-lsp.nvim",
+			},
+	-- {
+	--   "Decodetalkers/csharpls-extended-lsp.nvim",
+	--   dependencies = "neovim/nvim-lspconfig",
+	--   ft = "cs",
+	-- },
 			"folke/neodev.nvim",
 			{
 				"pmizio/typescript-tools.nvim",
@@ -325,15 +333,4 @@ return {
 			})
 		end,
 	},
-	--- csharp
-	{
-		"Hoffs/omnisharp-extended-lsp.nvim",
-		dependencies = "neovim/nvim-lspconfig",
-		ft = "cs",
-	},
-	-- {
-	--   "Decodetalkers/csharpls-extended-lsp.nvim",
-	--   dependencies = "neovim/nvim-lspconfig",
-	--   ft = "cs",
-	-- },
 }
