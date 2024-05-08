@@ -250,9 +250,9 @@ return {
 				cmd = {
 					"nelua",
 					"-L",
-					"/usr/lib/nelua-lsp/",
+					"/home/lucas/code/nelua/nelua-lsp/",
 					"--script",
-					"/usr/lib/nelua-lsp/nelua-lsp.lua",
+					"/home/lucas/code/nelua/nelua-lsp/nelua-lsp.lua",
 				},
 				on_attach = On_attach,
 				capabilities = capabilities,

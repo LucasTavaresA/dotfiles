@@ -31,3 +31,6 @@
 [submodule "code/void-packages"]
 	path = code/void-packages
 	url = https://github.com/lucastavaresa/void-packages
+[submodule "code/nelua/nelua-lsp"]
+	path = code/nelua/nelua-lsp
+	url = https://github.com/codehz/nelua-lsp
