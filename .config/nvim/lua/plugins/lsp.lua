@@ -89,10 +89,6 @@ return {
 					local null_ls = require("null-ls")
 					null_ls.setup({
 						sources = {
-							-- c
-							null_ls.builtins.formatting.clang_format.with({
-								disabled_filetypes = { "cs" },
-							}),
 							-- git
 							null_ls.builtins.code_actions.gitsigns,
 							-- css
@@ -104,17 +100,11 @@ return {
 							-- fish
 							null_ls.builtins.diagnostics.fish,
 							null_ls.builtins.formatting.fish_indent,
-							-- web
-							null_ls.builtins.formatting.prettier,
 							-- shell
 							null_ls.builtins.formatting.shfmt.with({
 								extra_args = { "-ci" },
 							}),
 							null_ls.builtins.hover.printenv,
-							-- csharp
-							null_ls.builtins.formatting.csharpier,
-							-- lua
-							null_ls.builtins.formatting.stylua,
 							-- escrita
 							null_ls.builtins.diagnostics.write_good,
 						},
