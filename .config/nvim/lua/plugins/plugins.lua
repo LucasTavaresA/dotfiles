@@ -96,7 +96,12 @@ return {
 	-- Trata jj como escape
 	{
 		"max397574/better-escape.nvim",
-		event = "InsertEnter",
+		keys = {
+			{
+				"jj",
+				mode = { "i" },
+			},
+		},
 		config = function()
 			require("better_escape").setup({
 				mapping = { "jj" },     -- a table with mappings to use
