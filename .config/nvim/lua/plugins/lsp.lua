@@ -2,7 +2,7 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		cmd = "LspStart",
-		ft = { "fish", "sh", "bash", "nim", "css", "html", "javascript", "nelua" },
+		ft = { "c", "cpp", "fish", "sh", "bash", "nim", "css", "html", "javascript", "nelua" },
 		dependencies = {
 			{
 				"Hoffs/omnisharp-extended-lsp.nvim",
@@ -124,7 +124,6 @@ return {
 				require("cmp_nvim_lsp").default_capabilities()
 			)
 			capabilities.textDocument.completion.completionItem.snippetSupport = true
-			capabilities.offsetEncoding = { "utf-16" }
 
 			-- Ativa quando o lsp esta ativo
 			On_attach = function(client, bufnr)
@@ -175,6 +174,10 @@ return {
 			})
 
 			-- instale o clang
+			require("lspconfig").ccls.setup({
+				on_attach = On_attach,
+				capabilities = capabilities,
+			})
 			require("lspconfig").clangd.setup({
 				on_attach = On_attach,
 				capabilities = capabilities,
