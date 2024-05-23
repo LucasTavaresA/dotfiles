@@ -86,10 +86,6 @@ vo.cursorline = true
 --- Cores
 -- prefere modo escuro
 vim.opt.background = "dark"
--- melhora suporte de cores
-vim.opt.termguicolors = true
--- tema
-vim.cmd("colorscheme habamax")
 -- NormalNC causa muita lentidão - comumente ativado por temas
 vim.api.nvim_set_hl(0, "NormalNC", { bg = "#222222" })
 vim.api.nvim_set_hl(0, "Normal", { bg = "#000000" })
