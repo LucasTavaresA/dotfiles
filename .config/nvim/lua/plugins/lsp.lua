@@ -1,8 +1,7 @@
 return {
 	{
 		"neovim/nvim-lspconfig",
-		cmd = "LspStart",
-		ft = { "c", "cpp", "fish", "sh", "bash", "nim", "css", "html", "javascript", "nelua" },
+		lazy = false,
 		dependencies = {
 			{
 				"Hoffs/omnisharp-extended-lsp.nvim",
