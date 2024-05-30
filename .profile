@@ -99,6 +99,7 @@ export CABAL_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/cabal"
 export ANDROID_STUDIO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/android-studio"
 export ANDROID_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/Android/Sdk"
 export ANDROID_USER_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/android"
+export GRADLE_USER_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/gradle"
 # wine
 export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
 # ls colors

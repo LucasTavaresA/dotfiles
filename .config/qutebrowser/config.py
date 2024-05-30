@@ -113,6 +113,7 @@ config.set("fileselect.multiple_files.command", ["term_open", "-a", "float", "ya
 # notificações.
 config.set('content.notifications.enabled', True, 'https://www.youtube.com/*')
 config.set('content.notifications.enabled', True, 'https://twitter.com/*')
+config.set('content.notifications.enabled', True, 'https://x.com/*')
 config.set('content.notifications.enabled', True, 'https://facebook.com/*')
 config.set('content.notifications.enabled', True, 'https://www.reddit.com')
 config.set('content.notifications.enabled', True, 'https://old.reddit.com')
@@ -147,6 +148,7 @@ c.url.searchengines = {'DEFAULT': 'https://searx.be/search?q={}'
                     ,  'se':   'https://stackexchange.com/search?q={}'
                     ,  'sf':   'https://sourceforge.net/directory/?q={}'
                     ,  'tw':   'https://twitter.com/search?q={}'
+                    ,  'x':    'https://x.com/search?q={}'
                     ,  'tg':   'https://trends.google.com.br/trends/explore?q={}'
                     ,  'ud':   'https://www.urbandictionary.com/define.php?term={}'
                     ,  'vn':   'https://vndb.org/v?sq={}'
@@ -464,6 +466,7 @@ config.set('content.javascript.enabled', True, '*://*.translate.google.com/*')
 config.set('content.javascript.enabled', True, '*://*.trends.google.com.br/*')
 config.set('content.javascript.enabled', True, '*://*.tsoding.org/*')
 config.set('content.javascript.enabled', True, '*://*.twitter.com/*')
+config.set('content.javascript.enabled', True, '*://x.com/*')
 config.set('content.javascript.enabled', True, '*://*.typeof.net/*')
 config.set('content.javascript.enabled', True, '*://*.unix.stackexchange.com/*')
 config.set('content.javascript.enabled', True, '*://*.vancedapp.com/*')

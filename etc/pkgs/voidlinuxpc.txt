@@ -101,6 +101,7 @@ libglvnd-devel
 libjack-pipewire
 libopencv-devel
 libreoffice
+libsanitizer-devel
 libsixel-devel
 libspa-bluetooth
 libvips-devel
