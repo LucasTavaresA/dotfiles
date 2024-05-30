@@ -212,7 +212,6 @@ unrar
 valgrind
 vlc
 void-repo-nonfree
-vscode
 vulkan-loader
 w3m
 wayland-devel

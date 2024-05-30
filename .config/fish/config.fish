@@ -153,7 +153,6 @@ if status is-interactive
     abbr -a -g adb "HOME=$XDG_DATA_HOME/android adb"
     abbr -a -g y yazi
     abbr -a -g wget wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"
-    abbr -a -g code code-oss
     abbr -a -g cd z
     abbr -a -g cage cage -s --
     abbr -a -g sg sgrade

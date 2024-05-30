@@ -67,8 +67,9 @@
 .pki/
 .ssh/
 .var/
-.vscode-oss/
-.config/Code - OSS/
+.ServiceHub/
+.vscode/
+.config/Code/
 .config/obs-studio/
 .config/olivevideoeditor.org/
 .config/go/telemetry/
