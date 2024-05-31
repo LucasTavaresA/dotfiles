@@ -264,6 +264,24 @@ return {
 	},
 
 	--- Escrever
+	-- supermaven ai completion
+	{
+		"supermaven-inc/supermaven-nvim",
+		lazy = false,
+		config = function()
+			require("supermaven-nvim").setup({
+				keymaps = {
+					accept_suggestion = "<A-u>",
+				},
+				-- color = {
+				-- 	suggestion_color = "#ffffff",
+				-- 	cterm = 244,
+				-- },
+				disable_inline_completion = false, -- disables inline completion for use with cmp
+				disable_keymaps = false          -- disables built in keymaps for more manual control
+			})
+		end,
+	},
 	-- traduz texto
 	{
 		"uga-rosa/translate.nvim",

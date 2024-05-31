@@ -68,6 +68,7 @@
 .ssh/
 .var/
 .ServiceHub/
+.supermaven/
 .vscode/
 .config/Code/
 .config/obs-studio/
