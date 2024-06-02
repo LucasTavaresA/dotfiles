@@ -11,7 +11,7 @@ return {
 			--   dependencies = "neovim/nvim-lspconfig",
 			--   ft = "cs",
 			-- },
-			"folke/neodev.nvim",
+			{ "folke/lazydev.nvim", ft = "lua", config = true },
 			{
 				"pmizio/typescript-tools.nvim",
 				dependencies = { "nvim-lua/plenary.nvim" },
@@ -297,8 +297,6 @@ return {
 			--   },
 			-- })
 
-			require("neodev").setup()
-
 			-- instale o lua-language-server
 			require("lspconfig").lua_ls.setup({
 				on_attach = On_attach,
@@ -313,11 +311,11 @@ return {
 							-- Get the language server to recognize the `vim` global
 							globals = { "vim" },
 						},
-						workspace = {
-							-- Make the server aware of Neovim runtime files
-							library = vim.api.nvim_get_runtime_file("", true),
-							checkThirdParty = false, -- removes annoying messages
-						},
+						-- workspace = {
+						-- 	-- Make the server aware of Neovim runtime files
+						-- 	library = vim.api.nvim_get_runtime_file("", true),
+						-- 	checkThirdParty = false, -- removes annoying messages
+						-- },
 						telemetry = {
 							enable = false,
 						},

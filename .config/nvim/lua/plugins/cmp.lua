@@ -13,7 +13,6 @@ return {
 			"hrsh7th/cmp-buffer",
 			"JMarkin/cmp-diag-codes",
 			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-cmdline",
 			"davidsierradz/cmp-conventionalcommits",
@@ -99,10 +98,14 @@ return {
 						ft = { "fish", "zsh", "sh", "bash" },
 					},
 					{ name = "fish",                   ft = "fish" },
-					{ name = "nvim_lua",               ft = "lua" },
 					{ name = "git" },
 					{ name = "conventionalcommits",    ft = "gitcommit" },
 					{ name = "snippy" },
+					{
+						name = "lazydev",
+						ft = "lua",
+						group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+					},
 					{ name = "nvim_lsp" },
 					{ name = "nvim_lsp_signature_help" },
 					{ name = "buffer" },
