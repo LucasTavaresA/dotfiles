@@ -181,7 +181,6 @@ qutebrowser
 rlwrap
 scdoc
 scrcpy
-sct
 setxkbmap
 shellcheck
 shfmt

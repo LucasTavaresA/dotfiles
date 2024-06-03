@@ -288,8 +288,6 @@
 (define-key *Menu-map* (kbd "E") "exec term_open -a center fzf_emojis")
 (define-key *Menu-map* (kbd "h") "exec term_open -a htop htop")
 (define-key *Menu-map* (kbd "P") "exec pkill -x picom || picom -b --unredir-if-possible --backend xr_glx_hybrid --vsync --use-damage --glx-no-stencil")
-(define-key *Menu-map* (kbd "s") "exec sct")
-(define-key *Menu-map* (kbd "S") "exec sct 2000")
 (define-key *Menu-map* (kbd "t") "exec transmission-qt")
 (define-key *Menu-map* (kbd "e") "exec emacsclient -n -c -a 'term_open nvim'")
 (define-key *Menu-map* (kbd "a") "exec emacsclient -n -c -a 'term_open nvim' ~/documentos/anotações.org")
