@@ -173,6 +173,27 @@ return {
 	},
 
 	--- Code
+	{
+		"https://git.sr.ht/~p00f/godbolt.nvim",
+		ft = { "c", "cpp", "rust", "cs" },
+		opts =
+		{
+			-- languages = vim.o.filetype
+			-- You can get the list of compiler ids by visiting or curling https://godbolt.org/api/compilers/<language>
+			-- and the list of libraries by curling or visiting https://godbolt.org/api/libraries/<language>.
+			languages = {
+				cpp = { compiler = "g122", options = {} },
+				c = { compiler = "cg122", options = {} },
+				rust = { compiler = "r1650", options = {} },
+				cs = { compiler = "dotnet707csharp", options = {} },
+			},
+			quickfix = {
+				enable = false,        -- whether to populate the quickfix list in case of errors
+				auto_open = false      -- whether to open the quickfix list in case of errors
+			},
+			url = "https://godbolt.org" -- can be changed to a different godbolt instance
+		}
+	},
 	-- indicação de syntaxe nelua
 	{ "edubart/nelua-vim",      ft = "nelua" },
 	-- lidar com conflitos git
@@ -278,7 +299,7 @@ return {
 				-- 	cterm = 244,
 				-- },
 				disable_inline_completion = false, -- disables inline completion for use with cmp
-				disable_keymaps = false          -- disables built in keymaps for more manual control
+				disable_keymaps = false        -- disables built in keymaps for more manual control
 			})
 		end,
 	},
