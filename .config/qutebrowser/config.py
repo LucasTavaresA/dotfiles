@@ -249,6 +249,14 @@ c.url.start_pages = 'https://searx.be/'
 #### CORES ####
 # pedir modo escuro aos sites que o suportam
 config.set('colors.webpage.preferred_color_scheme', 'dark')
+config.set('colors.webpage.bg', 'black')
+# colors.webpage.darkmode.algorithm
+# lightness-cielab: Modify colors by converting them to CIELAB color space and inverting the L value. Not available with Qt < 5.14.
+# lightness-hsl: Modify colors by converting them to the HSL color space and inverting the lightness (i.e. the "L" in HSL).
+# brightness-rgb: Modify colors by subtracting each of r, g, and b from their maximum value.
+config.set('colors.webpage.darkmode.algorithm', 'lightness-cielab')
+config.set('colors.webpage.darkmode.enabled', True)
+
 
 #### Fontes ####
 # fonte padrão
