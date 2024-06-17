@@ -1,18 +1,18 @@
 // ==UserScript==
-// u/name         Auto Skip YouTube Ads
-// u/version      1.0.0
-// u/description  Speed up and skip YouTube ads automatically
-// u/author       jso8910
+// u/name Skip YouTube ads
+// u/description Skips the ads in YouTube videos
+// u/run-at document-start
 // u/match        *://*.youtube.com/*
 // u/exclude      *://*.youtube.com/subscribe_embed?*
 // ==/UserScript==
-setInterval(() => {
-    const btn = document.querySelector('.videoAdUiSkipButton,.ytp-ad-skip-button')
+
+document.addEventListener('load', () => {
+    const btn = document.querySelector('.videoAdUiSkipButton,.ytp-ad-skip-button-modern')
     if (btn) {
         btn.click()
     }
     const ad = [...document.querySelectorAll('.ad-showing')][0];
     if (ad) {
-        document.querySelector('video').playbackRate = 100;
+        document.querySelector('video').currentTime = 9999999999;
     }
-}, 50)
+}, true);
