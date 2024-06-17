@@ -108,6 +108,7 @@ libvips-devel
 libxkbcommon-devel
 lld
 llvm12
+llvm17
 lsd
 lsp-plugins
 lua
@@ -178,6 +179,7 @@ qt6-wayland
 qt6ct
 quilt
 qutebrowser
+ripgrep
 rlwrap
 scdoc
 scrcpy

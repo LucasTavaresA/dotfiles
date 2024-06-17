@@ -62,5 +62,5 @@
   "undotree": { "branch": "main", "commit": "eab459ab87dd249617b5f7187bb69e614a083047" },
   "vim-gnupg": { "branch": "main", "commit": "f9b608f29003dfde6450931dc0f495a912973a88" },
   "vim-snippets": { "branch": "master", "commit": "96d79529edc3dee1ccf2ce7b75a88cb546ec2501" },
-  "yazi.nvim": { "branch": "master", "commit": "d6575eda7711d8743eeac6bc5304b60934723e54" }
+  "yazi.nvim": { "branch": "master", "commit": "60f589ed67b3a7b1b92a81f9345069f52aa64132" }
 }

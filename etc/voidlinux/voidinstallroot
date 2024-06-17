@@ -4,12 +4,12 @@ set -ex
 
 xbps-install -Su
 xbps-install -S void-repo-nonfree
-xbps-install -S "$(cat "etc/pkgs/$HOSTNAME.txt")"
+xbps-install -S $(cat "etc/pkgs/$HOSTNAME.txt")
 
 sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g;s/^#pt_BR.UTF-8 UTF-8/pt_BR.UTF-8 UTF-8/g' /etc/default/libc-locales
 xbps-reconfigure -f glibc-locales
 cp -f etc/locale.conf /etc/locale.conf
-cp -f etc/voidlinux/grub /etc/default/grub
+cp -f etc/voidlinux/default/grub /etc/default/grub
 
 chsh -s /bin/fish root
 chsh -s /bin/sh lucas
@@ -48,6 +48,7 @@ cp -r etc/X11/xorg.conf.d/ /etc/X11/
 
 cat etc/pam.d/login >>/etc/pam.d/login
 
+mkdir -p /home/lucas/.local/bin/
 (
 	cd code/c/st/
 	./build.sh
@@ -60,6 +61,7 @@ cat etc/pam.d/login >>/etc/pam.d/login
 )
 
 (
+	cd code/c/ueberzugpp/
 	mkdir build && cd build
 	cmake -DCMAKE_BUILD_TYPE=Release ..
 	cmake --build .
@@ -86,3 +88,5 @@ cp etc/containers/ /etc/
 
 ln -s /etc/sv/bluetoothd /var/service/
 usermod -aG bluetooth lucas
+
+chown -R lucas:lucas /home/lucas/.local/bin

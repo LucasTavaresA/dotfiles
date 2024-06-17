@@ -13,19 +13,22 @@ su -c 'xbps-install -S git'
 GIT_FLAGS="--work-tree=. --git-dir=etc/.dotfiles/"
 [ -d etc/.dotfiles ] ||
 	git clone --bare https://codeberg.org/lucastavaresa/dotfiles etc/.dotfiles &&
-	git "$GIT_FLAGS" restore -WS . &&
-	git "$GIT_FLAGS" submodule update --init --recursive &&
-	git "$GIT_FLAGS" config --local --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*' &&
-	git "$GIT_FLAGS" fetch &&
-	git "$GIT_FLAGS" branch --set-upstream-to=origin/main main
+	git $GIT_FLAGS restore -WS . &&
+	git $GIT_FLAGS submodule update --init --recursive &&
+	git $GIT_FLAGS config --local --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*' &&
+	git $GIT_FLAGS fetch &&
+	git $GIT_FLAGS branch --set-upstream-to=origin/main main
 
 su -c "$HOME/etc/voidlinux/voidinstallroot"
 
+export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
+mkdir -p "$home/.local/share/cargo/"
 cargo install --locked yazi-fm handlr-regex tree-sitter-cli
 
+export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
+mkdir -p "$home/.local/share/go/"
 go install github.com/nao1215/gup@latest
 go install github.com/mrtazz/checkmake/cmd/checkmake@latest
-go install github.com/nametake/golangci-lint-langserver@latest
 go install github.com/segmentio/golines@latest
 go install github.com/cespare/reflex@latest
 go install github.com/ayn2op/discordo@latest
@@ -46,4 +49,6 @@ cp etc/userChrome.css "$home/.mozilla/firefox/myprofile/chrome/"
 mkdir -p "$home/.local/share/wget"
 touch "$home/.local/share/wget/wgetrc"
 
+export NIMBLE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/nimble"
+mkdir -p "$home/.local/share/nimble"
 nimble install nimlangserver
