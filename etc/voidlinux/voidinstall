@@ -33,7 +33,6 @@ go install github.com/segmentio/golines@latest
 go install github.com/cespare/reflex@latest
 go install github.com/ayn2op/discordo@latest
 
-pipx install keepmenu
 pipx install scdl
 pipx install spotdl
 pipx install jedi-language-server

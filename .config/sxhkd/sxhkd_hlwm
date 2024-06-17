@@ -9,7 +9,7 @@ Menu;m
   menu_mont
 
 Menu;p
-  keepmenu
+  keepassxc
 
 Menu;c
   clipmenu -b -i -l 15 -p '>' -fn 'Iosevka:pixelsize=18'
