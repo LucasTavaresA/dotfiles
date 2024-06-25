@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+CONFIG_FILE="$HOME/.config/qutebrowser/config.py"
+TMP_FILE="$HOME/.cache/darkmode-add-tmpfile"
+
+if grep -qxF "config.set('colors.webpage.darkmode.enabled', True, '$1')" "$CONFIG_FILE"; then
+	grep -vxF "config.set('colors.webpage.darkmode.enabled', True, '$1')" "$CONFIG_FILE" >"$TMP_FILE"
+	mv "$TMP_FILE" "$CONFIG_FILE"
+else
+	printf "config.set('colors.webpage.darkmode.enabled', True, '%s')\n" "$1" >>"$CONFIG_FILE"
+fi

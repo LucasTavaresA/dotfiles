@@ -204,8 +204,6 @@ bindings = {
     "qf": "spawn --detach firefox {url}",
     # ativa/desativa a barra
     "qq": "config-cycle statusbar.show always never;; config-cycle tabs.show always never",
-    # ativa/desativa stylesheets
-    "qd": "config-cycle content.user_stylesheets ~/.config/qutebrowser/styles/dark.css ''",
     # ativa/desativa javascript para um site
     "qj": "config-cycle -p -u *://*.{url:host}/* content.javascript.enabled ;; reload",
     # ativa/desativa adblocking para um site
@@ -230,6 +228,8 @@ bindings = {
     "z": "hint links spawn sh -c 'printf %s\\\\n \"$1\" >> ~/copied.txt' _ {hint-url}",
     # Copia url atual para um arquivo
     "yz": "spawn sh -c 'printf %s\\\\n \"$1\" >> ~/copied.txt' _ {url}",
+    # ativa/desativa darkmode
+    "qd": "config-cycle -p -u *://*.{url:host}/* colors.webpage.darkmode.enabled ;; spawn --userscript darkmode-cycle \"*://*.{url:host}/*\" ;; reload",
 }
 
 for key, bind in bindings.items():
@@ -258,7 +258,7 @@ config.set('colors.webpage.bg', 'black')
 # lightness-hsl: Modify colors by converting them to the HSL color space and inverting the lightness (i.e. the "L" in HSL).
 # brightness-rgb: Modify colors by subtracting each of r, g, and b from their maximum value.
 config.set('colors.webpage.darkmode.algorithm', 'lightness-cielab')
-config.set('colors.webpage.darkmode.enabled', True)
+config.set('colors.webpage.darkmode.enabled', False)
 
 
 #### Fontes ####
@@ -560,3 +560,4 @@ config.set('content.javascript.enabled', True, '*://*.youtube.com/*')
 config.set('content.javascript.enabled', True, '*://*.xplr.dev/*')
 config.set('content.javascript.enabled', True, '*://*.chat.openai.com/*')
 config.set('content.javascript.enabled', True, '*://*.chatgpt.com/*')
+
