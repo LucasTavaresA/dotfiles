@@ -174,9 +174,7 @@ python3-pipx
 python3-pyclip
 python3-websockets
 python3-wheel
-qt5ct
 qt6-wayland
-qt6ct
 quilt
 qutebrowser
 ripgrep
