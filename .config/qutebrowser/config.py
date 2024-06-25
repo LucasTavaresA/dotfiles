@@ -561,3 +561,5 @@ config.set('content.javascript.enabled', True, '*://*.xplr.dev/*')
 config.set('content.javascript.enabled', True, '*://*.chat.openai.com/*')
 config.set('content.javascript.enabled', True, '*://*.chatgpt.com/*')
 
+config.set('colors.webpage.darkmode.enabled', True, '*://*.herbstluftwm.org/*')
+config.set('colors.webpage.darkmode.enabled', True, '*://*.searx.be/*')
