@@ -34,3 +34,6 @@
 [submodule "code/nelua/nelua-lsp"]
 	path = code/nelua/nelua-lsp
 	url = https://github.com/codehz/nelua-lsp
+[submodule ".config/yazi/plugins"]
+	path = .config/yazi/plugins
+	url = https://github.com/yazi-rs/plugins
