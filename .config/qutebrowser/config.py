@@ -140,6 +140,7 @@ c.url.searchengines = {'DEFAULT': 'https://searx.be/search?q={}'
                     ,  'fp':   'https://www.freshports.org/search.php?query={}&search=go&num=10&stype=name&method=match&deleted=excludedeleted&start=1&casesensitivity=caseinsensitive'
                     ,  'gf':   'https://greasyfork.org/en/scripts?q={}'
                     ,  'gh':   'https://github.com/search?q={}'
+                    ,  'ghs':  'https://github.com/LucasTavaresA?submit=Search&q={}&tab=stars&submit=Search'
                     ,  'gl':   'https://gitlab.com/search?search={}'
                     ,  'gm':   'https://www.google.com.br/maps/search/{}'
                     ,  'gt':   'https://translate.google.com/?sl=auto&tl=en&text={}'
@@ -563,3 +564,4 @@ config.set('content.javascript.enabled', True, '*://*.chatgpt.com/*')
 
 config.set('colors.webpage.darkmode.enabled', True, '*://*.herbstluftwm.org/*')
 config.set('colors.webpage.darkmode.enabled', True, '*://*.searx.be/*')
+config.set('colors.webpage.darkmode.enabled', True, '*://*.herbie.uwplse.org/*')
