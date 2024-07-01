@@ -68,7 +68,7 @@ vo.linebreak = true
 -- tamanho das linhas
 vo.textwidth = 80
 -- formatação nativa
-vo.formatoptions = "tcrqn1j"
+vo.formatoptions = "crqn1j"
 
 ----- Aparência -----
 --- Miscelânea
