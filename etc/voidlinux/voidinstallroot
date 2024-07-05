@@ -90,3 +90,6 @@ ln -s /etc/sv/bluetoothd /var/service/
 usermod -aG bluetooth lucas
 
 chown -R lucas:lucas /home/lucas/.local/bin
+
+/usr/share/qutebrowser/scripts/dictcli.py install en-US
+/usr/share/qutebrowser/scripts/dictcli.py install pt-BR

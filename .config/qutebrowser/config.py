@@ -1,18 +1,5 @@
-# pylint: disable=C0111
-c = c  # noqa: F821 pylint: disable=E0602,C0103
-config = config  # noqa: F821 pylint: disable=E0602,C0103
-# pylint: disable=C0111
-from qutebrowser.config.configfiles import ConfigAPI  # noqa: F401
-from qutebrowser.config.config import ConfigContainer  # noqa: F401
-config: ConfigAPI = config  # noqa: F821 pylint: disable=E0602,C0103
-c: ConfigContainer = c  # noqa: F821 pylint: disable=E0602,C0103
-
 # carregar o autoconfig.yml
 config.load_autoconfig(False)
-
-# Reinicia as stylesheets
-import subprocess
-subprocess.call(['python3', '.config/qutebrowser/userscripts/rebuild-qutebrowser-grease-styles.py'])
 
 #### Configurações padrão ####
 config.set('content.cookies.accept', 'all', 'chrome-devtools://*')
@@ -23,10 +10,6 @@ config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:90.0) Gecko
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99 Safari/537.36', 'https://*.slack.com/*')
 config.set('content.images', True, 'chrome-devtools://*')
 config.set('content.images', True, 'devtools://*')
-config.set('content.javascript.enabled', True, 'chrome-devtools://*')
-config.set('content.javascript.enabled', True, 'devtools://*')
-config.set('content.javascript.enabled', True, 'chrome://*/*')
-config.set('content.javascript.enabled', True, 'qute://*/*')
 
 #### Minhas configurações ####
 # tela cheia limitada a janela do navegador
@@ -206,9 +189,9 @@ bindings = {
     # ativa/desativa a barra
     "qq": "config-cycle statusbar.show always never;; config-cycle tabs.show always never",
     # ativa/desativa javascript para um site
-    "qj": "config-cycle -p -u *://*.{url:host}/* content.javascript.enabled ;; reload",
+    "qj": "config-cycle -p -u *://*.{url:host}/* content.javascript.enabled ;; spawn --userscript option-cycle \"*://*.{url:host}/*\" content.javascript.enabled ;; reload",
     # ativa/desativa adblocking para um site
-    "qb": "config-cycle -p -u *://*.{url:host}/* content.blocking.enabled ;; reload",
+    "qb": "config-cycle -p -u *://*.{url:host}/* content.blocking.enabled ;; spawn --userscript option-cycle \"*://*.{url:host}/*\" content.blocking.enabled ;; reload",
     # modo leitura
     "qr": "spawn --userscript readability",
     # traduz a pagina
@@ -229,8 +212,8 @@ bindings = {
     "z": "hint links spawn sh -c 'printf %s\\\\n \"$1\" >> ~/copied.txt' _ {hint-url}",
     # Copia url atual para um arquivo
     "yz": "spawn sh -c 'printf %s\\\\n \"$1\" >> ~/copied.txt' _ {url}",
-    # ativa/desativa darkmode
-    "qd": "config-cycle -p -u *://*.{url:host}/* colors.webpage.darkmode.enabled ;; spawn --userscript darkmode-cycle \"*://*.{url:host}/*\" ;; reload",
+    # ativa/desativa darkmode para um site
+    "qd": "config-cycle -p -u *://*.{url:host}/* colors.webpage.darkmode.enabled ;; spawn --userscript option-cycle \"*://*.{url:host}/*\" colors.webpage.darkmode.enabled ;; reload",
 }
 
 for key, bind in bindings.items():
@@ -276,7 +259,12 @@ c.fonts.prompts = 'default_size "Iosevka"'
 # fonte usada na barra de status.
 c.fonts.statusbar = '14px "Iosevka"'
 
-#### Javascript ####
+
+################
+config.set('content.javascript.enabled', True, 'chrome-devtools://*')
+config.set('content.javascript.enabled', True, 'devtools://*')
+config.set('content.javascript.enabled', True, 'chrome://*/*')
+config.set('content.javascript.enabled', True, 'qute://*/*')
 config.set('content.javascript.enabled', True, '*://*.10.0.0.2/*')
 config.set('content.javascript.enabled', True, '*://*.127.0.0.1/*')
 config.set('content.javascript.enabled', True, '*://*.192.168.0.1/*')
@@ -561,7 +549,13 @@ config.set('content.javascript.enabled', True, '*://*.youtube.com/*')
 config.set('content.javascript.enabled', True, '*://*.xplr.dev/*')
 config.set('content.javascript.enabled', True, '*://*.chat.openai.com/*')
 config.set('content.javascript.enabled', True, '*://*.chatgpt.com/*')
-
 config.set('colors.webpage.darkmode.enabled', True, '*://*.herbstluftwm.org/*')
 config.set('colors.webpage.darkmode.enabled', True, '*://*.searx.be/*')
 config.set('colors.webpage.darkmode.enabled', True, '*://*.herbie.uwplse.org/*')
+config.set('colors.webpage.darkmode.enabled', True, '*://*.www.aliexpress.com/*')
+config.set('content.javascript.enabled', True, '*://*.pt.aliexpress.com/*')
+config.set('content.javascript.enabled', True, '*://*.www.aliexpress.com/*')
+config.set('content.javascript.enabled', True, '*://*.www.correios.com.br/*')
+config.set('colors.webpage.darkmode.enabled', True, '*://*.www.correios.com.br/*')
+config.set('content.javascript.enabled', True, '*://*.rastreamento.correios.com.br/*')
+config.set('colors.webpage.darkmode.enabled', True, '*://*.anilist.co/*')
