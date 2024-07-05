@@ -72,7 +72,6 @@ go
 golangci-lint
 gopls
 grub-x86_64-efi
-gtk-engine-murrine
 gtk2fontsel
 gtkspell3
 gucharmap

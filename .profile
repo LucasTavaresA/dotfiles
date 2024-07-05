@@ -51,9 +51,6 @@ export MANPATH="/usr/local/man:/usr/local/share/man:/usr/share/man:/usr/lib/jvm/
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/pass"
 # pager
 export PAGER="less -R"
-# faz o qt usar o tema do qt5ct
-export QT_QPA_PLATFORMTHEME="qt5ct"
-# export QT_STYLE_OVERRIDE=kvantum
 # less
 export LESSHISTFILE="-"
 # wget
@@ -82,9 +79,6 @@ export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc"
 export TERMINFO="${XDG_DATA_HOME:-$HOME/.local/share}/terminfo"
 # inputrc
 export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/readline/inputrc"
-# gtk 2
-export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc"
-export GTK_THEME="Raleigh"
 # w3m
 export W3M_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/w3m"
 # go
