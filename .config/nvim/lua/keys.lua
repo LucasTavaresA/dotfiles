@@ -17,7 +17,6 @@ function Keymaps(maps)
 end
 
 Keymaps({
-	{ "i", "<esc>", "" },
 	{
 		nvi,
 		"<C-h>",

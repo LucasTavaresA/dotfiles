@@ -1,6 +1,5 @@
 return {
 	--- Miscelânea
-	---@type LazySpec
 	{
 		"mikavilpas/yazi.nvim",
 		dependencies = {
@@ -93,25 +92,45 @@ return {
 		lazy = false,
 		config = true,
 	},
-	-- Trata jj como escape
+	-- Trata jk como escape
 	{
 		"max397574/better-escape.nvim",
-		keys = {
-			{
-				"jj",
-				mode = { "i" },
+		lazy = false,
+		opts = {
+			timeout = vim.o.timeoutlen,
+			mappings = {
+				i = {
+					j = {
+						k = "<Esc>",
+						j = false,
+					},
+				},
+				c = {
+					j = {
+						k = "<Esc>",
+						j = false,
+					},
+				},
+				t = {
+					j = {
+						k = "<Esc>",
+						j = false,
+					},
+				},
+				v = {
+					j = {
+						k = "<Esc>",
+						j = false,
+					},
+				},
+				s = {
+					j = {
+						k = "<Esc>",
+						j = false,
+					},
+				},
 			},
 		},
-		config = function()
-			require("better_escape").setup({
-				mapping = { "jj" },     -- a table with mappings to use
-				timeout = vim.o.timeoutlen, -- the time in which the keys must be hit in ms. Use option timeoutlen by default
-				clear_empty_lines = false, -- clear line after escaping if there is only whitespace
-				keys = function()
-					return vim.api.nvim_win_get_cursor(0)[2] > 1 and "<esc>l" or "<esc>"
-				end,
-			})
-		end,
 	},
 
 	--- Editar
@@ -299,8 +318,8 @@ return {
 				-- 	cterm = 244,
 				-- },
 				disable_inline_completion = false, -- disables inline completion for use with cmp
-				disable_keymaps = false,        -- disables built in keymaps for more manual control
-				log_level = "off", -- set to "off" to disable logging completely
+				disable_keymaps = false,       -- disables built in keymaps for more manual control
+				log_level = "off",             -- set to "off" to disable logging completely
 			})
 		end,
 	},
