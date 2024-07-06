@@ -18,6 +18,8 @@ vim.keymap.set("n", "<leader>l", vim.cmd.Lazy)
 require("lazy").setup("plugins", {
 	defaults = {
 		lazy = true,
+		-- do not load plugins as root
+		cond = vim.env.USER ~= "root",
 	},
 	performance = {
 		rtp = {
