@@ -112,8 +112,7 @@ config.set('content.geolocation', False, 'https://www.google.com')
 config.set('content.register_protocol_handler', False, 'https://mail.google.com?extsrc=mailto&url=%25s')
 
 #### Ferramentas de pesquisa ####
-c.url.searchengines = {'DEFAULT': 'https://searx.be/search?q={}'
-                    ,  'g':    'https://www.google.com/search?q={}'
+c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
                     ,  'al':   'https://anilist.co/search/anime?search={}&sort=SEARCH_MATCH'
                     ,  'ala':  'https://anilist.co/search/anime?search={}&sort=SEARCH_MATCH'
                     ,  'alm':  'https://anilist.co/search/manga?search={}&sort=SEARCH_MATCH'
@@ -121,12 +120,15 @@ c.url.searchengines = {'DEFAULT': 'https://searx.be/search?q={}'
                     ,  'aw':   'https://wiki.archlinux.org/index.php?search={}'
                     ,  'br':   'https://brainly.com.br/app/ask?q={}'
                     ,  'fp':   'https://www.freshports.org/search.php?query={}&search=go&num=10&stype=name&method=match&deleted=excludedeleted&start=1&casesensitivity=caseinsensitive'
+                    ,  'gi':   'https://www.google.com/search?q={}&udm=2'
                     ,  'gf':   'https://greasyfork.org/en/scripts?q={}'
                     ,  'gh':   'https://github.com/search?q={}'
                     ,  'ghs':  'https://github.com/LucasTavaresA?submit=Search&q={}&tab=stars&submit=Search'
                     ,  'gl':   'https://gitlab.com/search?search={}'
                     ,  'gm':   'https://www.google.com.br/maps/search/{}'
                     ,  'gt':   'https://translate.google.com/?sl=auto&tl=en&text={}'
+                    ,  'gtpe': 'https://translate.google.com/?sl=pt_BR&tl=en&text={}'
+                    ,  'gtep': 'https://translate.google.com/?sl=en&tl=pt_BR&text={}'
                     ,  'imdb': 'https://www.imdb.com/find?q={}&ref_=nv_sr_sm'
                     ,  'md':   'https://mangadex.org/titles?page=1&q={}&order=relevance.desc'
                     ,  'od':   'https://odysee.com/search?q={}'
@@ -230,8 +232,8 @@ c.downloads.location.directory = '~/Downloads'
 
 # pagina inicial e novas abas
 # quando usando comandos como :open -t e :open -w .
-c.url.default_page = 'https://searx.be/'
-c.url.start_pages = 'https://searx.be/'
+c.url.default_page = 'https://google.com/'
+c.url.start_pages = 'https://google.com/'
 
 #### CORES ####
 # pedir modo escuro aos sites que o suportam
