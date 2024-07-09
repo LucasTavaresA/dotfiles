@@ -25,7 +25,7 @@ setnull searchurls.googleuk
 setnull searchurls.bing
 setnull searchurls.duckduckgo
 setnull searchurls.yahoo
-setnull searchurls.twitter
+setnull searchurls.x
 setnull searchurls.wikipedia
 setnull searchurls.youtube
 setnull searchurls.amazon
@@ -70,8 +70,8 @@ set jsurls.sc   query => query == "" ? "https://soundcloud.com/you/likes" : "htt
 set jsurls.se   query => query == "" ? "https://stackexchange.com" : "https://stackexchange.com/search?q=" + query
 set jsurls.sf   query => query == "" ? "https://sourceforge.net" : "https://sourceforge.net/directory/?q=" + query
 set jsurls.sync query => query == "" ? "http://127.0.0.1:8384/" : "http://127.0.0.1:8384/"
-set jsurls.tc   query => query == "" ? "https://twitch.com" : "https://www.twitch.tv/search?term=" + query
-set jsurls.tw   query => query == "" ? "https://twitter.com" : "https://twitter.com/search?q=" + query
+set jsurls.t   query => query == "" ? "https://www.twitch.tv/" : "https://www.twitch.tv/search?term=" + query
+set jsurls.x   query => query == "" ? "https://x.com" : "https://x.com/search?q=" + query
 set jsurls.tg   query => query == "" ? "https://trends.google.com.br" : "https://trends.google.com.br/trends/explore?q=" + query
 set jsurls.ud   query => query == "" ? "https://www.urbandictionary.com" : "https://www.urbandictionary.com/define.php?term=" + query
 set jsurls.vn   query => query == "" ? "https://vndb.org" : "https://vndb.org/v?sq=" + query
