@@ -201,8 +201,8 @@ testdisk
 toot
 translate-shell
 transmission
+transmission-qt
 trash-cli
-tremc
 ttf-ubuntu-font-family
 typioca
 unar

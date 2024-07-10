@@ -38,7 +38,7 @@ Menu;P
   pkill -x picom || picom
 
 Menu;t
-  term_open -a float tremc
+  term_open -a float transmission-qt
 
 Menu;C
   term_open -a calculadora python

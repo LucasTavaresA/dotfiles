@@ -132,7 +132,7 @@ mode "Menu" {
     bindsym h exec term_open -a float htop ; mode "default"
     bindsym s exec gammastep -O 3000 ; mode "default"
     bindsym Shift+s exec pkill -x gammastep ; mode "default"
-    bindsym t exec term_open -a tremc tremc ; mode "default"
+    bindsym t exec term_open -a float transmission-qt ; mode "default"
     bindsym a exec term_open -a nvim nvim ~/documentos/anotações.md ; mode "default"
     bindsym e exec term_open -a nvim nvim ~/documentos/ ; mode "default"
     bindsym l exec swaylock -c 000000ff --scaling fill ; mode "default"
