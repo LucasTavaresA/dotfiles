@@ -151,6 +151,7 @@ if status is-interactive
     ## Abbr ##
     abbr --set-cursor=% -a -g 0x0 "curl -F'file=@%' https://0x0.st"
     abbr -a -g adb "HOME=$XDG_DATA_HOME/android adb"
+    abbr -a -g docker podman
     abbr -a -g y yazi
     abbr -a -g wget wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"
     abbr -a -g cd z
@@ -164,7 +165,7 @@ if status is-interactive
     abbr -a -g tep trans -s en -hl pt
     abbr -a -g tpe trans -s pt -hl en
     abbr -a -g hc herbstclient
-    abbr -a -g stc stc -homedir ~/.config/syncthing/
+    abbr -a -g stc stc -homedir ~/.local/state/syncthing/
     abbr -a -g fm fzf_man
     abbr -a -g as "abbr | rg -i"
     abbr -a -g ff flashfetch
