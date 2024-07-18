@@ -63,11 +63,6 @@ return {
 					max_lines = 3, -- How many lines the window should span. Values <= 0 mean no limit.
 				},
 			},
-			-- melhor indicação de parâmetros e seu uso
-			{
-				"m-demare/hlargs.nvim",
-				config = true,
-			},
 		},
 		config = function()
 			require("nvim-treesitter").define_modules({
