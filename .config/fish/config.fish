@@ -168,8 +168,10 @@ if status is-interactive
     abbr -a -g uma doas usermod -aG
     abbr -a -g umr doas usermod -rG
     abbr -a -g df df -hT --total -x tmpfs -x devtmpfs
-    abbr -a -g tep trans -s en -hl pt
-    abbr -a -g tpe trans -s pt -hl en
+    abbr -a -g tep trans en:pt
+    abbr -a -g tpe trans pt:en
+    abbr -a -g tje trans jp:en
+    abbr -a -g tej trans en:jp
     abbr -a -g hc herbstclient
     abbr -a -g stc stc -homedir ~/.local/state/syncthing/
     abbr -a -g fm fzf_man
