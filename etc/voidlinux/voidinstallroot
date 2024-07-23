@@ -68,17 +68,6 @@ mkdir -p /home/lucas/.local/bin/
 	cp ./ueberzug ./ueberzugpp /home/lucas/.local/bin/
 )
 
-(
-	cd code/c/fastfetch
-	mkdir -p build
-	cd build
-	xbps-install -S sqlite-devel pulseaudio-devel
-	cmake ..
-	cmake --build . --target fastfetch --target flashfetch
-	cp ./flashfetch /home/lucas/.local/bin/
-	xbps-remove -R sqlite-devel pulseaudio-devel
-)
-
 npm i -g cssmodules-language-server @tailwindcss/language-server typescript \
 	typescript-language-server vscode-langservers-extracted \
 	fixjson bash-language-server vscode-css-languageserver-bin \

@@ -176,7 +176,7 @@ if status is-interactive
     abbr -a -g stc stc -homedir ~/.local/state/syncthing/
     abbr -a -g fm fzf_man
     abbr -a -g as "abbr | rg -i"
-    abbr -a -g ff flashfetch
+    abbr -a -g ff fastfetch
     abbr -a -g v nvim
     abbr -a -g vc nvim --clean
     abbr -a -g vv term_open -a nvim nvim

@@ -45,6 +45,7 @@ dunst
 easyeffects
 exiftool
 expect
+fastfetch
 fd
 ffmpegthumbnailer
 firefox

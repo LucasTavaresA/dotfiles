@@ -10,9 +10,6 @@
 [submodule "code/shellscripts/sgrade"]
 	path = code/shellscripts/sgrade
 	url = https://github.com/lucastavaresa/sgrade
-[submodule "code/c/fastfetch"]
-	path = code/c/fastfetch
-	url = https://codeberg.org/lucastavaresa/fastfetch
 [submodule "code/lua/nvim/simpleIndentGuides.nvim"]
 	path = code/lua/nvim/simpleIndentGuides.nvim
 	url = https://github.com/lucastavaresa/simpleIndentGuides.nvim.git
