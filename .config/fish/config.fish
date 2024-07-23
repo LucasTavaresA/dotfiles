@@ -152,6 +152,12 @@ if status is-interactive
     abbr --set-cursor=% -a -g 0x0 "curl -F'file=@%' https://0x0.st"
     abbr -a -g adb "HOME=$XDG_DATA_HOME/android adb"
     abbr -a -g docker podman
+    abbr -a -g trl transmission-remote -l
+    abbr -a -g tra transmission-remote -a
+    abbr --set-cursor=% -a -g trr "transmission-remote -t % -r"
+    abbr --set-cursor=% -a -g trrad "transmission-remote -t % -rad"
+    abbr --set-cursor=% -a -g trs "transmission-remote -t % -s"
+    abbr --set-cursor=% -a -g trS "transmission-remote -t % -S"
     abbr -a -g y yazi
     abbr -a -g wget wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"
     abbr -a -g cd z
