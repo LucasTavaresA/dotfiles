@@ -27,7 +27,6 @@ cargo-update
 ccls
 chafa
 chafa-devel
-cheat
 checkbashisms
 clang
 clang-tools-extra
