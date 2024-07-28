@@ -592,3 +592,7 @@ config.set('content.javascript.enabled', True, '*://*.www.gsuplementos.com.br/*'
 config.set('content.javascript.enabled', True, '*://*.kick.com/*')
 config.set('colors.webpage.darkmode.enabled', True, '*://*.unix.stackexchange.com/*')
 config.set('colors.webpage.darkmode.enabled', True, '*://*.superuser.com/*')
+config.set('content.javascript.enabled', True, '*://*.supermaven.com/*')
+config.set('content.javascript.enabled', True, '*://*.source.dot.net/*')
+config.set('content.javascript.enabled', True, '*://*.www.pixiv.net/*')
+config.set('content.javascript.enabled', True, '*://*.forums.terraria.org/*')
