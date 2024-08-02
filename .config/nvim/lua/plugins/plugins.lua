@@ -119,7 +119,7 @@ return {
 				},
 				v = {
 					j = {
-						k = "<Esc>",
+						k = false,
 						j = false,
 					},
 				},
