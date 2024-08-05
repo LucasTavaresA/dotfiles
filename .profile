@@ -68,8 +68,7 @@ export OMNISHARPHOME="${XDG_DATA_HOME:-$HOME/.local/share}/omnisharp"
 # java
 export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=${XDG_CONFIG_HOME:-$HOME/.config}/java"
 # dotnet
-export DOTNET_ROOT="${XDG_DATA_HOME:-$HOME/.local/share}/dotnet"
-export DOTNET_CLI_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/dotnet-cli"
+export DOTNET_ROOT="$HOME/.dotnet"
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 # nuget
 export NUGET_PACKAGES="${XDG_CACHE_HOME:-$HOME/.cache}/NuGetPackages"
@@ -120,8 +119,8 @@ export PATH="$PATH:$ANDROID_STUDIO_HOME/bin"
 export PATH="$GOPATH/bin:$PATH"
 export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/bflat:$PATH"
 export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/nimble/bin:$PATH"
-export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/dotnet:$PATH"
-export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/dotnet-cli/tools:$PATH"
+export PATH="$HOME/.dotnet:$PATH"
+export PATH="$HOME/.dotnet/tools:$PATH"
 export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/omnisharp:$PATH"
 export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/netcoredbg:$PATH"
 export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/cargo/bin:$PATH"
