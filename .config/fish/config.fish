@@ -150,7 +150,7 @@ if status is-interactive
 
     ## Abbr ##
     abbr --set-cursor=% -a -g 0x0 "curl -F'file=@%' https://0x0.st"
-    abbr -a -g adb "HOME=$XDG_DATA_HOME/android adb"
+    abbr -a -g adb "HOME=$XDG_DATA_HOME adb"
     abbr -a -g docker podman
     abbr -a -g trl transmission-remote -l
     abbr -a -g tra transmission-remote -a
