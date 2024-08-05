@@ -42,7 +42,7 @@ Keymaps({
 		nv,
 		"<leader>I",
 		function()
-			vim.lsp.buf.format({ async = true })
+			vim.lsp.buf.format({ async = false })
 		end,
 		{ noremap = true, silent = true }
 	},

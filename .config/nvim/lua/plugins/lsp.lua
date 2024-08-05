@@ -106,6 +106,8 @@ return {
 							null_ls.builtins.hover.printenv,
 							-- escrita
 							null_ls.builtins.diagnostics.write_good,
+							-- csharp
+							null_ls.builtins.formatting.csharpier,
 						},
 					})
 				end,
