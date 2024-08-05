@@ -8,6 +8,7 @@
 .config/cni/
 .config/coc/
 .config/csharp.history
+.config/.csharprepl
 .config/dconf/
 .config/Debauchee/
 .config/discord/
@@ -27,6 +28,7 @@
 .config/hexchat/
 .config/keepassxc/
 .config/libreoffice/
+.config/menus/
 .config/mpd/
 .config/mpv/watch_later/
 .config/ncmpcpp/error.log

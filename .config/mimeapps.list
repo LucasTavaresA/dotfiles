@@ -50,3 +50,5 @@ x-scheme-handler/ftp=org.qutebrowser.qutebrowser.desktop;
 x-scheme-handler/http=org.qutebrowser.qutebrowser.desktop;
 x-scheme-handler/https=org.qutebrowser.qutebrowser.desktop;
 x-scheme-handler/magnet=transmission-remote.desktop;
+application/vnd.powdertoy.save=powdertoy-uk.co.powdertoy.tpt.desktop
+x-scheme-handler/ptsave=powdertoy-uk.co.powdertoy.tpt.desktop

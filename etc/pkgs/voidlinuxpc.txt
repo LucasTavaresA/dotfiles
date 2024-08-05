@@ -106,7 +106,6 @@ libspa-bluetooth
 libvips-devel
 libxkbcommon-devel
 lld
-llvm12
 llvm17
 lsd
 lsp-plugins
