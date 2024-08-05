@@ -18,8 +18,6 @@ end
 
 Keymaps({
 	{ nvi, "<A-w>", "<esc><C-w>w" },
-	{ nv, "q:", ":" },
-	{ nv, ":",  "q:" },
 	{
 		nvi,
 		"<C-h>",
