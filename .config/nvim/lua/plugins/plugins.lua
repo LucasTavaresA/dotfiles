@@ -1,36 +1,6 @@
 return {
 	--- Miscelânea
 	{
-		"mikavilpas/yazi.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		event = "VeryLazy",
-		keys = {
-			{
-				"<A-f>",
-				function()
-					require("yazi").yazi()
-				end,
-				desc = "Open the file manager",
-			},
-			{
-				-- Open in the current working directory
-				"<A-S-f>",
-				function()
-					require("yazi").yazi(nil, vim.fn.getcwd())
-				end,
-				desc = "Open the file manager in nvim's working directory",
-			},
-		},
-		---@type YaziConfig
-		opts = {
-			open_for_directories = true,
-			floating_window_scaling_factor = 1,
-			yazi_floating_window_border = "none",
-		},
-	},
-	{
 		"Darazaki/indent-o-matic",
 		lazy = false,
 		opts = {
