@@ -77,11 +77,11 @@ Keymaps({
 	-- procura palavra no cursor
 	{ nv,  [[?]],              "*",                                        { remap = true } },
 	-- substitui seleção
-	{ "v", "<leader>S",        ReplaceSel },
+	-- { "v", "<leader>S",        ReplaceSel },
 	-- procura e substitui no arquivo
-	{ "n", "<leader>ss",       ":%s//gc<left><left><left>" },
+	-- { "n", "<leader>ss",       ":%s//gc<left><left><left>" },
 	-- procura e substitui na região selecionada
-	{ "v", "<leader>ss",       ":s//gc<left><left><left>" },
+	-- { "v", "<leader>ss",       ":s//gc<left><left><left>" },
 	-- deleta linhas
 	{ nv,  "<leader>sd",       ":G//d<left><left>" },
 	-- abre terminal do sistema no local do arquivo atual

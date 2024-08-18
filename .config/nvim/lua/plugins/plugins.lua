@@ -104,12 +104,23 @@ return {
 	},
 
 	--- Editar
-	-- :substitute using lua
+	-- :substitute using regex
 	{
-		"chrisgrieser/nvim-alt-substitute",
-		opts = true,
-		-- lazy-loading with `cmd =` does not work well with incremental preview
-		event = "CmdlineEnter",
+		"chrisgrieser/nvim-rip-substitute",
+		cmd = "RipSubstitute",
+		keys = {
+			{
+				"<leader>ss",
+				function() require("rip-substitute").sub() end,
+				mode = { "n", "x" },
+				desc = "rip substitute",
+			},
+		},
+		opts = {
+				keymaps = {
+					abort = "<esc>",
+				},
+			},
 	},
 	-- troca/coloca aspas/parenteses
 	{
