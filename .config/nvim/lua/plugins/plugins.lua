@@ -191,8 +191,8 @@ return {
 
 	--- Aparência
 	{
-		"tzachar/highlight-undo.nvim",
-		lazy = false,
+		'mei28/luminate.nvim',
+		event = { 'VeryLazy' },
 		opts = true,
 	},
 	-- statuscolumn
