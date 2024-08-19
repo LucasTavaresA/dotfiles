@@ -52,7 +52,7 @@ vo.incsearch = true
 vo.whichwrap:append("<,>,h,l,[,]")
 
 --- Spell
-vo.spell = true
+vo.spell = false
 -- Checagem ortográfica em varias línguas
 vo.spelllang = { "pt", "en" }
 
@@ -75,19 +75,19 @@ vo.formatoptions = "crqn1j"
 -- linhas não dão a volta na tela
 vo.wrap = false
 -- esconde marcação
-vo.conceallevel = 3
-vo.concealcursor = "n"
+vo.conceallevel = 0
+vo.concealcursor = ""
 -- marcação em 80 caracteres
-vo.colorcolumn = "+1"
+vo.colorcolumn = ""
 vo.fillchars:append({ diff = "╱" })
 -- indica linha atual
-vo.cursorline = true
+vo.cursorline = false
 
 --- Cores
 -- prefere modo escuro
 vim.opt.background = "dark"
 -- NormalNC causa muita lentidão - comumente ativado por temas
-vim.api.nvim_set_hl(0, "NormalNC", { bg = "#222222" })
+vim.api.nvim_set_hl(0, "NormalNC", {})
 vim.api.nvim_set_hl(0, "Normal", { bg = "#000000" })
 
 --- Tabs/Espaços
@@ -167,6 +167,7 @@ Autocmd({
 
 	-- FileType
 	{ "FileType", { "gitcommit" },           "norm zr" },
+	{ "FileType", { "gitcommit" },           "setlocal spell" },
 	{ "FileType", { "diff", "checkhealth" }, "setlocal nospell" },
 	{
 		"FileType",
@@ -176,7 +177,7 @@ Autocmd({
 	{
 		"FileType",
 		{ "markdown", "org", "txt", "norg" },
-		"setlocal nolist concealcursor=nvic conceallevel=0 nocursorline colorcolumn=0",
+		"setlocal spell nolist concealcursor=nvic conceallevel=0 nocursorline colorcolumn=0",
 	},
 	{ "FileType", { "help" },  "setlocal nolist nocursorline colorcolumn=0" },
 
