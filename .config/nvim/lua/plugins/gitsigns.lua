@@ -67,6 +67,7 @@ return {
 	},
 	config = function()
 		require("gitsigns").setup({
+			signs_staged_enable = false,
 			signcolumn = false, -- Toggle with `:Gitsigns toggle_signs`
 			numhl = true,    -- Toggle with `:Gitsigns toggle_numhl`
 			linehl = false,  -- Toggle with `:Gitsigns toggle_linehl`
