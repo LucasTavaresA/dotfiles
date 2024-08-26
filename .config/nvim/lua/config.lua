@@ -64,11 +64,12 @@ vo.expandtab = false
 
 --- Formatação
 -- divide linhas sem quebrar palavras
-vo.linebreak = true
+vo.linebreak = false
 -- tamanho das linhas
-vo.textwidth = 80
+vo.textwidth = 0
+vo.wrapmargin = 0
 -- formatação nativa
-vo.formatoptions = "crqn1j"
+vo.formatoptions = "rqn1j"
 
 ----- Aparência -----
 --- Miscelânea
