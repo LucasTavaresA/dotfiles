@@ -43,7 +43,7 @@ vo.undofile = true
 
 --- Movimento
 -- quantidade de linhas ao redor do cursor
-vo.scrolloff = 10
+vo.scrolloff = 99
 -- desativa uso do mouse
 vo.mouse = ""
 -- indica items quando procurando

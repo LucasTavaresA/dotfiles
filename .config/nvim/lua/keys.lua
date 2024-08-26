@@ -31,8 +31,8 @@ Keymaps({
 	-- join lines
 	{ ni,  "<C-j>",   function() JoinLines(" ") end },
 	{ "v", "<C-j>",   function() JoinLines("") end },
-	-- colar na linha de baixo
-	{ nv,  "P",       "<cmd>norm o<cr>p" },
+	-- paste on the line below, even if it's not a line
+	{ nv, "<A-p>",        "<cmd>put<cr>" },
 	-- toggle netrw
 	-- { nvi, "<A-f>", NetrwToggle },
 	-- Editar começo das linhas
