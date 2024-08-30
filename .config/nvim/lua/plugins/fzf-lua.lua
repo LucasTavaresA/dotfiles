@@ -50,7 +50,7 @@ return {
 										cmd = "git grep -Ini --column --color=always",
 										actions = {
 											["default"] = function(selected, opts)
-												require("fzf-lua.actions").vimcmd_file(
+												require("fzf-lua.actions").vimcmd_entry(
 													"e",
 													selected,
 													opts
