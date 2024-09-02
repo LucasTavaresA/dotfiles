@@ -104,24 +104,6 @@ return {
 	},
 
 	--- Editar
-	-- :substitute using regex
-	{
-		"chrisgrieser/nvim-rip-substitute",
-		cmd = "RipSubstitute",
-		keys = {
-			{
-				"<leader>ss",
-				function() require("rip-substitute").sub() end,
-				mode = { "n", "x" },
-				desc = "rip substitute",
-			},
-		},
-		opts = {
-				keymaps = {
-					abort = "<esc>",
-				},
-			},
-	},
 	-- troca/coloca aspas/parenteses
 	{
 		"kylechui/nvim-surround",
