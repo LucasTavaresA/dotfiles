@@ -24,6 +24,8 @@
 .config/Google/
 .config/gup/
 .config/gtk-2.0/gtkfilechooser.ini
+.config/gtk-3.0/
+.config/inkscape/
 .config/irssi/
 .config/hexchat/
 .config/keepassxc/

@@ -85,6 +85,8 @@ hunspell
 hunspell-en
 hunspell-pt_BR
 hyperfine
+inkscape
+jd
 jdupes
 jq
 keepassxc
@@ -103,7 +105,7 @@ libreoffice
 libsanitizer-devel
 libsixel-devel
 libspa-bluetooth
-libvips-devel
+libwebp-tools
 libxkbcommon-devel
 lld
 llvm17
@@ -147,6 +149,7 @@ opusfile
 p7zip
 pam-gnupg
 pandoc
+parallel
 patch
 pdf.js
 perl-Net-DBus
@@ -208,6 +211,7 @@ unicode-emoji
 unrar
 valgrind
 vlc
+void-repo-multilib
 void-repo-nonfree
 vulkan-loader
 w3m
@@ -215,6 +219,7 @@ wayland-devel
 wget
 wiggle
 wine
+wine-32bit
 wine-mono
 winetricks
 wireplumber

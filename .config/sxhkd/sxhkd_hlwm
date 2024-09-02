@@ -38,7 +38,7 @@ Menu;P
   pkill -x picom || picom
 
 Menu;C
-  term_open -a calculadora python
+  term_open -a calculadora csharprepl
 
 Menu;l
   slock
