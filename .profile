@@ -18,6 +18,9 @@ export TERMINAL="st"
 export TERM="xterm-256color"
 # navegador padrão
 export BROWSER="qutebrowser"
+# threads
+THREADS="$(nproc)"
+export THREADS
 # systema
 HOSTNAME="$(uname -n)"
 export HOSTNAME

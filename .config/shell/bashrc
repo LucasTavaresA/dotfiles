@@ -185,7 +185,7 @@ alias nlg="npm list -g"
 alias nr="npm run"
 alias nrb="npm run build"
 # arquivos e Diretórios
-alias g="rg -iIn"
+alias g="rg -j $THREADS -ip"
 alias rm="trash"
 alias rme="trash-empty"
 alias rml="trash-list"

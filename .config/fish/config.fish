@@ -232,7 +232,7 @@ if status is-interactive
     abbr -a -g rml "trash-list | sort -k 1,1 -k 2,2"
     abbr -a -g rmr trash-restore
     abbr -a -g rmrm trash-rm
-    abbr -a -g g rg -iIn
+    abbr -a -g g rg -j "$THREADS" -ip
     abbr -a -g l lsd -AX1 --group-dirs first
     abbr -a -g la lsd -lXA1 --group-dirs first
     abbr -a -g lo locate -Ai
