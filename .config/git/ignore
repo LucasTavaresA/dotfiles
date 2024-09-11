@@ -33,6 +33,7 @@
 .config/mpv/watch_later/
 .config/ncmpcpp/error.log
 .config/npm/_*
+.config/parallel
 .config/pulse/
 .config/qutebrowser/__pycache__/
 .config/qutebrowser/bookmarks/

@@ -58,6 +58,7 @@ export PAGER="less -R"
 export LESSHISTFILE="-"
 # wget
 export WGETRC="${XDG_DATA_HOME:-$HOME/.local/share}/wget/wgetrc"
+export PARALLEL_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/parallel"
 # xauthority
 export XAUTHORITY="${XDG_RUNTIME_DIR:-/run/user/$UID}/Xauthority"
 export XCURSOR_PATH="${XCURSOR_PATH}:~/.local/share/icons"
