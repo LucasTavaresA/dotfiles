@@ -193,6 +193,7 @@ hc rule class="Code" tag=2 switchtag=on
 hc rule class="alacritty" tag=2 switchtag=on
 hc rule class="mpv" tag=3 switchtag=on
 hc rule class="Gimp" tag=3 switchtag=on
+hc rule class="Inkscape" tag=3 switchtag=on
 hc rule class="Xephyr" tag=3 switchtag=on
 hc rule class="easyeffects" tag=3 switchtag=on
 hc rule class="discord" tag=4 switchtag=on
@@ -203,7 +204,8 @@ hc rule class="TelegramDesktop" tag=4 switchtag=on
 hc rule class="center" floating=on floatplacement=center floating_geometry=300x200
 hc rule class="float" floating=on floatplacement=center floating_geometry=1000x600
 hc rule class="KeePassXC" floating=on floatplacement=none floating_geometry=300x200+480+200
-hc rule class="calculadora" floating=on floatplacement=center floating_geometry=200x200
+hc rule class="calculadora" floating=on floatplacement=center floating_geometry=400x400
+hc rule class="Calculator" floating=on floatplacement=center floating_geometry=400x400
 hc rule class="GParted" floating=on floatplacement=center
 hc rule class="Nitrogen" floating=on floatplacement=center
 hc rule class="pinentry-qt" floating=on floatplacement=center
