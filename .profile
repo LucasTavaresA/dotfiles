@@ -53,7 +53,8 @@ export MANPATH="/usr/local/man:/usr/local/share/man:/usr/share/man:/usr/lib/jvm/
 # pass
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/pass"
 # pager
-export PAGER="less -R"
+export PAGER="less -R --ignore-case --incsearch"
+export LESS="-R --ignore-case --incsearch"
 # less
 export LESSHISTFILE="-"
 # wget
