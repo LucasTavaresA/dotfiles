@@ -21,6 +21,7 @@ bc
 bluez
 bluez-alsa
 bsdtar
+btop
 cairo-devel
 cargo
 cargo-update
@@ -86,6 +87,7 @@ hunspell-en
 hunspell-pt_BR
 hyperfine
 inkscape
+jadx
 jd
 jdupes
 jq
@@ -200,7 +202,6 @@ teeworlds
 telegram-desktop
 terminus-font
 testdisk
-toot
 translate-shell
 transmission
 trash-cli

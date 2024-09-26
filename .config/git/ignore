@@ -3,6 +3,7 @@
 .cache/
 .config/asciinema/
 .config/Android Open Source Project/
+.config/btop/
 .config/cabal/
 .config/chromium/
 .config/cni/
@@ -30,6 +31,7 @@
 .config/hexchat/
 .config/keepassxc/
 .config/libreoffice/
+.config/lsp-plugins/
 .config/menus/
 .config/mpd/
 .config/mpv/watch_later/

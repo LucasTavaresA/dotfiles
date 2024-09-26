@@ -31,7 +31,6 @@ go install github.com/nao1215/gup@latest
 go install github.com/mrtazz/checkmake/cmd/checkmake@latest
 go install github.com/segmentio/golines@latest
 go install github.com/cespare/reflex@latest
-go install github.com/ayn2op/discordo@latest
 go install github.com/EwenQuim/entropy@latest
 
 pipx install scdl
