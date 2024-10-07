@@ -1,6 +1,7 @@
 return {
 	{
-		"hrsh7th/nvim-cmp",
+		"yioneko/nvim-cmp",
+		branch = "perf",
 		lazy = false,
 		dependencies = {
 			{
