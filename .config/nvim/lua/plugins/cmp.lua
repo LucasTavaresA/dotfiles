@@ -1,7 +1,7 @@
 return {
 	{
-		"yioneko/nvim-cmp",
-		branch = "perf",
+		"iguanacucumber/magazine.nvim",
+		name = "nvim-cmp", -- Otherwise highlighting gets messed up
 		lazy = false,
 		dependencies = {
 			{
@@ -98,9 +98,9 @@ return {
 						name = "env",
 						ft = { "fish", "zsh", "sh", "bash" },
 					},
-					{ name = "fish",                   ft = "fish" },
+					{ name = "fish",                ft = "fish" },
 					{ name = "git" },
-					{ name = "conventionalcommits",    ft = "gitcommit" },
+					{ name = "conventionalcommits", ft = "gitcommit" },
 					{ name = "snippy" },
 					{
 						name = "lazydev",
