@@ -1,11 +1,19 @@
 def_key "home"
   move_home
+def_key "g"
+  move_home
 def_key "end"
+  move_end
+def_key "G"
   move_end
 def_key "right"
   enter_directory
 def_key "l"
   enter_directory
+def_key "n"
+    next_found_item
+def_key "N"
+    previous_found_item
 def_key "enter"
   toggle_output
 def_key "enter"
@@ -22,6 +30,10 @@ def_key "k"
   scroll_up
 def_key "j"
   scroll_down
+def_key "K"
+  page_up
+def_key "J"
+  page_down
 def_key "right"
   next_column
 def_key "l"
@@ -50,6 +62,8 @@ def_key "right"
   seek_forward
 def_key "l"
   seek_forward
+def_key "0"
+  replay_song
 def_key "left"
   seek_backward
 def_key "h"
