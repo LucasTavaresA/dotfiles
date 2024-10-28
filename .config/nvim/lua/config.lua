@@ -169,6 +169,7 @@ Autocmd({
 	-- FileType
 	{ "FileType", { "gitcommit" },           "norm zr" },
 	{ "FileType", { "gitcommit" },           "setlocal spell" },
+	{ "FileType", { "gitcommit" },           SummarizeCommit },
 	{ "FileType", { "diff", "checkhealth" }, "setlocal nospell" },
 	{
 		"FileType",

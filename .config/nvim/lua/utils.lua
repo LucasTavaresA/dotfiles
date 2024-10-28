@@ -208,3 +208,20 @@ function JoinLines(separator)
 	vim.api.nvim_feedkeys(input, "n", false)
 	vim.fn.winrestview(view)
 end
+
+function SummarizeCommit()
+	local win = vim.api.nvim_get_current_win()
+	local buf = vim.api.nvim_win_get_buf(win)
+	local output = vim.fn.systemlist("git diff --cached")
+
+	if #output > 1000 then
+		return
+	end
+
+	local prompt = "Give me commit message from git diff output below using conventional commits format, capitalize the first letter."
+	vim.api.nvim_buf_set_lines(buf, -1, -1, false, { "# " .. prompt })
+
+	for _, line in ipairs(output) do
+		vim.api.nvim_buf_set_lines(buf, -1, -1, false, { "# " .. line })
+	end
+end
