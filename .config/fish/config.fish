@@ -150,7 +150,6 @@ if status is-interactive
 
     ## Abbr ##
     abbr --set-cursor=% -a -g 0x0 "curl -F'file=@%' https://0x0.st"
-    abbr -a -g adb "HOME=$XDG_DATA_HOME adb"
     abbr -a -g docker podman
     abbr -a -g trl transmission-remote -l
     abbr -a -g tra transmission-remote -a
@@ -275,18 +274,21 @@ if status is-interactive
     abbr -a -g gra git rebase --abort
     abbr -a -g grc git rebase --continue
     abbr -a -g gri git rebase -i --autostash
+    abbr -a -g grv git revert
+    abbr -a -g grva git revert --abort
+    abbr -a -g grvc git revert --continue
     abbr -a -g grp git restore -p
     abbr -a -g grrh git reset --hard
     abbr -a -g grrs git reset --soft
     abbr -a -g grs git restore --staged
     abbr -a -g grsp git restore --staged -p
     abbr -a -g grsu git remote set-url origin
-    abbr -a -g grv git remote -v
     abbr -a -g gs git status
     abbr -a -g gsa git submodule add https://github.com/
     abbr -a -g gss git stash push -m
     abbr -a -g gssp git stash push --patch -m
     abbr -a -g gsss git stash push -S -m
+    abbr -a -g gS git show
     abbr -a -g gwa git worktree add
     abbr -a -g gwr git worktree remove
 

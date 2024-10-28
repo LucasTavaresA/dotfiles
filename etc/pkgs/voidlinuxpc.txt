@@ -66,6 +66,7 @@ gdu
 gettext
 gimp
 git
+git-revise
 github-cli
 glow
 gnome-epub-thumbnailer
