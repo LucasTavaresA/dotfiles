@@ -134,6 +134,7 @@ export PATH="${XDG_BIN_HOME:-$HOME/.local/bin}:$PATH"
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/code/shellscripts/shellscripts:$PATH"
 export PATH="$HOME/code/shellscripts/orgmenu:$PATH"
+export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/ollama/bin:$PATH"
 # diffprog
 export DIFFPROG="nvim -d"
 # mergeprog
