@@ -1,0 +1,42 @@
+(defcfg
+  process-unmapped-keys yes)
+
+(defsrc
+  a s d f h j k l
+  lsft lctl lmet lalt
+  ralt rmet rctl rsft
+  caps esc)
+
+(defvar
+  tap-time 150
+  hold-time 200)
+
+(defalias
+  a (tap-hold $tap-time $hold-time a lctl)
+  s (tap-hold $tap-time $hold-time s lsft)
+  d (tap-hold $tap-time $hold-time d lmet)
+  f (tap-hold $tap-time $hold-time f lalt)
+
+  h (tap-hold $tap-time $hold-time h ralt)
+  j (tap-hold $tap-time $hold-time j rmet)
+  k (tap-hold $tap-time $hold-time k rsft)
+  l (tap-hold $tap-time $hold-time l rctl)
+  ralt () rmet () rctl () rsft ()
+  lsft (layer-while-held extra) lctl () lmet () lalt ()
+  caps esc
+  esc caps)
+
+;; layers follow defsrc
+(deflayer base
+  @a @s @d @f @h @j @k @l
+  @lsft @lctl @lmet @lalt
+  @ralt @rmet @rctl @rsft
+  @caps @esc)
+
+(deflayer extra
+  @a @s @d @f left down up right
+  @lsft @lctl @lmet @lalt
+  @ralt @rmet @rctl @rsft
+  @caps @esc)
+
+;; vim: ft=lisp

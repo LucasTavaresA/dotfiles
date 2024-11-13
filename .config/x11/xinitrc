@@ -22,7 +22,6 @@ xrdb -load "$HOME/.config/x11/xresources"
 # teclado
 # acelera repetição de teclas
 xset r rate 300 100
-setxkbmap -layout us -option caps:swapescape # grep escape /usr/share/X11/xkb/rules/base.lst
 
 # sistema
 checar_updates &

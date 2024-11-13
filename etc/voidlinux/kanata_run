@@ -1,0 +1,3 @@
+#!/bin/sh -e
+exec 2>&1
+exec /home/lucas/.local/share/cargo/bin/kanata -c /home/lucas/.config/kanata/kanata.kbd
