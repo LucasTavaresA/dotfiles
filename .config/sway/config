@@ -213,6 +213,7 @@ exec mako
 exec hexchat
 exec easyeffects
 exec term_open -a ncmpcpp ncmpcpp
+exec sway-audio-idle-inhibit
 ## Musica
 exec pgrep -x "playerctld" || playerctld daemon
 exec pgrep -x "mpDris2" || mpDris2 --music-dir="$HOME/media/musicas/" >"$XDG_CACHE_HOME/mpdris2.log" 2>&1 &
