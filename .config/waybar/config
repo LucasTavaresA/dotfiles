@@ -6,20 +6,19 @@
 
     // Choose the order of the modules
     "modules-left": [
-        "sway/workspaces",
+        "custom/music",
+        "pulseaudio",
         "sway/mode"
     ],
-    "modules-center": [
-        "sway/window"
-    ],
+    // "modules-center": [
+    //     "sway/window"
+    // ],
     "modules-right": [
-        "mpd",
-        "pulseaudio",
         "disk#1",
         "disk#2",
-        "backlight",
         "battery",
         "battery#bat2",
+        "backlight",
         "clock",
         "tray"
     ],
@@ -38,16 +37,16 @@
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
-    "mpd": {
-        "format": "🎵 {filename:.40} [{songPosition}/{queueLength}]",
-        "format-disconnected": "🎵 Disconnected",
-        "format-stopped": "🎵 Stopped",
-        "unknown-tag": "N/A",
-        "interval": 2,
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)",
-        "on-click": "term_open -a float ncmpcpp"
-    },
+    // "mpd": {
+    //     "format": "🎵 {filename:.40} [{songPosition}/{queueLength}]",
+    //     "format-disconnected": "🎵 Disconnected",
+    //     "format-stopped": "🎵 Stopped",
+    //     "unknown-tag": "N/A",
+    //     "interval": 2,
+    //     "tooltip-format": "MPD (connected)",
+    //     "tooltip-format-disconnected": "MPD (disconnected)",
+    //     "on-click": "term_open -a ncmpcpp ncmpcpp"
+    // },
     "mpris": {
         "format": "{player_icon} {status_icon} {dynamic}",
         "format-paused": "{player_icon} {status_icon} <i>{dynamic}</i>",
@@ -69,16 +68,16 @@
     },
     "pulseaudio": {
         "format": "{icon} {volume}%",
-        "format-bluetooth": "{icon}{volume}%",
-        "format-bluetooth-muted": " {icon}",
-        "format-muted": "",
+        "format-bluetooth": "🔵 {volume}%",
+        "format-bluetooth-muted": "🔵 🔇",
+        "format-muted": "🔇",
         "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
+            "headphone": "🎧",
+            "hands-free": "🔵",
+            "headset": "🎧",
+            "phone": "📱",
+            "portable": "📱",
+            "car": "🚗",
             "default": ["🔈", "🔉", "🔊"]
         },
         "on-click": "term_open -a float pulsemixer"
@@ -115,6 +114,15 @@
     },
     "clock": {
         "format": "{:%a %d/%m/%Y - %H:%M}",
+    },
+    "custom/music": {
+        "interval": 2,
+        "format": "{icon} {:.40}",
+        "format-icons": {
+            "default": "🎵"
+        },
+        "exec": "$HOME/code/shellscripts/shellscripts/musica tocando 60",
+        "on-click": "term_open -a ncmpcpp ncmpcpp"
     },
 }
 // vim: set ft=jsonc:

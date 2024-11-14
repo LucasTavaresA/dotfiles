@@ -12,9 +12,9 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_RUNTIME_DIR="/run/user/$UID"
 export XDG_BIN_HOME="$HOME/.local/bin"
 # window manager
-export WM="herbstluftwm"
+export WM="sway"
 # terminal
-export TERMINAL="st"
+export TERMINAL="foot"
 export TERM="xterm-256color"
 # navegador padrão
 export BROWSER="qutebrowser"
@@ -160,8 +160,6 @@ SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 export SSH_AUTH_SOCK
 is_running "ssh-agent" || eval "$(ssh-agent -s)"
 
-eval "$(dbus-launch --sh-syntax --exit-with-session)"
-
 ## Execute
 fork() {
 	fzf_man update >/dev/null 2>&1
@@ -176,4 +174,5 @@ fork &
 
 [ "$(tty)" != "/dev/tty1" ] && exec fish
 
-exec sx sh "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
+# exec sx sh "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
+exec sway

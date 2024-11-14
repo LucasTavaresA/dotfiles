@@ -4,6 +4,8 @@ xwayland enable
 mouse_warping container
 focus_follows_mouse no
 seat seat0 xcursor_theme 'Adwaita' 14
+seat seat0 hide_cursor 3000
+seat seat0 hide_cursor when-typing enable
 ## touchpad
 input type:touchpad {
     tap enabled
@@ -18,9 +20,9 @@ focus_wrapping no
 focus_on_window_activation focus
 ## teclado
 input type:keyboard {
-    xkb_layout custom
-    xkb_options caps:swapescape
-    xkb_numlock enable
+    # xkb_layout custom
+    # xkb_options caps:swapescape
+    # xkb_numlock enable
     repeat_delay 300
     repeat_rate 100
 }
@@ -28,7 +30,7 @@ input type:keyboard {
 # Aparência
 output * bg $HOME/media/imagens/wallpapers/kaiji_dice.png stretch
 ## sem abas
-font pango:monospace 0
+font pango:monospace 0.1
 titlebar_border_thickness 0
 titlebar_padding 0
 ## bordas
@@ -72,7 +74,7 @@ for_window [app_id=".*"] title_window_icon on
 for_window [app_id="^menu$"] floating enable, border pixel 4, resize set 400 300, move position center
 for_window [app_id="^float$"] floating enable, border pixel 4, resize set 1000 600, move position center
 for_window [app_id="^pinentry-qt$"] floating enable, border pixel 4, resize set 600 400, move position center
-for_window [app_id="^calculadora"] floating enable, border pixel 4, resize set 200 200, move position center
+for_window [app_id="^calculadora"] floating enable, border pixel 4, resize set 400 400, move position center
 for_window [app_id="org.qutebrowser.qutebrowser"] focus
 for_window [app_id="^Firefox$"] focus
 for_window [app_id="^firefox$"] focus
@@ -82,9 +84,13 @@ for_window [app_id="^nvim$"] focus
 for_window [app_id="^foot$"] focus
 for_window [app_id="^alacritty$"] focus
 for_window [app_id="^mpv$"] focus
+for_window [app_id="^ncmpcpp$"] focus
 for_window [app_id="^Gimp$"] focus
 for_window [app_id="^discord$"] focus
 for_window [app_id="^irc$"] focus
+for_window [instance="^hexchat$"] focus
+for_window [title="^Easy Effects$"] focus
+for_window [title="Inkscape$"] focus
 for_window [instance="^irc$"] focus
 for_window [app_id="^TelegramDesktop$"] focus
 assign [app_id="org.qutebrowser.qutebrowser"] "1:Browser"
@@ -96,8 +102,12 @@ assign [app_id="^nvim$"] "2:Code"
 assign [app_id="^foot$"] "2:Code"
 assign [app_id="^alacritty$"] "2:Code"
 assign [app_id="^mpv$"] "3:Fullscreen"
+assign [title="^Easy Effects$"] "3:Fullscreen"
+assign [app_id="^ncmpcpp$"] "3:Fullscreen"
 assign [app_id="^Gimp$"] "3:Fullscreen"
+assign [title="Inkscape$"] "3:Fullscreen"
 assign [app_id="^discord$"] "4:Message"
+assign [instance="^hexchat$"] "4:Message"
 assign [app_id="^irc$"] "4:Message"
 assign [instance="^irc$"] "4:Message"
 assign [app_id="^TelegramDesktop$"] "4:Message"
@@ -114,32 +124,27 @@ bindsym $S+f fullscreen toggle
 bindsym $S+s sticky toggle
 bindsym $S+b bar hidden_state toggle
 bindsym $S+tab exec swayr next-window current-workspace
-bindsym $S+$A+period exec swayr next-window current-workspace
 bindsym Print exec wayland_print
-bindsym $S+e exec term_open -a nvim nvim
+bindsym $S+p exec wayland_print
 bindsym $S+o exec menu_pesquisar
-bindsym $S+$s+Return exec term_open
+bindsym $S+Return exec term_open
 ## menu
 mode "Menu" {
-    bindsym Menu exec pgrep tofi && pkill tofi || tofi-drun --drun-launch=true ; mode "default"
+    bindsym Menu exec tofi-drun --drun-launch=true ; mode "default"
     bindsym o exec orgmenu ~/documentos/favs.md ; mode "default"
     bindsym m exec menu_mont ; mode "default"
     bindsym p exec keepassxc ; mode "default"
     bindsym c exec cliphist list | tofi --padding-left 0 --padding-top 0 | cliphist decode | wl-copy ; mode "default"
-    bindsym Shift+c exec term_open -a calculadora bc ; mode "default"
+    bindsym Shift+c exec term_open -a calculadora csharprepl ; mode "default"
+    bindsym e exec term_open -a nvim nvim ~/documentos/ ; mode "default"
     bindsym Shift+e exec term_open -a float fzf_emojis ; mode "default"
     bindsym f exec qutebrowser ; mode "default"
     bindsym h exec term_open -a float htop ; mode "default"
-    bindsym s exec gammastep -O 3000 ; mode "default"
-    bindsym Shift+s exec pkill -x gammastep ; mode "default"
-    bindsym t exec term_open -a float transmission-qt ; mode "default"
-    bindsym a exec term_open -a nvim nvim ~/documentos/anotações.md ; mode "default"
-    bindsym e exec term_open -a nvim nvim ~/documentos/ ; mode "default"
+    bindsym s exec pgrep -x gammastep && pkill -x gammastep || gammastep -O 3000 ; mode "default"
     bindsym l exec swaylock -c 000000ff --scaling fill ; mode "default"
+    bindsym a exec term_open -a nvim nvim ~/documentos/anotações.md ; mode "default"
     bindsym r reload
     bindsym Shift+q exit
-    bindsym Ctrl+Shift+q exec powermenu ; mode "default"
-    bindsym XF86Launch2 exec powermenu ; mode "default"
     bindsym escape ; mode "default"
 }
 bindsym Menu mode "Menu"
@@ -159,7 +164,7 @@ mode "resize" {
 }
 bindsym $S+r mode "resize"
 ## musica
-bindsym $S+a exec term_open -a float ncmpcpp
+bindsym $S+a exec term_open -a ncmpcpp ncmpcpp
 bindsym $S+$s+a exec term_open -a float pulsemixer
 bindsym $S+space exec playerctl play-pause || mpc toggle
 bindsym XF86AudioPlay exec playerctl play-pause || mpc toggle
@@ -206,6 +211,8 @@ exec swayidle -w timeout 500 'swaymsg "output * power off"' resume 'swaymsg "out
 exec wl-paste --watch cliphist store
 exec mako
 exec hexchat
+exec easyeffects
+exec term_open -a ncmpcpp ncmpcpp
 ## Musica
 exec pgrep -x "playerctld" || playerctld daemon
 exec pgrep -x "mpDris2" || mpDris2 --music-dir="$HOME/media/musicas/" >"$XDG_CACHE_HOME/mpdris2.log" 2>&1 &

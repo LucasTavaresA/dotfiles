@@ -49,6 +49,7 @@
 .config/mangal/
 .config/pdfcpu
 .config/NuGet/
+.config/service/
 .config/syncthing/
 .config/shell/.zcompdump
 .config/shell/history

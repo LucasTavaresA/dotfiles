@@ -1,2 +1,3 @@
 auth 		optional 	pam_gnupg.so store-only
 session 	optional 	pam_gnupg.so
+session optional pam_turnstile.so
