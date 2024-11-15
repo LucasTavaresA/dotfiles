@@ -3,13 +3,12 @@
 #
 # muda o local padrão de alguns dotfiles limpando a $HOME ou ~
 # define diretórios com o padrão xdg
-UID="$(id -u)" # Pega o id de usuário
 export HOME="/home/lucas"
 export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_RUNTIME_DIR="/run/user/$UID"
+export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 export XDG_BIN_HOME="$HOME/.local/bin"
 # window manager
 export WM="sway"
@@ -61,7 +60,7 @@ export LESSHISTFILE="-"
 export WGETRC="${XDG_DATA_HOME:-$HOME/.local/share}/wget/wgetrc"
 export PARALLEL_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/parallel"
 # xauthority
-export XAUTHORITY="${XDG_RUNTIME_DIR:-/run/user/$UID}/Xauthority"
+export XAUTHORITY="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/Xauthority"
 export XCURSOR_PATH="${XCURSOR_PATH}:~/.local/share/icons"
 export XCURSOR_THEME="Adwaita"
 export XCURSOR_SIZE="14"
