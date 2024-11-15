@@ -7,7 +7,7 @@
     // Choose the order of the modules
     "modules-left": [
         "custom/music",
-        "pulseaudio",
+        "wireplumber",
         "sway/mode"
     ],
     // "modules-center": [
@@ -81,6 +81,23 @@
             "default": ["🔈", "🔉", "🔊"]
         },
         "on-click": "term_open -a float pulsemixer"
+    },
+    "wireplumber": {
+        "format": "{icon} {volume}%",
+        "format-muted": "🔇",
+        "format-bluetooth": "🔵 {volume}%",
+        "format-bluetooth-muted": "🔵 🔇",
+        "format-icons": {
+            "headphone": "🎧",
+            "hands-free": "🔵",
+            "headset": "🎧",
+            "phone": "📱",
+            "portable": "📱",
+            "car": "🚗",
+            "default": ["🔈", "🔉", "🔊"]
+        },
+        "on-click": "term_open -a float pulsemixer",
+        "scroll-step": 0.2,
     },
     "disk#1": {
         "format": "{path} {free}",
