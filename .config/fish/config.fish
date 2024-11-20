@@ -150,6 +150,7 @@ if status is-interactive
 
     ## Abbr ##
     abbr --set-cursor=% -a -g 0x0 "curl -F'file=@%' https://0x0.st"
+    abbr -a -g rest 'sleep 30m && notify-send -u critical "rest for a while" && term_open -a nvim "nvim ~/.cache/rest"'
     abbr -a -g docker podman
     abbr -a -g trl transmission-remote -l
     abbr -a -g tra transmission-remote -a
