@@ -22,7 +22,7 @@
   k (tap-hold $tap-time $hold-time k rsft)
   l (tap-hold $tap-time $hold-time l rctl)
   ralt () rmet () rctl () rsft ()
-  lsft (layer-while-held extra) lctl () lmet () lalt ()
+  lsft () lctl () lmet () lalt (layer-while-held extra)
   caps esc
   esc caps)
 
