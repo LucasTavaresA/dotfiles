@@ -46,8 +46,7 @@ fi
 # onde procurar manpages
 export MANPATH="/usr/local/man:/usr/local/share/man:/usr/share/man:/usr/lib/jvm/default/man:/usr/lib/jvm/java-11-openjdk/man"
 # bat como o manpager
-[ ! "$OS" = "voidlinux" ] && export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-[ "$OS" = "linuxmint" ] && export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
+export MANPAGER="nvim +Man!"
 [ "$OS" = "voidlinux" ] && export XBPS_DISTDIR="/home/lucas/code/void-packages"
 # pass
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/pass"
