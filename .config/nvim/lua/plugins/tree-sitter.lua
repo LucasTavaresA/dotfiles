@@ -239,6 +239,7 @@ return {
 			)
 			vim.keymap.set("n", "gcA", require("SingleComment").CommentAhead, {})
 			vim.keymap.set({ "n", "v" }, "gcb", require("SingleComment").BlockComment)
+			vim.keymap.set({ "n", "v" }, "gcp", require("SingleComment").CommentPaste)
 		end,
 	},
 }

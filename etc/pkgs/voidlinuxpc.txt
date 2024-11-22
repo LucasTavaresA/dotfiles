@@ -1,5 +1,6 @@
 Bear
 ImageMagick
+MesaLib-devel-32bit
 StyLua
 Vulkan-Headers
 Waybar
@@ -31,9 +32,10 @@ ccls
 chafa
 chafa-devel
 checkbashisms
-clang
-clang-tools-extra
-clang17-devel
+clang-analyzer18
+clang-tools-extra18
+clang18
+clang18-devel
 cliphist
 cloc
 cmake
@@ -114,8 +116,9 @@ libsixel-devel
 libspa-bluetooth
 libwebp-tools
 libxkbcommon-devel
-lld
-llvm17
+lld18
+llvm18
+llvm18-devel
 lsd
 lsp-plugins
 lua
@@ -147,8 +150,7 @@ nuspell
 obs
 olive
 opendoas
-openjdk11
-openjdk17
+openjdk21
 openssl-devel
 opusfile
 p7zip
@@ -161,6 +163,7 @@ perl-Net-DBus
 pinentry-qt
 pipewire
 pkg-config
+pkgconf
 playerctl
 plocate
 podman
@@ -221,6 +224,8 @@ vlc
 void-repo-multilib
 void-repo-nonfree
 vulkan-loader
+vulkan-loader-devel
+vulkan-loader-devel-32bit
 w3m
 waydroid
 wayland-devel
@@ -232,6 +237,7 @@ wine-mono
 winetricks
 wireplumber
 wl-clipboard
+xdg-desktop-portal-gtk
 xdg-desktop-portal-wlr
 xdg-user-dirs
 xdg-user-dirs-gtk
