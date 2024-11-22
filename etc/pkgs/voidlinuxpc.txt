@@ -90,7 +90,6 @@ hunspell
 hunspell-en
 hunspell-pt_BR
 hyperfine
-imv
 inkscape
 jadx
 jd
@@ -198,6 +197,7 @@ streamlink
 sway
 sway-audio-idle-inhibit
 swayidle
+swayimg
 swaylock
 swayr
 syncthing
