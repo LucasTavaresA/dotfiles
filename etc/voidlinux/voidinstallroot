@@ -54,12 +54,6 @@ cp -r etc/X11/xorg.conf.d/ /etc/X11/
 
 cat etc/pam.d/login >>/etc/pam.d/login
 
-mkdir -p /home/lucas/.local/bin/
-(
-	cd code/c/st/
-	./build.sh
-)
-
 (
 	cd code/c/gf/
 	./build.sh
