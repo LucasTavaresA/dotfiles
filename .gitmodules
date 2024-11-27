@@ -28,3 +28,6 @@
 [submodule ".config/yazi/plugins"]
 	path = .config/yazi/plugins
 	url = https://github.com/yazi-rs/plugins
+[submodule "code/lua/nvim/headers.nvim"]
+	path = code/lua/nvim/headers.nvim
+	url = git@github.com:lucastavaresa/headers.nvim.git

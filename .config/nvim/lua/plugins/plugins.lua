@@ -222,6 +222,11 @@ return {
 			require("simpleIndentGuides").setup("│", "·")
 		end,
 	},
+	{
+		"lucastavaresa/headers.nvim",
+		lazy = false,
+		opts = {},
+	},
 	-- indica modo atual no cursor
 	{
 		"doums/monark.nvim",
