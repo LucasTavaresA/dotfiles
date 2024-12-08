@@ -27,6 +27,10 @@ input type:keyboard {
     repeat_rate 100
 }
 
+output DP-1 {
+   mode 1280x720@60.000Hz
+}
+
 # Aparência
 output * bg $HOME/media/imagens/wallpapers/kaiji_dice.png stretch
 ## sem abas
