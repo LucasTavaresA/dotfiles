@@ -52,3 +52,8 @@ touch "$home/.local/share/wget/wgetrc"
 export NIMBLE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/nimble"
 mkdir -p "$home/.local/share/nimble"
 nimble install nimlangserver
+
+npm i -g cssmodules-language-server @tailwindcss/language-server typescript \
+	typescript-language-server vscode-langservers-extracted \
+	fixjson bash-language-server vscode-css-languageserver-bin \
+	neovim write-good quick-lint-js stylelint

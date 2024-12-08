@@ -154,6 +154,7 @@ if status is-interactive
     abbr -a -g docker podman
     abbr -a -g trl transmission-remote -l
     abbr -a -g tra transmission-remote -a
+    abbr --set-cursor=% -a -g trt "transmission-remote -t %"
     abbr --set-cursor=% -a -g trr "transmission-remote -t % -r"
     abbr --set-cursor=% -a -g trrad "transmission-remote -t % -rad"
     abbr --set-cursor=% -a -g trs "transmission-remote -t % -s"
