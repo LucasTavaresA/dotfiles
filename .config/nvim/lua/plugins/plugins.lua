@@ -42,7 +42,7 @@ return {
 	},
 	-- previsão e seleção de cores
 	{
-		"NvChad/nvim-colorizer.lua",
+		"catgoose/nvim-colorizer.lua",
 		lazy = false,
 		keys = {
 			{ "zc", vim.cmd.ColorizerToggle },
@@ -50,7 +50,7 @@ return {
 		init = function()
 			vim.opt.termguicolors = true
 		end,
-		config = true,
+		opts = {},
 	},
 	-- salva posição do cursor
 	{
