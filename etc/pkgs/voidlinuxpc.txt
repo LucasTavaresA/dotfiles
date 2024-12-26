@@ -114,6 +114,7 @@ libreoffice
 libsanitizer-devel
 libsixel-devel
 libspa-bluetooth
+libtool
 libwebp-tools
 libxkbcommon-devel
 lld18
@@ -156,6 +157,7 @@ opusfile
 p7zip
 pam-gnupg
 pandoc
+pango-devel
 parallel
 patch
 pdf.js

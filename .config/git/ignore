@@ -29,6 +29,7 @@
 .config/inkscape/
 .config/irssi/
 .config/hexchat/
+.config/htop/
 .config/keepassxc/
 .config/libreoffice/
 .config/lsp-plugins/
