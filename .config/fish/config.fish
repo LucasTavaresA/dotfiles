@@ -171,8 +171,8 @@ if status is-interactive
     abbr -a -g df df -hT --total -x tmpfs -x devtmpfs
     abbr -a -g tep trans en:pt
     abbr -a -g tpe trans pt:en
-    abbr -a -g tje trans jp:en
-    abbr -a -g tej trans en:jp
+    abbr -a -g tje trans ja:en
+    abbr -a -g tej trans en:ja
     abbr -a -g hc herbstclient
     abbr -a -g stc stc -homedir ~/.local/state/syncthing/
     abbr -a -g fm fzf_man
