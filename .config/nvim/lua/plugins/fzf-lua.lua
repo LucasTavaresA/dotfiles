@@ -32,8 +32,6 @@ return {
 			{ "<leader>hk",       "<cmd>FzfLua keymaps<cr>" },
 			{ "z=",               "<cmd>FzfLua spell_suggest<cr>" },
 			{ [[\]],              "<cmd>FzfLua blines<cr>" },
-			{ "<leader>q",        "<cmd>FzfLua quickfix<cr>" },
-			{ "<leader>Q",        "<cmd>FzfLua quickfix_stack<cr>" },
 			{
 				"<leader>gg",
 				function()

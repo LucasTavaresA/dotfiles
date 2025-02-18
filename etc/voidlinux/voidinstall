@@ -24,7 +24,6 @@ su -c "$HOME/etc/voidlinux/voidinstallroot"
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 mkdir -p "$home/.local/share/cargo/"
 cargo install --locked yazi-fm handlr-regex tree-sitter-cli
-cargo install kanata
 
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 mkdir -p "$home/.local/share/go/"

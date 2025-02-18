@@ -77,7 +77,3 @@ chown -R lucas:lucas /home/lucas/.local/bin
 
 /usr/share/qutebrowser/scripts/dictcli.py install en-US
 /usr/share/qutebrowser/scripts/dictcli.py install pt-BR
-
-mkdir -p /etc/sv/kanata
-cp -f etc/voidlinux/kanata_run /etc/sv/kanata/run
-ln -s /etc/sv/kanata /var/service/

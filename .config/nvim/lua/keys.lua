@@ -52,10 +52,14 @@ Keymaps({
 	{ "v", "<leader>A",        ":!column -t -o ' '<cr>",                   { silent = true } },
 	-- mudar o typo de arquivo
 	{ nv,  "<leader>ft",       ":setlocal filetype=" },
-	-- fechar neovim completamente
-	{ nv,  "<leader>qq",       "<cmd>qa!<cr>" },
-	-- salvar buffer
-	{ nv,  "ZW",               "<cmd>w<cr><cmd>e<cr>" },
+	-- salvar
+	{ nv,  "<leader>ww",       "<cmd>w<cr>" },
+	-- salvar e fechar
+	{ nv,  "<leader>wq",       "<cmd>wq<cr>" },
+	-- fechar
+	{ nv,  "<leader>qq",       "<cmd>q<cr>" },
+	-- fechar forçadamente
+	{ nv,  "<leader>Q",        "<cmd>q!<cr>" },
 	-- deletar buffer
 	{ nv,  "<leader>k",        "<cmd>bd<cr>" },
 	-- abre o buffer de mensagens

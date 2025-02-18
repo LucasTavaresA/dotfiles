@@ -21,7 +21,7 @@ focus_on_window_activation focus
 ## teclado
 input type:keyboard {
     # xkb_layout custom
-    # xkb_options caps:swapescape
+    xkb_options caps:swapescape
     # xkb_numlock enable
     repeat_delay 300
     repeat_rate 100
