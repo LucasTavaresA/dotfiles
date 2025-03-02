@@ -225,7 +225,14 @@ return {
 	{
 		"lucastavaresa/headers.nvim",
 		lazy = false,
-		opts = {},
+		config = function ()
+			require("headers").setup({})
+			vim.keymap.set(
+				"n",
+				"<space>H",
+				require("headers").fix_hovered
+			)
+		end,
 	},
 	-- indica modo atual no cursor
 	{

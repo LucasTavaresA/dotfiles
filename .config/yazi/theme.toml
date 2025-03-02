@@ -53,8 +53,8 @@ syntect_theme = ""
 # : Status {{{
 
 [status]
-separator_open  = ""
-separator_close = ""
+sep_left  = { open = "", close = "" }
+sep_right = { open = "", close = "" }
 separator_style = { fg = "gray", bg = "gray" }
 
 # Mode
@@ -100,7 +100,7 @@ selected = { reversed = true }
 
 # : Completion {{{
 
-[completion]
+[cmp]
 border   = { fg = "blue" }
 active   = { reversed = true }
 inactive = {}
