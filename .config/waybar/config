@@ -6,8 +6,8 @@
 
     // Choose the order of the modules
     "modules-left": [
-        "custom/music",
         "wireplumber",
+        "custom/music",
         "sway/mode"
     ],
     // "modules-center": [
@@ -108,37 +108,42 @@
         "path": "/home",
     },
     "backlight": {
-        // "device": "acpi_video1",
         "format": "{percent}% {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
+        "format-icons": ["▁", "▃", "▅", "▇"],
     },
     "battery": {
         "states": {
-            // "good": 95,
+            "good": 95,
             "warning": 30,
             "critical": 15
         },
         "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
+        "format-charging": "{capacity}% Charging",
+        "format-plugged": "{capacity}% Plugged",
+        "format-icons": ["▁", "▃", "▅", "▇"],
     },
     "battery#bat2": {
-        "bat": "BAT2"
+        "bat": "BAT2",
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% Charging",
+        "format-plugged": "{capacity}% Plugged",
+        "format-icons": ["▁", "▃", "▅", "▇"],
     },
     "clock": {
         "format": "{:%a %d/%m/%Y - %H:%M}",
     },
     "custom/music": {
         "interval": 2,
-        "format": "{icon} {:.40}",
+        "format": "{icon} {}",
         "format-icons": {
             "default": "🎵"
         },
-        "exec": "$HOME/code/shellscripts/shellscripts/musica tocando 60",
+        "exec": "$HOME/code/shellscripts/shellscripts/musica tocando",
         "on-click": "term_open -a ncmpcpp ncmpcpp"
     },
 }

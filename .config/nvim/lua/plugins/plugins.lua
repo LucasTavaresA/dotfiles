@@ -203,7 +203,7 @@ return {
 						click = "v:lua.ScLa",
 					},
 					{ text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-					{ text = { "🮇" } },
+					{ text = { "│" } },
 				},
 			})
 		end,
@@ -232,30 +232,6 @@ return {
 				"<space>H",
 				require("headers").fix_hovered
 			)
-		end,
-	},
-	-- indica modo atual no cursor
-	{
-		"doums/monark.nvim",
-		lazy = false,
-		config = function()
-			require("monark").setup({
-				clear_on_normal = true,
-				sticky = true,
-				offset = 1,
-				timeout = 300,
-				modes = {
-					normal = { "N", "monarkNormal" },
-					visual = { "V", "monarkVisual" },
-					visual_l = { "VL", "monarkVisual" },
-					visual_b = { "VB", "monarkVisual" },
-					select = { "S", "monarkVisual" },
-					insert = { "I", "monarkInsert" },
-					replace = { "R", "monarkReplace" },
-					terminal = { "T", "monarkInsert" },
-				},
-				hl_mode = "combine",
-			})
 		end,
 	},
 

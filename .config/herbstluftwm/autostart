@@ -135,7 +135,7 @@ hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
 hc attr theme.inner_width 1
 hc attr theme.border_width 1
-hc attr theme.title_font 'Iosevka:pixelsize=18'
+hc attr theme.title_font 'Iosevka:pixelsize=22'
 hc attr theme.title_height 15
 hc attr theme.title_depth 1
 hc attr theme.title_color '#ffffff'

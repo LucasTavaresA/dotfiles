@@ -286,6 +286,7 @@ if status is-interactive
     abbr -a -g grsp git restore --staged -p
     abbr -a -g grsu git remote set-url origin
     abbr -a -g gs git status
+    abbr -a -g gsi git status --ignored
     abbr -a -g gsa git submodule add https://github.com/
     abbr -a -g gss git stash push -m
     abbr -a -g gssp git stash push --patch -m
@@ -336,7 +337,7 @@ if status is-interactive
         abbr -a -g xg xgrep
         abbr -a -g xh xhog
         abbr -a -g xil xilog
-        abbr -a -g xl "xlocate -S && xlocate"
+        abbr -a -g xl xlocate
         abbr -a -g xm xmandoc
         abbr -a -g xqr xq -R
         abbr -a -g sys doas sv

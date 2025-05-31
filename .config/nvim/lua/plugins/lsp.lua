@@ -183,9 +183,6 @@ return {
 				capabilities = capabilities,
 			})
 
-			-- nimble install nimlangserver
-			require("lspconfig").nim_langserver.setup({})
-
 			-- npm i -g vscode-langservers-extracted
 			require("lspconfig").cssls.setup({
 				on_attach = On_attach,
@@ -223,12 +220,6 @@ return {
 				capabilities = capabilities,
 			})
 			require("lspconfig").gopls.setup({
-				on_attach = On_attach,
-				capabilities = capabilities,
-			})
-
-			-- pip install --user jedi-language-server
-			require("lspconfig").jedi_language_server.setup({
 				on_attach = On_attach,
 				capabilities = capabilities,
 			})
@@ -305,10 +296,10 @@ return {
 							IncludePrereleases = true,
 						},
 					},
-				},
-				exe = {
-					"dotnet",
-					vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
+					cmd = {
+						"dotnet",
+						vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
+					}
 				},
 				-- NOTE: Set `filewatching` to false if you experience performance problems.
 				-- Defaults to true, since turning it off is a hack.

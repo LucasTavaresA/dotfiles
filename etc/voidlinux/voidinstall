@@ -7,17 +7,19 @@ export user="$USER"
 
 [ "$(pwd)" != "$HOME" ] && echo "Not in your home folder!" && exit 1
 
-su -c 'xbps-install -S git'
+if [ -d etc/.dotfiles ]; then
+	su -c 'xbps-install -S git'
+	
+	# git was a mistake
+	GIT_FLAGS="--work-tree=. --git-dir=etc/.dotfiles/"
 
-# git was a mistake
-GIT_FLAGS="--work-tree=. --git-dir=etc/.dotfiles/"
-[ -d etc/.dotfiles ] ||
-	git clone --bare https://codeberg.org/lucastavaresa/dotfiles etc/.dotfiles &&
-	git $GIT_FLAGS restore -WS . &&
-	git $GIT_FLAGS submodule update --init --recursive &&
-	git $GIT_FLAGS config --local --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*' &&
-	git $GIT_FLAGS fetch &&
+	git clone --bare https://codeberg.org/lucastavaresa/dotfiles etc/.dotfiles
+	git $GIT_FLAGS restore -WS .
+	git $GIT_FLAGS submodule update --init --recursive
+	git $GIT_FLAGS config --local --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
+	git $GIT_FLAGS fetch
 	git $GIT_FLAGS branch --set-upstream-to=origin/main main
+fi
 
 su -c "$HOME/etc/voidlinux/voidinstallroot"
 
@@ -35,7 +37,6 @@ go install github.com/EwenQuim/entropy@latest
 
 pipx install scdl
 pipx install spotdl
-pipx install jedi-language-server
 
 mkdir -p "$home/.local/share/applications/"
 cp etc/transmission-remote.desktop "$home/.local/share/applications/"
@@ -48,11 +49,25 @@ cp etc/userChrome.css "$home/.mozilla/firefox/myprofile/chrome/"
 mkdir -p "$home/.local/share/wget"
 touch "$home/.local/share/wget/wgetrc"
 
-export NIMBLE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/nimble"
-mkdir -p "$home/.local/share/nimble"
-nimble install nimlangserver
-
 npm i -g cssmodules-language-server @tailwindcss/language-server typescript \
 	typescript-language-server vscode-langservers-extracted \
 	fixjson bash-language-server vscode-css-languageserver-bin \
 	neovim write-good quick-lint-js stylelint
+
+(
+	cd code/c/gf/
+	doas xbps-install -S libX11-devel freetype-devel
+	./build.sh
+	cp ./gf2 /home/lucas/.local/bin/
+	doas xbps-remove -R libX11-devel freetype-devel
+)
+
+(
+	cd code/c/ueberzugpp/
+	mkdir -p build && cd build
+	doas xbps-install -S tbb-devel libopencv-devel libwebp-devel pango-devel librsvg-devel libopenexr-devel orc-devel poppler-glib-devel chafa-devel xcb-util-image-devel libvips-devel libsixel-devel
+	cmake -DCMAKE_BUILD_TYPE=Release ..
+	cmake --build .
+	cp ./ueberzug ./ueberzugpp /home/lucas/.local/bin/
+	doas xbps-remove -R tbb-devel libopencv-devel libwebp-devel pango-devel librsvg-devel libopenexr-devel orc-devel poppler-glib-devel chafa-devel xcb-util-image-devel libvips-devel libsixel-devel
+)

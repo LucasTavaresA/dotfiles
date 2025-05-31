@@ -1,6 +1,6 @@
 * {
   font-family: "Iosevka", "Noto Sans", "Monospace";
-  font-size: 18px;
+  font-size: 22px;
   border: none;
   border-radius: 0;
   margin: 0;
@@ -38,6 +38,10 @@
 
 #mpd, #pulseaudio, #custom-music {
   color: #00ffff;
+}
+
+#battery {
+  color: #00ff00;
 }
 
 #disk {

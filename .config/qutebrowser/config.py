@@ -20,17 +20,17 @@ config.set('content.prefers_reduced_motion', True)
 config.set('content.pdfjs', True)
 # javascript desativado por padrão
 config.set('content.javascript.enabled', False)
+# zoom padrão
+config.set('zoom.default', 150)
 # abre novas abas de fundo
-config.set('new_instance_open_target', 'window')
+# config.set('new_instance_open_target', 'window')
 # abre abas como janelas
-config.set("tabs.tabs_are_windows", True)
+# config.set("tabs.tabs_are_windows", True)
 # salva a sessão automaticamente
 config.set('auto_save.session', True)
 # não sai do modo de inserção automaticamente
 config.set('input.insert_mode.auto_leave', True)
 config.set('input.insert_mode.leave_on_load', True)
-# o que fazer caso a ultima pagina seja fechada
-config.set("tabs.last_close", "ignore")
 # confirma antes de sair
 config.set('confirm_quit', ["multiple-tabs"])
 # muda ordem do menu de compleção
@@ -169,7 +169,7 @@ bindings = {
     "<Ctrl-d>": "forward",
     "<Ctrl-j>": "scroll-page 0 0.5",
     "<Ctrl-k>": "scroll-page 0 -0.5",
-    "u": "undo --window",
+    "u": "undo",
     # atalho para assistir link
     "qvw": "hint links spawn --detach mpv \
         --ytdl-format='worstvideo*[height=720]+worstaudio/worst[height=720]' \
@@ -250,15 +250,15 @@ config.set('colors.webpage.darkmode.enabled', False)
 # fonte padrão
 c.fonts.default_family = '"Iosevka"'
 # tamanho padrão das fontes
-c.fonts.default_size = '14px'
+c.fonts.default_size = '20px'
 # fonte usada nas abas de completação de comandos.
-c.fonts.completion.entry = '14px "Iosevka"'
+c.fonts.completion.entry = '20px "Iosevka"'
 # fonte used for the debugging console.
-c.fonts.debug_console = '14px "Iosevka"'
+c.fonts.debug_console = '20px "Iosevka"'
 # fonte usada nos prompts.
 c.fonts.prompts = 'default_size "Iosevka"'
 # fonte usada na barra de status.
-c.fonts.statusbar = '14px "Iosevka"'
+c.fonts.statusbar = '20px "Iosevka"'
 
 
 ################
@@ -577,7 +577,6 @@ config.set('content.javascript.enabled', True, '*://*.produto.mercadolivre.com.b
 config.set('content.javascript.enabled', True, '*://*.wiki.lineageos.org/*')
 config.set('content.javascript.enabled', True, '*://*.www.dias-uteis.com/*')
 config.set('content.javascript.enabled', True, '*://*.tsoding.github.io/*')
-config.set('colors.webpage.darkmode.enabled', True, '*://*.soundcloud.com/*')
 config.set('content.javascript.enabled', True, '*://*.docs.google.com/*')
 config.set('content.javascript.enabled', True, '*://*.www.trocafone.com/*')
 config.set('content.javascript.enabled', True, '*://*.www.trocafone.com.br/*')
@@ -732,3 +731,11 @@ config.set('colors.webpage.darkmode.enabled', True, '*://*.sp.olx.com.br/*')
 config.set('colors.webpage.darkmode.enabled', True, '*://*.avaliacoes.olx.com.br/*')
 config.set('content.javascript.enabled', True, '*://*.conta.olx.com.br/*')
 config.set('content.javascript.enabled', True, '*://*.www.beatport.com/*')
+config.set('content.javascript.enabled', True, '*://*.pcsupport.lenovo.com/*')
+config.set('content.javascript.enabled', True, '*://*.git.sr.ht/*')
+config.set('content.javascript.enabled', True, '*://*.www.linuxquestions.org/*')
+config.set('content.javascript.enabled', True, '*://*.notebooklm.google/*')
+config.set('content.javascript.enabled', True, '*://*.news.ycombinator.com/*')
+config.set('content.javascript.enabled', True, '*://*.support.lenovo.com/*')
+config.set('content.javascript.enabled', True, '*://*.portal.azure.com/*')
+config.set('content.javascript.enabled', True, '*://*.forums.lenovo.com/*')

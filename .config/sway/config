@@ -20,7 +20,7 @@ focus_wrapping no
 focus_on_window_activation focus
 ## teclado
 input type:keyboard {
-    # xkb_layout custom
+    xkb_layout custom
     xkb_options caps:swapescape
     # xkb_numlock enable
     repeat_delay 300
@@ -32,7 +32,7 @@ output DP-1 {
 }
 
 # Aparência
-output * bg $HOME/media/imagens/wallpapers/kaiji_dice.png stretch
+output * bg $HOME/media/imagens/wallpapers/akagi_death.png center
 ## sem abas
 font pango:monospace 0.1
 titlebar_border_thickness 0
@@ -215,9 +215,10 @@ exec swayidle -w timeout 500 'swaymsg "output * power off"' resume 'swaymsg "out
 exec wl-paste --watch cliphist store
 exec mako
 exec hexchat
-exec easyeffects
+# exec easyeffects
 exec term_open -a ncmpcpp ncmpcpp
 exec sway-audio-idle-inhibit
+exec wluma
 ## Musica
 exec pgrep -x "playerctld" || playerctld daemon
 exec pgrep -x "mpDris2" || mpDris2 --music-dir="$HOME/media/musicas/" >"$XDG_CACHE_HOME/mpdris2.log" 2>&1 &
