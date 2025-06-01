@@ -106,7 +106,7 @@ return {
 							-- escrita
 							null_ls.builtins.diagnostics.write_good,
 							-- csharp
-							null_ls.builtins.formatting.csharpier,
+							null_ls.builtins.formatting.csharpier.with({ command = "dotnet-csharpier" }),
 						},
 					})
 				end,
