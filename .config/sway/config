@@ -34,7 +34,7 @@ output DP-1 {
 # Aparência
 output * bg $HOME/media/imagens/wallpapers/akagi_death.png center
 ## sem abas
-font pango:monospace 0.1
+font pango:monospace 0.001
 titlebar_border_thickness 0
 titlebar_padding 0
 ## bordas
