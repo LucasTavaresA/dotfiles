@@ -139,12 +139,8 @@ return {
 			capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 			-- Ativa quando o lsp esta ativo
-			On_attach = function(client, bufnr)
-				local function buf_set_option(...)
-					vim.api.nvim_buf_set_option(bufnr, ...)
-				end
-
-				buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+			On_attach = function(_, bufnr)
+				vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
 
 				local bns = { buffer = bufnr, noremap = true, silent = true }
 				vim.keymap.set({ "n", "v" }, "gD", vim.lsp.buf.declaration, bns)

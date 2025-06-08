@@ -2,5 +2,9 @@
     "diagnostics.globals": [
         "vim",
         "vi"
-    ]
+    ],
+    "Lua.format.defaultConfig": {
+        "indent_style": "tab",
+        "indent_size": "2"
+    }
 }
