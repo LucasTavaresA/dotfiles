@@ -3,7 +3,20 @@ return {
 		"neovim/nvim-lspconfig",
 		lazy = false,
 		dependencies = {
-			"seblj/roslyn.nvim",
+			{
+				"seblyng/roslyn.nvim",
+				ft = "cs",
+				---@module 'roslyn.config'
+				---@type RoslynNvimConfig
+				opts = {
+					-- "auto" | "roslyn" | "off"
+					--
+					-- - "auto": Does nothing for filewatching, leaving everything as default
+					-- - "roslyn": Turns off neovim filewatching which will make roslyn do the filewatching
+					-- - "off": Hack to turn off all filewatching. (Can be used if you notice performance issues)
+					filewatching = "auto",
+				}
+			},
 			"Hoffs/omnisharp-extended-lsp.nvim",
 			-- {
 			--   "Decodetalkers/csharpls-extended-lsp.nvim",
@@ -243,75 +256,46 @@ return {
 			})
 
 			-- instale o omnisharp
-			require("roslyn").setup({
-				config = {
-					-- Here you can pass in any options that that you would like to pass to `vim.lsp.start`.
-					-- Use `:h vim.lsp.ClientConfig` to see all possible options.
-					-- The only options that are overwritten and won't have any effect by setting here:
-					--     - `name`
-					--     - `cmd`
-					--     - `root_dir`
-					handlers = {
-						["textDocument/definition"] = require('omnisharp_extended').definition_handler,
-						["textDocument/typeDefinition"] = require('omnisharp_extended').type_definition_handler,
-						["textDocument/references"] = require('omnisharp_extended').references_handler,
-						["textDocument/implementation"] = require('omnisharp_extended').implementation_handler,
-					},
-					settings = {
-						FormattingOptions = {
-							-- Enables support for reading code style, naming convention and analyzer
-							-- settings from .editorconfig.
-							EnableEditorConfigSupport = nil,
-							-- Specifies whether 'using' directives should be grouped and sorted during
-							-- document formatting.
-							OrganizeImports = true,
-						},
-						MsBuild = {
-							-- If true, MSBuild project system will only load projects for files that
-							-- were opened in the editor. This setting is useful for big C# codebases
-							-- and allows for faster initialization of code navigation features only
-							-- for projects that are relevant to code that is being edited. With this
-							-- setting enabled OmniSharp may load fewer projects and may thus display
-							-- incomplete reference lists for symbols.
-							-- REALLY SLOW
-							LoadProjectsOnDemand = true,
-						},
-						RoslynExtensionsOptions = {
-							-- Enables support for roslyn analyzers, code fixes and rulesets.
-							EnableAnalyzersSupport = nil,
-							-- Enables support for showing unimported types and unimported extension
-							-- methods in completion lists. When committed, the appropriate using
-							-- directive will be added at the top of the current file. This option can
-							-- have a negative impact on initial completion responsiveness,
-							-- particularly for the first few completion sessions after opening a
-							-- solution.
-							EnableImportCompletion = nil,
-							-- Only run analyzers against open files when 'enableRoslynAnalyzers' is
-							-- true
-							AnalyzeOpenDocumentsOnly = nil,
-						},
-						Sdk = {
-							-- Specifies whether to include preview versions of the .NET SDK when
-							-- determining which version to use for project loading.
-							IncludePrereleases = true,
-						},
-					},
-					cmd = {
-						"dotnet",
-						vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
-					}
+			vim.lsp.config("roslyn", {
+				cmd = {
+					"dotnet",
+					vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn/content/LanguageServer/linux-x64/", "Microsoft.CodeAnalysis.LanguageServer.dll"),
+					"--logLevel=Information",
+					"--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
+					"--stdio",
 				},
-				-- NOTE: Set `filewatching` to false if you experience performance problems.
-				-- Defaults to true, since turning it off is a hack.
-				-- If you notice that the server is _super_ slow, it is probably because of file watching
-				-- Neovim becomes super unresponsive on some large codebases, because it schedules the file watching on the event loop.
-				-- This issue goes away by disabling this capability, but roslyn will fallback to its own file watching,
-				-- which can make the server super slow to initialize.
-				-- Setting this option to false will indicate to the server that neovim will do the file watching.
-				-- However, in `hacks.lua` I will also just don't start off any watchers, which seems to make the server
-				-- a lot faster to initialize.
-				filewatching = "auto",
+				-- Here you can pass in any options that that you would like to pass to `vim.lsp.start`.
+				-- Use `:h vim.lsp.ClientConfig` to see all possible options.
+				-- The only options that are overwritten and won't have any effect by setting here:
+				--     - `name`
+				--     - `cmd`
+				--     - `root_dir`
+				handlers = {
+					["textDocument/definition"] = require('omnisharp_extended').definition_handler,
+					["textDocument/typeDefinition"] = require('omnisharp_extended').type_definition_handler,
+					["textDocument/references"] = require('omnisharp_extended').references_handler,
+					["textDocument/implementation"] = require('omnisharp_extended').implementation_handler,
+				},
 				on_attach = On_attach,
+				settings = {
+					["csharp|background_analysis"] = {
+						dotnet_analyzer_diagnostics_scope = "full-solution",
+						dotnet_compiler_diagnostics_scope = "full-solution",
+					},
+					["csharp|inlay_hints"] = {
+						csharp_enable_inlay_hints_for_implicit_object_creation = true,
+						csharp_enable_inlay_hints_for_implicit_variable_types = true,
+					},
+					["csharp|code_lens"] = {
+						dotnet_enable_references_code_lens = true,
+					},
+					["csharp|formatting"] = {
+						enableEditorConfigSupport = true,
+						-- Specifies whether 'using' directives should be grouped and sorted during
+						-- document formatting.
+						dotnet_organize_imports_on_format = true,
+					},
+				},
 			})
 
 			-- dotnet tool install --global csharp-ls
