@@ -214,7 +214,6 @@ exec swayrd
 exec swayidle -w timeout 500 'swaymsg "output * power off"' resume 'swaymsg "output * power on"'
 exec wl-paste --watch cliphist store
 exec mako
-exec hexchat
 # exec easyeffects
 exec term_open -a ncmpcpp ncmpcpp
 exec sway-audio-idle-inhibit
