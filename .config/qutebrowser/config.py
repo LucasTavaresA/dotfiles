@@ -23,6 +23,8 @@ config.set('content.javascript.enabled', False)
 # zoom padrão
 config.set('zoom.default', 150)
 # abre novas abas de fundo
+config.set('tabs.background', False)
+# abre novas abas em janelas
 # config.set('new_instance_open_target', 'window')
 # abre abas como janelas
 # config.set("tabs.tabs_are_windows", True)
@@ -42,7 +44,7 @@ config.set('scrolling.bar', 'overlay')
 # encolhe janela de completação dependendo das opções
 config.set('completion.shrink', True)
 # barra escondida
-config.set("statusbar.show", "always")
+config.set("statusbar.show", "never")
 config.set("tabs.show", "never")
 # formatação dos títulos das abas
 config.set("tabs.title.format", "{perc}{private}{current_title}")
