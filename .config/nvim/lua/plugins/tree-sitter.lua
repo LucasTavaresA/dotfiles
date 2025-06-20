@@ -24,7 +24,6 @@ return {
 					vim.keymap.set("n", "<S-j>", "")
 				end,
 			},
-			{ "andersevenrud/nvim_context_vt", config = true },
 			"JoosepAlviste/nvim-ts-context-commentstring",
 			{
 				"HiPhish/rainbow-delimiters.nvim",
