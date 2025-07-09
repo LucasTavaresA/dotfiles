@@ -44,8 +44,8 @@ config.set('scrolling.bar', 'overlay')
 # encolhe janela de completação dependendo das opções
 config.set('completion.shrink', True)
 # barra escondida
-config.set("statusbar.show", "never")
-config.set("tabs.show", "never")
+config.set("statusbar.show", "always")
+config.set("tabs.show", "always")
 # formatação dos títulos das abas
 config.set("tabs.title.format", "{perc}{private}{current_title}")
 # formatação de horários
@@ -753,3 +753,4 @@ config.set('content.javascript.enabled', True, '*://*.substack.com/*')
 config.set('content.javascript.enabled', True, '*://*.ffm.to/*')
 config.set('colors.webpage.darkmode.enabled', True, '*://*.man.archlinux.org/*')
 config.set('content.javascript.enabled', True, '*://*.gitlab.gnome.org/*')
+config.set('content.javascript.enabled', True, '*://*.git-scm.com/*')
