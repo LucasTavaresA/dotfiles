@@ -24,7 +24,18 @@
 	dark = true      # or light = true, or omit for auto-detection
 
 [diff]
-	colorMoved = default
+	colorMoved = plain
+	algorithm = histogram
 
 [merge]
 	conflictstyle = zdiff3
+
+[branch]
+	sort = -committerdate
+
+[tag]
+	sort = version:refname
+
+[push]
+	autoSetupRemote = true
+	followTags = true
