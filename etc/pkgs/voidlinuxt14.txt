@@ -37,6 +37,7 @@ dbus
 dejavu-fonts-ttf
 delta
 docx2txt
+dpkg
 easyeffects
 exiftool
 expect
@@ -88,6 +89,8 @@ jdupes
 jq
 keepassxc
 kwayland
+libcxx
+libcxxabi
 libjack-pipewire
 libopencv
 libreoffice
@@ -121,14 +124,17 @@ mplayer
 mpv
 mpv-mpris
 msbuild-bin
+msttcorefonts
 ncmpcpp
 neovim
 nodejs
 noto-fonts-cjk
+noto-fonts-cjk-sans-variable
+noto-fonts-cjk-serif-variable
+noto-fonts-cjk-variable
 noto-fonts-emoji
 nuspell
 obs
-olive
 opendoas
 openjdk21
 opusfile
@@ -173,7 +179,9 @@ snes9x-gtk
 socklog-void
 starship
 stc
+strace
 streamlink
+stress
 sway
 sway-audio-idle-inhibit
 swayidle
