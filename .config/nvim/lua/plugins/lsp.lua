@@ -106,8 +106,6 @@ return {
 							null_ls.builtins.diagnostics.stylelint,
 							-- go
 							null_ls.builtins.diagnostics.golangci_lint,
-							-- make
-							null_ls.builtins.diagnostics.checkmake,
 							-- fish
 							null_ls.builtins.diagnostics.fish,
 							null_ls.builtins.formatting.fish_indent,

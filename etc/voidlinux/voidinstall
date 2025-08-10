@@ -30,7 +30,6 @@ cargo install --locked yazi-fm handlr-regex tree-sitter-cli
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 mkdir -p "$home/.local/share/go/"
 go install github.com/nao1215/gup@latest
-go install github.com/checkmake/checkmake/cmd/checkmake@latest
 go install github.com/segmentio/golines@latest
 go install github.com/cespare/reflex@latest
 go install github.com/EwenQuim/entropy@latest
