@@ -32,7 +32,7 @@ output DP-1 {
 }
 
 # Aparência
-output * bg $HOME/media/imagens/wallpapers/akagi_death.png center
+output * bg $HOME/media/imagens/wallpapers/stsr1.png fill
 ## sem abas
 font pango:monospace 0.001
 titlebar_border_thickness 0

@@ -46,6 +46,7 @@ fd
 ffmpegthumbnailer
 firefox
 fish-shell
+flac
 flake8
 flatpak
 font-fira-otf
@@ -203,6 +204,7 @@ turnstile
 unar
 unicode-emoji
 unrar
+usbmuxd
 valgrind
 vlc
 void-repo-nonfree
