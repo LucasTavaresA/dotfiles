@@ -226,11 +226,16 @@ return {
 		"lucastavaresa/headers.nvim",
 		lazy = false,
 		config = function ()
-			require("headers").setup({})
+			require("headers").setup({ code_paths = { "/home/lucas/code/" }})
 			vim.keymap.set(
 				"n",
-				"<space>H",
+				"<space>HH",
 				require("headers").fix_hovered
+			)
+			vim.keymap.set(
+				"n",
+				"<space>HI",
+				require("headers").ignore
 			)
 		end,
 	},
