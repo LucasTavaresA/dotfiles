@@ -53,8 +53,7 @@ return {
 				end,
 			},
 			"windwp/nvim-ts-autotag",
-			-- TODO(LucasTA): Uncomment when TS main branch support is available
-			-- "RRethy/nvim-treesitter-endwise",
+			"RRethy/nvim-treesitter-endwise",
 			{
 				"nvim-treesitter/nvim-treesitter-context",
 				opts = {
