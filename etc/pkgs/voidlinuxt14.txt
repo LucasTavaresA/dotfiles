@@ -39,6 +39,7 @@ delta
 docx2txt
 dpkg
 easyeffects
+evtest
 exiftool
 expect
 fastfetch
@@ -63,6 +64,7 @@ gammastep
 gcc
 gdb
 gdu
+gettext
 gimp
 git
 git-revise
@@ -74,6 +76,7 @@ golangci-lint
 gopls
 grimshot
 grub-x86_64-efi
+gstreamer1-devel
 gtk2fontsel
 gtkspell3
 gucharmap
@@ -108,6 +111,7 @@ lsd
 lsp-plugins
 lua
 lua-language-server
+lutris
 make
 mako
 man-pages-posix
@@ -135,15 +139,16 @@ noto-fonts-cjk-serif-variable
 noto-fonts-cjk-variable
 noto-fonts-emoji
 nuspell
-obs
 opendoas
 openjdk21
+openssl-devel
 opusfile
 p7zip
 pam-gnupg
 pandoc
 parallel
 patch
+patchelf
 pdf.js
 perl-Net-DBus
 pinentry-qt
@@ -196,6 +201,7 @@ terminus-font
 testdisk
 tlp
 tofi
+tp_smapi-dkms
 translate-shell
 transmission
 trash-cli
@@ -207,11 +213,13 @@ unrar
 usbmuxd
 valgrind
 vlc
+void-repo-multilib
 void-repo-nonfree
 waydroid
 wev
 wget
 wine
+wine-32bit
 wine-mono
 winetricks
 wl-clipboard

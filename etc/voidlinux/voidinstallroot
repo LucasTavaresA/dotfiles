@@ -72,3 +72,6 @@ chown -R lucas:lucas /home/lucas/.local/bin
 mkdir -p /etc/udev/hwdb.d/
 cp  etc/60-keyboard.hwdb /etc/udev/hwdb.d/
 udevadm hwdb --update && udevadm control --reload-rules && udevadm trigger
+
+cat etc/voidlinux/security/limits.conf >>/etc/security/limits.conf
+usermod -aG input lucas
