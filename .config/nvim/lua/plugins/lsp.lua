@@ -181,33 +181,33 @@ return {
 			})
 
 			-- instale o clang
-			require("lspconfig").ccls.setup({
+			vim.lsp.config('ccls', {
 				on_attach = On_attach,
 				capabilities = capabilities,
 			})
-			require("lspconfig").clangd.setup({
+			vim.lsp.config('clangd', {
 				on_attach = On_attach,
 				capabilities = capabilities,
 			})
 
 			-- npm i -g vscode-langservers-extracted
-			require("lspconfig").cssls.setup({
+			vim.lsp.config('cssls', {
 				on_attach = On_attach,
 				capabilities = capabilities,
 			})
-			require("lspconfig").html.setup({
+			vim.lsp.config('html', {
 				on_attach = On_attach,
 				capabilities = capabilities,
 			})
 
 			-- npm i -g cssmodules-language-server
-			require("lspconfig").cssmodules_ls.setup({
+			vim.lsp.config('cssmodules_ls', {
 				on_attach = On_attach,
 				capabilities = capabilities,
 			})
 
 			-- npm i -g @tailwindcss/language-server
-			require("lspconfig").tailwindcss.setup({
+			vim.lsp.config('tailwindcss', {
 				on_attach = On_attach,
 				capabilities = capabilities,
 			})
@@ -218,26 +218,26 @@ return {
 			})
 
 			-- npm i -g quick-lint-js
-			require("lspconfig").quick_lint_js.setup({})
+			vim.lsp.config('quick_lint_js', {})
 
 			-- go install github.com/nametake/golangci-lint-langserver@latest
 			-- go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-			require("lspconfig").golangci_lint_ls.setup({
+			vim.lsp.config('golangci_lint_ls', {
 				on_attach = On_attach,
 				capabilities = capabilities,
 			})
-			require("lspconfig").gopls.setup({
+			vim.lsp.config('gopls', {
 				on_attach = On_attach,
 				capabilities = capabilities,
 			})
 
 			-- npm i -g bash-language-server
-			require("lspconfig").bashls.setup({
+			vim.lsp.config('bashls', {
 				on_attach = On_attach,
 				capabilities = capabilities,
 			})
 
-			require("lspconfig").nelua_lsp.setup({
+			vim.lsp.config('nelua_lsp', {
 				cmd = {
 					"nelua",
 					"-L",
@@ -293,7 +293,7 @@ return {
 			})
 
 			-- dotnet tool install --global csharp-ls
-			-- require("lspconfig").csharp_ls.setup({
+			-- vim.lsp.config('csharp_ls', {
 			--   on_attach = On_attach,
 			--   capabilities = capabilities,
 			--   handlers = {
@@ -302,7 +302,7 @@ return {
 			-- })
 
 			-- instale o lua-language-server
-			require("lspconfig").lua_ls.setup({
+			vim.lsp.config('lua_ls', {
 				on_attach = On_attach,
 				capabilities = capabilities,
 				settings = {
