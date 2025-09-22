@@ -182,7 +182,7 @@ if status is-interactive
     abbr -a -g vc nvim --clean
     abbr -a -g vv term_open -a nvim nvim
     abbr -a -g h htop
-    abbr -a -g copy xclip -selection clipboard
+    abbr -a -g copy wlcopy
     abbr -a -g sudo doas
     abbr -a -g ping ping gnu.org
     abbr -a -g p "patch -p1 <"
