@@ -121,9 +121,11 @@ if status is-interactive
             end
             echo
 
-            read -l -P "pull $repo? [y/N] " confirm
+            read -l -P "pull $repo? [y/N/c] " confirm
             if test $confirm = y -o $confirm = Y
                 git pull
+            else if test $confirm = c -o $confirm = C
+                break
             end
         end
         cd $cdir
@@ -146,6 +148,25 @@ if status is-interactive
         end
 
         git stash $action $snum
+    end
+
+    function wav2opus
+        if not test -d $argv[1] || test -z $argv[1]
+            return
+        end
+
+        for file in (find $argv[1] -type f -iname "*.wav")
+            set out (path change-extension '.opus' $file)
+
+            echo "Converting: $file → $out"
+
+            if ffmpeg -i "$file" -c:a libopus -b:a 96k -y "$out"
+                echo "✅ Success, removing original: $file"
+                trash "$file"
+            else
+                echo "❌ Failed to convert: $file (keeping original)"
+            end
+        end
     end
 
     ## Abbr ##
