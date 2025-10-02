@@ -79,6 +79,7 @@
 .supermaven/
 .vscode/
 .config/Code/
+.config/spotdl/
 .config/obs-studio/
 .config/olivevideoeditor.org/
 .config/go/telemetry/

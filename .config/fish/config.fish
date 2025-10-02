@@ -211,7 +211,7 @@ if status is-interactive
     abbr -a -g vc nvim --clean
     abbr -a -g vv term_open -a nvim nvim
     abbr -a -g h htop
-    abbr -a -g copy wlcopy
+    abbr -a -g copy wl-copy
     abbr -a -g sudo doas
     abbr -a -g ping ping gnu.org
     abbr -a -g p "patch -p1 <"
@@ -291,13 +291,11 @@ if status is-interactive
     abbr -a -g gcob git checkout -b
     abbr -a -g gd git diff
     abbr -a -g gds git diff --staged
-    abbr -a -g gdd git d
     abbr -a -g gf git fetch
     abbr -a -g gg git grep -iIn
     abbr -a -g ggs git grep -iIn -8
     abbr -a -g gi git init
     abbr -a -g gl git log --oneline --graph
-    abbr -a -g gll git l
     abbr -a -g gpl git pull
     abbr -a -g gps git push
     abbr -a -g gpsf git push -f
