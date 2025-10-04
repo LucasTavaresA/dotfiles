@@ -75,8 +75,16 @@ if status is-interactive
 
     # Git bare dotfiles
     function git
-        if test "$(pwd)" = "$HOME" && test $argv[1] != init && test $argv[1] != clone
-            /usr/bin/git --work-tree=. --git-dir="$HOME/etc/.dotfiles/" $argv
+        if test "$(pwd)" = "$HOME"
+            switch $argv[1]
+                # safe subcommands
+                case status diff log reset grep revise submodule push pull commit add \
+                     restore rebase stash remote show revert fetch branch checkout \
+                     rev-parse rm
+                    /usr/bin/git --work-tree=. --git-dir="$HOME/etc/.dotfiles/" $argv
+                case '*'
+                    echo "command 'git $argv[1]' not allowed in your dotfiles"
+            end
         else
             /usr/bin/git $argv
         end
