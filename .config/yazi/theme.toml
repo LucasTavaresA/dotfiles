@@ -557,7 +557,6 @@ exts = [
 	{ name = "lua", text = "🌙", fg_dark = "#51a0cf", fg_light = "#366b8a" },
 	{ name = "luac", text = "🌙", fg_dark = "#51a0cf", fg_light = "#366b8a" },
 	{ name = "luau", text = "🌙", fg_dark = "#00a2ff", fg_light = "#007abf" },
-	{ name = "nelua", text = "🌙", fg_dark = "#00a2ff", fg_light = "#007abf" },
 	{ name = "m", text = "C", fg_dark = "#599eff", fg_light = "#3b69aa" },
 	{ name = "m3u", text = "📀", fg_dark = "#ed95ae", fg_light = "#764a57" },
 	{ name = "m3u8", text = "📀", fg_dark = "#ed95ae", fg_light = "#764a57" },

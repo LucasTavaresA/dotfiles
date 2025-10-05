@@ -237,18 +237,6 @@ return {
 				capabilities = capabilities,
 			})
 
-			vim.lsp.config('nelua_lsp', {
-				cmd = {
-					"nelua",
-					"-L",
-					"/home/lucas/code/nelua/nelua-lsp/",
-					"--script",
-					"/home/lucas/code/nelua/nelua-lsp/nelua-lsp.lua",
-				},
-				on_attach = On_attach,
-				capabilities = capabilities,
-			})
-
 			-- instale o omnisharp
 			vim.lsp.config("roslyn", {
 				cmd = {

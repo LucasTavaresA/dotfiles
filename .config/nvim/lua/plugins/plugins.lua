@@ -167,8 +167,6 @@ return {
 			url = "https://godbolt.org" -- can be changed to a different godbolt instance
 		}
 	},
-	-- indicação de syntaxe nelua
-	{ "edubart/nelua-vim",      ft = "nelua" },
 	-- lidar com conflitos git
 	{
 		"akinsho/git-conflict.nvim",
