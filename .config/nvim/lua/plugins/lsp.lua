@@ -181,14 +181,11 @@ return {
 			})
 
 			-- instale o clang
-			vim.lsp.config('ccls', {
-				on_attach = On_attach,
-				capabilities = capabilities,
-			})
 			vim.lsp.config('clangd', {
 				on_attach = On_attach,
 				capabilities = capabilities,
 			})
+			vim.lsp.enable('clangd')
 
 			-- npm i -g vscode-langservers-extracted
 			vim.lsp.config('cssls', {
@@ -199,26 +196,32 @@ return {
 				on_attach = On_attach,
 				capabilities = capabilities,
 			})
+			vim.lsp.enable('cssls')
+			vim.lsp.enable('html')
 
 			-- npm i -g cssmodules-language-server
 			vim.lsp.config('cssmodules_ls', {
 				on_attach = On_attach,
 				capabilities = capabilities,
 			})
+			vim.lsp.enable('cssmodules_ls')
 
 			-- npm i -g @tailwindcss/language-server
 			vim.lsp.config('tailwindcss', {
 				on_attach = On_attach,
 				capabilities = capabilities,
 			})
+			vim.lsp.enable('tailwindcss')
 
 			require("typescript-tools").setup({
 				on_attach = On_attach,
 				capabilities = capabilities,
 			})
+			vim.lsp.enable('typescript-tools')
 
 			-- npm i -g quick-lint-js
 			vim.lsp.config('quick_lint_js', {})
+			vim.lsp.enable('quick_lint_js')
 
 			-- go install github.com/nametake/golangci-lint-langserver@latest
 			-- go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
@@ -230,12 +233,15 @@ return {
 				on_attach = On_attach,
 				capabilities = capabilities,
 			})
+			vim.lsp.enable('golangci_lint_ls')
+			vim.lsp.enable('gopls')
 
 			-- npm i -g bash-language-server
 			vim.lsp.config('bashls', {
 				on_attach = On_attach,
 				capabilities = capabilities,
 			})
+			vim.lsp.enable('bashls')
 
 			-- instale o omnisharp
 			vim.lsp.config("roslyn", {
@@ -314,6 +320,7 @@ return {
 					},
 				},
 			})
+			vim.lsp.enable('lua_ls')
 		end,
 	},
 }

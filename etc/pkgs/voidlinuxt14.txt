@@ -23,7 +23,6 @@ bsdtar
 cage
 cargo
 cargo-update
-ccls
 chafa
 checkbashisms
 clang-analyzer18
