@@ -172,6 +172,7 @@ python3-websockets
 python3-wheel
 qt6-wayland
 qutebrowser
+resvg
 ripgrep
 rlwrap
 scdoc

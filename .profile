@@ -165,6 +165,7 @@ fork() {
 	is_running "pipewire" || pipewire >"$XDG_CACHE_HOME/pipewire.log" 2>&1 &
 	is_running "mpd" || mpd >/dev/null 2>&1
 	mpc update >/dev/null 2>&1
+	updatedb >/dev/null 2>&1
 }
 fork &
 

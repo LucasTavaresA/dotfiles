@@ -135,7 +135,7 @@ mode "Menu" {
     bindsym m exec menu_mont ; mode "default"
     bindsym p exec keepassxc ; mode "default"
     bindsym c exec cliphist list | tofi --padding-left 0 --padding-top 0 | cliphist decode | wl-copy ; mode "default"
-    bindsym Shift+c exec term_open -a calculadora csharprepl ; mode "default"
+    bindsym Shift+c exec term_open -a calculadora python ; mode "default"
     bindsym e exec term_open -a nvim nvim ~/documentos/ ; mode "default"
     bindsym Shift+e exec term_open -a float fzf_emojis ; mode "default"
     bindsym f exec qutebrowser ; mode "default"
@@ -223,6 +223,7 @@ exec pgrep -x "mpDris2" || mpDris2 --music-dir="$HOME/media/musicas/" >"$XDG_CAC
 exec xrdb -load $HOME/.config/x11/xresources
 ## sistema
 exec checar_updates
+exec notify-bat
 
 ## Barra
 bar {
