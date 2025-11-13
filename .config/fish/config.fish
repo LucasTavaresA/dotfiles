@@ -158,21 +158,18 @@ if status is-interactive
         git stash $action $snum
     end
 
-    function wav2opus
-        if not test -d $argv[1] || test -z $argv[1]
-            return
-        end
+    function 2opus
+        for file in $argv
+            if test -f $file
+                set out (path change-extension '.opus' $file)
+                echo "Converting: $file → $out"
 
-        for file in (find $argv[1] -type f -iname "*.wav")
-            set out (path change-extension '.opus' $file)
-
-            echo "Converting: $file → $out"
-
-            if ffmpeg -i "$file" -c:a libopus -b:a 96k -y "$out"
-                echo "✅ Success, removing original: $file"
-                trash "$file"
-            else
-                echo "❌ Failed to convert: $file (keeping original)"
+                if ffmpeg -hide_banner -loglevel error -i "$file" -c:a libopus -vbr on -compression_level 10 -y "$out"
+                    echo "✅ Success, removing original: $file"
+                    trash "$file"
+                else
+                    echo "❌ Failed to convert: $file (keeping original)"
+                end
             end
         end
     end
