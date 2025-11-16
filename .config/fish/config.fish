@@ -315,7 +315,7 @@ if status is-interactive
     abbr -a -g gss git stash push -m
     abbr -a -g gssp git stash push --patch -m
     abbr -a -g gsss git stash push -S -m
-    abbr -a -g gS git show
+    abbr -a -g gu gitui
     abbr -a -g gwa git worktree add
     abbr -a -g gwr git worktree remove
 

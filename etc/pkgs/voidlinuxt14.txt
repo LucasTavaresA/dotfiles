@@ -68,6 +68,7 @@ gimp
 git
 git-revise
 github-cli
+gitui
 glow
 gnome-epub-thumbnailer
 go
@@ -97,6 +98,7 @@ libcxxabi
 libjack-pipewire
 libopencv
 libreoffice
+libsanitizer-devel
 libsixel
 libspa-bluetooth
 libtool

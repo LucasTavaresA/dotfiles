@@ -22,6 +22,7 @@
 [delta]
 	navigate = true
 	dark = true      # or light = true, or omit for auto-detection
+	tabs = 2
 
 [diff]
 	colorMoved = plain
