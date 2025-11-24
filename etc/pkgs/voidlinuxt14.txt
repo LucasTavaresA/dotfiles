@@ -9,6 +9,7 @@ amdvlk
 android-file-transfer-linux
 android-tools
 android-udev-rules
+asciidoc
 asciinema
 aspell
 aspell-en
@@ -89,6 +90,7 @@ hunspell-en
 hunspell-pt_BR
 hyperfine
 inkscape
+jd
 jdupes
 jq
 keepassxc

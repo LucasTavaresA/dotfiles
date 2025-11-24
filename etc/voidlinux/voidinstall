@@ -36,6 +36,7 @@ go install github.com/EwenQuim/entropy@latest
 
 pipx install scdl
 pipx install spotdl
+pipx install pyright
 
 mkdir -p "$home/.local/share/applications/"
 cp etc/transmission-remote.desktop "$home/.local/share/applications/"
