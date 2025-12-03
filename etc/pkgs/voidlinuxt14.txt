@@ -33,6 +33,7 @@ clang18-devel
 cliphist
 cloc
 cmake
+cross-x86_64-w64-mingw32
 dbus
 dejavu-fonts-ttf
 delta
@@ -95,8 +96,14 @@ jdupes
 jq
 keepassxc
 kwayland
+libXcursor-devel
+libXi-devel
+libXinerama-devel
+libXrandr-devel
+libXxf86vm-devel
 libcxx
 libcxxabi
+libglvnd-devel
 libjack-pipewire
 libopencv
 libreoffice

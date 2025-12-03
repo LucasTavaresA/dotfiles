@@ -63,6 +63,7 @@
 .config/xnp21kai/
 .config/java/
 .config/libresprite/
+.gemini/
 .gnupg/
 .gradle/
 .dbus/
