@@ -186,6 +186,7 @@ if status is-interactive
     abbr --set-cursor=% -a -g trs "transmission-remote -t % -s"
     abbr --set-cursor=% -a -g trS "transmission-remote -t % -S"
     abbr -a -g y yazi
+    abbr -a -g b bluetui
     abbr -a -g wget wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"
     abbr -a -g cd z
     abbr -a -g cage cage -s --

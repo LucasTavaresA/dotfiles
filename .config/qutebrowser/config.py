@@ -144,7 +144,8 @@ c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
                     ,  'vn':   'https://vndb.org/v?sq={}'
                     ,  'wm':   'https://web.archive.org/web/*/{}'
                     ,  'yt':   'https://www.youtube.com/search?q={}'
-                    ,  'ytm':   'https://music.youtube.com/search?q={}'
+                    ,  'ytm':  'https://music.youtube.com/search?q={}'
+                    ,  'hn':   'https://hn.algolia.com/?q={}'
                     }
 
 #### Atalhos ####
@@ -807,3 +808,10 @@ config.set('content.javascript.enabled', True, '*://*.docs.rs/*')
 config.set('content.javascript.enabled', True, '*://*.greasyfork.org/*')
 config.set('content.javascript.enabled', True, '*://*.gemini.google.com/*')
 config.set('colors.webpage.darkmode.enabled', True, '*://*.hilariusbookbinder.substack.com/*')
+config.set('colors.webpage.darkmode.enabled', True, '*://*.musl.libc.org/*')
+config.set('content.javascript.enabled', True, '*://*.musl.libc.org/*')
+config.set('colors.webpage.darkmode.enabled', True, '*://*.pubs.opengroup.org/*')
+config.set('content.javascript.enabled', True, '*://*.pubs.opengroup.org/*')
+config.set('content.javascript.enabled', True, '*://*.www.experimental-history.com/*')
+config.set('content.javascript.enabled', True, '*://*.lore.kernel.org/*')
+config.set('content.javascript.enabled', True, '*://*.archive.md/*')
