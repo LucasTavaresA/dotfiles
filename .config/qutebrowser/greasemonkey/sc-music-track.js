@@ -138,12 +138,7 @@
     if (window.location.href === "https://soundcloud.com/feed") {
         const style = document.createElement('style');
         style.textContent = `
-        a:visited {
-            color: grey !important;
-            text-decoration: underline !important;
-        }
         a.sc-played-track {
-            color: grey !important;
             text-decoration: underline !important;
         }
     `;
