@@ -3,7 +3,7 @@
 set -ex
 
 xbps-install -Su
-xbps-install -S void-repo-nonfree
+xbps-install -S void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
 xbps-install -S $(cat "etc/pkgs/$HOSTNAME.txt")
 
 sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g;s/^#pt_BR.UTF-8 UTF-8/pt_BR.UTF-8 UTF-8/g' /etc/default/libc-locales
@@ -20,9 +20,6 @@ cp etc/doas.conf /etc/
 
 ln -s /etc/sv/socklog-unix /var/service/
 ln -s /etc/sv/nanoklogd /var/service/
-
-cp etc/voidlinux/rc.local /etc/rc.local
-
 ln -s /etc/sv/acpid /var/service/
 ln -s /etc/sv/tlp /var/service/
 
@@ -62,8 +59,6 @@ cat etc/containers/registries.conf >>/etc/containers/registries.conf
 
 ln -s /etc/sv/bluetoothd /var/service/
 usermod -aG bluetooth lucas
-
-chown -R lucas:lucas /home/lucas/.local/bin
 
 /usr/share/qutebrowser/scripts/dictcli.py install en-US
 /usr/share/qutebrowser/scripts/dictcli.py install pt-BR
