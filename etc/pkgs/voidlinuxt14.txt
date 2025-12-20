@@ -124,6 +124,7 @@ lua-language-server
 lutris
 make
 mako
+man-pages-devel
 man-pages-posix
 mdcat
 mediainfo
@@ -186,6 +187,7 @@ qutebrowser
 resvg
 ripgrep
 rlwrap
+rsync
 scdoc
 scrcpy
 seatd
@@ -220,11 +222,11 @@ ttf-ubuntu-font-family
 turnstile
 unar
 unicode-emoji
-unrar
 usbmuxd
 valgrind
 vlc
 void-repo-multilib
+void-repo-multilib-nonfree
 void-repo-nonfree
 waydroid
 wev
@@ -243,6 +245,7 @@ xdg-utils
 xf86-input-joystick
 xf86-input-synaptics
 xf86-video-amdgpu
+xf86-video-ati
 xorg-server-xwayland
 xprop
 xrdb
@@ -257,3 +260,4 @@ zathura-djvu
 zathura-pdf-mupdf
 zip
 zoxide
+zstd
