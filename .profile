@@ -102,6 +102,7 @@ export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
 export LS_COLORS="di=1;34:ln=1;36:so=1;33:pi=1;35:ex=32:bd=1;0;44:cd=1;36;42:su=1;32;42:sg=1;32;44:tw=0;45:ow=30;43"
 # fzf
 export FZF_ALT_C_COMMAND="fd --base-directory $HOME -H -I -d 4 -t d -E '*cache*' -E '*git*'"
+export PYTHON_HISTORY="${XDG_DATA_HOME:-$HOME/.local/share}/python_history"
 
 # shell
 export SHELL="/bin/sh"
@@ -125,6 +126,7 @@ export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/omnisharp:$PATH"
 export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/netcoredbg:$PATH"
 export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/cargo/bin:$PATH"
 export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/npm/bin:$PATH"
+export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/odin/bin:$PATH"
 export PATH="${XDG_BIN_HOME:-$HOME/.local/bin}:$PATH"
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/code/shellscripts/shellscripts:$PATH"

@@ -139,6 +139,7 @@
         const style = document.createElement('style');
         style.textContent = `
         a.sc-played-track {
+            color: #f70 !important;
             text-decoration: underline !important;
         }
     `;

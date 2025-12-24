@@ -150,6 +150,7 @@ noto-fonts-cjk-serif-variable
 noto-fonts-cjk-variable
 noto-fonts-emoji
 nuspell
+nvme-cli
 opendoas
 openjdk21
 openssl-devel
