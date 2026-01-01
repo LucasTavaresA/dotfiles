@@ -323,7 +323,7 @@ keymap = [
 	{ on = "<Down>", run = "arrow next",  desc = "Move cursor down" },
 
 	# Filtering
-	{ on = "f", run = "filter", desc = "Apply a filter for the help items" },
+	{ on = "/", run = "filter", desc = "Apply a filter for the help items" },
 ]
 
 [[mgr.prepend_keymap]]
