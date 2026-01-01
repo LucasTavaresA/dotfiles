@@ -249,6 +249,12 @@ return {
 			})
 			vim.lsp.enable('pyright')
 
+			vim.lsp.config('ols', {
+				on_attach = On_attach,
+				capabilities = capabilities,
+			})
+			vim.lsp.enable('ols')
+
 			-- instale o omnisharp
 			vim.lsp.config("roslyn", {
 				cmd = {

@@ -104,6 +104,7 @@ return {
 				"python",
 				"vim",
 				"regex",
+				"odin",
 			})
 
 			vim.api.nvim_create_autocmd('FileType', {
