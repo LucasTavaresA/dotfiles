@@ -2,15 +2,12 @@
 if status is-interactive
     ## Fish ##
     # set fish_trace 1 # ativa modo debug
-    set -U fish_greeting # desativa mensagem ao iniciar
     set -x SHELL /bin/fish
     set -x GPG_TTY (tty)
     set fzf_fd_opts --base-directory $HOME -H -I -d 4 -t d -E '*cache*' -E '*git*'
     set fzf_git_log_opts --preview-window=bottom --no-sort -e
-    set fish_color_normal white
-    set fish_color_autosuggestion '#444444'
-    set fish_color_command green
-    set fish_color_error '#ff0000'
+    set --global fish_color_command green
+    set --global fish_color_error '#ff0000'
     set fish_color_param cyan
     set fish_sequence_key_delay_ms 200
 
