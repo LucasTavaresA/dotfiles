@@ -213,8 +213,8 @@ if status is-interactive
     abbr -a -g pr "patch -R <"
     abbr -a -g vol wpctl set-volume @DEFAULT_AUDIO_SINK@ 70%
     abbr -a -g vols wpctl status
-    abbr -a -g yt yt-dlp -P ~/Downloads --write-subs
-    abbr -a -g yta "yt-dlp -o '%(artist)s - %(track,title)s.%(ext)s' --cookies-from-browser chromium -x"
+    abbr -a -g yt yt-dlp -P ~/Downloads --write-subs --no-playlist --cookies-from-browser chromium
+    abbr -a -g yta "yt-dlp -o '%(artist)s - %(track,title)s.%(ext)s' --no-playlist --cookies-from-browser chromium -x"
     abbr -a -g ytw "mpv --ytdl-format='worstvideo*[height=720]+worstaudio/worst[height=720]' --cache=yes --demuxer-max-bytes=2048Kib --wayland-app-id=Picture-in-Picture"
     abbr -a -g sw "streamlink -a '--wayland-app-id=Picture-in-Picture'"
     abbr -a -g scdl scdl --path ~/Downloads --max-size 100m -c --addtofile -l
