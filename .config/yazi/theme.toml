@@ -1,96 +1,9 @@
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
+# default theme: https://raw.githubusercontent.com/sxyazi/yazi/refs/heads/main/yazi-config/preset/theme-dark.toml
 "$schema" = "https://yazi-rs.github.io/schemas/theme.json"
 
 # vim:fileencoding=utf-8:foldmethod=marker
-
-# : Flavor {{{
-
-[flavor]
-use = ""
-
-# : }}}
-
-# : Manager {{{
-
-[mgr]
-cwd = { fg = "cyan" }
-
-# Hovered
-hovered         = { reversed = true }
-preview_hovered = { underline = true }
-
-# Find
-find_keyword  = { fg = "yellow", bold = true, italic = true, underline = true }
-find_position = { fg = "magenta", bg = "reset", bold = true, italic = true }
-
-# Marker
-marker_copied   = { fg = "lightgreen",  bg = "lightgreen" }
-marker_cut      = { fg = "lightred",    bg = "lightred" }
-marker_marked   = { fg = "lightcyan",   bg = "lightcyan" }
-marker_selected = { fg = "lightyellow", bg = "lightyellow" }
-
-# Count
-count_copied   = { fg = "white", bg = "green" }
-count_cut      = { fg = "white", bg = "red" }
-count_selected = { fg = "black", bg = "yellow" }
-
-# Border
-border_symbol = "│"
-border_style  = { fg = "gray" }
-
-# Highlighting
-syntect_theme = ""
-
-# : }}}
-
-
-# : Status {{{
-
-[status]
-sep_left  = { open = "", close = "" }
-sep_right = { open = "", close = "" }
-separator_style = { fg = "gray", bg = "gray" }
-
-# Mode
-mode_normal = { bg = "blue", bold = true }
-mode_select = { bg = "red", bold = true }
-mode_unset  = { bg = "red", bold = true }
-
-# Progress
-progress_label  = { bold = true }
-progress_normal = { fg = "blue", bg = "black" }
-progress_error  = { fg = "red", bg = "black" }
-
-# Permissions
-permissions_t = { fg = "green" }
-permissions_r = { fg = "yellow" }
-permissions_w = { fg = "red" }
-permissions_x = { fg = "cyan" }
-permissions_s = { fg = "darkgray" }
-
-# : }}}
-
-
-# : Select {{{
-
-[select]
-border   = { fg = "blue" }
-active   = { fg = "magenta", bold = true }
-inactive = {}
-
-# : }}}
-
-
-# : Input {{{
-
-[input]
-border   = { fg = "blue" }
-title    = {}
-value    = {}
-selected = { reversed = true }
-
-# : }}}
 
 
 # : Completion {{{
@@ -108,42 +21,6 @@ icon_command = ">"
 # : }}}
 
 
-# : Tasks {{{
-
-[tasks]
-border  = { fg = "blue" }
-title   = {}
-hovered = { fg = "magenta", underline = true }
-
-# : }}}
-
-
-# : Which {{{
-
-[which]
-cols            = 3
-mask            = { bg = "black" }
-cand            = { fg = "lightcyan" }
-rest            = { fg = "darkgray" }
-desc            = { fg = "lightmagenta" }
-separator       = " │ "
-separator_style = { fg = "darkgray" }
-
-# : }}}
-
-
-# : Help {{{
-
-[help]
-on      = { fg = "cyan" }
-run     = { fg = "magenta" }
-desc    = {}
-hovered = { reversed = true, bold = true }
-footer  = { fg = "black", bg = "white" }
-
-# : }}}
-
-
 # : Notify {{{
 
 [notify]
@@ -152,7 +29,7 @@ title_warn  = { fg = "yellow" }
 title_error = { fg = "red" }
 
 # Icons
-icon_info  = "ℹ"
+icon_info  = "ℹ️"
 icon_warn  = "⚠️"
 icon_error = "🔴"
 
@@ -160,38 +37,6 @@ icon_error = "🔴"
 
 
 # : File-specific styles {{{
-
-[filetype]
-
-rules = [
-	# Images
-	{ mime = "image/*", fg = "yellow" },
-
-	# Media
-	{ mime = "{audio,video}/*", fg = "magenta" },
-
-	# Archives
-	{ mime = "application/{,g}zip", fg = "red" },
-	{ mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}", fg = "red" },
-
-	# Documents
-	{ mime = "application/{pdf,doc,rtf,vnd.*}", fg = "cyan" },
-
-	# Empty files
-	# { mime = "inode/x-empty", fg = "red" },
-
-	# Special files
-	{ name = "*", is = "orphan", bg = "red" },
-	{ name = "*", is = "exec"  , fg = "green" },
-
-	# Dummy files
-	{ name = "*", is = "dummy", bg = "red" },
-	{ name = "*/", is = "dummy", bg = "red" },
-
-	# Fallback
-	# { name = "*", fg = "white" },
-	{ name = "*/", fg = "blue" }
-]
 
 [icon]
 
