@@ -1,6 +1,6 @@
 // ==UserScript==
 // u/name         SoundCloud Media Feed Tracker
-// u/version      1.0.0
+// u/version      1.0.1
 // u/author       LucasTavaresA
 // u/license      GPL-3.0-or-later
 // u/namespace    https://gist.github.com/LucasTavaresA/51b9a4b36dd7070f96abddf7948dae94
@@ -12,6 +12,16 @@
 
 (function () {
     'use strict';
+
+    function normalizeUrl(url) {
+        try {
+            const urlObj = new URL(url);
+            return urlObj.origin + urlObj.pathname;
+        } catch (e) {
+            console.error('Error normalizing URL:', e);
+            return url;
+        }
+    }
 
     function exportSongs() {
         const tracks = localStorage.getItem(STORAGE_KEY) || JSON.stringify([], null, 2);
@@ -50,11 +60,11 @@
     }
 
     function markPlayedTracks() {
-        const playedUrls = new Set(trackHistory.map(t => t.url));
+        const playedUrls = new Set(trackHistory.map(t => normalizeUrl(t.url)));
 
         document.querySelectorAll('a[href*="/"]').forEach(link => {
-            const fullUrl = link.href;
-            if (playedUrls.has(fullUrl)) {
+            const normalizedUrl = normalizeUrl(link.href);
+            if (playedUrls.has(normalizedUrl)) {
                 link.classList.add('sc-played-track');
             }
         });
@@ -69,7 +79,7 @@
         return {
             title: titleLink.getAttribute('title') || titleLink.textContent.trim(),
             artist: artistLink ? artistLink.textContent.trim() : 'Unknown',
-            url: titleLink.href,
+            url: normalizeUrl(titleLink.href),
             timestamp: new Date().toISOString()
         };
     }
@@ -82,7 +92,7 @@
         if (info.url !== lastTrackUrl) {
             lastTrackUrl = info.url;
 
-            const existingIndex = trackHistory.findIndex(t => t.url === info.url);
+            const existingIndex = trackHistory.findIndex(t => normalizeUrl(t.url) === info.url);
 
             if (existingIndex === -1) {
                 trackHistory.push(info);
