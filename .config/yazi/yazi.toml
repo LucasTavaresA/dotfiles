@@ -1,5 +1,6 @@
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
+# default config: https://raw.githubusercontent.com/sxyazi/yazi/refs/heads/main/yazi-config/preset/yazi-default.toml
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
 [mgr]
@@ -7,16 +8,20 @@ ratio          = [ 0, 3, 4 ]
 sort_by        = "natural"
 sort_sensitive = true
 linemode       = "size"
-show_hidden    = true
 mouse_events   = []
 
 [opener]
-gallery = [
-	{ run = 'swayimg -f -r .',      desc = "Reveal", for = "linux" },
+_gallery = [
+	{ run = 'swayimg -f -r .', desc = "Reveal", for = "linux" },
+]
+_play = [
+	{ run = 'mpv --force-window %s', orphan = true, desc = "Play" },
 ]
 
 [open]
 prepend_rules = [
 	# yazi defaults to "open"
-	{ mime = "image/*", use = [ "gallery" ] },
+	{ mime = "image/*", use = [ "_gallery" ] },
+	# fix: yazi opens each song in a new window
+	{ mime = "{audio,video}/*", use = [ "_play" ] },
 ]
