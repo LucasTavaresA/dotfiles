@@ -1,4 +1,5 @@
 .android
+.antigravity
 .cache/
 .config/asciinema/
 .config/Android Open Source Project/
@@ -73,11 +74,13 @@
 .nuget/
 .net/
 .pki/
+.redhat/
 .ssh/
 .var/
 .ServiceHub/
 .supermaven/
 .vscode/
+.config/Antigravity/
 .config/Code/
 .config/spotdl/
 .config/obs-studio/

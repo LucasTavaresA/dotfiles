@@ -293,7 +293,7 @@ if status is-interactive
     abbr -a -g gl git log --oneline --graph
     abbr -a -g gpl git pull
     abbr -a -g gps git push
-    abbr -a -g gpsf git push -f
+    abbr -a -g gpsf git push --force-with-lease
     abbr -a -g gr git restore
     abbr -a -g gra git rebase --abort
     abbr -a -g grc git rebase --continue
