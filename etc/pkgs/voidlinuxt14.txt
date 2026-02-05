@@ -1,5 +1,12 @@
+7zip-unrar
 ImageMagick
+SDL2-devel
+SDL2_mixer
+SDL2_mixer-devel
+SDL2_ttf
+SDL2_ttf-devel
 StyLua
+Vulkan-Tools
 Waybar
 acpi
 alsa-firmware
@@ -79,6 +86,7 @@ gopls
 grimshot
 grub-x86_64-efi
 gstreamer1-devel
+gtk+-devel
 gtk2fontsel
 gtkspell3
 gucharmap
@@ -110,6 +118,7 @@ libreoffice
 libsanitizer-devel
 libsixel
 libspa-bluetooth
+libssl1.1
 libtool
 libvips
 libwebp-tools
@@ -129,6 +138,7 @@ man-pages-posix
 mdcat
 mediainfo
 mesa-dri
+mesa-dri-32bit
 mesa-vaapi
 mesa-vdpau
 mesa-vulkan-radeon
@@ -158,6 +168,7 @@ opusfile
 p7zip
 pam-gnupg
 pandoc
+pango-xft
 parallel
 patch
 patchelf
@@ -172,6 +183,7 @@ plocate
 podman
 polkit-qt5
 poppler
+psmisc
 pulsemixer
 python3-Brotli
 python3-adblock
@@ -229,6 +241,7 @@ vlc
 void-repo-multilib
 void-repo-multilib-nonfree
 void-repo-nonfree
+vulkan-loader-32bit
 waydroid
 wev
 wget
