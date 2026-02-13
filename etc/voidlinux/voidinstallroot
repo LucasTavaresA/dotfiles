@@ -27,6 +27,11 @@ ln -s /etc/sv/tlp /var/service/
 
 ln -s /etc/sv/dbus /var/service/
 
+ln -s /etc/sv/libvirtd /var/service/
+ln -s /etc/sv/virtlockd /var/service/
+ln -s /etc/sv/virtlogd /var/service/
+usermod -aG libvirt lucas
+
 [ -e "/etc/sv/turnstiled" ] &&
 	ln -s /etc/sv/turnstiled /var/service/
 
@@ -56,6 +61,7 @@ cp -r etc/X11/xorg.conf.d/ /etc/X11/
 cat etc/pam.d/login >>/etc/pam.d/login
 
 cat etc/containers/registries.conf >>/etc/containers/registries.conf
+ln -s /usr/bin/podman /usr/bin/docker
 
 ln -s /etc/sv/bluetoothd /var/service/
 usermod -aG bluetooth lucas

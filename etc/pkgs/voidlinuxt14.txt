@@ -121,6 +121,7 @@ libspa-bluetooth
 libssl1.1
 libtool
 libvips
+libvirt
 libwebp-tools
 linux-firmware
 lld18
@@ -195,6 +196,7 @@ python3-pipx
 python3-pyclip
 python3-websockets
 python3-wheel
+qemu
 qt6-wayland
 qutebrowser
 resvg
