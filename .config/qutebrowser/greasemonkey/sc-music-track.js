@@ -1,6 +1,6 @@
 // ==UserScript==
 // u/name         SoundCloud Media Feed Tracker
-// u/version      1.0.2
+// u/version      2.0.2
 // u/author       LucasTavaresA
 // u/license      GPL-3.0-or-later
 // u/namespace    https://gist.github.com/LucasTavaresA/51b9a4b36dd7070f96abddf7948dae94
@@ -15,12 +15,10 @@
 
     const STORAGE_KEY = 'soundcloud_track_history';
     const MARK_CLASS = 'sc-played-track';
-    const DEBOUNCE_DELAY = 200;
 
     let lastTrackUrl = null;
     let trackHistory = [];
     let playedUrlsSet = new Set();
-    let markTimeout = null;
 
     function normalizeUrl(url) {
         try {
@@ -85,13 +83,6 @@
         });
     }
 
-    function scheduleMarkPlayedTracks() {
-        if (markTimeout) {
-            clearTimeout(markTimeout);
-        }
-        markTimeout = setTimeout(markPlayedTracks, DEBOUNCE_DELAY);
-    }
-
     function getTrackInfo() {
         const titleLink = document.querySelector('.playbackSoundBadge__titleLink');
         const artistLink = document.querySelector('.playbackSoundBadge__lightLink');
@@ -118,7 +109,7 @@
                 trackHistory.push(info);
                 playedUrlsSet.add(info.url);
                 saveHistory();
-                scheduleMarkPlayedTracks();
+                markPlayedTracks();
             }
         }
     }
@@ -136,7 +127,7 @@
 
         const observer = new MutationObserver(() => {
             trackChanged();
-            scheduleMarkPlayedTracks();
+            markPlayedTracks();
         });
 
         observer.observe(playbackBar, {
@@ -146,7 +137,7 @@
             attributeFilter: ['href', 'title']
         });
 
-        const feedObserver = new MutationObserver(scheduleMarkPlayedTracks);
+        const feedObserver = new MutationObserver(markPlayedTracks);
         const feed = document.querySelector('.lazyLoadingList__list') || document.body;
 
         feedObserver.observe(feed, {
