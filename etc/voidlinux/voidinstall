@@ -49,10 +49,8 @@ cp etc/userChrome.css "$home/.mozilla/firefox/myprofile/chrome/"
 mkdir -p "$home/.local/share/wget"
 touch "$home/.local/share/wget/wgetrc"
 
-npm i -g cssmodules-language-server @tailwindcss/language-server typescript \
-	typescript-language-server vscode-langservers-extracted \
-	fixjson bash-language-server vscode-css-languageserver-bin \
-	neovim write-good quick-lint-js stylelint
+npm i -g typescript typescript-language-server vscode-langservers-extracted \
+	bash-language-server vscode-css-languageserver-bin neovim write-good quick-lint-js stylelint
 
 (
 	cd code/c/gf/

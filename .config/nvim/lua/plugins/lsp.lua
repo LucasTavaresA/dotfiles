@@ -199,20 +199,6 @@ return {
 			vim.lsp.enable('cssls')
 			vim.lsp.enable('html')
 
-			-- npm i -g cssmodules-language-server
-			vim.lsp.config('cssmodules_ls', {
-				on_attach = On_attach,
-				capabilities = capabilities,
-			})
-			vim.lsp.enable('cssmodules_ls')
-
-			-- npm i -g @tailwindcss/language-server
-			vim.lsp.config('tailwindcss', {
-				on_attach = On_attach,
-				capabilities = capabilities,
-			})
-			vim.lsp.enable('tailwindcss')
-
 			require("typescript-tools").setup({
 				on_attach = On_attach,
 				capabilities = capabilities,
