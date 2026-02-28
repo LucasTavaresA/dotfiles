@@ -1,6 +1,6 @@
 // ==UserScript==
 // u/name         SoundCloud Media Feed Tracker
-// u/version      2.0.2
+// u/version      2.1.2
 // u/author       LucasTavaresA
 // u/license      GPL-3.0-or-later
 // u/namespace    https://gist.github.com/LucasTavaresA/51b9a4b36dd7070f96abddf7948dae94
@@ -146,6 +146,21 @@
         });
     }
 
+    function topArtists(n) {
+        const counts = {};
+
+        document.querySelectorAll('.soundContext__usernameLink').forEach(el => {
+            const name = el.textContent.trim();
+            counts[name] = (counts[name] || 0) + 1;
+        });
+
+        const topN = Object.entries(counts)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, n);
+
+        console.table(topN.map(([name, count]) => ({ name, count })));
+    }
+
     if (window.location.href === "https://soundcloud.com/feed") {
         const style = document.createElement('style');
         style.textContent = `
@@ -163,5 +178,6 @@
         }
 
         unsafeWindow.exportSongs = exportSongs;
+        unsafeWindow.topArtists = topArtists;
     }
 })();
