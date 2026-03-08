@@ -69,6 +69,7 @@ foot
 fwupd
 fzf
 gammastep
+gcab
 gcc
 gdb
 gdu
@@ -151,6 +152,7 @@ mplayer
 mpv
 mpv-mpris
 msbuild-bin
+msitools
 msttcorefonts
 ncmpcpp
 neovim
@@ -248,11 +250,9 @@ waydroid
 wev
 wget
 wine
-wine-32bit
 wine-mono
 winetricks
 wl-clipboard
-wluma
 xdg-desktop-portal-gtk
 xdg-desktop-portal-wlr
 xdg-user-dirs

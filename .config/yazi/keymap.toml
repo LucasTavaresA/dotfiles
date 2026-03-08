@@ -8,3 +8,9 @@
 prepend_keymap = [
 	{ on = "/", run = "filter", desc = "Filter help items" },
 ]
+
+[mgr]
+
+prepend_keymap = [
+	{ on = "D", run = "remove", desc = "Trash selected files" },
+]
