@@ -70,6 +70,21 @@ if status is-interactive
         disown
     end
 
+    # now you need a token server to get high quality stuff from ytb, this just starts it
+    function yt-dlp
+        if not pgrep -fx "node $XDG_DATA_HOME/bgutil-ytdlp-pot-provider/server/build/main.js" > /dev/null
+            echo "Starting POT token server..."
+            node $XDG_DATA_HOME/bgutil-ytdlp-pot-provider/server/build/main.js &> /tmp/pot-server.log &
+            disown
+
+            while not curl -s localhost:4416 > /dev/null
+                sleep 0.2
+            end
+        end
+
+        command yt-dlp $argv
+    end
+
     # Git bare dotfiles
     function git
         if test "$(pwd)" = "$HOME"
