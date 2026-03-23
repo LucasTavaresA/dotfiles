@@ -76,3 +76,6 @@ udevadm hwdb --update && udevadm control --reload-rules && udevadm trigger
 
 cat etc/voidlinux/security/limits.conf >>/etc/security/limits.conf
 usermod -aG input lucas
+
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak install com.obsproject.Studio
