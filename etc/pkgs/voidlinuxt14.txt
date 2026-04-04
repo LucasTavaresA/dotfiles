@@ -102,6 +102,7 @@ hyperfine
 inkscape
 jd
 jdupes
+jpegoptim
 jq
 keepassxc
 kwayland
@@ -213,6 +214,7 @@ shfmt
 simple-mtpfs
 snes9x-gtk
 socklog-void
+speedtest-cli
 starship
 stc
 strace

@@ -247,7 +247,7 @@ return {
 					"dotnet",
 					vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn/content/LanguageServer/linux-x64/", "Microsoft.CodeAnalysis.LanguageServer.dll"),
 					"--logLevel=Information",
-					"--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
+					"--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.log.get_filename()),
 					"--stdio",
 				},
 				-- Here you can pass in any options that that you would like to pass to `vim.lsp.start`.
