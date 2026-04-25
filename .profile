@@ -144,6 +144,7 @@ export VISUAL="term_open -a nvim nvim"
 # localização para datas
 export LC_TIME="pt_BR.UTF-8"
 export FREETYPE_PROPERTIES="cff:no-stem-darkening=0 autofitter:no-stem-darkening=0 type1:no-stem-darkening=0 t1cid:no-stem-darkening=0"
+export DO_NOT_TRACK=true
 
 running="$(ps cax)"
 is_running() {
