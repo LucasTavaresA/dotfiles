@@ -6,5 +6,5 @@
 
 # start on max brightness
 if [ -e /sys/class/backlight/amdgpu_bl0/brightness ]; then
-	echo 255 >/sys/class/backlight/amdgpu_bl0/brightness
+	echo 61777 >/sys/class/backlight/amdgpu_bl0/brightness
 fi
