@@ -31,7 +31,6 @@ vo.smartcase = true
 Update_cwd()
 vim.opt.grepprg = "git grep -iIn $*"
 vo.updatetime = 1000
-vo.shell = "sh"
 
 --- Backups
 -- desabilita swapfile

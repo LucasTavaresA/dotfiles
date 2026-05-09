@@ -2,6 +2,7 @@
 local vg = vim.g
 local nv = { "n", "v" }
 local nvi = { "n", "v", "i" }
+local nvit = { "n", "v", "i", "t" }
 local vi = { "v", "i" }
 local ni = { "n", "i" }
 vg.mapleader = " "
@@ -25,7 +26,7 @@ Keymaps({
 		{ noremap = true, silent = true },
 	},
 	-- switch buffers
-	{ nvi, "<C-Tab>", vim.cmd.bn },
+	{ nvit, "<C-Tab>", vim.cmd.bn },
 	-- suspend nvim, goto terminal
 	{ nvi, "<A-q>",   "<C-z>" },
 	-- join lines
@@ -89,7 +90,7 @@ Keymaps({
 	-- deleta linhas
 	{ nv,  "<leader>sd",       ":G//d<left><left>" },
 	-- abre terminal do sistema no local do arquivo atual
-	{ "n", "<leader><return>", "<cmd>!sh -c 'term_open' &<cr><cr>" },
+	{ "n", "<leader><return>", vim.cmd.terminal },
 	-- vai para diagnostico
 	-- { "n", "[d", vim.diagnostic.goto_prev },
 	-- { "n", "]d", vim.diagnostic.goto_next },
