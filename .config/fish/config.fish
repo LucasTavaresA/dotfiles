@@ -9,7 +9,8 @@ if status is-interactive
     set --global fish_color_command green
     set --global fish_color_error '#ff0000'
     set fish_color_param cyan
-    set fish_sequence_key_delay_ms 200
+    set -g fish_key_bindings fish_vi_key_bindings
+    fzf_configure_bindings --history=\cS --git_log=\cA --variables=\cV --processes=\cX
 
     zoxide init fish | source
 
@@ -27,24 +28,6 @@ if status is-interactive
         fisher install jorgebucaran/autopair.fish
         echo "Installing puffer-fish! 🐡"
         fisher install nickeb96/puffer-fish
-    end
-
-    ## Teclas ##
-    # teclas emacs/vi
-    function fish_user_key_bindings
-        # fish_default_key_bindings
-        fish_vi_key_bindings
-        bind -M insert jk "if commandline -P; commandline -f cancel; else; set fish_bind_mode default; commandline -f backward-char force-repaint; end"
-        # fzf
-        fzf_configure_bindings --history=\cS --git_log=\cA --variables=\cV --processes=\cX
-
-        # go to whatever was last suspended
-        function foreground
-            if jobs -q
-                fg
-            end
-        end
-        bind -M insert \eq foreground
     end
 
     ## funções ##
