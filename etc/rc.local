@@ -5,6 +5,6 @@
 # (see /etc/runit/2).
 
 # start on max brightness
-if [ -e /sys/class/backlight/amdgpu_bl0/brightness ]; then
-	echo 61777 >/sys/class/backlight/amdgpu_bl0/brightness
+if [ -e /sys/class/backlight/amdgpu_bl0/brightness ] && [ -e /sys/class/backlight/amdgpu_bl0/max_brightness ]; then
+	cat /sys/class/backlight/amdgpu_bl0/max_brightness >/sys/class/backlight/amdgpu_bl0/brightness
 fi
