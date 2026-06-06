@@ -169,6 +169,22 @@ if status is-interactive
         end
     end
 
+    function 2webp
+        for file in $argv
+            if test -f $file
+                set out (path change-extension '.webp' $file)
+                echo "Converting: $file → $out"
+
+                if cwebp -lossless -q 100 -m 6 "$file" -o "$out"
+                    echo "✅ Success, removing original: $file"
+                    trash "$file"
+                else
+                    echo "❌ Failed to convert: $file (keeping original)"
+                end
+            end
+        end
+    end
+
     ## Abbr ##
     abbr --set-cursor=% -a -g 0x0 "curl -F'file=@%' https://0x0.st"
     abbr -a -g rest 'sleep 30m && notify-send -u critical "rest for a while" && term_open -a nvim "nvim ~/.cache/rest"'
