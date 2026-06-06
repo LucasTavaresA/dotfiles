@@ -322,6 +322,7 @@ if status is-interactive
     abbr -a -g grsp git restore --staged -p
     abbr -a -g grsu git remote set-url origin
     abbr -a -g gs git status
+    abbr -a -g gS git show
     abbr -a -g gsi git status --ignored
     abbr -a -g gsa git submodule add https://github.com/
     abbr -a -g gss git stash push -m
