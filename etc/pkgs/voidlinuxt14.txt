@@ -1,3 +1,4 @@
+7zip
 7zip-unrar
 ImageMagick
 SDL2-devel
@@ -166,10 +167,11 @@ noto-fonts-emoji
 nuspell
 nvme-cli
 opendoas
+openjdk17
 openjdk21
+openjdk25
 openssl-devel
 opusfile
-p7zip
 pam-gnupg
 pandoc
 pango-xft
@@ -241,6 +243,7 @@ ttf-ubuntu-font-family
 turnstile
 unar
 unicode-emoji
+unrar
 usbmuxd
 valgrind
 vlc

@@ -1,5 +1,6 @@
 .android
 .antigravity
+.codex
 .cache/
 .config/asciinema/
 .config/Android Open Source Project/
@@ -38,6 +39,7 @@
 .config/mpv/watch_later/
 .config/ncmpcpp/error.log
 .config/npm/_*
+.config/opencode/
 .config/parallel
 .config/pulse/
 .config/qutebrowser/__pycache__/
