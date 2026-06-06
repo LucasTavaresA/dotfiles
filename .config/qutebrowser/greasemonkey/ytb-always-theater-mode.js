@@ -1,95 +1,114 @@
 // ==UserScript==
-// u/name        youtube better theater mode
-// u/description Set the default viewing mode to Theater Mode, and take the whole screen.
-// u/run-at      document-start
-// u/match        *://*.youtube.com/*
-// u/exclude      *://*.youtube.com/subscribe_embed?*
+// @name         youtube better theater mode
+// @description  Set the default viewing mode to Theater Mode, and take the whole screen.
+// @run-at       document-start
+// @match        *://*.youtube.com/*
+// @exclude      *://*.youtube.com/subscribe_embed?*
+// @noframes
 // ==/UserScript==
 
-const suggestBoxToDarkCSS = document.createElement('style');
-suggestBoxToDarkCSS.innerText = `
-[dark] {color-scheme: dark;}`.replaceAll(';', '!important;')
+(function () {
+    'use strict';
 
-const fullscreenVideoCSS = document.createElement('style');
-fullscreenVideoCSS.innerText = `
-ytd-app:not([guide-persistent-and-visible]) [theater] #player video,
-:is(ytd-watch-flexy[theater],ytd-watch-flexy[fullscreen]) #full-bleed-container {
-height: 100vh; max-height: 100vh; min-height: 100vh;}`.replaceAll(';', '!important;')
+    const suggestBoxToDarkCSS = document.createElement('style');
+    suggestBoxToDarkCSS.textContent = `
+        [dark] {color-scheme: dark;}
+    `.replaceAll(';', '!important;');
 
-const autoHideTopCSS = document.createElement('style');
-autoHideTopCSS.innerText = `
-#masthead-container.ytd-app:hover, #masthead-container.ytd-app:focus-within {width:100%;}
-#masthead-container.ytd-app,
-#masthead-container.ytd-app:not(:hover):not(:focus-within) {width:calc(50% - 150px);}
-#masthead-container.ytd-app:not(:hover):not(:focus-within) {transition:width 0.4s ease-out 0.4s;}
-ytd-app:not([guide-persistent-and-visible]) :is(#masthead-container ytd-masthead, #masthead-container.ytd-app::after) {transform: translateY(-56px); transition: transform .1s .3s ease-out;}
-ytd-app:not([guide-persistent-and-visible]) :is(#masthead-container:hover ytd-masthead, #masthead-container:hover.ytd-app::after, #masthead-container:focus-within ytd-masthead) {transform: translateY(0px);}
-ytd-app:not([guide-persistent-and-visible]) ytd-page-manager {margin-top: 0;}`.replaceAll(';', '!important;')
-autoHideTopCSS.className = "autoHideTopCSS";
+    const fullscreenVideoCSS = document.createElement('style');
+    fullscreenVideoCSS.textContent = `
+        ytd-app:not([guide-persistent-and-visible]) [theater] #player video,
+        :is(ytd-watch-flexy[theater], ytd-watch-flexy[fullscreen]) #full-bleed-container {
+            height: 100vh; max-height: 100vh; min-height: 100vh;
+        }
+    `.replaceAll(';', '!important;');
 
-function isWatchPage() {
-  return !(document.URL.indexOf('watch') == -1)
-};
+    const autoHideTopCSS = document.createElement('style');
+    autoHideTopCSS.className = 'autoHideTopCSS';
+    autoHideTopCSS.textContent = `
+        #masthead-container.ytd-app:hover, #masthead-container.ytd-app:focus-within {width:100%;}
+        #masthead-container.ytd-app,
+        #masthead-container.ytd-app:not(:hover):not(:focus-within) {width:calc(50% - 150px);}
+        #masthead-container.ytd-app:not(:hover):not(:focus-within) {transition:width 0.4s ease-out 0.4s;}
+        ytd-app:not([guide-persistent-and-visible]) :is(#masthead-container ytd-masthead, #masthead-container.ytd-app::after) {transform: translateY(-56px); transition: transform .1s .3s ease-out;}
+        ytd-app:not([guide-persistent-and-visible]) :is(#masthead-container:hover ytd-masthead, #masthead-container:hover.ytd-app::after, #masthead-container:focus-within ytd-masthead) {transform: translateY(0px);}
+        ytd-app:not([guide-persistent-and-visible]) ytd-page-manager {margin-top: 0;}
+    `.replaceAll(';', '!important;');
 
-function isTheaterMode() {
-  let scrollbarWidth = window.innerWidth - document.querySelector('ytd-app').offsetWidth;
-  let playerWidth = document.querySelector('#ytd-player')?.offsetWidth;
-  let isWidePlayer = scrollbarWidth + playerWidth == window.innerWidth;
-  return (isWatchPage() && isWidePlayer)
-};
+    let theaterTimer = null;
 
-function alwaysTheaterMode() {
-  let clickModeButtonRepeatly = setInterval(_ => {
-    if (isTheaterMode()) {
-      clearInterval(clickModeButtonRepeatly);
-    } else {
-      document.querySelectorAll('.ytp-size-button')?.forEach(e => e.click());
-      clearInterval(clickModeButtonRepeatly);
+    function isWatchPage() {
+        return window.location.pathname === '/watch';
     }
-  }, 250);
-  setTimeout(_ => {
-    clearInterval(clickModeButtonRepeatly);
-  }, 10000);
-};
 
-window.addEventListener("yt-navigate-finish", function (event) {
-  var timer = setInterval(function () {
-    var newPlayer = document.querySelector('button.ytp-size-button')
-    if (newPlayer && document.querySelector("video").clientWidth < document.body.clientWidth * 0.9) {
-      // create a new keyboard event for 't'
-      const event = new KeyboardEvent('keydown', {
-        key: 't',
-        code: 'KeyT',
-        charCode: '116',
-        keyCode: '84',
-        which: '84'
-      });
-
-      // dispatch the event to the document object
-      document.dispatchEvent(event);
-      clearInterval(timer);
-    } else if (newPlayer && document.querySelector("video")) {
-      clearInterval(timer);
+    function isTheaterMode() {
+        return document.querySelector('ytd-watch-flexy[theater]') !== null;
     }
-  }, 250);
 
-  ['yt-navigate-finish', 'load', 'unload', 'locationchange'].forEach(e => {
-    window.addEventListener(e, _ => {
-      isWatchPage() ? document.head.appendChild(autoHideTopCSS) : false;
-      document.head.appendChild(suggestBoxToDarkCSS);
-      document.head.appendChild(fullscreenVideoCSS);
-      alwaysTheaterMode();
-      window.scrollTo(0, 0);
+    function appendStyle(style) {
+        const styleParent = document.head ?? document.documentElement;
+
+        if (styleParent !== null && style.parentNode !== styleParent) {
+            styleParent.appendChild(style);
+        }
+    }
+
+    function applyStyles() {
+        appendStyle(suggestBoxToDarkCSS);
+        appendStyle(fullscreenVideoCSS);
+
+        if (isWatchPage()) {
+            appendStyle(autoHideTopCSS);
+        } else {
+            autoHideTopCSS.remove();
+        }
+    }
+
+    function stopTheaterTimer() {
+        if (theaterTimer === null) return;
+
+        window.clearInterval(theaterTimer);
+        theaterTimer = null;
+    }
+
+    function alwaysTheaterMode() {
+        stopTheaterTimer();
+
+        if (!isWatchPage()) return;
+
+        let attempts = 0;
+
+        theaterTimer = window.setInterval(() => {
+            attempts++;
+
+            if (!isWatchPage() || isTheaterMode() || attempts >= 40) {
+                stopTheaterTimer();
+                return;
+            }
+
+            const sizeButton = document.querySelector('button.ytp-size-button');
+
+            if (sizeButton !== null) {
+                sizeButton.click();
+                stopTheaterTimer();
+            }
+        }, 250);
+    }
+
+    function handlePageUpdate() {
+        applyStyles();
+        alwaysTheaterMode();
+
+        if (isWatchPage()) {
+            window.scrollTo(0, 0);
+        }
+    }
+
+    window.addEventListener('yt-navigate-finish', handlePageUpdate);
+    window.addEventListener('load', handlePageUpdate);
+    window.addEventListener('click', () => {
+        window.setTimeout(applyStyles, 250);
     });
-  });
 
-  window.addEventListener('click', _ => {
-    setTimeout(_ => {
-      if (!isWatchPage() || !isTheaterMode()) {
-        document.querySelector('.autoHideTopCSS')?.remove()
-      } else if (isTheaterMode()) {
-        document.head.appendChild(autoHideTopCSS)
-      }
-    }, 250);
-  });
-}, true);
+    handlePageUpdate();
+})();
