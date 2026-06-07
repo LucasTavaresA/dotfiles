@@ -185,6 +185,33 @@ if status is-interactive
         end
     end
 
+    function nvimdiff
+        if test (count $argv) -lt 1
+            echo "Usage: git_diff <file> [ref1] [ref2]"
+            return 1
+        end
+
+        set file $argv[1]
+        set ref1 (test (count $argv) -ge 2; and echo $argv[2]; or echo "HEAD")
+        set ref2 (test (count $argv) -ge 3; and echo $argv[3]; or echo "WORK")
+
+        set tmp (mktemp -d)
+        set left $tmp/(basename $file).old
+        set right $tmp/(basename $file).new
+
+        git show "$ref1:$file" >$left 2>/dev/null; or touch $left
+
+        if test "$ref2" = WORK
+            cp $file $right
+        else
+            git show "$ref2:$file" >$right 2>/dev/null; or touch $right
+        end
+
+        nvim -d $left $right
+
+        rm -rf $tmp
+    end
+
     ## Abbr ##
     abbr --set-cursor=% -a -g 0x0 "curl -F'file=@%' https://0x0.st"
     abbr -a -g rest 'sleep 30m && notify-send -u critical "rest for a while" && term_open -a nvim "nvim ~/.cache/rest"'
