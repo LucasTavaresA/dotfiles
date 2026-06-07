@@ -104,6 +104,9 @@ export LS_COLORS="di=1;34:ln=1;36:so=1;33:pi=1;35:ex=32:bd=1;0;44:cd=1;36;42:su=
 export FZF_ALT_C_COMMAND="fd --base-directory $HOME -H -I -d 4 -t d -E '*cache*' -E '*git*'"
 export PYTHON_HISTORY="${XDG_DATA_HOME:-$HOME/.local/share}/python_history"
 
+export LIBVA_DRIVER_NAME="radeonsi"
+export VDPAU_DRIVER="va_gl"
+
 # shell
 export SHELL="/bin/sh"
 # muda o local do zshrc

@@ -123,6 +123,7 @@ libsixel
 libspa-bluetooth
 libssl1.1
 libtool
+libvdpau-va-gl
 libvips
 libvirt
 libwebp-tools
@@ -144,7 +145,6 @@ mediainfo
 mesa-dri
 mesa-dri-32bit
 mesa-vaapi
-mesa-vdpau
 mesa-vulkan-radeon
 meson
 mpDris2
