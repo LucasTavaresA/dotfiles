@@ -65,6 +65,8 @@ c.editor.command = ["term_open", "-a", "nvim", "nvim", "{}"]
 config.set("downloads.remove_finished", 200)
 # permite copiar/colar
 config.set('content.javascript.clipboard', 'access-paste')
+# maximo de itens no histórico
+config.set('completion.web_history.max_items', 5000)
 
 #### Adblock ####
 config.set('content.blocking.method', 'both')
