@@ -240,7 +240,6 @@ if status is-interactive
     abbr -a -g tej trans en:ja
     abbr -a -g hc herbstclient
     abbr -a -g stc stc -homedir ~/.local/state/syncthing/
-    abbr -a -g fm fzf_man
     abbr -a -g as "abbr | rg -i"
     abbr -a -g ff fastfetch
     abbr -a -g v nvim

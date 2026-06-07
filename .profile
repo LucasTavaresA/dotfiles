@@ -163,7 +163,6 @@ is_running "ssh-agent" || eval "$(ssh-agent -s)"
 
 ## Execute
 fork() {
-	fzf_man update >/dev/null 2>&1
 	is_running "syncthing" || syncthing >"$XDG_CACHE_HOME/syncthing.log" 2>&1 &
 	is_running "transmission-da" || transmission-daemon >/dev/null 2>&1
 	# musica
