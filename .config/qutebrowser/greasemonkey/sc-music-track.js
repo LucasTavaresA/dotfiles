@@ -16,8 +16,6 @@
     'use strict';
 
     /**
-     * Live playback observation before it is written to IndexedDB.
-     *
      * @typedef {{
      *   title: string,
      *   artist: string,
@@ -27,8 +25,6 @@
      */
 
     /**
-     * Persisted IndexedDB record.
-     *
      * @typedef {{
      *   title: string,
      *   artist: string,
@@ -100,6 +96,35 @@
         });
     }
 
+    /** @type {() => Promise<void>} */
+    async function requestPersistentStorage() {
+        const storage = navigator.storage;
+
+        if (
+            storage === undefined
+            || typeof storage.persisted !== 'function'
+            || typeof storage.persist !== 'function'
+        ) {
+            return;
+        }
+
+        try {
+            if (await storage.persisted()) {
+                return;
+            }
+
+            const granted = await storage.persist();
+
+            console.debug(
+                granted
+                    ? 'SC Tracker: Persistent storage granted'
+                    : 'SC Tracker: Persistent storage denied'
+            );
+        } catch (e) {
+            console.warn('SC Tracker: Persistent storage request failed:', e);
+        }
+    }
+
     /** @type {() => Promise<StoredTrack[]>} */
     async function getAllTracks() {
         await loadHistory();
@@ -112,6 +137,7 @@
         });
     }
 
+    /** @type () => Promise<string[]> */
     function getAllPlayedUrls() {
         return new Promise((resolve, reject) => {
             const tx = db.transaction(STORE_NAME, 'readonly');
@@ -187,7 +213,22 @@
             const store = tx.objectStore(STORE_NAME);
 
             for (const t of tracks) {
-                store.put(t);
+                const getReq = store.get(t.url);
+
+                getReq.onsuccess = () => {
+                    const existing = getReq.result;
+
+                    if (!existing) {
+                        store.put({
+                            title: t.title,
+                            artist: t.artist,
+                            url: t.url,
+                            firstPlayed: t.timestamp,
+                            lastPlayed: t.timestamp,
+                            playCount: 1
+                        });
+                    }
+                };
             }
 
             await new Promise((res, rej) => { tx.oncomplete = res; tx.onerror = rej; });
@@ -202,6 +243,7 @@
         if (historyPromise === null) {
             historyPromise = (async () => {
                 db = await openDB();
+                await requestPersistentStorage();
                 await migrateFromLocalStorage();
                 const urls = await getAllPlayedUrls();
                 playedUrlsSet = new Set(urls);
