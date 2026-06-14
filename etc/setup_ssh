@@ -5,3 +5,9 @@
 # ip route add default via 192.168.0.1
 #
 # ln -s /etc/sv/sshd /var/service/
+#
+# change this in /etc/ssh/sshd_config
+# PasswordAuthentication no     # use keys only
+# PermitRootLogin no
+#
+# disable zzz in /etc/acpi/handler.sh if running on a laptop

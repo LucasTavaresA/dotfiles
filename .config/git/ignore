@@ -45,6 +45,7 @@
 .config/qutebrowser/__pycache__/
 .config/qutebrowser/bookmarks/
 .config/qutebrowser/autoconfig.yml
+.config/rtk/
 .config/toot/
 .config/transmission/
 .config/transmission-daemon/
