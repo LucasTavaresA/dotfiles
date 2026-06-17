@@ -23,7 +23,7 @@ ln -s /etc/sv/nanoklogd /var/service/
 ln -s /etc/sv/acpid /var/service/
 ln -s /etc/sv/tlp /var/service/
 
-[ "$(wc -l /etc/hosts)" -lt 15 ] && cat etc/hosts >>/etc/hosts
+etc/get_hosts
 
 ln -s /etc/sv/dbus /var/service/
 

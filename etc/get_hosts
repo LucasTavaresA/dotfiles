@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+[ "$(wc -l </etc/hosts)" -lt 15 ] &&
+	wget --hsts-file=/home/lucas/.cache/wget-hsts \
+		https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling/hosts \
+		-O - >>/etc/hosts
