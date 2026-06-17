@@ -109,10 +109,6 @@ export VDPAU_DRIVER="va_gl"
 
 # shell
 export SHELL="/bin/sh"
-# muda o local do zshrc
-export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/shell"
-# muda o local do histórico
-export HISTFILE="${XDG_CONFIG_HOME:-$HOME/.config}/shell/history"
 # aumenta o tamanho limite do histórico
 export HISTSIZE=10000
 export HISTFILESIZE=10000

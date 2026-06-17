@@ -55,9 +55,6 @@
 .config/NuGet/
 .config/service/
 .config/syncthing/
-.config/shell/.zcompdump
-.config/shell/history
-.config/shell/plugins/fsh/
 .config/scdl/
 .config/snes9x/
 .config/stumpwm/modules/
