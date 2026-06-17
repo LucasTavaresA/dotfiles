@@ -8,7 +8,7 @@ Categories=System;TerminalEmulator;
 
 Name=OpenTerminal
 GenericName=Terminal
-Comment=Open whatever you especified as $$TERMINAL
+Comment=Open whatever you specified as $$TERMINAL
 StartupWMClass=${TERMINAL}
 Actions=New;
 
