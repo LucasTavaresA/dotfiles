@@ -153,9 +153,9 @@ is_running() {
 
 ## GPG/SSH
 export GNUPGHOME="$HOME/.gnupg"
+unset SSH_AUTH_SOCK
 SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 export SSH_AUTH_SOCK
-is_running "ssh-agent" || eval "$(ssh-agent -s)"
 
 ## Execute
 fork() {
