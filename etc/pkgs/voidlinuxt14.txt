@@ -64,6 +64,7 @@ font-fira-ttf
 font-firacode
 font-inconsolata-otf
 font-iosevka
+font-sarasa-gothic
 fonts-droid-ttf
 fonts-roboto-ttf
 foot
@@ -229,6 +230,7 @@ swayimg
 swaylock
 swayr
 syncthing
+tailscale
 teeworlds
 telegram-desktop
 terminus-font
@@ -273,7 +275,6 @@ xrdb
 xtools
 xxd
 xz
-youtube-dl
 yt-dlp
 zathura
 zathura-cb
