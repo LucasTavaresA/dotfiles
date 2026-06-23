@@ -198,8 +198,6 @@ bindings = {
     "qj": "config-cycle -p -u *://*.{url:host}/* content.javascript.enabled ;; spawn --userscript option-cycle \"*://*.{url:host}/*\" content.javascript.enabled ;; reload",
     # ativa/desativa adblocking para um site
     "qb": "config-cycle -p -u *://*.{url:host}/* content.blocking.enabled ;; spawn --userscript option-cycle \"*://*.{url:host}/*\" content.blocking.enabled ;; reload",
-    # modo leitura
-    "qr": "spawn --userscript readability",
     # traduz a pagina
     "tp": "spawn --userscript translate",
     # traduz o texto selecionado no google translate
@@ -207,9 +205,6 @@ bindings = {
     # traduz o texto selecionado em uma notificação
     # dependencias: translate-shell
     "ts":"spawn --userscript qute_translate",
-    # pop-up com tradução do japonês
-    # dependencias: pyqt5, python-xlib, wheel, jamdict, jamdict-data
-    "tj": "spawn --userscript yomichad --no-kanji",
     # copia links
     "cl": "hint links yank",
     # copia trechos de código
