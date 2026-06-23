@@ -53,14 +53,6 @@ npm i -g typescript typescript-language-server vscode-langservers-extracted \
 	bash-language-server vscode-css-languageserver-bin neovim quick-lint-js stylelint
 
 (
-	cd code/c/gf/
-	doas xbps-install -S libX11-devel freetype-devel
-	./build.sh
-	cp ./gf2 /home/lucas/.local/bin/
-	doas xbps-remove -R libX11-devel freetype-devel
-)
-
-(
 	cd code/c/ueberzugpp/
 	mkdir -p build && cd build
 	doas xbps-install -S tbb-devel libopencv-devel libwebp-devel pango-devel librsvg-devel libopenexr-devel orc-devel poppler-glib-devel chafa-devel xcb-util-image-devel libvips-devel libsixel-devel

@@ -16,9 +16,6 @@
 [submodule "code/c/ueberzugpp"]
 	path = code/c/ueberzugpp
 	url = https://github.com/jstkdng/ueberzugpp.git
-[submodule "code/c/gf"]
-	path = code/c/gf
-	url = https://github.com/nakst/gf.git
 [submodule "code/void-packages"]
 	path = code/void-packages
 	url = https://github.com/lucastavaresa/void-packages
