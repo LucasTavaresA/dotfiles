@@ -13,9 +13,6 @@
 [submodule "code/lua/nvim/SingleComment.nvim"]
 	path = code/lua/nvim/SingleComment.nvim
 	url = https://github.com/lucastavaresa/SingleComment.nvim.git
-[submodule "code/c/ueberzugpp"]
-	path = code/c/ueberzugpp
-	url = https://github.com/jstkdng/ueberzugpp.git
 [submodule "code/void-packages"]
 	path = code/void-packages
 	url = https://github.com/lucastavaresa/void-packages

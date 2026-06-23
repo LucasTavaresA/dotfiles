@@ -51,13 +51,3 @@ touch "$home/.local/share/wget/wgetrc"
 
 npm i -g typescript typescript-language-server vscode-langservers-extracted \
 	bash-language-server vscode-css-languageserver-bin neovim quick-lint-js stylelint
-
-(
-	cd code/c/ueberzugpp/
-	mkdir -p build && cd build
-	doas xbps-install -S tbb-devel libopencv-devel libwebp-devel pango-devel librsvg-devel libopenexr-devel orc-devel poppler-glib-devel chafa-devel xcb-util-image-devel libvips-devel libsixel-devel
-	cmake -DCMAKE_BUILD_TYPE=Release ..
-	cmake --build .
-	cp ./ueberzug ./ueberzugpp /home/lucas/.local/bin/
-	doas xbps-remove -R tbb-devel libopencv-devel libwebp-devel pango-devel librsvg-devel libopenexr-devel orc-devel poppler-glib-devel chafa-devel xcb-util-image-devel libvips-devel libsixel-devel
-)
