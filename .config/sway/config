@@ -73,7 +73,6 @@ for_window [app_id="^.*"] inhibit_idle fullscreen
 for_window [app_id=".*"] title_window_icon on
 for_window [app_id="^menu$"] floating enable, border pixel 4, resize set 400 300, move position center
 for_window [app_id="^float$"] floating enable, border pixel 4, resize set 1000 600, move position center
-for_window [app_id="^pinentry-qt$"] floating enable, border pixel 4, resize set 600 400, move position center
 for_window [app_id="^calculadora"] floating enable, border pixel 4, resize set 400 400, move position center
 for_window [app_id="org.qutebrowser.qutebrowser"] focus
 for_window [app_id="^Firefox$"] focus

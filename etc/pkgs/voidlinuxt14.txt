@@ -180,7 +180,7 @@ patch
 patchelf
 pdf.js
 perl-Net-DBus
-pinentry-qt
+pinentry-tty
 pipewire
 pkg-config
 pkgconf

@@ -162,7 +162,6 @@ parallel
 patch
 pdf.js
 perl-Net-DBus
-pinentry-qt
 pipewire
 pkg-config
 pkgconf
