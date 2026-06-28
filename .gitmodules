@@ -13,12 +13,6 @@
 [submodule "code/lua/nvim/SingleComment.nvim"]
 	path = code/lua/nvim/SingleComment.nvim
 	url = https://github.com/lucastavaresa/SingleComment.nvim.git
-[submodule "code/void-packages"]
-	path = code/void-packages
-	url = https://github.com/lucastavaresa/void-packages
-[submodule ".config/yazi/plugins"]
-	path = .config/yazi/plugins
-	url = https://github.com/yazi-rs/plugins
 [submodule "code/lua/nvim/headers.nvim"]
 	path = code/lua/nvim/headers.nvim
 	url = git@github.com:lucastavaresa/headers.nvim.git
