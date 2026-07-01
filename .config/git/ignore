@@ -89,7 +89,6 @@
 .templateengine/
 .emulator_console_auth_token
 .ollama
-code/void-packages
 code/web
 code/c
 code/odin

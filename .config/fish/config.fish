@@ -2,7 +2,7 @@
 if status is-interactive
     ## Fish ##
     # set fish_trace 1 # ativa modo debug
-    set -x SHELL /bin/fish
+    set -x SHELL (which fish)
     set -x GPG_TTY (tty)
     set fzf_fd_opts --base-directory $HOME -H -I -d 4 -t d -E '*cache*' -E '*git*'
     set fzf_git_log_opts --preview-window=bottom --no-sort -e
@@ -10,7 +10,6 @@ if status is-interactive
     set --global fish_color_error '#ff0000'
     set fish_color_param cyan
     set -g fish_key_bindings fish_vi_key_bindings
-    fzf_configure_bindings --history=\cS --git_log=\cA --variables=\cV --processes=\cX
 
     zoxide init fish | source
 
@@ -29,6 +28,9 @@ if status is-interactive
         echo "Installing puffer-fish! 🐡"
         fisher install nickeb96/puffer-fish
     end
+
+    # needs to happen after fisher installs fzf
+    fzf_configure_bindings --history=\cS --git_log=\cA --variables=\cV --processes=\cX
 
     ## funções ##
     # localizar e editar arquivo
@@ -76,12 +78,12 @@ if status is-interactive
                 case status diff log reset grep revise submodule push pull commit add \
                      restore rebase stash remote show revert fetch branch checkout \
                      rev-parse rm
-                    /usr/bin/git --work-tree=. --git-dir="$HOME/etc/.dotfiles/" $argv
+                    command git --work-tree=. --git-dir="$HOME/etc/.dotfiles/" $argv
                 case '*'
                     echo "command 'git $argv[1]' not allowed in your dotfiles"
             end
         else
-            /usr/bin/git $argv
+            command git $argv
         end
     end
 
@@ -238,8 +240,6 @@ if status is-interactive
     abbr -a -g tpe trans pt:en
     abbr -a -g tje trans ja:en
     abbr -a -g tej trans en:ja
-    abbr -a -g hc herbstclient
-    abbr -a -g stc stc -homedir ~/.local/state/syncthing/
     abbr -a -g as "abbr | rg -i"
     abbr -a -g ff fastfetch
     abbr -a -g v nvim
@@ -359,7 +359,10 @@ if status is-interactive
     abbr -a -g gwr git worktree remove
 
     ## Abbrs em sistemas
-    if test "$OS" = artixlinux || test "$OS" = archlinux || test "$OS" = manjaro
+    if test "$OS" = nixos
+        abbr -a -g nixre doas nixos-rebuild switch
+        abbr -a -g nixcg 'doas nix-collect-garbage -d && doas nix-store --optimise'
+    else if test "$OS" = artixlinux || test "$OS" = archlinux || test "$OS" = manjaro
         # pacman
         abbr -a -g ps doas pacman --noconfirm --color always -S
         abbr -a -g psi pacman --color always -Si
@@ -382,28 +385,6 @@ if status is-interactive
         abbr -a -g ppfyl paru --color always -Fyl
         abbr -a -g pprns paru --noconfirm --color always -Rns
         abbr -a -g sys doas systemctl
-    else if test "$OS" = voidlinux
-        abbr -a -g xs "./xbps-src"
-        abbr -a -g xc "./xbps-src clean"
-        abbr -a -g xp "./xbps-src pkg"
-        abbr -a -g xpm "./xbps-src pkg -a \*musl"
-        abbr -a -g xbb "./xbps-src binary-bootstrap"
-        # xbps
-        abbr -a -g xis doas xbps-install -Sy
-        abbr -a -g xqrs xbps-query -Rs
-        abbr -a -g xisu doas xbps-install -Suy
-        abbr -a -g xql xbps-query -l
-        abbr -a -g xqlg "xbps-query -l | rg -i"
-        abbr -a -g xrr doas xbps-remove -Ry
-        # xtools
-        abbr -a -g xch xchroot
-        abbr -a -g xg xgrep
-        abbr -a -g xh xhog
-        abbr -a -g xil xilog
-        abbr -a -g xl xlocate
-        abbr -a -g xm xmandoc
-        abbr -a -g xqr xq -R
-        abbr -a -g sys doas sv
     else if test "$OS" = linuxmint
         abbr -a -g bat batcat
         # apt

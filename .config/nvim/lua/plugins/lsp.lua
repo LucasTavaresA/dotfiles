@@ -100,6 +100,10 @@ return {
 					local null_ls = require("null-ls")
 					null_ls.setup({
 						sources = {
+							null_ls.builtins.code_actions.statix,
+							null_ls.builtins.diagnostics.statix,
+							null_ls.builtins.diagnostics.deadnix,
+							null_ls.builtins.formatting.nixfmt,
 							-- git
 							null_ls.builtins.code_actions.gitsigns,
 							-- css
@@ -238,6 +242,8 @@ return {
 				capabilities = capabilities,
 			})
 			vim.lsp.enable('ols')
+
+			vim.lsp.enable('nixd')
 
 			-- instale o omnisharp
 			vim.lsp.config("roslyn", {

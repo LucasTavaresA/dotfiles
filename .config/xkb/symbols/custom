@@ -1,7 +1,0 @@
-default partial alphanumeric_keys
-xkb_symbols "basic" {
-    include "br(abnt2)"
-        name[Group1] = "Modified br Qwerty";
-    key <PRSC> { [ Menu, Print ] };
-    key <RCTL> { [ slash,       question,        degree,    questiondown ] };
-};

@@ -1,0 +1,33 @@
+#!/usr/bin/env sh
+# shellcheck disable=SC2086
+set -ex
+
+export USER="lucas"
+export HOME="/home/$USER"
+
+[ "$(pwd)" != "$HOME" ] && echo "You need to be in your home directory!" && exit 1
+
+GIT_FLAGS="--work-tree=. --git-dir=etc/.dotfiles/"
+
+if [ "$(git $GIT_FLAGS rev-parse --is-bare-repository 2>/dev/null)" != "true" ]; then
+	if [ -e "$HOME/etc/.dotfiles" ]; then
+		echo "$HOME/etc/.dotfiles exists but is not a valid bare repo."
+		echo "Move it away or delete it before running this installer."
+		exit 1
+	fi
+
+	git clone --bare https://codeberg.org/lucastavaresa/dotfiles etc/.dotfiles
+	git $GIT_FLAGS restore -WS .
+	git $GIT_FLAGS submodule update --init --recursive
+	git $GIT_FLAGS config --local --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
+	git $GIT_FLAGS fetch
+	git $GIT_FLAGS branch --set-upstream-to=origin/main main
+fi
+
+mkdir -p "$HOME/.mozilla/firefox/myprofile/chrome/"
+cp etc/userChrome.css "$HOME/.mozilla/firefox/myprofile/chrome/"
+
+mkdir -p "$HOME/.local/share/wget"
+touch "$HOME/.local/share/wget/wgetrc"
+
+doas nixos-rebuild switch -I nixos-config=$HOME/etc/nixos/configuration.nix -I nixpkgs=$HOME/code/nixpkgs

@@ -20,8 +20,8 @@ focus_wrapping no
 focus_on_window_activation focus
 ## teclado
 input type:keyboard {
-    xkb_layout custom
-    xkb_options caps:swapescape
+    xkb_layout br
+    xkb_variant abnt2
     # xkb_numlock enable
     repeat_delay 300
     repeat_rate 100
@@ -127,6 +127,8 @@ bindsym Print exec wayland_print
 bindsym $S+p exec wayland_print
 bindsym $S+o exec menu_pesquisar
 bindsym $S+Return exec term_open
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 ## menu
 mode "Menu" {
     bindsym Menu exec tofi-drun --drun-launch=true ; mode "default"
@@ -139,7 +141,6 @@ mode "Menu" {
     bindsym Shift+e exec term_open -a float fzf_emojis ; mode "default"
     bindsym f exec qutebrowser ; mode "default"
     bindsym h exec term_open -a float htop ; mode "default"
-    bindsym s exec pgrep -x gammastep && pkill -x gammastep || gammastep -O 3000 ; mode "default"
     bindsym l exec swaylock -c 000000ff --scaling fill ; mode "default"
     bindsym a exec term_open -a nvim nvim ~/documentos/anotações.md ; mode "default"
     bindsym r reload
@@ -167,10 +168,10 @@ bindsym $S+a exec term_open -a ncmpcpp ncmpcpp
 bindsym $S+$s+a exec term_open -a float pulsemixer
 bindsym $S+space exec playerctl play-pause || mpc toggle
 bindsym XF86AudioPlay exec playerctl play-pause || mpc toggle
-bindsym $S+comma exec pactl -- set-sink-volume @DEFAULT_SINK@ -5%
-bindsym $S+period exec pactl -- set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume exec pactl -- set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioRaiseVolume exec pactl -- set-sink-volume @DEFAULT_SINK@ +5%
+bindsym $S+comma exec wpctl set-volume @DEFAULT_SINK@ 5%-
+bindsym $S+period exec wpctl set-volume @DEFAULT_SINK@ 5%+
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_SINK@ 5%-
+bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_SINK@ 5%+
 bindsym $S+$s+comma exec musica ante
 bindsym $S+$s+period exec musica prox
 ## setas/vimkeys
@@ -219,8 +220,6 @@ exec pgrep -x "playerctld" || playerctld daemon
 exec pgrep -x "mpDris2" || mpDris2 --music-dir="$HOME/media/musicas/" >"$XDG_CACHE_HOME/mpdris2.log" 2>&1 &
 ## aparência
 exec xrdb -load $HOME/.config/X11/Xresources
-## sistema
-exec checar_updates
 exec notify-bat
 
 ## Barra

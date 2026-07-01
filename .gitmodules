@@ -15,4 +15,9 @@
 	url = https://github.com/lucastavaresa/SingleComment.nvim.git
 [submodule "code/lua/nvim/headers.nvim"]
 	path = code/lua/nvim/headers.nvim
-	url = git@github.com:lucastavaresa/headers.nvim.git
+	url = https://github.com/lucastavaresa/headers.nvim.git
+[submodule "code/nixpkgs"]
+	path = code/nixpkgs
+	url = https://github.com/NixOS/nixpkgs
+	branch = nixos-26.05
+	shallow = true
