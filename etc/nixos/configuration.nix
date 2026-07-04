@@ -314,14 +314,6 @@ in
     polkit.enable = true;
     rtkit.enable = true;
     sudo.enable = false;
-    pam.loginLimits = [
-      {
-        domain = user;
-        type = "hard";
-        item = "nofile";
-        value = "524288";
-      }
-    ];
   };
 
   hardware = {
