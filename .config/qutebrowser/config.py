@@ -263,6 +263,11 @@ c.fonts.prompts = 'default_size "Iosevka"'
 c.fonts.statusbar = '20px "Iosevka"'
 
 
+# TODO(LucasTA): fix this when google stops forcing video acceleration tied to my google account
+c.qt.args = [
+    "disable-accelerated-video-decode",
+]
+
 ################
 config.set('content.javascript.enabled', True, 'chrome-devtools://*')
 config.set('content.javascript.enabled', True, 'devtools://*')
