@@ -79,10 +79,3 @@ toolbar .toolbarbutton-1 {
 #tabbrowser-tabs {
   display: none !important;
 }
-
-/* Set blank page background-color */
-/* Uses color from theme_colors if available */
-
-#tabbrowser-tabpanels{
-  background-color: var(--uc-light-bkgnd-color,rgb(46,54,69)) !important;
-}
