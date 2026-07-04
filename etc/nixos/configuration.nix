@@ -212,6 +212,10 @@ in
                 label = baseNameOf key;
                 id = baseNameOf key;
                 devices = [ "SM-A528B" ];
+                versioning = {
+                  type = "trashcan";
+                  params.cleanoutDays = "14";
+                };
               };
             })
             {
