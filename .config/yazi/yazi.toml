@@ -25,3 +25,13 @@ prepend_rules = [
 	# fix: yazi opens each song in a new window
 	{ mime = "{audio,video}/*", use = [ "_play" ] },
 ]
+
+[[plugin.prepend_fetchers]]
+url   = "*"
+run   = "git"
+group = "git"
+
+[[plugin.prepend_fetchers]]
+url   = "*/"
+run   = "git"
+group = "git"

@@ -687,4 +687,14 @@ conds = [
 	{ if = "!dir", text = "🗒️" },
 ]
 
+[git]
+unknown_sign  = ""
+modified_sign = "!"
+added_sign    = "+"
+untracked_sign = "?"
+ignored_sign  = "i"
+deleted_sign  = "X"
+updated_sign  = "!"
+clean_sign    = "✔ "
+
 # : }}}
