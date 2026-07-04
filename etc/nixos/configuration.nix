@@ -108,7 +108,7 @@ in
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
-      pinentryPackage = pkgs.pinentry-curses;
+      pinentryPackage = pkgs.pinentry-qt;
     };
     sway = {
       enable = true;
@@ -322,10 +322,6 @@ in
         value = "524288";
       }
     ];
-    pam.services.login.gnupg = {
-      enable = true;
-      storeOnly = true;
-    };
   };
 
   hardware = {
@@ -562,7 +558,6 @@ in
       [ "openjdk17" ]
       [ "openjdk21" ]
       [ "openjdk25" ]
-      [ "pam_gnupg" ]
       [ "pandoc" ]
       [ "parallel" ]
       [ "patch" ]
