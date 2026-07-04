@@ -1,6 +1,5 @@
+__pycache__
 .android
-.antigravity
-.codex
 .cache/
 .config/asciinema/
 .config/Android Open Source Project/
@@ -42,7 +41,6 @@
 .config/opencode/
 .config/parallel
 .config/pulse/
-.config/qutebrowser/__pycache__/
 .config/qutebrowser/bookmarks/
 .config/qutebrowser/autoconfig.yml
 .config/rtk/
@@ -80,12 +78,17 @@
 .ServiceHub/
 .supermaven/
 .vscode/
-.config/Antigravity/
 .config/Code/
 .config/spotdl/
 .config/obs-studio/
 .config/olivevideoeditor.org/
 .config/go/telemetry/
+.config/BraveSoftware/
+.config/claude/
+.config/google-chrome/
+.config/microsoft-edge/
+.config/opera/
+.config/vivaldi/
 .templateengine/
 .emulator_console_auth_token
 .ollama
