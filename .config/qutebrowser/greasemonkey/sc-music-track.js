@@ -486,6 +486,29 @@
                 color: #f70 !important;
                 text-decoration: underline !important;
             }
+
+            /* keep buttons in place when playing */
+            .visualSound.streamContext.playing .visualSound__wrapper {
+                min-height: 160px !important;
+                position: relative !important;
+                padding: 90px 16px 8px !important;
+                margin-left: 8px !important;
+            }
+
+            /* keep cover from expanding when playing */
+            .visuals.playing.streamContext {
+                height: 160px !important;
+            }
+
+            /* hide cover */
+            .visuals__container.visible {
+                opacity: 0 !important;
+            }
+
+            /* keep progress bar in place */
+            .visualSound__progress {
+                position: static !important;
+            }
         `;
         document.head.appendChild(style);
     }
