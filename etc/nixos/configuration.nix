@@ -105,10 +105,9 @@ in
 
   programs = {
     fish.enable = true;
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-      pinentryPackage = pkgs.pinentry-qt;
+    ssh = {
+      startAgent = true;
+      agentTimeout = "10m";
     };
     sway = {
       enable = true;
@@ -219,7 +218,6 @@ in
               "/Downloads/sync" = { };
               "/.ssh" = { };
               "/media/jogos/roms" = { };
-              "/.gnupg" = { };
               "/media/musicas" = { };
               "/media/videos" = { };
               "/media/lit" = { };

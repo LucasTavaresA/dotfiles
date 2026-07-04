@@ -3,7 +3,6 @@ if status is-interactive
     ## Fish ##
     # set fish_trace 1 # ativa modo debug
     set -x SHELL (which fish)
-    set -x GPG_TTY (tty)
     set fzf_fd_opts --base-directory $HOME -H -I -d 4 -t d -E '*cache*' -E '*git*'
     set fzf_git_log_opts --preview-window=bottom --no-sort -e
     set --global fish_color_command green

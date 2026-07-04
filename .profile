@@ -73,12 +73,6 @@ export OPENCODE_EXPERIMENTAL_LSP_TOOL=true
 export OPENCODE_ENABLE_EXA=1
 export CLAUDE_CONFIG_DIR=$HOME/.config/claude
 
-## GPG/SSH
-export GNUPGHOME="$HOME/.gnupg"
-unset SSH_AUTH_SOCK
-SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-export SSH_AUTH_SOCK
-
 #### PATH ####
 if [ "$OS" != "nixos" ]; then
 	# TODO(LucasTA): update those PATH entries to work with nixos

@@ -1,7 +1,13 @@
 [user]
 	name = LucasTavaresA
 	email = tavares.lassuncao@gmail.com
-	signingKey = 0BB0E0780E17746E
+	signingkey = /home/lucas/.ssh/id_ed25519.pub
+
+[gpg]
+	format = ssh
+
+[gpg "ssh"]
+	allowedSignersFile = /home/lucas/.config/git/allowed_signers
 
 [init]
 	defaultBranch = main
