@@ -229,7 +229,6 @@ if status is-interactive
     abbr -a -g wget wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"
     abbr -a -g cd z
     abbr -a -g cage cage -s --
-    abbr -a -g sg sgrade
     abbr -a -g pk pkill -i
     abbr -a -g pg pgrep -ia
     abbr -a -g uma doas usermod -aG

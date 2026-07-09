@@ -4,9 +4,6 @@
 [submodule "code/rust/orgmenu"]
 	path = code/rust/orgmenu
 	url = https://github.com/lucastavaresa/orgmenu
-[submodule "code/shellscripts/sgrade"]
-	path = code/shellscripts/sgrade
-	url = https://github.com/lucastavaresa/sgrade
 [submodule "code/lua/nvim/simpleIndentGuides.nvim"]
 	path = code/lua/nvim/simpleIndentGuides.nvim
 	url = https://github.com/lucastavaresa/simpleIndentGuides.nvim.git
