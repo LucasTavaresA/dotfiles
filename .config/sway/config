@@ -71,7 +71,6 @@ for_window [title="^Picture-in-Picture$"] {
 for_window [class="^.*"] inhibit_idle fullscreen
 for_window [app_id="^.*"] inhibit_idle fullscreen
 for_window [app_id=".*"] title_window_icon on
-for_window [app_id="^menu$"] floating enable, border pixel 4, resize set 400 300, move position center
 for_window [app_id="^float$"] floating enable, border pixel 4, resize set 1000 600, move position center
 for_window [app_id="^calculadora"] floating enable, border pixel 4, resize set 400 400, move position center
 for_window [app_id="org.qutebrowser.qutebrowser"] focus
@@ -125,7 +124,7 @@ bindsym $S+b bar hidden_state toggle
 bindsym $S+tab exec swayr next-window current-workspace
 bindsym Print exec wayland_print
 bindsym $S+p exec wayland_print
-bindsym $S+o exec menu_pesquisar
+bindsym $S+o exec search
 bindsym $S+Return exec foot
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl set +5%
@@ -133,7 +132,6 @@ bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 mode "Menu" {
     bindsym Menu exec tofi-drun --drun-launch=true ; mode "default"
     bindsym o exec orgmenu ~/documentos/favs.md ; mode "default"
-    bindsym m exec menu_mont ; mode "default"
     bindsym p exec keepassxc ; mode "default"
     bindsym c exec cliphist list | tofi --padding-left 0 --padding-top 0 | cliphist decode | wl-copy ; mode "default"
     bindsym Shift+c exec foot -T calculadora -a calculadora python ; mode "default"
@@ -163,7 +161,7 @@ mode "resize" {
         bindsym $S+r mode "default"
 }
 bindsym $S+r mode "resize"
-## musica
+## music
 bindsym $S+a exec foot -T ncmpcpp -a ncmpcpp ncmpcpp
 bindsym $S+$s+a exec foot -T float -a float pulsemixer
 bindsym $S+space exec playerctl play-pause || mpc toggle
@@ -172,8 +170,8 @@ bindsym $S+comma exec wpctl set-volume @DEFAULT_SINK@ 5%-
 bindsym $S+period exec wpctl set-volume @DEFAULT_SINK@ 5%+
 bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_SINK@ 5%-
 bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_SINK@ 5%+
-bindsym $S+$s+comma exec musica ante
-bindsym $S+$s+period exec musica prox
+bindsym $S+$s+comma exec mpc prev
+bindsym $S+$s+period exec mpc next
 ## setas/vimkeys
 bindsym $S+Up focus up
 bindsym $S+Down focus down
@@ -208,17 +206,14 @@ bindsym $S+$s+3 move window to workspace number $ws3
 bindsym $S+$s+4 move window to workspace number $ws4
 bindsym $S+$s+5 move window to workspace number $ws5
 
-# Iniciar
 exec swayrd
 exec swayidle -w timeout 500 'swaymsg "output * power off"' resume 'swaymsg "output * power on"'
 exec wl-paste --watch cliphist store
 exec mako
 # exec easyeffects
 exec sway-audio-idle-inhibit
-## Musica
 exec pgrep -x "playerctld" || playerctld daemon
 exec pgrep -x "mpDris2" || mpDris2 --music-dir="$HOME/media/musicas/" >"$XDG_CACHE_HOME/mpdris2.log" 2>&1 &
-## aparência
 exec xrdb -load $HOME/.config/X11/Xresources
 exec notify-bat
 
