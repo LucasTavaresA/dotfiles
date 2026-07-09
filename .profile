@@ -13,6 +13,7 @@ export TERMINAL="foot"
 export BROWSER="qutebrowser"
 export THREADS="$(nproc)"
 export HOSTNAME="$(uname -n)"
+export DMENU="tofi"
 
 case $HOSTNAME in
 	*"artixlinux"*) export OS="artixlinux" ;;

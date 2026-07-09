@@ -1,2 +1,4 @@
+# foot takes the command positionally, not via -e (handlr's default)
+term_exec_args = ''
 enable_selector = true
-selector = "dmenu -b -i -l 15 -p 'Open with: ' -fn 'Iosevka:pixelsize=22'"
+selector = "tofi"
