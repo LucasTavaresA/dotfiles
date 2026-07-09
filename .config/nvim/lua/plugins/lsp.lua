@@ -243,6 +243,10 @@ return {
 			})
 			vim.lsp.enable('ols')
 
+			vim.lsp.config('nixd', {
+				on_attach = On_attach,
+				capabilities = capabilities,
+			})
 			vim.lsp.enable('nixd')
 
 			-- makes rust_analyzer work on single files
