@@ -110,9 +110,9 @@ bind D fillcmdline forward
 bind ZZ composite sanitise tridactyllocal tridactylsync; qall
 bind qvw hint -W js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('mpv --ytdl-format=\'worstvideo*[height=720]+worstaudio/worst[height=720]\' --cache=yes --demuxer-max-bytes=2048Kib --wayland-app-id=Picture-in-Picture ' + url))
 bind qsw hint -W js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('streamlink -a \'--wayland-app-id=Picture-in-Picture\' ' + url))
-bind qvd hint -W js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('term_open -a float yt-dlp -P ~/Downloads --write-subs -f \'worstvideo*[height=720]+worstaudio/worst[height=720]\' ' + url))
+bind qvd hint -W js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('foot -T float -a float yt-dlp -P ~/Downloads --write-subs -f \'worstvideo*[height=720]+worstaudio/worst[height=720]\' ' + url))
 bind qid hint -A
-bind qad hint -W js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('term_open -a float yt-dlp -x ' + url))
+bind qad hint -W js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('foot -T float -a float yt-dlp -x ' + url))
 bind qq hint -W js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('qutebrowser ' + url))
 bind cl hint -y
 bind cc hint -p

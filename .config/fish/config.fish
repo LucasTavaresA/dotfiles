@@ -215,7 +215,7 @@ if status is-interactive
 
     ## Abbr ##
     abbr --set-cursor=% -a -g 0x0 "curl -F'file=@%' https://0x0.st"
-    abbr -a -g rest 'sleep 30m && notify-send -u critical "rest for a while" && term_open -a nvim "nvim ~/.cache/rest"'
+    abbr -a -g rest 'sleep 30m && notify-send -u critical "rest for a while" && foot -T nvim -a nvim nvim ~/.cache/rest'
     abbr -a -g docker podman
     abbr -a -g trl transmission-remote -l
     abbr -a -g tra transmission-remote -a
@@ -243,7 +243,7 @@ if status is-interactive
     abbr -a -g ff fastfetch
     abbr -a -g v nvim
     abbr -a -g vc nvim --clean
-    abbr -a -g vv term_open -a nvim nvim
+    abbr -a -g vv foot -T nvim -a nvim nvim
     abbr -a -g h htop
     abbr -a -g copy wl-copy
     abbr -a -g sudo doas

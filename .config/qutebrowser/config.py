@@ -60,7 +60,7 @@ c.tabs.position = "top"
 # tamanho da barra de compleção
 config.set('completion.height', '100%')
 # editor
-c.editor.command = ["term_open", "-a", "nvim", "nvim", "{}"]
+c.editor.command = ["foot", "-T", "nvim", "-a", "nvim", "nvim", "{}"]
 # não mostra barra de downloads
 config.set("downloads.remove_finished", 200)
 # permite copiar/colar
@@ -97,8 +97,8 @@ c.content.blocking.adblock.lists = [
 
 # usa o terminal para mandar arquivos
 config.set("fileselect.handler", "external")
-config.set("fileselect.single_file.command", ["term_open", "-a", "float", "yazi", "--chooser-file", "{}"])
-config.set("fileselect.multiple_files.command", ["term_open", "-a", "float", "yazi", "--chooser-file", "{}"])
+config.set("fileselect.single_file.command", ["foot", "-T", "float", "-a", "float", "yazi", "--chooser-file", "{}"])
+config.set("fileselect.multiple_files.command", ["foot", "-T", "float", "-a", "float", "yazi", "--chooser-file", "{}"])
 
 # notificações.
 config.set('content.notifications.enabled', True, 'https://www.youtube.com/*')
@@ -185,13 +185,13 @@ bindings = {
     "qsw": "hint links spawn --detach streamlink \
         -a '--wayland-app-id=Picture-in-Picture' {hint-url}",
     # baixar video
-    "qvd": "hint links spawn --detach term_open -a float yt-dlp -P ~/Downloads \
+    "qvd": "hint links spawn --detach foot -T float -a float yt-dlp -P ~/Downloads \
         --write-subs -f 'worstvideo*[height=720]+worstaudio/worst[height=720]' \
         {hint-url}",
     # baixar imagem
     "qid": "hint images download",
     # baixar audio
-    "qad": "hint links spawn --detach term_open -a float yt-dlp -x {hint-url}",
+    "qad": "hint links spawn --detach foot -T float -a float yt-dlp -x {hint-url}",
     # abre pagina no firefox
     "qf": "spawn --detach firefox {url}",
     # ativa/desativa a barra

@@ -126,7 +126,7 @@ bindsym $S+tab exec swayr next-window current-workspace
 bindsym Print exec wayland_print
 bindsym $S+p exec wayland_print
 bindsym $S+o exec menu_pesquisar
-bindsym $S+Return exec term_open
+bindsym $S+Return exec foot
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 ## menu
@@ -136,13 +136,13 @@ mode "Menu" {
     bindsym m exec menu_mont ; mode "default"
     bindsym p exec keepassxc ; mode "default"
     bindsym c exec cliphist list | tofi --padding-left 0 --padding-top 0 | cliphist decode | wl-copy ; mode "default"
-    bindsym Shift+c exec term_open -a calculadora python ; mode "default"
-    bindsym e exec term_open -a nvim nvim ~/documentos/ ; mode "default"
-    bindsym Shift+e exec term_open -a float fzf_emojis ; mode "default"
+    bindsym Shift+c exec foot -T calculadora -a calculadora python ; mode "default"
+    bindsym e exec foot -T nvim -a nvim nvim ~/documentos/ ; mode "default"
+    bindsym Shift+e exec foot -T float -a float fzf_emojis ; mode "default"
     bindsym f exec qutebrowser ; mode "default"
-    bindsym h exec term_open -a float htop ; mode "default"
+    bindsym h exec foot -T float -a float htop ; mode "default"
     bindsym l exec swaylock -c 000000ff --scaling fill ; mode "default"
-    bindsym a exec term_open -a nvim nvim ~/documentos/anotações.md ; mode "default"
+    bindsym a exec foot -T nvim -a nvim nvim ~/documentos/anotações.md ; mode "default"
     bindsym r reload
     bindsym Shift+q exit
     bindsym escape ; mode "default"
@@ -164,8 +164,8 @@ mode "resize" {
 }
 bindsym $S+r mode "resize"
 ## musica
-bindsym $S+a exec term_open -a ncmpcpp ncmpcpp
-bindsym $S+$s+a exec term_open -a float pulsemixer
+bindsym $S+a exec foot -T ncmpcpp -a ncmpcpp ncmpcpp
+bindsym $S+$s+a exec foot -T float -a float pulsemixer
 bindsym $S+space exec playerctl play-pause || mpc toggle
 bindsym XF86AudioPlay exec playerctl play-pause || mpc toggle
 bindsym $S+comma exec wpctl set-volume @DEFAULT_SINK@ 5%-
