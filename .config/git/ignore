@@ -111,3 +111,4 @@ mnt/
 VirtualBox VMs/
 bkp/
 quicklisp/
+**/.claude/settings.local.json

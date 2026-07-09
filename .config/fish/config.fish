@@ -76,7 +76,7 @@ if status is-interactive
                 # safe subcommands
                 case status diff log reset grep revise submodule push pull commit add \
                      restore rebase stash remote show revert fetch branch checkout \
-                     rev-parse rm
+                     rev-parse rm mv reflog
                     command git --work-tree=. --git-dir="$HOME/etc/.dotfiles/" $argv
                 case '*'
                     echo "command 'git $argv[1]' not allowed in your dotfiles"
