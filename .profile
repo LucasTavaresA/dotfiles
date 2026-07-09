@@ -88,7 +88,7 @@ if [ "$OS" != "nixos" ]; then
 fi
 
 export PATH="$HOME/code/shellscripts/shellscripts:$PATH"
-export PATH="$HOME/code/shellscripts/orgmenu:$PATH"
+export PATH="$HOME/code/rust/orgmenu:$PATH"
 
 #### Startup ####
 case "$-" in

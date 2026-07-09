@@ -1,8 +1,8 @@
 [submodule "code/shellscripts/shellscripts"]
 	path = code/shellscripts/shellscripts
 	url = https://github.com/lucastavaresa/shellscripts
-[submodule "code/shellscripts/orgmenu"]
-	path = code/shellscripts/orgmenu
+[submodule "code/rust/orgmenu"]
+	path = code/rust/orgmenu
 	url = https://github.com/lucastavaresa/orgmenu
 [submodule "code/shellscripts/sgrade"]
 	path = code/shellscripts/sgrade
