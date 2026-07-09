@@ -245,6 +245,40 @@ return {
 
 			vim.lsp.enable('nixd')
 
+			-- makes rust_analyzer work on single files
+			-- can't just enable an lsp in 2026
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = "rust",
+				callback = function(args)
+					local fname = vim.api.nvim_buf_get_name(args.buf)
+					local root = vim.fs.root(args.buf, { "Cargo.toml", "rust-project.json" })
+					vim.lsp.start({
+						name = "rust_analyzer",
+						cmd = { "rust-analyzer" },
+						on_attach = On_attach,
+						capabilities = capabilities,
+						root_dir = root or vim.fs.dirname(fname),
+						init_options = root and vim.empty_dict() or { detachedFiles = { fname } },
+						settings = root and vim.empty_dict() or {
+							["rust-analyzer"] = { checkOnSave = false },
+						},
+						handlers = root and nil or {
+							["window/showMessage"] = function(err, result, ctx)
+								if result and result.message and result.message:match("[Ww]orkspace") then
+									return
+								end
+								return vim.lsp.handlers["window/showMessage"](err, result, ctx)
+							end,
+						},
+					})
+				end,
+			})
+			-- vim.lsp.config("rust_analyzer", {
+			-- 	on_attach = On_attach,
+			-- 	capabilities = capabilities,
+			-- })
+			-- vim.lsp.enable("rust_analyzer")
+
 			-- instale o omnisharp
 			vim.lsp.config("roslyn", {
 				cmd = {

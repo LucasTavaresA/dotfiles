@@ -121,6 +121,7 @@ c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
                     ,  'alm':  'https://anilist.co/search/manga?search={}&sort=SEARCH_MATCH'
                     ,  'np':   'https://search.nixos.org/packages?query={}'
                     ,  'ng':   'https://noogle.dev/q/?term={}'
+                    ,  'rd':   'https://doc.rust-lang.org/stable/std/?search={}'
                     ,  'aur':  'https://aur.archlinux.org/packages?O=0&SeB=nd&K={}&outdated=&SB=p&SO=d&PP=50&submit=Go'
                     ,  'aw':   'https://wiki.archlinux.org/index.php?search={}'
                     ,  'br':   'https://brainly.com.br/app/ask?q={}'
@@ -878,3 +879,4 @@ config.set('colors.webpage.darkmode.enabled', True, '*://*.www.persuasion.commun
 config.set('content.javascript.enabled', True, '*://*.mathstodon.xyz/*')
 config.set('content.javascript.enabled', True, '*://*.www.science.org/*')
 config.set('content.javascript.enabled', True, '*://*.www.virustotal.com/*')
+config.set('content.javascript.enabled', True, '*://*.doc.rust-lang.org/*')

@@ -618,6 +618,7 @@ in
       [ "ripgrep" ]
       [ "rlwrap" ]
       [ "rsync" ]
+      [ "rust-analyzer" ]
       [ "rustc" ]
       [ "scdl" ]
       [ "scdoc" ]
