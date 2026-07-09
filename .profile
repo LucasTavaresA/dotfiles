@@ -94,7 +94,10 @@ export PATH="$HOME/code/shellscripts/orgmenu:$PATH"
 case "$-" in
 	*i*)
 		if [ "$(tty)" = "/dev/tty1" ]; then
-			exec sway
+			# detach from the console VT so child processes
+			# fail isatty() and spawn terminal apps in a real terminal
+			# this also logs to journalctl
+			exec systemd-cat -t sway sway </dev/null
 		else
 			exec fish
 		fi
