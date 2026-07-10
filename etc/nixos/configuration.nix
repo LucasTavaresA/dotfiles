@@ -240,24 +240,6 @@ in
       openPeerPorts = false;
     };
 
-    mpd = {
-      enable = true;
-      inherit user;
-      group = "users";
-      dataDir = "${home}/.config/mpd";
-      openFirewall = false;
-
-      settings = {
-        music_directory = "${home}/media/musicas";
-        audio_output = [
-          {
-            type = "pipewire";
-            name = "PipeWire Sound Server";
-          }
-        ];
-      };
-    };
-
     tailscale = {
       enable = true;
     };
@@ -288,18 +270,42 @@ in
     };
   };
 
-  systemd.services.mpd-update = {
-    description = "Update MPD database after MPD starts";
-    after = [ "mpd.service" ];
-    requires = [ "mpd.service" ];
-    wantedBy = [ "multi-user.target" ];
+  systemd.user.services.mpd = {
+    description = "Music Player Daemon";
+    after = [
+      "pipewire.service"
+      "network.target"
+    ];
+    wantedBy = [ "default.target" ];
 
-    serviceConfig = {
-      Type = "oneshot";
-      User = user;
-      Group = "users";
-      ExecStart = "${pkgs.mpc}/bin/mpc update";
-    };
+    serviceConfig =
+      let
+        mpdDataDir = "${home}/.config/mpd";
+        mpdConf = pkgs.writeText "mpd.conf" ''
+          music_directory        "${home}/media/musicas"
+          playlist_directory     "${mpdDataDir}/playlists"
+          db_file                "${mpdDataDir}/database"
+          state_file             "${mpdDataDir}/state"
+          sticker_file           "${mpdDataDir}/sticker.sql"
+
+          bind_to_address        "127.0.0.1"
+          auto_update            "yes"
+          restore_paused         "yes"
+          max_output_buffer_size "16384"
+
+          audio_output {
+              type "pipewire"
+              name "PipeWire Sound Server"
+          }
+        '';
+      in
+      {
+        Type = "notify";
+        ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p ${mpdDataDir}/playlists";
+        ExecStart = "${pkgs.mpd}/bin/mpd --systemd ${mpdConf}";
+        ExecStartPost = "${pkgs.mpc}/bin/mpc update";
+        Restart = "on-failure";
+      };
   };
 
   security = {
