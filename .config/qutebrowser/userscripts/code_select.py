@@ -6,15 +6,25 @@ import re
 import sys
 import xml.etree.ElementTree as ET
 try:
-    import pyclip
+    import pyperclip
 except ImportError:
-    PYCLIP = False
+    try:
+        import pyclip as pyperclip
+    except ImportError:
+        PYPERCLIP = False
+    else:
+        PYPERCLIP = True
 else:
-    PYCLIP = True
+    PYPERCLIP = True
 
 
 def parse_text_content(element):
-    root = ET.fromstring(element)
+    # https://stackoverflow.com/a/35591507/15245191
+    magic = '''<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" [
+                <!ENTITY nbsp ' '>
+                ]>'''
+    root = ET.fromstring(magic + element)
     text = ET.tostring(root, encoding="unicode", method="text")
     text = html.unescape(text)
     return text
@@ -31,11 +41,13 @@ def main():
     # https://github.com/qutebrowser/qutebrowser/blob/master/doc/userscripts.asciidoc
     element = os.environ.get("QUTE_SELECTED_HTML")
     code_text = parse_text_content(element)
-    if PYCLIP:
-        pyclip.copy(code_text)
+    re_remove_dollars = re.compile(r"^(\$ )", re.MULTILINE)
+    code_text = re.sub(re_remove_dollars, '', code_text)
+    if PYPERCLIP:
+        pyperclip.copy(code_text)
         send_command_to_qute(
             "message-info 'copied to clipboard: {info}{suffix}'".format(
-                info=code_text.splitlines()[0],
+                info=code_text.splitlines()[0].replace("'", "\""),
                 suffix="..." if len(code_text.splitlines()) > 1 else ""
             )
         )
