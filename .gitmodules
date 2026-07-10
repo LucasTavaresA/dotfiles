@@ -1,5 +1,5 @@
-[submodule "code/shellscripts/shellscripts"]
-	path = code/shellscripts/shellscripts
+[submodule "code/shellscripts"]
+	path = code/shellscripts
 	url = https://github.com/lucastavaresa/shellscripts
 [submodule "code/rust/orgmenu"]
 	path = code/rust/orgmenu

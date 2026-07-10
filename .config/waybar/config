@@ -147,7 +147,7 @@
         "format-icons": {
             "default": "🎵"
         },
-        "exec": "$HOME/code/shellscripts/shellscripts/music playing",
+        "exec": "music playing",
         "on-click": "foot -T ncmpcpp -a ncmpcpp ncmpcpp"
     },
 }

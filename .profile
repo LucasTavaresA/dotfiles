@@ -87,7 +87,7 @@ if [ "$OS" != "nixos" ]; then
 	export PATH="$PATH:$ANDROID_STUDIO_HOME/bin"
 fi
 
-export PATH="$HOME/code/shellscripts/shellscripts:$PATH"
+export PATH="$HOME/code/shellscripts:$PATH"
 export PATH="$HOME/code/rust/orgmenu:$PATH"
 
 #### Startup ####
