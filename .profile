@@ -75,18 +75,6 @@ export OPENCODE_ENABLE_EXA=1
 export CLAUDE_CONFIG_DIR=$HOME/.config/claude
 
 #### PATH ####
-if [ "$OS" != "nixos" ]; then
-	# TODO(LucasTA): update those PATH entries to work with nixos
-	export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/bflat:$PATH"
-	export PATH="$XDG_DATA_HOME/dotnet:$PATH"
-	export PATH="$HOME/.dotnet/tools:$PATH"
-	export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/omnisharp:$PATH"
-	export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/netcoredbg:$PATH"
-	export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/odin/bin:$PATH"
-	export PATH="${XDG_BIN_HOME:-$HOME/.local/bin}:$PATH"
-	export PATH="$PATH:$ANDROID_STUDIO_HOME/bin"
-fi
-
 export PATH="$HOME/code/shellscripts:$PATH"
 export PATH="$HOME/code/rust/orgmenu:$PATH"
 
