@@ -48,11 +48,10 @@ set jsurls.ala  query => query == "" ? "https://anilist.co/user/Lucastavares/ani
 set jsurls.alm  query => query == "" ? "https://anilist.co/user/Lucastavares/mangalist" : "https://anilist.co/search/manga?search=" + query + "&sort=SEARCH_MATCH"
 set jsurls.np   query => query == "" ? "https://search.nixos.org/packages" : "https://search.nixos.org/packages?query=" + query
 set jsurls.ng   query => query == "" ? "https://noogle.dev/" : "https://noogle.dev/q/?term=" + query
-set jsurls.rd   query => query == "" ? "https://doc.rust-lang.org/stable/std/" : "https://doc.rust-lang.org/stable/std/?search=" = query
+set jsurls.rd   query => query == "" ? "https://doc.rust-lang.org/stable/std/" : "https://doc.rust-lang.org/stable/std/?search=" + query
 set jsurls.aur  query => query == "" ? "https://aur.archlinux.org" : "https://aur.archlinux.org/packages?O=0&SeB=nd&K=" + query + "&outdated=&SB=p&SO=d&PP=50&submit=Go"
 set jsurls.aw   query => query == "" ? "https://wiki.archlinux.org" : "https://wiki.archlinux.org/index.php?search=" + query
 set jsurls.br   query => query == "" ? "https://brainly.com.br" : "https://brainly.com.br/app/ask?q=" + query
-set jsurls.fb   query => query == "" ? "https://www.facebook.com/""https://www.facebook.com/"
 set jsurls.fp   query => query == "" ? "https://www.freshports.org" : "https://www.freshports.org/search.php?query=" + query + "&search=go&num=10&stype=name&method=match&deleted=excludedeleted&start=1&casesensitivity=caseinsensitive"
 set jsurls.gi   query => query == "" ? "https://images.google.com" : "https://www.google.com/search?q=" + query + "&udm=2"
 set jsurls.gf   query => query == "" ? "https://greasyfork.org" : "https://greasyfork.org/en/scripts?q=" + query

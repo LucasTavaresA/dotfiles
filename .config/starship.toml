@@ -15,10 +15,6 @@ format = "[$user](green)"
 disabled = false
 symbol = " X "
 
-[os]
-format = " $symbol"
-disabled = false
-
 [character]
 format = "$symbol"
 success_symbol = "[I>](bold green)"

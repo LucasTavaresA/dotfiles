@@ -1,8 +1,8 @@
 [menu]
 executable = "tofi"
 args = [
-    "--height 40%",
-    "--prompt-text {prompt}",
+    "--prompt-text",
+    "{prompt}",
 ]
 
 [format]

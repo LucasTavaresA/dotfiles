@@ -18,7 +18,6 @@
         "disk#1",
         "disk#2",
         "battery",
-        "battery#bat2",
         "backlight",
         "clock",
         "tray"
@@ -70,22 +69,6 @@
             "stopped": "栗"
         }
     },
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-bluetooth": "🔵 {volume}%",
-        "format-bluetooth-muted": "🔵 🔇",
-        "format-muted": "🔇",
-        "format-icons": {
-            "headphone": "🎧",
-            "hands-free": "🔵",
-            "headset": "🎧",
-            "phone": "📱",
-            "portable": "📱",
-            "car": "🚗",
-            "default": ["🔈", "🔉", "🔊"]
-        },
-        "on-click": "foot -T float -a float pulsemixer"
-    },
     "wireplumber": {
         "format": "{icon} {volume}%",
         "format-muted": "🔇",
@@ -116,18 +99,6 @@
         "format-icons": ["▁", "▃", "▅", "▇"],
     },
     "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% Charging",
-        "format-plugged": "{capacity}% Plugged",
-        "format-icons": ["▁", "▃", "▅", "▇"],
-    },
-    "battery#bat2": {
-        "bat": "BAT2",
         "states": {
             "good": 95,
             "warning": 30,

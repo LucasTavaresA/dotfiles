@@ -220,7 +220,6 @@ in
             })
             {
               "/Downloads/sync" = { };
-              "/.ssh" = { };
               "/media/jogos/roms" = { };
               "/media/musicas" = { };
               "/media/videos" = { };
