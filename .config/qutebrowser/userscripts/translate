@@ -37,7 +37,7 @@ fi
 
 if [ "$QUTE_TRANS_URL" = "false" ]; then
     # Translate selected text
-    PAGE="https://translate.google.com/#view=home&op=translate&"
+    PAGE="https://translate.google.com/?op=translate&"
     CONT_KEY="text"
     CONTENT=$QUTE_SELECTED_TEXT
 else
@@ -46,5 +46,8 @@ else
     CONT_KEY="u"
     CONTENT=$QUTE_URL
 fi
+
+# percent-encode so spaces/&/# in the content don't mangle the URL
+CONTENT=$(python3 -c 'import sys, urllib.parse; print(urllib.parse.quote(sys.argv[1], safe=""))' "$CONTENT")
 
 echo "open -t ${PAGE}sl=$QUTE_TRANS_SOURCE&tl=$QUTE_TRANS_TARGET&$CONT_KEY=$CONTENT" >> "$QUTE_FIFO"
