@@ -36,15 +36,15 @@ if status is-interactive
     function ea
         set arquivo (locate -Ai "$argv" | fzf)
         if test -n "$arquivo"
-            eval $EDITOR "$arquivo"
+            $EDITOR "$arquivo"
         end
     end
 
     # localizar e editar executável
     function ee
         set executavel (fd . $PATH | fzf)
-        if test -x "$executavel"
-            eval $EDITOR "$executavel"
+        if test -n "$executavel"
+            $EDITOR "$executavel"
         end
     end
 
@@ -148,7 +148,7 @@ if status is-interactive
         if test $action = branch
             read -l -P "Branch name: " name
             test -z $name && return
-            git stash branch $name $stash && return
+            git stash branch $name $snum && return
         end
 
         git stash $action $snum
@@ -220,6 +220,7 @@ if status is-interactive
     abbr -a -g trl transmission-remote -l
     abbr -a -g tra transmission-remote -a
     abbr --set-cursor=% -a -g trt "transmission-remote -t %"
+    abbr --set-cursor=% -a -g tri "transmission-remote -t % -i"
     abbr --set-cursor=% -a -g trr "transmission-remote -t % -r"
     abbr --set-cursor=% -a -g trrad "transmission-remote -t % -rad"
     abbr --set-cursor=% -a -g trs "transmission-remote -t % -s"
