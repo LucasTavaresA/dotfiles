@@ -4,11 +4,10 @@ colorscheme shydactyl
 " Make Tridactyl work on more sites at the expense of some security
 " removed due to firefox request
 " set csp clobber
-fixamo_quiet
 
 set allowautofocus false
 
-set externalclipboardcmd xclip
+set externalclipboardcmd wl-copy
 set yankto both
 
 set smoothscroll false
