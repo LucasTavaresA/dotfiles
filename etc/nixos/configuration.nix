@@ -436,10 +436,6 @@ in
       [ "darcs" ]
       [ "deadnix" ]
       [ "delta" ]
-      [ "dotnet-sdk" ]
-      [ "dotnet-sdk_10" ]
-      [ "dotnet-sdk_8" ]
-      [ "dotnet-sdk_9" ]
       [ "dpkg" ]
       [ "easyeffects" ]
       [ "entropy" ]
@@ -709,6 +705,15 @@ in
       [ "zls" ]
       [ "zoxide" ]
       [ "zstd" ]
+    ]
+    # combined so every SDK is visible to a single bin/dotnet
+    ++ [
+      (with pkgs.dotnetCorePackages;
+        combinePackages [
+          sdk_8_0
+          sdk_9_0
+          sdk_10_0
+        ])
     ];
   };
 }

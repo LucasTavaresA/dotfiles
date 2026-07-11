@@ -40,7 +40,6 @@ export XAUTHORITY="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/Xauthority"
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 export CARGO_INSTALL_OPTS="--locked"
 export OMNISHARPHOME="${XDG_DATA_HOME:-$HOME/.local/share}/omnisharp"
-export DOTNET_ROOT="$XDG_DATA_HOME/dotnet"
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 export NUGET_PACKAGES="${XDG_CACHE_HOME:-$HOME/.cache}/NuGetPackages"
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc"

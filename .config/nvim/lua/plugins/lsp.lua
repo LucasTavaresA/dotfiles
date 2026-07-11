@@ -119,7 +119,7 @@ return {
 							}),
 							null_ls.builtins.hover.printenv,
 							-- csharp
-							null_ls.builtins.formatting.csharpier.with({ command = "dotnet-csharpier" }),
+							null_ls.builtins.formatting.csharpier,
 						},
 					})
 				end,
