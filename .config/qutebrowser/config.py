@@ -63,8 +63,6 @@ config.set('completion.height', '100%')
 c.editor.command = ["foot", "-T", "nvim", "-a", "nvim", "nvim", "{}"]
 # não mostra barra de downloads
 config.set("downloads.remove_finished", 200)
-# permite copiar/colar
-config.set('content.javascript.clipboard', 'access-paste')
 # maximo de itens no histórico
 config.set('completion.web_history.max_items', 5000)
 
