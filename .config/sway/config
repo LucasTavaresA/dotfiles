@@ -206,6 +206,7 @@ bindsym $S+$s+3 move window to workspace number $ws3
 bindsym $S+$s+4 move window to workspace number $ws4
 bindsym $S+$s+5 move window to workspace number $ws5
 
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec swayrd
 exec swayidle -w timeout 500 'swaymsg "output * power off"' resume 'swaymsg "output * power on"'
 exec wl-paste --watch cliphist store
