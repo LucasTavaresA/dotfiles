@@ -33,6 +33,28 @@ return {
 			end
 			local snippy = require("snippy")
 			local cmp = require("cmp")
+
+			local base_sources = {
+				{
+					name = "diag-codes",
+					option = { in_comment = true },
+				},
+				{ name = "path" },
+				{ name = "git" },
+				{ name = "snippy" },
+				{ name = "nvim_lsp" },
+				{ name = "nvim_lsp_signature_help" },
+				{ name = "buffer" },
+			}
+
+			-- nvim-cmp has no per-source `ft` field, sources are scoped
+			-- per filetype with cmp.setup.filetype below
+			local function sources_with(extra)
+				local list = vim.deepcopy(extra)
+				vim.list_extend(list, base_sources)
+				return cmp.config.sources(list)
+			end
+
 			cmp.setup({
 				preselect = cmp.PreselectMode.None,
 				view = {
@@ -87,50 +109,45 @@ return {
 						end
 					end, { "i", "s" }),
 				}),
-				sources = cmp.config.sources({
-					{
-						name = "diag-codes",
-						option = { in_comment = true },
-					},
-					{ name = "path" },
-					{
-						name = "env",
-						ft = { "fish", "zsh", "sh", "bash" },
-					},
-					{ name = "fish",                ft = "fish" },
-					{ name = "git" },
-					{ name = "conventionalcommits", ft = "gitcommit" },
-					{ name = "snippy" },
-					{
-						name = "lazydev",
-						ft = "lua",
-						group_index = 0, -- set group index to 0 to skip loading LuaLS completions
-					},
-					{ name = "nvim_lsp" },
-					{ name = "nvim_lsp_signature_help" },
-					{ name = "buffer" },
-					{
-						name = "spell",
-						ft = {
-							"conf",
-							"config",
-							"css",
-							"yml",
-							"toml",
-							"dosini",
-							"git",
-							"gitcommit",
-							"gitrebase",
-							"markdown",
-							"org",
-							"norg",
-							"txt",
-						},
-					},
-				}),
+				sources = cmp.config.sources(vim.deepcopy(base_sources)),
 			})
 
-			require("cmp_git").setup()
+			cmp.setup.filetype("fish", {
+				sources = sources_with({ { name = "env" }, { name = "fish" } }),
+			})
+			cmp.setup.filetype({ "zsh", "sh", "bash" }, {
+				sources = sources_with({ { name = "env" } }),
+			})
+			cmp.setup.filetype("gitcommit", {
+				sources = sources_with({
+					{ name = "conventionalcommits" },
+					{ name = "spell" },
+				}),
+			})
+			cmp.setup.filetype("lua", {
+				sources = sources_with({
+					-- group index 0 skips loading LuaLS completions
+					{ name = "lazydev", group_index = 0 },
+				}),
+			})
+			cmp.setup.filetype({
+				"conf",
+				"config",
+				"css",
+				"yml",
+				"toml",
+				"dosini",
+				"git",
+				"gitrebase",
+				"markdown",
+				"org",
+				"norg",
+				"txt",
+			}, {
+				sources = sources_with({ { name = "spell" } }),
+			})
+
+			require("cmp_git").setup({})
 
 			-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 			cmp.setup.cmdline({ "/", "?" }, {
