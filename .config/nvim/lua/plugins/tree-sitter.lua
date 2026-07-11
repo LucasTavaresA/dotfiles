@@ -98,11 +98,11 @@ return {
 					"javascript",
 					"python",
 				},
-				callback = function() vim.treesitter.start() end,
+				callback = function()
+					vim.treesitter.start()
+					vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+				end,
 			})
-
-			vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-			vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
 			require("nvim-treesitter-textobjects").setup({
 				select = {
