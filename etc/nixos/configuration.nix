@@ -270,6 +270,11 @@ in
     };
   };
 
+  # fixes transmission not being able to read/write anything except its download/incomplete/config folders
+  systemd.services.transmission.serviceConfig.BindPaths = [
+    "/home/lucas"
+  ];
+
   systemd.user.services.mpd = {
     description = "Music Player Daemon";
     after = [
