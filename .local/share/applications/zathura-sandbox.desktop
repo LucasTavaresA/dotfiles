@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Zathura (sandboxed)
+Comment=Minimalistic document viewer, seccomp+landlock sandboxed
+Exec=zathura-sandbox %U
+Icon=org.pwmt.zathura
+Terminal=false
+Categories=Office;Viewer;
+Keywords=PDF;PS;PostScript;DjVU;document;presentation;viewer;
