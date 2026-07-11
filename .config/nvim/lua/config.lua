@@ -7,12 +7,12 @@ local vc = vim.cmd
 local og = os.getenv
 local HOME = og("HOME")
 local XDG_DATA_HOME = og("XDG_DATA_HOME")
-if XDG_DATA_HOME == "" then
+if XDG_DATA_HOME == nil or XDG_DATA_HOME == "" then
 	XDG_DATA_HOME = HOME .. "/.local/share"
 end
 local XDG_STATE_HOME = og("XDG_STATE_HOME")
-if XDG_STATE_HOME == "" then
-	XDG_STATE_HOME = HOME .. ".local/state"
+if XDG_STATE_HOME == nil or XDG_STATE_HOME == "" then
+	XDG_STATE_HOME = HOME .. "/.local/state"
 end
 
 ----- Configuração -----
@@ -154,6 +154,9 @@ function Autocmd(autocmds)
 end
 
 Autocmd({
+	-- keeps the dotfiles GIT_DIR trick from leaking into other repos after :cd
+	{ "DirChanged", { "*" },                 Update_cwd },
+
 	-- TermOpen
 	{ "TermOpen", { "*" },                   "setlocal nocursorline nonumber norelativenumber" },
 

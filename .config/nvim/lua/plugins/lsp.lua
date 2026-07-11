@@ -126,11 +126,6 @@ return {
 			},
 		},
 		config = function()
-			local XDG_DATA_HOME = os.getenv("XDG_DATA_HOME")
-			if XDG_DATA_HOME == "" then
-				XDG_DATA_HOME = os.getenv("HOME") .. "/.local/share"
-			end
-
 			local capabilities = vim.tbl_deep_extend(
 				"force",
 				vim.lsp.protocol.make_client_capabilities(),
@@ -236,12 +231,6 @@ return {
 				capabilities = capabilities,
 			})
 			vim.lsp.enable('pyright')
-
-			vim.lsp.config('ols', {
-				on_attach = On_attach,
-				capabilities = capabilities,
-			})
-			vim.lsp.enable('ols')
 
 			vim.lsp.config('nixd', {
 				on_attach = On_attach,

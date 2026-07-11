@@ -131,7 +131,11 @@ function ToggleCheckbox()
 		neorg = " x",
 		markdown = " x",
 	}
-	local checked = checkboxes[ft]:sub(-1)
+	local checked = checkboxes[ft]
+	if not checked then
+		return
+	end
+	checked = checked:sub(-1)
 
 	line = line:gsub(
 		"^(%s*[%-%+%*]?[%w]*[%)%.]? %[)([" .. checkboxes[ft] .. "])(%])",
