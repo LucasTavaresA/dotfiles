@@ -710,6 +710,7 @@ in
       [ "zoxide" ]
       [ "zstd" ]
     ]
+    ++ [ (pkgs.callPackage ./tilth.nix { }) ]
     # combined so every SDK is visible to a single bin/dotnet
     ++ [
       (with pkgs.dotnetCorePackages;
