@@ -133,7 +133,7 @@ mode "Menu" {
     bindsym Menu exec tofi-drun --drun-launch=true ; mode "default"
     bindsym o exec orgmenu ~/documentos/favs.md ; mode "default"
     bindsym p exec keepassxc ; mode "default"
-    bindsym c exec cliphist list | tofi --padding-left 0 --padding-top 0 | cliphist decode | wl-copy ; mode "default"
+    bindsym c exec cliphist list | tofi | cliphist decode | wl-copy ; mode "default"
     bindsym Shift+c exec foot -T calculadora -a calculadora python ; mode "default"
     bindsym e exec foot -T nvim -a nvim nvim ~/documentos/ ; mode "default"
     bindsym Shift+e exec foot -T float -a float fzf_emojis ; mode "default"
