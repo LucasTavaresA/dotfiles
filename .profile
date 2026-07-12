@@ -27,6 +27,7 @@ export MOZ_ENABLE_WAYLAND=1
 export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 export SDL_VIDEODRIVER=wayland
 export _JAVA_AWT_WM_NONREPARENTING=1
+export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java"
 [ "$OS" != "nixos" ] && export LIBSEAT_BACKEND=seatd
 export ELM_DISPLAY=wl
 export MANPAGER="nvim +Man!"

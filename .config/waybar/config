@@ -110,7 +110,7 @@
         "format-icons": ["▁", "▃", "▅", "▇"],
     },
     "clock": {
-        "format": "{:%a %d/%m/%Y - %H:%M}",
+        "format": "{:L%a %d/%m/%Y - %H:%M}"
     },
     "custom/music": {
         "interval": 2,

@@ -60,7 +60,8 @@ if status is-interactive
                 # safe subcommands
                 case status diff log reset grep revise submodule push pull commit add \
                      restore rebase stash remote show revert fetch branch checkout \
-                     rev-parse rm mv reflog
+                     rev-parse rm mv reflog ls-files ls-remote range-diff show-ref \
+                     refs update-ref
                     command git --work-tree=. --git-dir="$HOME/etc/.dotfiles/" $argv
                 case '*'
                     echo "command 'git $argv[1]' not allowed in your dotfiles"
@@ -267,6 +268,7 @@ if status is-interactive
     abbr -a -g nii npm info
     abbr -a -g nig npm install -g
     abbr -a -g nid npm install -D
+    abbr -a -g nixd nix develop -c fish
     abbr -a -g nrg npm remove -g
     abbr -a -g nrd npm remove -D
     abbr -a -g ns npm search

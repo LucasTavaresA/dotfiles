@@ -26,13 +26,13 @@ let
 
   bgutil-ytdlp-pot-provider =
     lib.throwIf (pkgs.python3Packages.bgutil-ytdlp-pot-provider.meta ? mainProgram)
-      (Color yellow
-        "python3Packages.bgutil-ytdlp-pot-provider now ships the server, use it and drop the unstable import!"
-      )
-      (pkgs.python3Packages.callPackage (builtins.fetchurl {
-        url = "https://raw.githubusercontent.com/NixOS/nixpkgs/d9dc832bc54f95adae71b671e6feaed1edd91fd7/pkgs/development/python-modules/bgutil-ytdlp-pot-provider/default.nix";
-        sha256 = "sha256-VBawWr3dntTA+n8wpMtZ1IPz1DeNVat2h52/Duz02Lc=";
-      }) { });
+      (Color yellow "python3Packages.bgutil-ytdlp-pot-provider now ships the server, use it and drop the unstable import!")
+      (
+        pkgs.python3Packages.callPackage (builtins.fetchurl {
+          url = "https://raw.githubusercontent.com/NixOS/nixpkgs/d9dc832bc54f95adae71b671e6feaed1edd91fd7/pkgs/development/python-modules/bgutil-ytdlp-pot-provider/default.nix";
+          sha256 = "sha256-VBawWr3dntTA+n8wpMtZ1IPz1DeNVat2h52/Duz02Lc=";
+        }) { }
+      );
 in
 {
   imports = [ /etc/nixos/hardware-configuration.nix ];
@@ -279,8 +279,8 @@ in
     };
   };
 
-  # fixes transmission not being able to read/write anything except its download/incomplete/config folders
   systemd = {
+    # fixes transmission not being able to read/write anything except its download/incomplete/config folders
     services.transmission.serviceConfig.BindPaths = [
       "/home/lucas"
     ];
@@ -533,6 +533,7 @@ in
           "kwayland"
         ]
         [ "keepassxc" ]
+        [ "ktlint" ]
         [ "libarchive" ]
         [ "libnotify" ]
         [ "libreoffice" ]
@@ -632,10 +633,6 @@ in
         ]
         [
           "python3Packages"
-          "pip"
-        ]
-        [
-          "python3Packages"
           "pyclip"
         ]
         [
@@ -683,12 +680,14 @@ in
         [ "tofi" ]
         [ "translate-shell" ]
         [ "trash-cli" ]
+        [ "tree-sitter" ]
         [ "typescript" ]
         [ "typescript-language-server" ]
         [ "typioca" ]
         [ "ueberzugpp" ]
         [ "unar" ]
         [ "unrar" ]
+        [ "uv" ]
         [ "valgrind" ]
         [ "vlc" ]
         [ "vscode-css-languageserver" ]
@@ -739,13 +738,13 @@ in
       ++ [ (pkgs.callPackage ./tilth.nix { }) ]
       ++ [
         (lib.throwIf (lib.versionAtLeast pkgs.git-revise.version "0.8.0")
-          (Color yellow
-            "nixpkgs git-revise ${pkgs.git-revise.version} signs with ssh! remove this unstable import!"
+          (Color yellow "nixpkgs git-revise ${pkgs.git-revise.version} signs with ssh! remove this unstable import!")
+          (
+            pkgs.python3Packages.callPackage (builtins.fetchurl {
+              url = "https://raw.githubusercontent.com/NixOS/nixpkgs/9fd63d7c6baedb1bb1eca7e43698bf52e5a5c665/pkgs/development/python-modules/git-revise/default.nix";
+              sha256 = "sha256-kVhaplVbrpM3Dz5f5ZyHd1gHYsYlr8URyj9/1Dvrnfk=";
+            }) { }
           )
-          (pkgs.python3Packages.callPackage (builtins.fetchurl {
-            url = "https://raw.githubusercontent.com/NixOS/nixpkgs/9fd63d7c6baedb1bb1eca7e43698bf52e5a5c665/pkgs/development/python-modules/git-revise/default.nix";
-            sha256 = "sha256-kVhaplVbrpM3Dz5f5ZyHd1gHYsYlr8URyj9/1Dvrnfk=";
-          }) { })
         )
       ]
       # combined so every SDK is visible to a single bin/dotnet
