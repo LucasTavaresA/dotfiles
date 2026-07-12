@@ -23,6 +23,16 @@ let
   yellow = "${esc}[1;33m";
   reset = "${esc}[0m";
   Color = color: text: "${color}${text}${reset}";
+
+  bgutil-ytdlp-pot-provider =
+    lib.throwIf (pkgs.python3Packages.bgutil-ytdlp-pot-provider.meta ? mainProgram)
+      (Color yellow
+        "python3Packages.bgutil-ytdlp-pot-provider now ships the server, use it and drop the unstable import!"
+      )
+      (pkgs.python3Packages.callPackage (builtins.fetchurl {
+        url = "https://raw.githubusercontent.com/NixOS/nixpkgs/d9dc832bc54f95adae71b671e6feaed1edd91fd7/pkgs/development/python-modules/bgutil-ytdlp-pot-provider/default.nix";
+        sha256 = "sha256-VBawWr3dntTA+n8wpMtZ1IPz1DeNVat2h52/Duz02Lc=";
+      }) { });
 in
 {
   imports = [ /etc/nixos/hardware-configuration.nix ];
@@ -270,46 +280,59 @@ in
   };
 
   # fixes transmission not being able to read/write anything except its download/incomplete/config folders
-  systemd.services.transmission.serviceConfig.BindPaths = [
-    "/home/lucas"
-  ];
-
-  systemd.user.services.mpd = {
-    description = "Music Player Daemon";
-    after = [
-      "pipewire.service"
-      "network.target"
+  systemd = {
+    services.transmission.serviceConfig.BindPaths = [
+      "/home/lucas"
     ];
-    wantedBy = [ "default.target" ];
 
-    serviceConfig =
-      let
-        mpdDataDir = "${home}/.config/mpd";
-        mpdConf = pkgs.writeText "mpd.conf" ''
-          music_directory        "${home}/media/musicas"
-          playlist_directory     "${mpdDataDir}/playlists"
-          db_file                "${mpdDataDir}/database"
-          state_file             "${mpdDataDir}/state"
-          sticker_file           "${mpdDataDir}/sticker.sql"
+    user.services.mpd = {
+      description = "Music Player Daemon";
+      after = [
+        "pipewire.service"
+        "network.target"
+      ];
+      wantedBy = [ "default.target" ];
 
-          bind_to_address        "127.0.0.1"
-          auto_update            "yes"
-          restore_paused         "yes"
-          max_output_buffer_size "16384"
+      serviceConfig =
+        let
+          mpdDataDir = "${home}/.config/mpd";
+          mpdConf = pkgs.writeText "mpd.conf" ''
+            music_directory        "${home}/media/musicas"
+            playlist_directory     "${mpdDataDir}/playlists"
+            db_file                "${mpdDataDir}/database"
+            state_file             "${mpdDataDir}/state"
+            sticker_file           "${mpdDataDir}/sticker.sql"
 
-          audio_output {
-              type "pipewire"
-              name "PipeWire Sound Server"
-          }
-        '';
-      in
-      {
-        Type = "notify";
-        ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p ${mpdDataDir}/playlists";
-        ExecStart = "${pkgs.mpd}/bin/mpd --systemd ${mpdConf}";
-        ExecStartPost = "${pkgs.mpc}/bin/mpc update";
+            bind_to_address        "127.0.0.1"
+            auto_update            "yes"
+            restore_paused         "yes"
+            max_output_buffer_size "16384"
+
+            audio_output {
+                type "pipewire"
+                name "PipeWire Sound Server"
+            }
+          '';
+        in
+        {
+          Type = "notify";
+          ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p ${mpdDataDir}/playlists";
+          ExecStart = "${pkgs.mpd}/bin/mpd --systemd ${mpdConf}";
+          ExecStartPost = "${pkgs.mpc}/bin/mpc update";
+          Restart = "on-failure";
+        };
+    };
+
+    # yt-dlp needs proof-of-origin tokens for full-quality youtube formats
+    user.services.bgutil-pot-provider = {
+      description = "POT token server for yt-dlp";
+      after = [ "network.target" ];
+      wantedBy = [ "default.target" ];
+      serviceConfig = {
+        ExecStart = "${bgutil-ytdlp-pot-provider}/bin/bgutil-ytdlp-pot-provider";
         Restart = "on-failure";
       };
+    };
   };
 
   security = {
@@ -388,6 +411,9 @@ in
   };
 
   environment = {
+    etc."yt-dlp/plugins/bgutil/yt_dlp_plugins".source =
+      "${bgutil-ytdlp-pot-provider}/${pkgs.python3.sitePackages}/yt_dlp_plugins";
+
     shells = [
       pkgs.dash
       pkgs.fish
