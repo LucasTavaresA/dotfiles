@@ -392,333 +392,346 @@ in
       pkgs.dash
       pkgs.fish
     ];
-    systemPackages = requirePackages [
-      # TODO(LucasTA): readd when they fix this upstream
-      # [ "snes9x-gtk" ]
-      [ "_7zz" ]
-      [ "acpi" ]
-      [ "alsa-firmware" ]
-      [ "alsa-utils" ]
-      [ "android-file-transfer" ]
-      [ "android-tools" ]
-      [ "asciidoc" ]
-      [ "asciinema" ]
-      [ "aspell" ]
-      [
-        "aspellDicts"
-        "en"
+    systemPackages =
+      requirePackages [
+        # TODO(LucasTA): readd when they fix this upstream
+        # [ "snes9x-gtk" ]
+        [ "_7zz" ]
+        [ "acpi" ]
+        [ "alsa-firmware" ]
+        [ "alsa-utils" ]
+        [ "android-file-transfer" ]
+        [ "android-tools" ]
+        [ "asciidoc" ]
+        [ "asciinema" ]
+        [ "aspell" ]
+        [
+          "aspellDicts"
+          "en"
+        ]
+        [
+          "aspellDicts"
+          "pt_BR"
+        ]
+        [ "atool" ]
+        [ "automake" ]
+        [ "bash-language-server" ]
+        [ "bat" ]
+        [ "bc" ]
+        [ "bear" ]
+        [ "bluetui" ]
+        [ "bluez" ]
+        [ "bluez-alsa" ]
+        [ "brightnessctl" ]
+        [ "btop" ]
+        [ "cage" ]
+        [ "cargo" ]
+        [ "cargo-update" ]
+        [ "ccls" ]
+        [ "chafa" ]
+        [ "checkbashisms" ]
+        [ "chromium" ]
+        [ "claude-code" ]
+        [ "cliphist" ]
+        [ "cloc" ]
+        [ "cmake" ]
+        [ "csharpier" ]
+        [ "csharprepl" ]
+        [ "curl" ]
+        [ "darcs" ]
+        [ "deadnix" ]
+        [ "delta" ]
+        [ "dpkg" ]
+        [ "easyeffects" ]
+        [ "entropy" ]
+        [ "evtest" ]
+        [ "exiftool" ]
+        [ "expect" ]
+        [ "fastfetch" ]
+        [ "fd" ]
+        [ "ffmpeg" ]
+        [ "ffmpegthumbnailer" ]
+        [ "file" ]
+        [ "firefox" ]
+        [ "flac" ]
+        [ "foot" ]
+        [ "fzf" ]
+        [ "gcab" ]
+        [ "gcc" ]
+        [ "gdb" ]
+        [ "gdu" ]
+        [ "gettext" ]
+        [ "gh" ]
+        [ "gimp" ]
+        [ "git" ]
+        [ "gitui" ]
+        [ "glow" ]
+        [ "gnome-epub-thumbnailer" ]
+        [ "gnumake" ]
+        [ "go" ]
+        [ "golangci-lint" ]
+        [ "gopls" ]
+        [ "grim" ]
+        [
+          "gst_all_1"
+          "gstreamer"
+        ]
+        [ "gtk3" ]
+        [ "gtkspell3" ]
+        [ "gucharmap" ]
+        [ "guilt" ]
+        [ "handlr-regex" ]
+        [ "hexchat" ]
+        [ "highlight" ]
+        [ "htop" ]
+        [ "hunspell" ]
+        [
+          "hunspellDicts"
+          "en_US"
+        ]
+        [
+          "hunspellDicts"
+          "pt_BR"
+        ]
+        [ "hyperfine" ]
+        [ "ilspycmd" ]
+        [ "imagemagick" ]
+        [ "inkscape" ]
+        [ "jadx" ]
+        [ "jd-diff-patch" ]
+        [ "jdupes" ]
+        [ "jpegoptim" ]
+        [ "jq" ]
+        [
+          "kdePackages"
+          "kwayland"
+        ]
+        [ "keepassxc" ]
+        [ "libarchive" ]
+        [ "libnotify" ]
+        [ "libreoffice" ]
+        [ "libtool" ]
+        [ "libvdpau-va-gl" ]
+        [ "libvirt" ]
+        [ "libwebp" ]
+        [
+          "llvmPackages_18"
+          "clang"
+        ]
+        [
+          "llvmPackages_18"
+          "clang-tools"
+        ]
+        [
+          "llvmPackages_18"
+          "lld"
+        ]
+        [
+          "llvmPackages_18"
+          "llvm"
+        ]
+        [ "lsd" ]
+        [ "lsp-plugins" ]
+        [ "lua" ]
+        [ "lua-language-server" ]
+        [ "lutris" ]
+        [ "man-pages" ]
+        [ "man-pages-posix" ]
+        [ "mdcat" ]
+        [ "mediainfo" ]
+        [ "mesa-demos" ]
+        [ "meson" ]
+        [ "mpc" ]
+        [ "mpdris2" ]
+        [ "mplayer" ]
+        [ "mpv" ]
+        [
+          "mpvScripts"
+          "mpris"
+        ]
+        [ "msbuild" ]
+        [ "msitools" ]
+        [ "ncmpcpp" ]
+        [ "neovim" ]
+        [ "netcoredbg" ]
+        [ "nim" ]
+        [ "nixd" ]
+        [ "nixfmt" ]
+        [ "nodejs" ]
+        [ "nuspell" ]
+        [ "nvme-cli" ]
+        [ "obs-studio" ]
+        [ "omnisharp-roslyn" ]
+        [ "opencode" ]
+        [ "openjdk17" ]
+        [ "openjdk21" ]
+        [ "openjdk25" ]
+        [ "pandoc" ]
+        [ "parallel" ]
+        [ "patch" ]
+        [ "patchelf" ]
+        [
+          "perlPackages"
+          "NetDBus"
+        ]
+        [ "pkg-config" ]
+        [ "pkgconf" ]
+        [
+          "pkgsCross"
+          "mingwW64"
+          "stdenv"
+          "cc"
+        ]
+        [ "playerctl" ]
+        [ "poppler-utils" ]
+        [ "psmisc" ]
+        [ "pulsemixer" ]
+        [ "pyright" ]
+        [ "python3" ]
+        [
+          "python3Packages"
+          "adblock"
+        ]
+        [
+          "python3Packages"
+          "brotli"
+        ]
+        [
+          "python3Packages"
+          "evdev"
+        ]
+        [
+          "python3Packages"
+          "flake8"
+        ]
+        [
+          "python3Packages"
+          "pip"
+        ]
+        [
+          "python3Packages"
+          "pyclip"
+        ]
+        [
+          "python3Packages"
+          "pynvim"
+        ]
+        [
+          "python3Packages"
+          "websockets"
+        ]
+        [
+          "python3Packages"
+          "wheel"
+        ]
+        [ "qemu_kvm" ]
+        [ "quick-lint-js" ]
+        [ "quilt" ]
+        [ "qutebrowser" ]
+        [ "resvg" ]
+        [ "ripgrep" ]
+        [ "rlwrap" ]
+        [ "rsync" ]
+        [ "rust-analyzer" ]
+        [ "rustc" ]
+        [ "scdl" ]
+        [ "scdoc" ]
+        [ "scrcpy" ]
+        [ "seatd" ]
+        [ "shellcheck" ]
+        [ "shfmt" ]
+        [ "simple-mtpfs" ]
+        [ "slurp" ]
+        [ "speedtest-cli" ]
+        [ "spotdl" ]
+        [ "sqlite" ]
+        [ "starship" ]
+        [ "statix" ]
+        [ "strace" ]
+        [ "streamlink" ]
+        [ "stress" ]
+        [ "stylelint" ]
+        [ "stylua" ]
+        [ "telegram-desktop" ]
+        [ "testdisk" ]
+        [ "tofi" ]
+        [ "translate-shell" ]
+        [ "trash-cli" ]
+        [ "typescript" ]
+        [ "typescript-language-server" ]
+        [ "typioca" ]
+        [ "ueberzugpp" ]
+        [ "unar" ]
+        [ "unrar" ]
+        [ "valgrind" ]
+        [ "vlc" ]
+        [ "vscode-css-languageserver" ]
+        [ "vscode-langservers-extracted" ]
+        [ "vulkan-loader" ]
+        [ "vulkan-tools" ]
+        [ "w3m" ]
+        [ "wev" ]
+        [ "wget" ]
+        [ "wiggle" ]
+        [
+          "wineWow64Packages"
+          "stable"
+        ]
+        [ "winetricks" ]
+        [ "wl-clipboard" ]
+        [ "xdg-user-dirs" ]
+        [ "xdg-user-dirs-gtk" ]
+        [ "xdg-utils" ]
+        [ "xf86inputjoystick" ]
+        [ "xf86inputsynaptics" ]
+        [ "xf86videoamdgpu" ]
+        [ "xf86videoati" ]
+        [ "xprop" ]
+        [ "xrdb" ]
+        [ "xxd" ]
+        [ "xz" ]
+        [ "yt-dlp" ]
+        [ "zathura" ]
+        [
+          "zathuraPkgs"
+          "zathura_cb"
+        ]
+        [
+          "zathuraPkgs"
+          "zathura_djvu"
+        ]
+        [
+          "zathuraPkgs"
+          "zathura_pdf_mupdf"
+        ]
+        [ "zig" ]
+        [ "zip" ]
+        [ "zls" ]
+        [ "zoxide" ]
+        [ "zstd" ]
       ]
-      [
-        "aspellDicts"
-        "pt_BR"
+      ++ [ (pkgs.callPackage ./tilth.nix { }) ]
+      ++ [
+        (lib.throwIf (lib.versionAtLeast pkgs.git-revise.version "0.8.0")
+          (Color yellow
+            "nixpkgs git-revise ${pkgs.git-revise.version} signs with ssh! remove this unstable import!"
+          )
+          (pkgs.python3Packages.callPackage (builtins.fetchurl {
+            url = "https://raw.githubusercontent.com/NixOS/nixpkgs/9fd63d7c6baedb1bb1eca7e43698bf52e5a5c665/pkgs/development/python-modules/git-revise/default.nix";
+            sha256 = "sha256-kVhaplVbrpM3Dz5f5ZyHd1gHYsYlr8URyj9/1Dvrnfk=";
+          }) { })
+        )
       ]
-      [ "atool" ]
-      [ "automake" ]
-      [ "bash-language-server" ]
-      [ "bat" ]
-      [ "bc" ]
-      [ "bear" ]
-      [ "bluetui" ]
-      [ "bluez" ]
-      [ "bluez-alsa" ]
-      [ "brightnessctl" ]
-      [ "btop" ]
-      [ "cage" ]
-      [ "cargo" ]
-      [ "cargo-update" ]
-      [ "ccls" ]
-      [ "chafa" ]
-      [ "checkbashisms" ]
-      [ "chromium" ]
-      [ "claude-code" ]
-      [ "cliphist" ]
-      [ "cloc" ]
-      [ "cmake" ]
-      [ "csharpier" ]
-      [ "csharprepl" ]
-      [ "curl" ]
-      [ "darcs" ]
-      [ "deadnix" ]
-      [ "delta" ]
-      [ "dpkg" ]
-      [ "easyeffects" ]
-      [ "entropy" ]
-      [ "evtest" ]
-      [ "exiftool" ]
-      [ "expect" ]
-      [ "fastfetch" ]
-      [ "fd" ]
-      [ "ffmpeg" ]
-      [ "ffmpegthumbnailer" ]
-      [ "file" ]
-      [ "firefox" ]
-      [ "flac" ]
-      [ "foot" ]
-      [ "fzf" ]
-      [ "gcab" ]
-      [ "gcc" ]
-      [ "gdb" ]
-      [ "gdu" ]
-      [ "gettext" ]
-      [ "gh" ]
-      [ "gimp" ]
-      [ "git" ]
-      [ "git-revise" ]
-      [ "gitui" ]
-      [ "glow" ]
-      [ "gnome-epub-thumbnailer" ]
-      [ "gnumake" ]
-      [ "go" ]
-      [ "golangci-lint" ]
-      [ "gopls" ]
-      [ "grim" ]
-      [
-        "gst_all_1"
-        "gstreamer"
-      ]
-      [ "gtk3" ]
-      [ "gtkspell3" ]
-      [ "gucharmap" ]
-      [ "guilt" ]
-      [ "handlr-regex" ]
-      [ "hexchat" ]
-      [ "highlight" ]
-      [ "htop" ]
-      [ "hunspell" ]
-      [
-        "hunspellDicts"
-        "en_US"
-      ]
-      [
-        "hunspellDicts"
-        "pt_BR"
-      ]
-      [ "hyperfine" ]
-      [ "ilspycmd" ]
-      [ "imagemagick" ]
-      [ "inkscape" ]
-      [ "jadx" ]
-      [ "jd-diff-patch" ]
-      [ "jdupes" ]
-      [ "jpegoptim" ]
-      [ "jq" ]
-      [
-        "kdePackages"
-        "kwayland"
-      ]
-      [ "keepassxc" ]
-      [ "libarchive" ]
-      [ "libnotify" ]
-      [ "libreoffice" ]
-      [ "libtool" ]
-      [ "libvdpau-va-gl" ]
-      [ "libvirt" ]
-      [ "libwebp" ]
-      [
-        "llvmPackages_18"
-        "clang"
-      ]
-      [
-        "llvmPackages_18"
-        "clang-tools"
-      ]
-      [
-        "llvmPackages_18"
-        "lld"
-      ]
-      [
-        "llvmPackages_18"
-        "llvm"
-      ]
-      [ "lsd" ]
-      [ "lsp-plugins" ]
-      [ "lua" ]
-      [ "lua-language-server" ]
-      [ "lutris" ]
-      [ "man-pages" ]
-      [ "man-pages-posix" ]
-      [ "mdcat" ]
-      [ "mediainfo" ]
-      [ "mesa-demos" ]
-      [ "meson" ]
-      [ "mpc" ]
-      [ "mpdris2" ]
-      [ "mplayer" ]
-      [ "mpv" ]
-      [
-        "mpvScripts"
-        "mpris"
-      ]
-      [ "msbuild" ]
-      [ "msitools" ]
-      [ "ncmpcpp" ]
-      [ "neovim" ]
-      [ "netcoredbg" ]
-      [ "nim" ]
-      [ "nixd" ]
-      [ "nixfmt" ]
-      [ "nodejs" ]
-      [ "nuspell" ]
-      [ "nvme-cli" ]
-      [ "obs-studio" ]
-      [ "omnisharp-roslyn" ]
-      [ "opencode" ]
-      [ "openjdk17" ]
-      [ "openjdk21" ]
-      [ "openjdk25" ]
-      [ "pandoc" ]
-      [ "parallel" ]
-      [ "patch" ]
-      [ "patchelf" ]
-      [
-        "perlPackages"
-        "NetDBus"
-      ]
-      [ "pkg-config" ]
-      [ "pkgconf" ]
-      [
-        "pkgsCross"
-        "mingwW64"
-        "stdenv"
-        "cc"
-      ]
-      [ "playerctl" ]
-      [ "poppler-utils" ]
-      [ "psmisc" ]
-      [ "pulsemixer" ]
-      [ "pyright" ]
-      [ "python3" ]
-      [
-        "python3Packages"
-        "adblock"
-      ]
-      [
-        "python3Packages"
-        "brotli"
-      ]
-      [
-        "python3Packages"
-        "evdev"
-      ]
-      [
-        "python3Packages"
-        "flake8"
-      ]
-      [
-        "python3Packages"
-        "pip"
-      ]
-      [
-        "python3Packages"
-        "pyclip"
-      ]
-      [
-        "python3Packages"
-        "pynvim"
-      ]
-      [
-        "python3Packages"
-        "websockets"
-      ]
-      [
-        "python3Packages"
-        "wheel"
-      ]
-      [ "qemu_kvm" ]
-      [ "quick-lint-js" ]
-      [ "quilt" ]
-      [ "qutebrowser" ]
-      [ "resvg" ]
-      [ "ripgrep" ]
-      [ "rlwrap" ]
-      [ "rsync" ]
-      [ "rust-analyzer" ]
-      [ "rustc" ]
-      [ "scdl" ]
-      [ "scdoc" ]
-      [ "scrcpy" ]
-      [ "seatd" ]
-      [ "shellcheck" ]
-      [ "shfmt" ]
-      [ "simple-mtpfs" ]
-      [ "slurp" ]
-      [ "speedtest-cli" ]
-      [ "spotdl" ]
-      [ "sqlite" ]
-      [ "starship" ]
-      [ "statix" ]
-      [ "strace" ]
-      [ "streamlink" ]
-      [ "stress" ]
-      [ "stylelint" ]
-      [ "stylua" ]
-      [ "telegram-desktop" ]
-      [ "testdisk" ]
-      [ "tofi" ]
-      [ "translate-shell" ]
-      [ "trash-cli" ]
-      [ "typescript" ]
-      [ "typescript-language-server" ]
-      [ "typioca" ]
-      [ "ueberzugpp" ]
-      [ "unar" ]
-      [ "unrar" ]
-      [ "valgrind" ]
-      [ "vlc" ]
-      [ "vscode-css-languageserver" ]
-      [ "vscode-langservers-extracted" ]
-      [ "vulkan-loader" ]
-      [ "vulkan-tools" ]
-      [ "w3m" ]
-      [ "wev" ]
-      [ "wget" ]
-      [ "wiggle" ]
-      [
-        "wineWow64Packages"
-        "stable"
-      ]
-      [ "winetricks" ]
-      [ "wl-clipboard" ]
-      [ "xdg-user-dirs" ]
-      [ "xdg-user-dirs-gtk" ]
-      [ "xdg-utils" ]
-      [ "xf86inputjoystick" ]
-      [ "xf86inputsynaptics" ]
-      [ "xf86videoamdgpu" ]
-      [ "xf86videoati" ]
-      [ "xprop" ]
-      [ "xrdb" ]
-      [ "xxd" ]
-      [ "xz" ]
-      [ "yt-dlp" ]
-      [ "zathura" ]
-      [
-        "zathuraPkgs"
-        "zathura_cb"
-      ]
-      [
-        "zathuraPkgs"
-        "zathura_djvu"
-      ]
-      [
-        "zathuraPkgs"
-        "zathura_pdf_mupdf"
-      ]
-      [ "zig" ]
-      [ "zip" ]
-      [ "zls" ]
-      [ "zoxide" ]
-      [ "zstd" ]
-    ]
-    ++ [ (pkgs.callPackage ./tilth.nix { }) ]
-    # combined so every SDK is visible to a single bin/dotnet
-    ++ [
-      (with pkgs.dotnetCorePackages;
-        combinePackages [
-          sdk_8_0
-          sdk_9_0
-          sdk_10_0
-        ])
-    ];
+      # combined so every SDK is visible to a single bin/dotnet
+      ++ [
+        (
+          with pkgs.dotnetCorePackages;
+          combinePackages [
+            sdk_8_0
+            sdk_9_0
+            sdk_10_0
+          ]
+        )
+      ];
   };
 }
