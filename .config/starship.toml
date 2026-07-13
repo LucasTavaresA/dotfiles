@@ -1,5 +1,5 @@
 format = """
-[┌┤](bold green)$shell$username$hostname$directory$cmd_duration$git_status$git_branch$jobs$container[├](bold green)$fill
+[┌┤](bold green)$shell$nix_shell$username$hostname$directory$cmd_duration$git_status$git_branch$jobs$container[├](bold green)$fill
 [└─](bold green)$status$character
 """
 
@@ -31,6 +31,9 @@ fish_indicator = ""
 bash_indicator = "bash"
 style = "bold white"
 disabled = false # Ativa esse modulo
+
+[nix_shell]
+format = "[nix](bold italic blue) "
 
 [line_break]
 disabled = true
