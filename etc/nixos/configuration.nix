@@ -84,6 +84,15 @@ in
       mpv = super.mpv.override {
         scripts = [ self.mpvScripts.mpris ];
       };
+
+      # so my userscripts can see pyperclip
+      qutebrowser = super.qutebrowser.overrideAttrs (old: {
+        preFixup = old.preFixup + ''
+          makeWrapperArgs+=(
+            --prefix PYTHONPATH : ${self.python3Packages.pyperclip}/${self.python3.sitePackages}
+          )
+        '';
+      });
     })
   ];
 
