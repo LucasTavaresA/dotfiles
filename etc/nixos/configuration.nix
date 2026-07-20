@@ -23,16 +23,6 @@ let
   yellow = "${esc}[1;33m";
   reset = "${esc}[0m";
   Color = color: text: "${color}${text}${reset}";
-
-  bgutil-ytdlp-pot-provider =
-    lib.throwIf (pkgs.python3Packages.bgutil-ytdlp-pot-provider.meta ? mainProgram)
-      (Color yellow "python3Packages.bgutil-ytdlp-pot-provider now ships the server, use it and drop the unstable import!")
-      (
-        pkgs.python3Packages.callPackage (builtins.fetchurl {
-          url = "https://raw.githubusercontent.com/NixOS/nixpkgs/d9dc832bc54f95adae71b671e6feaed1edd91fd7/pkgs/development/python-modules/bgutil-ytdlp-pot-provider/default.nix";
-          sha256 = "sha256-VBawWr3dntTA+n8wpMtZ1IPz1DeNVat2h52/Duz02Lc=";
-        }) { }
-      );
 in
 {
   imports = [ /etc/nixos/hardware-configuration.nix ];
@@ -203,10 +193,6 @@ in
       dataDir = home;
       configDir = "${home}/.config/syncthing";
       openDefaultPorts = false;
-      extraFlags =
-        lib.throwIf (lib.versionAtLeast pkgs.syncthing.version "2.0.16")
-          (Color yellow "syncthing ${pkgs.syncthing.version} updates config to v52, remove --allow-newer-config from configuration.nix!")
-          [ "--allow-newer-config" ];
       settings = {
         devices = {
           "SM-A528B" = {
@@ -257,7 +243,7 @@ in
     # change caps lock to escape
     # make prtsc into menu/compose key for use in the window manager
     udev.extraHwdb =
-      lib.throwIf (lib.versionAtLeast pkgs.systemd.version "260.3")
+      lib.throwIf (lib.versionAtLeast pkgs.systemd.version "262")
         (Color yellow "systemd ${pkgs.systemd.version} fixes the slash key, remove KEYBOARD_KEY_9d=ro from configuration.nix!")
         ''
           evdev:atkbd:dmi:bvn*:bvr*:bd*:svnLENOVO:pn20UES5TQ00:pvr*
@@ -329,7 +315,7 @@ in
       after = [ "network.target" ];
       wantedBy = [ "default.target" ];
       serviceConfig = {
-        ExecStart = "${bgutil-ytdlp-pot-provider}/bin/bgutil-ytdlp-pot-provider";
+        ExecStart = lib.getExe pkgs.python3Packages.bgutil-ytdlp-pot-provider;
         Restart = "on-failure";
       };
     };
@@ -412,7 +398,7 @@ in
 
   environment = {
     etc."yt-dlp/plugins/bgutil/yt_dlp_plugins".source =
-      "${bgutil-ytdlp-pot-provider}/${pkgs.python3.sitePackages}/yt_dlp_plugins";
+      "${pkgs.python3Packages.bgutil-ytdlp-pot-provider}/${pkgs.python3.sitePackages}/yt_dlp_plugins";
 
     shells = [
       pkgs.dash
@@ -490,6 +476,7 @@ in
         [ "gh" ]
         [ "gimp" ]
         [ "git" ]
+        [ "git-revise" ]
         [ "gitui" ]
         [ "glow" ]
         [ "gnome-epub-thumbnailer" ]
@@ -736,17 +723,6 @@ in
         [ "zstd" ]
       ]
       ++ [ (pkgs.callPackage ./tilth.nix { }) ]
-      ++ [
-        (lib.throwIf (lib.versionAtLeast pkgs.git-revise.version "0.8.0")
-          (Color yellow "nixpkgs git-revise ${pkgs.git-revise.version} signs with ssh! remove this unstable import!")
-          (
-            pkgs.python3Packages.callPackage (builtins.fetchurl {
-              url = "https://raw.githubusercontent.com/NixOS/nixpkgs/9fd63d7c6baedb1bb1eca7e43698bf52e5a5c665/pkgs/development/python-modules/git-revise/default.nix";
-              sha256 = "sha256-kVhaplVbrpM3Dz5f5ZyHd1gHYsYlr8URyj9/1Dvrnfk=";
-            }) { }
-          )
-        )
-      ]
       # combined so every SDK is visible to a single bin/dotnet
       ++ [
         (

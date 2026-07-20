@@ -16,5 +16,5 @@
 [submodule "code/nixpkgs"]
 	path = code/nixpkgs
 	url = https://github.com/NixOS/nixpkgs
-	branch = nixos-26.05
+	branch = nixos-unstable
 	shallow = true
