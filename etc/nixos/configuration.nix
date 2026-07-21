@@ -160,8 +160,6 @@ in
       HandleLidSwitchDocked = "ignore";
     };
 
-    acpid.enable = true;
-    dbus.enable = true;
     flatpak.enable = true;
     fwupd.enable = true;
     locate.enable = true;
@@ -415,8 +413,6 @@ in
     ];
     systemPackages =
       requirePackages [
-        # TODO(LucasTA): readd when they fix this upstream
-        # [ "snes9x-gtk" ]
         [ "_7zz" ]
         [ "acpi" ]
         [ "alsa-firmware" ]
@@ -442,7 +438,6 @@ in
         [ "bear" ]
         [ "bluetui" ]
         [ "bluez" ]
-        [ "bluez-alsa" ]
         [ "brightnessctl" ]
         [ "btop" ]
         [ "cage" ]
@@ -494,12 +489,7 @@ in
         [ "golangci-lint" ]
         [ "gopls" ]
         [ "grim" ]
-        [
-          "gst_all_1"
-          "gstreamer"
-        ]
         [ "gtk3" ]
-        [ "gtkspell3" ]
         [ "gucharmap" ]
         [ "guilt" ]
         [ "handlr-regex" ]
@@ -524,34 +514,20 @@ in
         [ "jdupes" ]
         [ "jpegoptim" ]
         [ "jq" ]
-        [
-          "kdePackages"
-          "kwayland"
-        ]
         [ "keepassxc" ]
         [ "ktlint" ]
         [ "libarchive" ]
         [ "libnotify" ]
         [ "libreoffice" ]
         [ "libtool" ]
-        [ "libvdpau-va-gl" ]
-        [ "libvirt" ]
         [ "libwebp" ]
         [
-          "llvmPackages_18"
+          "llvmPackages"
           "clang"
         ]
         [
-          "llvmPackages_18"
+          "llvmPackages"
           "clang-tools"
-        ]
-        [
-          "llvmPackages_18"
-          "lld"
-        ]
-        [
-          "llvmPackages_18"
-          "llvm"
         ]
         [ "lsd" ]
         [ "lsp-plugins" ]
@@ -568,10 +544,6 @@ in
         [ "mpdris2" ]
         [ "mplayer" ]
         [ "mpv" ]
-        [
-          "mpvScripts"
-          "mpris"
-        ]
         [ "msbuild" ]
         [ "msitools" ]
         [ "ncmpcpp" ]
@@ -586,9 +558,7 @@ in
         [ "obs-studio" ]
         [ "omnisharp-roslyn" ]
         [ "opencode" ]
-        [ "openjdk17" ]
-        [ "openjdk21" ]
-        [ "openjdk25" ]
+        [ "openjdk" ]
         [ "pandoc" ]
         [ "parallel" ]
         [ "patch" ]
@@ -613,35 +583,7 @@ in
         [ "python3" ]
         [
           "python3Packages"
-          "adblock"
-        ]
-        [
-          "python3Packages"
-          "brotli"
-        ]
-        [
-          "python3Packages"
-          "evdev"
-        ]
-        [
-          "python3Packages"
           "flake8"
-        ]
-        [
-          "python3Packages"
-          "pyclip"
-        ]
-        [
-          "python3Packages"
-          "pynvim"
-        ]
-        [
-          "python3Packages"
-          "websockets"
-        ]
-        [
-          "python3Packages"
-          "wheel"
         ]
         [ "qemu_kvm" ]
         [ "quick-lint-js" ]
@@ -656,7 +598,6 @@ in
         [ "scdl" ]
         [ "scdoc" ]
         [ "scrcpy" ]
-        [ "seatd" ]
         [ "shellcheck" ]
         [ "shfmt" ]
         [ "simple-mtpfs" ]
@@ -686,7 +627,6 @@ in
         [ "uv" ]
         [ "valgrind" ]
         [ "vlc" ]
-        [ "vscode-css-languageserver" ]
         [ "vscode-langservers-extracted" ]
         [ "vulkan-loader" ]
         [ "vulkan-tools" ]
@@ -703,10 +643,6 @@ in
         [ "xdg-user-dirs" ]
         [ "xdg-user-dirs-gtk" ]
         [ "xdg-utils" ]
-        [ "xf86inputjoystick" ]
-        [ "xf86inputsynaptics" ]
-        [ "xf86videoamdgpu" ]
-        [ "xf86videoati" ]
         [ "xprop" ]
         [ "xrdb" ]
         [ "xxd" ]
