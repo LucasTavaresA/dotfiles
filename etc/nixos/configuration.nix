@@ -160,6 +160,59 @@ in
       HandleLidSwitchDocked = "ignore";
     };
 
+    keyd = {
+      enable = true;
+      keyboards.default = {
+        ids = [ "*" ];
+        extraConfig = ''
+          [global]
+          # stops any pressing if held for 300ms
+          overload_tap_timeout = 300
+
+          [main]
+          a = lettermod(control, a, 150, 200)
+          s = lettermod(shift, s, 150, 200)
+          d = lettermod(meta, d, 150, 200)
+          f = lettermod(alt, f, 150, 200)
+          h = lettermod(alt, h, 150, 200)
+          j = lettermod(meta, j, 150, 200)
+          k = lettermod(shift, k, 150, 200)
+          l = lettermod(control, l, 150, 200)
+
+          # force the home row mods
+          leftshift = noop
+          rightshift = noop
+          leftcontrol = noop
+          rightcontrol = noop
+          leftmeta = noop
+          rightmeta = noop
+          leftalt = noop
+          # rightalt is altgr, keep it for br-abnt2 symbols
+
+          # force escape for arrow keys
+          left = noop
+          down = noop
+          up = noop
+          right = noop
+
+          # hold esc for arrow hjkl, esc+shift for paging
+          esc = overload(nav, esc)
+
+          [nav]
+          leftshift = layer(shift)
+          h = left
+          j = down
+          k = up
+          l = right
+
+          [nav+shift]
+          h = home
+          j = pagedown
+          k = pageup
+          l = end
+        '';
+      };
+    };
     flatpak.enable = true;
     fwupd.enable = true;
     locate.enable = true;
