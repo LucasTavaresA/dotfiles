@@ -90,10 +90,6 @@
         "format": "{path} {free}",
         "path": "/",
     },
-    "disk#2": {
-        "format": "{path} {free}",
-        "path": "/home",
-    },
     "backlight": {
         "format": "{percent}% {icon}",
         "format-icons": ["▁", "▃", "▅", "▇"],

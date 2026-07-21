@@ -118,6 +118,7 @@ c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'
                     ,  'ala':  'https://anilist.co/search/anime?search={}&sort=SEARCH_MATCH'
                     ,  'alm':  'https://anilist.co/search/manga?search={}&sort=SEARCH_MATCH'
                     ,  'np':   'https://search.nixos.org/packages?query={}'
+                    ,  'no':   'https://search.nixos.org/options?query={}'
                     ,  'ng':   'https://noogle.dev/q/?term={}'
                     ,  'rd':   'https://doc.rust-lang.org/stable/std/?search={}'
                     ,  'aur':  'https://aur.archlinux.org/packages?O=0&SeB=nd&K={}&outdated=&SB=p&SO=d&PP=50&submit=Go'
@@ -879,3 +880,7 @@ config.set('content.javascript.enabled', True, '*://*.www.virustotal.com/*')
 config.set('content.javascript.enabled', True, '*://*.doc.rust-lang.org/*')
 config.set('content.javascript.enabled', True, '*://*.linux.die.net/*')
 config.set('content.javascript.enabled', True, '*://*.kotlinlang.org/*')
+config.set('content.javascript.enabled', True, '*://*.mynixos.com/*')
+config.set('content.javascript.enabled', True, '*://*.mvnrepository.com/*')
+config.set('content.javascript.enabled', True, '*://*.demo.hister.org/*')
+config.set('content.javascript.enabled', True, '*://*.forum.syncthing.net/*')

@@ -47,6 +47,7 @@ set jsurls.al   query => query == "" ? "https://anilist.co/" : "https://anilist.
 set jsurls.ala  query => query == "" ? "https://anilist.co/user/Lucastavares/animelist" : "https://anilist.co/search/anime?search=" + query + "&sort=SEARCH_MATCH"
 set jsurls.alm  query => query == "" ? "https://anilist.co/user/Lucastavares/mangalist" : "https://anilist.co/search/manga?search=" + query + "&sort=SEARCH_MATCH"
 set jsurls.np   query => query == "" ? "https://search.nixos.org/packages" : "https://search.nixos.org/packages?query=" + query
+set jsurls.no   query => query == "" ? "https://search.nixos.org/options" : "https://search.nixos.org/options?query=" + query
 set jsurls.ng   query => query == "" ? "https://noogle.dev/" : "https://noogle.dev/q/?term=" + query
 set jsurls.rd   query => query == "" ? "https://doc.rust-lang.org/stable/std/" : "https://doc.rust-lang.org/stable/std/?search=" + query
 set jsurls.aur  query => query == "" ? "https://aur.archlinux.org" : "https://aur.archlinux.org/packages?O=0&SeB=nd&K=" + query + "&outdated=&SB=p&SO=d&PP=50&submit=Go"

@@ -47,12 +47,6 @@ if status is-interactive
         end
     end
 
-    # Abre um processo e o separa
-    function dis
-        $argv >/dev/null 2>&1 &
-        disown
-    end
-
     # Git bare dotfiles
     function git
         if test "$(pwd)" = "$HOME"
@@ -61,7 +55,7 @@ if status is-interactive
                 case status diff log reset grep revise submodule push pull commit add \
                      restore rebase stash remote show revert fetch branch checkout \
                      rev-parse rm mv reflog ls-files ls-remote range-diff show-ref \
-                     refs update-ref
+                     refs update-ref ""
                     command git --work-tree=. --git-dir="$HOME/etc/.dotfiles/" $argv
                 case '*'
                     echo "command 'git $argv[1]' not allowed in your dotfiles"
@@ -217,9 +211,10 @@ if status is-interactive
     abbr -a -g cage cage -s --
     abbr -a -g pk pkill -i
     abbr -a -g pg pgrep -ia
+    abbr --set-cursor=% -a -g disown "% >/dev/null 2>&1 &; disown"
     abbr -a -g uma doas usermod -aG
     abbr -a -g umr doas usermod -rG
-    abbr -a -g df df -hT --total -x tmpfs -x devtmpfs
+    abbr -a -g df df -hT --total -x tmpfs -x devtmpfs -x efivarfs
     abbr -a -g tep trans en:pt
     abbr -a -g tpe trans pt:en
     abbr -a -g tje trans ja:en
@@ -268,7 +263,7 @@ if status is-interactive
     abbr -a -g nii npm info
     abbr -a -g nig npm install -g
     abbr -a -g nid npm install -D
-    abbr -a -g nixd nix develop -c fish
+    abbr -a -g nd "nix develop -i -k TERM -k COLORTERM --command (command -v fish)"
     abbr -a -g nrg npm remove -g
     abbr -a -g nrd npm remove -D
     abbr -a -g ns npm search
