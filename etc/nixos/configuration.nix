@@ -114,6 +114,9 @@ in
 
   programs = {
     fish.enable = true;
+    bash.interactiveShellInit = ''
+      unset HISTFILE
+    '';
     ssh = {
       startAgent = true;
       agentTimeout = "10m";
