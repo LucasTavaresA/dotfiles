@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "defaultMode": "default"
+  },
+  "model": "claude-opus-5",
+  "worktree": {
+    "baseRef": "fresh"
+  },
+  "enableWorkflows": true,
+  "statusLine": {
+    "type": "command",
+    "command": "fish /home/lucas/.config/claude/statusline-command.fish"
+  },
+  "effortLevel": "high",
+  "autoMemoryEnabled": false,
+  "skipWorkflowUsageWarning": true,
+  "theme": "dark",
+  "editorMode": "vim",
+  "preferredNotifChannel": "auto",
+  "autoCompactEnabled": false,
+  "useAutoModeDuringPlan": false
+}

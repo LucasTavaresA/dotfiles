@@ -84,7 +84,11 @@
 .config/olivevideoeditor.org/
 .config/go/telemetry/
 .config/BraveSoftware/
-.config/claude/
+.config/claude/*
+!.config/claude/CLAUDE.md
+!.config/claude/settings.json
+!.config/claude/keybindings.json
+!.config/claude/statusline-command.fish
 .config/google-chrome/
 .config/microsoft-edge/
 .config/opera/
