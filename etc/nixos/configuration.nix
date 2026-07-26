@@ -396,7 +396,6 @@ in
       dockerCompat = true;
       defaultNetwork.settings.dns_enabled = true;
     };
-    containers.registries.search = [ "docker.io" ];
   };
 
   xdg.portal = {
