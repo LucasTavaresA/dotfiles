@@ -119,7 +119,8 @@ in
     '';
     ssh = {
       startAgent = true;
-      agentTimeout = "10m";
+      enableAskPassword = true;
+      askPassword = "${pkgs.openssh-askpass}/libexec/gtk-ssh-askpass";
     };
     sway = {
       enable = true;
