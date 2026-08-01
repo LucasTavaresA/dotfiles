@@ -17,8 +17,9 @@ echo "$input" | jq -r '[
     (.vim.mode // ""),
     (.context_window.used_percentage // ""),
     (.rate_limits.five_hour.used_percentage // ""),
+    (.rate_limits.five_hour.resets_at // ""),
     (.rate_limits.seven_day.used_percentage // "")
-] | @tsv' | read -d \t -l cwd model effort vim_mode context_used 5h_used week_used
+] | @tsv' | read -d \t -l cwd model effort vim_mode context_used 5h_used 5h_reset_timestamp week_used
 
 set user $USER
 set short_cwd (prompt_pwd --dir-length=1 --full-length-dirs=4 "$cwd")
@@ -63,6 +64,10 @@ set ctx ""
 
 set limits ""
 [ -n "$5h_used" ] && set limits "$limits"(printf " 5h:%.0f%%" "$5h_used")
+if [ -n "$5h_reset_timestamp" ]
+    set 5h_resets_at (date -d "@$5h_reset_timestamp" +%X 2>/dev/null | string replace -r '^(\d{1,2}:\d{2}):\d{2}' '$1')
+    [ -n "$5h_resets_at" ] && set limits "$limits"(printf " (resets at %s)" "$5h_resets_at")
+end
 [ -n "$week_used" ] && set limits "$limits"(printf " 7d:%.0f%%" "$week_used")
 
 #### status line ####
