@@ -8,7 +8,7 @@
 
 [gpg "ssh"]
 	allowedSignersFile = /home/lucas/.config/git/allowed_signers
-	program = /run/current-system/sw/bin/git-ssh-sign
+	program = /home/lucas/code/shellscripts/git-ssh-sign
 
 [init]
 	defaultBranch = main
