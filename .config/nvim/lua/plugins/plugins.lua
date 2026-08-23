@@ -173,8 +173,6 @@ return {
 		lazy = false,
 		config = true,
 	},
-	-- balanceia parenteses
-	{ "gpanders/nvim-parinfer", lazy = false },
 
 	--- Aparência
 	{
