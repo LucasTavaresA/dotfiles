@@ -63,7 +63,6 @@ export MERGEPROG="nvim -d"
 export EDITOR="nvim"
 export VISUAL="foot -T nvim -a nvim nvim"
 export LC_TIME="pt_BR.UTF-8"
-export DO_NOT_TRACK=1
 export OPENCODE_EXPERIMENTAL_LSP_TOOL=true
 export OPENCODE_ENABLE_EXA=1
 export CLAUDE_CONFIG_DIR=$HOME/.config/claude

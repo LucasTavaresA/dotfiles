@@ -78,4 +78,4 @@ if [ -n "$git_branch" ]
 end
 
 printf "%b" "$vim_mode"
-printf " $dim%s %s%s%s$reset" "$model" "on $effort effort" "$ctx" "$limits"
+printf " %s %s%s%s" "$model" "on $effort effort" "$ctx" "$limits"
