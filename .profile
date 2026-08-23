@@ -7,7 +7,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_RUNTIME_DIR="/run/user/$(id -u)"
-export WM="sway"
+export WM="mahogany"
 export TERMINAL="foot"
 export BROWSER="qutebrowser"
 export THREADS="$(nproc)"
@@ -75,11 +75,11 @@ export PATH="$HOME/code/rust/orgmenu:$PATH"
 #### Startup ####
 case "$-" in
 	*i*)
-		if [ "$(tty)" = "/dev/tty1" ]; then
+		if [ "$(tty)" = "/dev/tty1" ] && command -v "$WM" >/dev/null 2>&1; then
 			# detach from the console VT so child processes
 			# fail isatty() and spawn terminal apps in a real terminal
 			# this also logs to journalctl
-			exec systemd-cat -t sway sway </dev/null
+			exec systemd-cat -t "$WM" "$WM" </dev/null
 		else
 			exec fish
 		fi

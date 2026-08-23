@@ -129,6 +129,7 @@ in
         [ "mako" ]
         [ "swayidle" ]
         [ "swaylock" ]
+        [ "swaybg" ]
         [ "waybar" ]
         [ "xwayland" ]
         [ "sway-audio-idle-inhibit" ]
@@ -407,6 +408,12 @@ in
       "wlr"
       "gtk"
     ];
+    config.mahogany = {
+      default = [ "gtk" ];
+      "org.freedesktop.impl.portal.ScreenCast" = "wlr";
+      "org.freedesktop.impl.portal.Screenshot" = "wlr";
+      "org.freedesktop.impl.portal.Inhibit" = "none";
+    };
   };
 
   users.users = {
@@ -699,6 +706,27 @@ in
         [ "zstd" ]
       ]
       ++ [ (pkgs.callPackage ./tilth.nix { }) ]
+      ++ [
+        (
+          let
+            sanitize = true;
+          in
+          pkgs.callPackage ./mahogany.nix {
+            inherit sanitize;
+            patches = /. + "${home}/code/mahogany/patches";
+            patchesExcept = [ ];
+            skipInitFile = false;
+            runTests = true;
+            wlroots_0_20 = pkgs.callPackage ./wlroots.nix {
+              wlroots = pkgs.wlroots_0_20;
+              inherit sanitize;
+              trace = true;
+              patches = /. + "${home}/code/mahogany/wlroots_patches";
+              patchesExcept = [ ];
+            };
+          }
+        )
+      ]
       # combined so every SDK is visible to a single bin/dotnet
       ++ [
         (
