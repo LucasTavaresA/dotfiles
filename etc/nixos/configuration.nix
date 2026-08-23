@@ -531,7 +531,6 @@ in
         [ "gucharmap" ]
         [ "guilt" ]
         [ "handlr-regex" ]
-        [ "hexchat" ]
         [ "highlight" ]
         [ "htop" ]
         [ "hunspell" ]
@@ -677,6 +676,7 @@ in
           "stable"
         ]
         [ "winetricks" ]
+        [ "wl-clip-persist" ]
         [ "wl-clipboard" ]
         [ "xdg-user-dirs" ]
         [ "xdg-user-dirs-gtk" ]

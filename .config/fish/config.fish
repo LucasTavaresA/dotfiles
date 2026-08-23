@@ -218,7 +218,7 @@ if status is-interactive
     abbr -a -g cage cage -s --
     abbr -a -g pk pkill -i
     abbr -a -g pg pgrep -ia
-    abbr --set-cursor=% -a -g disown "% >/dev/null 2>&1 &; disown"
+    abbr --set-cursor=% -a -g dis "% >/dev/null 2>&1 &; disown"
     abbr -a -g uma doas usermod -aG
     abbr -a -g umr doas usermod -rG
     abbr -a -g df df -hT --total -x tmpfs -x devtmpfs -x efivarfs
@@ -270,7 +270,7 @@ if status is-interactive
     abbr -a -g nii npm info
     abbr -a -g nig npm install -g
     abbr -a -g nid npm install -D
-    abbr -a -g nd "nix develop -i -k TERM -k COLORTERM --command (command -v fish)"
+    abbr -a -g nd "nix develop -i -k TERM -k COLORTERM --command (command -v fish) --no-config"
     abbr -a -g nrg npm remove -g
     abbr -a -g nrd npm remove -D
     abbr -a -g ns npm search
@@ -303,6 +303,7 @@ if status is-interactive
     abbr -a -g gap git add -p
     abbr -a -g gba git branch -a
     abbr -a -g gbd git branch -d
+    abbr -a -g gbm git branch -m
     abbr -a -g gc git clone
     abbr -a -g gcd git clone --depth
     abbr -a -g gcr git clone --recurse-submodules

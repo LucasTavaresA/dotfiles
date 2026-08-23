@@ -89,6 +89,7 @@
 !.config/claude/settings.json
 !.config/claude/keybindings.json
 !.config/claude/statusline-command.fish
+.config/enchant/
 .config/google-chrome/
 .config/microsoft-edge/
 .config/opera/
@@ -106,6 +107,7 @@ code/python
 code/stuff
 code/Android/
 code/mahogany/
+code/rust/
 documentos/
 etc/.dotfiles/
 Downloads/
