@@ -705,7 +705,6 @@ in
         [ "zoxide" ]
         [ "zstd" ]
       ]
-      ++ [ (pkgs.callPackage ./tilth.nix { }) ]
       ++ [
         (
           let
