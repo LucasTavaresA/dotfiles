@@ -60,6 +60,13 @@ if status is-interactive
                 case '*'
                     echo "command 'git $argv[1]' not allowed in your dotfiles"
             end
+        else if string match -q "$HOME/code/nixpkgs" (pwd); or string match -q "$HOME/code/nixpkgs/*" (pwd)
+            if test "$argv[1]" = pull
+                command git fetch --depth=1 origin nixos-unstable
+                and command git reset --hard FETCH_HEAD
+            else
+                command git $argv
+            end
         else
             command git $argv
         end
