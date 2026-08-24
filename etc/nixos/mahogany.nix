@@ -6,7 +6,8 @@
 # hash          = "sha256-...";  its hash, lib.fakeHash to have nix print the real one
 # localSrc      = null;          build from this path instead, null fetches rev from github
 # localRev      = null;          a ref inside localSrc to build, null builds its working tree
-# patches       = null;          applies patches from this folder, null for stock upstream
+# patches       = null;          applies patches from this folder, null pulls using git
+# patchesOnly   = [ ];           includes only patches whose filename starts with one of these strings
 # patchesExcept = [ ];           excludes patches whose filename starts with one of these strings
 # skipInitFile  = false;         passes -q, so ~/.config/mahogany/init.lisp is never loaded
 # runTests      = false;         runs mahogany tests, stops on failure
@@ -41,6 +42,7 @@
   localSrc ? null,
   localRev ? null,
   patches ? null,
+  patchesOnly ? [ ],
   patchesExcept ? [ ],
   skipInitFile ? false,
   runTests ? false,
@@ -74,12 +76,16 @@ let
       localRev
     )
     (checkType "patches" (orNull lib.isPath)
-      "a path to a folder, whose *.patch files are applied to the source in filename order, or null to build it untouched"
+      "a path to a folder, whose *.patch files are applied to the source in filename order, or null to pull with git"
       patches
     )
     (checkType "patchesExcept" isStringList
       "a list of strings, each dropping every patch in `patches` whose filename starts with it"
       patchesExcept
+    )
+    (checkType "patchesOnly" isStringList
+      "a list of strings, each adding every patch in `patches` whose filename starts with it"
+      patchesOnly
     )
     (checkType "skipInitFile" lib.isBool
       "a bool, true passing -q so that ~/.config/mahogany/init.lisp is never loaded"
@@ -139,16 +145,24 @@ let
   };
 
   selectPatches =
-    dir: except:
+    dir: pred:
     map (file: dir + "/${file}") (
-      lib.filter (file: !(lib.any (prefix: lib.hasPrefix prefix file) except)) (
+      lib.filter pred (
         lib.optionals (dir != null) (
           lib.filter (lib.hasSuffix ".patch") (lib.attrNames (builtins.readDir dir))
         )
       )
     );
 
-  mahoganyPatches = selectPatches patches patchesExcept;
+  matchesAny = prefixes: file: lib.any (prefix: lib.hasPrefix prefix file) prefixes;
+
+  mahoganyPatches =
+    if patchesExcept != [ ] && patchesOnly != [ ] then
+      throw "mahogany.nix: patchesExcept and patchesOnly are both set, you can only use one at a time"
+    else if patchesOnly != [ ] then
+      selectPatches patches (matchesAny patchesOnly)
+    else
+      selectPatches patches (file: !(matchesAny patchesExcept file));
 
   cl-interactive = fetchFromGitHub {
     owner = "sdilts";

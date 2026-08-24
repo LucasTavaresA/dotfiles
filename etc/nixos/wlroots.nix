@@ -8,6 +8,7 @@
 # sanitize      = false;         builds with ASan and UBSan
 # trace         = false;         builds keeping debug info for readable backtraces
 # patches       = null;          applies patches from this folder, null for stock nixpkgs
+# patchesOnly   = [ ];           adds patches that start with one of these strings
 # patchesExcept = [ ];           excludes patches that start with one of these strings
 {
   lib,
@@ -16,6 +17,7 @@
   sanitize ? false,
   trace ? false,
   patches ? null,
+  patchesOnly ? [ ],
   patchesExcept ? [ ],
 }:
 
@@ -40,15 +42,30 @@ let
       "a list of strings, each dropping every patch in `patches` whose filename starts with it"
       patchesExcept
     )
+    (checkType "patchesOnly" (
+      value: lib.isList value && lib.all lib.isString value
+    ) "a list of strings, each adds every patch in `patches` whose filename starts with it" patchesOnly)
   ] null;
 
-  selectedPatches = map (file: patches + "/${file}") (
-    lib.filter (file: !(lib.any (prefix: lib.hasPrefix prefix file) patchesExcept)) (
-      lib.optionals (patches != null) (
-        lib.filter (lib.hasSuffix ".patch") (lib.attrNames (builtins.readDir patches))
+  selectPatches =
+    dir: pred:
+    map (file: dir + "/${file}") (
+      lib.filter pred (
+        lib.optionals (dir != null) (
+          lib.filter (lib.hasSuffix ".patch") (lib.attrNames (builtins.readDir dir))
+        )
       )
-    )
-  );
+    );
+
+  matchesAny = prefixes: file: lib.any (prefix: lib.hasPrefix prefix file) prefixes;
+
+  wlrootsPatches =
+    if patchesExcept != [ ] && patchesOnly != [ ] then
+      throw "wlroots.nix: patchesExcept and patchesOnly are both set, you can only use one at a time"
+    else if patchesOnly != [ ] then
+      selectPatches patches (matchesAny patchesOnly)
+    else
+      selectPatches patches (file: !(matchesAny patchesExcept file));
 
   asanCFlags = lib.concatStringsSep " " [
     "-fsanitize=address"
@@ -71,7 +88,7 @@ lib.seq checkedArgs (
   wlroots.overrideAttrs (
     prev:
     {
-      patches = (prev.patches or [ ]) ++ selectedPatches;
+      patches = (prev.patches or [ ]) ++ wlrootsPatches;
 
       mesonFlags =
         (prev.mesonFlags or [ ])
@@ -82,24 +99,23 @@ lib.seq checkedArgs (
           "-Doptimization=1"
           "-Ddebug=true"
         ];
-
+    }
+    // lib.optionalAttrs (sanitize || trace) {
       env = (prev.env or { }) // {
         NIX_CFLAGS_COMPILE = lib.concatStringsSep " " ([ (prev.env.NIX_CFLAGS_COMPILE or "") ] ++ cflags);
       };
 
-      # so a fortify abort doesn't replace asan's report
-      hardeningDisable =
-        (prev.hardeningDisable or [ ])
-        ++ lib.optionals sanitize [
-          "fortify"
-          "fortify3"
-        ];
+      dontStrip = true;
 
-      dontStrip = sanitize || trace;
-    }
-    // lib.optionalAttrs (sanitize || trace) {
       version = prev.version + lib.optionalString sanitize "-asan" + lib.optionalString trace "-trace";
       __intentionallyOverridingVersion = true;
+    }
+    // lib.optionalAttrs sanitize {
+      # so a fortify abort doesn't replace asan's report
+      hardeningDisable = (prev.hardeningDisable or [ ]) ++ [
+        "fortify"
+        "fortify3"
+      ];
     }
   )
 )
