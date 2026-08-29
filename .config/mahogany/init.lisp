@@ -283,10 +283,8 @@
   (dolist (cmd '("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
                  "wl-paste --watch cliphist store"
                  "wl-clip-persist --clipboard regular"
-                 "mako"
                  "swaybg -i $HOME/media/imagens/wallpapers/stsr1.png -m fill >$XDG_CACHE_HOME/swaybg.log 2>&1"
                  "pgrep -fx sway-audio-idle-inhibit || sway-audio-idle-inhibit"
-                 "pgrep -x playerctld || playerctld daemon"
                  "waybar"
                  "pgrep -fx 'sh /home/lucas/code/shellscripts/notify-bat' || notify-bat"))
     (uiop:launch-program cmd)))
