@@ -788,7 +788,10 @@ in
           in
           pkgs.callPackage ./mahogany.nix {
             inherit sanitize;
+            # localSrc = /. + "${home}/code/mahogany/mahogany";
+            # localRev = null;
             patches = /. + "${home}/code/mahogany/patches";
+            patchesOnly = [ ];
             patchesExcept = [ ];
             skipInitFile = false;
             runTests = true;
@@ -797,6 +800,7 @@ in
               inherit sanitize;
               trace = true;
               patches = /. + "${home}/code/mahogany/wlroots_patches";
+              patchesOnly = [ ];
               patchesExcept = [ ];
             };
           }

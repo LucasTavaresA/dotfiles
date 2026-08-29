@@ -42,7 +42,7 @@
 (defexec menu-clip     "cliphist list | tofi | cliphist decode | wl-copy")
 (defexec menu-calc     "foot -T calculadora -a calculadora python")
 (defexec menu-edit     "foot -T nvim -a nvim nvim ~/documentos/")
-(defexec menu-emoji    "foot -T float -a float fzf_emojis")
+(defexec menu-emoji    "emojis")
 (defexec menu-browser  "qutebrowser")
 (defexec menu-htop     "foot -T float -a float htop")
 (defexec menu-lock     "swaylock -c 000000ff --scaling fill")

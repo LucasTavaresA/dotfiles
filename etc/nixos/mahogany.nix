@@ -37,8 +37,8 @@
   wayland-protocols,
   wlroots_0_20,
 
-  rev ? "d2741f4179f78d9e741fd79abe86b0a6c79b9db1",
-  hash ? "sha256-URpVuzrutI8kEEbJvPdaeem2Ms+sCGqzO7m6rV9AR0k=",
+  rev ? "a59a2001932cab8f5e04e959e6322709492c38e1",
+  hash ? "sha256-FJ856jc7oaR8jdOB3K8OqJH/8qHVSANHRCF0mtWbkgQ=",
   localSrc ? null,
   localRev ? null,
   patches ? null,
@@ -285,7 +285,7 @@ lib.seq checkedArgs (
     {
       pname = "mahogany";
       version =
-        "0.0.1-unstable-2026-08-22"
+        "0.0.1-unstable-2026-08-26"
         + lib.optionalString (localSrc != null) "-local"
         + lib.optionalString sanitize "-asan";
 
