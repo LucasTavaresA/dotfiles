@@ -16,13 +16,14 @@
   (xkb:with-xkb-rule-names (rules (:layout "br" :variant "abnt2"))
     (mh::mahogany-set-keymap mh::*compositor-state* :rules rules)))
 
-(config-system:set-config
-  mh::keyboard-repeat-rate 100
-  mh::keyboard-repeat-delay 300
-  ;; NOTE(LucasTA): these depend on a patch
-  mh::touchpad-tap-to-click t
-  mh::touchpad-disable-while-typing t
-  mh::touchpad-accel-speed 0.3)
+(pcall "settings"
+  (config-system:set-config
+    mh::keyboard-repeat-rate 100
+    mh::keyboard-repeat-delay 300
+    ;; NOTE(LucasTA): these depend on a patch
+    mh::touchpad-tap-to-click t
+    mh::touchpad-disable-while-typing t
+    mh::touchpad-accel-speed 0.3))
 
 (pcall "terminal"
   (let ((term (uiop:getenvp "TERMINAL")))
@@ -155,7 +156,7 @@
   "Remove FRAME, a view-frame, and move focus to a surviving neighbour."
   (let ((parent (mahogany/tree:frame-parent frame))
         (group (mh::state-current-group state)))
-    (if (not (typep parent 'mahogany/tree:tree-frame))
+    (if (mahogany/tree:topmost-frame-p frame)
         (error 'mahogany/util:invalid-operation
                :text "Only frame on this output")
         (let* ((sibling (find-if (lambda (child) (not (eq child frame)))
@@ -198,7 +199,10 @@
   (:method ()
     (let* ((state mh::*compositor-state*)
            (frame (mh::state-current-frame state))
-           (view (and frame (mahogany/tree:frame-view frame))))
+           (view (typecase frame
+                   ((or mahogany/tree:view-frame mahogany/tree:output-node)
+                    (mahogany/tree:frame-view frame))
+                   (t nil))))
       (when view
         (mh::mahogany-state-view-fullscreen
          state view
