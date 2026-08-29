@@ -287,7 +287,6 @@
                  "swaybg -i $HOME/media/imagens/wallpapers/stsr1.png -m fill >$XDG_CACHE_HOME/swaybg.log 2>&1"
                  "pgrep -fx sway-audio-idle-inhibit || sway-audio-idle-inhibit"
                  "pgrep -x playerctld || playerctld daemon"
-                 "pgrep -x mpDris2 || mpDris2 --music-dir=$HOME/media/musicas/ >$XDG_CACHE_HOME/mpdris2.log 2>&1"
                  "waybar"
                  "pgrep -fx 'sh /home/lucas/code/shellscripts/notify-bat' || notify-bat"))
     (uiop:launch-program cmd)))

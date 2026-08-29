@@ -214,7 +214,6 @@ exec mako
 # exec easyeffects
 exec pgrep -fx sway-audio-idle-inhibit || sway-audio-idle-inhibit
 exec pgrep -x "playerctld" || playerctld daemon
-exec pgrep -x "mpDris2" || mpDris2 --music-dir="$HOME/media/musicas/" >"$XDG_CACHE_HOME/mpdris2.log" 2>&1 &
 exec pgrep -fx "sh $HOME/code/shellscripts/notify-bat" || notify-bat
 
 ## Barra

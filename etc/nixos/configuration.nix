@@ -311,52 +311,66 @@ in
       "/home/lucas"
     ];
 
-    user.services.mpd = {
-      description = "Music Player Daemon";
-      after = [
-        "pipewire.service"
-        "network.target"
-      ];
-      wantedBy = [ "default.target" ];
+    user.services = {
+      mpd = {
+        description = "Music Player Daemon";
+        after = [
+          "pipewire.service"
+          "network.target"
+        ];
+        wantedBy = [ "default.target" ];
 
-      serviceConfig =
-        let
-          mpdDataDir = "${home}/.config/mpd";
-          mpdConf = pkgs.writeText "mpd.conf" ''
-            music_directory        "${home}/media/musicas"
-            playlist_directory     "${mpdDataDir}/playlists"
-            db_file                "${mpdDataDir}/database"
-            state_file             "${mpdDataDir}/state"
-            sticker_file           "${mpdDataDir}/sticker.sql"
+        serviceConfig =
+          let
+            mpdDataDir = "${home}/.config/mpd";
+            mpdConf = pkgs.writeText "mpd.conf" ''
+              music_directory        "${home}/media/musicas"
+              playlist_directory     "${mpdDataDir}/playlists"
+              db_file                "${mpdDataDir}/database"
+              state_file             "${mpdDataDir}/state"
+              sticker_file           "${mpdDataDir}/sticker.sql"
 
-            bind_to_address        "127.0.0.1"
-            auto_update            "yes"
-            restore_paused         "yes"
-            max_output_buffer_size "16384"
+              bind_to_address        "127.0.0.1"
+              bind_to_address        "::1"
+              auto_update            "yes"
+              restore_paused         "yes"
+              max_output_buffer_size "16384"
 
-            audio_output {
-                type "pipewire"
-                name "PipeWire Sound Server"
-            }
-          '';
-        in
-        {
-          Type = "notify";
-          ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p ${mpdDataDir}/playlists";
-          ExecStart = "${pkgs.mpd}/bin/mpd --systemd ${mpdConf}";
-          ExecStartPost = "${pkgs.mpc}/bin/mpc update";
+              audio_output {
+                  type "pipewire"
+                  name "PipeWire Sound Server"
+              }
+            '';
+          in
+          {
+            Type = "notify";
+            ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p ${mpdDataDir}/playlists";
+            ExecStart = "${pkgs.mpd}/bin/mpd --systemd ${mpdConf}";
+            ExecStartPost = "${pkgs.mpc}/bin/mpc update";
+            Restart = "on-failure";
+          };
+      };
+
+      mpDris2 = {
+        description = "mpDris2 - Music Player Daemon D-Bus bridge";
+        after = [ "mpd.service" ];
+        wants = [ "mpd.service" ];
+        wantedBy = [ "default.target" ];
+        serviceConfig = {
+          ExecStart = "${pkgs.mpdris2}/bin/mpDris2 --use-journal --music-dir=${home}/media/musicas";
           Restart = "on-failure";
         };
-    };
+      };
 
-    # yt-dlp needs proof-of-origin tokens for full-quality youtube formats
-    user.services.bgutil-pot-provider = {
-      description = "POT token server for yt-dlp";
-      after = [ "network.target" ];
-      wantedBy = [ "default.target" ];
-      serviceConfig = {
-        ExecStart = lib.getExe pkgs.python3Packages.bgutil-ytdlp-pot-provider;
-        Restart = "on-failure";
+      # yt-dlp needs proof-of-origin tokens for full-quality youtube formats
+      bgutil-pot-provider = {
+        description = "POT token server for yt-dlp";
+        after = [ "network.target" ];
+        wantedBy = [ "default.target" ];
+        serviceConfig = {
+          ExecStart = lib.getExe pkgs.python3Packages.bgutil-ytdlp-pot-provider;
+          Restart = "on-failure";
+        };
       };
     };
   };
@@ -578,7 +592,6 @@ in
         [ "mesa-demos" ]
         [ "meson" ]
         [ "mpc" ]
-        [ "mpdris2" ]
         [ "mplayer" ]
         [ "mpv" ]
         [ "msbuild" ]
