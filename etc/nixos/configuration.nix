@@ -359,6 +359,7 @@ in
           "network.target"
         ];
         wantedBy = [ "default.target" ];
+        unitConfig.ConditionUser = user;
 
         serviceConfig =
           let
@@ -396,6 +397,7 @@ in
         after = [ "mpd.service" ];
         wants = [ "mpd.service" ];
         wantedBy = [ "default.target" ];
+        unitConfig.ConditionUser = user;
         serviceConfig = {
           ExecStart = "${pkgs.mpdris2}/bin/mpDris2 --use-journal --music-dir=${home}/media/musicas";
           Restart = "on-failure";
@@ -407,6 +409,7 @@ in
         description = "POT token server for yt-dlp";
         after = [ "network.target" ];
         wantedBy = [ "default.target" ];
+        unitConfig.ConditionUser = user;
         serviceConfig = {
           ExecStart = lib.getExe pkgs.python3Packages.bgutil-ytdlp-pot-provider;
           Restart = "on-failure";
