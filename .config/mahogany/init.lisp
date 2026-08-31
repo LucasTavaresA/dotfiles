@@ -276,14 +276,12 @@
     (mh:kbd "XF86MonBrightnessDown") #'brightness-down))
 
 (once "startup"
-  (dolist (cmd '("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-                 "wl-paste --watch cliphist store"
-                 "wl-clip-persist --clipboard regular"
-                 "swaybg -i $HOME/media/imagens/wallpapers/stsr1.png -m fill >$XDG_CACHE_HOME/swaybg.log 2>&1"
-                 "pgrep -fx sway-audio-idle-inhibit || sway-audio-idle-inhibit"
-                 "waybar"
-                 "pgrep -fx 'sh /home/lucas/code/shellscripts/notify-bat' || notify-bat"))
-    (uiop:launch-program cmd)))
+  (uiop:launch-program
+   (format nil "systemd-cat -t mahogany-session sh -c '~{~a~^; ~}'"
+           (list "export SYSTEMD_LOG_TARGET=console"
+                 "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+                 "systemctl --user stop graphical-session.target"
+                 "systemctl --user start wayland-session.target"))))
 
 ;; missing things to look at:
 ;;

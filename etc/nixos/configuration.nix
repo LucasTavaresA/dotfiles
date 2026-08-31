@@ -42,6 +42,15 @@ let
   user = "lucas";
   home = "/home/${user}";
 
+  sessionService = description: command: {
+    inherit description;
+    unitConfig.ConditionUser = user;
+    after = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
+    wantedBy = [ "wayland-session.target" ];
+    serviceConfig.ExecStart = "${pkgs.dash}/bin/dash -lc 'exec ${command}'";
+  };
+
   esc = builtins.fromJSON ''"\u001b"'';
   yellow = "${esc}[1;33m";
   reset = "${esc}[0m";
@@ -351,7 +360,22 @@ in
       "/home/lucas"
     ];
 
+    user.targets.wayland-session = {
+      description = "wayland compositor session";
+      documentation = [ "man:systemd.special(7)" ];
+      bindsTo = [ "graphical-session.target" ];
+      wants = [ "graphical-session-pre.target" ];
+      after = [ "graphical-session-pre.target" ];
+    };
+
     user.services = {
+      notify-bat = sessionService "Battery threshold notifications" "${home}/code/shellscripts/notify-bat";
+      sway-audio-idle-inhibit = sessionService "Inhibit idle while audio is playing" "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit";
+      waybar = sessionService "Wayland status bar" "${pkgs.waybar}/bin/waybar";
+      swaybg = sessionService "Wallpaper" "${pkgs.swaybg}/bin/swaybg -i ${home}/media/imagens/wallpapers/stsr1.png -m fill";
+      cliphist = sessionService "Clipboard history" "${pkgs.wl-clipboard}/bin/wl-paste --watch ${pkgs.cliphist}/bin/cliphist store";
+      wl-clip-persist = sessionService "Keep clipboard contents after the source window closes" "${pkgs.wl-clip-persist}/bin/wl-clip-persist --clipboard regular";
+
       mpd = {
         description = "Music Player Daemon";
         after = [
