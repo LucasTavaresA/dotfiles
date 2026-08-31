@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   pkgPath = pkg: "pkgs.${lib.concatStringsSep "." pkg}";
@@ -13,6 +18,24 @@ let
     url = "https://raw.githubusercontent.com/StevenBlack/hosts/f0c1e878685f647bac77f6ed81980379318ee7c3/alternates/gambling/hosts";
     hash = "sha256-WkYgwQBPhFx19cIAKVJvseF5jRV4WLelJkNvxAikvSM=";
   };
+
+  mahoganyDesktop = pkgs.writeText "mahogany.desktop" ''
+    [Desktop Entry]
+    Name=Mahogany
+    Comment=A tiling window manager for Wayland modeled after StumpWM
+    Exec=systemd-cat --identifier=mahogany mahogany
+    Type=Application
+    DesktopNames=mahogany;wlroots
+  '';
+
+  mahoganySession =
+    pkgs.runCommand "mahogany-session"
+      {
+        passthru.providedSessions = [ "mahogany" ];
+      }
+      ''
+        install -Dm644 ${mahoganyDesktop} $out/share/wayland-sessions/mahogany.desktop
+      '';
 
   GB = 1024;
 
@@ -159,6 +182,23 @@ in
   };
 
   services = {
+    displayManager = {
+      sessionPackages = [ mahoganySession ];
+      defaultSession = "mahogany";
+    };
+
+    greetd = {
+      enable = true;
+      useTextGreeter = true;
+      settings.default_session.command = lib.concatStringsSep " " [
+        (lib.getExe pkgs.tuigreet)
+        "--time"
+        "--remember"
+        "--remember-session"
+        "--sessions ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions"
+      ];
+    };
+
     logind.settings.Login = {
       HandleLidSwitch = "ignore";
       HandleLidSwitchExternalPower = "ignore";
