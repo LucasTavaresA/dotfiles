@@ -485,10 +485,6 @@ in
     enable = true;
     wlr.enable = true;
     extraPortals = requirePackages [ [ "xdg-desktop-portal-gtk" ] ];
-    config.common.default = [
-      "wlr"
-      "gtk"
-    ];
     config.mahogany = {
       default = [ "gtk" ];
       "org.freedesktop.impl.portal.ScreenCast" = "wlr";
