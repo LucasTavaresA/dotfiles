@@ -212,7 +212,7 @@ exec systemd-cat -t sway-session sh -c \
  systemctl --user stop graphical-session.target; \
  systemctl --user start wayland-session.target'
 exec systemd-cat -t swayrd swayrd
-exec systemd-cat -t swayidle swayidle -w timeout 500 'swaymsg "output * power off"' resume 'swaymsg "output * power on"'
+exec systemd-cat -t swayidle swayidle -w timeout 500 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' before-sleep 'swaylock -c 000000ff --scaling fill -f'
 # exec easyeffects
 
 ## Barra
