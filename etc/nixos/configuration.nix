@@ -288,6 +288,10 @@ in
             autoAcceptFolders = true;
             id = "QHXWC4X-SFUJA2W-HKWVPKK-EMZMTRM-XXAM6OL-Y5NAZ6E-4G25RN7-OSOKNAL";
           };
+          "SM-A528B (termux)" = {
+            autoAcceptFolders = false;
+            id = "Y7NAMYA-C42HHCT-OCLFU7R-ENJLJYZ-XNNTCFJ-IZNLBUC-POGTD4I-FI6RWQH";
+          };
         };
         folders =
           lib.mapAttrs'
@@ -311,6 +315,14 @@ in
               "/media/lit" = { };
               "/documentos" = { };
               "/media/imagens" = { };
+            }
+            // {
+              "${home}/code/Android/repos/" = {
+                id = "repos";
+                label = "repos";
+                devices = [ "SM-A528B (termux)" ];
+                versioning = null;
+              };
             };
       };
     };
