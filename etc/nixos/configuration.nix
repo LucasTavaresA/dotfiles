@@ -818,6 +818,14 @@ in
           }
         )
       ]
+      ++ [
+        (pkgs.retroarch.withCores (
+          cores: with cores; [
+            genesis-plus-gx
+            snes9x
+          ]
+        ))
+      ]
       # combined so every SDK is visible to a single bin/dotnet
       ++ [
         (
