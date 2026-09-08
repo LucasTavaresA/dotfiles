@@ -227,7 +227,9 @@ let
     "quarantine_size_mb=1024"
     "redzone=64"
     "max_redzone=2048"
-    "strict_string_checks=1"
+    # NOTE(LucasTA): strict_string_checks=1 makes strndup(s, n) crash on X11 strings.
+    # They are not null terminated strings and get padded with zeros down to multiples of 4,
+    # ASan checks for null termination and reports a false heap-buffer-overflow in a fully filled 4-byte buffer.
     # NOTE(LucasTA): This can become a false positive, if the compositor dies somewhere
     # with "invalid-pointer-pair", lower this to 1 before suspecting a real bug
     "detect_invalid_pointer_pairs=2"
