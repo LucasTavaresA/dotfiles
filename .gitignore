@@ -2,6 +2,7 @@
 .android
 .cache/
 .config/asciinema/
+.config/aseprite/
 .config/Android Open Source Project/
 .config/btop/
 .config/cabal/
@@ -43,6 +44,7 @@
 .config/pulse/
 .config/qutebrowser/bookmarks/
 .config/qutebrowser/autoconfig.yml
+.config/retroarch/
 .config/rtk/
 .config/toot/
 .config/transmission/
