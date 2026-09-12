@@ -108,6 +108,50 @@
   (:documentation "Switch to the Message group")
   (:method () (switch-to-group "Message")))
 
+(defun move-view-to-group (name seat)
+  "Move the current frame's view to the group NAME, staying on the current group."
+  (let* ((state mh::*compositor-state*)
+         (source (mh::state-current-group state))
+         (target (group-named name))
+         (frame (mh::state-current-frame state))
+         (view (and frame (mahogany/tree:frame-surface frame))))
+    (cond
+      ((null target)
+       (mh::log-string :warn "No group named ~s" name))
+      ((eq target source))
+      ((typep frame 'mahogany/tree:output-node)
+       (error 'mahogany/util:invalid-operation :text "Unfullscreen first"))
+      ((not (typep view 'hrt:view)))
+      ((null (mh::mahogany-group-current-frame target))
+       (error 'mahogany/util:invalid-operation :text "Group has no frame"))
+      (t
+       ;; It stays mapped, so the seat would keep typing into it
+       (hrt:unfocus-view view seat)
+       ;; Leave the way an unmapped view does: the frame takes the next hidden view
+       (mh::group-unmap-view source view)
+       (setf (mh::mahogany-group-views source)
+             (remove view (mh::mahogany-group-views source)))
+       (mh::%cur-frame-set-from-group state source)
+       ;; Arrive the way a new view does: in the current frame, hiding what was there
+       (push view (mh::mahogany-group-views target))
+       (mh::group-map-view target view)))))
+
+(mh::defcommand move-to-browser (mh::seat)
+  (:documentation "Move the current view to the Browser group")
+  (:method (mh::seat) (move-view-to-group "Browser" mh::seat)))
+
+(mh::defcommand move-to-code (mh::seat)
+  (:documentation "Move the current view to the Code group")
+  (:method (mh::seat) (move-view-to-group "Code" mh::seat)))
+
+(mh::defcommand move-to-fullscreen (mh::seat)
+  (:documentation "Move the current view to the Fullscreen group")
+  (:method (mh::seat) (move-view-to-group "Fullscreen" mh::seat)))
+
+(mh::defcommand move-to-message (mh::seat)
+  (:documentation "Move the current view to the Message group")
+  (:method (mh::seat) (move-view-to-group "Message" mh::seat)))
+
 ;; Directional frame focus
 (defun frame-probe-point (frame direction)
   "The point just outside FRAME's DIRECTION edge, centred along it."
@@ -255,6 +299,10 @@
     (mh:kbd "s-2")      #'goto-code
     (mh:kbd "s-3")      #'goto-fullscreen
     (mh:kbd "s-4")      #'goto-message
+    (mh:kbd "s-!")      #'move-to-browser
+    (mh:kbd "s-@")      #'move-to-code
+    (mh:kbd "s-#")      #'move-to-fullscreen
+    (mh:kbd "s-$")      #'move-to-message
 
     ;; launchers
     (mh:kbd "s-p")      #'screenshot
