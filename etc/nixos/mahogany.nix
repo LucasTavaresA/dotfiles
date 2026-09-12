@@ -16,6 +16,8 @@
   lib,
   stdenv,
   fetchFromGitHub,
+  # used for sanitize LSAN_OPTIONS suppressions
+  writeText,
   # used for sanitize ASAN_SYMBOLIZER_PATH
   llvmPackages,
   makeWrapper,
@@ -248,6 +250,13 @@ let
   # mahogany compiles with -fno-sanitize-recover=all, UBSan still halts on it
   ubsanOptions = "print_stacktrace=1:halt_on_error=0:report_error_type=1";
 
+  # Ignore leaks on libraries that are not sanitized and spam leaks
+  lsanSuppressions = writeText "mahogany-lsan.supp" ''
+    leak:libfontconfig.so
+    leak:libEGL_mesa.so
+    leak:libgallium
+  '';
+
   asanCFlags = lib.concatStringsSep " " [
     "-fsanitize=address"
     "-fno-omit-frame-pointer"
@@ -277,6 +286,9 @@ let
       "--set"
       "UBSAN_OPTIONS"
       ubsanOptions
+      "--set"
+      "LSAN_OPTIONS"
+      "suppressions=${lsanSuppressions}"
       "--set"
       "ASAN_SYMBOLIZER_PATH"
       "${lib.getBin llvmPackages.llvm}/bin/llvm-symbolizer"
@@ -438,6 +450,7 @@ lib.seq checkedArgs (
           unsetenv("LD_PRELOAD");
           unsetenv("ASAN_OPTIONS");
           unsetenv("UBSAN_OPTIONS");
+          unsetenv("LSAN_OPTIONS");
           unsetenv("ASAN_SYMBOLIZER_PATH");
         }
         CEOF
