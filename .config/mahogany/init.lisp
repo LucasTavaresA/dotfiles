@@ -20,7 +20,6 @@
   (config-system:set-config
     mh::keyboard-repeat-rate 100
     mh::keyboard-repeat-delay 300
-    ;; NOTE(LucasTA): these depend on a patch
     mh::touchpad-tap-to-click t
     mh::touchpad-disable-while-typing t
     mh::touchpad-accel-speed 0.3))
@@ -172,15 +171,15 @@
                 (mahogany/tree:remove-frame
                  frame
                  (lambda (removed)
-                   (let ((view (mahogany/tree:frame-view removed)))
+                   (let ((view (mahogany/tree:frame-surface removed)))
                      (when view
                        (setf rescued view)))))
                 ;; This has to run after remove-frame
                 (cond
                   ((null rescued) nil)
-                  ((mahogany/tree:frame-view target)
+                  ((mahogany/tree:frame-surface target)
                    (mh::%add-hidden hidden rescued))
-                  (t (setf (mahogany/tree:frame-view target) rescued)))
+                  (t (setf (mahogany/tree:frame-surface target) rescued)))
                 (hrt:dirty-view-transaction)))))))
 
 (mh::defcommand remove-frame (mh::seat)
@@ -197,17 +196,19 @@
 (mh::defcommand toggle-fullscreen ()
   (:documentation "Toggle fullscreen on the view in the current frame")
   (:method ()
-    (let* ((state mh::*compositor-state*)
-           (frame (mh::state-current-frame state))
-           (view (typecase frame
-                   ((or mahogany/tree:view-frame mahogany/tree:output-node)
-                    (mahogany/tree:frame-view frame))
-                   (t nil))))
-      (when view
-        (mh::mahogany-state-view-fullscreen
-         state view
-         (mh::group-current-output (mh::state-current-group state))
-         (not (hrt:view-fullscreen-p view)))))))
+    (alexandria:when-let*
+      ((state mh::*compositor-state*)
+       (frame (mh::state-current-frame state))
+       (surface (mahogany/tree:frame-surface frame)))
+      (typecase surface
+        (hrt:view
+          (mh::mahogany-state-view-fullscreen
+            state surface
+            (mh::group-current-output (mh::state-current-group state))
+            (not (hrt:view-fullscreen-p surface))))
+        (hrt:layer-surface
+          (error 'mahogany/util:invalid-operation
+                 :text "Can't fullscreen a layer-surface"))))))
 
 ;;; Menu map
 (defparameter *menu-map*
