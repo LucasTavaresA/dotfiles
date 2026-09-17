@@ -47,3 +47,5 @@ mkdir -p "$home/.local/share/wget"
 touch "$home/.local/share/wget/wgetrc"
 
 doas nixos-rebuild switch -I nixos-config="$home/etc/nixos/configuration.nix" -I nixpkgs="$home/code/nixpkgs"
+
+claude mcp add --scope user tilth -- tilth --mcp

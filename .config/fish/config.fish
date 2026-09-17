@@ -64,6 +64,10 @@ if status is-interactive
             if test "$argv[1]" = pull
                 command git fetch --depth=1 origin nixos-unstable
                 and command git reset --hard FETCH_HEAD
+                # update tilth
+                and set -l rev (command git ls-remote https://github.com/jahala/tilth HEAD | string split -f1 \t)
+                and test -n "$rev"
+                and echo $rev >$HOME/etc/nixos/tilth.rev
             else
                 command git $argv
             end
