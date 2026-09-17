@@ -39,8 +39,8 @@
   wayland-protocols,
   wlroots_0_20,
 
-  rev ? "fa91bd0c5bb0806991da5c3eb917e33a21812541",
-  hash ? "sha256-ADc/4IPzEy44P7/EZ52oz+2BUwQjPPjMfLeX5Z2HxzE=",
+  rev ? "5a80c25a1a8b3e7e3347c58e0495fa2f04f24322",
+  hash ? "sha256-SeBZRGbM4fSe7nfk6a5T403T1BFN4arr2AVgMab4yhU=",
   localSrc ? null,
   localRev ? null,
   patches ? null,
@@ -169,8 +169,8 @@ let
   cl-interactive = fetchFromGitHub {
     owner = "sdilts";
     repo = "cl-interactive";
-    rev = "4bf73d69a2fe69119641ca8d99e035ca34208752";
-    hash = "sha256-7kSK4JC1zyFIrb6ptElfXsi/VfE0xaBf1LE1DGAVgkI=";
+    rev = "0705552e4dcfe1519f298aeadc94ea9f7277626d";
+    hash = "sha256-3qvTn1jbqFOwOAePVc3JKkaOGgsQSIAgDT7j66J0AOw=";
   };
 
   cl-xkbcommon = fetchFromGitHub {
@@ -299,7 +299,7 @@ lib.seq checkedArgs (
     {
       pname = "mahogany";
       version =
-        "0.0.1-unstable-2026-09-11"
+        "0.0.1-unstable-2026-09-17"
         + lib.optionalString (localSrc != null) "-local"
         + lib.optionalString sanitize "-asan";
 

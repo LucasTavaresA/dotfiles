@@ -109,32 +109,27 @@
   (:method () (switch-to-group "Message")))
 
 (defun move-view-to-group (name seat)
-  "Move the current frame's view to the group NAME, staying on the current group."
-  (let* ((state mh::*compositor-state*)
-         (source (mh::state-current-group state))
-         (target (group-named name))
-         (frame (mh::state-current-frame state))
-         (view (and frame (mahogany/tree:frame-surface frame))))
+  "Move the current view to the group NAME, staying on the current group."
+  (let ((state mh::*compositor-state*)
+        (target (group-named name)))
     (cond
       ((null target)
        (mh::log-string :warn "No group named ~s" name))
-      ((eq target source))
-      ((typep frame 'mahogany/tree:output-node)
-       (error 'mahogany/util:invalid-operation :text "Unfullscreen first"))
-      ((not (typep view 'hrt:view)))
-      ((null (mh::mahogany-group-current-frame target))
-       (error 'mahogany/util:invalid-operation :text "Group has no frame"))
+      ;; group-move-view hides it in its own group
+      ((eq target (mh::state-current-group state)))
       (t
-       ;; It stays mapped, so the seat would keep typing into it
-       (hrt:unfocus-view view seat)
-       ;; Leave the way an unmapped view does: the frame takes the next hidden view
-       (mh::group-unmap-view source view)
-       (setf (mh::mahogany-group-views source)
-             (remove view (mh::mahogany-group-views source)))
-       (mh::%cur-frame-set-from-group state source)
-       ;; Arrive the way a new view does: in the current frame, hiding what was there
-       (push view (mh::mahogany-group-views target))
-       (mh::group-map-view target view)))))
+       (multiple-value-bind (source view) (mh::%prep-move-cur-view)
+         ;; group-remove-view can't take it out of an output-node
+         (when (typep (mh::state-current-frame state) 'mahogany/tree:output-node)
+           (error 'mahogany/util:invalid-operation :text "Unfullscreen first"))
+         ;; so we don't keep typing into it
+         (hrt:unfocus-view view seat)
+         (mh::group-move-view source target view)
+         ;; using the next-hidden-frame, otherwise the current frame is empty
+         (mh::state-next-hidden-frame state)
+         ;; normally it goes on top of the hidden-views, we place it in front
+         (mh::%pop-hidden-item (mh::mahogany-group-hidden-views target))
+         (mh::group-map-view target view))))))
 
 (mh::defcommand move-to-browser (mh::seat)
   (:documentation "Move the current view to the Browser group")
