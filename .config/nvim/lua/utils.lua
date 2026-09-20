@@ -33,80 +33,69 @@ local function toggle_hlsearch(char)
 end
 vim.on_key(toggle_hlsearch, ns)
 
-local function get_visual_selection(nl_literal)
-	local sr, sc, er, ec
-	local mode = vim.fn.mode()
+---@param opts? { type?: string, exclusive?: boolean, eol?: boolean }
+---@return string[]? lines, table[]? regions
+local function get_visual(opts)
+	opts = opts or {}
 
-	if mode == "v" or mode == "V" or mode == "" then
-		-- use the live position
-		_, sr, sc, _ = unpack(vim.fn.getpos("."))
-		_, er, ec, _ = unpack(vim.fn.getpos("v"))
-
-		-- visual line doesn't provide columns
-		if mode == "V" then
-			sc, ec = 0, 999
-		end
-	else
-		-- use the last known visual position
-		_, sr, sc, _ = unpack(vim.fn.getpos("'<"))
-		_, er, ec, _ = unpack(vim.fn.getpos("'>"))
+	local regtype = opts.type or vim.fn.mode():match("[vV\22]")
+	if not regtype then
+		return
 	end
 
-	-- swap back reverse selection
-	if er < sr then
-		sr, er = er, sr
-	end
-	if ec < sc then
-		sc, ec = ec, sc
-	end
+	local vpos = vim.fn.getpos("v")
+	local cpos = vim.fn.getpos(".")
 
-	local lines = vim.fn.getline(sr, er)
-	local n = #lines
+	local reg_opts = { type = regtype, exclusive = opts.exclusive }
+	local lines = vim.fn.getregion(vpos, cpos, reg_opts)
 
-	if n <= 0 then
-		return ""
-	end
+	local regpos_opts =
+		{ type = regtype, exclusive = opts.exclusive, eol = opts.eol }
+	local line_regs = vim.fn.getregionpos(vpos, cpos, regpos_opts)
 
-	-- does support multi-line selections
-	if n > 1 then
-		return nil
-	end
-
-	lines[n] = lines[n]:sub(1, ec)
-	lines[1] = lines[1]:sub(sc)
-
-	return table.concat(lines, nl_literal and "\\n" or "\n")
+	return lines, line_regs
 end
 
 -- replaces selection in the buffer
 function ReplaceSel()
-	local visual_selection = get_visual_selection()
+	local lines = get_visual()
 
-	if visual_selection == nil or visual_selection == "" then
+	if not lines or #lines == 0 or (#lines == 1 and lines[1] == "") then
 		return
 	end
 
-	local backspace_keypresses = string.rep("\\<backspace>", 5)
-	local left_keypresses = string.rep("\\<Left>", string.len("gcI") + 1)
-	local escape_characters = '"\\/.*$^~[]'
+	-- \V (very nomagic): only `\` and the `/` delimiter stay special
+	local pattern = table.concat(
+		vim.tbl_map(function(line)
+			return vim.fn.escape(line, [[\/]])
+		end, lines),
+		[[\n]]
+	)
 
-	vim.cmd(
-		':call feedkeys(":'
-		.. backspace_keypresses
-		.. "%s/"
-		.. vim.fn.escape(
-			vim.fn.escape(visual_selection, escape_characters),
-			escape_characters
-		)
+	-- on the replacement side `&` and `~` expand, and a newline is \r
+	local replacement = table.concat(
+		vim.tbl_map(function(line)
+			return vim.fn.escape(line, [[\/&~]])
+		end, lines),
+		[[\r]]
+	)
+
+	-- termcodes are built apart from the selection so its text is never parsed
+	local esc = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
+	local left = vim.api.nvim_replace_termcodes("<left>", true, false, true)
+	local flags = "gcI"
+
+	vim.api.nvim_feedkeys(
+		esc
+		.. [[:%s/\V]]
+		.. pattern
 		.. "/"
-		.. vim.fn.escape(
-			vim.fn.escape(visual_selection, escape_characters),
-			escape_characters
-		)
+		.. replacement
 		.. "/"
-		.. "gcI"
-		.. left_keypresses
-		.. '")'
+		.. flags
+		.. string.rep(left, #flags + 1),
+		"n",
+		false
 	)
 end
 
