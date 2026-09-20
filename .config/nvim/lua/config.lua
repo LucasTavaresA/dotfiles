@@ -89,6 +89,7 @@ vim.opt.background = "dark"
 -- NormalNC causa muita lentidão - comumente ativado por temas
 vim.api.nvim_set_hl(0, "NormalNC", {})
 vim.api.nvim_set_hl(0, "Normal", { bg = "#000000" })
+vim.api.nvim_set_hl(0, "CurSearch", { fg = "red", bg = "#ffffff", bold = true })
 
 --- Tabs/Espaços
 -- indicação de espaços e tabs
