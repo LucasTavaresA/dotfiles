@@ -725,7 +725,6 @@ in
         [ "scrcpy" ]
         [ "shellcheck" ]
         [ "shfmt" ]
-        [ "simple-mtpfs" ]
         [ "slurp" ]
         [ "speedtest-cli" ]
         [ "spotdl" ]
