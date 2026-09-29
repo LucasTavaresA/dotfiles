@@ -190,48 +190,6 @@
   (:documentation "Focus the frame below the current one")
   (:method (mh::seat) (focus-in-direction :down mh::seat)))
 
-(defun remove-tiled-frame (state frame seat)
-  "Remove FRAME, a view-frame, and move focus to a surviving neighbour."
-  (let ((parent (mahogany/tree:frame-parent frame))
-        (group (mh::state-current-group state)))
-    (if (mahogany/tree:topmost-frame-p frame)
-        (error 'mahogany/util:invalid-operation
-               :text "Only frame on this output")
-        (let* ((sibling (find-if (lambda (child) (not (eq child frame)))
-                                 (mahogany/tree:tree-children parent)))
-               (target (and sibling (mahogany/tree:find-first-leaf sibling)))
-               (hidden (mh::mahogany-group-hidden-views group)))
-          ;; Focus has to leave FRAME before it is removed
-          (if (not target)
-              (error 'mahogany/util:invalid-operation
-                     :text "No frame to focus after removal")
-              (let ((rescued nil))
-                (mh::state-focus-frame state target seat)
-                (mahogany/tree:remove-frame
-                 frame
-                 (lambda (removed)
-                   (let ((view (mahogany/tree:frame-surface removed)))
-                     (when view
-                       (setf rescued view)))))
-                ;; This has to run after remove-frame
-                (cond
-                  ((null rescued) nil)
-                  ((mahogany/tree:frame-surface target)
-                   (mh::%add-hidden hidden rescued))
-                  (t (setf (mahogany/tree:frame-surface target) rescued)))
-                (hrt:dirty-view-transaction)))))))
-
-(mh::defcommand remove-frame (mh::seat)
-  (:documentation "Remove the current frame; its space goes to the neighbours")
-  (:method (mh::seat)
-    (let* ((state mh::*compositor-state*)
-           (frame (mh::state-current-frame state)))
-      (typecase frame
-        (mahogany/tree:view-frame  (remove-tiled-frame state frame mh::seat))
-        (mahogany/tree:output-node
-         (error 'mahogany/util:invalid-operation :text "Unfullscreen first"))
-        (t nil)))))
-
 (mh::defcommand toggle-fullscreen ()
   (:documentation "Toggle fullscreen on the view in the current frame")
   (:method ()
@@ -271,7 +229,7 @@
   (mh:add-to-kmap mh:*top-map*
     ;; windows
     (mh:kbd "s-q")      #'mh::close-current-view
-    (mh:kbd "s-Q")      #'remove-frame
+    (mh:kbd "s-Q")      #'mh::remove-current-frame
     (mh:kbd "s-m")      #'mh::maximize-current-frame
     (mh:kbd "s-f")      #'toggle-fullscreen
     (mh:kbd "s-Return") #'mh::open-terminal
