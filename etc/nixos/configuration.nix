@@ -60,8 +60,11 @@ in
   imports = [ /etc/nixos/hardware-configuration.nix ];
 
   boot = {
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
+    loader = {
+      systemd-boot.enable = true;
+      systemd-boot.configurationLimit = 5;
+      efi.canTouchEfiVariables = true;
+    };
   };
 
   swapDevices = [
