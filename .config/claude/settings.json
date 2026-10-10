@@ -1,8 +1,24 @@
 {
+  "attribution": {
+    "commit": "",
+    "pr": "",
+    "sessionUrl": false
+  },
   "permissions": {
     "defaultMode": "default"
   },
-  "model": "opus",
+  "model": "claude-opus-5-5",
+  "skillOverrides": {
+    "anthropic-skills:docs": "off",
+    "anthropic-skills:docx": "off",
+    "anthropic-skills:pdf": "off",
+    "anthropic-skills:pptx": "off",
+    "anthropic-skills:xlsx": "off",
+    "anthropic-skills:google-workspace": "off",
+    "anthropic-skills:import-memory": "off",
+    "anthropic-skills:morning": "off",
+    "anthropic-skills:skill-creator": "off"
+  },
   "hooks": {
     "SessionStart": [
       {
@@ -23,7 +39,17 @@
     "type": "command",
     "command": "fish /home/lucas/.config/claude/statusline-command.fish"
   },
+  "spellcheck": {
+    "enabled": true,
+    "checker": "hunspell",
+    "language": "en_US,pt_BR"
+  },
   "effortLevel": "high",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "high"
+    }
+  },
   "autoMemoryEnabled": false,
   "skipWorkflowUsageWarning": true,
   "theme": "dark",
