@@ -277,13 +277,20 @@
     (mh:kbd "XF86MonBrightnessUp")   #'brightness-up
     (mh:kbd "XF86MonBrightnessDown") #'brightness-down))
 
+(defun nested-p ()
+  (let ((env (uiop:read-file-string "/proc/self/environ" :external-format :latin-1)))
+    (some (lambda (var) (search (format nil "~C~A=" #\Nul var)
+                                (format nil "~C~A" #\Nul env)))
+          '("WAYLAND_DISPLAY" "WAYLAND_SOCKET" "DISPLAY"))))
+
 (once "startup"
-  (uiop:launch-program
-   (format nil "systemd-cat -t mahogany-session sh -c '~{~a~^; ~}'"
-           (list "export SYSTEMD_LOG_TARGET=console"
-                 "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-                 "systemctl --user stop graphical-session.target"
-                 "systemctl --user start wayland-session.target"))))
+  (unless (nested-p)
+    (uiop:launch-program
+     (format nil "systemd-cat -t mahogany-session sh -c '~{~a~^; ~}'"
+             (list "export SYSTEMD_LOG_TARGET=console"
+                   "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+                   "systemctl --user stop graphical-session.target"
+                   "systemctl --user start wayland-session.target")))))
 
 ;; missing things to look at:
 ;;
