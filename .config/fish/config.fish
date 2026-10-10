@@ -146,16 +146,15 @@ if status is-interactive
 
     function 2opus
         for file in $argv
-            if test -f $file
-                set out (path change-extension '.opus' $file)
-                echo "Converting: $file → $out"
-
-                if ffmpeg -hide_banner -loglevel error -i "$file" -c:a libopus -vbr on -compression_level 10 -y "$out"
-                    echo "✅ Success, removing original: $file"
-                    trash "$file"
-                else
-                    echo "❌ Failed to convert: $file (keeping original)"
-                end
+            set out (path change-extension opus $file)
+            test -e $out; and echo "⏭️ Exists, skipping: $out"; and continue
+            echo "Converting: $file → $out"
+            if ffmpeg -nostdin -v error -i $file -c:v copy -f flac - | opusenc --quiet --bitrate 160 - $out
+                echo "✅ Success, removing original: $file"
+                trash $file
+            else
+                echo "❌ Failed to convert: $file (keeping original)"
+                rm -f $out
             end
         end
     end

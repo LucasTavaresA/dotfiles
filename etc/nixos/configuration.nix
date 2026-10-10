@@ -687,6 +687,7 @@ in
         [ "omnisharp-roslyn" ]
         [ "opencode" ]
         [ "openjdk" ]
+        [ "opus-tools" ]
         [ "pandoc" ]
         [ "parallel" ]
         [ "patch" ]
