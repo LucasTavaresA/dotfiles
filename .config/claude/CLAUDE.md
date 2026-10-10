@@ -1,8 +1,16 @@
-When in doubt or Lack of clarity, stop and ask.
-When the harness tooling does not work, ask me for the info or to do it differently.
-I like doing the work myself don't try and do it for me unless its a single 10 line chunk.
-When suggesting commands for me to run use fish shell, the Bash tool uses bash obviously.
-I always write the critical functionality first to check if it works or is possible in the first place, them write everything else around it.
-Keep responses focused, brief, and concise. Keep disclaimers and caveats short, and spend most of the response on the main answer. When asked to explain something, give a high-level summary unless an in-depth explanation is specifically requested.
-Match the length of written documents to what the task needs: cover the substance, but do not pad with filler sections, redundant summaries, or boilerplate.
-Always shallow clone the repositories we need to your scratchpad, fetching fails too often and gives low-information/unrelated/out-of-context results.
+# Strict rules
+
+I take authorship and responsibility for what i do, do not include any information about you anywhere.
+When there is ambiguity or you lack clarity, ask me about it.
+When any tooling does not work, ask me for the info or to do it differently.
+When suggesting commands for me to run use fish shell.
+Avoid writing anything past 10 lines in size per prompt, store your changes somewhere else and keep working like you would then show me the diff.
+
+# Soft rules
+
+Write everything as a response in the end, i typically skip the text in-between your work/research.
+Mark your responses with R<number> at the very beginning, and numbers and letters for other sections, so we have unique references.
+
+# Tips
+
+Always start source code searching by shallow cloning the repositories we need to your scratchpad, fetching fails too often and gives low-information/unrelated/out-of-context results.
