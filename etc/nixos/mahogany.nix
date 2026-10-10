@@ -20,6 +20,10 @@
   writeText,
   # used for sanitize ASAN_SYMBOLIZER_PATH
   llvmPackages,
+  #  used for asdfBinaryWrapper
+  makeBinaryWrapper,
+  path,
+  #^ used for asdfBinaryWrapper
   makeWrapper,
   meson,
   ninja,
@@ -39,8 +43,8 @@
   wayland-protocols,
   wlroots_0_20,
 
-  rev ? "2ade891a074cc7e87da600fdbd9759e657425b3d",
-  hash ? "sha256-Hoh5xeemjDwN9dldbRhCE6152B4/WHU2fPEgFLwONuE=",
+  rev ? "e1d310538f1f7e54e2734187bc297b2ac1ff7817",
+  hash ? "sha256-ucZkloUPjNkLLsiKljFjPxphzmgANypx4jjKdB+LXqI=",
   localSrc ? null,
   localRev ? null,
   patches ? null,
@@ -180,6 +184,22 @@ let
     hash = "sha256-a9UAr2BpnuNQpho0uIz8+nmdiEA6iG+wsHdGjVhVamI=";
   };
 
+  # TODO(LucasTA): remove once nixos-unstable lets ASDF variables have empty segments
+  asdfBinaryWrapper =
+    lib.throwIf
+      (lib.hasInfix "CL_SOURCE_REGISTRY" (
+        builtins.readFile (path + "/pkgs/by-name/ma/makeBinaryWrapper/make-binary-wrapper.sh")
+      ))
+      "mahogany.nix: nixpkgs makeBinaryWrapper already allows empty ASDF segments, remove asdfBinaryWrapper"
+      (
+        makeBinaryWrapper.overrideAttrs (old: {
+          buildCommand = old.buildCommand + ''
+            substituteInPlace $out/nix-support/setup-hook --replace-fail \
+              'LUA_CPATH_*) return 0' 'LUA_CPATH_*|CL_SOURCE_REGISTRY|ASDF_OUTPUT_TRANSLATIONS) return 0'
+          '';
+        })
+      );
+
   sbclWithPkgs = sbcl.withPackages (
     ps:
     [
@@ -299,7 +319,7 @@ lib.seq checkedArgs (
     {
       pname = "mahogany";
       version =
-        "0.0.1-unstable-2026-09-25"
+        "0.0.1-unstable-2026-09-26"
         + lib.optionalString (localSrc != null) "-local"
         + lib.optionalString sanitize "-asan";
 
@@ -336,7 +356,7 @@ lib.seq checkedArgs (
         meson
         ninja
         pkg-config
-        sbclWithPkgs
+        (sbclWithPkgs.overrideAttrs { nativeBuildInputs = [ asdfBinaryWrapper ]; })
         wayland-scanner
       ];
 
