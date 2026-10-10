@@ -16,7 +16,6 @@
     "modules-right": [
         "network",
         "disk#1",
-        "disk#2",
         "battery",
         "backlight",
         "clock",
@@ -87,7 +86,7 @@
         "scroll-step": 0.2,
     },
     "disk#1": {
-        "format": "{path} {free}",
+        "format": "{path} {free} {percentage_free}%",
         "path": "/",
     },
     "backlight": {
