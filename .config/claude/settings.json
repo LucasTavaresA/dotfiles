@@ -3,6 +3,18 @@
     "defaultMode": "default"
   },
   "model": "opus",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "test \"$CLAUDE_PROJECT_DIR\" != \"$HOME\" || cat ~/.config/claude/home.md"
+          }
+        ]
+      }
+    ]
+  },
   "worktree": {
     "baseRef": "fresh"
   },

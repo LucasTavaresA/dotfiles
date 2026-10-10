@@ -88,6 +88,7 @@
 .config/BraveSoftware/
 .config/claude/*
 !.config/claude/CLAUDE.md
+!.config/claude/home.md
 !.config/claude/settings.json
 !.config/claude/keybindings.json
 !.config/claude/statusline-command.fish

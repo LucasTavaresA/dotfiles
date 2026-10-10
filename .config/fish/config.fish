@@ -56,7 +56,7 @@ if status is-interactive
                      restore rebase stash remote show revert fetch branch checkout \
                      rev-parse rm mv reflog ls-files ls-remote range-diff show-ref \
                      refs update-ref config ""
-                    command git --work-tree=. --git-dir="$HOME/etc/.dotfiles/" $argv
+                    command git --work-tree="$HOME" --git-dir="$HOME/etc/.dotfiles/" $argv
                 case '*'
                     echo "command 'git $argv[1]' not allowed in your dotfiles"
             end

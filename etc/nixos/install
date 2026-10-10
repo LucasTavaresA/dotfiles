@@ -24,7 +24,7 @@ has git || eprintf "You need git to run this install script!"
 git_dir="$home/etc/.dotfiles"
 
 dotgit() {
-	git --work-tree=. --git-dir="$git_dir" "$@"
+	git --work-tree="$HOME" --git-dir="$git_dir" "$@"
 }
 
 if [ "$(dotgit rev-parse --is-bare-repository 2>/dev/null)" != "true" ]; then
