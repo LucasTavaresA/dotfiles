@@ -7,7 +7,7 @@
   "permissions": {
     "defaultMode": "default"
   },
-  "model": "claude-opus-5-5",
+  "model": "opus",
   "skillOverrides": {
     "anthropic-skills:docs": "off",
     "anthropic-skills:docx": "off",
@@ -48,6 +48,9 @@
   "modelSettings": {
     "claude-opus-5-5": {
       "effortLevel": "high"
+    },
+    "claude-fable-5-2": {
+      "effortLevel": "medium"
     }
   },
   "autoMemoryEnabled": false,
