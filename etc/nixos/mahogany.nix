@@ -6,7 +6,7 @@
 # hash          = "sha256-...";  its hash, lib.fakeHash to have nix print the real one
 # localSrc      = null;          build from this path instead, null fetches rev from github
 # localRev      = null;          a ref inside localSrc to build, null builds its working tree
-# patches       = null;          applies patches from this folder, null pulls using git
+# patches       = null;          applies patches from this folder
 # patchesOnly   = [ ];           includes only patches whose filename starts with one of these strings
 # patchesExcept = [ ];           excludes patches whose filename starts with one of these strings
 # skipInitFile  = false;         passes -q, so ~/.config/mahogany/init.lisp is never loaded
@@ -78,7 +78,7 @@ let
       localRev
     )
     (checkType "patches" (orNull lib.isPath)
-      "a path to a folder, whose *.patch files are applied to the source in filename order, or null to pull with git"
+      "a path to a folder, whose *.patch files are applied to the source in filename order, or null"
       patches
     )
     (checkType "patchesExcept" isStringList
@@ -104,10 +104,24 @@ let
   ] (lib.throwIf (arrangementErrors != [ ]) (lib.head arrangementErrors) null);
 
   arrangementErrors = lib.filter (message: message != null) [
+    localRevWithoutLocalSrc
+    patchFiltersConflict
     patchesInsideLocalSrc
     wlrootsVersionWrong
     sanitizeMismatch
   ];
+
+  localRevWithoutLocalSrc =
+    if localRev != null && localSrc == null then
+      "mahogany.nix: localRev needs localSrc, it's a ref inside a git repo"
+    else
+      null;
+
+  patchFiltersConflict =
+    if patchesExcept != [ ] && patchesOnly != [ ] then
+      "mahogany.nix: patchesExcept and patchesOnly are both set, you can only use one at a time"
+    else
+      null;
 
   wlrootsVersionWrong =
     if
@@ -159,9 +173,7 @@ let
   matchesAny = prefixes: file: lib.any (prefix: lib.hasPrefix prefix file) prefixes;
 
   mahoganyPatches =
-    if patchesExcept != [ ] && patchesOnly != [ ] then
-      throw "mahogany.nix: patchesExcept and patchesOnly are both set, you can only use one at a time"
-    else if patchesOnly != [ ] then
+    if patchesOnly != [ ] then
       selectPatches patches (matchesAny patchesOnly)
     else
       selectPatches patches (file: !(matchesAny patchesExcept file));
@@ -306,23 +318,19 @@ lib.seq checkedArgs (
         + lib.optionalString sanitize "-asan";
 
       src =
-        lib.throwIf (localRev != null && localSrc == null)
-          "mahogany.nix: localRev needs localSrc, it's a ref inside a git repo"
-          (
-            if localRev != null then
-              fetchGit {
-                url = localSrc;
-                ref = localRev;
-              }
-            else if localSrc != null then
-              cleanedLocalSrc
-            else
-              fetchFromGitHub {
-                owner = "stumpwm";
-                repo = "mahogany";
-                inherit rev hash;
-              }
-          );
+        if localRev != null then
+          fetchGit {
+            url = localSrc;
+            ref = localRev;
+          }
+        else if localSrc != null then
+          cleanedLocalSrc
+        else
+          fetchFromGitHub {
+            owner = "stumpwm";
+            repo = "mahogany";
+            inherit rev hash;
+          };
 
       patches = mahoganyPatches;
 
