@@ -66,6 +66,8 @@ config.set("downloads.remove_finished", 200)
 # maximo de itens no histórico
 config.set('completion.web_history.max_items', 5000)
 
+c.content.tls.certificate_errors = 'ask-block-thirdparty'
+
 #### Adblock ####
 config.set('content.blocking.method', 'both')
 c.content.blocking.adblock.lists = [
