@@ -71,11 +71,11 @@
     "wireplumber": {
         "format": "{icon} {volume}%",
         "format-muted": "🔇",
-        "format-bluetooth": "🔵 {volume}%",
+        "format-bluetooth": "🎧🔵 {volume}%",
         "format-bluetooth-muted": "🔵 🔇",
         "format-icons": {
             "headphone": "🎧",
-            "hands-free": "🔵",
+            "hands-free": "🎧",
             "headset": "🎧",
             "phone": "📱",
             "portable": "📱",

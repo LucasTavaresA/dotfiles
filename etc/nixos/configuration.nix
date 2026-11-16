@@ -715,7 +715,7 @@ in
         [ "nvme-cli" ]
         [ "obs-studio" ]
         [ "omnisharp-roslyn" ]
-        [ "opencode" ]
+        # [ "opencode" ]
         [ "openjdk" ]
         [ "opus-tools" ]
         [ "pandoc" ]
