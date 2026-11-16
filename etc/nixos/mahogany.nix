@@ -39,8 +39,8 @@
   wayland-protocols,
   wlroots_0_20,
 
-  rev ? "e1d310538f1f7e54e2734187bc297b2ac1ff7817",
-  hash ? "sha256-ucZkloUPjNkLLsiKljFjPxphzmgANypx4jjKdB+LXqI=",
+  rev ? "1445d2994be42fea7541724137371a5ae85e20ac",
+  hash ? "sha256-Qx12zy2vH/QcNGqtQJvqtLhNeS90S6jUcpcTttiu8Mg=",
   localSrc ? null,
   localRev ? null,
   patches ? null,
@@ -197,7 +197,9 @@ let
       ps.float-features
       ps.fset
       ps.iterate
+      ps.local-time
       ps.terminfo
+      ps.trivial-backtrace
       ps.trivial-garbage
     ]
     ++ lib.optionals runTests [
@@ -299,7 +301,7 @@ lib.seq checkedArgs (
     {
       pname = "mahogany";
       version =
-        "0.0.1-unstable-2026-09-26"
+        "0.0.1-unstable-2026-10-31"
         + lib.optionalString (localSrc != null) "-local"
         + lib.optionalString sanitize "-asan";
 
