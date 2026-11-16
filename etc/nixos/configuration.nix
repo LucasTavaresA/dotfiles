@@ -374,18 +374,14 @@ in
       enable = true;
     };
 
-    # Lenovo ThinkPad T14 Gen 1 AMD, Brazilian keyboard fix slash key
+    # Lenovo ThinkPad T14 Gen 1 AMD
     # change caps lock to escape
     # make prtsc into menu/compose key for use in the window manager
-    udev.extraHwdb =
-      lib.throwIf (lib.versionAtLeast pkgs.systemd.version "262")
-        (Color yellow "systemd ${pkgs.systemd.version} fixes the slash key, remove KEYBOARD_KEY_9d=ro from configuration.nix!")
-        ''
-          evdev:atkbd:dmi:bvn*:bvr*:bd*:svnLENOVO:pn20UES5TQ00:pvr*
-           KEYBOARD_KEY_9d=ro
-           KEYBOARD_KEY_3a=esc
-           KEYBOARD_KEY_b7=compose
-        '';
+    udev.extraHwdb = ''
+      evdev:atkbd:dmi:bvn*:bvr*:bd*:svnLENOVO:pn20UES5TQ00:pvr*
+       KEYBOARD_KEY_3a=esc
+       KEYBOARD_KEY_b7=compose
+    '';
 
     openssh = {
       enable = true;
