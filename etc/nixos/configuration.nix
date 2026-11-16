@@ -386,7 +386,10 @@ in
     user.services = {
       notify-bat = sessionService "Battery threshold notifications" "${home}/code/shellscripts/notify-bat";
       sway-audio-idle-inhibit = sessionService "Inhibit idle while audio is playing" "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit";
-      waybar = sessionService "Wayland status bar" "${pkgs.waybar}/bin/waybar";
+      # Needs a patch, SWAYSOCK is used exclusively by waybar to support hidding it
+      waybar = sessionService "Wayland status bar" "${pkgs.waybar}/bin/waybar" // {
+        serviceConfig.ExecStart = "${pkgs.dash}/bin/dash -lc '[ -S \"$$MAHOGANY_WAYBAR_SOCK\" ] && export SWAYSOCK=\"$$MAHOGANY_WAYBAR_SOCK\"; exec ${pkgs.waybar}/bin/waybar'";
+      };
       swaybg = sessionService "Wallpaper" "${pkgs.swaybg}/bin/swaybg -i ${home}/media/imagens/wallpapers/stsr1.png -m fill";
       cliphist = sessionService "Clipboard history" "${pkgs.wl-clipboard}/bin/wl-paste --watch ${pkgs.cliphist}/bin/cliphist store";
       wl-clip-persist = sessionService "Keep clipboard contents after the source window closes" "${pkgs.wl-clip-persist}/bin/wl-clip-persist --clipboard regular";

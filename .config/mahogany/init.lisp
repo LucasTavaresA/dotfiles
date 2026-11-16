@@ -288,7 +288,8 @@
     (uiop:launch-program
      (format nil "systemd-cat -t mahogany-session sh -c '~{~a~^; ~}'"
              (list "export SYSTEMD_LOG_TARGET=console"
-                   "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+                   (format nil "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP~@[ MAHOGANY_WAYBAR_SOCK=~a~]"
+                           mahogany:*waybar-swaysock*)
                    "systemctl --user stop graphical-session.target"
                    "systemctl --user start wayland-session.target")))))
 
