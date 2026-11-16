@@ -13,7 +13,7 @@
 (mahogany/log:log-init :level :debug :output *standard-output*)
 
 (pcall "xkb layout"
-  (xkb:with-xkb-rule-names (rules (:layout "br" :variant "abnt2"))
+  (xkb:with-xkb-rule-names (rules (:layout "br"))
     (mh::mahogany-set-keymap mh::*compositor-state* :rules rules)))
 
 (pcall "settings"
@@ -22,16 +22,14 @@
     mh::keyboard-repeat-delay 300
     mh::touchpad-tap-to-click t
     mh::touchpad-disable-while-typing t
-    mh::touchpad-accel-speed 0.3))
+    ;; obviously depends on a patch
+    mh::hide-single-frame-borders t
+    mh::touchpad-accel-speed 0.3
+    mahogany/system::*default-terminals* '("foot")))
 
-(pcall "terminal"
-  (let ((term (uiop:getenvp "TERMINAL")))
-    (when term
-      (push term mahogany/system::*default-terminals*))))
-
-(defmacro defexec (name command &optional doc)
+(defmacro defexec (name command)
   `(mh::defcommand ,name ()
-     (:documentation ,(or doc command))
+     (:documentation ,command)
      (:method () (uiop:launch-program ,command))))
 
 ;; menu / launchers
@@ -63,89 +61,22 @@
 (defexec volume-down   "wpctl set-volume @DEFAULT_SINK@ 5%-")
 
 ;; Groups
-(defun group-named (name)
-  (find name (mh::state-groups mh::*compositor-state*)
-        :key #'mh::mahogany-group-name :test #'string=))
-
-(defun switch-to-group (name)
-  (let* ((state mh::*compositor-state*)
-         (target (group-named name))
-         (current (mh::state-current-group state)))
-    (cond
-      ((null target)
-       (mh::log-string :warn "No group named ~s" name))
-      ((eq target current))
-      (t
-       (let ((hidden (mh::state-hidden-groups state)))
-         (ring-list:remove-item hidden target :test #'eq)
-         (ring-list:add-item hidden current))
-       (setf (mh::state-current-group state) target)))))
-
 (defparameter *workspaces*
   '("Browser" "Code" "Fullscreen" "Message"))
 
 (once "workspaces"
-  (let ((state mh::*compositor-state*))
-    (setf (mh::mahogany-group-name (mh::state-current-group state))
-          (first *workspaces*))
-    (dolist (name (rest *workspaces*))
-      (mh::mahogany-state-group-add state :group-name name :make-current t))
-    (switch-to-group (first *workspaces*))))
+  (mh::grename (first *workspaces*))
+  (mapc #'mh::gnewbg (rest *workspaces*)))
 
-(mh::defcommand goto-browser ()
-  (:documentation "Switch to the Browser group")
-  (:method () (switch-to-group "Browser")))
+(defmacro defmove (name group)
+  `(mh::defcommand ,name ()
+     (:documentation ,(format nil "Move the current view to the ~a group" group))
+     (:method () (mh::gmove (mh::state-find-group mh::*compositor-state* ,group)))))
 
-(mh::defcommand goto-code ()
-  (:documentation "Switch to the Code group")
-  (:method () (switch-to-group "Code")))
-
-(mh::defcommand goto-fullscreen ()
-  (:documentation "Switch to the Fullscreen group")
-  (:method () (switch-to-group "Fullscreen")))
-
-(mh::defcommand goto-message ()
-  (:documentation "Switch to the Message group")
-  (:method () (switch-to-group "Message")))
-
-(defun move-view-to-group (name seat)
-  "Move the current view to the group NAME, staying on the current group."
-  (let ((state mh::*compositor-state*)
-        (target (group-named name)))
-    (cond
-      ((null target)
-       (mh::log-string :warn "No group named ~s" name))
-      ;; group-move-view hides it in its own group
-      ((eq target (mh::state-current-group state)))
-      (t
-       (multiple-value-bind (source view) (mh::%prep-move-cur-view)
-         ;; group-remove-view can't take it out of an output-node
-         (when (typep (mh::state-current-frame state) 'mahogany/tree:output-node)
-           (error 'mahogany/util:invalid-operation :text "Unfullscreen first"))
-         ;; so we don't keep typing into it
-         (hrt:unfocus-view view seat)
-         (mh::group-move-view source target view)
-         ;; using the next-hidden-frame, otherwise the current frame is empty
-         (mh::state-next-hidden-frame state)
-         ;; normally it goes on top of the hidden-views, we place it in front
-         (mh::%pop-hidden-item (mh::mahogany-group-hidden-views target))
-         (mh::group-map-view target view))))))
-
-(mh::defcommand move-to-browser (mh::seat)
-  (:documentation "Move the current view to the Browser group")
-  (:method (mh::seat) (move-view-to-group "Browser" mh::seat)))
-
-(mh::defcommand move-to-code (mh::seat)
-  (:documentation "Move the current view to the Code group")
-  (:method (mh::seat) (move-view-to-group "Code" mh::seat)))
-
-(mh::defcommand move-to-fullscreen (mh::seat)
-  (:documentation "Move the current view to the Fullscreen group")
-  (:method (mh::seat) (move-view-to-group "Fullscreen" mh::seat)))
-
-(mh::defcommand move-to-message (mh::seat)
-  (:documentation "Move the current view to the Message group")
-  (:method (mh::seat) (move-view-to-group "Message" mh::seat)))
+(defmove move-to-browser    "Browser")
+(defmove move-to-code       "Code")
+(defmove move-to-fullscreen "Fullscreen")
+(defmove move-to-message    "Message")
 
 ;; Directional frame focus
 (defun frame-probe-point (frame direction)
@@ -174,21 +105,15 @@
           (when (and target (not (eq target current)))
             (mh::state-focus-frame state target seat)))))))
 
-(mh::defcommand focus-left (mh::seat)
-  (:documentation "Focus the frame left of the current one")
-  (:method (mh::seat) (focus-in-direction :left mh::seat)))
+(defmacro deffocus (name direction)
+  `(mh::defcommand ,name (mh::seat)
+     (:documentation ,(format nil "Focus the next frame going ~(~a~)" direction))
+     (:method (mh::seat) (focus-in-direction ,direction mh::seat))))
 
-(mh::defcommand focus-right (mh::seat)
-  (:documentation "Focus the frame right of the current one")
-  (:method (mh::seat) (focus-in-direction :right mh::seat)))
-
-(mh::defcommand focus-up (mh::seat)
-  (:documentation "Focus the frame above the current one")
-  (:method (mh::seat) (focus-in-direction :up mh::seat)))
-
-(mh::defcommand focus-down (mh::seat)
-  (:documentation "Focus the frame below the current one")
-  (:method (mh::seat) (focus-in-direction :down mh::seat)))
+(deffocus focus-left  :left)
+(deffocus focus-right :right)
+(deffocus focus-up    :up)
+(deffocus focus-down  :down)
 
 (mh::defcommand toggle-fullscreen ()
   (:documentation "Toggle fullscreen on the view in the current frame")
@@ -196,16 +121,14 @@
     (alexandria:when-let*
       ((state mh::*compositor-state*)
        (frame (mh::state-current-frame state))
-       (surface (mahogany/tree:frame-surface frame)))
-      (typecase surface
-        (hrt:view
-          (mh::mahogany-state-view-fullscreen
-            state surface
-            (mh::group-current-output (mh::state-current-group state))
-            (not (hrt:view-fullscreen-p surface))))
-        (hrt:layer-surface
-          (error 'mahogany/util:invalid-operation
-                 :text "Can't fullscreen a layer-surface"))))))
+       (view (mahogany/tree:frame-surface frame)))
+      (when (typep view 'hrt:view)
+        (mh::mahogany-state-view-fullscreen
+          ;; no output, so the view goes fullscreen on its own
+          state view nil
+          ;; view-fullscreen-p only changes once the client acks, so a
+          ;; second press before that would fullscreen it again:
+          (not (typep frame 'mahogany/tree:output-node)))))))
 
 ;;; Menu map
 (defparameter *menu-map*
@@ -248,10 +171,10 @@
     (mh:kbd "s-J")      #'mh::split-frame-v
 
     ;; groups
-    (mh:kbd "s-1")      #'goto-browser
-    (mh:kbd "s-2")      #'goto-code
-    (mh:kbd "s-3")      #'goto-fullscreen
-    (mh:kbd "s-4")      #'goto-message
+    (mh:kbd "s-1")      #'mh::group-select-1
+    (mh:kbd "s-2")      #'mh::group-select-2
+    (mh:kbd "s-3")      #'mh::group-select-3
+    (mh:kbd "s-4")      #'mh::group-select-4
     (mh:kbd "s-!")      #'move-to-browser
     (mh:kbd "s-@")      #'move-to-code
     (mh:kbd "s-#")      #'move-to-fullscreen
@@ -288,6 +211,7 @@
     (uiop:launch-program
      (format nil "systemd-cat -t mahogany-session sh -c '~{~a~^; ~}'"
              (list "export SYSTEMD_LOG_TARGET=console"
+                   ;; waybar socket depends on a patch, it hides waybar when super is held
                    (format nil "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP~@[ MAHOGANY_WAYBAR_SOCK=~a~]"
                            mahogany:*waybar-swaysock*)
                    "systemctl --user stop graphical-session.target"
@@ -300,10 +224,7 @@
 ;;
 ;; floating          floating windows, much less always on top or sticky windows
 ;;
-;; move window       move-window up/down/left/right (s-HJKL, S-s-arrows) and
-;;                   gnext/gprev-with-window (M-s-Left/Right)
-;;
-;; resize            check if there is a resize for frames/splits
+;; resize            no resize for frames/splits, only :ratio at split time
 ;;
 ;; no IPC            sway related tools don't work, check if some of them could be worked
 ;;                   around, swayidle, swaylock and others
