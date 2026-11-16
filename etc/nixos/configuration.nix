@@ -800,7 +800,7 @@ in
       ++ [
         (
           let
-            sanitize = true;
+            sanitize = false;
           in
           pkgs.callPackage ./mahogany.nix {
             inherit sanitize;
