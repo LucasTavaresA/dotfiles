@@ -120,13 +120,44 @@ in
         scripts = [ self.mpvScripts.mpris ];
       };
 
-      # so my userscripts can see pyperclip
+      # qtwebengine already blocks emudhra at this version
+      # we override it and remove the insecure warning from qutebrowser
+      qt6Packages = super.qt6Packages.overrideScope (
+        qself: qsuper: {
+          qtwebengine = qsuper.qtwebengine.overrideAttrs (
+            old:
+            self.lib.throwIf (old.version != "6.140.0-rc")
+              "nixpkgs has qtwebengine ${old.version}, remove the 6.140.0 override from configuration.nix"
+              rec {
+                version = "6.140.0";
+                src = self.fetchzip {
+                  url = "https://download.qt.io/official_releases/qtwebengine/6.140/${version}/src/qtwebengine-everywhere-src-${version}.tar.xz";
+                  hash = "sha256-t8n34Ica4VIfe026Ubk4hvdJvIPMWrm6eKMITd6evJs=";
+                };
+              }
+          );
+        }
+      );
+
       qutebrowser = super.qutebrowser.overrideAttrs (old: {
+        # so my userscripts can see pyperclip
         preFixup = old.preFixup + ''
           makeWrapperArgs+=(
             --prefix PYTHONPATH : ${self.python3Packages.pyperclip}/${self.python3.sitePackages}
           )
         '';
+
+        # fixed by the qtwebengine above
+        meta = old.meta // {
+          knownVulnerabilities =
+            let
+              flag = "Still accepts eMudhra TLS certs.";
+              vulns = old.meta.knownVulnerabilities or [ ];
+            in
+            self.lib.throwIf (!builtins.elem flag vulns)
+              "nixpkgs dropped the qutebrowser eMudhra flag, remove the knownVulnerabilities override from configuration.nix"
+              (self.lib.remove flag vulns);
+        };
       });
     })
   ];
