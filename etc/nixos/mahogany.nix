@@ -274,7 +274,6 @@ let
   asanCFlags = lib.concatStringsSep " " [
     "-fsanitize=address"
     "-fno-omit-frame-pointer"
-    "-g"
     "-fsanitize=bounds-strict"
     "-fsanitize=float-divide-by-zero"
     "-fsanitize=pointer-compare"
@@ -445,10 +444,7 @@ lib.seq checkedArgs (
       };
     }
     // lib.optionalAttrs sanitize {
-      hardeningDisable = [
-        "fortify"
-        "fortify3"
-      ];
+      hardeningDisable = [ "fortify" ];
 
       # so the programs we launch don't carry asan and ubsan
       postBuild = ''
