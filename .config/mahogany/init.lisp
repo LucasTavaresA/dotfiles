@@ -27,6 +27,13 @@
     mh::touchpad-accel-speed 0.3
     mahogany/system::*default-terminals* '("foot")))
 
+;; depends on a patch
+(pcall "input-method"
+  (setf cl-interactive:*default-input-method*
+      (make-instance 'mh::dmenu-input-method
+                     :command '("tofi" "--require-match=false")
+                     :prompt-flag "--prompt-text")))
+
 (defmacro defexec (name command)
   `(mh::defcommand ,name ()
      (:documentation ,command)
