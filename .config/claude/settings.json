@@ -59,5 +59,6 @@
   "editorMode": "vim",
   "preferredNotifChannel": "auto",
   "autoCompactEnabled": false,
+  "switchModelsOnFlag": false,
   "useAutoModeDuringPlan": false
 }
