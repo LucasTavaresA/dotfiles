@@ -824,6 +824,7 @@ in
         [ "zls" ]
         [ "zoxide" ]
         [ "zstd" ]
+        [ "newsboat" ]
       ]
       ++ [
         (
